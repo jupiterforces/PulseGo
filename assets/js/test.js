@@ -247,8 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Common modallarni yuklash
-fetch("/assets/modals/modals.html")
+fetch("../assets/modals/modals.html")
   .then((response) => response.text())
   .then((html) => {
     document.getElementById("common-modals").innerHTML = html;
   });
+
