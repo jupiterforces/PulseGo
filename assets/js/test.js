@@ -49,7 +49,7 @@ function generateCertificate() {
   };
 
   localStorage.setItem("certificateData", JSON.stringify(certData));
-  window.location.href = "../assets/modals/certificate.html";
+  window.location.href = "/assets/modals/certificate.html";
 }
 
 // Footerga sana qo'shish
@@ -209,9 +209,22 @@ function startTest(testName) {
   currentIndex = 0;
   score = 0;
 
-  document.getElementById("test-selection").classList.add("d-none");
-  document.getElementById("test-screen").classList.remove("d-none");
-  document.getElementById("result").classList.add("d-none");
+  const selection = document.getElementById("test-selection");
+  const screen = document.getElementById("test-screen");
+  const result = document.getElementById("result");
+
+  if (selection) selection.classList.add("d-none");
+  if (screen) screen.classList.remove("d-none");
+  if (result) result.classList.add("d-none");
+
+  const title = document.getElementById("test-title");
+  const question = document.getElementById("question-container");
+  const answers = document.getElementById("answer-buttons");
+
+  if (!title || !question || !answers) {
+    console.error("Test screen elementlari topilmadi");
+    return;
+  }
 
   showQuestion();
 }
@@ -236,21 +249,18 @@ function reviewMistakes() {
   showQuestion();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+fetch("/assets/modals/modals.html")
+  .then((response) => response.text())
+  .then((html) => {
+    document.getElementById("common-modals").innerHTML = html;
+    initAutoTest(); // testni shu yerda boshlash
+  });
+
+function initAutoTest() {
   const params = new URLSearchParams(window.location.search);
   const testName = params.get("test");
 
   if (testName && tests[testName]) {
-    // Testni avtomatik boshlash
     startTest(testName);
   }
-});
-
-// Common modallarni yuklash
-fetch("../assets/modals/modals.html")
-  .then((response) => response.text())
-  .then((html) => {
-    document.getElementById("common-modals").innerHTML = html;
-  });
-
-
+}
