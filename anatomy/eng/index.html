@@ -29,10 +29,10 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="../../assets/styles/styles.css">
 
-</head>
-<!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QX686G4TT9"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
@@ -41,6 +41,9 @@
 
     gtag('config', 'G-QX686G4TT9');
 </script>
+    
+</head>
+
 
 
 <body class="bg-light">
@@ -76,13 +79,13 @@
 
                                 <!-- Suyaklar -->
                                 <div class="col-6 col-md-3">
-                                    <div class="test-card" onclick="startTest('mock1')">
+                                    <div class="test-card" onclick="startTest('L6')">
                                         <div class="test-icon bg-success-subtle text-success">
                                             <i class="bi bi-journal-medical fs-3"></i>
                                         </div>
-                                        <div class="test-title fw-semibold">GI</div>
+                                        <div class="test-title fw-semibold">L6</div>
                                         <div class="question-footer">
-                                            30 questions
+                                            20 questions
                                         </div>
                                     </div>
                                 </div>
@@ -198,15 +201,13 @@
 
 
 
-    <script>
+      <script>
         const tests = {
-            mock1: getRandomTest(TEST_QUESTIONS.mock1, 20),
-            mock2: getRandomTest(TEST_QUESTIONS.mock2, 20),
+            L6: getRandomTest(TEST_QUESTIONS.L6, 20),
         };
 
         const testTitleMap = {
-            mock1: "YYYYYY",
-            mock2: "OOOOO"
+            L6: "L6",
         };
 
 
