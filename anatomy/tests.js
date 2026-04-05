@@ -841,7 +841,7 @@ window.TEST_QUESTIONS = {
       correct: 1,
     },
     {
-      q: "Kvadrat bo'lak qonni qayerdan qon oladi",
+      q: "Kvadrat bo'lak qonni qayerdan oladi",
       a: [
         "chap jigar arteriyasidan",
         "o'ng jigar arteriyasidan",
@@ -852,7 +852,7 @@ window.TEST_QUESTIONS = {
       correct: 0,
     },
     {
-      q: "Kaudal bo'lak qonni qayerdan qon oladi",
+      q: "Kaudal bo'lak qonni qayerdan oladi",
       a: [
         "chap jigar arteriyasidan",
         "o'ng jigar arteriyasidan",
@@ -861,6 +861,227 @@ window.TEST_QUESTIONS = {
         "lateral inferior arteriyasidan",
       ],
       correct: 2,
+    },
+  ],
+  mock4: [
+    {
+      q: "Seliak trunk qaysi arteriyalarga bo‘linadi?",
+      a: [
+        "Chap kolik, sigmoid, rektal",
+        "Chap gastrik, taloq, umumiy jigar",
+        "O‘ng kolik, ileokolik, o‘rta kolik",
+        "Gastroepiploik va pankreatik",
+        "Renal va suprarenal",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Seliak poyaning eng kichik shoxchasi qaysi?",
+      a: [
+        "Taloq arteriyasi",
+        "Chap gastrik arteriya",
+        "Umumiy jigar arteriyasi",
+        "Gastroduodenal arteriya",
+        "O‘ng kolik arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Seliak poyaning eng katta tarmog‘i qaysi?",
+      a: [
+        "Chap gastrik arteriya",
+        "O‘ng gastrik arteriya",
+        "Taloq arteriyasi",
+        "Umumiy jigar arteriyasi",
+        "Ileokolik arteriya",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Qizilo‘ngach va jigar shoxlari qaysi arteriyadan keladi?",
+      a: [
+        "Taloq arteriyasi",
+        "Chap gastrik arteriya",
+        "O‘ng gastrik arteriya",
+        "Gastroduodenal arteriya",
+        "O‘rta kolik arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Dorsal pankreatik arteriya qaysi arteriyadan keladi?",
+      a: [
+        "Umumiy jigar arteriyasi",
+        "Taloq arteriyasi",
+        "Chap gastrik arteriya",
+        "O‘rta kolik arteriya",
+        "Ileokolik arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Qisqa me’da arteriyalari qaysi arteriyadan keladi?",
+      a: [
+        "Chap gastrik arteriya",
+        "Taloq arteriyasi",
+        "O‘ng gastrik arteriya",
+        "Gastroduodenal arteriya",
+        "Chap kolik arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Chap gastroepiploik arteriya qaysi arteriyadan keladi?",
+      a: [
+        "Taloq arteriyasi",
+        "Umumiy jigar arteriyasi",
+        "Chap gastrik arteriya",
+        "O‘rta kolik arteriya",
+        "Pastki mezenterial arteriya",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Xususiy jigar arteriyasi qaysi arteriyalarga bo‘linadi?",
+      a: [
+        "O‘ng va chap jigar arteriyalariga",
+        "Gastrik va pankreatik arteriyalarga",
+        "Kolik arteriyalarga",
+        "Sigmoid arteriyalarga",
+        "Renal arteriyalarga",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Sistik arteriya qayerdan kelib chiqadi?",
+      a: [
+        "Chap jigar arteriyasidan",
+        "O‘ng jigar arteriyasidan",
+        "Gastroduodenal arteriyadan",
+        "Chap gastrik arteriyadan",
+        "Taloq arteriyasidan",
+      ],
+      correct: 1,
+    },
+    {
+      q: "O‘ng gastrik arteriya qaysi arteriya bilan anastomoz qiladi?",
+      a: [
+        "Chap gastroepiploik arteriya",
+        "Chap gastrik arteriya",
+        "Taloq arteriyasi",
+        "O‘rta kolik arteriya",
+        "Sigmoid arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "O‘ng gastroepiploik arteriya qaysi arteriyadan keladi?",
+      a: [
+        "Taloq arteriyasi",
+        "Gastroduodenal arteriya",
+        "Chap gastrik arteriya",
+        "Yuqori mezenterial arteriya",
+        "Chap kolik arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Yuqori pankreatikoduodenal arteriya qaysi arteriyadan keladi?",
+      a: [
+        "Yuqori mezenterial arteriya",
+        "Gastroduodenal arteriya",
+        "Taloq arteriyasi",
+        "Chap gastrik arteriya",
+        "Pastki mezenterial arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Pastki pankreatikoduodenal arteriya qaysi arteriyadan keladi?",
+      a: [
+        "Pastki mezenterial arteriya",
+        "Yuqori mezenterial arteriya",
+        "Taloq arteriyasi",
+        "Umumiy jigar arteriyasi",
+        "Chap gastrik arteriya",
+      ],
+      correct: 1,
+    },
+    {
+      q: "O‘rta kolik arteriya qaysi ichakka kiradi?",
+      a: [
+        "Sigmoid ichak",
+        "Ko‘ndalang chambar ichak",
+        "To‘g‘ri ichak",
+        "Ileum",
+        "Ko‘tariluvchi kolon",
+      ],
+      correct: 1,
+    },
+    {
+      q: "O‘ng kolik arteriya qaysi ichakka tarqaladi?",
+      a: [
+        "Tushuvchi kolon",
+        "Ko‘tariluvchi kolon",
+        "Sigmoid ichak",
+        "Ko‘ndalang chambar ichak",
+        "Jejunum",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Appendikulyar arteriya qaysi arteriyadan keladi?",
+      a: [
+        "O‘rta kolik arteriya",
+        "Ileokolik arteriya",
+        "Chap kolik arteriya",
+        "Sigmoid arteriya",
+        "Taloq arteriyasi",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Ichak arteriyalari soni nechta bo‘ladi?",
+      a: ["2–4", "5–7", "12–15", "20–25", "8–10"],
+      correct: 2,
+    },
+    {
+      q: "Chap kolik arteriya qaysi arteriyadan keladi?",
+      a: [
+        "Yuqori mezenterial arteriya",
+        "Pastki mezenterial arteriya",
+        "Taloq arteriyasi",
+        "Umumiy jigar arteriyasi",
+        "Aorta",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Sigmoid arteriyalar nechta bo‘ladi?",
+      a: ["1 ta", "2–3 ta", "4–5 ta", "6–7 ta", "8 ta"],
+      correct: 1,
+    },
+    {
+      q: "Chap kolik arteriya qaysi ichak bo‘ylab yuradi?",
+      a: [
+        "Ko‘tariluvchi kolon",
+        "Tushuvchi kolon",
+        "Ileum",
+        "Jejunum",
+        "Rektum",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Yuqori rektal arteriya qaysi arteriyalar bilan anastomoz qiladi?",
+      a: [
+        "Gastrik arteriyalar bilan",
+        "O‘rta va pastki rektal arteriyalar bilan",
+        "Gastrik va pankreatik arteriyalarga",
+        "Hepatik arteriyalar bilan",
+        "Splenik arteriya bilan",
+      ],
+      correct: 1,
     },
   ],
 };
