@@ -1084,4 +1084,148 @@ window.TEST_QUESTIONS = {
       correct: 1,
     },
   ],
+  mock5: [
+    {
+      q: "Portal vena uzunligi odatda nechaga teng?",
+      a: ["3 sm", "8 sm", "10 sm", "12 sm", "15 sm"],
+      correct: 1,
+    },
+    {
+      q: "Portal vena qaysi venalarning qo‘shilishidan hosil bo‘ladi?",
+      a: [
+        "Pastki kovak vena va jigar venalari",
+        "Taloq vena va yuqori tutqich vena",
+        "Pastki tutqich vena va jigar venalari",
+        "Chap oshqozon va o‘ng oshqozon venalari",
+        "Buyrak va taloq venalari",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Pastki tutqich vena odatda qaysi venaga quyiladi?",
+      a: [
+        "Yuqori tutqich vena",
+        "Pastki kovak vena",
+        "Taloq vena",
+        "Jigar vena",
+        "Chap oshqozon vena",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Portal vena qaysi venani qabul qiladi?",
+      a: [
+        "Jigar venalari",
+        "Buyrak vena",
+        "Chap oshqozon vena",
+        "Pastki kovak vena",
+        "Son vena",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Portal vena qanday qonni olib yuradi?",
+      a: [
+        "Kislorodga boy arterial qon",
+        "Aralash qon",
+        "Oziq moddalarga boy venoz qon",
+        "Faqat limfa",
+        "Toza arterial qon",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Pastki tutqich vena qaysi venalarning qo‘shilishidan hosil bo‘ladi?",
+      a: [
+        "Yuqori to‘g‘ri ichak venasi va o‘rta, pastki to‘g‘ri ichak venalari.",
+        "Son venalari",
+        "Yuqori to'g'ri ichak va sigmasimon venalari",
+        "Buyrak venalari",
+        "Toq venaning qizilo'ngach tarmoqlari",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Pastki tutqich vena qaysi venani qabul qiladi?",
+      a: [
+        "Portal vena",
+        "Jigar venalari",
+        "Chap kolikal vena",
+        "Yuqori tutqich vena",
+        "Pastki tutqich vena",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Paraumbilikal venalar qayerda joylashgan?",
+      a: [
+        "Hepatoduodenal ligamentda",
+        "O’roqsimon boylamda",
+        "Yumaloq boylamda",
+        "Ligamentum teres hepatisda",
+        "O‘t pufagi bo‘shlig‘ida",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Paraumbilikal venalar portal gipertenziyada qanday o‘zgaradi?",
+      a: [
+        "To‘liq yopiladi",
+        "O‘zgarmaydi",
+        "Kengayadi",
+        "Qisqaradi",
+        "Qattiqlashadi",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Porto-kaval anastomozlar nechta asosiy turga ega?",
+      a: ["2 ta", "3 ta", "4 ta", "5 ta", "6 ta"],
+      correct: 2,
+    },
+    {
+      q: "Chap oshqozon venasi qaysi tizim bilan anastomoz qiladi?",
+      a: [
+        "Portal vena",
+        "Azygos tizimi venalari",
+        "Buyrak venasi",
+        "Son venasi",
+        "Jigar venasi",
+      ],
+      correct: 1,
+    },
+    {
+      q: "O‘rta va pastki rektal venalar qaysi vena bilan anastomoz qiladi?",
+      a: [
+        "Yuqori rektal vena",
+        "Jigar venasi",
+        "Buyrak venasi",
+        "Taloq venasi",
+        "Chap oshqozon vena",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Epigastrial venalar qaysi venalar bilan anastomoz qiladi?",
+      a: [
+        "Paraumbilikal venalar",
+        "Jigar venalari",
+        "Buyrak venalari",
+        "Taloq venasi",
+        "O‘pka venalari",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Qaysi jigar venalari pastki kovak venaga quyilishdan oldin birlashadi?",
+      a: [
+        "O‘ng jigar venasi",
+        "Chap va o‘rta jigar venalari",
+        "Faqat o‘rta jigar venasi",
+        "O'ng va o‘rta jigar venalari",
+        "Barchasi alohida quyiladi",
+      ],
+      correct: 1,
+    },
+  ],
 };
