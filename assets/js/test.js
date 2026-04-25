@@ -106,39 +106,52 @@ function showQuestion() {
   const container = document.getElementById("question-container");
 
   // 🔥 SMART RENDER
+  // 🔥 SMART RENDER
+  // 🔥 SMART RENDER
+  // 🔥 SMART RENDER
+
+  const navbar = document.querySelector(".navbar");
+
   if (q.photo) {
+    // photo bo‘lsa navbar yo‘qoladi
+    if (navbar) navbar.style.display = "none";
+
     container.innerHTML = `
-      <div class="container d-flex justify-content-center">
-        <div class="tg-question">
-        <p id="question-container">${q.q}</p>
-          <div class="text-center">
-            <img src="${q.photo}" 
-                 class="img-fluid rounded" 
-                 style="max-height:300px; object-fit:contain;">
-          </div>
-        </div>
+    <div class="container d-flex justify-content-center mt-0 mb-0 pb-0 pt-0">
+      <div class="tg-question mt-0 mb-0 pt-0">
+        <p id="question-container" class="mb-0">${q.q}</p>
+
+        <div class="text-center mb-0">
+          <img src="${q.photo}" 
+               class="img-fluid rounded mb-0"
+               style="max-height: 260px; object-fit:contain;">
+        </div> 
       </div>
-    `;
+    </div>
+  `;
   } else {
+    // oddiy savolda navbar qaytadi
+    if (navbar) navbar.style.display = "";
+
     container.innerHTML = `
     <div class="container d-flex justify-content-center">
       <div class="tg-question">
         <p class="fw-semibold">${q.q}</p>
+
+        <div id="answer-buttons" class="tg-answers"></div>
       </div>
     </div>
   `;
   }
 
-  const img = container.querySelector("img");
-
-  if (img) {
-    img.onclick = () => {
+  container.addEventListener("click", (e) => {
+    if (e.target.tagName === "IMG") {
       const modalImg = document.getElementById("modalImage");
-      modalImg.src = q.photo;
+      modalImg.src = e.target.src;
 
       new bootstrap.Modal(document.getElementById("imageModal")).show();
-    };
-  }
+    }
+  });
 
   const answerButtons = document.getElementById("answer-buttons");
   answerButtons.innerHTML = "";
