@@ -113,31 +113,37 @@ function showQuestion() {
   const navbar = document.querySelector(".navbar");
 
   if (q.photo) {
-    // photo bo‘lsa navbar yo‘qoladi
     if (navbar) navbar.style.display = "none";
 
     container.innerHTML = `
     <div class="container d-flex justify-content-center mt-0 mb-0 pb-0 pt-0">
       <div class="tg-question mt-0 mb-0 pt-0">
+
         <p id="question-container" class="mb-0">${q.q}</p>
 
         <div class="text-center mb-0">
           <img src="${q.photo}" 
-               class="img-fluid rounded mb-0"
-               style="max-height: 260px; object-fit:contain;">
-        </div> 
+               loading="eager" 
+               decoding="async"
+               class="img-fluid rounded quiz-img">
+        </div>
+
       </div>
     </div>
   `;
+
+    // fade-in fix (sekin chiqishini yo‘qotadi)
+    const img = container.querySelector(".quiz-img");
+    if (img) {
+      img.onload = () => img.classList.add("loaded");
+    }
   } else {
-    // oddiy savolda navbar qaytadi
     if (navbar) navbar.style.display = "";
 
     container.innerHTML = `
     <div class="container d-flex justify-content-center">
       <div class="tg-question">
         <p class="fw-semibold">${q.q}</p>
-
         <div id="answer-buttons" class="tg-answers"></div>
       </div>
     </div>
