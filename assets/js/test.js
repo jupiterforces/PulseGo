@@ -224,15 +224,18 @@ function selectAnswer(selectedIndex) {
   }, 1000);
 }
 
-// Testni to'xtatish
 function stopTest() {
   if (confirm("Really want to end the test?")) {
     clearInterval(timer);
+
     document.getElementById("test-screen").classList.add("d-none");
     document.getElementById("test-selection").classList.remove("d-none");
+
+    setTimeout(() => {
+      window.location.href = "http://pulseimi.qzz.io/";
+    }, 0);
   }
 }
-
 // Natija popup
 function showResultPopup() {
   document.getElementById("test-screen").classList.add("d-none");
@@ -248,7 +251,7 @@ function showResultPopup() {
 }
 
 function closeResult() {
-  location.reload();
+  location.assign("http://pulseimi.qzz.io/");
 }
 
 // Natijani ulashish
