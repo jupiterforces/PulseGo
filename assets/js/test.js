@@ -17,6 +17,7 @@ function getRandomTest(questions, n = 25) {
     const shuffledAnswers = shuffle(q.a);
     return {
       q: q.q,
+      photo: q.photo || null,
       a: shuffledAnswers,
       correct: shuffledAnswers.indexOf(q.a[q.correct]),
     };
@@ -93,7 +94,6 @@ let score = 0;
 let timer;
 let timeLeft = 45;
 
-// Savolni ko'rsatish
 function showQuestion() {
   if (currentIndex >= currentTest.length) {
     showResultPopup();
@@ -102,7 +102,43 @@ function showQuestion() {
 
   const q = currentTest[currentIndex];
   document.getElementById("test-title").innerText = `Savol ${currentIndex + 1}`;
-  document.getElementById("question-container").innerText = q.q;
+
+  const container = document.getElementById("question-container");
+
+  // 🔥 SMART RENDER
+  if (q.photo) {
+    container.innerHTML = `
+      <div class="container d-flex justify-content-center">
+        <div class="tg-question">
+        <p id="question-container">${q.q}</p>
+          <div class="text-center">
+            <img src="${q.photo}" 
+                 class="img-fluid rounded" 
+                 style="max-height:300px; object-fit:contain;">
+          </div>
+        </div>
+      </div>
+    `;
+  } else {
+    container.innerHTML = `
+    <div class="container d-flex justify-content-center">
+      <div class="tg-question">
+        <p class="fw-semibold">${q.q}</p>
+      </div>
+    </div>
+  `;
+  }
+
+  const img = container.querySelector("img");
+
+  if (img) {
+    img.onclick = () => {
+      const modalImg = document.getElementById("modalImage");
+      modalImg.src = q.photo;
+
+      new bootstrap.Modal(document.getElementById("imageModal")).show();
+    };
+  }
 
   const answerButtons = document.getElementById("answer-buttons");
   answerButtons.innerHTML = "";
@@ -154,6 +190,7 @@ function selectAnswer(selectedIndex) {
 
     mistakes.push({
       q: currentTest[currentIndex].q,
+      photo: currentTest[currentIndex].photo,
       a: currentTest[currentIndex].a,
       correct: correctIndex,
       selected: selectedIndex,
@@ -208,6 +245,8 @@ function startTest(testName) {
   currentTestName = testName;
   currentIndex = 0;
   score = 0;
+
+  mistakes = [];
 
   const selection = document.getElementById("test-selection");
   const screen = document.getElementById("test-screen");
