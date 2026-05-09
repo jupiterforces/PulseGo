@@ -242,7 +242,7 @@
                     <h2 class="accordion-header">
                         <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
                             data-bs-target="#anatomyTests" aria-expanded="true">
-                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Anatomy Cases
+                            <i class="bi bi-heart-pulse me-2 text-danger"></i>Cases
                         </button>
                     </h2>
 
@@ -258,9 +258,9 @@
                                             <i class="bi bi-journal-medical"></i>
                                         </div>
                                         <div class="test-title">Introduction</div>
-                                
+
                                         <div class="question-footer">
-                                            14 question
+                                            14 questions
                                         </div>
 
                                     </div>
@@ -272,9 +272,9 @@
                                             <i class="bi bi-person-standing"></i>
                                         </div>
                                         <div class="test-title">Back</div>
-                                      
+
                                         <div class="question-footer">
-                                            36 question
+                                            36 questions
                                         </div>
                                     </div>
                                 </div>
@@ -285,9 +285,9 @@
                                             <i class="bi bi-lungs"></i>
                                         </div>
                                         <div class="test-title">Thorax</div>
-                                       
+
                                         <div class="question-footer">
-                                            46 question
+                                            46 questions
                                         </div>
                                     </div>
                                 </div>
@@ -298,9 +298,9 @@
                                             <i class="bi bi-activity"></i>
                                         </div>
                                         <div class="test-title">Abdomen</div>
-                                      
+
                                         <div class="question-footer">
-                                            54 question
+                                            54 questions
                                         </div>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@
                                             <i class="bi bi-collection"></i>
                                         </div>
                                         <div class="test-title">Cases 1</div>
-                                      
+
                                         <div class="question-footer">
                                             5 questions
                                         </div>
@@ -323,7 +323,7 @@
                                             <i class="bi bi-collection"></i>
                                         </div>
                                         <div class="test-title">Cases 2</div>
-                                    
+
                                         <div class="question-footer">
                                             5 questions
                                         </div>
@@ -335,9 +335,21 @@
                                             <i class="bi bi-collection"></i>
                                         </div>
                                         <div class="test-title">Bio cases</div>
-                                        
+
                                         <div class="question-footer">
                                             14 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="collectioncard" onclick="startTest('embryo')">
+                                        <div class="test-icon bg-warning-subtle text-warning">
+                                            <i class="bi bi-collection"></i>
+                                        </div>
+                                        <div class="test-title">Embryo</div>
+
+                                        <div class="question-footer">
+                                            10 questions
                                         </div>
                                     </div>
                                 </div>
@@ -386,6 +398,7 @@
             cases1: getRandomTest(TEST_QUESTIONS.cases1),
             cases2: getRandomTest(TEST_QUESTIONS.cases2),
             case_bio: getRandomTest(TEST_QUESTIONS.case_bio),
+            embryo: getRandomTest(TEST_QUESTIONS.embryo),
         };
 
     </script>
