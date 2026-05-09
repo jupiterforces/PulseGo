@@ -1763,4 +1763,125 @@ window.TEST_QUESTIONS = {
       correct: 0,
     },
   ],
+  embryo: [
+    {
+      q: "20 yoshli ayol shoshilinch yordam bo‘limiga o‘ng tomondagi kuchli qorin og‘rig‘i va ichki qon ketish belgilari bilan murojaat qildi. U kontratsepsiyasiz jinsiy aloqada bo‘lganini va oxirgi hayz davri kelmaganini aytdi. Ushbu ma’lumotlarga asoslanib, quyidagi kasalliklardan qaysi biri tashxis variantlari qatorida albatta ko‘rib chiqilishi kerak?",
+      a: [
+        "Tuxumdon saratoni",
+        "Appenditsit",
+        "Oddiy homiladorlik",
+        "Naydagi ektopik homiladorlik",
+        "Homiladorlik toksikozi",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Ikkilamchi oosit qachon ikkinchi meyoz bo‘linishini yakunlab, yetuk tuxum hujayraga (ovum) aylanadi?",
+      a: [
+        "Ovulyatsiya vaqtida",
+        "Ovulyatsiyadan oldin",
+        "Urug‘lanish vaqtida",
+        "Balog‘at yoshida",
+        "Tug‘ilishdan oldin",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Urug‘lanish bachadon nayida sodir bo‘lgandan keyin blastotsista qachon implantatsiyani boshlaydi?",
+      a: [
+        "Bir necha daqiqa ichida",
+        "12 soat ichida",
+        "1-kunga kelib",
+        "2-kunga kelib",
+        "7-kunga kelib",
+      ],
+      correct: 4,
+    },
+
+    {
+      q: "Blastotsista odatda qayerga implantatsiya qiladi?",
+      a: [
+        "Serviksning funksional qatlami",
+        "Endometriyning funksional qatlami",
+        "Endometriyning bazal qatlami",
+        "Miyometriy",
+        "Perimetriy",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Rivojlanishning 1-haftasida zigotaning maydalanishi (cleavage) jarayonida quyidagi hodisalardan qaysi biri sodir bo‘ladi?",
+      a: [
+        "Blastomerlar hosil qiluvchi bir qator meyoz bo‘linishlari",
+        "Yuqori darajada differensiallashgan blastomerlar hosil bo‘lishi",
+        "Blastomerlarning sitoplazmatik tarkibi ortishi",
+        "Blastomerlar hajmining ortishi",
+        "Blastomerlar hajmining kamayishi",
+      ],
+      correct: 4,
+    },
+
+    {
+      q: "Blastotsistaning implantatsiyasi sodir bo‘lishi uchun quyidagi tuzilmalardan qaysi biri parchalanishi kerak?",
+      a: [
+        "Progesteron ta’siridagi endometriy",
+        "Zona pellusida",
+        "Sinsitiotrofoblast",
+        "Sitotrofoblast",
+        "Endometriyning funksional qatlami",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Inson organizmidagi barcha yetuk hujayralarning mitoxondrial DNKsi qayerdan kelib chiqadi?",
+      a: [
+        "Faqat otadan",
+        "Faqat onadan",
+        "Ota va onadan birgalikda",
+        "Ota yoki onadan",
+        "Kelib chiqishi noma’lum",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Blastulaning 4 hujayrali bosqichidagi alohida blastomerlar ajratib olindi. Har bir blastomer laboratoriya sharoitida blastotsista bosqichigacha o‘stirildi va alohida-alohida to‘rtta soxta homilador foster onaga implantatsiya qilindi. 9 oy o‘tgach, quyidagilardan qaysi biri kuzatiladi?",
+      a: [
+        "Bitta chaqaloq tug‘ilishi",
+        "Genetik jihatdan turlicha bo‘lgan to‘rtta chaqaloq tug‘ilishi",
+        "Genetik jihatdan bir xil bo‘lgan to‘rtta chaqaloq tug‘ilishi",
+        "Jiddiy deformatsiyaga ega to‘rtta chaqaloq tug‘ilishi",
+        "Hech qanday tug‘ilish bo‘lmasligi",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Sariq junli sichqondagi teratokarsinomadan embrional karsinoma (EC) hujayralari ajratib olindi. Keyin bu EC hujayralari qora junli sichqondan olingan blastotsistaning ichki hujayra massasiga mikroin’yeksiya qilindi. So‘ng blastotsista oq junli foster sichqon bachadoniga joylashtirildi. To‘liq homiladorlikdan keyin nima kuzatiladi?",
+      a: [
+        "Sariq junli avlod",
+        "Qora junli avlod",
+        "Oq junli avlod",
+        "Sariq va qora junli avlod",
+        "Sariq va oq junli avlod",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Oogenez jarayonida quyidagi hodisalardan qaysi biri meyoz II tugallangandan keyin darhol sodir bo‘ladi?",
+      a: [
+        "Zona pellusidaning parchalanishi",
+        "Spermatozoidning corona radiataga kirishi",
+        "Ayol pronukleusining hosil bo‘lishi",
+        "Blastotsistaning paydo bo‘lishi",
+        "Maydalanish (cleavage) jarayonining tugallanishi",
+      ],
+      correct: 2,
+    },
+  ],
 };
