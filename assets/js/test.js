@@ -243,6 +243,8 @@ function stopTest() {
     currentIndex = 0;
     score = 0;
 
+    document.activeElement.blur();
+
     document.getElementById("test-screen").classList.add("d-none");
     document.getElementById("test-selection").classList.remove("d-none");
 
