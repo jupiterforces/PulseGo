@@ -105,32 +105,29 @@ function showQuestion() {
 
   const container = document.getElementById("question-container");
 
-  // 🔥 SMART RENDER
-  // 🔥 SMART RENDER
-  // 🔥 SMART RENDER
-  // 🔥 SMART RENDER
-
   const navbar = document.querySelector(".navbar");
 
   if (q.photo) {
     if (navbar) navbar.style.display = "none";
 
     container.innerHTML = `
-    <div class="container d-flex justify-content-center mt-0 mb-0 pb-0 pt-0">
-      <div class="tg-question mt-0 mb-0 pt-0">
+<div class="container d-flex justify-content-center mt-0 mb-0 pb-0 pt-0">
+  <div class="tg-question mt-0 mb-0 pt-0">
 
-        <p id="question-container" class="mb-0">${q.q}</p>
+    <p class="mb-0">${q.q}</p>
 
-        <div class="text-center mb-0">
-          <img src="${q.photo}" 
-               loading="eager" 
-               decoding="async"
-               class="img-fluid rounded quiz-img">
-        </div>
-
-      </div>
+    <div class="text-center mb-0">
+      <img src="${q.photo}" 
+           loading="eager" 
+           decoding="async"
+           class="img-fluid rounded quiz-img">
     </div>
-  `;
+
+    <div id="answer-buttons" class="tg-answersimg mt-3"></div>
+
+  </div>
+</div>
+`;
 
     // fade-in fix (sekin chiqishini yo‘qotadi)
     const img = container.querySelector(".quiz-img");
@@ -150,14 +147,24 @@ function showQuestion() {
   `;
   }
 
-  container.addEventListener("click", (e) => {
-    if (e.target.tagName === "IMG") {
-      const modalImg = document.getElementById("modalImage");
-      modalImg.src = e.target.src;
+  document.addEventListener("click", handleImageOpen);
+  document.addEventListener("touchstart", handleImageOpen);
 
-      new bootstrap.Modal(document.getElementById("imageModal")).show();
-    }
-  });
+  function handleImageOpen(e) {
+    const img = e.target.closest("img");
+
+    if (!img) return;
+
+    const modalImg = document.getElementById("modalImage");
+    if (!modalImg) return;
+
+    modalImg.src = img.src;
+
+    const modalEl = document.getElementById("imageModal");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+    modal.show();
+  }
 
   const answerButtons = document.getElementById("answer-buttons");
   answerButtons.innerHTML = "";
@@ -225,16 +232,29 @@ function selectAnswer(selectedIndex) {
 }
 
 function stopTest() {
-  if (confirm("Really want to end the test?")) {
+  const modalEl = document.getElementById("exitTestModal");
+  const modal = new bootstrap.Modal(modalEl);
+
+  modal.show();
+
+  document.getElementById("confirmExitTest").onclick = function () {
     clearInterval(timer);
+
+    currentTest = [];
+    currentIndex = 0;
+    score = 0;
 
     document.getElementById("test-screen").classList.add("d-none");
     document.getElementById("test-selection").classList.remove("d-none");
 
-    setTimeout(() => {
-      window.location.href = "http://pulseimi.qzz.io/";
-    }, 0);
-  }
+    const container = document.getElementById("question-container");
+    if (container) container.innerHTML = "";
+
+    const navbar = document.querySelector(".navbar");
+    if (navbar) navbar.style.display = "";
+
+    modal.hide();
+  };
 }
 // Natija popup
 function showResultPopup() {
@@ -251,9 +271,22 @@ function showResultPopup() {
 }
 
 function closeResult() {
-  location.assign("http://pulseimi.qzz.io/");
-}
+  const modalEl = document.getElementById("resultModal");
+  const modal = bootstrap.Modal.getInstance(modalEl);
 
+  if (modal) modal.hide();
+
+  document.getElementById("test-screen").classList.add("d-none");
+  document.getElementById("test-selection").classList.remove("d-none");
+
+  // reset (ixtiyoriy, lekin tavsiya)
+  currentTest = [];
+  currentIndex = 0;
+  score = 0;
+
+  const navbar = document.querySelector(".navbar");
+  if (navbar) navbar.style.display = "";
+}
 // Natijani ulashish
 function shareResult() {
   const text = `🩺 Pulse Medical\n📊 My result:\n✅ ${score} / ${currentTest.length}\n\n`;
