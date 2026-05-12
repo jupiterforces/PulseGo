@@ -94,6 +94,9 @@ let score = 0;
 let timer;
 let timeLeft = 45;
 
+document.addEventListener("click", handleImageOpen);
+document.addEventListener("touchstart", handleImageOpen);
+
 function showQuestion() {
   if (currentIndex >= currentTest.length) {
     showResultPopup();
@@ -147,25 +150,6 @@ function showQuestion() {
   `;
   }
 
-  document.addEventListener("click", handleImageOpen);
-  document.addEventListener("touchstart", handleImageOpen);
-
-  function handleImageOpen(e) {
-    const img = e.target.closest("img");
-
-    if (!img) return;
-
-    const modalImg = document.getElementById("modalImage");
-    if (!modalImg) return;
-
-    modalImg.src = img.src;
-
-    const modalEl = document.getElementById("imageModal");
-    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-
-    modal.show();
-  }
-
   const answerButtons = document.getElementById("answer-buttons");
   answerButtons.innerHTML = "";
 
@@ -189,6 +173,21 @@ function showQuestion() {
       selectAnswer(-1);
     }
   }, 1000);
+}
+
+function handleImageOpen(e) {
+  const img = e.target.closest("img");
+  if (!img) return;
+
+  const modalImg = document.getElementById("modalImage");
+  if (!modalImg) return;
+
+  modalImg.src = img.src;
+
+  const modalEl = document.getElementById("imageModal");
+  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+
+  modal.show();
 }
 
 // Javobni tanlash
@@ -358,3 +357,5 @@ function initAutoTest() {
     startTest(testName);
   }
 }
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>;
