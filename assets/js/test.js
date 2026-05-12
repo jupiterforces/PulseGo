@@ -50,7 +50,7 @@ function generateCertificate() {
   };
 
   localStorage.setItem("certificateData", JSON.stringify(certData));
-  window.location.href = "/assets/modals/certificate.html";
+  window.location.href = "../assets/modals/certificate.html";
 }
 
 // Footerga sana qo'shish
