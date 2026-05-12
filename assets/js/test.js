@@ -342,7 +342,7 @@ function reviewMistakes() {
   showQuestion();
 }
 
-fetch("../assets/modals/modals.html")
+fetch("../../assets/modals/modals.html")
   .then((response) => response.text())
   .then((html) => {
     document.getElementById("common-modals").innerHTML = html;
