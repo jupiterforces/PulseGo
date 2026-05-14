@@ -1,32 +1,50 @@
-<!-- RESULT MODAL -->
+<link rel="stylesheet" href="./assets/styles/styles.css">
+
 <div class="modal fade" id="resultModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content result-modal">
+        <div class="modal-content tg-ultra-modal">
+
             <div class="modal-body text-center p-4">
 
-                <div class="result-icon mb-3">
+                <!-- ICON -->
+                <div class="tg-ultra-icon mb-3">
                     <i class="bi bi-trophy-fill"></i>
                 </div>
 
-                <h5 class="fw-bold mb-2">Here we go 🎉</h5>
-                <p id="final-score" class="result-score mb-3"></p>
+                <!-- TITLE -->
+                <h5 class="tg-ultra-title">Here we go 🎉</h5>
 
-                <div class="d-grid gap-2">
-                    <button onclick="reviewMistakes()" class="btn btn-success">
-                        ⚠️ Xatolarni to'g'rilash
-                    </button>
-                    <button onclick="generateCertificate()" class="btn btn-success">
-                        🎓 Sertifikatni yuklash
-                    </button>
-                    <button onclick="shareResult()" class="btn btn-telegram">
-                        <i class="bi bi-telegram me-2"></i> Natijani ulashish
+                <!-- SCORE -->
+                <p id="final-score" class="tg-ultra-score"></p>
+
+                <!-- ACTIONS -->
+                <div class="tg-ultra-actions">
+
+                    <button onclick="reviewMistakes()" class="tg-ultra-btn primary">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <span>Xatolarni to'g'rilash</span>
                     </button>
 
-                    <button onclick="closeResult()" class="btn btn-outline-secondary">
-                        Yopish
+                    <button onclick="generateCertificate()" class="tg-ultra-btn">
+                        <i class="bi bi-award-fill"></i>
+                        <span>Sertifikat</span>
                     </button>
+
+                    <button onclick="shareResult()" class="tg-ultra-btn">
+                        <i class="bi bi-telegram"></i>
+                        <span>Ulashish</span>
+                    </button>
+
+                    <!-- RED MINIMAL CLOSE -->
+                    <button onclick="closeResult()" class="tg-ultra-btn danger">
+                        <i class="bi bi-x-lg"></i>
+                        <span>Yopish</span>
+                    </button>
+
                 </div>
+
             </div>
+
         </div>
     </div>
 </div>
@@ -112,17 +130,48 @@
     </div>
 </div>
 
+<!-- Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content bg-dark border-0">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-transparent border-0 shadow-none">
 
-            <div class="modal-body text-center p-2">
-                <img id="modalImage" src="" class="img-fluid rounded" style="max-height:90vh;">
+            <!-- Close button -->
+            <button type="button" class="btn-close btn-close-red position-absolute top-0 end-0 m-3 z-3"
+                data-bs-dismiss="modal" aria-label="Close">
+            </button>
+
+            <!-- Image -->
+            <div class="modal-body text-center p-0">
+
+                <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" style="
+                        max-height: 90vh;
+                        object-fit: contain;
+                        cursor: pointer;
+                    ">
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    const modalEl = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+
+    // Rasm ochish
+    img.onclick = () => {
+        modalImg.src = q.photo;
+
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+    };
+
+    // Rasm ustiga bosilganda yopiladi
+    modalImg.onclick = () => {
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+    };
+</script>
 
 <script>
     img.onclick = () => {
