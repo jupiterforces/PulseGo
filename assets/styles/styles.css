@@ -18,6 +18,8 @@ body {
     padding-bottom: 80px;
 }
 
+
+
 .answer-btn {
     transition: all .2s ease;
 }
@@ -729,4 +731,80 @@ body {
 .tg-ultra-btn.danger:hover {
     background: #ffecec;
     border-color: rgba(239, 68, 68, 0.35);
+}
+
+/* =========================
+   RESULT UI (PRO LEVEL)
+   ========================= */
+
+/* wrapper */
+.tg-circle-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 10px auto 20px;
+}
+
+/* SVG background circle */
+.progress-ring__bg {
+    fill: none;
+    stroke: #eef2f7;
+    stroke-width: 10;
+}
+
+/* animated circle */
+.progress-ring__circle {
+    fill: none;
+    stroke: #229ED9;
+    stroke-width: 10;
+    stroke-linecap: round;
+
+    transform: rotate(-90deg);
+    transform-origin: center;
+
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+/* CENTER TEXT CONTAINER */
+.tg-percent-center {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+
+    font-weight: 800;
+    color: #111827;
+}
+
+/* BIG NUMBER */
+#percent-text {
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+/* percent sign */
+.tg-percent-center small {
+    font-size: 18px;
+    font-weight: 600;
+    color: #229ED9;
+}
+
+/* FINAL SCORE TEXT */
+.tg-final-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-top: 10px;
+}
+
+.tg-final-result {
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
 }
