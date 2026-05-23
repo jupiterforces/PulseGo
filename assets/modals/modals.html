@@ -14,8 +14,21 @@
                 <!-- TITLE -->
                 <h5 class="tg-ultra-title">Here we go 🎉</h5>
 
-                <!-- SCORE -->
-                <p id="final-score" class="tg-ultra-score"></p>
+                <div class="tg-result-visual">
+
+                    <svg class="progress-ring" width="160" height="160">
+                        <circle class="progress-ring__bg" cx="80" cy="80" r="62"></circle>
+                        <circle class="progress-ring__circle" cx="80" cy="80" r="62"></circle>
+                    </svg>
+
+                    <!-- CENTER TEXT -->
+                    <div class="tg-percent-center">
+                        <span id="percent-text">0</span>
+                    </div>
+
+                </div>
+
+                <div id="final-score" class="tg-final-score-text"></div>
 
                 <!-- ACTIONS -->
                 <div class="tg-ultra-actions">
@@ -48,7 +61,6 @@
         </div>
     </div>
 </div>
-
 <!-- TEST SCREEN SECTION -->
 <section class="pb-5 mt-3">
     <div class="container d-flex justify-content-center">
