@@ -260,15 +260,67 @@ function stopTest() {
 // Natija popup
 function showResultPopup() {
   document.getElementById("test-screen").classList.add("d-none");
-  document.getElementById("final-score").innerText =
-    `Sizning natijangiz: ${score} / ${currentTest.length}`;
+
+  const total = currentTest.length;
+  const correct = score;
+  const percent = total === 0 ? 0 : Math.round((correct / total) * 100);
 
   const modalEl = document.getElementById("resultModal");
   const modal = new bootstrap.Modal(modalEl, {
     backdrop: "static",
     keyboard: false,
   });
+
   modal.show();
+
+  startResultAnimation(percent, correct, total);
+}
+
+function startResultAnimation(targetPercent, correct, total) {
+  const circle = document.querySelector(".progress-ring__circle");
+  const percentText = document.getElementById("percent-text");
+  const resultText = document.getElementById("final-score");
+
+  const radius = 62;
+  const circumference = 2 * Math.PI * radius;
+
+  // reset circle
+  circle.style.strokeDasharray = circumference;
+  circle.style.strokeDashoffset = circumference;
+
+  let start = null;
+  const duration = 3000; // 3 sec (smooth + fast feel)
+
+  function animate(timestamp) {
+    if (!start) start = timestamp;
+
+    const progress = Math.min((timestamp - start) / duration, 1);
+
+    // smooth easing (important!)
+    const eased = 1 - Math.pow(1 - progress, 3);
+
+    const currentPercent = Math.floor(eased * targetPercent);
+
+    const offset = circumference - (currentPercent / 100) * circumference;
+
+    circle.style.strokeDashoffset = offset;
+
+    // center number
+    percentText.innerText = currentPercent;
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      // final result
+      resultText.innerHTML = `
+        <div class="tg-final-result">
+          ${correct} / ${total}
+        </div>
+      `;
+    }
+  }
+
+  requestAnimationFrame(animate);
 }
 
 function closeResult() {
