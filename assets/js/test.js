@@ -92,7 +92,7 @@ let currentTestName = "";
 let currentIndex = 0;
 let score = 0;
 let timer;
-let timeLeft = 45;
+let timeLeft = 60;
 
 document.addEventListener("click", handleImageOpen);
 document.addEventListener("touchstart", handleImageOpen);
@@ -162,7 +162,7 @@ function showQuestion() {
   });
 
   clearInterval(timer);
-  timeLeft = 45;
+  timeLeft = 60;
   document.getElementById("timer").innerText = `⏱ ${timeLeft}s`;
 
   timer = setInterval(() => {
