@@ -1884,4 +1884,116 @@ window.TEST_QUESTIONS = {
       correct: 2,
     },
   ],
+  anatomy1: [
+    {
+      q: "42 yoshli erkak avtomobili daraxtga urilgandan so‘ng shoshilinch yordam bo‘limiga olib kelindi. Unda tos suyagi sinishi va bir nechta chuqur kesilgan jarohatlar aniqlanib, davolash boshlandi. Jismoniy tekshiruvda chap oyoqda oyoq panjasini yuqoriga ko‘tarish (dorsifleksiya) va ichkariga burish (inversiya) juda kuchsizligi, bosh barmoqni yozish harakati juda sustligi aniqlangan. Bundan tashqari oyoq panjasining ustki qismi (dorsumi), oyoq tagi terisi, hamda oyoqning tashqi (lateral) tomonida sezuvchanlik yo‘qolgan. Tizza refleksi (patellar refleks) esa normal holatda. Oyoq panjasi tashqariga burilgan (eversiya holati) va pastga bukilgan (plantar fleksiyada). Quyidagi tuzilmalardan qaysi biri eng ehtimoliy shikastlangan?",
+      a: [
+        "Tos chegarasi (linea terminalis) sohasidagi lumbosakral trunk",
+        "Intervertebral teshikda uzilib ketgan L5 va S1 spinal nervlari",
+        "Fibula bo‘yni sohasidagi siyatik nervning fibular (peroneal) bo‘limi",
+        "Gluteal soha “kirish qismi”dagi siyatik nerv shikasti",
+        "Popliteal fossadagi tibial nerv",
+      ],
+      correct: 0,
+    },
+    {
+      q: "23 yoshli erkak tos sohasidagi chuqur va qonayotgan pichoq jarohati bilan shoshilinch yordam bo‘limiga olib kelindi. Qon ketishi to‘xtatilgandan so‘ng o‘tkazilgan MRT tekshiruvi o‘ng tomondagi L4 spinal nervining oldingi birlamchi shoxi (ventral primary ramus) kesilib ketganini ko‘rsatdi. Jismoniy tekshiruv vaqtida quyidagi muammolardan qaysi biri eng ehtimol bilan aniqlanadi?",
+      a: [
+        "Oyoqning medial (ichki) qismida sezuvchanlikning kamayishi yoki yo‘qolishi",
+        "Axill pay refleksining yo‘qolishi",
+        "Sonni chanoq bo‘g‘imida tashqariga olib chiqish (abduksiya) kuchsizligi",
+        "Oyoq panjasini tashqariga burishning (eversiya) imkonsizligi",
+        "Oyoqning medial qismida sezuvchanlikning kamayishi yoki yo‘qolishi va Axill pay refleksining yo‘qolishi",
+      ],
+      correct: 0,
+    },
+    {
+      q: "30 yoshli erkak mototsikl halokatida yuqori gluteal nerv (superior gluteal nerve) shikastlanishiga uchradi. Hodisa vaqtida uning o‘ng oyog‘i mototsikl tagida qisilib qolgan. Keyinchalik tekshiruvda unda “o‘rdaksimon yurish” (waddling gait) va musbat Trendelenburg belgisi aniqlangan. Quyidagi holatlardan qaysi biri bu bemorda eng ehtimoliy fizik topilma hisoblanadi?",
+      a: [
+        "O‘tirgan holatdan turishda qiyinchilik",
+        "U tana og‘irligini faqat o‘ng oyoqda ushlab turganda, tosning chap tomoni pastga osilib tushishi",
+        "U tana og‘irligini faqat chap oyoqda ushlab turganda, tosning o‘ng tomoni pastga osilib tushishi",
+        "O‘ng son bo‘g‘imining bukilishi (fleksiyasi) kuchsizligi",
+        "Tik turgan holatdan o‘tirishda qiyinchilik",
+      ],
+      correct: 1,
+    },
+    {
+      q: "45 yoshli erkak velosipeddan yiqilgandan so‘ng shifoxonada davolanmoqda. Rentgen tekshiruvda tibia va fibula suyaklarining sinishi aniqlangan. Jismoniy tekshiruvda bemorda “foot drop” mavjud, ammo oyoq panjasini tashqariga burish (eversiya) normal holatda. Quyidagi nervlardan qaysi biri eng ehtimol bilan shikastlangan?",
+      a: [
+        "Tibial nerv",
+        "Umumiy fibular (peroneal) nerv",
+        "Yuzaki fibular (peroneal) nerv",
+        "Saphenous nerv",
+        "Chuqur fibular (peroneal) nerv",
+      ],
+      correct: 1,
+    },
+    {
+      q: "49 yoshli qurilish ishchisi sonining yuqori medial (ichki yuqori) qismida og‘riqli shish bilan shoshilinch yordam bo‘limiga olib kelindi. Churra qorin bo‘shlig‘idan songa o‘tishda dastlab qaysi teshik orqali o‘tadi?",
+      a: [
+        "Femoral halqa (femoral ring)",
+        "Yuzaki inguinal halqa (superficial inguinal ring)",
+        "Chuqur inguinal halqa (deep inguinal ring)",
+        "Fossa ovalis",
+        "Obturator kanali",
+      ],
+      correct: 0,
+    },
+    {
+      q: "37 yoshli erkak to‘piq (talokrural) bo‘g‘imida sinish bilan shifoxonaga yotqizildi. Bu jarohatda qaysi harakatlar asosan zararlanadi?",
+      a: [
+        "Plantar fleksiyasi va dorsifleksiya",
+        "Inversiya va eversiya",
+        "Plantar fleksiyasi, dorsifleksiya, inversiya va eversiya",
+        "Plantar fleksiyasi va inversiya",
+        "Dorsifleksiya va eversiya",
+      ],
+      correct: 0,
+    },
+    {
+      q: "68 yoshli ayol bemorda gluteal soha operatsion tekshiruvida asosiy anatomik mo‘ljal (landmark) bo‘lib xizmat qiladigan tuzilma qaysi?",
+      a: [
+        "Gluteus medius mushagi",
+        "Obturator internus payi",
+        "Siyatik nerv",
+        "Piriformis mushagi",
+        "O‘tirg‘ich suyagi tikanchasi (ischial spine)",
+      ],
+      correct: 3,
+    },
+    {
+      q: "16 yoshli yigit oyoqning lateral tomonini kesib oladi. 4 kundan keyin isitma va limfa tugunlari shishi paydo bo‘ladi. Infeksiyalangan jarohatdan limfa birinchi bo‘lib qaysi tugunlarga boradi?",
+      a: [
+        "Popliteal limfa tugunlari",
+        "Yuzaki inguinal limfa tugunlarining vertikal guruhi",
+        "Chuqur inguinal limfa tugunlari",
+        "Yuzaki inguinal limfa tugunlarining gorizontal guruhi",
+        "Ichki iliak limfa tugunlari",
+      ],
+      correct: 0,
+    },
+    {
+      q: "45 yoshli erkak popliteal fossada kista sabab tibial nerv bosilib qolgan. Qaysi harakat buziladi?",
+      a: [
+        "Oyoq panjasining dorsifleksiyasi",
+        "Sonning fleksiyasi",
+        "Barmoqlarning ekstensiyasi",
+        "Oyoqning ekstensiyasi",
+        "Oyoq panjasining plantar fleksiyasi",
+      ],
+      correct: 4,
+    },
+    {
+      q: "19 yoshli futbolchi tizzaning lateral tomoniga zarba oldi va MCL yirtilishi aniqlandi. Qaysi tuzilma ham shu bog‘lamga birikkanligi sababli birga shikastlanadi?",
+      a: [
+        "Medial menisk",
+        "Oldingi xochsimon bog‘lam (ACL)",
+        "Lateral menisk",
+        "Orqa xochsimon bog‘lam (PCL)",
+        "Semitendinosus payi",
+      ],
+      correct: 0,
+    },
+  ],
 };
