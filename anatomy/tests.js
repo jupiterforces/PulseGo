@@ -2236,4 +2236,18 @@ window.TEST_QUESTIONS = {
       correct: 2,
     },
   ],
+  L22: [
+    {
+      q: "1?",
+      photo: "../anatomy/assets/img/L22.png",
+      a: [
+        "Acromion",
+        "Greater tubercle",
+        "Lesser tubercle",
+        "Intertubercular sulcus",
+        "Epicondyles",
+      ],
+      correct: 0,
+    },
+  ],
 };
