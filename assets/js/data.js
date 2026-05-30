@@ -36,12 +36,9 @@
     if (user && user.name) return user;
 
     // Simple prompts to collect minimal welcome info on first run
-    const name = window.prompt("Welcome! Please enter your full name:", "");
+    const name = window.prompt("To'liq ism va familiyangizni kiriting:", "");
     if (!name) return null;
-    const about = window.prompt(
-      "Optional: Enter your specialty/study group:",
-      "",
-    );
+    const about = window.prompt("Guruhingizni kiriting:", "");
 
     const newUser = {
       name: name.trim(),
