@@ -1,0 +1,132 @@
+body {
+    font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial;
+    margin: 20px;
+}
+
+/* NAVBAR */
+.navbar {
+    background: rgba(255, 255, 255, .82);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(0, 0, 0, .04);
+    padding: 14px 0;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--text) !important;
+}
+
+.navbar-brand img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* CARDS */
+.card {
+    border: 1px solid #e5e7eb;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    border-bottom: 1px solid #eef2f7;
+    text-align: left;
+}
+
+/* TEXT */
+.muted {
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    cursor: pointer;
+}
+
+.btn-danger {
+    border-color: #fca5a5;
+    color: #b91c1c;
+}
+
+/* OVERVIEW */
+.overview {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.filters input,
+.filters select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #e6eef6;
+}
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1050;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Nav item */
+.bottom-nav .nav-item {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: #6c757d;
+    font-size: 11px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+/* Icon */
+.bottom-nav .nav-item i {
+    display: block;
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+/* Active */
+.bottom-nav .nav-item.active {
+    color: #0d6efd;
+}
+
+/* Hover */
+.bottom-nav .nav-item:hover {
+    color: #0d6efd;
+    transform: translateY(-2px);
+}
