@@ -94,6 +94,22 @@ let score = 0;
 let timer;
 let timeLeft = 60;
 
+// Load `data.js` helper dynamically if not already loaded
+function loadDataScript(callback) {
+  if (window.Data) {
+    if (callback) callback();
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.src = "../../assets/js/data.js";
+  script.onload = () => {
+    if (callback) callback();
+  };
+  script.onerror = () => console.error("Failed to load data.js");
+  document.head.appendChild(script);
+}
+
 document.addEventListener("click", handleImageOpen);
 document.addEventListener("touchstart", handleImageOpen);
 
@@ -257,7 +273,6 @@ function stopTest() {
     modal.hide();
   };
 }
-// Natija popup
 function showResultPopup() {
   document.getElementById("test-screen").classList.add("d-none");
 
@@ -270,6 +285,20 @@ function showResultPopup() {
     backdrop: "static",
     keyboard: false,
   });
+
+  // Save test result to localStorage (via Data helper) if available
+  try {
+    if (window.Data && typeof Data.recordTestResult === "function") {
+      Data.recordTestResult({
+        testName: currentTestName || "unknown",
+        total: total,
+        correct: correct,
+        mistakes: mistakes ? mistakes.slice() : [],
+      });
+    }
+  } catch (e) {
+    console.error("Error saving test result:", e);
+  }
 
   modal.show();
 
@@ -404,11 +433,20 @@ fetch("../../assets/modals/modals.html")
   });
 
 function initAutoTest() {
-  const params = new URLSearchParams(window.location.search);
-  const testName = params.get("test");
+  loadDataScript(() => {
+    try {
+      if (window.Data && typeof Data.ensureUser === "function") {
+        Data.ensureUser();
+      }
+    } catch (e) {
+      console.error("Error ensuring user:", e);
+    }
 
-  if (testName && tests[testName]) {
-    startTest(testName);
-  }
+    const params = new URLSearchParams(window.location.search);
+    const testName = params.get("test");
+
+    if (testName && tests[testName]) {
+      startTest(testName);
+    }
+  });
 }
-
