@@ -165,6 +165,33 @@
     </div>
 </div>
 
+<div id="userModal" class="pg-modal hidden">
+    <div class="pg-card">
+        <div class="pg-header">
+            <div class="pg-logo"><img src="/assets/img/PulseGo.jpg"
+                    style="width: 100px; height: 100px; border-radius: 50%;" alt="PulseGo Logo"></div>
+            <!-- <h2>Profilingizni yarating</h2> -->
+            <!-- <p>PulseGo'dan foydalanishni boshlash uchun ma'lumotlaringizni kiriting</p> -->
+        </div>
+
+        <form id="pg-form">
+            <div class="pg-group">
+                <label>To'liq ism va familiya</label>
+                <input id="pg-name" type="text" placeholder="Masalan: Jasur Xolmurodov" required />
+            </div>
+
+            <div class="pg-group">
+                <label>Guruh</label>
+                <input id="pg-about" type="text" placeholder="Masalan: Dav 25/25" required />
+            </div>
+
+            <button type="submit" class="pg-btn">
+                Davom etish
+            </button>
+        </form>
+    </div>
+</div>
+
 <script>
     const modalEl = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImage");
