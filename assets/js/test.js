@@ -95,6 +95,7 @@ let timer;
 let timeLeft = 60;
 
 // Load `data.js` helper dynamically if not already loaded
+
 function loadDataScript(callback) {
   if (window.Data) {
     if (callback) callback();
@@ -426,20 +427,26 @@ function reviewMistakes() {
 }
 
 fetch("../../assets/modals/modals.html")
-  .then((response) => response.text())
+  .then((r) => r.text())
   .then((html) => {
     document.getElementById("common-modals").innerHTML = html;
-    initAutoTest(); // testni shu yerda boshlash
+
+    // 🔥 MUHIM: modal DOM endi bor
+    setTimeout(() => {
+      initAutoTest();
+    }, 0);
   });
 
-function initAutoTest() {
-  loadDataScript(() => {
+async function initAutoTest() {
+  loadDataScript(async () => {
+    await waitForModal(); // 🔥 KEY FIX
+
     try {
-      if (window.Data && typeof Data.ensureUser === "function") {
-        Data.ensureUser();
+      if (window.Data?.ensureUser) {
+        await window.Data.ensureUser();
       }
     } catch (e) {
-      console.error("Error ensuring user:", e);
+      console.error(e);
     }
 
     const params = new URLSearchParams(window.location.search);
@@ -448,5 +455,19 @@ function initAutoTest() {
     if (testName && tests[testName]) {
       startTest(testName);
     }
+  });
+}
+function waitForModal() {
+  return new Promise((resolve) => {
+    const check = () => {
+      const modal = document.getElementById("userModal");
+      const form = document.getElementById("pg-form");
+
+      if (modal && form) return resolve(true);
+
+      setTimeout(check, 20);
+    };
+
+    check();
   });
 }
