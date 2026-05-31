@@ -808,3 +808,121 @@ body {
     font-weight: 800;
     color: #111827;
 }
+
+.hidden {
+    display: none !important;
+}
+
+.pg-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 20px;
+}
+
+.pg-card {
+    width: 100%;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, .15),
+        0 0 0 1px rgba(0, 0, 0, .05);
+    animation: modalIn .3s ease;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.pg-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.pg-logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 16px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pg-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.pg-header p {
+    color: #64748b;
+    margin-top: 8px;
+}
+
+.pg-group {
+    margin-bottom: 18px;
+}
+
+.pg-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.pg-group input {
+    width: 100%;
+    height: 52px;
+    border: 1px solid #dbe2ea;
+    border-radius: 14px;
+    padding: 0 16px;
+    font-size: 15px;
+    transition: .2s;
+    box-sizing: border-box;
+}
+
+.pg-group input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, .12);
+}
+
+.pg-btn {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 14px;
+    background: #4f46e5;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.pg-btn:hover {
+    transform: translateY(-1px);
+}
+
+.pg-btn:active {
+    transform: scale(.98);
+}
