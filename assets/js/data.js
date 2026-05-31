@@ -28,27 +28,50 @@
   function setUser(user) {
     const d = load();
     d.user = user;
+    // mark as dirty (needs sync)
+    d.syncedToFirebase = false;
     save(d);
   }
 
   function ensureUser() {
     const user = getUser();
-    if (user && user.name) return user;
+    if (user && user.name) return Promise.resolve(user);
 
-    // Simple prompts to collect minimal welcome info on first run
-    const name = window.prompt("To'liq ism va familiyangizni kiriting:", "");
-    if (!name) return null;
-    const about = window.prompt("Guruhingizni kiriting:", "");
+    return new Promise((resolve) => {
+      const modal = document.getElementById("userModal");
+      const form = document.getElementById("pg-form");
 
-    const newUser = {
-      name: name.trim(),
-      about: about ? about.trim() : "",
-      createdAt: new Date().toISOString(),
-    };
+      modal.classList.remove("hidden");
 
-    setUser(newUser);
-    return newUser;
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("pg-name").value.trim();
+        const about = document.getElementById("pg-about").value.trim();
+
+        if (!name) return;
+
+        const newUser = {
+          uid: crypto.randomUUID(),
+          name,
+          about,
+          createdAt: new Date().toISOString(),
+        };
+
+        setUser(newUser);
+
+        modal.classList.add("hidden");
+
+        resolve(newUser);
+      });
+    });
   }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const user = await Data.ensureUser();
+
+    console.log(user);
+  });
 
   function recordTestResult({
     testName,
@@ -94,6 +117,8 @@
     }
 
     d.tests.push(entry);
+    // mark as dirty (needs sync)
+    d.syncedToFirebase = false;
     save(d);
     return entry;
   }
@@ -161,11 +186,17 @@
         t.mistakesCount = 0;
       });
     }
+    // mark as dirty
+    d.syncedToFirebase = false;
     save(d);
   }
 
   function clearAll() {
     localStorage.removeItem(KEY);
+    // also clear sync state (use literal to avoid referencing outer var)
+    try {
+      localStorage.removeItem("pulsego_sync_v1");
+    } catch (e) {}
   }
 
   global.Data = {
@@ -179,5 +210,131 @@
     getOverview,
     clearMistakes,
     clearAll,
+    // expose raw accessors for the sync layer
+    _getRawData: load,
+    _saveRawData: save,
   };
 })(window);
+
+/* =========================
+   🔥 FIRESTORE SYNC LAYER (non-module friendly)
+   Uses dynamic import() to load the module `../../firebase.js` so
+   this file can remain a plain script while still using ES module exports.
+   ========================= */
+
+const SYNC_KEY = "pulsego_sync_v1";
+
+function getSyncState() {
+  try {
+    return JSON.parse(localStorage.getItem(SYNC_KEY)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function setSyncState(state) {
+  try {
+    localStorage.setItem(SYNC_KEY, JSON.stringify(state));
+  } catch (e) {
+    console.error("Failed to save sync state", e);
+  }
+}
+
+console.log(Data.getUser());
+
+async function syncToFirestore() {
+  const data =
+    window.Data && typeof window.Data._getRawData === "function"
+      ? window.Data._getRawData()
+      : (function () {
+          try {
+            return JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
+          } catch (e) {
+            return {};
+          }
+        })();
+
+  // nothing to sync
+  if (!data || !data.user || !data.user.uid) return;
+
+  try {
+    // dynamic import of the firebase module (ES module) from project root
+    const mod = await import("../../firebase.js");
+    const db = mod.db;
+    const setDoc = mod.setDoc;
+    const doc = mod.doc;
+
+    if (!db || typeof setDoc !== "function" || typeof doc !== "function") {
+      console.error("Firebase module missing required exports");
+      return;
+    }
+
+    console.log("Sync: uploading data to Firestore for user", data.user.uid);
+    await setDoc(doc(db, "users", data.user.uid), {
+      uid: data.user.uid,
+      name: data.user.name,
+      about: data.user.about || "",
+    });
+    console.log("AFTER SETDOC");
+
+    // mark synced in our local data object and separate sync key
+    data.syncedToFirebase = true;
+    if (window.Data && typeof window.Data._saveRawData === "function") {
+      window.Data._saveRawData(data);
+    } else {
+      try {
+        localStorage.setItem("pulsego_data_v1", JSON.stringify(data));
+      } catch (e) {}
+    }
+
+    setSyncState({ synced: true, lastSync: new Date().toISOString() });
+    console.log("Sync: success");
+  } catch (e) {
+    console.error("Sync failed:", e);
+  }
+}
+
+async function smartSync() {
+  const data =
+    window.Data && typeof window.Data._getRawData === "function"
+      ? window.Data._getRawData()
+      : (function () {
+          try {
+            return JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
+          } catch (e) {
+            return {};
+          }
+        })();
+  if (!data || !data.user || !data.user.uid) return; // nothing to do
+
+  const state = getSyncState();
+  if (!state.synced) {
+    await syncToFirestore();
+    return;
+  }
+
+  const last = state.lastSync;
+  const diff = Date.now() - new Date(last || 0).getTime();
+  const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
+  if (diff > THREE_DAYS) {
+    await syncToFirestore();
+  }
+}
+
+// Expose sync helpers on Data for convenience
+try {
+  if (window.Data) {
+    window.Data.syncToFirestore = syncToFirestore;
+    window.Data.smartSync = smartSync;
+    window.Data.getSyncState = getSyncState;
+    window.Data.setSyncState = setSyncState;
+  }
+} catch (e) {
+  console.error("Failed to attach sync methods to Data", e);
+}
+
+// Auto-run when page loads
+window.addEventListener("DOMContentLoaded", () => {
+  // run in background (no await here)
+  smartSync();
+});
