@@ -43,7 +43,7 @@
 
       modal.classList.remove("hidden");
 
-      form.addEventListener("submit", (e) => {
+      const handler = (e) => {
         e.preventDefault();
 
         const name = document.getElementById("pg-name").value.trim();
@@ -62,8 +62,16 @@
 
         modal.classList.add("hidden");
 
+        form.removeEventListener("submit", handler); // 🔥 MUHIM FIX
+
         resolve(newUser);
-      });
+
+        setTimeout(() => {
+          window.location.href = "../../profile/";
+        }, 300);
+      };
+
+      form.addEventListener("submit", handler);
     });
   }
 
