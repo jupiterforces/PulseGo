@@ -66,9 +66,9 @@
 
         resolve(newUser);
 
-        setTimeout(() => {
-          window.location.href = "../../profile/";
-        }, 300);
+        // setTimeout(() => {
+        //   window.location.href = "../../profile/";
+        // }, 300);
       };
 
       form.addEventListener("submit", handler);
@@ -271,6 +271,7 @@ async function syncToFirestore() {
     const db = mod.db;
     const setDoc = mod.setDoc;
     const doc = mod.doc;
+    const overview = window.Data.getOverview();
 
     if (!db || typeof setDoc !== "function" || typeof doc !== "function") {
       console.error("Firebase module missing required exports");
@@ -282,6 +283,7 @@ async function syncToFirestore() {
       uid: data.user.uid,
       name: data.user.name,
       about: data.user.about || "",
+      overview: overview,
     });
     console.log("AFTER SETDOC");
 
@@ -303,6 +305,7 @@ async function syncToFirestore() {
 }
 
 async function smartSync() {
+  console.log("SMART SYNC RUNNING");
   const data =
     window.Data && typeof window.Data._getRawData === "function"
       ? window.Data._getRawData()
@@ -323,7 +326,7 @@ async function smartSync() {
 
   const last = state.lastSync;
   const diff = Date.now() - new Date(last || 0).getTime();
-  const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
+  const THREE_DAYS = 2 * 24 * 60 * 60 * 1000;
   if (diff > THREE_DAYS) {
     await syncToFirestore();
   }
