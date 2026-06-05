@@ -28,22 +28,6 @@
                 <img src="../assets/img/PulseGo.jpg">
                 Pulse Go
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-                <ul class="navbar-nav gap-3 align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link active" href="#about">Biz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Xizmatlar</a></li>
-                    <li class="nav-item">
-                        <a class="btn btn-light btn-sm px-3" href="https://t.me/broinibek" target="_blank">
-                            <i class="bi bi-telephone-fill me-1"></i> Kontakt
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
 
@@ -52,10 +36,10 @@
         <strong id="userName">Guest</strong>
         <div id="userAbout" class="muted">No profile data</div>
         <div class="muted" id="userCreated"></div>
+
         <div class="mt-2">
             <button id="editProfile" class="btn">Edit</button>
-            <button id="reloadData" class="btn">Refresh</button>
-            <button id="clearData" class="btn btn-danger">Clear All Data</button>
+            <button id="reloadData" class="btn">Yangilash</button>
         </div>
     </div>
 
@@ -64,57 +48,12 @@
         <div class="overview-left">
             <div class="muted">Overall progress</div>
             <h3 id="overallPercent">0%</h3>
-            <div class="muted" id="overallDetail">0 tests • 0 correct of 0</div>
-        </div>
-
-        <div class="overview-right">
-            <button id="exportAll" class="btn">Export All</button>
-            <button id="clearMistakes" class="btn">Clear Mistakes</button>
+            <div class="muted" id="overallDetail">
+                0 tests • 0 correct of 0
+            </div>
         </div>
     </div>
 
-    <!-- TESTS -->
-    <div class="card">
-        <h3>Tests</h3>
-
-        <div class="filters">
-            <input id="filterSearch" placeholder="Search test name...">
-            <select id="filterSort">
-                <option value="date_desc">Date ▾</option>
-                <option value="date_asc">Date ▴</option>
-                <option value="percent_desc">Percent ▾</option>
-                <option value="percent_asc">Percent ▴</option>
-            </select>
-            <input id="filterMinPercent" type="number" placeholder="Min %">
-            <input id="filterFrom" type="date">
-            <input id="filterTo" type="date">
-            <button id="applyFilters" class="btn">Apply</button>
-            <button id="clearFilters" class="btn">Clear</button>
-        </div>
-
-        <div id="noTests" class="muted">No tests recorded yet.</div>
-
-        <table id="testsTable">
-            <thead>
-                <tr>
-                    <th>When</th>
-                    <th>Test</th>
-                    <th>Score</th>
-                    <th>Mistakes</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <div id="testsEmptyNote" class="muted"></div>
-    </div>
-
-    <!-- MISTAKES -->
-    <div class="card">
-        <h3>Recent Mistakes</h3>
-        <div id="noMistakes" class="muted">No mistakes stored.</div>
-        <ul id="mistakesList"></ul>
-    </div>
 
     <!-- BOTTOM NAVIGATION FOOTER -->
     <nav class="bottom-nav d-lg-none">
