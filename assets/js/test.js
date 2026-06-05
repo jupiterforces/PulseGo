@@ -379,6 +379,9 @@ function shareResult() {
 }
 
 function startTest(testName) {
+  console.log("START TEST");
+  window.Data?.smartSync?.();
+
   currentTest = tests[testName];
   currentTestName = testName;
   currentIndex = 0;
