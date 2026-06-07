@@ -207,6 +207,42 @@
     } catch (e) {}
   }
 
+  function hasSubmittedFeedback() {
+    const d = load();
+    return d.feedbackSubmitted === true;
+  }
+
+  function markFeedbackSubmitted() {
+    const d = load();
+    d.feedbackSubmitted = true;
+    d.syncedToFirebase = false;
+    save(d);
+  }
+
+  async function submitFeedback({ liked, advantages, disadvantages }) {
+    const data = load();
+
+    if (!data.user?.uid) {
+      throw new Error("User not found");
+    }
+
+    const mod = await import("../../firebase.js");
+
+    await mod.setDoc(
+      mod.doc(mod.db, "users", data.user.uid, "feedbacks", "first_feedback"),
+      {
+        liked,
+        advantages,
+        disadvantages,
+        createdAt: new Date().toISOString(),
+      },
+    );
+
+    markFeedbackSubmitted();
+
+    return true;
+  }
+
   global.Data = {
     getUser,
     setUser,
@@ -218,6 +254,11 @@
     getOverview,
     clearMistakes,
     clearAll,
+
+    hasSubmittedFeedback,
+    markFeedbackSubmitted,
+    submitFeedback,
+
     // expose raw accessors for the sync layer
     _getRawData: load,
     _saveRawData: save,
