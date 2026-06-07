@@ -305,9 +305,9 @@ function showResultPopup() {
 
   startResultAnimation(percent, correct, total);
 
-  setTimeout(() => {
-    maybeShowFeedback();
-  }, 3000);
+  // setTimeout(() => {
+  //   maybeShowFeedback();
+  // }, 3000);
 }
 
 function startResultAnimation(targetPercent, correct, total) {
