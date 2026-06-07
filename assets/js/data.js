@@ -361,10 +361,10 @@ async function smartSync() {
   alert(
     "LAST SYNC INFO:\n" +
       "synced: " +
-      state.synced +
+      (state.synced ?? false) +
       "\n" +
       "lastSync: " +
-      state.lastSync,
+      (state.lastSync ?? "null"),
   );
 
   console.log("SYNC STATE:", state);
