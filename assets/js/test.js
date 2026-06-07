@@ -501,24 +501,59 @@ async function maybeShowFeedback() {
   modal.show();
 }
 
-document.addEventListener("submit", async (e) => {
-  if (e.target.id !== "feedbackForm") return;
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("📦 DOM ready");
 
-  e.preventDefault();
+  setTimeout(() => {
+    const form = document.getElementById("feedbackForm");
 
-  try {
-    await Data.submitFeedback({
-      liked: document.getElementById("fb-liked").value,
-      advantages: document.getElementById("fb-advantages").value.trim(),
-      disadvantages: document.getElementById("fb-disadvantages").value.trim(),
+    if (!form) {
+      console.error("❌ feedbackForm NOT FOUND in DOM");
+      return;
+    }
+
+    console.log("✅ feedbackForm found");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      console.log("📩 submit triggered");
+
+      const liked = document.getElementById("fb-liked")?.value;
+      const advantages = document
+        .getElementById("fb-advantages")
+        ?.value?.trim();
+      const disadvantages = document
+        .getElementById("fb-disadvantages")
+        ?.value?.trim();
+
+      if (!liked || !advantages || !disadvantages) {
+        alert("Barcha maydonlarni to'ldiring!");
+        return;
+      }
+
+      try {
+        await Data.submitFeedback({
+          liked,
+          advantages,
+          disadvantages,
+          createdAt: new Date().toISOString(),
+        });
+
+        console.log("✅ saved");
+
+        const modal = bootstrap.Modal.getInstance(
+          document.getElementById("feedbackModal"),
+        );
+
+        modal?.hide();
+
+        form.reset();
+
+        alert("Rahmat ❤️");
+      } catch (err) {
+        console.error("❌ submit error:", err);
+      }
     });
-
-    bootstrap.Modal.getInstance(
-      document.getElementById("feedbackModal"),
-    ).hide();
-
-    alert("Rahmat ❤️");
-  } catch (err) {
-    console.error(err);
-  }
+  }, 300);
 });
