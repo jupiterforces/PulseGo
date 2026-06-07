@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PulseGo Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <!-- LOGIN -->
+    <div id="gate" class="container mt-5">
+        <div class="card p-4 shadow-sm">
+            <h4>Enter Access Code</h4>
+
+            <input id="codeInput" class="form-control mb-3" placeholder="Enter code...">
+
+            <button class="btn btn-primary w-100" onclick="checkCode()">Unlock</button>
+
+            <div id="err" class="text-danger mt-2 d-none">Wrong code!</div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="container mt-4 d-none">
+
+        <h3>📊 PulseGo Analytics</h3>
+
+        <!-- TOP USERS -->
+        <div class="card p-3 mb-3 shadow-sm">
+            <h5>🏆 Top 10 Students</h5>
+            <div id="topUsers"></div>
+        </div>
+
+        <!-- FEEDBACK -->
+        <div class="card p-3 shadow-sm">
+            <h5>💬 Recent Feedback</h5>
+            <div id="feedbackBox"></div>
+        </div>
+
+    </div>
+
+    <script type="module">
+
+        import { db } from "./firebase.js";
+        import {
+            collection,
+            getDocs,
+            doc,
+            getDoc,
+            query,
+            orderBy,
+            limit
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        console.log("🚀 Analytics loaded");
+
+        // ⏱ debug
+        setInterval(() => {
+            console.log("⏱ alive:", new Date().toLocaleTimeString());
+        }, 1000);
+
+        // ----------------------
+        // LOGIN
+        // ----------------------
+        window.checkCode = async function () {
+
+            const code = document.getElementById("codeInput").value;
+
+            if (code !== "25/01a") {
+                document.getElementById("err").classList.remove("d-none");
+                return;
+            }
+
+            document.getElementById("gate").classList.add("d-none");
+            document.getElementById("dashboard").classList.remove("d-none");
+
+            await loadTopUsers();
+            await loadFeedback();
+        };
+
+        // ----------------------
+        // 🏆 TOP USERS (FAST)
+        // ----------------------
+        async function loadTopUsers() {
+
+            console.log("📊 Loading TOP users...");
+
+            const q = query(
+                collection(db, "users"),
+                orderBy("percent", "desc"),
+                limit(10)
+            );
+
+            const snap = await getDocs(q);
+
+            let html = "";
+            let rank = 1;
+
+            snap.forEach(d => {
+
+                const u = d.data();
+
+                html += `
+        <div class="d-flex justify-content-between border-bottom py-2">
+            <div>
+                <b>#${rank++} ${u.name}</b><br>
+                <small>${u.about || ""}</small>
+            </div>
+
+            <div class="text-end">
+                <span class="badge bg-success">${u.percent}%</span><br>
+                <small>${u.totalCorrect}/${u.totalQuestions}</small>
+            </div>
+        </div>`;
+            });
+
+            document.getElementById("topUsers").innerHTML = html;
+        }
+
+        // ----------------------
+        // 💬 FEEDBACK (FROM USERS SUBCOLLECTION)
+        // ----------------------
+        async function loadFeedback() {
+
+            console.log("💬 Loading feedback from users...");
+
+            const usersSnap = await getDocs(collection(db, "users"));
+
+            let allFeedback = [];
+
+            for (const u of usersSnap.docs) {
+
+                const uid = u.id;
+
+                const fbRef = doc(db, "users", uid, "feedbacks", "first_feedback");
+                const fbSnap = await getDoc(fbRef);
+
+                if (!fbSnap.exists()) continue;
+
+                const fb = fbSnap.data();
+
+                allFeedback.push({
+                    uid,
+                    name: u.data().name,
+                    about: u.data().about,
+                    ...fb
+                });
+            }
+
+            // latest first
+            allFeedback.sort((a, b) =>
+                new Date(b.createdAt) - new Date(a.createdAt)
+            );
+
+            renderFeedback(allFeedback);
+        }
+
+        // ----------------------
+        // RENDER FEEDBACK
+        // ----------------------
+        function renderFeedback(list) {
+
+            let html = "";
+
+            list.forEach(f => {
+
+                html += `
+        <div class="border-bottom py-2">
+            <b>${f.name}</b><br>
+            <small>${f.about || ""}</small><br>
+
+            👍 ${f.advantages}<br>
+            👎 ${f.disadvantages}<br>
+
+            <span class="badge bg-secondary">${f.liked}</span><br>
+
+            <small class="text-muted">${new Date(f.createdAt).toLocaleString()}</small>
+        </div>`;
+            });
+
+            document.getElementById("feedbackBox").innerHTML = html;
+        }
+
+    </script>
+
+</body>
+
+</html>
