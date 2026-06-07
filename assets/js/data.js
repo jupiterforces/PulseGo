@@ -347,45 +347,32 @@ async function syncToFirestore() {
 
 async function smartSync() {
   console.log("SMART SYNC RUNNING");
-
   const data =
     window.Data && typeof window.Data._getRawData === "function"
       ? window.Data._getRawData()
-      : JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
-
-  if (!data || !data.user || !data.user.uid) return;
+      : (function () {
+          try {
+            return JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
+          } catch (e) {
+            return {};
+          }
+        })();
+  if (!data || !data.user || !data.user.uid) return; // nothing to do
 
   const state = getSyncState();
-
-  // 🔥 DEBUG ALERT (SEN SO‘RAGAN QISM)
-  alert(
-    "LAST SYNC INFO:\n" +
-      "synced: " +
-      (state.synced ?? false) +
-      "\n" +
-      "lastSync: " +
-      (state.lastSync ?? "null"),
-  );
-
-  console.log("SYNC STATE:", state);
-
-  // 🔥 FIXED LOGIC
-  const last = state.lastSync ? new Date(state.lastSync).getTime() : 0;
-  const now = Date.now();
-
-  const ONE_DAY = 24 * 60 * 60 * 1000;
-
-  const needSync = !state.synced || !state.lastSync || now - last > ONE_DAY;
-
-  console.log("NEED SYNC:", needSync);
-
-  if (needSync) {
-    console.log("🚀 SYNC STARTED...");
+  if (!state.synced) {
     await syncToFirestore();
-  } else {
-    console.log("⏭ SYNC SKIPPED (already synced today)");
+    return;
+  }
+
+  const last = state.lastSync;
+  const diff = Date.now() - new Date(last || 0).getTime();
+  const THREE_DAYS = 1 * 24 * 60 * 60 * 1000;
+  if (diff > THREE_DAYS) {
+    await syncToFirestore();
   }
 }
+
 // Expose sync helpers on Data for convenience
 try {
   if (window.Data) {
