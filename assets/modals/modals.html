@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./assets/styles/styles.css">
+<link rel="stylesheet" href="/assets/styles/styles.css">
 
 <div class="modal fade" id="resultModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -20,6 +20,7 @@
                         <circle class="progress-ring__bg" cx="80" cy="80" r="62"></circle>
                         <circle class="progress-ring__circle" cx="80" cy="80" r="62"></circle>
                     </svg>
+
                     <!-- CENTER TEXT -->
                     <div class="tg-percent-center">
                         <span id="percent-text">0</span>
@@ -60,11 +61,12 @@
         </div>
     </div>
 </div>
+
 <!-- TEST SCREEN SECTION -->
 <section class="pb-5 mt-3">
     <div class="container d-flex justify-content-center">
         <div id="test-screen" class="tg-test-card d-none">
-
+            <div class="pulsego-brand">PulseGo</div>
             <!-- TOP BAR -->
             <div class="tg-test-header">
                 <h6 id="test-title" class="mb-0 fw-semibold"></h6>
@@ -91,6 +93,7 @@
         </div>
     </div>
 </section>
+
 <!-- EXIT TEST MODAL -->
 <div class="modal fade" id="exitTestModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -191,7 +194,105 @@
         </form>
     </div>
 </div>
+<div class="modal fade" id="feedbackModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
 
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0 rounded-4">
+
+            <!-- HEADER -->
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">PulseGo Feedback</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- BODY -->
+            <form id="feedbackForm">
+
+                <div class="modal-body">
+
+                    <label class="form-label fw-semibold">
+                        Platformamiz sizga yoqyaptimi?
+                    </label>
+                    <select class="form-select mb-3" id="fb-liked" required>
+                        <option value="">Tanlang</option>
+                        <option value="yes">Ha</option>
+                        <option value="no">Yo'q</option>
+                    </select>
+
+                    <label class="form-label fw-semibold">
+                        Afzalliklari
+                    </label>
+                    <textarea id="fb-advantages" class="form-control mb-3" rows="3" placeholder="Nimalar yoqdi?"
+                        required></textarea>
+
+                    <label class="form-label fw-semibold">
+                        Kamchiliklari
+                    </label>
+                    <textarea id="fb-disadvantages" class="form-control" rows="3" placeholder="Nimalar yoqmadi?"
+                        required></textarea>
+
+                    <!-- alert -->
+                    <div id="fb-error" class="alert alert-danger d-none mt-2 py-2">
+                        Iltimos, barcha maydonlarni to‘ldiring!
+                    </div>
+
+                </div>
+
+                <!-- FOOTER -->
+                <div class="modal-footer border-0">
+
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Bekor qilish
+                    </button>
+
+                    <button type="submit" class="btn btn-primary">
+                        Yuborish
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const liked = document.getElementById("fb-liked").value.trim();
+        const advantages = document.getElementById("fb-advantages").value.trim();
+        const disadvantages = document.getElementById("fb-disadvantages").value.trim();
+        const errorBox = document.getElementById("fb-error");
+
+        if (!liked || !advantages || !disadvantages) {
+            errorBox.classList.remove("d-none");
+            return;
+        }
+
+        errorBox.classList.add("d-none");
+
+        const data = {
+            liked,
+            advantages,
+            disadvantages,
+            time: new Date().toISOString()
+        };
+
+        console.log("Feedback sent:", data);
+
+        // modal close
+        const modalEl = document.getElementById("feedbackModal");
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+
+        // reset
+        this.reset();
+
+        alert("Rahmat! Fikringiz yuborildi 🚀");
+    });
+</script>
 <script>
     const modalEl = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImage");
@@ -211,12 +312,7 @@
     };
 </script>
 
-<script>
-    img.onclick = () => {
-        const modalImg = document.getElementById("modalImage");
-        modalImg.src = q.photo;
 
-        const modal = new bootstrap.Modal(document.getElementById("imageModal"));
-        modal.show();
-    };
-</script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
