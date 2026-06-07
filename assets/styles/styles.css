@@ -926,3 +926,47 @@ body {
 .pg-btn:active {
     transform: scale(.98);
 }
+
+.pulsego-brand {
+    position: absolute;
+    bottom: 12px;
+    right: 15px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    background: linear-gradient(90deg, #73acbe, #000000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: .7;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+.feedback-modal {
+    border: none;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, .15);
+}
+
+.feedback-modal .form-control,
+.feedback-modal .form-select {
+    border-radius: 14px;
+    padding: 12px 14px;
+}
+
+.feedback-modal .form-control:focus,
+.feedback-modal .form-select:focus {
+    box-shadow: 0 0 0 4px rgba(13, 110, 253, .15);
+}
+
+.feedback-modal .btn-primary {
+    border-radius: 14px;
+    padding: 12px;
+    font-weight: 600;
+}
