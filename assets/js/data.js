@@ -367,7 +367,7 @@ async function smartSync() {
 
   const last = state.lastSync;
   const diff = Date.now() - new Date(last || 0).getTime();
-  const THREE_DAYS = 2 * 24 * 60 * 60 * 1000;
+  const THREE_DAYS = 1 * 24 * 60 * 60 * 1000;
   if (diff > THREE_DAYS) {
     await syncToFirestore();
   }
