@@ -304,6 +304,10 @@ function showResultPopup() {
   modal.show();
 
   startResultAnimation(percent, correct, total);
+
+  setTimeout(() => {
+    maybeShowFeedback();
+  }, 3000);
 }
 
 function startResultAnimation(targetPercent, correct, total) {
@@ -474,3 +478,47 @@ function waitForModal() {
     check();
   });
 }
+
+async function maybeShowFeedback() {
+  if (!window.Data) return;
+
+  const user = Data.getUser();
+
+  if (!user) return;
+
+  if (Data.hasSubmittedFeedback()) return;
+
+  const results = Data.getResults();
+
+  if (results.length < 1) return;
+
+  const modalEl = document.getElementById("feedbackModal");
+
+  if (!modalEl) return;
+
+  const modal = new bootstrap.Modal(modalEl);
+
+  modal.show();
+}
+
+document.addEventListener("submit", async (e) => {
+  if (e.target.id !== "feedbackForm") return;
+
+  e.preventDefault();
+
+  try {
+    await Data.submitFeedback({
+      liked: document.getElementById("fb-liked").value,
+      advantages: document.getElementById("fb-advantages").value.trim(),
+      disadvantages: document.getElementById("fb-disadvantages").value.trim(),
+    });
+
+    bootstrap.Modal.getInstance(
+      document.getElementById("feedbackModal"),
+    ).hide();
+
+    alert("Rahmat ❤️");
+  } catch (err) {
+    console.error(err);
+  }
+});
