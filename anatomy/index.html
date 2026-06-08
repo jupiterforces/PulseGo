@@ -338,10 +338,7 @@
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
-                                    <div class="test-card" onclick="showProModal()">
-                                        <div class="premium-badge">
-                                            <i class="bi bi-lock-fill"></i>
-                                        </div>
+                                    <div class="test-card" onclick="startTest('mockLowerLimbArteries')">
                                         <div class="test-icon bg-success-subtle text-success">
                                             <i class="bi bi-journal-medical fs-3"></i>
                                         </div>
@@ -442,6 +439,7 @@
             mock8: getRandomTest(TEST_QUESTIONS.mock8, 20),
             L22: getRandomTest(TEST_QUESTIONS.L22, 20),
             mockUpperLimb2: getRandomTest(TEST_QUESTIONS.mockUpperLimb2, 10),
+            mockLowerLimbArteries: getRandomTest(TEST_QUESTIONS.mockLowerLimbArteries, 20),
         };
 
         const testTitleMap = {
@@ -455,6 +453,7 @@
             mock8: "Posterior abdominal wall vessels",
             L22: "Upper limb",
             mockUpperLimb2: "Upper Limb 2",
+            mockLowerLimbArteries: "Lower Limb Arteries",
         }
 
     </script>
