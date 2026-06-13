@@ -16,6 +16,7 @@
     <!-- Open Graph (Telegram / Facebook) -->
     <meta property="og:title" content="Pulse Medical">
     <meta property="og:description" content="Yakuniy nazorat uchun Mock testlar">
+    <meta property="og:image" content="Pulse.jpg">
     <meta property="og:type" content="website">
 
     <title>Final exam</title>
@@ -28,7 +29,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/styles/styles.css">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
 
 </head>
 <!-- Google tag (gtag.js) -->
@@ -46,8 +47,8 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
         <div class="container">
-            <a href="../" class="navbar-brand d-flex align-items-center gap-2 fw-semibold">
-                <img src="../assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+            <a href="#" class="navbar-brand d-flex align-items-center gap-2 fw-semibold">
+                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
                 Pulse Go
             </a>
         </div>
@@ -64,7 +65,7 @@
                         <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
                             data-bs-target="#anatomyTests" aria-expanded="true">
 
-                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Embriologiya
+                            <i class="bi bi-heart-pulse me-2 text-danger"></i>Embirologiya
                         </button>
                     </h2>
 
@@ -73,7 +74,128 @@
 
                             <div class="row g-3">
 
-                            
+                                <!-- Suyaklar -->
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('aminoacids')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">aminoacids</div>
+                                        <div class="question-footer">
+                                            21 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('vitamins')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">vitamins</div>
+                                        <div class="question-footer">
+                                            25 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('enzymes')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">enzymes</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('nucleicAcids')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">nucleicAcids</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('lipids')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">lipids</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('peptidesAndProteins')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">peptidesAndProteins</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('carbohydrates')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">carbohydrates</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('q50')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Q50</div>
+                                        <div class="question-footer">
+                                            30 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('q100')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Q100</div>
+                                        <div class="question-footer">
+                                            30 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('q150')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">Q150</div>
+                                        <div class="question-footer">
+                                            30 questions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('all')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">All Questions</div>
+                                        <div class="question-footer">
+                                            30 questions
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -85,15 +207,15 @@
         </div>
 
         <nav class="bottom-nav d-lg-none">
-            <a href="../" class="nav-item">
+            <a href="/" class="nav-item">
                 <i class="bi bi-house-fill"></i>
                 <span>Home</span>
             </a>
-            <a href="../tests" class="nav-item active">
+            <a href="/tests" class="nav-item active">
                 <i class="bi bi-ui-checks-grid"></i>
                 <span>Tests</span>
             </a>
-            <a href="../cases/" class="nav-item">
+            <a href="/cases/" class="nav-item">
                 <i class="bi bi-journal-text"></i>
                 <span>Cases</span>
             </a>
@@ -102,21 +224,40 @@
 
     <div id="common-modals"></div>
 
-    <script src="../anatomy/tests.js"></script>
-    <script src="../assets/js/test.js"></script>
+    <script src="/embriology/tests.js"></script>
+    <script src="/assets/js/test.js"></script>
 
 
 
 
     <script>
         const tests = {
-            mock1: getRandomTest(TEST_QUESTIONS.mock1, 20),
-            mock2: getRandomTest(TEST_QUESTIONS.mock2, 20),
+            aminoacids: getRandomTest(TEST_QUESTIONS.aminoacids),
+            vitamins: getRandomTest(TEST_QUESTIONS.vitamins),
+            enzymes: getRandomTest(TEST_QUESTIONS.enzymes),
+            nucleicAcids: getRandomTest(TEST_QUESTIONS.nucleicAcids),
+            lipids: getRandomTest(TEST_QUESTIONS.lipids),
+            peptidesAndProteins: getRandomTest(TEST_QUESTIONS.peptidesAndProteins),
+            carbohydrates: getRandomTest(TEST_QUESTIONS.carbohydrates),
+            q50: getRandomTest(TEST_QUESTIONS.q50, 30),
+            q100: getRandomTest(TEST_QUESTIONS.q100, 30),
+            q150: getRandomTest(TEST_QUESTIONS.q150, 30),
+            all: getRandomTest(TEST_QUESTIONS.all, 30),
+
         };
 
         const testTitleMap = {
-            mock1: "YYYYYY",
-            mock2: "OOOOO"
+            aminoacids: "aminoacids",
+            vitamins: "vitamins",
+            enzymes: "enzymes",
+            nucleicAcids: "Nucleic Acids",
+            lipids: 'Lipids',
+            peptidesAndProteins: "Peptides and Proteins",
+            carbohydrates: "Carbohydrates",
+            q50: "Q50",
+            q100: "Q100",
+            q150: "Q150",
+            all: "All Questions",
         };
 
 
@@ -127,13 +268,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
