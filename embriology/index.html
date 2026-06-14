@@ -205,6 +205,39 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('latin1')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">latin1</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('latin2')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">latin2</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('latin3')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">latin3</div>
+                                        <div class="question-footer">
+                                            FE
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -252,6 +285,9 @@
             q100: getRandomTest(TEST_QUESTIONS.q100, 30),
             q150: getRandomTest(TEST_QUESTIONS.q150, 30),
             all: getRandomTest(TEST_QUESTIONS.all, 30),
+            latin1: getRandomTest(TEST_QUESTIONS.latin1),
+            latin2: getRandomTest(TEST_QUESTIONS.latin2),
+            latin3: getRandomTest(TEST_QUESTIONS.latin3),
 
         };
 
@@ -267,6 +303,9 @@
             q100: "Q100",
             q150: "Q150",
             all: "All Questions",
+            latin1: "Latin Terminology 1",
+            latin2: "Latin Terminology 2",
+            latin3: "Latin Terminology 3",
         };
 
 
