@@ -1,4572 +1,3865 @@
 window.TEST_QUESTIONS = {
-  aminoacids: [
+  u1: [
     {
-      q: "By which reaction is tyrosine formed from phenylalanine in the body?",
+      q: "Which of the following is a major characteristic of meiosis I?",
       a: [
-        "Decarboxylation reaction",
-        "Hydroxylation reaction",
-        "Deamination reaction",
-        "Transamination reaction",
-        "Hydrogenation reaction",
+        "Splitting of the centromere",
+        "Pairing of homologous chromosomes",
+        "Reducing the amount of DNA to 1N",
+        "Achieving the diploid number of chromosomes",
+        "Producing primordial germ cells",
       ],
       correct: 1,
     },
     {
-      q: "By which reaction is histamine formed from histidine in the body?",
+      q: "A normal somatic cell contains a total of 46 chromosomes. What is the normal complement of chromosomes found in a sperm?",
       a: [
-        "Hydroxylation",
-        "Decarboxylation",
-        "Deamination",
-        "Oxidation",
-        "Dehydration",
+        "22 autosomes plus a sex chromosome",
+        "23 autosomes plus a sex chromosome",
+        "22 autosomes",
+        "23 autosomes",
+        "23 paired autosomes",
       ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid contains an imidazole ring?",
-      a: ["Histidine", "Tryptophan", "Proline", "Arginine", "Lysine"],
       correct: 0,
     },
     {
-      q: "Which amino acid does not form optical isomers?",
-      a: ["Alanine", "Lysine", "Glycine", "Isoleucine", "Leucine"],
-      correct: 2,
-    },
-    {
-      q: "Find the amino acid used in the treatment of allergic diseases of chemical origin.",
-      a: ["Histidine", "Cysteine", "Methionine", "Glycine", "Alanine"],
-      correct: 2,
-    },
-    {
-      q: "Which functional groups do amino acids contain?",
+      q: "Which of the following describes the number of chromosomes and amount of DNA in a gamete?",
       a: [
-        "Carboxyl and methyl",
-        "Hydroxyl and amino",
-        "Carboxyl and amino",
-        "Carboxyl and hydroxyl",
-        "Aldehyde and ketone",
+        "46 chromosomes, 1N",
+        "46 chromosomes, 2N",
+        "23 chromosomes, 1N",
+        "23 chromosomes, 2N",
+        "23 chromosomes, 4N",
       ],
       correct: 2,
     },
     {
-      q: "When hydroxylase enzyme activity is deficient or insufficient, which amino acid accumulates in tissues?",
+      q: "Which of the following chromosome compositions in a sperm normally results in the production of a genetic female if fertilization occurs?",
       a: [
-        "Tyrosine",
-        "Aspartic acid",
-        "Phenylalanine",
-        "Glutamine",
-        "Asparagine",
+        "23 homologous pairs of chromosomes",
+        "22 homologous pairs of chromosomes",
+        "23 autosomes plus an X chromosome",
+        "22 autosomes plus a Y chromosome",
+        "22 autosomes plus an X chromosome",
       ],
-      correct: 2,
-    },
-    {
-      q: "Which of the following amino acids has an aromatic structure?",
-      a: ["Phenylalanine", "Asparagine", "Glycine", "Alanine", "Asparagine"],
-      correct: 0,
-    },
-    {
-      q: "What biologically active substances are formed as a result of amino acid decarboxylation?",
-      a: ["Biogenic amines", "Proteins", "Peptides", "Nucleic acids", "Lipids"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid has the ability to help repair damaged tissue in a short period of time?",
-      a: ["Glutamine", "Asparagine", "Glycine", "Alanine", "Lysine"],
       correct: 4,
     },
     {
-      q: "Which amino acid is used in the treatment of osteoporosis and allergic diseases of chemical origin?",
-      a: ["Alanine", "Methionine", "Histidine", "Serine", "Lysine"],
+      q: "In the process of meiosis, DNA replication of each chromosome occurs, forming a structure consisting of two sister chromatids attached to a single centromere. What is this structure?",
+      a: [
+        "A duplicated chromosome",
+        "Two chromosomes",
+        "A synapsed chromosome",
+        "A crossover chromosome",
+        "A homologous pair",
+      ],
+      correct: 0,
+    },
+    {
+      q: "All primary oocytes are formed by",
+      a: [
+        "week 4 of embryonic life",
+        "month 5 of fetal life",
+        "birth",
+        "month 5 of infancy",
+        "puberty",
+      ],
+      correct: 1,
+    },
+    {
+      q: "When does formation of primary spermatocytes begin?",
+      a: [
+        "During week 4 of embryonic life",
+        "During month 5 of fetal life",
+        "At birth",
+        "During month 5 of infancy",
+        "At puberty",
+      ],
       correct: 4,
     },
     {
-      q: "Select the sulfur-containing amino acids.",
+      q: "In the production of female gametes, which of the following cells can remain dormant for 12 to 40 years?",
       a: [
-        "Lysine, methionine",
-        "Methionine, cysteine",
-        "Leucine, histidine",
-        "Tryptophan, isoleucine",
-        "Glutamic acid, aspartic acid",
+        "Primordial germ cell",
+        "Primary oocyte",
+        "Secondary oocyte",
+        "First polar body",
+        "Second polar body",
       ],
       correct: 1,
     },
     {
-      q: "Which amino acid is important for bone growth and nutrition and plays a major role in calcium absorption?",
-      a: ["Glutamine", "Glutamic acid", "Asparagine", "Lysine", "Methionine"],
-      correct: 3,
-    },
-    {
-      q: "If phenylalanine is not converted into tyrosine, which toxic acid accumulates in blood and is excreted in urine?",
+      q: "In the production of male gametes, which of the following cells remains dormant for 12 years?",
       a: [
-        "Butyric acid",
-        "Butyrolactam",
-        "Diketopiperazine",
-        "Phenylpyruvic acid",
-        "Phenylisothiocyanate",
+        "Primordial germ cell",
+        "Primary spermatocyte",
+        "Secondary spermatocyte",
+        "Spermatid",
+        "Sperm",
       ],
-      correct: 3,
-    },
-    {
-      q: "Which amino acid plays an important role in muscular dystrophy and ulcer disease?",
-      a: [
-        "Aspartic acid",
-        "Glutamic acid",
-        "Asparagine",
-        "Glutamine",
-        "Tryptophan",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid is responsible for the production of adrenaline and noradrenaline hormones?",
-      a: ["Tyrosine", "Phenylalanine", "Tryptophan", "Lysine", "Arginine"],
       correct: 0,
     },
     {
-      q: "Which qualitative reaction is characteristic for detecting phenylalanine, tyrosine and tryptophan?",
+      q: "Approximately how many sperm will be ejaculated by a normal fertile male during sexual intercourse?",
       a: [
-        "Millon's reaction",
-        "Silver mirror reaction",
-        "Xanthoproteic reaction",
-        "Ninhydrin reaction",
-        "Biuret reaction",
+        "10 million",
+        "20 million",
+        "35 million",
+        "100 million",
+        "350 million",
       ],
+      correct: 4,
+    },
+    {
+      q: "A young woman enters puberty with approximately 40,000 primary oocytes in her ovary. About how many of these primary oocytes will be ovulated over the entire reproductive life of the woman?",
+      a: ["40,000", "35,000", "480", "48", "12"],
       correct: 2,
     },
     {
-      q: "Choose the row containing essential amino acids.",
+      q: "Fetal sex can be diagnosed by noting the presence or absence of the Barr body in cells obtained from the amniotic fluid. What is the etiology of the Barr body?",
       a: [
-        "Leucine, isoleucine, tryptophan, phenylalanine, lysine, valine",
-        "Tryptophan, proline, glycine, alanine, cysteine, methionine",
-        "Glycine, alanine, tyrosine, methionine, serine, cysteine",
-        "Tyrosine, phenylalanine, serine, cysteine, methionine, valine",
-        "Tyrosine, histidine, hydroxyproline, glutamine, serine",
+        "Inactivation of both X chromosomes",
+        "Inactivation of homologous chromosomes",
+        "Inactivation of one Y chromosome",
+        "Inactivation of one X chromosome",
+        "Inactivation of one chromatid",
+      ],
+      correct: 3,
+    },
+    {
+      q: "How much DNA does a primary spermatocyte contain?",
+      a: ["1N", "2N", "4N", "6N", "8N"],
+      correct: 2,
+    },
+    {
+      q: "During meiosis, pairing of homologous chromosomes occurs, which permits large segments of DNA to be exchanged. What is this process called?",
+      a: [
+        "Synapsis",
+        "Nondisjunction",
+        "Alignment",
+        "Crossing over",
+        "Disjunction",
+      ],
+      correct: 3,
+    },
+    {
+      q: "During ovulation, the secondary oocyte resides at what specific stage of meiosis?",
+      a: [
+        "Prophase of meiosis I",
+        "Prophase of meiosis II",
+        "Metaphase of meiosis I",
+        "Metaphase of meiosis II",
+        "Meiosis is completed at the time of ovulation",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Concerning maturation of the female gamete (oogenesis), when do the oogonia enter meiosis I and undergo DNA replication to form primary oocytes?",
+      a: [
+        "During fetal life",
+        "At birth",
+        "At puberty",
+        "With each ovarian cycle",
+        "Following fertilization",
       ],
       correct: 0,
     },
     {
-      q: "Which amino acid participates actively in muscle metabolism, cartilage and skin tissue repair, strengthening cardiac function, inhibiting tumor development and immune system activity?",
-      a: ["Arginine", "Lysine", "Isoleucine", "Methionine", "Serine"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid has an important role in the treatment of arterial hypertension and epilepsy?",
+      q: "Where do primordial germ cells initially develop?",
       a: [
-        "Gamma-aminobutyric acid",
-        "Glutamic acid",
-        "Aspartic acid",
-        "Phenylalanine",
-        "Tryptophan",
+        "In the gonads at week 4 of embryonic development",
+        "In the yolk sac at week 4 of embryonic development",
+        "In the gonads at month 5 of embryonic development",
+        "In the yolk sac at month 5 of embryonic development",
+        "In the gonads at puberty",
       ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid accelerates regeneration of muscle, bone and skin tissues and is used in diseases of these tissues?",
-      a: ["Proline", "Leucine", "Phenylalanine", "Tryptophan", "Glycine"],
       correct: 1,
     },
   ],
-  vitamins: [
+  u2: [
     {
-      q: "Select the group of lipovitamins.",
+      q: "A 20-year-old woman presents at the emergency department with severe abdominal pain on the right side with signs of internal bleeding. She indicated that she has been sexually active without contraception and missed her last menstrual period. Based on this information, which of the following disorders must be included as an option in the diagnosis?",
       a: [
-        "A, E, C, P",
-        "A, E, K, D",
-        "B, C, P, H",
-        "B, C, K, D",
-        "B1, B2, B6, B12",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Indicate the disease-based name of vitamin A.",
-      a: [
-        "Antianemic",
-        "Antirachitic",
-        "Antihemorrhagic",
-        "Antixerophthalmic",
-        "Antipellagric",
+        "Ovarian cancer",
+        "Appendicitis",
+        "Normal pregnancy",
+        "Ectopic tubal pregnancy",
+        "Toxemia of pregnancy",
       ],
       correct: 3,
     },
     {
-      q: "Indicate the disease-based name of vitamin D.",
-      a: ["Antixerophthalmic", "Antihemorrhagic", "Antirachitic", "Antianemic"],
-      correct: 2,
-    },
-    {
-      q: "Menadione, vikasol and sinkavit are synthetic analogues of which vitamin?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin slows blood clotting and leads to bleeding and hemorrhagic signs?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin may cause testicular atrophy, fetal resorption during pregnancy, muscular dystrophy, liver necrosis, and softening of brain structures, especially the cerebellum?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 1,
-    },
-    {
-      q: "Which vitamin participates in blood coagulation?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "A pregnant woman has nervous weakness, fatigue and buzzing in the ears. Which vitamin may be needed?",
+      q: "When does a secondary oocyte complete its second meiotic division to become a mature ovum?",
       a: [
-        "B6 (pyridoxine)",
-        "B12 (cobalamin)",
-        "A (retinol)",
-        "B2 (riboflavin)",
-        "Vitamin C",
+        "At ovulation",
+        "Before ovulation",
+        "At fertilization",
+        "At puberty",
+        "Before birth",
+      ],
+      correct: 2,
+    },
+    {
+      q: "How soon after fertilization occurs within the uterine tube does the blastocyst begin implantation?",
+      a: ["Within minutes", "By 12 hours", "By day 1", "By day 2", "By day 7"],
+      correct: 4,
+    },
+    {
+      q: "Where does the blastocyst normally implant?",
+      a: [
+        "Functional layer of the cervix",
+        "Functional layer of the endometrium",
+        "Basal layer of the endometrium",
+        "Myometrium",
+        "Perimetrium",
       ],
       correct: 1,
     },
     {
-      q: "A patient has softened bones, weak teeth and reduced bone density on X-ray. This is a sign of what?",
+      q: "Which of the following events is involved in the cleavage of the zygote during week 1 of development?",
       a: [
-        "Vitamin C deficiency",
-        "Vitamin D deficiency",
-        "B1 deficiency",
-        "Vitamin K deficiency",
-        "Vitamin A deficiency",
-      ],
-      correct: 1,
-    },
-    {
-      q: "A patient who took antibiotics for a long time has prolonged blood clotting time. What may be the cause?",
-      a: [
-        "Vitamin D deficiency",
-        "B2 deficiency",
-        "Impaired synthesis of vitamin K",
-        "Excess vitamin A",
-        "Vitamin PP deficiency",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin causes macrocytic anemia?",
-      a: [
-        "B1 (thiamine)",
-        "B2 (riboflavin)",
-        "B3 (pantothenic acid)",
-        "B12 (cobalamin)",
-        "H (biotin)",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Which disease is caused by vitamin C deficiency?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 2,
-    },
-    {
-      q: "Which disease does vitamin B1 help prevent?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 1,
-    },
-    {
-      q: "Which disease does vitamin PP prevent?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin has hepatoprotective properties?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 1,
-    },
-    {
-      q: "Retinol is the name of which vitamin?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin is synthesized under the influence of sunlight?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 3,
-    },
-    {
-      q: "Select the water-soluble vitamins.",
-      a: [
-        "Niacin, pyridoxal phosphate, pyridoxine",
-        "Vitamin B6, vitamin PP, vitamin K",
-        "Retinol, ascorbic acid, tocopherols",
-        "Pyridoxamine, nicotinic acid, vitamin A",
-        "Thiamine, calciferol, retinol",
-      ],
-      correct: 0,
-    },
-    {
-      q: "By what name is vitamin B2 known?",
-      a: ["Niacin", "Thiamine", "Riboflavin", "Pyridoxine", "Cobalamin"],
-      correct: 2,
-    },
-    {
-      q: "Niacin is the chemical name of which vitamin?",
-      a: ["B1", "B2", "PP", "E", "H"],
-      correct: 2,
-    },
-    {
-      q: "What is partial deficiency of a vitamin in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is deficiency of several vitamins in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 3,
-    },
-    {
-      q: "What is the disease caused by absence of a certain vitamin in food or impaired absorption called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is an excess amount of a vitamin in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
+        "A series of meiotic divisions forming blastomeres",
+        "Production of highly differentiated blastomeres",
+        "An increased cytoplasmic content of blastomeres",
+        "An increase in size of blastomeres",
+        "A decrease in size of blastomeres",
       ],
       correct: 4,
     },
     {
-      q: "What condition develops when vitamins are taken in small amounts with food or their absorption is reduced?",
+      q: "Which of the following structures must degenerate for blastocyst implantation to occur?",
       a: [
-        "Hypovitaminoses",
-        "Avitaminoses",
-        "Monohypovitaminoses",
-        "Polyhypovitaminoses",
-        "Hypervitaminoses",
+        "Endometrium in progestational phase",
+        "Zona pellucida",
+        "Syncytiotrophoblast",
+        "Cytotrophoblast",
+        "Functional layer of the endometrium",
       ],
-      correct: 0,
-    },
-    {
-      q: "Deficiency of which vitamin causes growth retardation, follicular hyperkeratosis, dryness of mucous membranes, xerophthalmia and keratomalacia?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin maintains calcium and phosphorus homeostasis and ensures bone mineralization and remodeling?",
-      a: ["Vitamin D3", "Vitamin E", "Vitamin B12", "Vitamin B6"],
-      correct: 0,
-    },
-  ],
-  enzymes: [
-    {
-      q: "Which enzyme is used in the treatment of experimental tumors?",
-      a: [
-        "Cholinesterase",
-        "Carbonic anhydrase",
-        "Polyamine oxidase",
-        "Monoamine oxidase",
-        "Hyaluronidase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What are enzymes that catalyze the same reactions but differ in physicochemical properties called?",
-      a: [
-        "Isoenzymes",
-        "Apoenzymes",
-        "Multienzymes",
-        "Coenzymes",
-        "Holoenzymes",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which LDH isoenzyme is found most abundantly in the heart?",
-      a: ["LDH-3", "LDH-4", "LDH-1", "LDH-5", "CK-3"],
-      correct: 2,
-    },
-    {
-      q: "Fabry disease results from deficiency of which enzyme?",
-      a: [
-        "Galactosidase",
-        "Cholinesterase",
-        "Carbonic anhydrase",
-        "Brinase",
-        "Hyaluronidase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Where is the CK-3 isoenzyme mainly found?",
-      a: ["Heart", "Muscle tissue", "Liver", "Brain", "Pituitary gland"],
       correct: 1,
     },
     {
-      q: "What parts do enzymes consist of?",
+      q: "Which of the following is the origin of the mitochondrial DNA of all human adult cells?",
       a: [
-        "Activator and inhibitor",
-        "Cofactor and inhibitor",
-        "Protein and lipid parts",
-        "Apoenzyme and prosthetic group",
-        "Vitamin and non-vitamin parts",
+        "Paternal only",
+        "Maternal only",
+        "A combination of paternal and maternal",
+        "Either paternal or maternal",
+        "Unknown origin",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Individual blastomeres were isolated from a blastula at the 4-cell stage. Each blastomere was cultured in vitro to the blastocyst stage and individually implanted into four pseudopregnant foster mothers. Which of the following would you expect to observe 9 months later?",
+      a: [
+        "Birth of one baby",
+        "Birth of four genetically different babies",
+        "Birth of four genetically identical babies",
+        "Birth of four grotesquely deformed babies",
+        "No births",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Embryonic carcinoma (EC) cells were isolated from a yellow-coated mouse with a teratocarcinoma. The EC cells were then microinjected into the inner cell mass of a blastocyst isolated from a black-coated mouse. The blastocyst was subsequently implanted into the uterus of a white-coated foster mouse. Which of the following would be observed after full-term pregnancy?",
+      a: [
+        "A yellow-coated offspring",
+        "A black-coated offspring",
+        "A white-coated offspring",
+        "A yellow- and black-coated offspring",
+        "A yellow- and white-coated offspring",
       ],
       correct: 3,
     },
     {
-      q: "Which LDH isoenzyme increases in hepatitis?",
-      a: ["LDH-3", "LDH-4", "LDH-1", "LDH-5", "LDH-2"],
-      correct: 3,
-    },
-    {
-      q: "Which method helps diagnose atherosclerosis and ischemic heart disease?",
+      q: "In oogenesis, which of the following events occurs immediately following the completions of meiosis II?",
       a: [
-        "Coagulogram",
-        "Creatine kinase",
-        "Lipid profile",
-        "Lactate dehydrogenase",
-        "Aspartate aminotransferase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "An increased LDH-5 level is associated with which condition?",
-      a: [
-        "Liver or muscle damage",
-        "Brain infarction",
-        "Myocardial infarction",
-        "Renal failure",
-        "Macrocytic anemia",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which method studies blood fluidity, and increased blood viscosity helps identify complications of hypertension, ischemic heart disease, infarction or stroke?",
-      a: [
-        "Coagulogram",
-        "Creatine kinase",
-        "Lipid profile",
-        "Lactate dehydrogenase",
-        "Aspartate aminotransferase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the full name of NAD?",
-      a: [
-        "Nicotinamide adenine trinucleotide",
-        "Nicotinamide adenine dinucleotide phosphate",
-        "Nicotinamide adenine dinucleotide",
-        "Nicotinphosphamide adenine dinucleotide",
-        "Deoxymethylcobalamin",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is the full name of CPK?",
-      a: [
-        "Creatine kinase",
-        "Deoxymethylcobalamin",
-        "Carboxybiotin",
-        "Nicotinamide adenine dinucleotide phosphate",
-        "Creatine phosphokinase",
-      ],
-      correct: 4,
-    },
-    {
-      q: "At what temperature are enzymes most active?",
-      a: ["37°C", "55°C", "100°C", "0°C", "25°C"],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme catalyzes arginine hydrolysis?",
-      a: [
-        "Urease",
-        "Creatine kinase",
-        "Arginase",
-        "Phosphoglucose isomerase",
-        "Helicase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "CPK-MB is found in cardiac muscle tissue; increased activity indicates a risk of which disease?",
-      a: [
-        "Myocardial infarction",
-        "Hypertension",
-        "Ischemic heart disease",
-        "Atherosclerosis",
-        "Macrocytic anemia",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme catalyzes hydrolysis of fats to monoacylglycerols in the duodenum?",
-      a: [
-        "Pancreatic lipase",
-        "Amylase",
-        "Aspartate aminotransferase",
-        "Creatine kinase",
-        "Phosphoglucose isomerase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme controls the addition of ATP to glucose?",
-      a: [
-        "Hexokinase",
-        "Amylase",
-        "Aspartate aminotransferase",
-        "Creatine kinase",
-        "Phosphoglucose isomerase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme test is involved in amino acid metabolism in liver and heart muscle tissues and may indicate a high risk of infarction?",
-      a: [
-        "Lipid profile",
-        "Coagulogram",
-        "Aspartate aminotransferase",
-        "Creatine phosphokinase",
-        "Lactate dehydrogenase",
+        "Degeneration of the zona pellucida",
+        "Sperm penetration of the corona radiata",
+        "Formation of a female pronucleus",
+        "Appearance of the blastocyst",
+        "Completion of cleavage",
       ],
       correct: 2,
     },
   ],
-  nucleicAcids: [
+  u3: [
     {
-      q: "Under the action of which enzyme does DNA form phosphodiester bonds between nucleotides and complementary pairs?",
-      a: ["Helicase", "Nuclease", "Polymerase", "Isomerase", "Mutase"],
-      correct: 2,
-    },
-    {
-      q: "Which are pyrimidine antimetabolites?",
+      q: "Which of the following components plays the most active role in invading the endometrium during blastocyst implantation?",
       a: [
-        "5-fluorouracil, capecitabine, cytarabine",
-        "Mercaptopurine, tegafur, thioguanine",
-        "Tegafur, thioguanine, cytarabine",
-        "Mercaptopurine, cytarabine, thioguanine",
-        "Adenine, uracil, thymidine",
-      ],
-      correct: 0,
-    },
-    {
-      q: "According to function, into how many types is RNA divided?",
-      a: ["2", "3", "4", "5", "6"],
-      correct: 1,
-    },
-    {
-      q: "Unlike DNA, which nitrogenous base is absent in RNA?",
-      a: ["Thymine", "Adenine", "Guanine", "Uracil", "Cytosine"],
-      correct: 0,
-    },
-    {
-      q: "In the DNA chain, by which bond is a purine base linked to a pyrimidine base?",
-      a: [
-        "Amide bond",
-        "Ionic bond",
-        "Donor-acceptor bond",
-        "Hydrogen bond",
-        "Peptide bond",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Find the purine bases.",
-      a: [
-        "Adenine, uracil",
-        "Guanine, cytosine",
-        "Adenine, guanine",
-        "Guanine, uracil",
-        "Thymine, uracil",
-      ],
-      correct: 2,
-    },
-    {
-      q: "According to the type of pentose molecule, into how many types are nucleic acids divided?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Determine the composition of a guanine nucleotide in DNA.",
-      a: [
-        "Nitrogenous base (guanine); monosaccharide (ribose); phosphoric acid",
-        "Nitrogenous base (guanine); monosaccharide (deoxyribose); 2 phosphoric acids",
-        "Nitrogenous base (guanine); monosaccharide (deoxyribose); 4 phosphoric acids",
-        "Pyrimidine base (guanine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (guanine); monosaccharide (ribose); 3 phosphoric acids",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Determine the composition of an adenine nucleotide in RNA.",
-      a: [
-        "Pyrimidine base (adenine); monosaccharide (ribose); phosphoric acid",
-        "Purine base (adenine); monosaccharide (ribose); phosphoric acid",
-        "Nitrogenous base (adenine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (adenine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (adenine); monosaccharide (deoxyribose); 3 phosphoric acids",
+        "Epiblast",
+        "Syncytiotrophoblast",
+        "Hypoblast",
+        "Extraembryonic somatic mesoderm",
+        "Extraembryonic visceral mesoderm",
       ],
       correct: 1,
     },
     {
-      q: "Which antimetabolite is used in the treatment of leukemia?",
+      q: "Between which two layers is the extraembryonic mesoderm located?",
       a: [
-        "5-fluorouracil",
-        "Mercaptopurine",
-        "Tegafur",
-        "Thioguanine",
-        "Cytarabine",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What are phosphoric esters of nucleosides called?",
-      a: [
-        "Nucleotides",
-        "Nucleoside cyclophosphates",
-        "Minor bases",
-        "Nucleosides",
-        "Nucleoids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What does the naming of nucleic acids depend on?",
-      a: [
-        "Nitrogenous bases in their composition",
-        "Phosphoric acid",
-        "Type of pentose",
-        "Purine bases",
-        "Antimetabolites",
-      ],
-      correct: 2,
-    },
-    {
-      q: "How many components does each nucleotide in nucleic acids contain?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 1,
-    },
-    {
-      q: "By which bonds are nucleotides linked to each other in a polynucleotide chain?",
-      a: [
-        "Amide bonds",
-        "Ionic bonds",
-        "Donor-acceptor bonds",
-        "Phosphodiester bonds",
-        "Peptide bonds",
-      ],
-      correct: 3,
-    },
-    {
-      q: "What is the strict matching of nitrogenous bases joined by hydrogen bonds called?",
-      a: [
-        "Condensation",
-        "Condensation reaction",
-        "Complementarity",
-        "Alkylation",
-        "Mutation",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is a disturbance in the nucleotide sequence of DNA called?",
-      a: [
-        "Decantation",
-        "Polymorphism",
-        "Complementarity",
-        "Alkylation",
-        "Mutation",
+        "Epiblast and hypoblast",
+        "Syncytiotrophoblast and cytotrophoblast",
+        "Syncytiotrophoblast and endometrium",
+        "Exocoelomic membrane and syncytiotrophoblast",
+        "Exocoelomic membrane and cytotrophoblast",
       ],
       correct: 4,
     },
     {
-      q: "Which enzyme breaks the hydrogen bonds holding complementary DNA bases together?",
-      a: ["Helicase", "Nuclease", "Polymerase", "Isomerase", "Mutase"],
+      q: "During week 2 of development, the embryoblast receives its nutrients via",
+      a: [
+        "diffusion",
+        "osmosis",
+        "reverse osmosis",
+        "fetal capillaries",
+        "yolk sac nourishment",
+      ],
+      correct: 0,
+    },
+    {
+      q: "The prochordal plate marks the site of the future",
+      a: ["umbilical cord", "heart", "mouth", "anus", "nose"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following are components of the definitive chorion?",
+      a: [
+        "Extraembryonic somatic mesoderm and epiblast",
+        "Extraembryonic somatic mesoderm and cytotrophoblast",
+        "Extraembryonic somatic mesoderm and syncytiotrophoblast",
+        "Extraembryonic somatic mesoderm, cytotrophoblast, and syncytiotrophoblast",
+        "Extraembryonic visceral mesoderm, cytotrophoblast, and syncytiotrophoblast",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A 16-year-old girl presents on May 10 in obvious emotional distress. On questioning, she relates that on May 1 she experienced sexual intercourse for the first time, without using any means of birth control. Most of her anxiety stems from her fear of pregnancy. What should the physician do to alleviate her fear?",
+      a: [
+        "Prescribe diazepam and wait to see if she misses her next menstrual period",
+        "Use ultrasonography to document pregnancy",
+        "Order a laboratory assay for serum hCG",
+        "Order a laboratory assay for serum progesterone",
+        "Prescribe diethylstilbestrol (“morning-after pill”)",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Carcinoembryonic antigen (CEA) is an oncofetal antigen that is generally associated with which one of the following tumors?",
+      a: [
+        "Hepatoma",
+        "Germ cell tumor",
+        "Squamous cell carcinoma",
+        "Colorectal carcinoma",
+        "Teratocarcinoma",
+      ],
+      correct: 3,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure indicates the future site of the mouth?",
+      photo: "../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 4,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure forms definitive structures found in the adult?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 2,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure is the chorion?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 3,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure is the chorionic cavity?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E", "F", "G"],
+      correct: 6,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure represents primary chorionic villi?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 0,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure is the connecting stalk?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 1,
+    },
+    {
+      q: "A 42-year-old woman presents with complaints of severe headaches, blurred vision, slurred speech, and loss of muscle coordination. Her last pregnancy 5 years ago resulted in a hydatidiform mole. Laboratory results show a high hCG level. Which of the following conditions is a probable diagnosis?",
+      a: [
+        "Vasa previa",
+        "Placenta previa",
+        "Succenturiate placenta",
+        "Choriocarcinoma",
+        "Membranous placenta",
+      ],
+      correct: 3,
+    },
+    {
+      q: "At what location does the amniotic cavity develop?",
+      a: [
+        "Between the cytotrophoblast and syncytiotrophoblast",
+        "Within the extraembryonic mesoderm",
+        "Between the endoderm and mesoderm",
+        "Within the hypoblast",
+        "Within the epiblast",
+      ],
+      correct: 4,
+    },
+    {
+      q: "At the end of week 2 of development (day 14), what is the composition of the embryonic disk?",
+      a: [
+        "Epiblast only",
+        "Epiblast and hypoblast",
+        "Ectoderm and endoderm",
+        "Ectoderm, mesoderm, and endoderm",
+        "Epiblast, mesoderm, and hypoblast",
+      ],
+      correct: 1,
+    },
+  ],
+  u4: [
+    {
+      q: "Which germ layers are present at the end of week 3 of development (day 21)?",
+      a: [
+        "Epiblast only",
+        "Epiblast and hypoblast",
+        "Ectoderm and endoderm",
+        "Ectoderm, mesoderm, and endoderm",
+        "Epiblast, mesoderm, and hypoblast",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which process establishes the three definitive germ layers?",
+      a: [
+        "Neurulation",
+        "Gastrulation",
+        "Craniocaudal folding",
+        "Lateral folding",
+        "Angiogenesis",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The first indication of gastrulation in the embryo is",
+      a: [
+        "formation of the primitive streak",
+        "formation of the notochord",
+        "formation of the neural tube",
+        "formation of extraembryonic mesoderm",
+        "formation of tertiary chorionic villi",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Somites may differentiate into which of the following?",
+      a: [
+        "Urogenital ridge",
+        "Kidneys",
+        "Notochord",
+        "Epimeric and hypomeric muscles",
+        "Epithelial lining of the gastrointestinal tract",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Intermediate mesoderm will give rise to the",
+      a: ["neural tube", "heart", "kidneys and gonads", "somites", "notochord"],
+      correct: 2,
+    },
+    {
+      q: "The developing embryo has a distinct human appearance by the end of",
+      a: ["week 4", "week 5", "week 6", "week 7", "week 8"],
+      correct: 4,
+    },
+    {
+      q: "The lateral mesoderm is divided into two distinct layers by the formation of the",
+      a: [
+        "extraembryonic coelom",
+        "intraembryonic coelom",
+        "cardiogenic region",
+        "notochord",
+        "yolk sac",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Very often the first indication a woman has that she is pregnant is a missed menstrual period. In which week of embryonic development will a woman experience her first missed menstrual period?",
+      a: [
+        "Start of week 3",
+        "Start of week 4",
+        "Start of week 5",
+        "Start of week 8",
+        "End of week 8",
+      ],
+      correct: 0,
+    },
+    {
+      q: "A female newborn was found to have a large midline tumor in the lower sacral area, which was diagnosed as a sacrococcygeal tumor. Which of the following courses of treatment is recommended for this child?",
+      a: [
+        "Immediate chemotherapy and radiation treatment",
+        "Surgical removal by age 6 months",
+        "Surgical removal at age 4–5 years",
+        "Surgical removal at age 13–15 years",
+        "No treatment because this tumor normally regresses with age",
+      ],
+      correct: 1,
+    },
+    {
+      q: "A woman has her pregnancy suddenly terminated due to intrauterine fetal death. At autopsy, the fetus shows severe pallor, generalized edema, and hepatosplenomegaly. Which of the following would you suspect?",
+      a: [
+        "VATER",
+        "β-Thalassemia minor",
+        "β-Thalassemia major",
+        "Hydrops fetalis",
+        "VACTERL",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The specialized group of mesenchymal cells that aggregate to form blood islands centrally and primitive blood vessels peripherally are called",
+      a: [
+        "fibroblasts",
+        "cardiac progenitor cells",
+        "angioblasts",
+        "myoblasts",
+        "osteoblasts",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The epiblast is capable of forming which of the following germ layers?",
+      a: [
+        "Ectoderm only",
+        "Ectoderm and mesoderm only",
+        "Ectoderm and endoderm only",
+        "Ectoderm, mesoderm, endoderm",
+        "Mesoderm and endoderm only",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A male newborn has a hemangioma on the left frontotemporal region of his face and scalp. The cells forming the hemangioma are derived from which of the following cell layers?",
+      a: [
+        "Ectoderm only",
+        "Mesoderm only",
+        "Endoderm only",
+        "Ectoderm and mesoderm",
+        "Endoderm and mesoderm",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which structure is derived from the same embryonic primordium as the dorsal root ganglia?",
+      a: ["Gonads", "Kidney", "Pineal gland", "Liver", "Adrenal medulla"],
+      correct: 4,
+    },
+    {
+      q: "Which structure is derived from the same embryonic primordium as the kidney?",
+      a: ["Gonads", "Epidermis", "Pineal gland", "Liver", "Adrenal medulla"],
       correct: 0,
     },
   ],
-  lipids: [
+  u5: [
     {
-      q: "How many types of lipids are there?",
-      a: ["2", "3", "5", "7", "8"],
-      correct: 1,
-    },
-    {
-      q: "Pulmonary surfactant, which reduces surface tension in alveoli and helps them expand, mainly consists of a mixture of which lipids?",
+      q: "The most common interventricular septal defect (VSD) seen clinically is",
       a: [
-        "Glycolipids and sphingosine",
-        "Lecithin and sphingomyelin",
-        "Ceramide and phosphatidylserine",
-        "Colamine and dihydroxyacetone phosphate",
-        "Glycerol and linolenic acid",
+        "persistent truncus arteriosus",
+        "membranous VSD",
+        "common ventricle",
+        "foramen secundum defect",
+        "premature closure of foramen ovale",
       ],
       correct: 1,
     },
     {
-      q: "Unsaponifiable lipids are of two types. Which are they?",
+      q: "Which of the following clinical signs would be most obvious on examination of a patient with either tetralogy of Fallot or transposition of the great vessels?",
       a: [
-        "Simple and complex",
-        "Terpenes and steroids",
-        "Globular and fibrillar",
-        "Lipoproteid and fibrillar",
-        "Lipoproteid and complex",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Complex saponifiable lipids are of three types. Which are they?",
-      a: [
-        "Waxes, oils, fats",
-        "Phospholipids, sphingolipids, glycolipids",
-        "Simple, complex, oils",
-        "Terpenes, steroids, phospholipids",
-        "Terpenes, steroids, glycolipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which are saturated fatty acids found in the body?",
-      a: [
-        "Palmitic, stearic",
-        "Oleic, linoleic",
-        "Linolenic, stearic",
-        "Oleic, palmitic",
-        "Hexane, octane",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which are unsaturated fatty acids found in the body?",
-      a: [
-        "Palmitic, stearic",
-        "Oleic, linoleic",
-        "Linolenic, stearic",
-        "Oleic, palmitic",
-        "Hexane, octane",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which unsaturated fatty acid found in the body has four double bonds?",
-      a: ["Arachidonic", "Linoleic", "Linolenic", "Oleic", "Hexane"],
-      correct: 0,
-    },
-    {
-      q: "Which unsaturated fatty acid found in the body has three double bonds?",
-      a: ["Arachidonic", "Linoleic", "Linolenic", "Oleic", "Hexane"],
-      correct: 2,
-    },
-    {
-      q: "Where is the largest amount of cholesterol, about 80%, produced?",
-      a: ["Kidney", "Stomach", "Liver", "Spleen", "Intestine"],
-      correct: 2,
-    },
-    {
-      q: "The cholesterol level in a healthy person should not exceed what value?",
-      a: ["3.2 mmol/L", "5.2 mmol/L", "3.7 mmol/L", "4.6 mmol/L", "6.4 mmol/L"],
-      correct: 1,
-    },
-    {
-      q: "Which substance is used to prevent atherosclerosis?",
-      a: [
-        "Sphingosine",
-        "Glycerol",
-        "Arachidonic acid",
-        "Linetol",
-        "Linoleic acid",
+        "Sweaty palms",
+        "Lack of femoral artery pulse",
+        "Pulmonary hypertension",
+        "Cyanosis",
+        "Diffuse red rash",
       ],
       correct: 3,
     },
     {
-      q: "How many grams is the human body's requirement for linoleic acid?",
-      a: ["3-6 g", "13-16 g", "10-20 g", "1-2 g", "20-30 g"],
-      correct: 0,
-    },
-    {
-      q: "What percentage of the brain consists of fats?",
-      a: ["60%", "40%", "20%", "10%", "5%"],
-      correct: 0,
-    },
-    {
-      q: "Glycolipids most often contain residues of which substances?",
+      q: "Which of the following congenital cardiovascular malformations is most commonly associated with maternal rubella infection?",
       a: [
-        "Galactose and ceramide",
-        "Galactose and glucose",
-        "Ceramide and glucose",
-        "Glucose and linolenic acid",
-        "Linolenic and linoleic acids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which substance do glycolipids not contain?",
-      a: [
-        "Galactose",
-        "Ceramide",
-        "Phosphoric acid",
-        "Galactose and ceramide",
-        "Galactose and phosphoric acid",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which substances have important physiological significance because they emulsify fats and facilitate their absorption into blood?",
-      a: ["Terpenes", "Proteins", "Bile acids", "Oils", "Waxes"],
-      correct: 2,
-    },
-    {
-      q: "Which female sex hormone of the pregnane series regulates pregnancy?",
-      a: ["Progesterone", "Androgen", "Cholanes", "Malic acid", "Bromcamphor"],
-      correct: 0,
-    },
-    {
-      q: "Which compound controls the development of male secondary sex characteristics and sperm production?",
-      a: ["Androstane", "Terpenes", "Acyclic terpenes", "Stearins", "Cholanes"],
-      correct: 0,
-    },
-    {
-      q: "Which substance is a synthetic corticosteroid used in rheumatism, bronchial asthma and inflammatory skin conditions?",
-      a: [
-        "Prednisolone",
-        "Bromcamphor",
-        "Cycloterpene",
-        "Camphane",
-        "Cephalin",
-      ],
-      correct: 0,
-    },
-    {
-      q: "During metabolism, what is formed from dihydroxyacetone phosphate under the action of glycerophosphate dehydrogenase?",
-      a: [
-        "Glycerol 3-phosphate",
-        "Phosphoric acid",
-        "L-glycerol-3-phosphate",
-        "Mono- and oligosaccharides",
-        "Sphingolipids",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What are phospholipids containing choline called?",
-      a: [
-        "Cephalins",
-        "Lecithins",
-        "Serine-cephalin",
-        "Colamine-cephalin",
-        "Sphingolipids",
+        "Isolated dextrocardia",
+        "Patent ductus arteriosus",
+        "Persistent truncus arteriosus",
+        "Coarctation of the aorta",
+        "Double aortic arch",
       ],
       correct: 1,
     },
     {
-      q: "How are lipids arranged in the bilayer of the cell membrane?",
+      q: "The most common atrial septal defect (ASD) seen clinically is",
       a: [
-        "With polar heads and nonpolar tails facing only outside the cell",
-        "Polar heads face the aqueous surfaces, while nonpolar tails are directed inward",
-        "Nonpolar tails face outside the cell and polar heads face inside",
-        "Head and tail parts are arranged randomly only in the inner layer of the membrane",
-        "Lipids do not form a bilayer in the membrane; they are scattered",
+        "common atrium",
+        "foramen secundum defect",
+        "premature closure of the foramen ovale",
+        "persistent truncus arteriosus",
+        "probe patency of the foramen ovale",
       ],
       correct: 1,
     },
     {
-      q: "Deficiency of which substance may lead to poor memory, brain cell damage, Alzheimer's disease and rapid mood changes?",
+      q: "The ventral surface of the adult heart as seen on gross examination or radiography is comprised primarily of the",
       a: [
-        "Linolenic acid",
-        "Hepatoprotectors",
-        "Essential phospholipids",
-        "Phosphatidylcholine",
-        "Linoleic acid",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Structurally, sphingolipids are analogues of which lipids, and what replaces glycerol in them?",
-      a: [
-        "Glycolipid analogues; lecithin replaces it",
-        "Phospholipid analogues; choline replaces it",
-        "Glycerolipid analogues; the diatomic amino alcohol sphingosine replaces it",
-        "Phosphatide analogues; serine replaces it",
-        "Fat analogues; colamine replaces it",
-      ],
-      correct: 2,
-    },
-  ],
-  peptidesAndProteins: [
-    {
-      q: "Select the sulfur-containing amino acid.",
-      a: ["Methionine", "Valine", "Leucine", "Phenylalanine", "Oxoproline"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid contains an imidazole ring?",
-      a: ["Histidine", "Proline", "Oxoproline", "Tyrosine", "Arginine"],
-      correct: 0,
-    },
-    {
-      q: "If phenylalanine is not converted into tyrosine, which toxic acid accumulates in blood and is excreted in urine?",
-      a: [
-        "Phenylpyruvic acid",
-        "Diketopiperazine",
-        "Butyric acid",
-        "Butyrolactam",
-        "Apamin peptide",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid plays an important role in muscular dystrophy and ulcer disease?",
-      a: [
-        "Glutamic acid",
-        "Glutamine",
-        "Aspartic acid",
-        "Asparagine",
-        "Tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Molecules conditionally consisting of up to 10 amino acids are called ...",
-      a: [
-        "Oligopeptides",
-        "Polypeptides",
-        "Proteins",
-        "Carbohydrates",
-        "Nucleic acids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which protein is found in blood vessels, skin, cartilage, the vitreous body of the eye and tendons?",
-      a: ["Collagen", "Endorphin", "Albumin", "Casein", "Keratin"],
-      correct: 0,
-    },
-    {
-      q: "How many polypeptide chains does hemoglobin consist of?",
-      a: ["4", "3", "2", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Which type of complex protein yields protein and phosphoric acid upon hydrolysis?",
-      a: [
-        "Phosphoproteins",
-        "Chromoproteins",
-        "Glycoproteins",
-        "Nucleoproteins",
-        "Lipoproteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Select the protein found in skin, hair/wool, nails and horns.",
-      a: ["Keratin", "Protamines", "Histone", "Casein", "Apamin"],
-      correct: 0,
-    },
-    {
-      q: "Which proteins form the structure of muscles?",
-      a: [
-        "Actin and myosin",
-        "Thyroxine and myosin",
-        "Keratin and casein",
-        "Hemoglobin and keratin",
-        "Thyroxine and myoglobin",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the main cause of sickle cell anemia?",
-      a: [
-        "Glutamic acid is replaced by valine",
-        "Glutamine is replaced by phenylalanine",
-        "Glutamine is replaced by valine",
-        "Glutamic acid is replaced by tyrosine",
-        "Glutamic acid is replaced by tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What structural level does myoglobin have?",
-      a: ["Primary", "Secondary", "Tertiary", "Quaternary", "Quinary"],
-      correct: 2,
-    },
-    {
-      q: "Where are enkephalin neuropeptides formed?",
-      a: [
-        "In the thalamus and spinal cord",
-        "In the spinal cord and adrenal gland",
-        "In the medulla oblongata and pituitary gland",
-        "In the pineal gland and spinal cord",
-        "In the thyroid gland and spleen",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Find the complex proteins that transport fat-like substances from the liver to other organs.",
-      a: [
-        "Lipoproteins",
-        "Chromoproteins",
-        "Nucleoproteins",
-        "Phosphoproteins",
-        "Glycoproteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Proteins consisting of a protein part and additional substances are called ...",
-      a: [
-        "Simple proteins",
-        "Complex proteins",
-        "Carbohydrates",
-        "Hydrocarbons",
-        "Lipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Select the protein found in saliva.",
-      a: ["Mucin", "Keratin", "Casein", "Collagen", "Myosin"],
-      correct: 0,
-    },
-    {
-      q: "Select the protein found mostly in milk products and cheese.",
-      a: ["Mucin", "Keratin", "Casein", "Collagen", "Myosin"],
-      correct: 2,
-    },
-    {
-      q: "Choose the row containing fibrillar proteins.",
-      a: [
-        "Hemoglobin, insulin, actin",
-        "Keratin, collagen, myosin",
-        "Casein, insulin, enkephalin",
-        "Apamin, casein, thyroxine",
-        "Mucin, trypsin, vasopressin",
-      ],
-      correct: 1,
-    },
-    {
-      q: "How many amino acids does the insulin hormone contain?",
-      a: ["51", "31", "9", "18", "68"],
-      correct: 0,
-    },
-    {
-      q: "By which bond are the two A and B chains of insulin connected?",
-      a: [
-        "Phosphodiester bond",
-        "Ionic bond",
-        "Hydrogen bond",
-        "Disulfide bond",
-        "Metal bond",
-      ],
-      correct: 3,
-    },
-  ],
-  carbohydrates: [
-    {
-      q: "How many monosaccharides are formed when disaccharides are hydrolyzed?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Which monosaccharides are formed when sucrose is hydrolyzed?",
-      a: [
-        "Glucose and fructose",
-        "Glucose and lactose",
-        "Fructose and starch",
-        "Mannose and arabinose",
-        "Glucose and glucose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Choose the row containing polysaccharides.",
-      a: [
-        "Cellulose, starch, inulin",
-        "Lactose, glucose, mannose",
-        "Starch, fructose, ribose",
-        "Fructose, glucose, ribose",
-        "Arabinose, dulcitol, starch",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is formed as a result of lactic acid fermentation of glucose?",
-      a: [
-        "2-hydroxypropanoic acid",
-        "Fructose",
-        "2-aminopropanoic acid",
-        "Ribose",
-        "Dulcitol",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Select a monosaccharide belonging to ketoses.",
-      a: ["Fructose", "Ribulose", "Xylose", "Glucose", "Cellulose"],
-      correct: 0,
-    },
-    {
-      q: "Oligosaccharide molecule consists of up to how many monosaccharide residues?",
-      a: ["10", "20", "30", "40", "50"],
-      correct: 0,
-    },
-    {
-      q: "Which substances are recommended instead of sucrose for patients with diabetes mellitus?",
-      a: [
-        "Xylitol, sorbitol",
-        "Sorbitol, mannitol",
-        "Xylitol, furfural",
-        "Mannitol, xylitol",
-        "Mannitol, ribose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the glucose level in the blood of a healthy person?",
-      a: ["0.08-0.12%", "0.15-1.65%", "5-10%", "5-6%", "25-45%"],
-      correct: 0,
-    },
-    {
-      q: "Which carbohydrates belong to oligosaccharides?",
-      a: [
-        "Sucrose, lactose, maltose",
-        "Lactose, starch, glucose",
-        "Fructose, glucose, ribose",
-        "Starch, sucrose, glycogen",
-        "Chitin, chitosan, glycogen",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which polysaccharide is widely distributed in animal and human tissues?",
-      a: ["Glycogen", "Chitosan", "Starch", "Cellulose", "Hyaluronic acid"],
-      correct: 0,
-    },
-    {
-      q: "Sulfated derivatives of which polysaccharide are used to prepare membranes for artificial kidneys?",
-      a: ["Chitin", "Chitosan", "Hyaluronic acid", "Starch", "Cellulose"],
-      correct: 4,
-    },
-    {
-      q: "In diabetic patients, accumulation of D-sorbitol in the vitreous body of the eye leads to which disease?",
-      a: ["Cataract", "Myoma", "Atherosclerosis", "Hypertension", "Polyuria"],
-      correct: 0,
-    },
-    {
-      q: "In hypoglycemia, if blood glucose falls below which level, coma may occur?",
-      a: [
-        "2.22-2.76 mmol/L",
-        "1.66-2.55 mmol/L",
-        "5.77-6.25 mmol/L",
-        "0.05-1.15 mmol/L",
-        "1.05-3.15 mmol/L",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which substances are used to prepare dietary drinks, sugar-free sweet pastries and chewing gums for patients with diabetes?",
-      a: [
-        "Xylitol, sorbitol, mannitol, glycine",
-        "Fructose, starch, dulcitol, ribose",
-        "Mannitol, cellulose, glycogen, hyaluronic acid",
-        "Glucose, ribose, sucrose, maltose",
-        "Cellulose, starch, chitin, chitosan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which fructose derivative is an important preparation used in heart diseases and seizures?",
-      a: [
-        "Fructose diphosphate",
-        "L-fructose",
-        "Fructose monophosphate",
-        "Fructose monosulfate",
-        "D-fructose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Ribose and deoxyribose are ...",
-      a: [
-        "Aldopentoses",
-        "Aldohexoses",
-        "Ketopentoses",
-        "Ketohexoses",
-        "Proteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which monosaccharide is part of ATP?",
-      a: ["Ribose", "Glucose", "Fructose", "Mannose", "Aldotriose"],
-      correct: 0,
-    },
-    {
-      q: "Sulfated derivatives of which polysaccharide are also used instead of heparin to prevent blood coagulation?",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Cellulose"],
-      correct: 2,
-    },
-    {
-      q: "Which polysaccharide is used in pharmacy to coat unpleasant-tasting medicines?",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Starch"],
-      correct: 4,
-    },
-    {
-      q: "Identify the polysaccharide found in the vitreous body of the eye, umbilical cord, cartilage and synovial fluid.",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Starch"],
-      correct: 0,
-    },
-    {
-      q: "Find the polysaccharide found in the liver, muscles and lungs.",
-      a: ["Hyaluronic acid", "Chitin", "Heparin", "Glycogen", "Chitosan"],
-      correct: 3,
-    },
-    {
-      q: "Which polysaccharide is present in the egg-cell covering and participates in fertilization after its cleavage?",
-      a: [
-        "Chitosan",
-        "Hyaluronic acid",
-        "Aspartic acid",
-        "Chondroitin sulfate",
-        "Heparin",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is the constant transition of carbohydrate molecules in solution from one tautomeric form to another called?",
-      a: [
-        "Cyclo-oxo tautomerism",
-        "Conformation",
-        "Configuration",
-        "Chiral center",
-        "Oxidation",
-      ],
-      correct: 0,
-    },
-  ],
-  q50: [
-    {
-      q: "By which reaction is tyrosine formed from phenylalanine in the body?",
-      a: [
-        "Decarboxylation reaction",
-        "Hydroxylation reaction",
-        "Deamination reaction",
-        "Transamination reaction",
-        "Hydrogenation reaction",
-      ],
-      correct: 1,
-    },
-    {
-      q: "By which reaction is histamine formed from histidine in the body?",
-      a: [
-        "Hydroxylation",
-        "Decarboxylation",
-        "Deamination",
-        "Oxidation",
-        "Dehydration",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid contains an imidazole ring?",
-      a: ["Histidine", "Tryptophan", "Proline", "Arginine", "Lysine"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid does not form optical isomers?",
-      a: ["Alanine", "Lysine", "Glycine", "Isoleucine", "Leucine"],
-      correct: 2,
-    },
-    {
-      q: "Find the amino acid used in the treatment of allergic diseases of chemical origin.",
-      a: ["Histidine", "Cysteine", "Methionine", "Glycine", "Alanine"],
-      correct: 2,
-    },
-    {
-      q: "Which functional groups do amino acids contain?",
-      a: [
-        "Carboxyl and methyl",
-        "Hydroxyl and amino",
-        "Carboxyl and amino",
-        "Carboxyl and hydroxyl",
-        "Aldehyde and ketone",
-      ],
-      correct: 2,
-    },
-    {
-      q: "When hydroxylase enzyme activity is deficient or insufficient, which amino acid accumulates in tissues?",
-      a: [
-        "Tyrosine",
-        "Aspartic acid",
-        "Phenylalanine",
-        "Glutamine",
-        "Asparagine",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which of the following amino acids has an aromatic structure?",
-      a: ["Phenylalanine", "Asparagine", "Glycine", "Alanine", "Asparagine"],
-      correct: 0,
-    },
-    {
-      q: "What biologically active substances are formed as a result of amino acid decarboxylation?",
-      a: ["Biogenic amines", "Proteins", "Peptides", "Nucleic acids", "Lipids"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid has the ability to help repair damaged tissue in a short period of time?",
-      a: ["Glutamine", "Asparagine", "Glycine", "Alanine", "Lysine"],
-      correct: 4,
-    },
-    {
-      q: "Which amino acid is used in the treatment of osteoporosis and allergic diseases of chemical origin?",
-      a: ["Alanine", "Methionine", "Histidine", "Serine", "Lysine"],
-      correct: 4,
-    },
-    {
-      q: "Select the sulfur-containing amino acids.",
-      a: [
-        "Lysine, methionine",
-        "Methionine, cysteine",
-        "Leucine, histidine",
-        "Tryptophan, isoleucine",
-        "Glutamic acid, aspartic acid",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid is important for bone growth and nutrition and plays a major role in calcium absorption?",
-      a: ["Glutamine", "Glutamic acid", "Asparagine", "Lysine", "Methionine"],
-      correct: 3,
-    },
-    {
-      q: "If phenylalanine is not converted into tyrosine, which toxic acid accumulates in blood and is excreted in urine?",
-      a: [
-        "Butyric acid",
-        "Butyrolactam",
-        "Diketopiperazine",
-        "Phenylpyruvic acid",
-        "Phenylisothiocyanate",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Which amino acid plays an important role in muscular dystrophy and ulcer disease?",
-      a: [
-        "Aspartic acid",
-        "Glutamic acid",
-        "Asparagine",
-        "Glutamine",
-        "Tryptophan",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid is responsible for the production of adrenaline and noradrenaline hormones?",
-      a: ["Tyrosine", "Phenylalanine", "Tryptophan", "Lysine", "Arginine"],
-      correct: 0,
-    },
-    {
-      q: "Which qualitative reaction is characteristic for detecting phenylalanine, tyrosine and tryptophan?",
-      a: [
-        "Millon's reaction",
-        "Silver mirror reaction",
-        "Xanthoproteic reaction",
-        "Ninhydrin reaction",
-        "Biuret reaction",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Choose the row containing essential amino acids.",
-      a: [
-        "Leucine, isoleucine, tryptophan, phenylalanine, lysine, valine",
-        "Tryptophan, proline, glycine, alanine, cysteine, methionine",
-        "Glycine, alanine, tyrosine, methionine, serine, cysteine",
-        "Tyrosine, phenylalanine, serine, cysteine, methionine, valine",
-        "Tyrosine, histidine, hydroxyproline, glutamine, serine",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid participates actively in muscle metabolism, cartilage and skin tissue repair, strengthening cardiac function, inhibiting tumor development and immune system activity?",
-      a: ["Arginine", "Lysine", "Isoleucine", "Methionine", "Serine"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid has an important role in the treatment of arterial hypertension and epilepsy?",
-      a: [
-        "Gamma-aminobutyric acid",
-        "Glutamic acid",
-        "Aspartic acid",
-        "Phenylalanine",
-        "Tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid accelerates regeneration of muscle, bone and skin tissues and is used in diseases of these tissues?",
-      a: ["Proline", "Leucine", "Phenylalanine", "Tryptophan", "Glycine"],
-      correct: 1,
-    },
-    {
-      q: "Select the group of lipovitamins.",
-      a: [
-        "A, E, C, P",
-        "A, E, K, D",
-        "B, C, P, H",
-        "B, C, K, D",
-        "B1, B2, B6, B12",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Indicate the disease-based name of vitamin A.",
-      a: [
-        "Antianemic",
-        "Antirachitic",
-        "Antihemorrhagic",
-        "Antixerophthalmic",
-        "Antipellagric",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Indicate the disease-based name of vitamin D.",
-      a: ["Antixerophthalmic", "Antihemorrhagic", "Antirachitic", "Antianemic"],
-      correct: 2,
-    },
-    {
-      q: "Menadione, vikasol and sinkavit are synthetic analogues of which vitamin?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin slows blood clotting and leads to bleeding and hemorrhagic signs?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin may cause testicular atrophy, fetal resorption during pregnancy, muscular dystrophy, liver necrosis, and softening of brain structures, especially the cerebellum?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 1,
-    },
-    {
-      q: "Which vitamin participates in blood coagulation?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "A pregnant woman has nervous weakness, fatigue and buzzing in the ears. Which vitamin may be needed?",
-      a: [
-        "B6 (pyridoxine)",
-        "B12 (cobalamin)",
-        "A (retinol)",
-        "B2 (riboflavin)",
-        "Vitamin C",
-      ],
-      correct: 1,
-    },
-    {
-      q: "A patient has softened bones, weak teeth and reduced bone density on X-ray. This is a sign of what?",
-      a: [
-        "Vitamin C deficiency",
-        "Vitamin D deficiency",
-        "B1 deficiency",
-        "Vitamin K deficiency",
-        "Vitamin A deficiency",
-      ],
-      correct: 1,
-    },
-    {
-      q: "A patient who took antibiotics for a long time has prolonged blood clotting time. What may be the cause?",
-      a: [
-        "Vitamin D deficiency",
-        "B2 deficiency",
-        "Impaired synthesis of vitamin K",
-        "Excess vitamin A",
-        "Vitamin PP deficiency",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin causes macrocytic anemia?",
-      a: [
-        "B1 (thiamine)",
-        "B2 (riboflavin)",
-        "B3 (pantothenic acid)",
-        "B12 (cobalamin)",
-        "H (biotin)",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Which disease is caused by vitamin C deficiency?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 2,
-    },
-    {
-      q: "Which disease does vitamin B1 help prevent?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 1,
-    },
-    {
-      q: "Which disease does vitamin PP prevent?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin has hepatoprotective properties?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 1,
-    },
-    {
-      q: "Retinol is the name of which vitamin?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin is synthesized under the influence of sunlight?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 3,
-    },
-    {
-      q: "Select the water-soluble vitamins.",
-      a: [
-        "Niacin, pyridoxal phosphate, pyridoxine",
-        "Vitamin B6, vitamin PP, vitamin K",
-        "Retinol, ascorbic acid, tocopherols",
-        "Pyridoxamine, nicotinic acid, vitamin A",
-        "Thiamine, calciferol, retinol",
-      ],
-      correct: 0,
-    },
-    {
-      q: "By what name is vitamin B2 known?",
-      a: ["Niacin", "Thiamine", "Riboflavin", "Pyridoxine", "Cobalamin"],
-      correct: 2,
-    },
-    {
-      q: "Niacin is the chemical name of which vitamin?",
-      a: ["B1", "B2", "PP", "E", "H"],
-      correct: 2,
-    },
-    {
-      q: "What is partial deficiency of a vitamin in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is deficiency of several vitamins in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 3,
-    },
-    {
-      q: "What is the disease caused by absence of a certain vitamin in food or impaired absorption called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is an excess amount of a vitamin in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
+        "left atrium",
+        "left ventricle",
+        "inferior vena cava",
+        "bulbus cordis",
+        "right ventricle",
       ],
       correct: 4,
     },
     {
-      q: "What condition develops when vitamins are taken in small amounts with food or their absorption is reduced?",
+      q: "The left recurrent laryngeal nerve recurs around the",
       a: [
-        "Hypovitaminoses",
-        "Avitaminoses",
-        "Monohypovitaminoses",
-        "Polyhypovitaminoses",
-        "Hypervitaminoses",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Deficiency of which vitamin causes growth retardation, follicular hyperkeratosis, dryness of mucous membranes, xerophthalmia and keratomalacia?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin maintains calcium and phosphorus homeostasis and ensures bone mineralization and remodeling?",
-      a: ["Vitamin D3", "Vitamin E", "Vitamin B12", "Vitamin B6"],
-      correct: 0,
-    },
-  ],
-
-  q100: [
-    {
-      q: "Which enzyme is used in the treatment of experimental tumors?",
-      a: [
-        "Cholinesterase",
-        "Carbonic anhydrase",
-        "Polyamine oxidase",
-        "Monoamine oxidase",
-        "Hyaluronidase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What are enzymes that catalyze the same reactions but differ in physicochemical properties called?",
-      a: [
-        "Isoenzymes",
-        "Apoenzymes",
-        "Multienzymes",
-        "Coenzymes",
-        "Holoenzymes",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which LDH isoenzyme is found most abundantly in the heart?",
-      a: ["LDH-3", "LDH-4", "LDH-1", "LDH-5", "CK-3"],
-      correct: 2,
-    },
-    {
-      q: "Fabry disease results from deficiency of which enzyme?",
-      a: [
-        "Galactosidase",
-        "Cholinesterase",
-        "Carbonic anhydrase",
-        "Brinase",
-        "Hyaluronidase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Where is the CK-3 isoenzyme mainly found?",
-      a: ["Heart", "Muscle tissue", "Liver", "Brain", "Pituitary gland"],
-      correct: 1,
-    },
-    {
-      q: "What parts do enzymes consist of?",
-      a: [
-        "Activator and inhibitor",
-        "Cofactor and inhibitor",
-        "Protein and lipid parts",
-        "Apoenzyme and prosthetic group",
-        "Vitamin and non-vitamin parts",
+        "left primary bronchus",
+        "left subclavian artery",
+        "left subclavian vein",
+        "ductus arteriosus",
+        "left common carotid artery",
       ],
       correct: 3,
     },
     {
-      q: "Which LDH isoenzyme increases in hepatitis?",
-      a: ["LDH-3", "LDH-4", "LDH-1", "LDH-5", "LDH-2"],
-      correct: 3,
-    },
-    {
-      q: "Which method helps diagnose atherosclerosis and ischemic heart disease?",
-      a: [
-        "Coagulogram",
-        "Creatine kinase",
-        "Lipid profile",
-        "Lactate dehydrogenase",
-        "Aspartate aminotransferase",
-      ],
+      q: "Which of the three primary germ layers forms the histologically definitive endocardium of the adult heart?",
+      a: ["Ectoderm", "Endoderm", "Mesoderm", "Epiblast", "Hypoblast"],
       correct: 2,
     },
     {
-      q: "An increased LDH-5 level is associated with which condition?",
+      q: "Which of the following is responsible for the proper alignment of the atrioventricular canal and the conoventricular canal?",
       a: [
-        "Liver or muscle damage",
-        "Brain infarction",
-        "Myocardial infarction",
-        "Renal failure",
-        "Macrocytic anemia",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which method studies blood fluidity, and increased blood viscosity helps identify complications of hypertension, ischemic heart disease, infarction or stroke?",
-      a: [
-        "Coagulogram",
-        "Creatine kinase",
-        "Lipid profile",
-        "Lactate dehydrogenase",
-        "Aspartate aminotransferase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the full name of NAD?",
-      a: [
-        "Nicotinamide adenine trinucleotide",
-        "Nicotinamide adenine dinucleotide phosphate",
-        "Nicotinamide adenine dinucleotide",
-        "Nicotinphosphamide adenine dinucleotide",
-        "Deoxymethylcobalamin",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is the full name of CPK?",
-      a: [
-        "Creatine kinase",
-        "Deoxymethylcobalamin",
-        "Carboxybiotin",
-        "Nicotinamide adenine dinucleotide phosphate",
-        "Creatine phosphokinase",
+        "Lateral folding of the embryo",
+        "Craniocaudal folding of the embryo",
+        "Programmed cell migration",
+        "Formation of the aorticopulmonary septum",
+        "Dextral looping",
       ],
       correct: 4,
     },
     {
-      q: "At what temperature are enzymes most active?",
-      a: ["37°C", "55°C", "100°C", "0°C", "25°C"],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme catalyzes arginine hydrolysis?",
+      q: "The hepatic sinusoids that can be observed histologically in an adult liver are derived from the",
       a: [
-        "Urease",
-        "Creatine kinase",
-        "Arginase",
-        "Phosphoglucose isomerase",
-        "Helicase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "CPK-MB is found in cardiac muscle tissue; increased activity indicates a risk of which disease?",
-      a: [
-        "Myocardial infarction",
-        "Hypertension",
-        "Ischemic heart disease",
-        "Atherosclerosis",
-        "Macrocytic anemia",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme catalyzes hydrolysis of fats to monoacylglycerols in the duodenum?",
-      a: [
-        "Pancreatic lipase",
-        "Amylase",
-        "Aspartate aminotransferase",
-        "Creatine kinase",
-        "Phosphoglucose isomerase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme controls the addition of ATP to glucose?",
-      a: [
-        "Hexokinase",
-        "Amylase",
-        "Aspartate aminotransferase",
-        "Creatine kinase",
-        "Phosphoglucose isomerase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme test is involved in amino acid metabolism in liver and heart muscle tissues and may indicate a high risk of infarction?",
-      a: [
-        "Lipid profile",
-        "Coagulogram",
-        "Aspartate aminotransferase",
-        "Creatine phosphokinase",
-        "Lactate dehydrogenase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Under the action of which enzyme does DNA form phosphodiester bonds between nucleotides and complementary pairs?",
-      a: ["Helicase", "Nuclease", "Polymerase", "Isomerase", "Mutase"],
-      correct: 2,
-    },
-    {
-      q: "Which are pyrimidine antimetabolites?",
-      a: [
-        "5-fluorouracil, capecitabine, cytarabine",
-        "Mercaptopurine, tegafur, thioguanine",
-        "Tegafur, thioguanine, cytarabine",
-        "Mercaptopurine, cytarabine, thioguanine",
-        "Adenine, uracil, thymidine",
-      ],
-      correct: 0,
-    },
-    {
-      q: "According to function, into how many types is RNA divided?",
-      a: ["2", "3", "4", "5", "6"],
-      correct: 1,
-    },
-    {
-      q: "Unlike DNA, which nitrogenous base is absent in RNA?",
-      a: ["Thymine", "Adenine", "Guanine", "Uracil", "Cytosine"],
-      correct: 0,
-    },
-    {
-      q: "In the DNA chain, by which bond is a purine base linked to a pyrimidine base?",
-      a: [
-        "Amide bond",
-        "Ionic bond",
-        "Donor-acceptor bond",
-        "Hydrogen bond",
-        "Peptide bond",
+        "supracardinal veins",
+        "anterior cardinal veins",
+        "posterior cardinal veins",
+        "vitelline veins",
+        "subcardinal veins",
       ],
       correct: 3,
     },
     {
-      q: "Find the purine bases.",
+      q: "Which of the following arterial malformations is very common in premature infants?",
       a: [
-        "Adenine, uracil",
-        "Guanine, cytosine",
-        "Adenine, guanine",
-        "Guanine, uracil",
-        "Thymine, uracil",
-      ],
-      correct: 2,
-    },
-    {
-      q: "According to the type of pentose molecule, into how many types are nucleic acids divided?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Determine the composition of a guanine nucleotide in DNA.",
-      a: [
-        "Nitrogenous base (guanine); monosaccharide (ribose); phosphoric acid",
-        "Nitrogenous base (guanine); monosaccharide (deoxyribose); 2 phosphoric acids",
-        "Nitrogenous base (guanine); monosaccharide (deoxyribose); 4 phosphoric acids",
-        "Pyrimidine base (guanine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (guanine); monosaccharide (ribose); 3 phosphoric acids",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Determine the composition of an adenine nucleotide in RNA.",
-      a: [
-        "Pyrimidine base (adenine); monosaccharide (ribose); phosphoric acid",
-        "Purine base (adenine); monosaccharide (ribose); phosphoric acid",
-        "Nitrogenous base (adenine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (adenine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (adenine); monosaccharide (deoxyribose); 3 phosphoric acids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which antimetabolite is used in the treatment of leukemia?",
-      a: [
-        "5-fluorouracil",
-        "Mercaptopurine",
-        "Tegafur",
-        "Thioguanine",
-        "Cytarabine",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What are phosphoric esters of nucleosides called?",
-      a: [
-        "Nucleotides",
-        "Nucleoside cyclophosphates",
-        "Minor bases",
-        "Nucleosides",
-        "Nucleoids",
+        "Patent ductus arteriosus",
+        "Coarctation of the aorta",
+        "Right aortic arch",
+        "Double aortic arch",
+        "Abnormal origin of the right subclavian artery",
       ],
       correct: 0,
     },
     {
-      q: "What does the naming of nucleic acids depend on?",
-      a: [
-        "Nitrogenous bases in their composition",
-        "Phosphoric acid",
-        "Type of pentose",
-        "Purine bases",
-        "Antimetabolites",
-      ],
-      correct: 2,
-    },
-    {
-      q: "How many components does each nucleotide in nucleic acids contain?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 1,
-    },
-    {
-      q: "By which bonds are nucleotides linked to each other in a polynucleotide chain?",
-      a: [
-        "Amide bonds",
-        "Ionic bonds",
-        "Donor-acceptor bonds",
-        "Phosphodiester bonds",
-        "Peptide bonds",
-      ],
+      q: "A physician monitoring a newborn infant’s heart sounds using a stethoscope hears the characteristic murmur of a patent ductus arteriosus. How soon after birth should this murmur normally disappear?",
+      a: ["1–2 months", "1–2 weeks", "1–2 days", "1–2 hours", "Immediately"],
       correct: 3,
     },
     {
-      q: "What is the strict matching of nitrogenous bases joined by hydrogen bonds called?",
+      q: "How soon after birth does the foramen ovale close?",
+      a: ["1–2 months", "1–2 weeks", "1–2 days", "1–2 hours", "Immediately"],
+      correct: 4,
+    },
+    {
+      q: "A 9-year-old boy presents with complaints of numbness and tingling in both feet. Examination reveals no pulse in the femoral artery, increased blood pressure in the arteries of the upper extremity, and enlarged intercostal veins. Which of the following abnormalities would be suspected?",
       a: [
-        "Condensation",
-        "Condensation reaction",
-        "Complementarity",
-        "Alkylation",
-        "Mutation",
+        "Double aortic arch",
+        "Tetralogy of Fallot",
+        "Postductal coarctation of the aorta",
+        "Right aortic arch",
+        "Abnormal origin of the right subclavian artery",
       ],
       correct: 2,
     },
     {
-      q: "What is a disturbance in the nucleotide sequence of DNA called?",
+      q: "The coronary sinus is derived from which of the following?",
       a: [
-        "Decantation",
-        "Polymorphism",
-        "Complementarity",
-        "Alkylation",
-        "Mutation",
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
       ],
       correct: 4,
     },
     {
-      q: "Which enzyme breaks the hydrogen bonds holding complementary DNA bases together?",
-      a: ["Helicase", "Nuclease", "Polymerase", "Isomerase", "Mutase"],
-      correct: 0,
-    },
-    {
-      q: "How many types of lipids are there?",
-      a: ["2", "3", "5", "7", "8"],
-      correct: 1,
-    },
-    {
-      q: "Pulmonary surfactant, which reduces surface tension in alveoli and helps them expand, mainly consists of a mixture of which lipids?",
+      q: "The conus arteriosus is derived from which of the following?",
       a: [
-        "Glycolipids and sphingosine",
-        "Lecithin and sphingomyelin",
-        "Ceramide and phosphatidylserine",
-        "Colamine and dihydroxyacetone phosphate",
-        "Glycerol and linolenic acid",
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
       ],
       correct: 1,
     },
     {
-      q: "Unsaponifiable lipids are of two types. Which are they?",
+      q: "The proximal part of the aorta is derived from which of the following?",
       a: [
-        "Simple and complex",
-        "Terpenes and steroids",
-        "Globular and fibrillar",
-        "Lipoproteid and fibrillar",
-        "Lipoproteid and complex",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Complex saponifiable lipids are of three types. Which are they?",
-      a: [
-        "Waxes, oils, fats",
-        "Phospholipids, sphingolipids, glycolipids",
-        "Simple, complex, oils",
-        "Terpenes, steroids, phospholipids",
-        "Terpenes, steroids, glycolipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which are saturated fatty acids found in the body?",
-      a: [
-        "Palmitic, stearic",
-        "Oleic, linoleic",
-        "Linolenic, stearic",
-        "Oleic, palmitic",
-        "Hexane, octane",
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
       ],
       correct: 0,
     },
     {
-      q: "Which are unsaturated fatty acids found in the body?",
+      q: "The trabeculated part of the right ventricle is derived from which of the following?",
       a: [
-        "Palmitic, stearic",
-        "Oleic, linoleic",
-        "Linolenic, stearic",
-        "Oleic, palmitic",
-        "Hexane, octane",
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
       ],
-      correct: 1,
-    },
-    {
-      q: "Which unsaturated fatty acid found in the body has four double bonds?",
-      a: ["Arachidonic", "Linoleic", "Linolenic", "Oleic", "Hexane"],
-      correct: 0,
-    },
-    {
-      q: "Which unsaturated fatty acid found in the body has three double bonds?",
-      a: ["Arachidonic", "Linoleic", "Linolenic", "Oleic", "Hexane"],
       correct: 2,
     },
     {
-      q: "Where is the largest amount of cholesterol, about 80%, produced?",
-      a: ["Kidney", "Stomach", "Liver", "Spleen", "Intestine"],
+      q: "Tricuspid atresia is a cardiac malformation that involves which of the following septa?",
+      a: [
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
+      ],
       correct: 2,
     },
     {
-      q: "The cholesterol level in a healthy person should not exceed what value?",
-      a: ["3.2 mmol/L", "5.2 mmol/L", "3.7 mmol/L", "4.6 mmol/L", "6.4 mmol/L"],
-      correct: 1,
-    },
-    {
-      q: "Which substance is used to prevent atherosclerosis?",
+      q: "A muscular VSD is a cardiac malformation that involves which of the following septa?",
       a: [
-        "Sphingosine",
-        "Glycerol",
-        "Arachidonic acid",
-        "Linetol",
-        "Linoleic acid",
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
       ],
       correct: 3,
     },
     {
-      q: "How many grams is the human body's requirement for linoleic acid?",
-      a: ["3-6 g", "13-16 g", "10-20 g", "1-2 g", "20-30 g"],
-      correct: 0,
-    },
-    {
-      q: "What percentage of the brain consists of fats?",
-      a: ["60%", "40%", "20%", "10%", "5%"],
-      correct: 0,
-    },
-    {
-      q: "Glycolipids most often contain residues of which substances?",
+      q: "Tetralogy of Fallot is a cardiac malformation that involves which of the following septa?",
       a: [
-        "Galactose and ceramide",
-        "Galactose and glucose",
-        "Ceramide and glucose",
-        "Glucose and linolenic acid",
-        "Linolenic and linoleic acids",
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
       ],
       correct: 0,
     },
     {
-      q: "Which substance do glycolipids not contain?",
+      q: "“-Transposition of the great arteries is a cardiac malformation that involves which of the following septa?",
       a: [
-        "Galactose",
-        "Ceramide",
-        "Phosphoric acid",
-        "Galactose and ceramide",
-        "Galactose and phosphoric acid",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which substances have important physiological significance because they emulsify fats and facilitate their absorption into blood?",
-      a: ["Terpenes", "Proteins", "Bile acids", "Oils", "Waxes"],
-      correct: 2,
-    },
-    {
-      q: "Which female sex hormone of the pregnane series regulates pregnancy?",
-      a: ["Progesterone", "Androgen", "Cholanes", "Malic acid", "Bromcamphor"],
-      correct: 0,
-    },
-    {
-      q: "Which compound controls the development of male secondary sex characteristics and sperm production?",
-      a: ["Androstane", "Terpenes", "Acyclic terpenes", "Stearins", "Cholanes"],
-      correct: 0,
-    },
-    {
-      q: "Which substance is a synthetic corticosteroid used in rheumatism, bronchial asthma and inflammatory skin conditions?",
-      a: [
-        "Prednisolone",
-        "Bromcamphor",
-        "Cycloterpene",
-        "Camphane",
-        "Cephalin",
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
       ],
       correct: 0,
     },
     {
-      q: "During metabolism, what is formed from dihydroxyacetone phosphate under the action of glycerophosphate dehydrogenase?",
+      q: "An insufficient amount of AV cushion material will result in which of the following?",
       a: [
-        "Glycerol 3-phosphate",
-        "Phosphoric acid",
-        "L-glycerol-3-phosphate",
-        "Mono- and oligosaccharides",
-        "Sphingolipids",
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Tricuspid atresia",
       ],
-      correct: 2,
+      correct: 4,
     },
     {
-      q: "What are phospholipids containing choline called?",
+      q: "A partial development of the aorticopulmonary septum will result in which of the following?",
       a: [
-        "Cephalins",
-        "Lecithins",
-        "Serine-cephalin",
-        "Colamine-cephalin",
-        "Sphingolipids",
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Tricuspid atresia",
+      ],
+      correct: 0,
+    },
+    {
+      q: "A failure of the tricuspid leaflets to attach to the annulus fibrosus will result in which of the following?",
+      a: [
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Tricuspid atresia",
       ],
       correct: 1,
     },
     {
-      q: "How are lipids arranged in the bilayer of the cell membrane?",
+      q: "A faulty fusion of the right and left bulbar ridges and AV cushion will result in which of the following?",
       a: [
-        "With polar heads and nonpolar tails facing only outside the cell",
-        "Polar heads face the aqueous surfaces, while nonpolar tails are directed inward",
-        "Nonpolar tails face outside the cell and polar heads face inside",
-        "Head and tail parts are arranged randomly only in the inner layer of the membrane",
-        "Lipids do not form a bilayer in the membrane; they are scattered",
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Membranous VSD",
       ],
+      correct: 4,
+    },
+    {
+      q: "The superior mesenteric artery is derived from which of the following?",
+      a: ["Posterolateral arteries", "Lateral arteries", "Ventral arteries"],
+      correct: 2,
+    },
+    {
+      q: "The arteries to the upper extremity are derived from which of the following?",
+      a: ["Posterolateral arteries", "Lateral arteries", "Ventral arteries"],
+      correct: 0,
+    },
+    {
+      q: "The gonadal arteries are derived from which of the following?",
+      a: ["Posterolateral arteries", "Lateral arteries", "Ventral arteries"],
       correct: 1,
     },
     {
-      q: "Deficiency of which substance may lead to poor memory, brain cell damage, Alzheimer's disease and rapid mood changes?",
+      q: "The proximal part of the internal carotid artery is derived from which of the following?",
       a: [
-        "Linolenic acid",
-        "Hepatoprotectors",
-        "Essential phospholipids",
-        "Phosphatidylcholine",
-        "Linoleic acid",
+        "Aortic arch 1",
+        "Aortic arch 2",
+        "Aortic arch 3",
+        "Aortic arch 4",
+        "Aortic arch 6",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A portion of the arch of the aorta is derived from which of the following?",
+      a: [
+        "Aortic arch 1",
+        "Aortic arch 2",
+        "Aortic arch 3",
+        "Aortic arch 4",
+        "Aortic arch 6",
       ],
       correct: 3,
     },
     {
-      q: "Structurally, sphingolipids are analogues of which lipids, and what replaces glycerol in them?",
+      q: "The proximal part of the right subclavian artery is derived from which of the following?",
       a: [
-        "Glycolipid analogues; lecithin replaces it",
-        "Phospholipid analogues; choline replaces it",
-        "Glycerolipid analogues; the diatomic amino alcohol sphingosine replaces it",
-        "Phosphatide analogues; serine replaces it",
-        "Fat analogues; colamine replaces it",
+        "Aortic arch 1",
+        "Aortic arch 2",
+        "Aortic arch 3",
+        "Aortic arch 4",
+        "Aortic arch 6",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The portal vein is derived from which of the following?",
+      a: [
+        "Vitelline veins",
+        "Umbilical veins",
+        "Anterior cardinal veins",
+        "Posterior cardinal veins",
+        "Subcardinal veins",
+      ],
+      correct: 0,
+    },
+    {
+      q: "The renal veins are derived from which of the following?",
+      a: [
+        "Vitelline veins",
+        "Umbilical veins",
+        "Anterior cardinal veins",
+        "Posterior cardinal veins",
+        "Subcardinal veins",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The superior mesenteric vein is derived from which of the following?",
+      a: [
+        "Vitelline veins",
+        "Umbilical veins",
+        "Anterior cardinal veins",
+        "Posterior cardinal veins",
+        "Subcardinal veins",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Closure of the foramen primum results from fusion of which of the following structures?",
+      a: [
+        "Septum secundum and the fused atrioventricular cushions",
+        "Septum secundum and the septum primum",
+        "Septum primum and the fused atrioventricular cushions",
+        "Septum primum and the septum spurium",
+        "Septum primum and the sinoatrial valves",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A 3-day-old boy delivered at 32 weeks of gestation is experiencing respiratory distress syndrome. The physician detects a heart murmur characteristic of a patent ductus arteriosus, a diagnosis that is confirmed with an echocardiogram. Which embryonic structure is involved in this diagnosis?",
+      a: [
+        "Left third aortic arch",
+        "Right third aortic arch",
+        "Left sixth aortic arch",
+        "Umbilical arteries",
+        "Vitelline arteries",
       ],
       correct: 2,
     },
   ],
-  q150: [
+  u6: [
     {
-      q: "Select the sulfur-containing amino acid.",
-      a: ["Methionine", "Valine", "Leucine", "Phenylalanine", "Oxoproline"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid contains an imidazole ring?",
-      a: ["Histidine", "Proline", "Oxoproline", "Tyrosine", "Arginine"],
-      correct: 0,
-    },
-    {
-      q: "If phenylalanine is not converted into tyrosine, which toxic acid accumulates in blood and is excreted in urine?",
+      q: "During the later stages of pregnancy, maternal blood is separated from fetal blood by the",
       a: [
-        "Phenylpyruvic acid",
-        "Diketopiperazine",
-        "Butyric acid",
-        "Butyrolactam",
-        "Apamin peptide",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid plays an important role in muscular dystrophy and ulcer disease?",
-      a: [
-        "Glutamic acid",
-        "Glutamine",
-        "Aspartic acid",
-        "Asparagine",
-        "Tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Molecules conditionally consisting of up to 10 amino acids are called ...",
-      a: [
-        "Oligopeptides",
-        "Polypeptides",
-        "Proteins",
-        "Carbohydrates",
-        "Nucleic acids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which protein is found in blood vessels, skin, cartilage, the vitreous body of the eye and tendons?",
-      a: ["Collagen", "Endorphin", "Albumin", "Casein", "Keratin"],
-      correct: 0,
-    },
-    {
-      q: "How many polypeptide chains does hemoglobin consist of?",
-      a: ["4", "3", "2", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Which type of complex protein yields protein and phosphoric acid upon hydrolysis?",
-      a: [
-        "Phosphoproteins",
-        "Chromoproteins",
-        "Glycoproteins",
-        "Nucleoproteins",
-        "Lipoproteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Select the protein found in skin, hair/wool, nails and horns.",
-      a: ["Keratin", "Protamines", "Histone", "Casein", "Apamin"],
-      correct: 0,
-    },
-    {
-      q: "Which proteins form the structure of muscles?",
-      a: [
-        "Actin and myosin",
-        "Thyroxine and myosin",
-        "Keratin and casein",
-        "Hemoglobin and keratin",
-        "Thyroxine and myoglobin",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the main cause of sickle cell anemia?",
-      a: [
-        "Glutamic acid is replaced by valine",
-        "Glutamine is replaced by phenylalanine",
-        "Glutamine is replaced by valine",
-        "Glutamic acid is replaced by tyrosine",
-        "Glutamic acid is replaced by tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What structural level does myoglobin have?",
-      a: ["Primary", "Secondary", "Tertiary", "Quaternary", "Quinary"],
-      correct: 2,
-    },
-    {
-      q: "Where are enkephalin neuropeptides formed?",
-      a: [
-        "In the thalamus and spinal cord",
-        "In the spinal cord and adrenal gland",
-        "In the medulla oblongata and pituitary gland",
-        "In the pineal gland and spinal cord",
-        "In the thyroid gland and spleen",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Find the complex proteins that transport fat-like substances from the liver to other organs.",
-      a: [
-        "Lipoproteins",
-        "Chromoproteins",
-        "Nucleoproteins",
-        "Phosphoproteins",
-        "Glycoproteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Proteins consisting of a protein part and additional substances are called ...",
-      a: [
-        "Simple proteins",
-        "Complex proteins",
-        "Carbohydrates",
-        "Hydrocarbons",
-        "Lipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Select the protein found in saliva.",
-      a: ["Mucin", "Keratin", "Casein", "Collagen", "Myosin"],
-      correct: 0,
-    },
-    {
-      q: "Select the protein found mostly in milk products and cheese.",
-      a: ["Mucin", "Keratin", "Casein", "Collagen", "Myosin"],
-      correct: 2,
-    },
-    {
-      q: "Choose the row containing fibrillar proteins.",
-      a: [
-        "Hemoglobin, insulin, actin",
-        "Keratin, collagen, myosin",
-        "Casein, insulin, enkephalin",
-        "Apamin, casein, thyroxine",
-        "Mucin, trypsin, vasopressin",
-      ],
-      correct: 1,
-    },
-    {
-      q: "How many amino acids does the insulin hormone contain?",
-      a: ["51", "31", "9", "18", "68"],
-      correct: 0,
-    },
-    {
-      q: "By which bond are the two A and B chains of insulin connected?",
-      a: [
-        "Phosphodiester bond",
-        "Ionic bond",
-        "Hydrogen bond",
-        "Disulfide bond",
-        "Metal bond",
+        "syncytiotrophoblast only",
+        "cytotrophoblast only",
+        "syncytiotrophoblast and cytotrophoblast",
+        "syncytiotrophoblast and fetal endothelium",
+        "cytotrophoblast and fetal endothelium",
       ],
       correct: 3,
     },
     {
-      q: "How many monosaccharides are formed when disaccharides are hydrolyzed?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Which monosaccharides are formed when sucrose is hydrolyzed?",
+      q: "The maternal and fetal components of the placenta are",
       a: [
-        "Glucose and fructose",
-        "Glucose and lactose",
-        "Fructose and starch",
-        "Mannose and arabinose",
-        "Glucose and glucose",
+        "decidua basalis and secondary chorionic villi",
+        "decidua capsularis and secondary chorionic villi",
+        "decidua parietalis and tertiary chorionic villi",
+        "decidua capsularis and villous chorion",
+        "decidua basalis and villous chorion",
       ],
-      correct: 0,
-    },
-    {
-      q: "Choose the row containing polysaccharides.",
-      a: [
-        "Cellulose, starch, inulin",
-        "Lactose, glucose, mannose",
-        "Starch, fructose, ribose",
-        "Fructose, glucose, ribose",
-        "Arabinose, dulcitol, starch",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is formed as a result of lactic acid fermentation of glucose?",
-      a: [
-        "2-hydroxypropanoic acid",
-        "Fructose",
-        "2-aminopropanoic acid",
-        "Ribose",
-        "Dulcitol",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Select a monosaccharide belonging to ketoses.",
-      a: ["Fructose", "Ribulose", "Xylose", "Glucose", "Cellulose"],
-      correct: 0,
-    },
-    {
-      q: "Oligosaccharide molecule consists of up to how many monosaccharide residues?",
-      a: ["10", "20", "30", "40", "50"],
-      correct: 0,
-    },
-    {
-      q: "Which substances are recommended instead of sucrose for patients with diabetes mellitus?",
-      a: [
-        "Xylitol, sorbitol",
-        "Sorbitol, mannitol",
-        "Xylitol, furfural",
-        "Mannitol, xylitol",
-        "Mannitol, ribose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the glucose level in the blood of a healthy person?",
-      a: ["0.08-0.12%", "0.15-1.65%", "5-10%", "5-6%", "25-45%"],
-      correct: 0,
-    },
-    {
-      q: "Which carbohydrates belong to oligosaccharides?",
-      a: [
-        "Sucrose, lactose, maltose",
-        "Lactose, starch, glucose",
-        "Fructose, glucose, ribose",
-        "Starch, sucrose, glycogen",
-        "Chitin, chitosan, glycogen",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which polysaccharide is widely distributed in animal and human tissues?",
-      a: ["Glycogen", "Chitosan", "Starch", "Cellulose", "Hyaluronic acid"],
-      correct: 0,
-    },
-    {
-      q: "Sulfated derivatives of which polysaccharide are used to prepare membranes for artificial kidneys?",
-      a: ["Chitin", "Chitosan", "Hyaluronic acid", "Starch", "Cellulose"],
       correct: 4,
     },
     {
-      q: "In diabetic patients, accumulation of D-sorbitol in the vitreous body of the eye leads to which disease?",
-      a: ["Cataract", "Myoma", "Atherosclerosis", "Hypertension", "Polyuria"],
-      correct: 0,
-    },
-    {
-      q: "In hypoglycemia, if blood glucose falls below which level, coma may occur?",
+      q: "The intervillous space of the placenta contains",
       a: [
-        "2.22-2.76 mmol/L",
-        "1.66-2.55 mmol/L",
-        "5.77-6.25 mmol/L",
-        "0.05-1.15 mmol/L",
-        "1.05-3.15 mmol/L",
+        "maternal blood",
+        "fetal blood",
+        "maternal and fetal blood",
+        "amniotic fluid",
+        "maternal blood and amniotic fluid",
       ],
       correct: 0,
     },
     {
-      q: "Which substances are used to prepare dietary drinks, sugar-free sweet pastries and chewing gums for patients with diabetes?",
+      q: "A young insulin-dependent diabetic woman in her first pregnancy is concerned that her daily injection of insulin will cause a congenital malformation in her baby. What should the physician tell her?",
       a: [
-        "Xylitol, sorbitol, mannitol, glycine",
-        "Fructose, starch, dulcitol, ribose",
-        "Mannitol, cellulose, glycogen, hyaluronic acid",
-        "Glucose, ribose, sucrose, maltose",
-        "Cellulose, starch, chitin, chitosan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which fructose derivative is an important preparation used in heart diseases and seizures?",
-      a: [
-        "Fructose diphosphate",
-        "L-fructose",
-        "Fructose monophosphate",
-        "Fructose monosulfate",
-        "D-fructose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Ribose and deoxyribose are ...",
-      a: [
-        "Aldopentoses",
-        "Aldohexoses",
-        "Ketopentoses",
-        "Ketohexoses",
-        "Proteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which monosaccharide is part of ATP?",
-      a: ["Ribose", "Glucose", "Fructose", "Mannose", "Aldotriose"],
-      correct: 0,
-    },
-    {
-      q: "Sulfated derivatives of which polysaccharide are also used instead of heparin to prevent blood coagulation?",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Cellulose"],
-      correct: 2,
-    },
-    {
-      q: "Which polysaccharide is used in pharmacy to coat unpleasant-tasting medicines?",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Starch"],
-      correct: 4,
-    },
-    {
-      q: "Identify the polysaccharide found in the vitreous body of the eye, umbilical cord, cartilage and synovial fluid.",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Starch"],
-      correct: 0,
-    },
-    {
-      q: "Find the polysaccharide found in the liver, muscles and lungs.",
-      a: ["Hyaluronic acid", "Chitin", "Heparin", "Glycogen", "Chitosan"],
-      correct: 3,
-    },
-    {
-      q: "Which polysaccharide is present in the egg-cell covering and participates in fertilization after its cleavage?",
-      a: [
-        "Chitosan",
-        "Hyaluronic acid",
-        "Aspartic acid",
-        "Chondroitin sulfate",
-        "Heparin",
+        "Insulin is highly teratogenic; discontinue treatment",
+        "Insulin does not cross the placental membrane",
+        "Insulin crosses the placental membrane but is degraded rapidly",
+        "Insulin will benefit her baby by increasing glucose metabolism",
+        "Insulin crosses the placental membrane but is not teratogenic",
       ],
       correct: 1,
     },
     {
-      q: "What is the constant transition of carbohydrate molecules in solution from one tautomeric form to another called?",
+      q: "What is a normal amount of amniotic fluid at term?",
+      a: ["50 mL", "500 mL", "1000 mL", "1500 mL", "2000 mL"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following does not pass through the primitive umbilical ring?",
       a: [
-        "Cyclo-oxo tautomerism",
-        "Conformation",
-        "Configuration",
-        "Chiral center",
-        "Oxidation",
+        "Allantois",
+        "Amnion",
+        "Yolk sac",
+        "Connecting stalk",
+        "Space connecting the intraembryonic and extraembryonic coeloms",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following best describes the placental components of dizygotic twins?",
+      a: [
+        "One placenta, two amniotic sacs, one chorion",
+        "One placenta, two amniotic sacs, two chorions",
+        "Two placentas, two amniotic sacs, one chorion",
+        "Two placentas, two amniotic sacs, two chorions",
+        "One placenta, two amniotic sacs, two chorions",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A 26-year-old pregnant woman experiences repeated episodes of bright red vaginal bleeding at week 28, week 32, and week 34 of pregnancy. The bleeding spontaneously subsided each time. Use of ultrasound shows that the placenta is located in the lower right portion of the uterus over the internal os. What is the diagnosis?",
+      a: [
+        "Hydatidiform mole",
+        "Vasa previa",
+        "Placenta previa",
+        "Placental abruption",
+        "Premature rupture of the amniochorionic membrane",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A 19-year-old woman in week 32 of a complication-free pregnancy is rushed to the emergency department because of profuse vaginal bleeding. The bleeding subsides, but afterward no fetal heart sounds can be heard, indicating intrauterine fetal death. The woman goes into labor and delivers a stillborn infant. On examination of the afterbirth, a velamentous placenta is detected. Although not much can be done at this point, what is the diagnosis?",
+      a: [
+        "Placenta previa",
+        "Vasa previa",
+        "Hydatidiform mole",
+        "Premature rupture of the amniochorionic membrane",
+        "Amniotic band syndrome",
+      ],
+      correct: 1,
+    },
+    {
+      q: "A 32-year-old pregnant woman at 30 weeks of gestation comes to her physician because of excess weight gain in a 2-week period. Ultrasonography reveals polyhydramnios. Which fetal abnormality is most likely responsible for the polyhydramnios?",
+      a: [
+        "Bilateral kidney agenesis",
+        "Umbilical cord knots",
+        "Velamentous placenta",
+        "Hypoplastic lungs",
+        "Esophageal atresia",
+      ],
+      correct: 4,
+    },
+    {
+      q: "A 25-year-old pregnant woman at 17 weeks of gestation comes to her OB/GYN for a normal examination. During routine blood tests, her serum α-fetoprotein (AFP) concentration is found to be markedly decreased for her gestational age. Which abnormality will the physician need to rule out based on these low AFP levels?",
+      a: [
+        "Spina bifida",
+        "Anencephaly",
+        "Omphalocele",
+        "Down syndrome",
+        "Esophageal atresia",
+      ],
+      correct: 3,
+    },
+  ],
+  u7: [
+    {
+      q: "Which one of following basal ganglia is derived from the diencephalon?",
+      a: [
+        "Amygdaloid nucleus",
+        "Head of the caudate nucleus",
+        "Tail of the caudate nucleus",
+        "Globus pallidus",
+        "Putamen",
+      ],
+      correct: 3,
+    },
+    {
+      q: "When are the axons of the corticospinal tracts fully myelinated?",
+      a: [
+        "In the late embryonic period",
+        "In the midfetal period",
+        "At birth",
+        "By the end of the first postnatal year",
+        "By the end of the second postnatal year",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Which of the following represents the general somatic efferent (GSE) column of the pons?",
+      a: [
+        "Abducent nucleus",
+        "Nucleus ambiguus",
+        "Hypoglossal nucleus",
+        "Inferior olivary nucleus",
+        "Inferior salivatory nucleus",
       ],
       correct: 0,
+    },
+    {
+      q: "Which of the following represents the general visceral efferent (GVE) column of the pons?",
+      a: [
+        "The cerebellum",
+        "The spinal trigeminal nucleus",
+        "The principal trigeminal nucleus",
+        "The superior salivatory nucleus",
+        "The pontine nuclei",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The external germinal layer of the cerebellum gives rise to which of the following?",
+      a: [
+        "Outer stellate cells",
+        "Purkinje cells",
+        "Granule cells",
+        "Basket cells",
+        "Giant cells of Betz",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following statements best describes the pathogenesis of hydranencephaly?",
+      a: [
+        "Results from failure of midline cleavage of the embryonic forebrain",
+        "Results from atresia of the outlet foramina of the fourth ventricle",
+        "Results from blockage of the cerebral aqueduct",
+        "Results from internal carotid artery occlusion",
+        "Results from failure of the anterior neuropore to close",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The anterior and posterior neuropores close during which week of embryonic development?",
+      a: ["Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+      correct: 2,
+    },
+    {
+      q: "At birth the conus medullaris is found at which vertebral level?",
+      a: ["T12", "L1", "L3", "S1", "S4"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following structures is derived from the telencephalon?",
+      a: [
+        "Pineal gland",
+        "Hypothalamus",
+        "Hippocampus",
+        "Optic nerve (CN II)",
+        "Globus pallidus",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following conditions results from failure of the anterior neuropore to close?",
+      a: [
+        "Hydrocephalus",
+        "Anencephaly",
+        "Mongolism",
+        "Craniosynostosis",
+        "Meningoencephalocele",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following structures is derived from the diencephalon?",
+      a: [
+        "Caudate nucleus",
+        "Cerebellum",
+        "Olfactory bulbs",
+        "Neurohypophysis",
+        "Adenohypophysis",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Caudal herniation of the cerebellar tonsils and medulla through the foramen magnum is called",
+      a: [
+        "Dandy-Walker syndrome",
+        "Down syndrome",
+        "Arnold-Chiari syndrome",
+        "cranium bifidum",
+        "myeloschisis",
+      ],
+      correct: 2,
+    },
+    {
+      q: "The flexure that develops between the metencephalon and the myelencephalon is called the",
+      a: [
+        "cephalic flexure",
+        "mesencephalic flexure",
+        "pontine flexure",
+        "cerebellar flexure",
+        "cervical flexure",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following statements best describes the sulcus limitans?",
+      a: [
+        "It is found in the interpeduncular fossa",
+        "It is located between the alar and basal plates",
+        "It separates the medulla from the pons",
+        "It separates the hypothalamus from the thalamus",
+        "It separates the neocortex from the allocortex",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Myelinated preganglionic sympathetic neurons have their cell bodies in",
+      a: [
+        "Clarke column",
+        "substantia gelatinosa",
+        "intermediolateral cell column",
+        "intermediomedial cell column",
+      ],
+      correct: 2,
+    },
+    {
+      q: "The choroid plexus of the fourth ventricle is derived from the",
+      a: [
+        "alar plate",
+        "basal plate",
+        "floor plate",
+        "rhombic lip",
+        "roof plate",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Tanycytes are found principally in the",
+      a: [
+        "area postrema",
+        "cerebral aqueduct",
+        "lateral ventricles",
+        "third ventricle",
+        "fourth ventricle",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which of the following most accurately describes the herniation of meninges and brain tissue through a defect in occipital bone?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Cranium bifidum with meningocele",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Which of the following is the most common cause of congenital hydrocephalus?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Aqueductal stenosis",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following is associated with atresia of the foramen of Magendie and foramina of Luschka?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Aqueductal stenosis",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Which of the following is associated with platybasia and malformation of the occipitovertebral joint?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Aqueductal stenosis",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A 22-year-old pregnant woman at 20 weeks of gestation comes to her ON/GYN for a normal examination. During routine blood tests, her serum α-fetoprotein (AFP) concentration is markedly increased for her gestational age. Ultrasonography reveals spina bifida in the fetus. At what week of gestation did this defect most likely occur?",
+      a: ["1–2", "4–6", "9–11", "12–15", "16–19"],
+      correct: 1,
+    },
+    {
+      q: "Which structure is derived from the cranial neural crest cells?",
+      a: [
+        "Lens of the eye",
+        "Pia mater",
+        "Dura mater",
+        "Pineal gland",
+        "Olfactory placode, CN I",
+      ],
+      correct: 1,
+    },
+  ],
+  u8: [
+    {
+      q: "The surface ectoderm gives rise to which of the following structures?",
+      a: ["Dilator pupillae muscle", "Retina", "Lens", "Sclera", "Choroid"],
+      correct: 2,
+    },
+    {
+      q: "Failure of the choroid fissure to close results in",
+      a: [
+        "congenital detached retina",
+        "congenital aniridia",
+        "congenital aphakia",
+        "coloboma iridis",
+        "microphthalmos",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic cup is an evagination of which of the following?",
+      a: [
+        "Telencephalon",
+        "Diencephalon",
+        "Mesencephalon",
+        "Metencephalon",
+        "Myelencephalon",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The epithelium of the ciliary body is derived from",
+      a: [
+        "ectoderm",
+        "mesoderm",
+        "endoderm",
+        "neuroectoderm",
+        "neural crest cells",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Hyperoxygenation of premature infants may result in",
+      a: [
+        "congenital glaucoma",
+        "microphthalmia",
+        "coloboma",
+        "retrolental fibroplasia",
+        "persistent pupillary membrane",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic nerve is a tract of the diencephalons that is not completely myelinated until",
+      a: [
+        "5 years after birth",
+        "2 years after birth",
+        "1 year after birth",
+        "3 weeks after birth",
+        "3 months after birth",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The hyaloid canal is found in the",
+      a: [
+        "vitreous body",
+        "choroid",
+        "optic stalk",
+        "ciliary body",
+        "intraretinal space",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Aqueous humor is produced by the",
+      a: [
+        "choroid plexus",
+        "trabecular meshwork",
+        "ciliary processes",
+        "vitreous body",
+        "lens vesicle",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Aqueous humor enters the venous circulation via",
+      a: [
+        "arachnoid villi",
+        "scleral canal",
+        "hyaloid canal",
+        "canal of Schlemm",
+        "Cloquet’s canal",
+      ],
+      correct: 3,
+    },
+    {
+      q: "In a detached retina, the site of detachment is found",
+      a: [
+        "within the outer plexiform layer",
+        "within the inner plexiform layer",
+        "between the inner nuclear layer and the outer nuclear layer",
+        "between the choriocapillaris and the pigment epithelial layer",
+        "between the pigment epithelial layer and the layer of outer segments of rods and cones",
+      ],
+      correct: 4,
+    },
+  ],
+  u9: [
+    {
+      q: "The surface ectoderm gives rise to which of the following structures?",
+      a: ["Dilator pupillae muscle", "Retina", "Lens", "Sclera", "Choroid"],
+      correct: 2,
+    },
+    {
+      q: "Failure of the choroid fissure to close results in",
+      a: [
+        "congenital detached retina",
+        "congenital aniridia",
+        "congenital aphakia",
+        "coloboma iridis",
+        "microphthalmos",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic cup is an evagination of which of the following?",
+      a: [
+        "Telencephalon",
+        "Diencephalon",
+        "Mesencephalon",
+        "Metencephalon",
+        "Myelencephalon",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The epithelium of the ciliary body is derived from",
+      a: [
+        "ectoderm",
+        "mesoderm",
+        "endoderm",
+        "neuroectoderm",
+        "neural crest cells",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Hyperoxygenation of premature infants may result in",
+      a: [
+        "congenital glaucoma",
+        "microphthalmia",
+        "coloboma",
+        "retrolental fibroplasia",
+        "persistent pupillary membrane",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic nerve is a tract of the diencephalons that is not completely myelinated until",
+      a: [
+        "5 years after birth",
+        "2 years after birth",
+        "1 year after birth",
+        "3 weeks after birth",
+        "3 months after birth",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The hyaloid canal is found in the",
+      a: [
+        "vitreous body",
+        "choroid",
+        "optic stalk",
+        "ciliary body",
+        "intraretinal space",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Aqueous humor is produced by the",
+      a: [
+        "choroid plexus",
+        "trabecular meshwork",
+        "ciliary processes",
+        "vitreous body",
+        "lens vesicle",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Aqueous humor enters the venous circulation via",
+      a: [
+        "arachnoid villi",
+        "scleral canal",
+        "hyaloid canal",
+        "canal of Schlemm",
+        "Cloquet’s canal",
+      ],
+      correct: 3,
+    },
+    {
+      q: "In a detached retina, the site of detachment is found",
+      a: [
+        "within the outer plexiform layer",
+        "within the inner plexiform layer",
+        "between the inner nuclear layer and the outer nuclear layer",
+        "between the choriocapillaris and the pigment epithelial layer",
+        "between the pigment epithelial layer and the layer of outer segments of rods and cones",
+      ],
+      correct: 4,
     },
   ],
   all: [
     {
-      q: "By which reaction is tyrosine formed from phenylalanine in the body?",
+      q: "Which of the following is a major characteristic of meiosis I?",
       a: [
-        "Decarboxylation reaction",
-        "Hydroxylation reaction",
-        "Deamination reaction",
-        "Transamination reaction",
-        "Hydrogenation reaction",
+        "Splitting of the centromere",
+        "Pairing of homologous chromosomes",
+        "Reducing the amount of DNA to 1N",
+        "Achieving the diploid number of chromosomes",
+        "Producing primordial germ cells",
       ],
       correct: 1,
     },
     {
-      q: "By which reaction is histamine formed from histidine in the body?",
+      q: "A normal somatic cell contains a total of 46 chromosomes. What is the normal complement of chromosomes found in a sperm?",
       a: [
-        "Hydroxylation",
-        "Decarboxylation",
-        "Deamination",
-        "Oxidation",
-        "Dehydration",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid contains an imidazole ring?",
-      a: ["Histidine", "Tryptophan", "Proline", "Arginine", "Lysine"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid does not form optical isomers?",
-      a: ["Alanine", "Lysine", "Glycine", "Isoleucine", "Leucine"],
-      correct: 2,
-    },
-    {
-      q: "Find the amino acid used in the treatment of allergic diseases of chemical origin.",
-      a: ["Histidine", "Cysteine", "Methionine", "Glycine", "Alanine"],
-      correct: 2,
-    },
-    {
-      q: "Which functional groups do amino acids contain?",
-      a: [
-        "Carboxyl and methyl",
-        "Hydroxyl and amino",
-        "Carboxyl and amino",
-        "Carboxyl and hydroxyl",
-        "Aldehyde and ketone",
-      ],
-      correct: 2,
-    },
-    {
-      q: "When hydroxylase enzyme activity is deficient or insufficient, which amino acid accumulates in tissues?",
-      a: [
-        "Tyrosine",
-        "Aspartic acid",
-        "Phenylalanine",
-        "Glutamine",
-        "Asparagine",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which of the following amino acids has an aromatic structure?",
-      a: ["Phenylalanine", "Asparagine", "Glycine", "Alanine", "Asparagine"],
-      correct: 0,
-    },
-    {
-      q: "What biologically active substances are formed as a result of amino acid decarboxylation?",
-      a: ["Biogenic amines", "Proteins", "Peptides", "Nucleic acids", "Lipids"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid has the ability to help repair damaged tissue in a short period of time?",
-      a: ["Glutamine", "Asparagine", "Glycine", "Alanine", "Lysine"],
-      correct: 4,
-    },
-    {
-      q: "Which amino acid is used in the treatment of osteoporosis and allergic diseases of chemical origin?",
-      a: ["Alanine", "Methionine", "Histidine", "Serine", "Lysine"],
-      correct: 4,
-    },
-    {
-      q: "Select the sulfur-containing amino acids.",
-      a: [
-        "Lysine, methionine",
-        "Methionine, cysteine",
-        "Leucine, histidine",
-        "Tryptophan, isoleucine",
-        "Glutamic acid, aspartic acid",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid is important for bone growth and nutrition and plays a major role in calcium absorption?",
-      a: ["Glutamine", "Glutamic acid", "Asparagine", "Lysine", "Methionine"],
-      correct: 3,
-    },
-    {
-      q: "If phenylalanine is not converted into tyrosine, which toxic acid accumulates in blood and is excreted in urine?",
-      a: [
-        "Butyric acid",
-        "Butyrolactam",
-        "Diketopiperazine",
-        "Phenylpyruvic acid",
-        "Phenylisothiocyanate",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Which amino acid plays an important role in muscular dystrophy and ulcer disease?",
-      a: [
-        "Aspartic acid",
-        "Glutamic acid",
-        "Asparagine",
-        "Glutamine",
-        "Tryptophan",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which amino acid is responsible for the production of adrenaline and noradrenaline hormones?",
-      a: ["Tyrosine", "Phenylalanine", "Tryptophan", "Lysine", "Arginine"],
-      correct: 0,
-    },
-    {
-      q: "Which qualitative reaction is characteristic for detecting phenylalanine, tyrosine and tryptophan?",
-      a: [
-        "Millon's reaction",
-        "Silver mirror reaction",
-        "Xanthoproteic reaction",
-        "Ninhydrin reaction",
-        "Biuret reaction",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Choose the row containing essential amino acids.",
-      a: [
-        "Leucine, isoleucine, tryptophan, phenylalanine, lysine, valine",
-        "Tryptophan, proline, glycine, alanine, cysteine, methionine",
-        "Glycine, alanine, tyrosine, methionine, serine, cysteine",
-        "Tyrosine, phenylalanine, serine, cysteine, methionine, valine",
-        "Tyrosine, histidine, hydroxyproline, glutamine, serine",
+        "22 autosomes plus a sex chromosome",
+        "23 autosomes plus a sex chromosome",
+        "22 autosomes",
+        "23 autosomes",
+        "23 paired autosomes",
       ],
       correct: 0,
     },
     {
-      q: "Which amino acid participates actively in muscle metabolism, cartilage and skin tissue repair, strengthening cardiac function, inhibiting tumor development and immune system activity?",
-      a: ["Arginine", "Lysine", "Isoleucine", "Methionine", "Serine"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid has an important role in the treatment of arterial hypertension and epilepsy?",
+      q: "Which of the following describes the number of chromosomes and amount of DNA in a gamete?",
       a: [
-        "Gamma-aminobutyric acid",
-        "Glutamic acid",
-        "Aspartic acid",
-        "Phenylalanine",
-        "Tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid accelerates regeneration of muscle, bone and skin tissues and is used in diseases of these tissues?",
-      a: ["Proline", "Leucine", "Phenylalanine", "Tryptophan", "Glycine"],
-      correct: 1,
-    },
-    {
-      q: "Select the group of lipovitamins.",
-      a: [
-        "A, E, C, P",
-        "A, E, K, D",
-        "B, C, P, H",
-        "B, C, K, D",
-        "B1, B2, B6, B12",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Indicate the disease-based name of vitamin A.",
-      a: [
-        "Antianemic",
-        "Antirachitic",
-        "Antihemorrhagic",
-        "Antixerophthalmic",
-        "Antipellagric",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Indicate the disease-based name of vitamin D.",
-      a: ["Antixerophthalmic", "Antihemorrhagic", "Antirachitic", "Antianemic"],
-      correct: 2,
-    },
-    {
-      q: "Menadione, vikasol and sinkavit are synthetic analogues of which vitamin?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin slows blood clotting and leads to bleeding and hemorrhagic signs?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "Deficiency of which vitamin may cause testicular atrophy, fetal resorption during pregnancy, muscular dystrophy, liver necrosis, and softening of brain structures, especially the cerebellum?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 1,
-    },
-    {
-      q: "Which vitamin participates in blood coagulation?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 2,
-    },
-    {
-      q: "A pregnant woman has nervous weakness, fatigue and buzzing in the ears. Which vitamin may be needed?",
-      a: [
-        "B6 (pyridoxine)",
-        "B12 (cobalamin)",
-        "A (retinol)",
-        "B2 (riboflavin)",
-        "Vitamin C",
-      ],
-      correct: 1,
-    },
-    {
-      q: "A patient has softened bones, weak teeth and reduced bone density on X-ray. This is a sign of what?",
-      a: [
-        "Vitamin C deficiency",
-        "Vitamin D deficiency",
-        "B1 deficiency",
-        "Vitamin K deficiency",
-        "Vitamin A deficiency",
-      ],
-      correct: 1,
-    },
-    {
-      q: "A patient who took antibiotics for a long time has prolonged blood clotting time. What may be the cause?",
-      a: [
-        "Vitamin D deficiency",
-        "B2 deficiency",
-        "Impaired synthesis of vitamin K",
-        "Excess vitamin A",
-        "Vitamin PP deficiency",
+        "46 chromosomes, 1N",
+        "46 chromosomes, 2N",
+        "23 chromosomes, 1N",
+        "23 chromosomes, 2N",
+        "23 chromosomes, 4N",
       ],
       correct: 2,
     },
     {
-      q: "Deficiency of which vitamin causes macrocytic anemia?",
+      q: "Which of the following chromosome compositions in a sperm normally results in the production of a genetic female if fertilization occurs?",
       a: [
-        "B1 (thiamine)",
-        "B2 (riboflavin)",
-        "B3 (pantothenic acid)",
-        "B12 (cobalamin)",
-        "H (biotin)",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Which disease is caused by vitamin C deficiency?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 2,
-    },
-    {
-      q: "Which disease does vitamin B1 help prevent?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 1,
-    },
-    {
-      q: "Which disease does vitamin PP prevent?",
-      a: ["Pellagra", "Beri-beri", "Scurvy", "Rickets", "Polyneuritis"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin has hepatoprotective properties?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 1,
-    },
-    {
-      q: "Retinol is the name of which vitamin?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin is synthesized under the influence of sunlight?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 3,
-    },
-    {
-      q: "Select the water-soluble vitamins.",
-      a: [
-        "Niacin, pyridoxal phosphate, pyridoxine",
-        "Vitamin B6, vitamin PP, vitamin K",
-        "Retinol, ascorbic acid, tocopherols",
-        "Pyridoxamine, nicotinic acid, vitamin A",
-        "Thiamine, calciferol, retinol",
-      ],
-      correct: 0,
-    },
-    {
-      q: "By what name is vitamin B2 known?",
-      a: ["Niacin", "Thiamine", "Riboflavin", "Pyridoxine", "Cobalamin"],
-      correct: 2,
-    },
-    {
-      q: "Niacin is the chemical name of which vitamin?",
-      a: ["B1", "B2", "PP", "E", "H"],
-      correct: 2,
-    },
-    {
-      q: "What is partial deficiency of a vitamin in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is deficiency of several vitamins in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 3,
-    },
-    {
-      q: "What is the disease caused by absence of a certain vitamin in food or impaired absorption called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is an excess amount of a vitamin in the body called?",
-      a: [
-        "Hypovitaminosis",
-        "Avitaminosis",
-        "Monohypovitaminosis",
-        "Polyhypovitaminosis",
-        "Hypervitaminosis",
+        "23 homologous pairs of chromosomes",
+        "22 homologous pairs of chromosomes",
+        "23 autosomes plus an X chromosome",
+        "22 autosomes plus a Y chromosome",
+        "22 autosomes plus an X chromosome",
       ],
       correct: 4,
     },
     {
-      q: "What condition develops when vitamins are taken in small amounts with food or their absorption is reduced?",
+      q: "In the process of meiosis, DNA replication of each chromosome occurs, forming a structure consisting of two sister chromatids attached to a single centromere. What is this structure?",
       a: [
-        "Hypovitaminoses",
-        "Avitaminoses",
-        "Monohypovitaminoses",
-        "Polyhypovitaminoses",
-        "Hypervitaminoses",
+        "A duplicated chromosome",
+        "Two chromosomes",
+        "A synapsed chromosome",
+        "A crossover chromosome",
+        "A homologous pair",
       ],
       correct: 0,
     },
     {
-      q: "Deficiency of which vitamin causes growth retardation, follicular hyperkeratosis, dryness of mucous membranes, xerophthalmia and keratomalacia?",
-      a: ["Vitamin A", "Vitamin E", "Vitamin K", "Vitamin D", "Vitamin C"],
-      correct: 0,
-    },
-    {
-      q: "Which vitamin maintains calcium and phosphorus homeostasis and ensures bone mineralization and remodeling?",
-      a: ["Vitamin D3", "Vitamin E", "Vitamin B12", "Vitamin B6"],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme is used in the treatment of experimental tumors?",
+      q: "All primary oocytes are formed by",
       a: [
-        "Cholinesterase",
-        "Carbonic anhydrase",
-        "Polyamine oxidase",
-        "Monoamine oxidase",
-        "Hyaluronidase",
+        "week 4 of embryonic life",
+        "month 5 of fetal life",
+        "birth",
+        "month 5 of infancy",
+        "puberty",
       ],
-      correct: 2,
-    },
-    {
-      q: "What are enzymes that catalyze the same reactions but differ in physicochemical properties called?",
-      a: [
-        "Isoenzymes",
-        "Apoenzymes",
-        "Multienzymes",
-        "Coenzymes",
-        "Holoenzymes",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which LDH isoenzyme is found most abundantly in the heart?",
-      a: ["LDH-3", "LDH-4", "LDH-1", "LDH-5", "CK-3"],
-      correct: 2,
-    },
-    {
-      q: "Fabry disease results from deficiency of which enzyme?",
-      a: [
-        "Galactosidase",
-        "Cholinesterase",
-        "Carbonic anhydrase",
-        "Brinase",
-        "Hyaluronidase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Where is the CK-3 isoenzyme mainly found?",
-      a: ["Heart", "Muscle tissue", "Liver", "Brain", "Pituitary gland"],
       correct: 1,
     },
     {
-      q: "What parts do enzymes consist of?",
+      q: "When does formation of primary spermatocytes begin?",
       a: [
-        "Activator and inhibitor",
-        "Cofactor and inhibitor",
-        "Protein and lipid parts",
-        "Apoenzyme and prosthetic group",
-        "Vitamin and non-vitamin parts",
+        "During week 4 of embryonic life",
+        "During month 5 of fetal life",
+        "At birth",
+        "During month 5 of infancy",
+        "At puberty",
+      ],
+      correct: 4,
+    },
+    {
+      q: "In the production of female gametes, which of the following cells can remain dormant for 12 to 40 years?",
+      a: [
+        "Primordial germ cell",
+        "Primary oocyte",
+        "Secondary oocyte",
+        "First polar body",
+        "Second polar body",
+      ],
+      correct: 1,
+    },
+    {
+      q: "In the production of male gametes, which of the following cells remains dormant for 12 years?",
+      a: [
+        "Primordial germ cell",
+        "Primary spermatocyte",
+        "Secondary spermatocyte",
+        "Spermatid",
+        "Sperm",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Approximately how many sperm will be ejaculated by a normal fertile male during sexual intercourse?",
+      a: [
+        "10 million",
+        "20 million",
+        "35 million",
+        "100 million",
+        "350 million",
+      ],
+      correct: 4,
+    },
+    {
+      q: "A young woman enters puberty with approximately 40,000 primary oocytes in her ovary. About how many of these primary oocytes will be ovulated over the entire reproductive life of the woman?",
+      a: ["40,000", "35,000", "480", "48", "12"],
+      correct: 2,
+    },
+    {
+      q: "Fetal sex can be diagnosed by noting the presence or absence of the Barr body in cells obtained from the amniotic fluid. What is the etiology of the Barr body?",
+      a: [
+        "Inactivation of both X chromosomes",
+        "Inactivation of homologous chromosomes",
+        "Inactivation of one Y chromosome",
+        "Inactivation of one X chromosome",
+        "Inactivation of one chromatid",
       ],
       correct: 3,
     },
     {
-      q: "Which LDH isoenzyme increases in hepatitis?",
-      a: ["LDH-3", "LDH-4", "LDH-1", "LDH-5", "LDH-2"],
+      q: "How much DNA does a primary spermatocyte contain?",
+      a: ["1N", "2N", "4N", "6N", "8N"],
+      correct: 2,
+    },
+    {
+      q: "During meiosis, pairing of homologous chromosomes occurs, which permits large segments of DNA to be exchanged. What is this process called?",
+      a: [
+        "Synapsis",
+        "Nondisjunction",
+        "Alignment",
+        "Crossing over",
+        "Disjunction",
+      ],
       correct: 3,
     },
     {
-      q: "Which method helps diagnose atherosclerosis and ischemic heart disease?",
+      q: "During ovulation, the secondary oocyte resides at what specific stage of meiosis?",
       a: [
-        "Coagulogram",
-        "Creatine kinase",
-        "Lipid profile",
-        "Lactate dehydrogenase",
-        "Aspartate aminotransferase",
+        "Prophase of meiosis I",
+        "Prophase of meiosis II",
+        "Metaphase of meiosis I",
+        "Metaphase of meiosis II",
+        "Meiosis is completed at the time of ovulation",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Concerning maturation of the female gamete (oogenesis), when do the oogonia enter meiosis I and undergo DNA replication to form primary oocytes?",
+      a: [
+        "During fetal life",
+        "At birth",
+        "At puberty",
+        "With each ovarian cycle",
+        "Following fertilization",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Where do primordial germ cells initially develop?",
+      a: [
+        "In the gonads at week 4 of embryonic development",
+        "In the yolk sac at week 4 of embryonic development",
+        "In the gonads at month 5 of embryonic development",
+        "In the yolk sac at month 5 of embryonic development",
+        "In the gonads at puberty",
+      ],
+      correct: 1,
+    },
+    {
+      q: "A 20-year-old woman presents at the emergency department with severe abdominal pain on the right side with signs of internal bleeding. She indicated that she has been sexually active without contraception and missed her last menstrual period. Based on this information, which of the following disorders must be included as an option in the diagnosis?",
+      a: [
+        "Ovarian cancer",
+        "Appendicitis",
+        "Normal pregnancy",
+        "Ectopic tubal pregnancy",
+        "Toxemia of pregnancy",
+      ],
+      correct: 3,
+    },
+    {
+      q: "When does a secondary oocyte complete its second meiotic division to become a mature ovum?",
+      a: [
+        "At ovulation",
+        "Before ovulation",
+        "At fertilization",
+        "At puberty",
+        "Before birth",
       ],
       correct: 2,
     },
     {
-      q: "An increased LDH-5 level is associated with which condition?",
+      q: "How soon after fertilization occurs within the uterine tube does the blastocyst begin implantation?",
+      a: ["Within minutes", "By 12 hours", "By day 1", "By day 2", "By day 7"],
+      correct: 4,
+    },
+    {
+      q: "Where does the blastocyst normally implant?",
       a: [
-        "Liver or muscle damage",
-        "Brain infarction",
+        "Functional layer of the cervix",
+        "Functional layer of the endometrium",
+        "Basal layer of the endometrium",
+        "Myometrium",
+        "Perimetrium",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following events is involved in the cleavage of the zygote during week 1 of development?",
+      a: [
+        "A series of meiotic divisions forming blastomeres",
+        "Production of highly differentiated blastomeres",
+        "An increased cytoplasmic content of blastomeres",
+        "An increase in size of blastomeres",
+        "A decrease in size of blastomeres",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Which of the following structures must degenerate for blastocyst implantation to occur?",
+      a: [
+        "Endometrium in progestational phase",
+        "Zona pellucida",
+        "Syncytiotrophoblast",
+        "Cytotrophoblast",
+        "Functional layer of the endometrium",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following is the origin of the mitochondrial DNA of all human adult cells?",
+      a: [
+        "Paternal only",
+        "Maternal only",
+        "A combination of paternal and maternal",
+        "Either paternal or maternal",
+        "Unknown origin",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Individual blastomeres were isolated from a blastula at the 4-cell stage. Each blastomere was cultured in vitro to the blastocyst stage and individually implanted into four pseudopregnant foster mothers. Which of the following would you expect to observe 9 months later?",
+      a: [
+        "Birth of one baby",
+        "Birth of four genetically different babies",
+        "Birth of four genetically identical babies",
+        "Birth of four grotesquely deformed babies",
+        "No births",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Embryonic carcinoma (EC) cells were isolated from a yellow-coated mouse with a teratocarcinoma. The EC cells were then microinjected into the inner cell mass of a blastocyst isolated from a black-coated mouse. The blastocyst was subsequently implanted into the uterus of a white-coated foster mouse. Which of the following would be observed after full-term pregnancy?",
+      a: [
+        "A yellow-coated offspring",
+        "A black-coated offspring",
+        "A white-coated offspring",
+        "A yellow- and black-coated offspring",
+        "A yellow- and white-coated offspring",
+      ],
+      correct: 3,
+    },
+    {
+      q: "In oogenesis, which of the following events occurs immediately following the completions of meiosis II?",
+      a: [
+        "Degeneration of the zona pellucida",
+        "Sperm penetration of the corona radiata",
+        "Formation of a female pronucleus",
+        "Appearance of the blastocyst",
+        "Completion of cleavage",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following components plays the most active role in invading the endometrium during blastocyst implantation?",
+      a: [
+        "Epiblast",
+        "Syncytiotrophoblast",
+        "Hypoblast",
+        "Extraembryonic somatic mesoderm",
+        "Extraembryonic visceral mesoderm",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Between which two layers is the extraembryonic mesoderm located?",
+      a: [
+        "Epiblast and hypoblast",
+        "Syncytiotrophoblast and cytotrophoblast",
+        "Syncytiotrophoblast and endometrium",
+        "Exocoelomic membrane and syncytiotrophoblast",
+        "Exocoelomic membrane and cytotrophoblast",
+      ],
+      correct: 4,
+    },
+    {
+      q: "During week 2 of development, the embryoblast receives its nutrients via",
+      a: [
+        "diffusion",
+        "osmosis",
+        "reverse osmosis",
+        "fetal capillaries",
+        "yolk sac nourishment",
+      ],
+      correct: 0,
+    },
+    {
+      q: "The prochordal plate marks the site of the future",
+      a: ["umbilical cord", "heart", "mouth", "anus", "nose"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following are components of the definitive chorion?",
+      a: [
+        "Extraembryonic somatic mesoderm and epiblast",
+        "Extraembryonic somatic mesoderm and cytotrophoblast",
+        "Extraembryonic somatic mesoderm and syncytiotrophoblast",
+        "Extraembryonic somatic mesoderm, cytotrophoblast, and syncytiotrophoblast",
+        "Extraembryonic visceral mesoderm, cytotrophoblast, and syncytiotrophoblast",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A 16-year-old girl presents on May 10 in obvious emotional distress. On questioning, she relates that on May 1 she experienced sexual intercourse for the first time, without using any means of birth control. Most of her anxiety stems from her fear of pregnancy. What should the physician do to alleviate her fear?",
+      a: [
+        "Prescribe diazepam and wait to see if she misses her next menstrual period",
+        "Use ultrasonography to document pregnancy",
+        "Order a laboratory assay for serum hCG",
+        "Order a laboratory assay for serum progesterone",
+        "Prescribe diethylstilbestrol (“morning-after pill”)",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Carcinoembryonic antigen (CEA) is an oncofetal antigen that is generally associated with which one of the following tumors?",
+      a: [
+        "Hepatoma",
+        "Germ cell tumor",
+        "Squamous cell carcinoma",
+        "Colorectal carcinoma",
+        "Teratocarcinoma",
+      ],
+      correct: 3,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure indicates the future site of the mouth?",
+      photo: "../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 4,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure forms definitive structures found in the adult?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 2,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure is the chorion?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 3,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure is the chorionic cavity?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E", "F", "G"],
+      correct: 6,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure represents primary chorionic villi?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 0,
+    },
+    {
+      q: "For a 14-day-old blastocyst, which structure is the connecting stalk?",
+      photo: "../../anatomy/assets/img/embryou3.png",
+      a: ["A", "B", "C", "D", "E"],
+      correct: 1,
+    },
+    {
+      q: "A 42-year-old woman presents with complaints of severe headaches, blurred vision, slurred speech, and loss of muscle coordination. Her last pregnancy 5 years ago resulted in a hydatidiform mole. Laboratory results show a high hCG level. Which of the following conditions is a probable diagnosis?",
+      a: [
+        "Vasa previa",
+        "Placenta previa",
+        "Succenturiate placenta",
+        "Choriocarcinoma",
+        "Membranous placenta",
+      ],
+      correct: 3,
+    },
+    {
+      q: "At what location does the amniotic cavity develop?",
+      a: [
+        "Between the cytotrophoblast and syncytiotrophoblast",
+        "Within the extraembryonic mesoderm",
+        "Between the endoderm and mesoderm",
+        "Within the hypoblast",
+        "Within the epiblast",
+      ],
+      correct: 4,
+    },
+    {
+      q: "At the end of week 2 of development (day 14), what is the composition of the embryonic disk?",
+      a: [
+        "Epiblast only",
+        "Epiblast and hypoblast",
+        "Ectoderm and endoderm",
+        "Ectoderm, mesoderm, and endoderm",
+        "Epiblast, mesoderm, and hypoblast",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which germ layers are present at the end of week 3 of development (day 21)?",
+      a: [
+        "Epiblast only",
+        "Epiblast and hypoblast",
+        "Ectoderm and endoderm",
+        "Ectoderm, mesoderm, and endoderm",
+        "Epiblast, mesoderm, and hypoblast",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which process establishes the three definitive germ layers?",
+      a: [
+        "Neurulation",
+        "Gastrulation",
+        "Craniocaudal folding",
+        "Lateral folding",
+        "Angiogenesis",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The first indication of gastrulation in the embryo is",
+      a: [
+        "formation of the primitive streak",
+        "formation of the notochord",
+        "formation of the neural tube",
+        "formation of extraembryonic mesoderm",
+        "formation of tertiary chorionic villi",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Somites may differentiate into which of the following?",
+      a: [
+        "Urogenital ridge",
+        "Kidneys",
+        "Notochord",
+        "Epimeric and hypomeric muscles",
+        "Epithelial lining of the gastrointestinal tract",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Intermediate mesoderm will give rise to the",
+      a: ["neural tube", "heart", "kidneys and gonads", "somites", "notochord"],
+      correct: 2,
+    },
+    {
+      q: "The developing embryo has a distinct human appearance by the end of",
+      a: ["week 4", "week 5", "week 6", "week 7", "week 8"],
+      correct: 4,
+    },
+    {
+      q: "The lateral mesoderm is divided into two distinct layers by the formation of the",
+      a: [
+        "extraembryonic coelom",
+        "intraembryonic coelom",
+        "cardiogenic region",
+        "notochord",
+        "yolk sac",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Very often the first indication a woman has that she is pregnant is a missed menstrual period. In which week of embryonic development will a woman experience her first missed menstrual period?",
+      a: [
+        "Start of week 3",
+        "Start of week 4",
+        "Start of week 5",
+        "Start of week 8",
+        "End of week 8",
+      ],
+      correct: 0,
+    },
+    {
+      q: "A female newborn was found to have a large midline tumor in the lower sacral area, which was diagnosed as a sacrococcygeal tumor. Which of the following courses of treatment is recommended for this child?",
+      a: [
+        "Immediate chemotherapy and radiation treatment",
+        "Surgical removal by age 6 months",
+        "Surgical removal at age 4–5 years",
+        "Surgical removal at age 13–15 years",
+        "No treatment because this tumor normally regresses with age",
+      ],
+      correct: 1,
+    },
+    {
+      q: "A woman has her pregnancy suddenly terminated due to intrauterine fetal death. At autopsy, the fetus shows severe pallor, generalized edema, and hepatosplenomegaly. Which of the following would you suspect?",
+      a: [
+        "VATER",
+        "β-Thalassemia minor",
+        "β-Thalassemia major",
+        "Hydrops fetalis",
+        "VACTERL",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The specialized group of mesenchymal cells that aggregate to form blood islands centrally and primitive blood vessels peripherally are called",
+      a: [
+        "fibroblasts",
+        "cardiac progenitor cells",
+        "angioblasts",
+        "myoblasts",
+        "osteoblasts",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The epiblast is capable of forming which of the following germ layers?",
+      a: [
+        "Ectoderm only",
+        "Ectoderm and mesoderm only",
+        "Ectoderm and endoderm only",
+        "Ectoderm, mesoderm, endoderm",
+        "Mesoderm and endoderm only",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A male newborn has a hemangioma on the left frontotemporal region of his face and scalp. The cells forming the hemangioma are derived from which of the following cell layers?",
+      a: [
+        "Ectoderm only",
+        "Mesoderm only",
+        "Endoderm only",
+        "Ectoderm and mesoderm",
+        "Endoderm and mesoderm",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which structure is derived from the same embryonic primordium as the dorsal root ganglia?",
+      a: ["Gonads", "Kidney", "Pineal gland", "Liver", "Adrenal medulla"],
+      correct: 4,
+    },
+    {
+      q: "Which structure is derived from the same embryonic primordium as the kidney?",
+      a: ["Gonads", "Epidermis", "Pineal gland", "Liver", "Adrenal medulla"],
+      correct: 0,
+    },
+    {
+      q: "The most common interventricular septal defect (VSD) seen clinically is",
+      a: [
+        "persistent truncus arteriosus",
+        "membranous VSD",
+        "common ventricle",
+        "foramen secundum defect",
+        "premature closure of foramen ovale",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following clinical signs would be most obvious on examination of a patient with either tetralogy of Fallot or transposition of the great vessels?",
+      a: [
+        "Sweaty palms",
+        "Lack of femoral artery pulse",
+        "Pulmonary hypertension",
+        "Cyanosis",
+        "Diffuse red rash",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which of the following congenital cardiovascular malformations is most commonly associated with maternal rubella infection?",
+      a: [
+        "Isolated dextrocardia",
+        "Patent ductus arteriosus",
+        "Persistent truncus arteriosus",
+        "Coarctation of the aorta",
+        "Double aortic arch",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The most common atrial septal defect (ASD) seen clinically is",
+      a: [
+        "common atrium",
+        "foramen secundum defect",
+        "premature closure of the foramen ovale",
+        "persistent truncus arteriosus",
+        "probe patency of the foramen ovale",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The ventral surface of the adult heart as seen on gross examination or radiography is comprised primarily of the",
+      a: [
+        "left atrium",
+        "left ventricle",
+        "inferior vena cava",
+        "bulbus cordis",
+        "right ventricle",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The left recurrent laryngeal nerve recurs around the",
+      a: [
+        "left primary bronchus",
+        "left subclavian artery",
+        "left subclavian vein",
+        "ductus arteriosus",
+        "left common carotid artery",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which of the three primary germ layers forms the histologically definitive endocardium of the adult heart?",
+      a: ["Ectoderm", "Endoderm", "Mesoderm", "Epiblast", "Hypoblast"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following is responsible for the proper alignment of the atrioventricular canal and the conoventricular canal?",
+      a: [
+        "Lateral folding of the embryo",
+        "Craniocaudal folding of the embryo",
+        "Programmed cell migration",
+        "Formation of the aorticopulmonary septum",
+        "Dextral looping",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The hepatic sinusoids that can be observed histologically in an adult liver are derived from the",
+      a: [
+        "supracardinal veins",
+        "anterior cardinal veins",
+        "posterior cardinal veins",
+        "vitelline veins",
+        "subcardinal veins",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which of the following arterial malformations is very common in premature infants?",
+      a: [
+        "Patent ductus arteriosus",
+        "Coarctation of the aorta",
+        "Right aortic arch",
+        "Double aortic arch",
+        "Abnormal origin of the right subclavian artery",
+      ],
+      correct: 0,
+    },
+    {
+      q: "A physician monitoring a newborn infant’s heart sounds using a stethoscope hears the characteristic murmur of a patent ductus arteriosus. How soon after birth should this murmur normally disappear?",
+      a: ["1–2 months", "1–2 weeks", "1–2 days", "1–2 hours", "Immediately"],
+      correct: 3,
+    },
+    {
+      q: "How soon after birth does the foramen ovale close?",
+      a: ["1–2 months", "1–2 weeks", "1–2 days", "1–2 hours", "Immediately"],
+      correct: 4,
+    },
+    {
+      q: "A 9-year-old boy presents with complaints of numbness and tingling in both feet. Examination reveals no pulse in the femoral artery, increased blood pressure in the arteries of the upper extremity, and enlarged intercostal veins. Which of the following abnormalities would be suspected?",
+      a: [
+        "Double aortic arch",
+        "Tetralogy of Fallot",
+        "Postductal coarctation of the aorta",
+        "Right aortic arch",
+        "Abnormal origin of the right subclavian artery",
+      ],
+      correct: 2,
+    },
+    {
+      q: "The coronary sinus is derived from which of the following?",
+      a: [
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The conus arteriosus is derived from which of the following?",
+      a: [
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The proximal part of the aorta is derived from which of the following?",
+      a: [
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
+      ],
+      correct: 0,
+    },
+    {
+      q: "The trabeculated part of the right ventricle is derived from which of the following?",
+      a: [
+        "Truncus arteriosus",
+        "Bulbus cordis",
+        "Primitive ventricle",
+        "Primitive atrium",
+        "Sinus venosus",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Tricuspid atresia is a cardiac malformation that involves which of the following septa?",
+      a: [
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A muscular VSD is a cardiac malformation that involves which of the following septa?",
+      a: [
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Tetralogy of Fallot is a cardiac malformation that involves which of the following septa?",
+      a: [
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
+      ],
+      correct: 0,
+    },
+    {
+      q: "“-Transposition of the great arteries is a cardiac malformation that involves which of the following septa?",
+      a: [
+        "Aorticopulmonary septum",
+        "Atrial septum",
+        "Atrioventricular septum",
+        "Interventricular septum",
+      ],
+      correct: 0,
+    },
+    {
+      q: "An insufficient amount of AV cushion material will result in which of the following?",
+      a: [
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Tricuspid atresia",
+      ],
+      correct: 4,
+    },
+    {
+      q: "A partial development of the aorticopulmonary septum will result in which of the following?",
+      a: [
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Tricuspid atresia",
+      ],
+      correct: 0,
+    },
+    {
+      q: "A failure of the tricuspid leaflets to attach to the annulus fibrosus will result in which of the following?",
+      a: [
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Tricuspid atresia",
+      ],
+      correct: 1,
+    },
+    {
+      q: "A faulty fusion of the right and left bulbar ridges and AV cushion will result in which of the following?",
+      a: [
+        "Persistent truncus arteriosus (PTA)",
+        "Ebstein anomaly",
+        "Transposition of the great arteries",
+        "Common ventricle",
+        "Membranous VSD",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The superior mesenteric artery is derived from which of the following?",
+      a: ["Posterolateral arteries", "Lateral arteries", "Ventral arteries"],
+      correct: 2,
+    },
+    {
+      q: "The arteries to the upper extremity are derived from which of the following?",
+      a: ["Posterolateral arteries", "Lateral arteries", "Ventral arteries"],
+      correct: 0,
+    },
+    {
+      q: "The gonadal arteries are derived from which of the following?",
+      a: ["Posterolateral arteries", "Lateral arteries", "Ventral arteries"],
+      correct: 1,
+    },
+    {
+      q: "The proximal part of the internal carotid artery is derived from which of the following?",
+      a: [
+        "Aortic arch 1",
+        "Aortic arch 2",
+        "Aortic arch 3",
+        "Aortic arch 4",
+        "Aortic arch 6",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A portion of the arch of the aorta is derived from which of the following?",
+      a: [
+        "Aortic arch 1",
+        "Aortic arch 2",
+        "Aortic arch 3",
+        "Aortic arch 4",
+        "Aortic arch 6",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The proximal part of the right subclavian artery is derived from which of the following?",
+      a: [
+        "Aortic arch 1",
+        "Aortic arch 2",
+        "Aortic arch 3",
+        "Aortic arch 4",
+        "Aortic arch 6",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The portal vein is derived from which of the following?",
+      a: [
+        "Vitelline veins",
+        "Umbilical veins",
+        "Anterior cardinal veins",
+        "Posterior cardinal veins",
+        "Subcardinal veins",
+      ],
+      correct: 0,
+    },
+    {
+      q: "The renal veins are derived from which of the following?",
+      a: [
+        "Vitelline veins",
+        "Umbilical veins",
+        "Anterior cardinal veins",
+        "Posterior cardinal veins",
+        "Subcardinal veins",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The superior mesenteric vein is derived from which of the following?",
+      a: [
+        "Vitelline veins",
+        "Umbilical veins",
+        "Anterior cardinal veins",
+        "Posterior cardinal veins",
+        "Subcardinal veins",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Closure of the foramen primum results from fusion of which of the following structures?",
+      a: [
+        "Septum secundum and the fused atrioventricular cushions",
+        "Septum secundum and the septum primum",
+        "Septum primum and the fused atrioventricular cushions",
+        "Septum primum and the septum spurium",
+        "Septum primum and the sinoatrial valves",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A 3-day-old boy delivered at 32 weeks of gestation is experiencing respiratory distress syndrome. The physician detects a heart murmur characteristic of a patent ductus arteriosus, a diagnosis that is confirmed with an echocardiogram. Which embryonic structure is involved in this diagnosis?",
+      a: [
+        "Left third aortic arch",
+        "Right third aortic arch",
+        "Left sixth aortic arch",
+        "Umbilical arteries",
+        "Vitelline arteries",
+      ],
+      correct: 2,
+    },
+    {
+      q: "During the later stages of pregnancy, maternal blood is separated from fetal blood by the",
+      a: [
+        "syncytiotrophoblast only",
+        "cytotrophoblast only",
+        "syncytiotrophoblast and cytotrophoblast",
+        "syncytiotrophoblast and fetal endothelium",
+        "cytotrophoblast and fetal endothelium",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The maternal and fetal components of the placenta are",
+      a: [
+        "decidua basalis and secondary chorionic villi",
+        "decidua capsularis and secondary chorionic villi",
+        "decidua parietalis and tertiary chorionic villi",
+        "decidua capsularis and villous chorion",
+        "decidua basalis and villous chorion",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The intervillous space of the placenta contains",
+      a: [
+        "maternal blood",
+        "fetal blood",
+        "maternal and fetal blood",
+        "amniotic fluid",
+        "maternal blood and amniotic fluid",
+      ],
+      correct: 0,
+    },
+    {
+      q: "A young insulin-dependent diabetic woman in her first pregnancy is concerned that her daily injection of insulin will cause a congenital malformation in her baby. What should the physician tell her?",
+      a: [
+        "Insulin is highly teratogenic; discontinue treatment",
+        "Insulin does not cross the placental membrane",
+        "Insulin crosses the placental membrane but is degraded rapidly",
+        "Insulin will benefit her baby by increasing glucose metabolism",
+        "Insulin crosses the placental membrane but is not teratogenic",
+      ],
+      correct: 1,
+    },
+    {
+      q: "What is a normal amount of amniotic fluid at term?",
+      a: ["50 mL", "500 mL", "1000 mL", "1500 mL", "2000 mL"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following does not pass through the primitive umbilical ring?",
+      a: [
+        "Allantois",
+        "Amnion",
+        "Yolk sac",
+        "Connecting stalk",
+        "Space connecting the intraembryonic and extraembryonic coeloms",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following best describes the placental components of dizygotic twins?",
+      a: [
+        "One placenta, two amniotic sacs, one chorion",
+        "One placenta, two amniotic sacs, two chorions",
+        "Two placentas, two amniotic sacs, one chorion",
+        "Two placentas, two amniotic sacs, two chorions",
+        "One placenta, two amniotic sacs, two chorions",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A 26-year-old pregnant woman experiences repeated episodes of bright red vaginal bleeding at week 28, week 32, and week 34 of pregnancy. The bleeding spontaneously subsided each time. Use of ultrasound shows that the placenta is located in the lower right portion of the uterus over the internal os. What is the diagnosis?",
+      a: [
+        "Hydatidiform mole",
+        "Vasa previa",
+        "Placenta previa",
+        "Placental abruption",
+        "Premature rupture of the amniochorionic membrane",
+      ],
+      correct: 2,
+    },
+    {
+      q: "A 19-year-old woman in week 32 of a complication-free pregnancy is rushed to the emergency department because of profuse vaginal bleeding. The bleeding subsides, but afterward no fetal heart sounds can be heard, indicating intrauterine fetal death. The woman goes into labor and delivers a stillborn infant. On examination of the afterbirth, a velamentous placenta is detected. Although not much can be done at this point, what is the diagnosis?",
+      a: [
+        "Placenta previa",
+        "Vasa previa",
+        "Hydatidiform mole",
+        "Premature rupture of the amniochorionic membrane",
+        "Amniotic band syndrome",
+      ],
+      correct: 1,
+    },
+    {
+      q: "A 32-year-old pregnant woman at 30 weeks of gestation comes to her physician because of excess weight gain in a 2-week period. Ultrasonography reveals polyhydramnios. Which fetal abnormality is most likely responsible for the polyhydramnios?",
+      a: [
+        "Bilateral kidney agenesis",
+        "Umbilical cord knots",
+        "Velamentous placenta",
+        "Hypoplastic lungs",
+        "Esophageal atresia",
+      ],
+      correct: 4,
+    },
+    {
+      q: "A 25-year-old pregnant woman at 17 weeks of gestation comes to her OB/GYN for a normal examination. During routine blood tests, her serum α-fetoprotein (AFP) concentration is found to be markedly decreased for her gestational age. Which abnormality will the physician need to rule out based on these low AFP levels?",
+      a: [
+        "Spina bifida",
+        "Anencephaly",
+        "Omphalocele",
+        "Down syndrome",
+        "Esophageal atresia",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which one of following basal ganglia is derived from the diencephalon?",
+      a: [
+        "Amygdaloid nucleus",
+        "Head of the caudate nucleus",
+        "Tail of the caudate nucleus",
+        "Globus pallidus",
+        "Putamen",
+      ],
+      correct: 3,
+    },
+    {
+      q: "When are the axons of the corticospinal tracts fully myelinated?",
+      a: [
+        "In the late embryonic period",
+        "In the midfetal period",
+        "At birth",
+        "By the end of the first postnatal year",
+        "By the end of the second postnatal year",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Which of the following represents the general somatic efferent (GSE) column of the pons?",
+      a: [
+        "Abducent nucleus",
+        "Nucleus ambiguus",
+        "Hypoglossal nucleus",
+        "Inferior olivary nucleus",
+        "Inferior salivatory nucleus",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Which of the following represents the general visceral efferent (GVE) column of the pons?",
+      a: [
+        "The cerebellum",
+        "The spinal trigeminal nucleus",
+        "The principal trigeminal nucleus",
+        "The superior salivatory nucleus",
+        "The pontine nuclei",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The external germinal layer of the cerebellum gives rise to which of the following?",
+      a: [
+        "Outer stellate cells",
+        "Purkinje cells",
+        "Granule cells",
+        "Basket cells",
+        "Giant cells of Betz",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following statements best describes the pathogenesis of hydranencephaly?",
+      a: [
+        "Results from failure of midline cleavage of the embryonic forebrain",
+        "Results from atresia of the outlet foramina of the fourth ventricle",
+        "Results from blockage of the cerebral aqueduct",
+        "Results from internal carotid artery occlusion",
+        "Results from failure of the anterior neuropore to close",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The anterior and posterior neuropores close during which week of embryonic development?",
+      a: ["Week 2", "Week 3", "Week 4", "Week 5", "Week 6"],
+      correct: 2,
+    },
+    {
+      q: "At birth the conus medullaris is found at which vertebral level?",
+      a: ["T12", "L1", "L3", "S1", "S4"],
+      correct: 2,
+    },
+    {
+      q: "Which of the following structures is derived from the telencephalon?",
+      a: [
+        "Pineal gland",
+        "Hypothalamus",
+        "Hippocampus",
+        "Optic nerve (CN II)",
+        "Globus pallidus",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following conditions results from failure of the anterior neuropore to close?",
+      a: [
+        "Hydrocephalus",
+        "Anencephaly",
+        "Mongolism",
+        "Craniosynostosis",
+        "Meningoencephalocele",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Which of the following structures is derived from the diencephalon?",
+      a: [
+        "Caudate nucleus",
+        "Cerebellum",
+        "Olfactory bulbs",
+        "Neurohypophysis",
+        "Adenohypophysis",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Caudal herniation of the cerebellar tonsils and medulla through the foramen magnum is called",
+      a: [
+        "Dandy-Walker syndrome",
+        "Down syndrome",
+        "Arnold-Chiari syndrome",
+        "cranium bifidum",
+        "myeloschisis",
+      ],
+      correct: 2,
+    },
+    {
+      q: "The flexure that develops between the metencephalon and the myelencephalon is called the",
+      a: [
+        "cephalic flexure",
+        "mesencephalic flexure",
+        "pontine flexure",
+        "cerebellar flexure",
+        "cervical flexure",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following statements best describes the sulcus limitans?",
+      a: [
+        "It is found in the interpeduncular fossa",
+        "It is located between the alar and basal plates",
+        "It separates the medulla from the pons",
+        "It separates the hypothalamus from the thalamus",
+        "It separates the neocortex from the allocortex",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Myelinated preganglionic sympathetic neurons have their cell bodies in",
+      a: [
+        "Clarke column",
+        "substantia gelatinosa",
+        "intermediolateral cell column",
+        "intermediomedial cell column",
+      ],
+      correct: 2,
+    },
+    {
+      q: "The choroid plexus of the fourth ventricle is derived from the",
+      a: [
+        "alar plate",
+        "basal plate",
+        "floor plate",
+        "rhombic lip",
+        "roof plate",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Tanycytes are found principally in the",
+      a: [
+        "area postrema",
+        "cerebral aqueduct",
+        "lateral ventricles",
+        "third ventricle",
+        "fourth ventricle",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Which of the following most accurately describes the herniation of meninges and brain tissue through a defect in occipital bone?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Cranium bifidum with meningocele",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Which of the following is the most common cause of congenital hydrocephalus?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Aqueductal stenosis",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which of the following is associated with atresia of the foramen of Magendie and foramina of Luschka?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Aqueductal stenosis",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Which of the following is associated with platybasia and malformation of the occipitovertebral joint?",
+      a: [
+        "Cranium bifidum with meningoencephalocele",
+        "Cranium bifidum with meningohydroencephalocele",
+        "Aqueductal stenosis",
+        "Arnold-Chiari syndrome",
+        "Dandy-Walker syndrome",
+      ],
+      correct: 3,
+    },
+    {
+      q: "A 22-year-old pregnant woman at 20 weeks of gestation comes to her ON/GYN for a normal examination. During routine blood tests, her serum α-fetoprotein (AFP) concentration is markedly increased for her gestational age. Ultrasonography reveals spina bifida in the fetus. At what week of gestation did this defect most likely occur?",
+      a: ["1–2", "4–6", "9–11", "12–15", "16–19"],
+      correct: 1,
+    },
+    {
+      q: "Which structure is derived from the cranial neural crest cells?",
+      a: [
+        "Lens of the eye",
+        "Pia mater",
+        "Dura mater",
+        "Pineal gland",
+        "Olfactory placode, CN I",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The surface ectoderm gives rise to which of the following structures?",
+      a: ["Dilator pupillae muscle", "Retina", "Lens", "Sclera", "Choroid"],
+      correct: 2,
+    },
+    {
+      q: "Failure of the choroid fissure to close results in",
+      a: [
+        "congenital detached retina",
+        "congenital aniridia",
+        "congenital aphakia",
+        "coloboma iridis",
+        "microphthalmos",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic cup is an evagination of which of the following?",
+      a: [
+        "Telencephalon",
+        "Diencephalon",
+        "Mesencephalon",
+        "Metencephalon",
+        "Myelencephalon",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The epithelium of the ciliary body is derived from",
+      a: [
+        "ectoderm",
+        "mesoderm",
+        "endoderm",
+        "neuroectoderm",
+        "neural crest cells",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Hyperoxygenation of premature infants may result in",
+      a: [
+        "congenital glaucoma",
+        "microphthalmia",
+        "coloboma",
+        "retrolental fibroplasia",
+        "persistent pupillary membrane",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic nerve is a tract of the diencephalons that is not completely myelinated until",
+      a: [
+        "5 years after birth",
+        "2 years after birth",
+        "1 year after birth",
+        "3 weeks after birth",
+        "3 months after birth",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The hyaloid canal is found in the",
+      a: [
+        "vitreous body",
+        "choroid",
+        "optic stalk",
+        "ciliary body",
+        "intraretinal space",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Aqueous humor is produced by the",
+      a: [
+        "choroid plexus",
+        "trabecular meshwork",
+        "ciliary processes",
+        "vitreous body",
+        "lens vesicle",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Aqueous humor enters the venous circulation via",
+      a: [
+        "arachnoid villi",
+        "scleral canal",
+        "hyaloid canal",
+        "canal of Schlemm",
+        "Cloquet’s canal",
+      ],
+      correct: 3,
+    },
+    {
+      q: "In a detached retina, the site of detachment is found",
+      a: [
+        "within the outer plexiform layer",
+        "within the inner plexiform layer",
+        "between the inner nuclear layer and the outer nuclear layer",
+        "between the choriocapillaris and the pigment epithelial layer",
+        "between the pigment epithelial layer and the layer of outer segments of rods and cones",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The surface ectoderm gives rise to which of the following structures?",
+      a: ["Dilator pupillae muscle", "Retina", "Lens", "Sclera", "Choroid"],
+      correct: 2,
+    },
+    {
+      q: "Failure of the choroid fissure to close results in",
+      a: [
+        "congenital detached retina",
+        "congenital aniridia",
+        "congenital aphakia",
+        "coloboma iridis",
+        "microphthalmos",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic cup is an evagination of which of the following?",
+      a: [
+        "Telencephalon",
+        "Diencephalon",
+        "Mesencephalon",
+        "Metencephalon",
+        "Myelencephalon",
+      ],
+      correct: 1,
+    },
+    {
+      q: "The epithelium of the ciliary body is derived from",
+      a: [
+        "ectoderm",
+        "mesoderm",
+        "endoderm",
+        "neuroectoderm",
+        "neural crest cells",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Hyperoxygenation of premature infants may result in",
+      a: [
+        "congenital glaucoma",
+        "microphthalmia",
+        "coloboma",
+        "retrolental fibroplasia",
+        "persistent pupillary membrane",
+      ],
+      correct: 3,
+    },
+    {
+      q: "The optic nerve is a tract of the diencephalons that is not completely myelinated until",
+      a: [
+        "5 years after birth",
+        "2 years after birth",
+        "1 year after birth",
+        "3 weeks after birth",
+        "3 months after birth",
+      ],
+      correct: 4,
+    },
+    {
+      q: "The hyaloid canal is found in the",
+      a: [
+        "vitreous body",
+        "choroid",
+        "optic stalk",
+        "ciliary body",
+        "intraretinal space",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Aqueous humor is produced by the",
+      a: [
+        "choroid plexus",
+        "trabecular meshwork",
+        "ciliary processes",
+        "vitreous body",
+        "lens vesicle",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Aqueous humor enters the venous circulation via",
+      a: [
+        "arachnoid villi",
+        "scleral canal",
+        "hyaloid canal",
+        "canal of Schlemm",
+        "Cloquet’s canal",
+      ],
+      correct: 3,
+    },
+    {
+      q: "In a detached retina, the site of detachment is found",
+      a: [
+        "within the outer plexiform layer",
+        "within the inner plexiform layer",
+        "between the inner nuclear layer and the outer nuclear layer",
+        "between the choriocapillaris and the pigment epithelial layer",
+        "between the pigment epithelial layer and the layer of outer segments of rods and cones",
+      ],
+      correct: 4,
+    },
+  ],
+  review: [
+    {
+      q: `1. A 25-year-old woman comes into your office
+complaining of “spotting” and having “stomach
+pains” as she points to her lower abdominal
+area. She noted that she and her husband were
+trying to have a baby and that she had her last
+period about 5 weeks ago. She said that after
+talking with her girlfriends about her symptoms,
+she was a little afraid of what it could be, and so
+she decided to see a physician. Her chart shows
+that she has had a history of pelvic inflammatory
+disease. Relevant physical exam findings
+include a tender pelvic mass that was palpable,
+amenorrhea, light vaginal bleeding, and lower
+abdominal pain. Relevant laboratory findings
+include elevated β-human chorionic gonadotropin
+(hCG) levels but lower than expected for
+pregnancy, lower-than-normal progesterone
+levels, and ultrasound that showed a mass in
+the ampulla of the left uterine tube. Which of
+the following is the most likely diagnosis?`,
+      a: [
+        "Choriocarcinoma",
+        "A bleeding corpus luteum",
+        "A spontaneous abortion",
+        "Ectopic tubal pregnancy",
+        "Appendicitis",
+      ],
+      correct: 3,
+    },
+    {
+      q: `2. A 31-year-old woman comes into the office
+complaining of “running a fever,” being nauseated,
+and losing weight—“about 15 pounds or
+so”—over the last month. She tells you that she
+had a miscarriage about 2 months ago and “all
+of a sudden these other problems come up.” She
+added that she said that the doctors said she had
+“preeclampsia” during her first trimester of that
+pregnancy. She said that she was supposed to
+come back in, but she didn’t because she “felt depressed
+about losing the baby.” She remarks that
+she hasn’t had any changes in her diet and remarked
+that she “thought she would have gained
+weight with all the food she was eating.” Relevant
+physical exam findings include normal thyroid
+gland on palpation, no coughing of blood, and no
+diarrhea. Relevant laboratory findings include elevated
+hCG levels and normal thyroxine (T4) and
+thyroid-stimulating hormone (TSH) levels. Which
+of the following is the most likely diagnosis?`,
+      a: [
+        "Achalasia",
+        "Hyperthyroidism",
+        "Pelvic inflammatory disease",
+        "Hydatidiform mole",
+        "Gestational trophoblastic neoplasia (or choriocarcinoma)",
+      ],
+      correct: 4,
+    },
+    {
+      q: `3. A 37-year-old woman who is in her third trimester
+comes into your clinic complaining of
+bleeding that lasted for about “an hour or two.”
+She remarks she noticed that the bleeding was
+“very bright red” in color but felt no noticeable
+pain. She said that she did nothing to cause the
+bleeding and “was concerned for the safety of her
+baby.” Relevant physical exam findings include
+no abdominal or pelvic pain on palpation. Relevant
+laboratory findings include transvaginal ultrasound
+showing an intact, normally implanted
+placenta; however, the placenta was located in
+close proximity of the internal os. Which of
+the following is the most likely diagnosis?`,
+      a: [
+        "Placenta previa",
+        "Placental abruption",
+        "Placenta accreta",
+        "Velamentous placenta",
+        "Membranous placenta",
+      ],
+      correct: 0,
+    },
+    {
+      q: `4. A 34-year-old woman who is in her third trimester
+complains of her hands and face “swelling
+up a few days ago.” She remarks that she has
+also felt like “her heart was racing a mile a minute.”
+Relevant physical exam findings include
+hypertension (.160/110 mm Hg) and edema
+of the hands and face. Relevant laboratory findings
+include proteinuria (.5 g/24 hours), and
+ultrasound was unremarkable. Which of the
+following is the most likely diagnosis?`,
+      a: [
+        "Molar pregnancy",
+        "Severe preeclampsia",
+        "Choriocarcinoma",
+        "Ectopic tubal pregnancy",
+        "Placental abruption",
+      ],
+      correct: 1,
+    },
+    {
+      q: `5. A distraught mother brings her 2-month-old
+daughter into your office saying that she noticed
+a “lump growing from her child’s bottom.”
+She states that she “noticed it about 2 weeks
+ago while changing her daughter’s diaper.” The
+lump was small and she so didn’t think much
+of it, but over time it has “grown to the size of
+a baseball.” Relevant physical exam findings
+include a large spheroid mass that appeared to
+be very firm on palpation. Relevant laboratory
+findings include biopsy of the mass showing
+tissue containing hair, teeth, muscle fibers, and
+thyroid follicular cells. Which of the following is
+the most likely diagnosis?`,
+      a: [
+        "Spina bifida with meningocele",
+        "Sacrococcygeal teratoma",
+        "Spina bifida with meningomyelocele",
+        "Chordoma",
+        "Caudal dysplasia (sirenomelia)",
+      ],
+      correct: 1,
+    },
+    {
+      q: `6. After the delivery of a healthy baby girl, a
+physician notices a tuft of hair on the lower
+back of the child. The physician asked the
+mother about her prenatal health care, and she
+said she didn’t take folic acid until the second
+month of pregnancy because she didn’t know
+she was pregnant until then. Relevant physical
+exam findings include a tuft of hair on the lower
+back with no noticeable sac formation. Relevant
+laboratory findings include radiograph showing
+a defect in the vertebral arches but no sac filled
+with fluid or spinal cord. Which of the following
+is the most likely diagnosis?`,
+      a: [
+        "Spina bifida with meningocele",
+        "Spina bifida with meningomyelocele",
+        "Spina bifida occulta",
+        "Spina bifida with rachischisis",
+        "Caudal dysplasia (sirenomelia)",
+      ],
+      correct: 2,
+    },
+    {
+      q: `7. A distraught father comes in with his
+10-year-old son, saying that his son began
+“turning blue” when he was out playing catch
+with him. His son remarked that he “just felt really
+tired” when he was running after the ball.
+The father is concerned that his son will not
+be able to play in the big game this weekend.
+Relevant physical exam findings include loud
+holosystolic ejection murmur on auscultation,
+cyanosis, and clubbing of fingernails. Relevant
+laboratory findings include echocardiogram
+showing right ventricular hypertrophy. Which
+of the following is the most likely diagnosis?`,
+      a: [
+        "Membranous ventricular septal defect",
+        "Eisenmenger complex",
+        "Atrial septal defect",
+        "Patent ductus arteriosus",
+        "Coarctation of the aorta",
+      ],
+      correct: 0,
+    },
+    {
+      q: `8. A 39-year-old man comes to your office complaining
+of “heartburn after trying to eat” and
+not being able to swallow anything. He states,
+“I have tried everything from water to steaks; it
+doesn’t matter what I eat, I always have trouble
+swallowing it down.” Relevant physical exam
+findings include dysphagia and normal thyroid
+on palpation. Relevant laboratory findings include
+barium swallow radiograph showing a dilated
+esophagus with an area of distal stenosis
+(almost looks like a “bird’s beak”) and normal
+T4 levels. Which of the following is the most
+likely diagnosis?`,
+      a: [
+        "Esophageal atresia",
+        "Thyroid tumor",
+        "Esophageal stenosis",
+        "Reflux esophagitis",
+        "Achalasia",
+      ],
+      correct: 4,
+    },
+    {
+      q: `9. A mother brings her 1-month-old son into
+the clinic, complaining of her son “vomiting all
+over the place when he tries to eat something.”
+She said her son’s vomiting looks like it was
+“shot out of a cannon.” Relevant physical findings
+include a small, nontender, palpable mass
+on the right costal margin. Relevant laboratory
+findings include barium swallow radiograph
+showing a narrow pyloric channel and abdominal
+ultrasound showing a hypertrophic pylorus.
+Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Esophageal hiatal hernia",
+        "Hypertrophic pyloric stenosis",
+        "Malrotation of the midgut with volvulus",
+        "Esophageal stenosis",
+        "Biliary atresia",
+      ],
+      correct: 1,
+    },
+    {
+      q: `10. A man brings his 3-year-old son into the
+office, complaining that his son is having “bad
+stomach pains” and talks about him “running a
+fever” and “being thirsty all the time.” He remarks
+that his son has not had a bowel movement lately.
+Relevant physical exam findings include painless
+rectal bleeding, dark-red stools, and abdominal
+distention. Relevant laboratory findings include
+radiograph showing a remnant of the vitelline
+duct that was estimated to be about 2 feet from
+the ileocecal valve and a biopsy showing ectopic
+gastric and pancreatic mucosal tissue. Which of
+the following is the most likely diagnosis?`,
+      a: [
+        "Volvulus",
+        "Intussusception",
+        "Foreign-body obstruction",
+        "Meckel diverticulum",
+        "Biliary atresia",
+      ],
+      correct: 3,
+    },
+    {
+      q: `11. A nurse comes into your office informing
+you that the child you delivered yesterday failed
+to pass meconium. The nurse remarks that the
+child also cries on palpation of the abdominal
+area. Relevant physical exam finding include
+abdominal distention, megacolon on palpation,
+and gushing of fecal material on a rectal digital
+exam. Relevant laboratory findings include
+barium enema showing a dilated proximal segment
+and a narrow distal segment of the sigmoid
+colon. Which of the following is the most
+likely diagnosis?`,
+      a: [
+        "Rectal atresia",
+        "Rectovesical fistula",
+        "Hirschsprung disease",
+        "Anorectal agenesis",
+        "Intussusception",
+      ],
+      correct: 2,
+    },
+    {
+      q: `12. A 33-year-old man comes in complaining of
+“fever and chills” and that he “has to constantly
+go to the bathroom.” He also indicates that he
+has pain just below the abdominal area on the
+right side. He states he has not had sexual intercourse
+in more than 6 months. He suspects
+that it may be urinary tract infection because he
+“has had a lot of them over the years.” Relevant
+physical exam findings include flank pain and
+costovertebral angle tenderness. Relevant laboratory
+findings include normal calcium levels
+and computed tomography (CT) scan showing
+an unusual kidney appearance. Which of the
+following is the most likely diagnosis?`,
+      a: [
+        "Urachal fistula",
+        "Horseshoe kidney",
+        "Pyelonephritis",
+        "Kidney stones",
+        "Polycystic kidney disease",
+      ],
+      correct: 1,
+    },
+    {
+      q: `13. A 16-month-old boy has had recurrent
+bouts of cyanosis since birth. His parents tell
+you that “he cannot keep up with the other
+children of his age.” The parents indicate that
+their boy frequently turns blue, breathes heavily
+on exertion, and sometimes experiences
+these difficulties for no reason. On many occasions,
+they observed their son in a squatting
+position. Relevant physical exam findings
+include systolic ejection murmur, cyanosis,
+and clubbing of the fingernails, and a parasternal
+heave. Relevant laboratory findings include radiographs
+showing an enlarged right ventricle
+and “boot-shaped” heart, electrocardiogram
+showing right ventricular hypertrophy, and
+echocardiogram showing pulmonary stenosis,
+right ventricular hypertrophy, overriding aorta,
+and a ventricular septal defect. Which of the
+following is the most likely diagnosis?`,
+      a: [
+        "Tetralogy of Fallot",
+        "Tricuspid atresia",
+        "Total anomalous pulmonary venous return",
+        "Transposition of the great arteries",
+        "Persistent truncus arteriosus",
+      ],
+      correct: 0,
+    },
+    {
+      q: `14. A 40-year-old mother brings in her 4-weekold
+baby boy and tells you that “my baby’s face
+looks funny and he keeps sticking his tongue
+out.” The mother recalls that during the pregnancy
+she had low α-fetoprotein (AFP) levels.
+Relevant physical exam findings include a
+flat occiput; white spots in the iris (Brushfield
+spots); a large, protruding tongue; small, lowset
+ears; short feet and hands; a flexion crease
+across the palms (simian crease); curvature of
+the fifth digit; systolic ejection murmur; and
+hypotonia. Relevant laboratory findings include
+echocardiogram showing an endocardial cushion
+defect (atrioventricular septal defect) and
+karyotype analysis showing an extra chromosome
+21. Which of the following is the most
+likely diagnosis?`,
+      a: [
+        "Cri-du-chat syndrome",
+        "Edwards syndrome",
+        "Fragile X syndrome",
+        "Down syndrome",
+        "Patau syndrome",
+      ],
+      correct: 3,
+    },
+    {
+      q: `15. A 25-year-old woman who is CEO of a new
+biotech company has been under considerable
+stress this last year trying to negotiate a contract
+with a major drug company. She has also been
+under a very rigorous exercise program because
+“she just can’t stand any fat on her body” and
+ran in the Boston marathon 4 months ago. Due
+to her busy schedule, her eating habits have
+radically changed, and sometimes “the sight of
+food just disgusts me.” She is not on any drug or
+medication. She tells you that recently she met
+“the guy” and has been sexually active with him
+for “about 2 months now.” She comes to you
+because her menstrual cycle is 2 weeks late and
+sometimes she feels nauseated, especially in
+the morning. Relevant physical exam findings
+were unremarkable. Relevant laboratory findings
+include a positive β-human chorionic gonadotropin
+(hCG) test. Which of the following is
+the most likely diagnosis?`,
+      a: [
+        "Secondary amenorrhea due to stress",
+        "Secondary amenorrhea due to anorexia nervosa",
+        "Pregnancy",
+        "Turner syndrome",
+        "Secondary amenorrhea due to antipsychotic drug therapy",
+      ],
+      correct: 2,
+    },
+    {
+      q: `16. A father brings his 1-month-old daughter
+into the clinic, complaining that his daughter
+frequently “throws up after she eats” and “it
+just shoots across the room.” Relevant physical
+exam findings include projectile vomiting when
+the infant is laid on its back after a feeding. Relevant
+laboratory findings include radiograph
+showing a portion of the stomach located in
+the pleural cavity. Which of the following is the
+most likely diagnosis?`,
+      a: [
+        "Hypertrophic pyloric stenosis",
+        "Gastroesophageal reflux disease",
+        "Esophageal hiatal hernia",
+        "Congenital diaphragmatic hernia",
+        "Tracheoesophageal fistula",
+      ],
+      correct: 3,
+    },
+    {
+      q: `17. A father brings his 4-year-old daughter into
+the clinic. He says he noticed “a lump on her
+lower right side” and that “it has gotten bigger
+over time.” Relevant physical exam findings
+include a large, palpable mass on the right flank
+and no evidence of a urinary tract infection
+(UTI). Relevant laboratory findings include normal
+catecholamine levels and normal androgen
+levels, and genetic testing reveals a deletion
+of a tumor suppression gene on chromosome
+11. Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Neuroblastoma",
+        "Pheochromocytoma",
+        "Congenital adrenal hyperplasia",
+        "Wilms tumor",
+        "Childhood polycystic kidney disease",
+      ],
+      correct: 3,
+    },
+    {
+      q: `18. A 45-year-old man comes in complaining
+of chest and abdominal pain. He also says that
+his “blood pressure rises every so often” even
+when he is relaxing at home and that “it’s been
+happening more and more.” He says he exercises
+often and tries to stay in shape because
+he has a family history of obesity. Relevant
+physical exam findings include profuse sweating,
+hypertension, abdominal discomfort, and
+lungs clear on auscultation. Relevant laboratory
+findings include radiograph negative for
+a pulmonary embolism, hyperglycemia, increased
+urinary vanillylmandelic acid (VMA)
+and metanephrine levels, and inability to suppress
+catecholamines with clonidine. Which of
+the following is the most likely diagnosis?`,
+      a: [
+        "Angina",
+        "Pneumothorax",
         "Myocardial infarction",
-        "Renal failure",
-        "Macrocytic anemia",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which method studies blood fluidity, and increased blood viscosity helps identify complications of hypertension, ischemic heart disease, infarction or stroke?",
-      a: [
-        "Coagulogram",
-        "Creatine kinase",
-        "Lipid profile",
-        "Lactate dehydrogenase",
-        "Aspartate aminotransferase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the full name of NAD?",
-      a: [
-        "Nicotinamide adenine trinucleotide",
-        "Nicotinamide adenine dinucleotide phosphate",
-        "Nicotinamide adenine dinucleotide",
-        "Nicotinphosphamide adenine dinucleotide",
-        "Deoxymethylcobalamin",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is the full name of CPK?",
-      a: [
-        "Creatine kinase",
-        "Deoxymethylcobalamin",
-        "Carboxybiotin",
-        "Nicotinamide adenine dinucleotide phosphate",
-        "Creatine phosphokinase",
+        "Neuroblastoma",
+        "Pheochromocytoma",
       ],
       correct: 4,
     },
     {
-      q: "At what temperature are enzymes most active?",
-      a: ["37°C", "55°C", "100°C", "0°C", "25°C"],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme catalyzes arginine hydrolysis?",
+      q: `19. A woman comes in with her 16-year-old
+daughter and states that her daughter “has not
+had a menstrual period yet.” The daughter says
+that she is not sexually active and that she is not
+on any form of birth control. Relevant physical
+exam findings include ambiguous genitalia,
+amenorrhea, and early appearance of axillary
+and pubic hair. Relevant laboratory findings
+include elevated urinary 17-ketosteroids, elevated
+serum dehydroepiandrosterone (DHEA)
+sulfate, and normal or decreased 17-hydroxycorticosteroids,
+genetic testing reveals 46,XX
+genotype, and CT head scan reveals no sign of
+tumor. Which of the following is the most likely
+diagnosis?`,
       a: [
-        "Urease",
-        "Creatine kinase",
-        "Arginase",
-        "Phosphoglucose isomerase",
-        "Helicase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "CPK-MB is found in cardiac muscle tissue; increased activity indicates a risk of which disease?",
-      a: [
-        "Myocardial infarction",
-        "Hypertension",
-        "Ischemic heart disease",
-        "Atherosclerosis",
-        "Macrocytic anemia",
+        "Female pseudo-intersexuality",
+        "Turner syndrome",
+        "Complete androgen insensitivity",
+        "Pituitary tumor",
+        "Male pseudo-intersexuality",
       ],
       correct: 0,
     },
     {
-      q: "Which enzyme catalyzes hydrolysis of fats to monoacylglycerols in the duodenum?",
+      q: `20. A concerned couple brings their 3-weekold
+son into your office, stating that they think
+something is wrong with his genital area. They
+noticed that his testicles appeared to be swollen
+when they were changing his diaper a
+week ago. They said that his scrotum felt like
+a “water-filled balloon.” Neither parent could
+recall any traumatic episode with their son,
+saying that they have been very protective of
+him. Relevant physical exam findings include
+an enlarged, nontender scrotum, testicles not
+immediately palpable, and no herniated bulge,
+and flashlight test through the enlarged area
+showed illumination. Relevant laboratory findings
+include absence of blood on fluid collection.
+Which of the following is the most likely
+diagnosis?`,
       a: [
-        "Pancreatic lipase",
-        "Amylase",
-        "Aspartate aminotransferase",
-        "Creatine kinase",
-        "Phosphoglucose isomerase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme controls the addition of ATP to glucose?",
-      a: [
-        "Hexokinase",
-        "Amylase",
-        "Aspartate aminotransferase",
-        "Creatine kinase",
-        "Phosphoglucose isomerase",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which enzyme test is involved in amino acid metabolism in liver and heart muscle tissues and may indicate a high risk of infarction?",
-      a: [
-        "Lipid profile",
-        "Coagulogram",
-        "Aspartate aminotransferase",
-        "Creatine phosphokinase",
-        "Lactate dehydrogenase",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Under the action of which enzyme does DNA form phosphodiester bonds between nucleotides and complementary pairs?",
-      a: ["Helicase", "Nuclease", "Polymerase", "Isomerase", "Mutase"],
-      correct: 2,
-    },
-    {
-      q: "Which are pyrimidine antimetabolites?",
-      a: [
-        "5-fluorouracil, capecitabine, cytarabine",
-        "Mercaptopurine, tegafur, thioguanine",
-        "Tegafur, thioguanine, cytarabine",
-        "Mercaptopurine, cytarabine, thioguanine",
-        "Adenine, uracil, thymidine",
-      ],
-      correct: 0,
-    },
-    {
-      q: "According to function, into how many types is RNA divided?",
-      a: ["2", "3", "4", "5", "6"],
-      correct: 1,
-    },
-    {
-      q: "Unlike DNA, which nitrogenous base is absent in RNA?",
-      a: ["Thymine", "Adenine", "Guanine", "Uracil", "Cytosine"],
-      correct: 0,
-    },
-    {
-      q: "In the DNA chain, by which bond is a purine base linked to a pyrimidine base?",
-      a: [
-        "Amide bond",
-        "Ionic bond",
-        "Donor-acceptor bond",
-        "Hydrogen bond",
-        "Peptide bond",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Find the purine bases.",
-      a: [
-        "Adenine, uracil",
-        "Guanine, cytosine",
-        "Adenine, guanine",
-        "Guanine, uracil",
-        "Thymine, uracil",
-      ],
-      correct: 2,
-    },
-    {
-      q: "According to the type of pentose molecule, into how many types are nucleic acids divided?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Determine the composition of a guanine nucleotide in DNA.",
-      a: [
-        "Nitrogenous base (guanine); monosaccharide (ribose); phosphoric acid",
-        "Nitrogenous base (guanine); monosaccharide (deoxyribose); 2 phosphoric acids",
-        "Nitrogenous base (guanine); monosaccharide (deoxyribose); 4 phosphoric acids",
-        "Pyrimidine base (guanine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (guanine); monosaccharide (ribose); 3 phosphoric acids",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Determine the composition of an adenine nucleotide in RNA.",
-      a: [
-        "Pyrimidine base (adenine); monosaccharide (ribose); phosphoric acid",
-        "Purine base (adenine); monosaccharide (ribose); phosphoric acid",
-        "Nitrogenous base (adenine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (adenine); monosaccharide (deoxyribose); phosphoric acid",
-        "Pyrimidine base (adenine); monosaccharide (deoxyribose); 3 phosphoric acids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which antimetabolite is used in the treatment of leukemia?",
-      a: [
-        "5-fluorouracil",
-        "Mercaptopurine",
-        "Tegafur",
-        "Thioguanine",
-        "Cytarabine",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What are phosphoric esters of nucleosides called?",
-      a: [
-        "Nucleotides",
-        "Nucleoside cyclophosphates",
-        "Minor bases",
-        "Nucleosides",
-        "Nucleoids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What does the naming of nucleic acids depend on?",
-      a: [
-        "Nitrogenous bases in their composition",
-        "Phosphoric acid",
-        "Type of pentose",
-        "Purine bases",
-        "Antimetabolites",
-      ],
-      correct: 2,
-    },
-    {
-      q: "How many components does each nucleotide in nucleic acids contain?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 1,
-    },
-    {
-      q: "By which bonds are nucleotides linked to each other in a polynucleotide chain?",
-      a: [
-        "Amide bonds",
-        "Ionic bonds",
-        "Donor-acceptor bonds",
-        "Phosphodiester bonds",
-        "Peptide bonds",
-      ],
-      correct: 3,
-    },
-    {
-      q: "What is the strict matching of nitrogenous bases joined by hydrogen bonds called?",
-      a: [
-        "Condensation",
-        "Condensation reaction",
-        "Complementarity",
-        "Alkylation",
-        "Mutation",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is a disturbance in the nucleotide sequence of DNA called?",
-      a: [
-        "Decantation",
-        "Polymorphism",
-        "Complementarity",
-        "Alkylation",
-        "Mutation",
+        "Hypospadias",
+        "Hematocele",
+        "Congenital inguinal hernia",
+        "Cryptorchidism",
+        "Hydrocele of the testes",
       ],
       correct: 4,
     },
     {
-      q: "Which enzyme breaks the hydrogen bonds holding complementary DNA bases together?",
-      a: ["Helicase", "Nuclease", "Polymerase", "Isomerase", "Mutase"],
-      correct: 0,
-    },
-    {
-      q: "How many types of lipids are there?",
-      a: ["2", "3", "5", "7", "8"],
-      correct: 1,
-    },
-    {
-      q: "Pulmonary surfactant, which reduces surface tension in alveoli and helps them expand, mainly consists of a mixture of which lipids?",
-      a: [
-        "Glycolipids and sphingosine",
-        "Lecithin and sphingomyelin",
-        "Ceramide and phosphatidylserine",
-        "Colamine and dihydroxyacetone phosphate",
-        "Glycerol and linolenic acid",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Unsaponifiable lipids are of two types. Which are they?",
-      a: [
-        "Simple and complex",
-        "Terpenes and steroids",
-        "Globular and fibrillar",
-        "Lipoproteid and fibrillar",
-        "Lipoproteid and complex",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Complex saponifiable lipids are of three types. Which are they?",
-      a: [
-        "Waxes, oils, fats",
-        "Phospholipids, sphingolipids, glycolipids",
-        "Simple, complex, oils",
-        "Terpenes, steroids, phospholipids",
-        "Terpenes, steroids, glycolipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which are saturated fatty acids found in the body?",
-      a: [
-        "Palmitic, stearic",
-        "Oleic, linoleic",
-        "Linolenic, stearic",
-        "Oleic, palmitic",
-        "Hexane, octane",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which are unsaturated fatty acids found in the body?",
-      a: [
-        "Palmitic, stearic",
-        "Oleic, linoleic",
-        "Linolenic, stearic",
-        "Oleic, palmitic",
-        "Hexane, octane",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Which unsaturated fatty acid found in the body has four double bonds?",
-      a: ["Arachidonic", "Linoleic", "Linolenic", "Oleic", "Hexane"],
-      correct: 0,
-    },
-    {
-      q: "Which unsaturated fatty acid found in the body has three double bonds?",
-      a: ["Arachidonic", "Linoleic", "Linolenic", "Oleic", "Hexane"],
+      q: `21. A mother brings her 5-year-old son into your
+office for a follow-up visit. The child previously
+had a bout with pneumonia, and the mother
+remarked that the child has been coughing up
+“yellow and green stuff.” The mother mentioned
+that he has had a number of coughs and colds
+that were just like this in the past. Relevant physical
+exam findings include foul-smelling, greenish
+sputum with speckles of blood, orthopnea,
+and fever, and his chart is remarkable for cystic
+fibrosis. Relevant laboratory findings include
+spirometry showing a reduced forced expiratory
+volume in 1 second/forced vital capacity
+(FEV1/FVC) ratio, radiograph showing multiple
+cysts that have a “honeycomb” appearance, and
+CT scanning shows a dilation of bronchi. Which
+of the following is the most likely diagnosis?`,
+      a: ["Asthma", "Bronchitis", "Bronchiectasis", "Pneumonia", "Influenza"],
       correct: 2,
     },
     {
-      q: "Where is the largest amount of cholesterol, about 80%, produced?",
-      a: ["Kidney", "Stomach", "Liver", "Spleen", "Intestine"],
-      correct: 2,
-    },
-    {
-      q: "The cholesterol level in a healthy person should not exceed what value?",
-      a: ["3.2 mmol/L", "5.2 mmol/L", "3.7 mmol/L", "4.6 mmol/L", "6.4 mmol/L"],
+      q: `22. While delivering a newborn baby girl, you
+notice that she has abnormal facies, but otherwise
+the delivery is uncomplicated. About 48
+hours after birth, the baby girl develops seizures
+and muscle spasms. She is lethargic, mildly
+tachypneic, and jittery. Relevant physical findings
+include peculiar facies, low-set ears, widely
+spaced eyes, small mandible, no detectable
+thymus on palpation, muscle rigidity, harsh holosystolic
+murmur along the lower left sternal
+border, and a slight cyanotic tinge to the skin.
+Relevant laboratory findings include hypocalcemia,
+a low T lymphocyte count, radiograph
+showing absent thymic shadow, and cardiac
+ultrasound showing a congenital heart defect in
+the conotruncal region, and genetic testing reveals
+a deletion on chromosome 22q. Which of
+the following is the most likely diagnosis?`,
+      a: [
+        "Patau syndrome",
+        "DiGeorge syndrome",
+        "Miller-Decker syndrome",
+        "Prader-Willi syndrome",
+        "Treacher Collins syndrome",
+      ],
       correct: 1,
     },
     {
-      q: "Which substance is used to prevent atherosclerosis?",
+      q: `23. A mother brings in her 2-year-old son to the
+clinic, stating that she “thinks her son can’t hear
+her when she calls to him.” She also indicates that
+he seems “slower mentally than the other kids” and
+he isn’t “saying any works like Mommy.” Her
+son has been in and out of the hospital a lot due
+to congenital heart defects and recently had his
+cataracts removed. She remarks that while she
+was pregnant toward the beginning she was little
+sick and “broke out in a rash,” but she thinks that
+“was due to a new lotion she was using.” Relevant
+physical exam findings include microcephaly,
+deafness, hepatosplenomegaly, blueberry muffin
+spots, and a hint of jaundice. Which of the following
+is the most likely diagnosis?`,
       a: [
-        "Sphingosine",
-        "Glycerol",
-        "Arachidonic acid",
-        "Linetol",
-        "Linoleic acid",
-      ],
-      correct: 3,
-    },
-    {
-      q: "How many grams is the human body's requirement for linoleic acid?",
-      a: ["3-6 g", "13-16 g", "10-20 g", "1-2 g", "20-30 g"],
-      correct: 0,
-    },
-    {
-      q: "What percentage of the brain consists of fats?",
-      a: ["60%", "40%", "20%", "10%", "5%"],
-      correct: 0,
-    },
-    {
-      q: "Glycolipids most often contain residues of which substances?",
-      a: [
-        "Galactose and ceramide",
-        "Galactose and glucose",
-        "Ceramide and glucose",
-        "Glucose and linolenic acid",
-        "Linolenic and linoleic acids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which substance do glycolipids not contain?",
-      a: [
-        "Galactose",
-        "Ceramide",
-        "Phosphoric acid",
-        "Galactose and ceramide",
-        "Galactose and phosphoric acid",
+        "HIV infection",
+        "Herpes simplex virus infection",
+        "Rubella virus infection",
+        "Patau syndrome",
+        "Down syndrome",
       ],
       correct: 2,
     },
     {
-      q: "Which substances have important physiological significance because they emulsify fats and facilitate their absorption into blood?",
-      a: ["Terpenes", "Proteins", "Bile acids", "Oils", "Waxes"],
-      correct: 2,
-    },
-    {
-      q: "Which female sex hormone of the pregnane series regulates pregnancy?",
-      a: ["Progesterone", "Androgen", "Cholanes", "Malic acid", "Bromcamphor"],
-      correct: 0,
-    },
-    {
-      q: "Which compound controls the development of male secondary sex characteristics and sperm production?",
-      a: ["Androstane", "Terpenes", "Acyclic terpenes", "Stearins", "Cholanes"],
-      correct: 0,
-    },
-    {
-      q: "Which substance is a synthetic corticosteroid used in rheumatism, bronchial asthma and inflammatory skin conditions?",
+      q: `24. A young mother brings in her 3-year-old son
+because of “a white spot in his right eye” that she
+first noticed in a photograph taken 2 weeks ago.
+She also tells you that “he seems to be always
+squinting with his right eye.” She remembers
+hearing about distant family member with the
+same sort of spot who eventually went blind.
+Relevant physical exam findings include leukocoria
+(whitish spots in the pupillary area behind
+the lens), strabismus (squinting; deviation of the
+eye that the patient cannot overcome), poor vision
+in the right eye, and curious family history.
+Relevant laboratory findings include CT scan
+showing a solid intraocular tumor with intratumoral
+calcifications, and genetic testing reveals
+a deletion on chromosome 13q. Which of the
+following is the most likely diagnosis?`,
       a: [
-        "Prednisolone",
-        "Bromcamphor",
-        "Cycloterpene",
-        "Camphane",
-        "Cephalin",
+        "Congenital cataract",
+        "Congenital glaucoma",
+        "Retinitis pigmentosa",
+        "Papilledema",
+        "Retinoblastoma",
       ],
-      correct: 0,
-    },
-    {
-      q: "During metabolism, what is formed from dihydroxyacetone phosphate under the action of glycerophosphate dehydrogenase?",
-      a: [
-        "Glycerol 3-phosphate",
-        "Phosphoric acid",
-        "L-glycerol-3-phosphate",
-        "Mono- and oligosaccharides",
-        "Sphingolipids",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What are phospholipids containing choline called?",
-      a: [
-        "Cephalins",
-        "Lecithins",
-        "Serine-cephalin",
-        "Colamine-cephalin",
-        "Sphingolipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "How are lipids arranged in the bilayer of the cell membrane?",
-      a: [
-        "With polar heads and nonpolar tails facing only outside the cell",
-        "Polar heads face the aqueous surfaces, while nonpolar tails are directed inward",
-        "Nonpolar tails face outside the cell and polar heads face inside",
-        "Head and tail parts are arranged randomly only in the inner layer of the membrane",
-        "Lipids do not form a bilayer in the membrane; they are scattered",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Deficiency of which substance may lead to poor memory, brain cell damage, Alzheimer's disease and rapid mood changes?",
-      a: [
-        "Linolenic acid",
-        "Hepatoprotectors",
-        "Essential phospholipids",
-        "Phosphatidylcholine",
-        "Linoleic acid",
-      ],
-      correct: 3,
-    },
-    {
-      q: "Structurally, sphingolipids are analogues of which lipids, and what replaces glycerol in them?",
-      a: [
-        "Glycolipid analogues; lecithin replaces it",
-        "Phospholipid analogues; choline replaces it",
-        "Glycerolipid analogues; the diatomic amino alcohol sphingosine replaces it",
-        "Phosphatide analogues; serine replaces it",
-        "Fat analogues; colamine replaces it",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Select the sulfur-containing amino acid.",
-      a: ["Methionine", "Valine", "Leucine", "Phenylalanine", "Oxoproline"],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid contains an imidazole ring?",
-      a: ["Histidine", "Proline", "Oxoproline", "Tyrosine", "Arginine"],
-      correct: 0,
-    },
-    {
-      q: "If phenylalanine is not converted into tyrosine, which toxic acid accumulates in blood and is excreted in urine?",
-      a: [
-        "Phenylpyruvic acid",
-        "Diketopiperazine",
-        "Butyric acid",
-        "Butyrolactam",
-        "Apamin peptide",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which amino acid plays an important role in muscular dystrophy and ulcer disease?",
-      a: [
-        "Glutamic acid",
-        "Glutamine",
-        "Aspartic acid",
-        "Asparagine",
-        "Tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Molecules conditionally consisting of up to 10 amino acids are called ...",
-      a: [
-        "Oligopeptides",
-        "Polypeptides",
-        "Proteins",
-        "Carbohydrates",
-        "Nucleic acids",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which protein is found in blood vessels, skin, cartilage, the vitreous body of the eye and tendons?",
-      a: ["Collagen", "Endorphin", "Albumin", "Casein", "Keratin"],
-      correct: 0,
-    },
-    {
-      q: "How many polypeptide chains does hemoglobin consist of?",
-      a: ["4", "3", "2", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Which type of complex protein yields protein and phosphoric acid upon hydrolysis?",
-      a: [
-        "Phosphoproteins",
-        "Chromoproteins",
-        "Glycoproteins",
-        "Nucleoproteins",
-        "Lipoproteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Select the protein found in skin, hair/wool, nails and horns.",
-      a: ["Keratin", "Protamines", "Histone", "Casein", "Apamin"],
-      correct: 0,
-    },
-    {
-      q: "Which proteins form the structure of muscles?",
-      a: [
-        "Actin and myosin",
-        "Thyroxine and myosin",
-        "Keratin and casein",
-        "Hemoglobin and keratin",
-        "Thyroxine and myoglobin",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the main cause of sickle cell anemia?",
-      a: [
-        "Glutamic acid is replaced by valine",
-        "Glutamine is replaced by phenylalanine",
-        "Glutamine is replaced by valine",
-        "Glutamic acid is replaced by tyrosine",
-        "Glutamic acid is replaced by tryptophan",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What structural level does myoglobin have?",
-      a: ["Primary", "Secondary", "Tertiary", "Quaternary", "Quinary"],
-      correct: 2,
-    },
-    {
-      q: "Where are enkephalin neuropeptides formed?",
-      a: [
-        "In the thalamus and spinal cord",
-        "In the spinal cord and adrenal gland",
-        "In the medulla oblongata and pituitary gland",
-        "In the pineal gland and spinal cord",
-        "In the thyroid gland and spleen",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Find the complex proteins that transport fat-like substances from the liver to other organs.",
-      a: [
-        "Lipoproteins",
-        "Chromoproteins",
-        "Nucleoproteins",
-        "Phosphoproteins",
-        "Glycoproteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Proteins consisting of a protein part and additional substances are called ...",
-      a: [
-        "Simple proteins",
-        "Complex proteins",
-        "Carbohydrates",
-        "Hydrocarbons",
-        "Lipids",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Select the protein found in saliva.",
-      a: ["Mucin", "Keratin", "Casein", "Collagen", "Myosin"],
-      correct: 0,
-    },
-    {
-      q: "Select the protein found mostly in milk products and cheese.",
-      a: ["Mucin", "Keratin", "Casein", "Collagen", "Myosin"],
-      correct: 2,
-    },
-    {
-      q: "Choose the row containing fibrillar proteins.",
-      a: [
-        "Hemoglobin, insulin, actin",
-        "Keratin, collagen, myosin",
-        "Casein, insulin, enkephalin",
-        "Apamin, casein, thyroxine",
-        "Mucin, trypsin, vasopressin",
-      ],
-      correct: 1,
-    },
-    {
-      q: "How many amino acids does the insulin hormone contain?",
-      a: ["51", "31", "9", "18", "68"],
-      correct: 0,
-    },
-    {
-      q: "By which bond are the two A and B chains of insulin connected?",
-      a: [
-        "Phosphodiester bond",
-        "Ionic bond",
-        "Hydrogen bond",
-        "Disulfide bond",
-        "Metal bond",
-      ],
-      correct: 3,
-    },
-    {
-      q: "How many monosaccharides are formed when disaccharides are hydrolyzed?",
-      a: ["2", "3", "4", "5", "1"],
-      correct: 0,
-    },
-    {
-      q: "Which monosaccharides are formed when sucrose is hydrolyzed?",
-      a: [
-        "Glucose and fructose",
-        "Glucose and lactose",
-        "Fructose and starch",
-        "Mannose and arabinose",
-        "Glucose and glucose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Choose the row containing polysaccharides.",
-      a: [
-        "Cellulose, starch, inulin",
-        "Lactose, glucose, mannose",
-        "Starch, fructose, ribose",
-        "Fructose, glucose, ribose",
-        "Arabinose, dulcitol, starch",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is formed as a result of lactic acid fermentation of glucose?",
-      a: [
-        "2-hydroxypropanoic acid",
-        "Fructose",
-        "2-aminopropanoic acid",
-        "Ribose",
-        "Dulcitol",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Select a monosaccharide belonging to ketoses.",
-      a: ["Fructose", "Ribulose", "Xylose", "Glucose", "Cellulose"],
-      correct: 0,
-    },
-    {
-      q: "Oligosaccharide molecule consists of up to how many monosaccharide residues?",
-      a: ["10", "20", "30", "40", "50"],
-      correct: 0,
-    },
-    {
-      q: "Which substances are recommended instead of sucrose for patients with diabetes mellitus?",
-      a: [
-        "Xylitol, sorbitol",
-        "Sorbitol, mannitol",
-        "Xylitol, furfural",
-        "Mannitol, xylitol",
-        "Mannitol, ribose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the glucose level in the blood of a healthy person?",
-      a: ["0.08-0.12%", "0.15-1.65%", "5-10%", "5-6%", "25-45%"],
-      correct: 0,
-    },
-    {
-      q: "Which carbohydrates belong to oligosaccharides?",
-      a: [
-        "Sucrose, lactose, maltose",
-        "Lactose, starch, glucose",
-        "Fructose, glucose, ribose",
-        "Starch, sucrose, glycogen",
-        "Chitin, chitosan, glycogen",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which polysaccharide is widely distributed in animal and human tissues?",
-      a: ["Glycogen", "Chitosan", "Starch", "Cellulose", "Hyaluronic acid"],
-      correct: 0,
-    },
-    {
-      q: "Sulfated derivatives of which polysaccharide are used to prepare membranes for artificial kidneys?",
-      a: ["Chitin", "Chitosan", "Hyaluronic acid", "Starch", "Cellulose"],
       correct: 4,
     },
     {
-      q: "In diabetic patients, accumulation of D-sorbitol in the vitreous body of the eye leads to which disease?",
-      a: ["Cataract", "Myoma", "Atherosclerosis", "Hypertension", "Polyuria"],
-      correct: 0,
-    },
-    {
-      q: "In hypoglycemia, if blood glucose falls below which level, coma may occur?",
+      q: `25. A father brings his 8-year-old son to the
+clinic and tells you that “he is bleeding a lot”
+and that “the kid comes in from playing with a
+lot of bruises.” When talking to the son, he tells
+you that he is “one of the coolest kids in school”
+because “he can pull his skin out all over the
+place.” Then, he proceeds to demonstrate this
+fact by pulling his ears out several inches away
+from his body. His father tells you that last year
+his son was rushed to the hospital and had
+emergency surgery because “he had a hole
+in his intestines.” Relevant physical findings
+include highly elastic, velvety skin; fragile skin
+that bruises easily; and loose, unstable, hypermobile
+joints. Relevant laboratory findings
+include genetic testing revealing a mutation in
+the gene for peptidyl lysine hydroxylase. Which
+of the following is the most likely diagnosis?`,
       a: [
-        "2.22-2.76 mmol/L",
-        "1.66-2.55 mmol/L",
-        "5.77-6.25 mmol/L",
-        "0.05-1.15 mmol/L",
-        "1.05-3.15 mmol/L",
+        "Ehlers-Danlos syndrome",
+        "Marfan syndrome",
+        "Junctional epidermolysis bullosa",
+        "Osteogenesis imperfecta",
+        "Achondroplasia",
       ],
       correct: 0,
     },
     {
-      q: "Which substances are used to prepare dietary drinks, sugar-free sweet pastries and chewing gums for patients with diabetes?",
+      q: `26. A frantic father rushes his 1-year-old
+daughter to your clinic, saying that he “thinks
+his daughter’s leg is broken.” He says that this
+is the third time that his daughter has broken
+a bone in the last 2 months, and he thinks his
+wife may be abusing the child while he is at
+work. Relevant physical exam findings include
+short, deformed limbs, blue sclera of the eye,
+and kyphoscoliosis, and medical history indicates
+that there may have been bone fractures
+at birth. Relevant laboratory findings include
+radiographs showing multiple, healed fractures
+of the limbs, and genetic testing reveals a mutation
+in the gene for type 1 collagen on chromosome
+7q22. Which of the following is the most
+likely diagnosis?`,
       a: [
-        "Xylitol, sorbitol, mannitol, glycine",
-        "Fructose, starch, dulcitol, ribose",
-        "Mannitol, cellulose, glycogen, hyaluronic acid",
-        "Glucose, ribose, sucrose, maltose",
-        "Cellulose, starch, chitin, chitosan",
+        "Marfan syndrome",
+        "Child abuse",
+        "Osteogenesis imperfecta",
+        "Ehlers-Danlos syndrome",
+        "Achondroplasia",
       ],
-      correct: 0,
-    },
-    {
-      q: "Which fructose derivative is an important preparation used in heart diseases and seizures?",
-      a: [
-        "Fructose diphosphate",
-        "L-fructose",
-        "Fructose monophosphate",
-        "Fructose monosulfate",
-        "D-fructose",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Ribose and deoxyribose are ...",
-      a: [
-        "Aldopentoses",
-        "Aldohexoses",
-        "Ketopentoses",
-        "Ketohexoses",
-        "Proteins",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which monosaccharide is part of ATP?",
-      a: ["Ribose", "Glucose", "Fructose", "Mannose", "Aldotriose"],
-      correct: 0,
-    },
-    {
-      q: "Sulfated derivatives of which polysaccharide are also used instead of heparin to prevent blood coagulation?",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Cellulose"],
       correct: 2,
     },
     {
-      q: "Which polysaccharide is used in pharmacy to coat unpleasant-tasting medicines?",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Starch"],
+      q: `27. A 22-year-old man comes into the office
+complaining of blurred vision. He states that
+he “has not had problems seeing before.” He
+remarks that “his dad and sister had the same
+problem around his age.” Relevant physical
+exam findings include long, spidery fingers
+(arachnodactyly), hypermobile joints, arm span
+much greater than body height, and dislocation
+of the lens (ectopia lentis). Relevant laboratory
+findings include CT scan showing a dilated
+aorta, and genetic testing reveals a mutation for
+the fibrillin-1 gene on chromosome 15q21.1.
+Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Marfan syndrome",
+        "Klippel-Feil syndrome",
+        "Osteogenesis imperfecta",
+        "Ehlers-Danlos syndrome",
+        "Achondroplasia",
+      ],
+      correct: 0,
+    },
+    {
+      q: `28. A father brings his 12-year-old son and tells
+you that “his son is feeling weakness in his legs
+and is beginning to fall a lot.” The father says
+“he can’t run as good as he used to.” He also
+says it’s gotten so bad that when “he is sitting
+down he has to put his hands on his thighs just
+to stand up.” Relevant physical exam findings
+include rapidly progressive muscle weakness
+with frequent falls; muscle wasting in the legs
+and pelvis and progressing to shoulders and
+neck; and pseudohypertrophy of calf muscles.
+Relevant laboratory findings include no sign
+of myoglobulinuria, highly elevated creatine
+phosphokinase (CPK), and electromyography
+(EMG) showing weakness due to muscle tissue
+destruction and not nerve damage, and genetic
+testing reveals a mutation on chromosome
+Xp21. Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Achondroplasia",
+        "Myasthenia gravis",
+        "McArdle disease",
+        "Polymyositis",
+        "Duchenne muscular dystrophy",
+      ],
       correct: 4,
     },
     {
-      q: "Identify the polysaccharide found in the vitreous body of the eye, umbilical cord, cartilage and synovial fluid.",
-      a: ["Hyaluronic acid", "Chitin", "Chitosan", "Glycogen", "Starch"],
+      q: `29. A mother brings in her 5-year-old son at the
+request of his summer camp counselor, who
+claims “the boy is hyperactive and doesn’t seem
+to be as smart as the other kids.” The mother
+agrees but has not done anything about until
+now. The mother indicates that her son was
+“pretty small at birth” and had a ventricular
+septal defect that was repaired soon after birth.
+The mother further tells you that “except for
+being small and the heart problem, everything
+else in the pregnancy was just fine; but you
+know I did have a drink every now and then.”
+Relevant physical exam findings include hypertelorism,
+smooth philtrum, short palpebral
+fissures, flat nasal bridge, maxillary (midface)
+hypoplasia, and a thin upper lip. Relevant laboratory
+findings include magnetic imaging (MRI)
+showing holoprosencephaly. Which of the following
+is the most likely diagnosis?`,
+      a: [
+        "Alcohol consumption during pregnancy",
+        "Thalidomide consumption during pregnancy",
+        "Phenytoin consumption during pregnancy",
+        "Prader-Willi syndrome",
+        "Wolf-Hirschhorn syndrome",
+      ],
       correct: 0,
     },
     {
-      q: "Find the polysaccharide found in the liver, muscles and lungs.",
-      a: ["Hyaluronic acid", "Chitin", "Heparin", "Glycogen", "Chitosan"],
+      q: `30. A 25-year-old woman who is 32 weeks
+pregnant comes into the emergency room while
+in labor. The infant is stillborn. The mother is
+obviously upset and says “I want to know what
+happened.” Although the mother had no prenatal
+care, she says “I am shocked that something
+went wrong because I had no problems with my
+first pregnancy; that baby is fine.” The mother is
+sincere when she states that she did not smoke
+or drink alcohol during the pregnancy. The
+mother says, “Everything was going along just
+fine with this pregnancy until just few hours
+ago.” The mother requests an autopsy on the
+infant. Relevant physical findings of the autopsy
+include the finding that the body is swollen
+and jaundiced; yellow deposits in several areas
+of the brain, especially the basal ganglia; and
+ascites. Relevant laboratory findings of the
+autopsy include severe anemia, high serum
+bilirubin levels, and infant’s blood type O positive.
+Further lab tests were done on the blood
+of the mother and father. The mother’s blood
+was O negative. The father’s blood was O positive.
+Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Oligohydramnios",
+        "Polyhydramnios",
+        "Severe preeclampsia",
+        "Erythroblastosis fetalis",
+        "Placental abruption",
+      ],
       correct: 3,
     },
     {
-      q: "Which polysaccharide is present in the egg-cell covering and participates in fertilization after its cleavage?",
-      a: [
-        "Chitosan",
-        "Hyaluronic acid",
-        "Aspartic acid",
-        "Chondroitin sulfate",
-        "Heparin",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is the constant transition of carbohydrate molecules in solution from one tautomeric form to another called?",
-      a: [
-        "Cyclo-oxo tautomerism",
-        "Conformation",
-        "Configuration",
-        "Chiral center",
-        "Oxidation",
-      ],
-      correct: 0,
-    },
-  ],
-  latin1: [
-    {
-      q: "In Latin anatomical terminology, one prefix means 'movement toward the body's axis' and its opposite means 'movement away from the axis.' Name both prefixes, give their exact meanings, and write the full Latin names of the two muscle groups that perform these opposing movements.",
-      a: [
-        "Prefixes: ad- (movement toward) and ab- (movement away). Muscle Groups: Musculi adductores and Musculi abductores.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The embryonic membrane has three distinct layers. What are the Greek-derived terms for the innermost and outermost of these layers, and what is the layer located between them called?",
-      a: [
-        "Innermost layer: Endoderma (or Entoderma). Outermost layer: Ectoderma. Middle layer: Mesoderma.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Two prefixes — one Latin, one Greek — share the meaning 'below/beneath' and are often used interchangeably in anatomical terms. Name both prefixes and give two clinical examples for each, making sure your examples clearly show the difference between the Latin and Greek forms.",
-      a: [
-        "Prefixes: Latin = sub-, Greek = hypo-. Latin clinical examples: Subacutus (subacute), subfebrilis (subfebrile). Greek clinical examples: Hypotonia (low tone), hypoglycaemia (low blood sugar).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What are the precise Latin anatomical region names for the area directly above the stomach and the area of the lower abdomen below the stomach? Write both terms in full, including the word 'regio.'",
-      a: [
-        "Above the stomach: Regio epigastrica. Below the stomach: Regio hypogastrica.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Latin prefixes used in medicine express opposite time relationships — one means 'before an event,' the other 'after.' Without being given these prefixes, identify them, then write the correct medical term for (a) the forward bending of the uterus and (b) the period following a surgical operation.",
-      a: [
-        "Prefixes: ante- (or prae-) and post-. Terms: (a) Anteversio uteri (or anteflexio uteri), (b) periodus postoperativus.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek prefix 'meta-' carries two entirely different meanings depending on context. Explain both meanings with a medical example for each, and identify which of these meanings underlies the term for the body's overall chemical transformation process.",
-      a: [
-        "Meaning 1: 'Change/transformation' (Example: metaplasia — transformation of tissue). Meaning 2: 'Behind/after' (Example: metacarpus — part of hand after the wrist). Chemical transformation process: Metabolismus (based on the 'change' meaning).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Two Greek prefixes — one meaning 'surrounding/around' and one meaning 'beside/adjacent to' — are frequently confused. Name them, then write the correct term for (a) the fibrous sheath covering a bone and (b) the membranous sac enclosing the heart.",
-      a: [
-        "Prefixes: peri- (surrounding/around) and para- (beside/adjacent to). Terms: (a) Periosteum, (b) Pericardium.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Latin and Greek each have a prefix meaning 'through' or 'across.' Name both prefixes and give one surgical term and one physical-therapy term that illustrate their use.",
-      a: [
-        "Prefixes: Latin = trans- (or per-), Greek = dia-. Surgical term: Transectio (cross-section cutting). Physical-therapy term: Diathermy (deep tissue heating).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "A single Latin prefix meaning 'again' or 'restoration' appears in two fundamental emergency medicine terms — one referring to the restoration of cardiac and respiratory function, the other to the long-term recovery of lost physical ability. Write both complete terms.",
-      a: [
-        "Prefix: re-. Terms: Resuscitatio (cardiopulmonary resuscitation) and Rehabilitatio (recovery of physical ability).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Greek and Latin each have a prefix expressing 'togetherness' or 'union.' Name the Greek forms and the Latin forms. Then write the term for (a) the mutual biological dependence between two organisms and (b) the bony fusion of two adjacent bones.",
-      a: [
-        "Prefixes: Greek = syn- (or sym-), Latin = con- (or com- / co-). Terms: (a) Symbiosis, (b) Synostosis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the precise Latin medical term for a clinical sign indicating that a particular treatment must not be used in a given patient? Write the term in full and identify the prefix it contains.",
-      a: ["Medical term: Contraindicatio. Prefix: contra- (against)."],
-      correct: 0,
-    },
-    {
-      q: "Two Greek prefixes are direct opposites: one denotes normal, correct functioning; the other denotes disordered or impaired functioning. Identify both prefixes. Then write the medical term for (a) normal thyroid gland activity and (b) the disordered tone of smooth or skeletal muscle.",
-      a: [
-        "Prefixes: eu- (normal) and dys- (disordered). Terms: (a) Euthyreosis, (b) Dystonia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Which Latin prefix specifically denotes movement or introduction 'from the outside inward' into a body cavity? Give the term for the act of introducing something into the body, and the positional term meaning 'located within the abdominal cavity.'",
-      a: [
-        "Prefix: intro-. Terms: Introductio (act of introducing) and Intraabdominalis (located within the cavity).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Three prefixes — two Latin, one Greek — all convey the concept of 'anterior' or 'in front.' Name all three. Then write medical terms showing (a) the forward bending of an organ, (b) the period before birth, and (c) the clinical concept of disease prevention.",
-      a: [
-        "Prefixes: Latin = ante- and prae-, Greek = pro-. Terms: (a) Anteflexio (or anteversio), (b) Praenatalis, (c) Prophylaxis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "A Latin prefix meaning 'behind' or 'backward' is used in several anatomical terms. Name the prefix. Then write the term for (a) the fossa located posterior to the mandible, (b) backward bending of the uterus, and (c) the tissue space located posterior to the peritoneum.",
-      a: [
-        "Prefix: retro-. Terms: (a) Fossa retromandibularis, (b) Retroversio uteri (or retroflexio uteri), (c) Spatium retroperitoneale.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the precise Greek-derived medical term for the permanent, rigid fusion of two bones through bone tissue itself (not through cartilage or ligament)? Identify the prefix and root within that term, and name the Latin equivalent prefix.",
-      a: [
-        "Medical term: Synostosis. Components: Prefix syn- (together) + root osteo- (bone). Latin equivalent prefix: con- (or co-).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Two Greek prefixes both relate to 'external' or 'outward' position, yet they appear in different terms. Name both prefixes. Give the term for (a) the outer cytoplasmic layer of a cell and (b) the outward protrusion of the eyeball from its socket.",
-      a: ["Prefixes: ecto- and exo-. Terms: (a) Ectoplasma, (b) Exophthalmus."],
-      correct: 0,
-    },
-    {
-      q: "In Greek medical terminology, what are the combining forms for 'head' and for 'body/trunk'? Without being given these, write the term for (a) abnormal enlargement of the head and (b) enlargement of the entire body.",
-      a: [
-        "Combining forms: Head = cephalo- (or kephalo-), Body = somato-. Terms: (a) Macrocephalia (or megalocephalia), (b) Macrosomia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Using Greek combining forms for 'bone' and 'joint,' and the Greek suffixes for pathological hardening and pathological softening, construct all four possible disease terms and define each one.",
-      a: [
-        "Osteosclerosis: Pathological hardening of bone tissue. Osteomalacia: Pathological softening of bone tissue. Arthrosclerosis: Pathological hardening of joint structures. Arthromalacia: Pathological softening of joint cartilage.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Greek prefixes are used to describe congenitally short or abnormally long anatomical structures. Without being given these prefixes, identify them. Then write the terms for (a) congenitally short fingers and (b) an abnormally elongated skull.",
-      a: [
-        "Prefixes: Short = brachy-, Long = dolicho-. Terms: (a) Brachydactylia, (b) Dolichocephalia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In cardiology, two Greek prefixes describe abnormal heart rate — one too fast, one too slow. Identify both prefixes and write the complete clinical terms for each condition. Then write the terms for pathological widening and pathological narrowing of a blood vessel.",
-      a: [
-        "Heart rate terms: Tachycardia (fast) and Bradycardia (slow). Vessel terms: Angiectasia (widening) and Angiostenosis (narrowing).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Give the Greek combining forms for (a) mouth, (b) tongue, and (c) tooth. Using these roots combined with the appropriate surgical suffixes, write the terms for the complete removal of the tonsils and the complete removal of the appendix.",
-      a: [
-        "Combining forms: (a) Mouth = stomato-, (b) Tongue = glosso-, (c) Tooth = odonto-. Surgical terms: Tonsillectomia (removal of tonsils) and Appendectomia (removal of appendix).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In surgical terminology, the suffix for plastic repair differs from the suffix for creating a permanent artificial opening. State both suffixes clearly. Then write the term for (a) plastic surgery of the nose and (b) the creation of an artificial opening into the kidney.",
-      a: [
-        "Suffixes: Repair = -plastia, Opening = -stomia. Terms: (a) Rhinoplastia, (b) Nephrostomia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The suffix for aspiration of fluid by needle puncture differs from the suffix for creating an artificial opening. State both suffixes. Then write (a) the term for needle aspiration of fluid from the abdominal cavity and (b) the term for creating an artificial opening into the stomach.",
-      a: [
-        "Suffixes: Aspiration = -centesis, Opening = -stomia. Terms: (a) Laparocentesis (or abdominocentesis), (b) Gastrostomia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Give the Greek combining forms for the small intestine and the large intestine separately. Then write (a) the term for radiological imaging of the small intestine and (b) the term for endoscopic visualization of the large intestine.",
-      a: "Combining forms: Small intestine = entero-, Large intestine = colo- (or colono-). Terms: (a) Enterographia, (b) Coloscopia (or colonoscopia).",
-      correct: 0,
-    },
-    {
-      q: "In urology, the Greek combining form for the renal pelvis is distinct from the combining form for the kidney itself. Name both. Then write the term for the disease of stone formation within the kidney.",
-      a: "Combining forms: Renal pelvis = pyelo-, Kidney = nephro-. Term: Nephrolitiasis.",
-      correct: 0,
-    },
-    {
-      q: "Using the Greek combining forms for the spleen and urinary bladder, and the prefixes for excess and deficiency, write (a) the term for pathological enlargement of the spleen and (b) the term for elevated blood glucose.",
-      a: "Combining forms: Spleen = spleno-, Bladder = cysto-. Prefixes: Excess = hyper-, Deficiency = hypo-. Terms: (a) Splenomegalia, (b) Hyperglycaemia.",
-      correct: 0,
-    },
-    {
-      q: "Two Greek suffixes are used for opposing surgical situations involving an organ's position: one describes the pathological descent of an organ; the other describes its surgical fixation in the correct position. Name both suffixes. Then write the terms for (a) prolapse of the rectum and (b) surgical fixation of the rectum.",
-      a: "Suffixes: Prolapse = -ptosis, Fixation = -pexia. Terms: (a) Proctoptosis, (b) Proctopexia.",
-      correct: 0,
-    },
-    {
-      q: "Give the Greek combining forms for (a) uterus, (b) vagina, and (c) ovary. Then write the term for a newly formed tumor of the uterus and the term for inflammation of the vagina.",
-      a: "Combining forms: (a) Uterus = hystero- (or metro-), (b) Vagina = colpo-, (c) Ovary = oophoro-. Terms: Hysteromyoma (uterine tumor) and Colpitis (vaginal inflammation).",
-      correct: 0,
-    },
-    {
-      q: "What is the Greek combining form for the lacrimal sac? Write the term for its inflammation. Then write the complex surgical term for the procedure that creates a new drainage passage between the lacrimal sac and the nasal cavity.",
-      a: "Combining form: dacryocysto-. Terms: Dacryocystitis (inflammation) and Dacryocystorhinostomia (surgical passage creation).",
-      correct: 0,
-    },
-
-    {
-      q: "In surgical terminology, what suffix describes the procedure of mechanically widening a hollow organ or vessel using a special instrument? What is the name of that instrument? How does this procedure differ from the general term dilatatio?",
-      a: [
-        "Suffix: -eurysis. Instrument: Eurynter. Difference: Dilatatio is a passive or pathological widening, while -eurysis is active mechanical widening using an instrument.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Give the Greek combining forms for (a) heat/fever and (b) cold/frost. Write the term for abnormally elevated body temperature, the term for abnormally low body temperature, and the term for the therapeutic use of cold in treatment.",
-      a: [
-        "Combining forms: Heat = thermo-, Cold = cryo-. Terms: Hyperthermia (high temp), Hypothermia (low temp), and Cryotherapia (cold therapy).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Using the Greek color roots for white, red, deep blue, and black, write one blood or skin pathology term for each color and define it.",
-      a: [
-        "White (leuco-): Leucodermia (localized loss of skin pigmentation). Red (erythro-): Erythrocytosis (abnormal increase of red blood cells). Deep Blue (cyano-): Cyanosis (bluish discoloration due to low oxygen). Black (melano-): Melanoma (malignant black-pigmented skin tumor).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In ophthalmology, what is the clinical term for equal pupil size bilaterally? What is the term for unequal pupil size? Identify the Greek roots within each term.",
-      a: [
-        "Equal size: Isocoria. Unequal size: Anisocoria. Greek roots: iso- (equal), an- (not/without), and core- (pupil).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Using the Greek combining form for the peritoneum and the suffix for surgical incision, write the correct term for surgically opening the peritoneum. How does this term differ from laparotomia?",
-      a: [
-        "Medical term: Peritoneotomia. Difference: Laparotomia is the incision through the abdominal wall, whereas peritoneotomia is the direct incision of the peritoneal membrane itself.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Give the Greek combining forms for (a) the hand and (b) the vertebral column (two options). Using the suffix for plastic repair, write the term for plastic surgery of the hand and one term for plastic reconstruction of the vertebral column.",
-      a: [
-        "Combining forms: Hand = chiro-, Spine = spondylo- (or rhachio-). Terms: Chiroplastia (hand plastic surgery) and Spondyloplastia (spine reconstruction).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek prefix meaning 'all' or 'involving every part' appears in several pathology terms. Write the term for inflammation involving all three layers of the heart wall and the term for inflammation of all parts of a bone.",
-      a: [
-        "Prefix: pan-. Terms: Pancarditis (all heart layers) and Panostitis (all bone parts).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What Greek prefix denotes remote or distance-based action? Write (a) the term for remote medical diagnosis and (b) the term for the specialty of remote medicine. What suffix denotes a medical treatment specialty?",
-      a: [
-        "Prefix: tele-. Terms: (a) Telediagnosis, (b) Telemedicina. Suffix: -iatria (medical treatment specialty).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek suffix -schisis describes a congenital failure of fusion or a pathological splitting. Write the term for (a) congenital cleft lip, (b) congenital cleft palate, and (c) the combined condition involving the lip, jaw, and palate simultaneously.",
-      a: [
-        "Terms: (a) Cheiloschisis, (b) Palatoschisis, (c) Cheilognathopalatoschisis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek suffix -megalia denotes pathological enlargement. Write the terms for (a) enlargement of the liver, (b) enlargement of the spleen, and (c) simultaneous enlargement of both organs. What Greek prefix denotes 'thin' or 'delicate,' and give an example of its use in a neurological term?",
-      a: [
-        "Terms: (a) Hepatomegalia, (b) Splenomegalia, (c) Hepatosplenomegalia. Prefix: lepto- (thin/delicate). Neurological example: Leptomeningitis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In thoracic surgery, two different suffixes are used: one for surgically opening an organ, and one for its complete removal. Apply these to the trachea and to the lung — write all four resulting terms.",
-      a: [
-        "Trachea: Tracheotomia (opening), Tracheoectomia (removal). Lung: Pneumonotomia (opening), Pneumonectomia (removal).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What Greek prefix denotes congenital shortness of a structure? Write the term for abnormally short fingers. What is the opposing prefix for abnormal length, and what term does it form when applied to fingers?",
-      a: [
-        "Prefixes: Short = brachy-, Long = macro- (or megalo-). Terms: Brachydactylia (short fingers) and Macrodactylia (abnormally long fingers).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Write the term for the surgical creation of an artificial opening into (a) the urinary bladder and (b) the ureter. What suffix is used for these procedures?",
-      a: ["Terms: (a) Cystostomia, (b) Ureterostomia. Suffix: -stomia."],
-      correct: 0,
-    },
-    {
-      q: "Two Greek prefixes describe pathological changes in moisture content and wall thickness of hollow organs. One denotes dryness; the other denotes thickening. Name both prefixes and write one gastric term for each.",
-      a: [
-        "Prefixes: Dryness = xero-, Thickening = pachy-. Gastric terms: Xerogastria (dry stomach) and Pachygastria (thickened stomach wall).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In cardiology, what is the term for degenerative hardening of the myocardium? What suffix expresses this hardening process? Write also the terms for pathological narrowing and pathological widening of a blood vessel.",
-      a: [
-        "Myocardium term: Myocardiosclerosis. Suffix = -sclerosis. Vessel terms: Angiostenosis (narrowing) and Angiectasia (widening).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What Greek combining form is used for the lacrimal sac? Write (a) the term for its pathological inferior displacement and (b) the term for its surgical fixation back into position.",
-      a: [
-        "Combining form: dacryocysto-. Terms: (a) Dacryocystoptosis, (b) Dacryocystopexia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek suffix -rrhexis denotes rupture, while -lysis denotes dissolution or separation. Apply both to the lung (using the correct combining form) and define each resulting term.",
-      a: [
-        "Pneumonorrhexis: Pathological rupture of the lung tissue. Pneumonolysis: Dissolution or surgical separation of lung adhesions.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Using the Greek combining form for the jaw and the suffix for pathological hardening, write the term for jaw bone sclerosis. Then, using the combining form for the tooth and the suffix for pathological softening, write the term for softening of dental tissue.",
-      a: [
-        "Jaw term: Gnathosclerosis (jaw bone hardening). Tooth term: Odontomalacia (softening of dental tissue).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What are the two Greek combining forms for the uterus? Write the term for uterine prolapse using each form. Then write the term for surgical repair of the vaginal wall.",
-      a: [
-        "Combining forms: hystero- and metro-. Prolapse terms: Hysteroptosis and Metroptosis. Vaginal wall repair: Colpoplastia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The suffix -centesis denotes needle aspiration of a body cavity. Write the correct terms for aspiration of fluid from (a) the pleural cavity via the chest wall and (b) the abdominal cavity.",
-      a: [
-        "Terms: (a) Thoracocentesis (or pleurocentesis), (b) Laparocentesis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In hematology, the suffix -penia denotes deficiency of a cell type. Write the term for deficiency of white blood cells and define the Greek roots within it. How does this differ from the term for bluish discoloration due to oxygen deficiency?",
-      a: [
-        "White blood cell deficiency term: Leucopenia. Greek roots: leuco- (white) + -penia (deficiency). Difference: Cyanosis is a bluish discoloration caused by oxygen deficiency, whereas leucopenia refers strictly to a low count of white cells.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In neurology, the prefix pseudo- combines with neural roots. Write the term for a false neuroma. How does polyneuritis differ structurally from mononeuritis?",
-      a: [
-        "False neuroma term: Pseudoneuroma. Structural difference: Mononeuritis involves inflammation of a single isolated nerve, whereas polyneuritis structurally involves the simultaneous inflammation of multiple peripheral nerves.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek roots carcinos and onkos are both used in oncology, but they are not synonymous. Explain the precise difference in meaning between carcino- and onco-. Write one term for each and define it.",
-      a: [
-        "Precise difference: carcino- specifically denotes a malignant epithelial tumor (cancer), while onco- is a general term for any mass, swelling, or tumor. Terms: Carcinoma (a malignant tumor) and Oncologia (the study of tumors).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Give the Greek combining forms for cartilage and for muscle, along with their Latin equivalents. Write the term for inflammation of cartilage and the term for a benign muscle tumor.",
-      a: [
-        "Cartilage: Greek = chondro-, Latin = cartilago. Muscle: Greek = myo-, Latin = musculus. Inflammation of cartilage: Chondritis. Benign muscle tumor: Myoma.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Latin has two entirely different words for bile/gall. Write both in the nominative case with their gender. What single Greek combining form corresponds to both?",
-      a: [
-        "Latin words: Bilis, bilis f. and Fel, fellis n. Greek combining form: chole-.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the Latin word for lymph, and what is the Latin word for milk? Give the Greek combining form for each. Write one clinical term using each Greek form.",
-      a: "Latin words: Lymph = lympha, ae f., Milk = lac, lactis n. Greek combining forms: Lymph = lympho-, Milk = galacto-. Clinical terms: Lymphadenitis and Galactorrhoea.",
-      correct: 0,
-    },
-    {
-      q: "Latin uses two distinct words for feces — one is a plural noun, the other a singular neuter noun. Write both with their genitive forms. What single Greek combining form unifies them in medical terminology?",
-      a: "Latin words: Plural noun = faeces, faecium f., Singular neuter noun = stercus, stercoris n. Greek combining form: copro- (or scato-).",
-      correct: 0,
-    },
-    {
-      q: "In histology and cytology, two Greek combining forms are fundamental: one for 'cell' and one for 'tissue.' Name both and their Latin equivalents. Write the term for the scientific study of tissue.",
-      a: "Cell: Greek = cyto-, Latin = cellula. Tissue: Greek = histo-, Latin = textus. Scientific study of tissue: Histologia.",
-      correct: 0,
-    },
-    {
-      q: "Two Greek combining forms are spelled very similarly but refer to completely different substances: one means 'sweat,' the other means 'water.' Write both clearly, showing the spelling difference. Give the Latin word for each substance and one clinical term using each Greek form.",
-      a: "Spelling difference: Sweat = hidro-, Water = hydro-. Latin words: Sweat = sudor, sudoris m., Water = aqua, aquae f. Clinical terms: Hidradenitis and Hydrocephalus.",
-      correct: 0,
-    },
-    {
-      q: "In dermatology, what is the Greek combining form for fat tissue? What is the combining form for the horny/cornified layer? Write the term for a fatty benign tumor and the term for inflammation of the cornea.",
-      a: "Fat tissue: lipo- (or steato-). Horny layer: kerato-. Fatty benign tumor: Lipoma. Inflammation of the cornea: Keratitis.",
-      correct: 0,
-    },
-  ],
-  latin2: [
-    {
-      q: "The Latin root necro- and the Greek root xeno- each describe distinct concepts. Define both. Write the term for tissue death due to injury, and the term for transplanting tissue from a different species.",
-      a: [
-        "Definitions: necro- means dead tissue or death; xeno- means foreign or from another species. Injury death term: Necrosis. Different species transplant: Xenotransplantatio.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "To form the term for above-normal blood glucose, two Greek components must be combined. Without being told what they are, identify the prefix indicating excess and the root indicating sugar. Write the complete term and its clinical opposite.",
-      a: [
-        "Components: Prefix = hyper-, Root = glyc-. Complete term: Hyperglycaemia. Clinical opposite: Hypoglycaemia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In orthopedics, two Greek prefixes describe opposite abnormalities of bone shape: one denotes abnormal elongation, the other denotes abnormal flattening. Name both. Write the term for a flattened vertebral body and the term for a flat skull base.",
-      a: [
-        "Prefixes: Elongation = dolicho-, Flattening = platy-. Terms: Platyspondylia (flattened vertebral body) and Platybasia (flat skull base).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Three prefixes are used to describe an organ's relationship to normal structure: one means 'truly normal,' one means 'correctly positioned/straight,' and one means 'falsely resembling normal.' Identify all three and give a medical example of each.",
-      a: [
-        "Prefixes: Truly normal = eu-, Straight/correct = ortho-, Falsely resembling = pseudo-. Medical examples: Eupnoe (normal breathing), Orthopaedia (correction of musculoskeletal system), and Pseudomembrana (false membrane).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The prefixes lepto- and pachy- describe opposite tissue qualities. Define both. Write the clinical terms for (a) the thin inner meningeal layer and (b) the thick outer meningeal layer.",
-      a: [
-        "Definitions: lepto- means thin or delicate; pachy- means thick or dense. Terms: (a) Leptomeninx (pia and arachnoid mater), (b) Pachymeninx (dura mater).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In medical contexts, tele- and micro- are used for opposite scales of observation. Write the term for remote medical diagnosis (tele-) and the term for a pathologically small cell (micro-). What distinguishes their fields of application?",
-      a: [
-        "Terms: Telediagnosis and Microcytus. Application fields: Tele- is applied to macro-scale clinical operations across space/telecommunications, whereas micro- is applied strictly to cellular, microscopic, or laboratory findings.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The prefixes hetero- and homo- describe structural similarity or difference in tissues. Define both. Write the term for a graft using tissue from a different individual of the same species and the term for a graft using tissue from a different species entirely.",
-      a: [
-        "Definitions: hetero- means different/dissimilar; homo- means same/genetically identical. Same species graft: Allotransplantatio (or homotransplantatio). Different species graft: Xenotransplantatio (or heterotransplantatio).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek prefix xero- and the prefix pyreto- describe opposing tissue/body states. Define both. Write one dermatological term using xero- and one clinical term using pyreto-.",
-      a: [
-        "Definitions: xero- means dry; pyreto- means fever or heat. Xero- term: Xerodermia (abnormally dry skin). Pyreto- term: Pyretotherapia (treatment using induced fever).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The prefix hemi- and the prefix pan- express opposite scope. Write the term for paralysis of one side of the body, the term for pain in one half of the head, and the term for inflammation of all layers of the heart.",
-      a: [
-        "Paralysis term: Hemiplegia. Head pain term: Hemicrania. Heart layers inflammation: Pancarditis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In cardiology, what is the term for pathological enlargement of the heart as a whole? What is the term for hypertrophy specifically of the cardiac muscle? Write both and identify the difference in meaning.",
-      a: [
-        "Enlargement of whole heart: Cardiomegalia. Muscle hypertrophy: Hypertrophia myocardii. Difference: Cardiomegaly implies an overall increase in heart dimensions, while myocardial hypertrophy refers explicitly to structural thickening of the muscle fibers themselves.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek root chroma and the specific roots polio- and melano- all relate to color or pigmentation. Distinguish what each refers to. Write one term using each root.",
-      a: [
-        "Refers to: Chroma refers to color or pigment generally; polio- refers specifically to gray matter; melano- refers to black pigment. Terms: Chromatophobia, Poliomyelitis, and Melanoma.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In transplantation terminology, auto-, homo-, hetero-, and xeno- each describe the source of transplanted tissue differently. Define all four and write the corresponding transplantation term for each.",
-      a: [
-        "Definitions: auto- (self), homo- (same species), hetero- (different species), xeno- (foreign species). Terms: Autotransplantatio, Homotransplantatio, Heterotransplantatio, and Xenotransplantatio.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Three Greek combining forms are used for color-related blood findings: one for bluish discoloration (oxygen-related), one for red blood cells, one for white blood cells. Without being told the forms, name them and write one laboratory term using each.",
-      a: [
-        "Forms: Blue = cyano-, Red = erythro-, White = leuco-. Laboratory terms: Cyanosis, Erythrocytosis, and Leucocytosis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In wound pathology, neo- and necro- describe opposing tissue states. Write the term for new tissue formation (as in a tumor) and the term for tissue death. What is necrobiosis, and how does it differ from necrosis?",
-      a: [
-        "New formation: Neoplasma. Tissue death: Necrosis. Necrobiosis definition & difference: Necrobiosis is the slow, physiological aging and gradual death of cells during normal life. It differs from necrosis, which is rapid, unprogrammed pathological cell death.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Three prefixes express different levels of fluid or substance quantity: deficiency, excess, and normal equal distribution. Identify all three and write (a) the term for decreased blood volume, (b) the term for increased blood volume, and (c) the term for equal muscle tension on both sides.",
-      a: [
-        "Prefixes: Deficiency = hypo-, Excess = hyper-, Equal distribution = iso-. Terms: (a) Hypovolaemia, (b) Hypervolaemia, (c) Isotonia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In skeletal radiology, two Greek prefixes describe opposite structural abnormalities: one for a flat/wide bone shape, the other for abnormal narrowing of a canal or passage. Name both and write one term each for vertebral and skull pathology.",
-      a: [
-        "Prefixes: Flat/wide = platy-, Narrowing = sten- (or steno-). Vertebral term: Platyspondylia. Skull pathology term: Craniostenosis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In physiotherapy, three Greek combining forms represent three different physical agents used for treatment. Name the forms for heat, cold, and dryness and write a therapeutic term using each.",
-      a: [
-        "Agents: Heat = thermo-, Cold = cryo-, Dryness = xero-. Therapeutic terms: Thermotherapia, Cryotherapia, and Xerothermotherapia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The prefix tele- and the prefix ortho- are sometimes confused because both appear in medical technology terms. Explain the precise meaning of each and write one medical term that clearly illustrates the difference.",
-      a: [
-        "Precise meanings: tele- means far away, distant, or remote; ortho- means straight, correct, or properly aligned. Terms showing difference: Telemedicina versus Orthodontia.",
-      ],
-      correct: 0,
-    },
-  ],
-  latin3: [
-    {
-      q: "The Greek root glyc- and the root xantho- both relate to substances observable in clinical findings. What does each root denote? Write the term for glucose in the urine and the term for a yellow fat deposit in the skin.",
-      a: [
-        "Denotation: glyc- denotes glucose or sugar; xantho- denotes the color yellow. Terms: Glycosuria (sugar in urine) and Xanthoma (yellow skin fat deposit).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Three prefixes — micro-, macro-, and megalo- — all describe cell size but at different scales. Distinguish them precisely. Write the erythrocyte-related term for each and explain what each finding suggests clinically.",
-      a: [
-        "Distinction: micro- means abnormally small; macro- means abnormally large; megalo- means monstrously or extremely large. Erythrocyte terms: Microcytus, Macrocytus, and Megalocytus. Clinical suggestions: Microcytes suggest iron deficiency anemia; macrocytes suggest folate deficiency; megalocytes suggest severe pernicious anemia (Vitamin B12 deficiency).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Hyper- and tachy- both suggest 'excess' but in different domains. Explain the difference. Write the term for pathologically elevated body temperature and the term for abnormally rapid breathing.",
-      a: [
-        "Difference: hyper- indicates excess quantity or level of a state; tachy- indicates excessive speed or rapid rate. Terms: Hyperthermia (elevated temperature) and Tachypnoe (rapid breathing).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The prefix pseudo- is used in the context of tuberculosis to describe a condition that mimics the original disease but is caused by a different organism. Write the full term and explain how pseudo- changes the clinical meaning.",
-      a: [
-        "Full term: Pseudotuberculosis. Clinical meaning change: pseudo- turns the condition into a deceptive mimic, indicating the patient shows classic tuberculosis-like nodules, but the underlying infectious agent is completely different.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In spinal pathology, the Greek combining form spondylo- and the suffix -sclerosis are combined. Write the resulting term and define it. What is the difference between spondylosclerosis and spondylosis?",
-      a: [
-        "Resulting term: Spondylosclerosis. Definition: Pathological hardening or hardening of the vertebrae. Difference: Spondylosclerosis is specifically the abnormal hardening/increased density of bone tissue, whereas spondylosis is a broader degenerative disease of the spine involving bone spurs and disc degeneration.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In gastroenterology, three color roots — one for black, one for yellow, one for deep blue — appear in distinct clinical terms. Without being given the terms, write the clinical term for black tarry stool caused by upper GI bleeding, the term for generalized yellowing, and the term for tissue oxygen-deprivation discoloration.",
-      a: [
-        "Black tarry stool: Melaena. Generalized yellowing: Icterus (or xanthodermia). Oxygen-deprivation discoloration: Cyanosis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Using the Greek combining forms for kidney, for cyst, and the prefix for 'new,' construct the term for a newly formed cystic structure in the kidney. What does the root cysto- contribute to this term?",
-      a: [
-        "Constructed term: Neocystonephrosis (or Neonephrocystosis). Cysto- contribution: It explicitly adds the structural component of a fluid-filled sac or bladder entity to the kidney condition.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In orthognathic surgery, two Greek prefixes describe opposite jaw positions: one for correct/upright alignment and one for a wide or flattened jaw. Name both. Write the terms for a correctly aligned jaw and for a wide jaw.",
-      a: [
-        "Prefixes: Correct/upright = ortho-, Wide/flat = platy-. Terms: Orthognathia (aligned jaw) and Platygnathia (wide jaw).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Three Greek combining forms describe age-related and structural skin changes in geriatric dermatology: one for dryness, one for thinness, one for aging. Write a clinical term using each.",
-      a: ["Dryness: Xerodermia. Thinness: Leptodermia. Aging: Gerodermia."],
-      correct: 0,
-    },
-    {
-      q: "Homo- and hetero- are used in comparative anatomy to describe structural relationships. Define both. Write the term for transplanting tissue between genetically identical individuals and the term for tissue that has migrated to an abnormal location.",
-      a: [
-        "Definitions: homo- means identical or corresponding in type; hetero- means different or mismatched. Identical individual transplant: Isotransplantatio (or homotransplantatio). Migrated tissue term: Heterotopia.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In cold-injury pathology, the combining form cryo- and the root necro- describe two sequential stages of tissue damage. Define both. Write the term for the cold-related pathological condition and the term for the resulting tissue death.",
-      a: [
-        "Definitions: cryo- means freezing or extreme cold; necro- means cellular death or mortification. Cold-related condition: Cryodermatitis (or congelaetio). Resulting tissue death: Cryonecrosis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In endocrinology, the term for abnormally low blood glucose is formed from two Greek components. Without being told what they are, identify the prefix and the root, and write the complete term. What distinguishes this condition from oligoglycaemia?",
-      a: [
-        "Components: Prefix = hypo-, Root = glyc-. Complete term: Hypoglycaemia. Distinction: Hypoglycaemia is an acute medical condition of low sugar levels, while oligoglycaemia implies a persistent, slight deficiency or structural scarcity of sugars.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Using the Greek combining forms for liver and for cell, write the term for a liver cell. Then apply the prefix for smallness to the liver itself — what term results, and what does it indicate clinically?",
-      a: [
-        "Liver cell: Hepatocytus. Small liver term: Microhepatia. Clinical indication: It signals a pathologically small or underdeveloped liver organ.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In a single diagnostic sentence, a neurologist uses three Greek combining forms to describe changes in (a) the gray matter, (b) white blood cells, and (c) red blood cells. Name all three combining forms and write one pathology term for each.",
-      a: [
-        "Combining forms: (a) Gray matter = polio-, (b) White cells = leuco-, (c) Red cells = erythro-. Pathology terms: Poliomyelitis, Leucocytosis, and Erythrocytosis.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmacology, a drug that lowers arterial blood pressure is described by one set of terms, while a drug that widens blood vessels is described by different terms. Explain the physiological difference and write the correct term for each class of drug.",
-      a: [
-        "Physiological difference: A blood pressure lowering drug acts systemically on blood dynamics or neural pathways, while a vessel-widening drug mechanically increases the lumen diameter of arteries/veins. Terms: Hypotensivum (pressure lowering) and Vasodilatator (vessel widening).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The pharmaceutical root form- is derived from a Latin word meaning an insect. What is the Latin word, and what substance does the form- root indicate in drug names? Give two example drug names.",
-      a: [
-        "Latin word: Formica (ant). Substance: Formic acid derivatives or structural groups. Example drugs: Formandil, Formocortal.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmaceutical nomenclature, the roots gluc- and glyc- both relate to carbohydrates, and haemo- relates to blood formation. Write the name of the drug class that stimulates blood cell production and give one example drug name.",
-      a: [
-        "Drug class: Haemopoeticum (or Haemostimulantia). Example drug: Epoetinum (or Filgrastimum).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The pharmaceutical root merc- indicates the presence of a specific heavy metal. What element is it? What suffix is used to indicate that a drug kills microbes or parasites? Write one example for each.",
-      a: [
-        "Heavy metal: Mercury (Hydrargyrum). Suffix: -cidum. Examples: Mercuriopen (heavy metal drug) and Bactericidum (microbe-killing drug).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek root oxy- in pharmaceutical names is derived from a word meaning 'sour' or 'sharp.' How does this root relate to the element oxygen? Write the pharmaceutical name for elemental oxygen and one example of a drug whose name contains oxy-.",
-      a: [
-        "Oxygen relation: Oxygen was historically named because it was mistakenly believed to be the essential component generator of all acids (oxy- = sharp/sour). Elemental name: Oxygenium. Example drug: Oxymetazolinum (or Oxycodonum).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmaceutical terminology, what root or suffix identifies a radiopaque contrast agent? Write two example drug names. What root identifies a diuretic drug? Write one example.",
-      a: [
-        "Radiopaque element: Root trast- or suffix -gnost- / -trast- (also io- for iodine). Examples: Barii sulfas, Iopamidolum. Diuretic root: diuret-. Example: Diuretinum.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Two opposing drug categories relate to appetite and digestion. One suppresses appetite; the other stimulates and regulates digestion. Write the Latin pharmacological class name for each and give one example drug.",
-      a: [
-        "Appetite suppressor: Anorexigenum (Example: Sibutraminum). Digestion stimulator: Digestivum (Example: Pancreatinum).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The pharmaceutical roots phthor-/fluor- and phosph- represent two different elements. Name the elements. What are the Greek-derived etymological meanings of each root? Write the pharmaceutical name for each element.",
-      a: [
-        "Elements: Fluorine and Phosphorus. Etymological meanings: Phthor-/fluor- means destructive or flowing; phosph- means light-bearing. Pharmaceutical names: Fluorum (or Phthorum) and Phosphorus.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmacotherapy, the root -sed- and the prefix tranquill- both relate to calming effects, while antihistamin- relates to allergic responses. Write one drug name containing -sed-, one containing antihistamin-, and explain how antihistamines reduce allergic reactions.",
-      a: [
-        "Drugs: Sedalgin (-sed-) and Antihistaminum. Mechanism: Antihistamines bind to histamine receptors, physically blocking histamine from triggering local swelling, itching, and capillary leakage.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In hematology pharmacology, anticoagulants and antiaggregants both prevent blood clotting, but through different mechanisms. Write the class name and one example drug for each, and explain the physiological difference.",
-      a: [
-        "Anticoagulant: Class Anticoagulantia (Example: Heparinum) — blocks biochemical clotting factors in the coagulation cascade. Antiaggregant: Class Antiaggregantia (Example: Acidum acetylsalicylicum) — prevents platelets from physically clumping together.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek root theion, appearing in pharmaceutical names as thio-, refers to a specific element. Name the element. Write one drug name containing the thio- root. What suffix indicates that a drug causes vomiting, and what prefix indicates the opposite action?",
-      a: [
-        "Element: Sulfur. Drug name: Thiotepa. Suffix & Prefix: Suffix = -emeticum (vomiting), Prefix = anti- (opposite).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmacology, antipyreticum and expectorans describe two distinct therapeutic actions. Define each. Write one drug that serves as an antipyretic and one that serves as an expectorant.",
-      a: [
-        "Definitions: Antipyreticum lowers elevated fever; expectorans promotes the thinning and expulsion of mucus from the airways. Drugs: Paracetamolum (antipyretic) and Ambroxolum (expectorant).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Anthelmintic drugs and laxative drugs address different systems. What does anthelmintic mean etymologically? Write the Latin class name for each drug type and one example drug for each.",
-      a: [
-        "Etymological meaning: 'Against parasitic worms'. Class names: Anthelminthica and Laxativa. Examples: Mebendazolum (anthelmintic) and Bisacodylum (laxative).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Latin root -cid- (from caedere/occidere) appears in several pharmaceutical terms. What does it mean? Write three compound terms using -cid- with different prefixes and define each.",
-      a: [
-        "Meaning: To kill or destroy. Terms: Bactericidum (kills bacteria), Fungicidum (kills fungi), and Insecticidum (kills insects).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmaceutical chemistry, the root phen-/phenyl- indicates a specific organic group. Write two drugs whose names reflect this group. How does phen- differ from the root for iodine, and write one iodine-containing pharmaceutical.",
-      a: [
-        "Organic group: Phenyl ring structures. Examples: Phenylinum, Phenobarbitalum. Difference & Iodine drug: Phen- represents a benzene ring, while iodine roots denote the chemical element Iodine. Example: Iodognostum.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The Greek word hyle, meaning 'matter' or 'wood,' gave rise to the pharmaceutical suffix -yl. What does this suffix indicate in drug names? Write three drug name components using this suffix.",
-      a: [
-        "Suffix indication: Denotes chemical radical groups or matter building blocks. Components: Methylium, Aethylium, and Phenylium.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In cardiovascular pharmacology, the root cor- (Latin) and the root cardi- (Greek) both relate to the heart. Write one drug name using each. What does the root diuret- indicate, and write one example drug?",
-      a: [
-        "Heart drugs: Cordigit (cor-) and Cardiovalenum (cardi-). Diuret- indication & drug: Indicates a urine-promoting drug. Example: Diuretinum.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "What is the pharmacological difference between an antisepticum and an antiphlogisticum? Write one example drug for each category and identify the Latin or Greek root that indicates each therapeutic action.",
-      a: [
-        "Difference: An antisepticum kills surface pathogens; an antiphlogisticum actively dampens tissue inflammation. Examples: Iodum (antiseptic) and Ibuprofenum (antiphlogistic). Roots: sept- (putrefaction) and phlog- (flame/inflammation).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The pharmaceutical prefix methyl- and the suffix -azepam/diazep- appear in different drug classes. Write one drug containing methyl- and explain what it indicates chemically. Write one drug containing -azepam and identify its pharmacological class.",
-      a: [
-        "Methyl- drug & meaning: Methyluracilum — indicates a single carbon alkyl radical (-CH3). -azepam drug & class: Diazepamum — belongs to the benzodiazepine anxiolytic/tranquilizer class.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "A hypotensivum and a vasodilatator are related but not identical in their therapeutic actions. Explain the physiological difference. Write the Latin class name and one example drug for each.",
-      a: [
-        "Physiological difference: A hypotensive drug reduces total arterial pressure via complex neural or renal loops; a vasodilatator specifically relaxes smooth blood vessel walls directly. Classes & Drugs: Class Hypotensivum (Example: Enalaprilum) and Class Vasodilatator (Example: Nitroglycerinum).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pain management, the suffix -alg- and the prefix analget- both appear in drug names. What does each indicate? Write two drugs whose names reflect analgesic activity.",
-      a: [
-        "Indication: Both indicate pain relief or pain abolition. Drugs: Analginum and Pentalginum.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmacology, the suffix -cid- appears in drugs targeting different pathogens. Write the terms for (a) a bacteria-killing drug, (b) a parasite-killing drug, and (c) a fungus-killing drug, and give one example drug name for each.",
-      a: [
-        "Bacteria-killing: Bactericidum (Example: Amoxicillinum). Parasite-killing: Parasiticidum (Example: Metronidazolum). Fungus-killing: Fungicidum (Example: Fluconazolum).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "The roots -peps-, -zym-, and digest- all relate to digestion. Explain what each refers to specifically and write one drug name for each.",
-      a: [
-        "Refers to: -peps- refers to stomach digestion/enzymes; -zym- refers to active enzymes/fermentation; digest- refers to general digestive transit. Drugs: Pepsinum, Festal (contains enzymes), and Digestin.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In inorganic pharmaceutical chemistry, hydrargyrum and sulfur are two elements whose names derive from classical roots. What element is hydrargyrum? What does the name mean etymologically? Write one pharmaceutical name containing each element.",
-      a: [
-        "Element: Mercury. Etymological meaning: 'Liquid silver' (water-silver). Names: Unguentum Hydrargyri and Sulfur praecipitatum.",
-      ],
-      correct: 0,
-    },
-    {
-      q: "Nonsteroidal anti-inflammatory drugs (NSAIDs) combine three therapeutic actions. Name the three Latin/Greek pharmacological terms for these actions. Write one drug that exemplifies all three.",
-      a: [
-        "Three actions: Antiphlogisticum (anti-inflammatory), Analgeticum (analgesic), and Antipyreticum (antipyretic). Example drug: Acidum acetylsalicylicum (or Ibuprofenum).",
-      ],
-      correct: 0,
-    },
-    {
-      q: "In pharmacology, antiaggregans and coronarodilatator describe two mechanisms for protecting the heart. Explain the difference. Write the class term and one drug name for each.",
-      a: [
-        "Difference: An antiaggregant stops micro-clot/platelet mechanical sticking; a coronarodilatator widens the coronary arterial pathways supplying the heart muscle. Terms & Drugs: Class Antiaggregantia (Example: Clopidogrelum) and Class Coronarodilatatores (Example: Verapamilum).",
-      ],
-      correct: 0,
+      q: `31. A mother brings in her 6-week-old infant
+son because “I just want him to get checked
+out.” She further tells you that “you know he
+was born prematurely, and thank God he didn’t
+have any serious breathing problems; but I’m
+still worried.” Relevant physical exam findings
+include the finding that the infant is small but
+active and appears to be mildly short of breath,
+and a harsh, machine-like, continuous murmur
+in the upper left parasternal area. Which of the
+following is the most likely diagnosis?`,
+      a: [
+        "Coarctation of the aorta",
+        "Membranous ventricular septal defect",
+        "Patent ductus arteriosus",
+        "Double aortic arch",
+        "Tetralogy of Fallot",
+      ],
+      correct: 2,
+    },
+    {
+      q: `32. A mother brings in her newborn baby girl
+and says, “My baby coughs and gags every time
+I try to feed her; one time she even turned blue
+and it scared me.” The mother also indicates
+that her baby always has a “mouthful of saliva.”
+Relevant physical exam findings include a distended
+stomach, excessive saliva accumulation,
+a hint of pneumonitis, and inability to pass a
+catheter into the infant’s stomach. Relevant
+laboratory findings include radiograph showing
+a large amount of air in the stomach. Which of
+the following is the most likely diagnosis?`,
+      a: [
+        "Esophageal hiatal hernia",
+        "Hypertrophic pyloric stenosis",
+        "Tracheoesophageal fistula",
+        "Respiratory distress syndrome",
+        "Congenital diaphragmatic hernia",
+      ],
+      correct: 2,
+    },
+    {
+      q: `33. A frantic mother brings her newborn infant
+into the emergency room. You immediately notice
+that the infant is pale, irritable, diaphoretic,
+and dyspneic. A quick physical exam reveals
+hepatomegaly, absent femoral pulses, and
+pulses poor in all four extremities. The infant
+shows signs of heart failure and shock. An ECG
+shows pure right ventricular hypertrophy. A
+chest radiograph reveals generalized cardiomegaly
+with increased pulmonary vascular
+markings due to pulmonary venous congestion.
+The mother tells you that her baby was
+released from the hospital given a clean bill of
+health. Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Postductal coarctation of the aorta",
+        "Membranous ventricular septal defect",
+        "Patent ductus arteriosus",
+        "Tetralogy of Fallot",
+        "Congenital diaphragmatic hernia",
+      ],
+      correct: 0,
+    },
+    {
+      q: `34. A 40-year-old man comes to your office
+complaining that he has a gradual swelling
+in the front of his neck that has been growing
+over the last 6 months. He says, “Doc, at first I
+did not pay any attention to it, but now it is so
+big that other people are starting to notice it.”
+He does not complain of any pain, difficulty in
+swallowing, or problems with breathing. There
+is no history of trauma, fever, or change in his
+voice. A physical exam reveals a nontender,
+nonerythematous fluctuant mass in the midline
+lower neck with a slight extension to the
+right side of the neck. The mass moves up and
+down when the patient swallows and displaces
+anteriorly with protrusion of the tongue. No
+cervical lymphadenopathy is noticed. The lung
+fields are clear, and the heart rate and rhythm
+are normal. You order a CT scan, which shows
+a cystic mass extending to the thyroid gland
+and under the strap muscles. Routine lab blood
+tests and thyroid function tests are all normal.
+Which of the following is the most likely
+diagnosis?`,
+      a: [
+        "Esophageal hiatal hernia",
+        "Hypertrophic pyloric stenosis",
+        "Tracheoesophageal fistula",
+        "Thyroglossal duct cyst",
+        "Congenital diaphragmatic hernia",
+      ],
+      correct: 3,
+    },
+    {
+      q: `35. A mother is holding her newborn baby in
+the hospital bed just a few hours after giving
+birth. The mother becomes alarmed when her
+baby begins to have a difficult time breathing
+and rings for help. You arrive at the bedside
+and observe that the baby is in severe respiratory
+distress. A quick physical exam reveals
+that the baby has a barrel-shaped chest, a
+scaphoid-shaped abdomen, and absence of
+breath sounds on the left side, and the heartbeat
+is displaced to the right side. A chest radiograph
+reveals air/fluid containing bowel in the
+left-side hemithorax, no visible aerated lung on
+the left side, contralateral displacement of the
+heart and other mediastinal structures, compression
+of the contralateral lung, and reduced
+size of the abdomen. Which of the following is
+the most likely diagnosis?`,
+      a: [
+        "Esophageal hiatal hernia",
+        "Hypertrophic pyloric stenosis",
+        "Tracheoesophageal fistula",
+        "Respiratory distress syndrome",
+        "Congenital diaphragmatic hernia",
+      ],
+      correct: 4,
     },
   ],
 };
