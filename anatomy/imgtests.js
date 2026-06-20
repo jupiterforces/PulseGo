@@ -11,7 +11,7 @@ window.TEST_QUESTIONS = {
       photo: "../../anatomy/assets/img/image1.png",
       a: ["2", "4", "3", "1"],
       correct: 1,
-    },
+    }, 
     {
       q: "Greater omentum?",
       photo: "../../anatomy/assets/img/image1.png",
