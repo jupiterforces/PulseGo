@@ -11,8 +11,10 @@ function shuffle(array) {
 }
 
 // Random test yaratish
-function getRandomTest(questions, n = 25) {
-  const shuffledQuestions = shuffle(questions).slice(0, n);
+function getRandomTest(questions, n = "all") {
+  const shuffledQuestions =
+    n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
+
   return shuffledQuestions.map((q) => {
     const shuffledAnswers = shuffle(q.a);
     return {
