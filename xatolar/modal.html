@@ -1,0 +1,25 @@
+<div class="modal fade" id="xatolarModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xatolar ro'yxati</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex gap-2 flex-wrap mb-3">
+                    <button type="button" class="btn btn-outline-primary btn-sm" id="xatolarTabPending"
+                        onclick="window.setXatolarTab('pending')">Xatolar</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" id="xatolarTabResolved"
+                        onclick="window.setXatolarTab('resolved')">Tog'rilangan xatolar</button>
+                </div>
+                <div id="xatolarSummary" class="mb-3"></div>
+                <div id="xatolarList" class="row g-3"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
+                <button type="button" class="btn btn-primary" onclick="downloadXatolar()">Yuklab olish</button>
+                <button type="button" class="btn btn-success" onclick="startXatolarReview()">Xatolarni yechish</button>
+            </div>
+        </div>
+    </div>
+</div>
