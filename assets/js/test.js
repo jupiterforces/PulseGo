@@ -150,36 +150,199 @@ function resolveStoredMistakeById(mistakeId) {
   }
 }
 
-function downloadXatolar() {
-  const items = getStoredMistakes();
+function getMistakeQuestion(item) {
+  return item.question || item.q || "Savol yo‘q";
+}
+
+function getMistakeCorrectAnswer(item) {
+  if (item.correctAnswer) return item.correctAnswer;
+  if (item.a && typeof item.correct === "number") {
+    return item.a[item.correct] ?? "";
+  }
+  return "";
+}
+
+function getMistakeUserAnswer(item) {
+  if (item.userAnswer) return item.userAnswer;
+  if (item.a && typeof item.selected === "number") {
+    return item.a[item.selected] ?? "";
+  }
+  return "";
+}
+
+function loadScriptOnce(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[data-src="${src}"]`)) {
+      return resolve();
+    }
+    const existing = Array.from(document.scripts).find(
+      (s) => s.src === src || s.dataset.src === src,
+    );
+    if (existing) {
+      if (existing.onload) {
+        existing.onload = () => resolve();
+      } else {
+        resolve();
+      }
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = src;
+    script.dataset.src = src;
+    script.async = false;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error(`Failed to load script ${src}`));
+    document.head.appendChild(script);
+  });
+}
+
+function waitForImagesInContainer(container) {
+  const images = Array.from(container.querySelectorAll("img"));
+  if (!images.length) return Promise.resolve();
+
+  return Promise.all(
+    images.map(
+      (img) =>
+        new Promise((resolve) => {
+          if (img.complete && img.naturalWidth !== 0) {
+            return resolve();
+          }
+          img.onload = () => resolve();
+          img.onerror = () => resolve();
+        }),
+    ),
+  );
+}
+
+function buildXatolarPdfPageHtml(item, index, total, groupName) {
+  const answers = Array.isArray(item.a) ? item.a : [];
+  const correctIndex = typeof item.correct === "number" ? item.correct : -1;
+  const selectedIndex = typeof item.selected === "number" ? item.selected : -1;
+  const imageHtml = item.photo
+    ? `<div style="text-align:center; margin:20px 0;"><img src="${item.photo}" style="max-width:100%; border-radius:18px; box-shadow:0 16px 40px rgba(15,23,42,.12);" alt="Savol rasmi"/></div>`
+    : "";
+
+  const answerItems = answers
+    .map((answer, idx) => {
+      const isCorrect = idx === correctIndex;
+      const isSelected = idx === selectedIndex;
+      const badge = isCorrect
+        ? "<span style=\"display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;background:#198754;color:#fff;font-size:11px;\">To'g'ri</span>"
+        : isSelected
+          ? '<span style="display:inline-block;margin-left:10px;padding:4px 10px;border-radius:999px;background:#dc3545;color:#fff;font-size:11px;">Siz tanlagan</span>'
+          : "";
+      const bg = isCorrect ? "#ecfdf5" : isSelected ? "#ffe4e6" : "#f8fafc";
+      return `<li style="list-style:none;margin-bottom:10px;padding:14px 16px;border-radius:16px;background:${bg};border:1px solid ${isCorrect ? "#d1fae5" : isSelected ? "#f8d7da" : "#e2e8f0"};display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:#111827;">${answer}${badge}</li>`;
+    })
+    .join("");
+
+  const createdAt = new Date().toLocaleDateString("uz-UZ", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
+
+  return `
+    <div style="font-family:Inter, system-ui, sans-serif; box-sizing:border-box; width:595px; min-height:842px; padding:32px; background:#ffffff; color:#111827; display:flex; flex-direction:column; justify-content:space-between;">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:24px;">
+          <div>
+            <div style="font-size:12px; font-weight:800; letter-spacing:0.22em; text-transform:uppercase; color:#0f172a; margin-bottom:8px;">PulseGo</div>
+            <div style="font-size:24px; font-weight:800; line-height:1.1;">Xatolar hisobot</div>
+            <div style="font-size:13px; color:#475569; margin-top:10px;">${groupName} · ${index + 1}/${total} savol</div>
+          </div>
+          <div style="text-align:right; font-size:12px; color:#6b7280;">${createdAt}</div>
+        </div>
+
+        <div style="padding:24px; border:1px solid #e2e8f0; border-radius:24px; background:#f8fafc;">
+          <div style="font-size:16px; font-weight:700; color:#111827; margin-bottom:18px;">${index + 1}. ${getMistakeQuestion(item)}</div>
+          ${imageHtml}
+          <div style="font-size:15px; font-weight:600; color:#111827; margin-bottom:14px;">Javoblar</div>
+          <ul style="margin:0; padding:0;">${answerItems}</ul>
+          <div style="margin-top:20px; display:grid; gap:10px; font-size:14px; color:#334155;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;"><span style="font-weight:700;">To‘g‘ri javob:</span><span>${getMistakeCorrectAnswer(item) || "-"}</span></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;"><span style="font-weight:700;">Sizning javob:</span><span>${getMistakeUserAnswer(item) || "-"}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:28px; padding-top:18px; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#64748b;">
+        <div>PulseGo • professional test platform</div>
+        <div>Sahifa ${index + 1} / ${total}</div>
+      </div>
+    </div>
+  `;
+}
+
+async function downloadXatolar() {
+  let items = getStoredMistakes();
+  if (currentXatolarGroupName) {
+    items = items.filter(
+      (x) => (x.testName || "Noma'lum test") === currentXatolarGroupName,
+    );
+  }
+
   if (!items.length) {
     alert("Xatolar topilmadi.");
     return;
   }
 
-  const text = items
-    .map((m, index) => {
-      const correctAnswer = m.a?.[m.correct] ?? "";
-      const selectedAnswer = m.a?.[m.selected] ?? "";
-      return [
-        `Mistake #${index + 1}`,
-        `Test: ${m.testName || "unknown"}`,
-        `Savol: ${m.q}`,
-        `To'g'ri javob: ${correctAnswer}`,
-        `Tanlangan javob: ${selectedAnswer}`,
-        `Sana: ${m.date || "-"}`,
-        "",
-      ].join("\n");
-    })
-    .join("\n");
+  try {
+    await loadScriptOnce(
+      "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+    );
+    await loadScriptOnce(
+      "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js",
+    );
+  } catch (error) {
+    console.error(error);
+    alert("PDF kutubxonasi yuklanmadi.");
+    return;
+  }
 
-  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "xatolar.txt";
-  document.body.appendChild(link);
-  link.click();
-  link.remove();
+  const groupName = currentXatolarGroupName || "PulseGo xatolar guruhi";
+  const filename = `PulseGo-xatolar-${groupName.replace(/\s+/g, "-").toLowerCase()}-${new Date().toISOString().slice(0, 10)}.pdf`;
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ unit: "pt", format: "a4" });
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const container = document.createElement("div");
+  container.style.position = "fixed";
+  container.style.left = "-9999px";
+  container.style.top = "0";
+  container.style.width = `${pageWidth}px`;
+  container.style.minHeight = `${pageHeight}px`;
+  container.style.background = "#ffffff";
+  document.body.appendChild(container);
+
+  for (let i = 0; i < items.length; i += 1) {
+    const item = items[i];
+    container.innerHTML = buildXatolarPdfPageHtml(
+      item,
+      i,
+      items.length,
+      groupName,
+    );
+    await waitForImagesInContainer(container);
+
+    const canvas = await window.html2canvas(container, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+    });
+
+    const imgData = canvas.toDataURL("image/jpeg", 1.0);
+    if (i > 0) {
+      pdf.addPage();
+    }
+
+    pdf.addImage(imgData, "JPEG", 0, 0, pageWidth, pageHeight);
+  }
+
+  pdf.save(filename);
+  document.body.removeChild(container);
 }
 
 function createXatolarModal() {
@@ -198,7 +361,6 @@ function createXatolarModal() {
         <div id="xatolarList" class="row g-3"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Yopish</button>
         <button type="button" class="btn btn-primary" onclick="downloadXatolar()">Yuklab olish</button>
         <button type="button" class="btn btn-success" onclick="startXatolarReview()">Xatolarni yechish</button>
       </div>
@@ -224,6 +386,8 @@ function openXatolarModal() {
       <strong>Tog'rilanganlar:</strong> ${getResolvedMistakes().length} ta
     `;
   }
+
+  currentXatolarGroupName = null;
 
   if (list) {
     if (!items.length) {
@@ -349,6 +513,14 @@ function openXatolarModal() {
                             Boshlash
 
                         </button>
+                        <button
+                            class="btn btn-secondary mistake-btn"
+                            onclick="openGroupMistakes('${testName}')">
+
+                            <i class="bi bi-eye"></i>
+                            Ko'rish
+
+                        </button>
 
                     </div>
 
@@ -369,6 +541,156 @@ function openXatolarModal() {
     bootstrap.Modal.getOrCreateInstance(modalEl).show();
   }
 }
+function openGroupMistakes(testName) {
+  currentXatolarGroupName = testName;
+  const items = getStoredMistakes().filter(
+    (x) => (x.testName || "Noma'lum test") === testName,
+  );
+
+  const list = document.getElementById("xatolarList");
+
+  list.innerHTML = `
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <h5 class="mb-0">${testName}</h5>
+        <small class="text-muted">${items.length} ta savol</small>
+      </div>
+
+      <button class="btn btn-sm btn-secondary" onclick="openXatolarModal()">
+        ⬅ Orqaga
+      </button>
+    </div>
+  `;
+
+  items.forEach((q, index) => {
+    const answers = Array.isArray(q.a) ? q.a : [];
+    const correctIndex = typeof q.correct === "number" ? q.correct : -1;
+    const selectedIndex = typeof q.selected === "number" ? q.selected : -1;
+    const imageHtml = q.photo
+      ? `<div class="text-center mb-3"><img src="${q.photo}" class="img-fluid rounded" alt="Savol rasmi"></div>`
+      : "";
+
+    const answerList = answers
+      .map((answer, idx) => {
+        const isCorrect = idx === correctIndex;
+        const isSelected = idx === selectedIndex;
+        const itemClass = isCorrect
+          ? "list-group-item list-group-item-success"
+          : isSelected
+            ? "list-group-item list-group-item-danger"
+            : "list-group-item";
+        const badge = isCorrect
+          ? `<span class="badge bg-success ms-2">To'g'ri</span>`
+          : isSelected
+            ? `<span class="badge bg-danger ms-2">Siz tanlagan</span>`
+            : "";
+        return `<li class="${itemClass} d-flex justify-content-between align-items-center">${answer}${badge}</li>`;
+      })
+      .join("");
+
+    const card = document.createElement("div");
+    card.className = "card shadow-sm p-4 mb-4 rounded-4";
+
+    card.innerHTML = `
+      <div class="d-flex flex-column gap-3">
+        <div>
+          <h6 class="fw-bold mb-2">${index + 1}. ${getMistakeQuestion(q)}</h6>
+          ${imageHtml}
+        </div>
+
+        <div>
+          <div class="fw-semibold mb-2">Javoblar</div>
+          <ul class="list-group">${answerList}</ul>
+        </div>
+
+        <div class="text-muted small">
+          <p class="mb-1"><strong>To‘g‘ri javob:</strong> ${getMistakeCorrectAnswer(q) || "-"}</p>
+          <p class="mb-0"><strong>Sizning javob:</strong> ${getMistakeUserAnswer(q) || "-"}</p>
+        </div>
+      </div>
+    `;
+
+    list.appendChild(card);
+  });
+}
+function viewMistake(testName, index) {
+  const items = getStoredMistakes().filter(
+    (x) => (x.testName || "Noma'lum test") === testName,
+  );
+
+  const q = items[index];
+  const list = document.getElementById("xatolarList");
+
+  if (!list) return;
+
+  if (!q) {
+    list.innerHTML = `
+      <div class="alert alert-warning rounded-4 p-4">
+        <h5>⚠️ Savol topilmadi</h5>
+        <p>Ushbu xato uchun ma'lumot topilmadi yoki noto'g'ri indeks berilgan.</p>
+        <button class="btn btn-secondary mt-3" onclick="openGroupMistakes('${testName}')">
+          ⬅ Orqaga
+        </button>
+      </div>
+    `;
+    return;
+  }
+
+  const answers = Array.isArray(q.a) ? q.a : [];
+  const correctIndex = typeof q.correct === "number" ? q.correct : -1;
+  const selectedIndex = typeof q.selected === "number" ? q.selected : -1;
+
+  list.innerHTML = `
+    <div class="card p-4 rounded-4">
+      <div class="d-flex flex-column gap-4">
+        <div>
+          <h5>📘 Savol</h5>
+          <p class="mb-3">${getMistakeQuestion(q)}</p>
+          ${q.photo ? `<div class="text-center mb-3"><img src="${q.photo}" class="img-fluid rounded" alt="Savol rasmi"></div>` : ""}
+        </div>
+
+        <div>
+          <h6 class="mb-3">Javoblar</h6>
+          <div class="list-group">
+            ${answers
+              .map((answer, idx) => {
+                const isCorrect = idx === correctIndex;
+                const isSelected = idx === selectedIndex;
+                const btnClass = isCorrect
+                  ? "list-group-item list-group-item-action list-group-item-success"
+                  : isSelected
+                    ? "list-group-item list-group-item-action list-group-item-danger"
+                    : "list-group-item list-group-item-action";
+                const badge = isCorrect
+                  ? `<span class="badge bg-success ms-2">To'g'ri</span>`
+                  : isSelected
+                    ? `<span class="badge bg-danger ms-2">Siz tanlagan</span>`
+                    : "";
+                return `<div class="${btnClass}">${answer}${badge}</div>`;
+              })
+              .join("")}
+          </div>
+        </div>
+
+        <div>
+          <h6 class="mt-3">Natijalar</h6>
+          <p class="mb-1"><strong>To‘g‘ri javob:</strong> ${getMistakeCorrectAnswer(q) || "-"}</p>
+          <p><strong>Sizning javob:</strong> ${getMistakeUserAnswer(q) || "-"}</p>
+        </div>
+
+        <button class="btn btn-secondary align-self-start"
+                onclick="openGroupMistakes('${testName}')">
+          ⬅ Orqaga
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function viewQuestion(testName, index) {
+  return viewMistake(testName, index);
+}
+
 function startXatolarReview(testName = null) {
   const storedMistakes = getStoredMistakes();
   let filteredMistakes = storedMistakes;
@@ -419,6 +741,16 @@ function startXatolarReview(testName = null) {
 
 function setReviewModeOff() {
   isReviewingStoredMistakes = false;
+}
+
+function getXatolarSummaryData() {
+  const mistakes = getStoredMistakes();
+  const resolved = getResolvedMistakes();
+
+  return {
+    mistakesCount: mistakes.length,
+    resolvedCount: resolved.length,
+  };
 }
 
 function buildTestSummary() {
@@ -605,6 +937,7 @@ let score = 0;
 let timer;
 let timeLeft = 60;
 let isReviewingStoredMistakes = false;
+let currentXatolarGroupName = null;
 
 // Load `data.js` helper dynamically if not already loaded
 
