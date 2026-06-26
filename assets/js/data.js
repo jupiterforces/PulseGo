@@ -1,4 +1,3 @@
-// Data helper for PulseGo — stores user info, test results, and mistakes in localStorage
 (function (global) {
   const KEY = "pulsego_data_v1";
 
@@ -81,6 +80,15 @@
     console.log(user);
   });
 
+  function isSameMistake(a, b) {
+    return (
+      a.q === b.q &&
+      a.correct === b.correct &&
+      a.selected === b.selected &&
+      a.testName === b.testName
+    );
+  }
+
   function recordTestResult({
     testName,
     total = 0,
@@ -90,6 +98,7 @@
     const d = load();
     d.tests = d.tests || [];
     d.mistakes = d.mistakes || [];
+    d.resolvedMistakes = d.resolvedMistakes || [];
 
     const percent = total === 0 ? 0 : Math.round((correct / total) * 100);
     const entry = {
@@ -115,12 +124,13 @@
 
       // Also store flattened mistakes list for quick review (with IDs)
       entry.mistakes.forEach((m) => {
-        d.mistakes.push(
-          Object.assign(
-            { id: m.id, testName: entry.testName, date: entry.date },
-            m,
-          ),
+        const stored = Object.assign(
+          { id: m.id, testName: entry.testName, date: entry.date },
+          m,
         );
+        if (!d.mistakes.some((existing) => isSameMistake(existing, stored))) {
+          d.mistakes.push(stored);
+        }
       });
     }
 
@@ -141,14 +151,27 @@
     return d.mistakes || [];
   }
 
+  function getResolvedMistakes() {
+    const d = load();
+    return d.resolvedMistakes || [];
+  }
+
+  function getPendingMistakes() {
+    return getMistakes();
+  }
+
   function resolveMistake(mistakeId) {
     const d = load();
-    if (!d.mistakes) return false;
+    d.mistakes = d.mistakes || [];
+    d.resolvedMistakes = d.resolvedMistakes || [];
 
-    const idx = d.mistakes.findIndex((m) => m.id === mistakeId);
+    const normalizedId = String(mistakeId);
+    const idx = d.mistakes.findIndex((m) => String(m.id) === normalizedId);
     if (idx === -1) return false;
 
     const removed = d.mistakes.splice(idx, 1)[0];
+    removed.resolvedAt = new Date().toISOString();
+    d.resolvedMistakes.push(removed);
 
     // find the original test entry and remove the mistake there too
     if (d.tests && d.tests.length) {
@@ -158,7 +181,7 @@
       if (test && test.mistakes && test.mistakes.length) {
         const mi = test.mistakes.findIndex(
           (m) =>
-            m.id === mistakeId ||
+            String(m.id) === normalizedId ||
             (m.q === removed.q && m.selected === removed.selected),
         );
         if (mi !== -1) {
@@ -168,6 +191,7 @@
       }
     }
 
+    d.syncedToFirebase = false;
     save(d);
     return true;
   }
@@ -250,6 +274,8 @@
     recordTestResult,
     getResults,
     getMistakes,
+    getResolvedMistakes,
+    getPendingMistakes,
     resolveMistake,
     getOverview,
     clearMistakes,
