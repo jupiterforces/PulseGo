@@ -15,7 +15,7 @@
     <main id="test-selection" class="container py-5">
         <div class="row">
             <div class="col-lg-8 col-xl-6">
-                <h1 class="mb-4 fw-bold">Xatolar Moduli</h1>
+                <h1 class="mb-4 fw-bold"><span id="userName"></span></h1>
 
                 <p class="text-muted mb-5">
                     Xatolarni ko'rish yoki qayta yechish uchun quyidagi variantlardan birini tanlang.
@@ -30,7 +30,7 @@
 
                     <button class="btn btn-success btn-lg" id="resolveMistakesBtn" data-action="resolve" type="button">
                         <span class="me-2">✓</span>
-                        Xatolarni yechish
+                        Barchasini to'g'rilash
                     </button>
                 </div>
             </div>
@@ -44,8 +44,13 @@
     <script src="/assets/js/data.js"></script>
     <script src="/assets/js/test.js"></script>
 
+
     <!-- Application Logic -->
     <script>
+
+        const user = window.Data.getUser();
+        document.getElementById("userName").textContent = user.name;
+
         // Configuration
         const CONFIG = {
             modalsPath: '/assets/modals/modals.html',
