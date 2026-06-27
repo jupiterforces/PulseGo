@@ -2,12 +2,18 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import {
   getFirestore,
   setDoc,
+  getDocs,
   doc,
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
+import {
+  getAuth,
+  GoogleAuthProvider,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
 // Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyCCqvgW8yTfmTHglz3siSLfLJo6NjXd_ws",
+  apiKey: "AIzaSyCWfDPqZIe0sR26S7Wybl-C5e1hiPyRO0A",
   authDomain: "pulse-5f61d.firebaseapp.com",
   databaseURL: "https://pulse-5f61d-default-rtdb.firebaseio.com",
   projectId: "pulse-5f61d",
@@ -22,4 +28,7 @@ const app = initializeApp(firebaseConfig);
 
 // Firestore exports
 export const db = getFirestore(app);
-export { setDoc, doc };
+export { setDoc, getDocs, doc };
+
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
