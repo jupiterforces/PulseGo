@@ -6179,11 +6179,11 @@ window.TEST_QUESTIONS = {
       q: "12?",
       photo: "../../anatomy/assets/img/image41.png",
       a: [
+        "Ischial spine",
         "Ischium",
         "Posterior superior iliac spine ",
         "Posterior inferior iliac spine",
         "Greater sciatic notch (katta o‘tirg‘ich kesigi)",
-        "Ischial spine",
       ],
       correct: 0,
     },
