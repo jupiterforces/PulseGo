@@ -7070,7 +7070,7 @@ window.TEST_QUESTIONS = {
       correct: 0,
     },
     {
-      q: "6?",
+      q: "7?",
       photo: "../../anatomy/assets/img/image57.png",
       a: [
         "Sartorius muscle",
@@ -7643,18 +7643,6 @@ window.TEST_QUESTIONS = {
         "Spine of scapula",
         "Infraspinous fossa",
         "Glenoid cavity",
-        "Suprascapular o’yma",
-      ],
-      correct: 0,
-    },
-    {
-      q: "9?",
-      photo: "../../anatomy/assets/img/image65.png",
-      a: [
-        "Glenoid cavity",
-        "Supraspinous fossa",
-        "Spine of scapula",
-        "Infraspinous fossa",
         "Suprascapular o’yma",
       ],
       correct: 0,
