@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preparation Mode</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fb;
+            color: #0f172a;
+            padding-bottom: 85px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #e9eef5;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 17px;
+            color: #0f172a !important;
+            letter-spacing: -0.3px;
+        }
+
+        .navbar .btn-light {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0f172a;
+            padding: 6px 14px;
+            transition: .2s ease;
+        }
+
+        .navbar .btn-light:hover {
+            background: #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .prep-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .nav-test-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 26px;
+            min-height: 220px;
+            transition: all .3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(180deg, rgba(37, 99, 235, .92), rgba(59, 130, 246, .95));
+        }
+
+        .nav-test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.65));
+        }
+
+        .card-body {
+            position: relative;
+            z-index: 2;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+
+        .card-title-custom {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle-custom {
+            color: rgba(255, 255, 255, .75);
+            font-size: 0.95rem;
+        }
+
+        .test-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .prep-session-card .btn {
+            background: rgba(255, 255, 255, 0.92);
+            color: #0f172a;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
+        }
+
+        .prep-session-card .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .prep-section {
+            padding: 24px 0;
+        }
+
+        .modal-content {
+            border-radius: 24px;
+        }
+
+        .prep-step-item.active,
+        .prep-step-item:hover {
+            border-color: #2563eb;
+            background: rgba(37, 99, 235, 0.08);
+            color: #0f172a;
+        }
+
+        .prep-step-item {
+            width: 100%;
+            text-align: left;
+            min-height: 80px;
+            display: block;
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            transition: .2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .prep-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="prep-index">
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+                Pulse Go
+            </a>
+            <a href="/tests" class="btn btn-light btn-sm">
+                <i class="bi bi-ui-checks-grid"></i> Testlar
+            </a>
+        </div>
+    </nav>
+
+    <section class="prep-section">
+        <div class="container">
+            <div class="prep-header">
+                <div>
+                    <div class="section-title">Preparation Mode</div>
+                    <div class="section-subtitle">Yangi tayyorgarlik sessiyalarini yarating va progressni saqlang.</div>
+                </div>
+                <button id="new-prep-button" class="btn btn-primary btn-lg rounded-pill">
+                    <i class="bi bi-plus"></i> New Preparation
+                </button>
+            </div>
+
+            <div class="row g-3" id="prep-cards"></div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="createPrepModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0">
+                <div class="modal-header border-0">
+                    <div>
+                        <h5 class="modal-title fw-bold" id="create-prep-step-title">1. Imtihon turini tanlang</h5>
+                        <div class="text-muted">Boshlash uchun imtihon turini va mavzuni tanlang.</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="step-1">
+                        <div class="mb-3 fw-semibold">Exam type</div>
+                        <div class="d-flex gap-2 flex-wrap" id="exam-type-list"></div>
+                    </div>
+                    <div id="step-2" class="d-none">
+                        <div class="mb-3">
+                            <div class="fw-semibold">Subject</div>
+                            <div class="text-muted" style="font-size:0.95rem;">Tanlangan imtihon: <span
+                                    id="selectedExamType">-</span></div>
+                        </div>
+                        <div class="row g-3" id="subject-list"></div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 d-flex justify-content-between">
+                    <button id="create-prep-back" type="button" class="btn btn-outline-secondary"
+                        style="display:none;">Back</button>
+                    <div>
+                        <button id="create-prep-next" type="button" class="btn btn-primary" disabled>Next</button>
+                        <button id="create-prep-finish" type="button" class="btn btn-primary d-none" disabled>Start
+                            Session</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/data.js"></script>
+    <script src="./preparation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preparation Session</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fb;
+            color: #0f172a;
+            padding-bottom: 85px;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #e9eef5;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 17px;
+            color: #0f172a !important;
+            letter-spacing: -0.3px;
+        }
+
+        .navbar .btn-light {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0f172a;
+            padding: 6px 14px;
+            transition: .2s ease;
+        }
+
+        .navbar .btn-light:hover {
+            background: #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .prep-panel {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        .prep-stat-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 16px 18px;
+            min-height: 104px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .prep-stat-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
+        }
+
+        .prep-stat-card .metric-label {
+            display: block;
+            color: #475569;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .prep-stat-card .metric-value {
+            margin: 0;
+            color: #0f172a;
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .prep-stat-card.accuracy {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-color: #bfdbfe;
+            color: #1d4ed8;
+        }
+
+        .prep-stat-card.completion {
+            background: linear-gradient(135deg, #ecfdf5, #bbf7d0);
+            border-color: #86efac;
+            color: #166534;
+        }
+
+        .prep-stat-card.mistakes {
+            background: linear-gradient(135deg, #fff1f2, #fee2e2);
+            border-color: #fecaca;
+            color: #991b1b;
+        }
+
+        .prep-test-row {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+        .prep-test-row:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .prep-test-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
+            background: #ffffff;
+        }
+
+        .prep-test-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
+        }
+
+        .prep-test-card .btn {
+            border-radius: 999px;
+        }
+
+        .prep-session-meta {
+            border-top: 1px solid #e2e8f0;
+            padding-top: 14px;
+            margin-top: 4px;
+        }
+
+        .prep-header-small {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .prep-summary-label {
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        .prep-summary-value {
+            color: #0f172a;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .prep-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body data-page="prep-detail">
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/preparation/index.html">
+                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+                Preparation
+            </a>
+            <a href="/preparation/index.html" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-left"></i> Orqaga
+            </a>
+        </div>
+    </nav>
+
+    <section class="py-4">
+        <div class="container">
+            <div id="prep-not-found" class="prep-panel text-center d-none">
+                <h3 class="mb-3">Sessiya topilmadi</h3>
+                <p class="text-muted mb-4">Iltimos, to'g'ri tayyorgarlik sessiyasi identifikatorini tekshiring yoki
+                    qayta yarating.</p>
+                <a href="/preparation/index.html" class="btn btn-primary">Preparation sahifasiga qaytish</a>
+            </div>
+
+            <div id="prep-detail">
+                <div class="mb-4">
+                    <div class="section-title" id="prep-subject-title">Mavzu</div>
+                    <div class="section-subtitle">
+                        <span id="prep-exam-type">-</span> · <span id="prep-created-at">-</span>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4 prep-session-meta">
+                    <div class="small text-muted d-flex gap-3 flex-wrap align-items-center">
+                        <span class="border-end pe-3"><span id="prep-subject-count-label">0 mavzu</span></span>
+                        <span class="border-end pe-3"><span id="prep-subject-tests-label">0 ta test</span></span>
+                        <span><span id="prep-updated-at">So'nggi yangilanish: -</span></span>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button id="prep-add-subject-button" class="btn btn-outline-primary btn-sm">Mavzu
+                            qo'shish</button>
+                        <button id="prep-delete-session-button" class="btn btn-outline-danger btn-sm">Sessiyani
+                            o'chirish</button>
+                    </div>
+                </div>
+
+                <div class="row row-cols-2 row-cols-md-4 g-3 mb-3">
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Mavzular</span>
+                            <p class="metric-value" id="prep-subject-count-card">0</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Jami testlar</span>
+                            <p class="metric-value" id="prep-total-tests">0</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Jami savollar</span>
+                            <p class="metric-value" id="prep-total-questions">0</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Qolgan savollar</span>
+                            <p class="metric-value" id="prep-remaining-questions">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-cols-2 row-cols-md-4 g-3 mb-3">
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Yechilgan savollar</span>
+                            <p class="metric-value" id="prep-solved">0</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Qolgan testlar</span>
+                            <p class="metric-value" id="prep-remaining-tests">0</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">To'g'ri javoblar</span>
+                            <p class="metric-value" id="prep-correct">0</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card">
+                            <span class="metric-label">Noto'g'ri javoblar</span>
+                            <p class="metric-value" id="prep-wrong">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
+                    <div class="col">
+                        <div class="prep-stat-card accuracy">
+                            <span class="metric-label">Aniqlik</span>
+                            <p class="metric-value" id="prep-accuracy">0%</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card completion">
+                            <span class="metric-label">Tugatish</span>
+                            <p class="metric-value" id="prep-completion">0%</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="prep-stat-card deadline">
+                            <span class="metric-label">Imtihon muddati</span>
+                            <p class="metric-value" id="prep-deadline-value">—</p>
+                            <div class="small mt-2" id="prep-deadline-helper">Muddati belgilanmagan</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="prep-panel mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h5 class="mb-1">Tanlangan mavzular</h5>
+                            <div class="text-muted">Mavzular bo'yicha tayyorgarlikni boshqarish uchun mavzuni
+                                tanlang.</div>
+                        </div>
+                        <button id="prep-open-planner-button" type="button"
+                            class="btn btn-outline-primary btn-sm">Planner</button>
+                    </div>
+                    <div class="row g-3" id="prep-tests-grid"></div>
+                    <div id="prep-review-section"></div>
+                </div>
+
+                <div class="text-muted">Sessiyaga oid xatolar: <strong id="prep-session-mistake-count">0</strong></div>
+
+                <div class="modal fade" id="addSubjectModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content border-0">
+                            <div class="modal-header border-0">
+                                <div>
+                                    <h5 class="modal-title fw-bold">Mavzuni qo'shish</h5>
+                                    <div class="text-muted">Sessiyaga yangi mavzularni qo'shing.</div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row g-3" id="available-subject-list"></div>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Bekor
+                                    qilish</button>
+                                <button id="save-add-subjects" type="button" class="btn btn-primary"
+                                    disabled>Saqlash</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="prepPlannerModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content border-0">
+                            <div class="modal-header border-0">
+                                <div>
+                                    <h5 class="modal-title fw-bold">Planner</h5>
+                                    <div class="text-muted">Imtihon muddati asosida kunlik reja tuzamiz.</div>
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label fw-semibold">Imtihon sanasi</label>
+                                    <input type="date" class="form-control" id="prep-deadline-input">
+                                </div>
+                                <div class="d-flex gap-2 mb-3">
+                                    <button id="prep-save-deadline-button" type="button"
+                                        class="btn btn-primary btn-sm">Saqlash</button>
+                                    <button id="prep-clear-deadline-button" type="button"
+                                        class="btn btn-outline-secondary btn-sm">Tozalash</button>
+                                </div>
+                                <div id="prep-planner-body"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <div id="test-selection" class="d-none"></div>
+    <div id="common-modals"></div>
+
+    <script src="/assets/js/data.js"></script>
+    <script src="/assets/js/test.js"></script>
+    <script src="./preparation.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
