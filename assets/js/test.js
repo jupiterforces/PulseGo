@@ -119,6 +119,215 @@ function getResolvedMistakes() {
   }
 }
 
+let currentXatolarSessionId = null;
+
+function setXatolarSessionId(sessionId) {
+  currentXatolarSessionId = sessionId || null;
+}
+
+function getStoredMistakesForSession() {
+  const mistakes = getStoredMistakes();
+  if (!currentXatolarSessionId) return mistakes;
+  return mistakes.filter(
+    (item) => item.prepSessionId === currentXatolarSessionId,
+  );
+}
+
+function getResolvedMistakesForSession() {
+  const resolved = getResolvedMistakes();
+  if (!currentXatolarSessionId) return resolved;
+  return resolved.filter(
+    (item) => item.prepSessionId === currentXatolarSessionId,
+  );
+}
+
+function getStoredAppData() {
+  if (window.Data && typeof Data._getRawData === "function") {
+    return Data._getRawData();
+  }
+  try {
+    const raw = localStorage.getItem("pulsego_data_v1");
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    console.error("Failed to read stored app data", e);
+    return {};
+  }
+}
+
+function saveStoredAppData(data) {
+  if (window.Data && typeof Data._saveRawData === "function") {
+    return Data._saveRawData(data);
+  }
+  try {
+    localStorage.setItem("pulsego_data_v1", JSON.stringify(data));
+  } catch (e) {
+    console.error("Failed to save stored app data", e);
+  }
+}
+
+function getPrepSessionsData() {
+  const data = getStoredAppData();
+  return Array.isArray(data.preparationSessions)
+    ? data.preparationSessions
+    : [];
+}
+
+function savePrepSessionsData(sessions) {
+  const data = getStoredAppData();
+  data.preparationSessions = sessions;
+  saveStoredAppData(data);
+}
+
+function getPrepSessionData(sessionId) {
+  return getPrepSessionsData().find((item) => item.id === sessionId) || null;
+}
+
+function savePrepSessionData(session) {
+  const sessions = getPrepSessionsData();
+  const idx = sessions.findIndex((item) => item.id === session.id);
+  if (idx !== -1) {
+    sessions[idx] = session;
+  } else {
+    sessions.push(session);
+  }
+  savePrepSessionsData(sessions);
+}
+
+function recordPrepSessionResult(sessionId, subjectId, result) {
+  if (!sessionId || !subjectId || !result) return;
+  const session = getPrepSessionData(sessionId);
+  if (!session) return;
+
+  session.startedAt = session.startedAt || new Date().toISOString();
+  session.lastActivityAt = new Date().toISOString();
+  session.subjectStats = session.subjectStats || {};
+  const subjectStat = session.subjectStats[subjectId] || {
+    testsTaken: 0,
+    totalQuestions: 0,
+    correctAnswers: 0,
+    wrongAnswers: 0,
+    mistakesCount: 0,
+    accuracy: 0,
+  };
+
+  const total = result.total || 0;
+  const correct = result.correct || 0;
+  const wrong = total - correct;
+  const mistakesCount = (result.mistakes || []).length;
+
+  subjectStat.testsTaken += 1;
+  subjectStat.totalQuestions += total;
+  subjectStat.correctAnswers += correct;
+  subjectStat.wrongAnswers += wrong;
+  subjectStat.mistakesCount += mistakesCount;
+  subjectStat.accuracy = subjectStat.totalQuestions
+    ? Math.round(
+        (subjectStat.correctAnswers / subjectStat.totalQuestions) * 100,
+      )
+    : 0;
+  subjectStat.updatedAt = session.lastActivityAt;
+  session.subjectStats[subjectId] = subjectStat;
+
+  session.stats = session.stats || {
+    totalQuestions: 0,
+    solvedQuestions: 0,
+    correctAnswers: 0,
+    wrongAnswers: 0,
+    accuracy: 0,
+    updatedAt: null,
+  };
+
+  session.stats.totalQuestions += total;
+  session.stats.solvedQuestions += total;
+  session.stats.correctAnswers += correct;
+  session.stats.wrongAnswers += wrong;
+  session.stats.accuracy = session.stats.totalQuestions
+    ? Math.round(
+        (session.stats.correctAnswers / session.stats.totalQuestions) * 100,
+      )
+    : 0;
+  session.stats.updatedAt = session.lastActivityAt;
+
+  session.testResults = session.testResults || [];
+  session.testResults.push({
+    id: Date.now(),
+    subjectId,
+    testName: result.testName || "unknown",
+    total,
+    correct,
+    percent: total === 0 ? 0 : Math.round((correct / total) * 100),
+    mistakesCount,
+    date: session.lastActivityAt,
+    prep: true,
+  });
+
+  savePrepSessionData(session);
+  // Persist session-scoped mistakes into global app data (avoid duplicates)
+  try {
+    const appData = getStoredAppData();
+    appData.mistakes = appData.mistakes || [];
+    const baseName = result.testName || "unknown";
+    (result.mistakes || []).forEach((m, i) => {
+      const stored = Object.assign(
+        {
+          id: Date.now() + i,
+          testName: baseName,
+          date: session.lastActivityAt,
+          prepSessionId: session.id,
+          prepSessionName: session.examType || session.id,
+          prepSubjectId: subjectId,
+        },
+        m,
+      );
+
+      const isSame = (a, b) =>
+        a.q === b.q &&
+        a.correct === b.correct &&
+        a.selected === b.selected &&
+        (a.testName || "") === (b.testName || "") &&
+        (a.prepSessionId || null) === (b.prepSessionId || null);
+
+      if (!appData.mistakes.some((existing) => isSame(existing, stored))) {
+        appData.mistakes.push(stored);
+      }
+    });
+    saveStoredAppData(appData);
+  } catch (e) {
+    console.error("Failed to persist prep mistakes", e);
+  }
+}
+
+function getPrepContext() {
+  const params = new URLSearchParams(window.location.search);
+  const prepSessionId = params.get("prepSession");
+  const prepSubjectId = params.get("prepSubject");
+  if (!prepSessionId || !prepSubjectId) return null;
+  return {
+    sessionId: prepSessionId,
+    subjectId: prepSubjectId,
+  };
+}
+
+function initPrepContext() {
+  const prepContext = getPrepContext();
+  if (!prepContext) return;
+
+  const session = getPrepSessionData(prepContext.sessionId);
+  if (session) {
+    session.startedAt = session.startedAt || new Date().toISOString();
+    session.lastActivityAt = new Date().toISOString();
+    savePrepSessionData(session);
+    prepContext.sessionName = session.examType || session.id;
+  }
+
+  window.__prepContext = prepContext;
+  window.__prepSessionActive = prepContext;
+}
+
+function showPrepBanner() {
+  return; // Prep banner is disabled for cleaner session flow.
+}
+
 function resolveStoredMistakeById(mistakeId) {
   if (!mistakeId) return false;
   if (window.Data?.resolveMistake) {
@@ -142,6 +351,24 @@ function resolveStoredMistakeById(mistakeId) {
     const removed = data.mistakes.splice(idx, 1)[0];
     removed.resolvedAt = new Date().toISOString();
     data.resolvedMistakes.push(removed);
+
+    // If this mistake belonged to a prep session, decrement session counters
+    try {
+      if (removed.prepSessionId) {
+        data.preparationSessions = data.preparationSessions || [];
+        const sess = data.preparationSessions.find(
+          (s) => s.id === removed.prepSessionId,
+        );
+        if (sess && removed.prepSubjectId && sess.subjectStats) {
+          const ss = sess.subjectStats[removed.prepSubjectId];
+          if (ss && typeof ss.mistakesCount === "number") {
+            ss.mistakesCount = Math.max(0, ss.mistakesCount - 1);
+          }
+        }
+      }
+    } catch (er) {
+      console.error("Failed to update prep session on mistake resolve", er);
+    }
     localStorage.setItem("pulsego_data_v1", JSON.stringify(data));
     return true;
   } catch (e) {
@@ -276,7 +503,7 @@ function buildXatolarPdfPageHtml(item, index, total, groupName) {
 }
 
 async function downloadXatolar() {
-  let items = getStoredMistakes();
+  let items = getStoredMistakesForSession();
   if (currentXatolarGroupName) {
     items = items.filter(
       (x) => (x.testName || "Noma'lum test") === currentXatolarGroupName,
@@ -378,12 +605,12 @@ function openXatolarModal() {
 
   const list = document.getElementById("xatolarList");
   const summary = document.getElementById("xatolarSummary");
-  const items = getStoredMistakes();
+  const items = getStoredMistakesForSession();
 
   if (summary) {
     summary.innerHTML = `
       <strong>Saqlangan xatolar:</strong> ${items.length} ta |
-      <strong>Tog'rilanganlar:</strong> ${getResolvedMistakes().length} ta
+      <strong>Tog'rilanganlar:</strong> ${getResolvedMistakesForSession().length} ta
     `;
   }
 
@@ -543,7 +770,7 @@ function openXatolarModal() {
 }
 function openGroupMistakes(testName) {
   currentXatolarGroupName = testName;
-  const items = getStoredMistakes().filter(
+  const items = getStoredMistakesForSession().filter(
     (x) => (x.testName || "Noma'lum test") === testName,
   );
 
@@ -607,10 +834,32 @@ function openGroupMistakes(testName) {
           <p class="mb-1"><strong>To‘g‘ri javob:</strong> ${getMistakeCorrectAnswer(q) || "-"}</p>
           <p class="mb-0"><strong>Sizning javob:</strong> ${getMistakeUserAnswer(q) || "-"}</p>
         </div>
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-sm btn-outline-success" data-mistake-id="${q.id}">Belgilash</button>
+          <button class="btn btn-sm btn-outline-secondary" onclick="openGroupMistakes('${testName}')">Orqaga</button>
+        </div>
       </div>
     `;
 
     list.appendChild(card);
+    // wire resolve button
+    const resolveBtn = card.querySelector("button[data-mistake-id]");
+    if (resolveBtn) {
+      resolveBtn.addEventListener("click", () => {
+        if (!confirm("Xatoni to'g'irlashni tasdiqlaysizmi?")) return;
+        const ok = resolveStoredMistakeById(q.id);
+        if (ok) {
+          alert("Xato belgilandi");
+          if (document.body.dataset.page === "prep-detail") {
+            location.reload();
+          } else {
+            openGroupMistakes(testName);
+          }
+        } else {
+          alert("Xatoni belgilashda xato yuz berdi");
+        }
+      });
+    }
   });
 }
 function viewMistake(testName, index) {
@@ -692,7 +941,7 @@ function viewQuestion(testName, index) {
 }
 
 function startXatolarReview(testName = null) {
-  const storedMistakes = getStoredMistakes();
+  const storedMistakes = getStoredMistakesForSession();
   let filteredMistakes = storedMistakes;
 
   if (testName) {
@@ -794,6 +1043,51 @@ function buildTestSummary() {
   return summary;
 }
 
+function buildPrepSessionSummary(sessionId, subjectId = null) {
+  const session = getPrepSessionData(sessionId);
+  const results = (session?.testResults || []).filter((entry) => {
+    if (!subjectId) return true;
+    return entry.subjectId === subjectId;
+  });
+  const summary = {
+    byTest: {},
+    overview: {
+      totalRuns: 0,
+      totalQuestions: 0,
+      totalCorrect: 0,
+      overallPercent: 0,
+    },
+  };
+
+  results.forEach((entry) => {
+    const name = entry.testName || "unknown";
+    const existing = summary.byTest[name] || {
+      last: null,
+      attempts: 0,
+      totalCorrect: 0,
+      totalQuestions: 0,
+    };
+
+    existing.attempts += 1;
+    existing.totalCorrect += entry.correct || 0;
+    existing.totalQuestions += entry.total || 0;
+
+    if (!existing.last || new Date(entry.date) > new Date(existing.last.date)) {
+      existing.last = entry;
+    }
+
+    summary.byTest[name] = existing;
+    summary.overview.totalRuns += 1;
+    summary.overview.totalQuestions += entry.total || 0;
+    summary.overview.totalCorrect += entry.correct || 0;
+  });
+
+  const total = summary.overview.totalQuestions;
+  summary.overview.overallPercent =
+    total === 0 ? 0 : Math.round((summary.overview.totalCorrect / total) * 100);
+  return summary;
+}
+
 function parseTestNameFromCard(card) {
   if (!card) return null;
   if (card.dataset.testName) return card.dataset.testName;
@@ -806,7 +1100,10 @@ function parseTestNameFromCard(card) {
 }
 
 function renderTestStats() {
-  const summary = buildTestSummary();
+  const prepContext = getPrepContext();
+  const summary = prepContext?.sessionId
+    ? buildPrepSessionSummary(prepContext.sessionId, prepContext.subjectId)
+    : buildTestSummary();
   const cards = document.querySelectorAll(".test-card, .collectioncard");
 
   cards.forEach((card) => {
@@ -1092,6 +1389,10 @@ function selectAnswer(selectedIndex) {
       a: currentTest[currentIndex].a,
       correct: correctIndex,
       selected: selectedIndex,
+      testName: currentTestName || "unknown",
+      prepSessionId: window.__prepContext?.sessionId || null,
+      prepSessionName: window.__prepContext?.sessionName || null,
+      prepSubjectId: window.__prepContext?.subjectId || null,
     });
   }
 
@@ -1155,6 +1456,15 @@ function showResultPopup() {
       correct: correct,
       mistakes: mistakes ? mistakes.slice() : [],
     });
+    const prepContext = getPrepContext();
+    if (prepContext) {
+      recordPrepSessionResult(prepContext.sessionId, prepContext.subjectId, {
+        testName: currentTestName || "unknown",
+        total,
+        correct,
+        mistakes: mistakes ? mistakes.slice() : [],
+      });
+    }
   } catch (e) {
     console.error("Error saving test result:", e);
   }
@@ -1224,6 +1534,12 @@ function closeResult() {
 
   isReviewingStoredMistakes = false;
 
+  const prepContext = getPrepContext();
+  if (prepContext) {
+    window.location.href = `/preparation/prep.html?id=${prepContext.sessionId}`;
+    return;
+  }
+
   document.getElementById("test-screen").classList.add("d-none");
   document.getElementById("test-selection").classList.remove("d-none");
 
@@ -1247,6 +1563,8 @@ function shareResult() {
 
 async function startTest(testName) {
   console.log("START TEST");
+
+  initPrepContext();
 
   isReviewingStoredMistakes = false;
   window.Data?.smartSync?.();
@@ -1385,6 +1703,8 @@ window.addEventListener("DOMContentLoaded", () => {
   console.log("📦 DOM ready");
 
   initTestStats();
+  initPrepContext();
+  showPrepBanner();
 
   setTimeout(() => {
     const form = document.getElementById("feedbackForm");
