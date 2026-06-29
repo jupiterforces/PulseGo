@@ -179,6 +179,50 @@
                 align-items: stretch;
             }
         }
+
+        .btn-stats {
+
+            background: #fff;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 999px;
+
+            padding: 10px 18px;
+
+            font-weight: 600;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+
+        }
+
+        .btn-stats:hover {
+
+            background: #f8fafc;
+
+        }
+
+        .prep-stat-card {
+
+            padding: 16px;
+
+            min-height: 88px;
+
+            border-radius: 16px;
+
+        }
+
+        .metric-value {
+
+            font-size: 28px;
+
+        }
+
+        .metric-label {
+
+            font-size: 11px;
+
+        }
     </style>
 </head>
 
@@ -194,6 +238,89 @@
             </a>
         </div>
     </nav>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+
+        <div class="row row-cols-2 row-cols-md-4 mt-3 g-3 mb-3">
+
+            <div class="col">
+                <div class="prep-stat-card accuracy">
+                    <span class="metric-label">Aniqlik</span>
+                    <p class="metric-value" id="prep-accuracy">0%</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card completion">
+                    <span class="metric-label">Tugatish</span>
+                    <p class="metric-value" id="prep-completion">0%</p>
+                </div>
+            </div>
+            <button class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target="#statsCollapse">
+                <h4>Statistics</h4>
+                <i class="bi bi-bar-chart"></i>
+
+            </button>
+        </div>
+
+    </div>
+
+    <div class="collapse" id="statsCollapse">
+
+        <div class="row row-cols-3 row-cols-md-4 g-3 mb-3">
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Mavzular</span>
+                    <p class="metric-value" id="prep-subject-count-card">0</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Jami testlar</span>
+                    <p class="metric-value" id="prep-total-tests">0</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Jami savollar</span>
+                    <p class="metric-value" id="prep-total-questions">0</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Qolgan savollar</span>
+                    <p class="metric-value" id="prep-remaining-questions">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-3 row-cols-md-4 g-3 mb-3">
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Yechilgan savollar</span>
+                    <p class="metric-value" id="prep-solved">0</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Qolgan testlar</span>
+                    <p class="metric-value" id="prep-remaining-tests">0</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">To'g'ri javoblar</span>
+                    <p class="metric-value" id="prep-correct">0</p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="prep-stat-card">
+                    <span class="metric-label">Noto'g'ri javoblar</span>
+                    <p class="metric-value" id="prep-wrong">0</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <section class="py-4">
         <div class="container">
@@ -226,82 +353,6 @@
                     </div>
                 </div>
 
-                <div class="row row-cols-2 row-cols-md-4 g-3 mb-3">
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Mavzular</span>
-                            <p class="metric-value" id="prep-subject-count-card">0</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Jami testlar</span>
-                            <p class="metric-value" id="prep-total-tests">0</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Jami savollar</span>
-                            <p class="metric-value" id="prep-total-questions">0</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Qolgan savollar</span>
-                            <p class="metric-value" id="prep-remaining-questions">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row row-cols-2 row-cols-md-4 g-3 mb-3">
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Yechilgan savollar</span>
-                            <p class="metric-value" id="prep-solved">0</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Qolgan testlar</span>
-                            <p class="metric-value" id="prep-remaining-tests">0</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">To'g'ri javoblar</span>
-                            <p class="metric-value" id="prep-correct">0</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card">
-                            <span class="metric-label">Noto'g'ri javoblar</span>
-                            <p class="metric-value" id="prep-wrong">0</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row row-cols-1 row-cols-md-3 g-3 mb-4">
-                    <div class="col">
-                        <div class="prep-stat-card accuracy">
-                            <span class="metric-label">Aniqlik</span>
-                            <p class="metric-value" id="prep-accuracy">0%</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card completion">
-                            <span class="metric-label">Tugatish</span>
-                            <p class="metric-value" id="prep-completion">0%</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="prep-stat-card deadline">
-                            <span class="metric-label">Imtihon muddati</span>
-                            <p class="metric-value" id="prep-deadline-value">—</p>
-                            <div class="small mt-2" id="prep-deadline-helper">Muddati belgilanmagan</div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="prep-panel mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div>
@@ -316,7 +367,8 @@
                     <div id="prep-review-section"></div>
                 </div>
 
-                <div class="text-muted">Sessiyaga oid xatolar: <strong id="prep-session-mistake-count">0</strong></div>
+                <div class="text-muted">Sessiyaga oid xatolar: <strong id="prep-session-mistake-count">0</strong>
+                </div>
 
                 <div class="modal fade" id="addSubjectModal" tabindex="-1">
                     <div class="modal-dialog modal-dialog-centered modal-lg">
