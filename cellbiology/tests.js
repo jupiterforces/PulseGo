@@ -300,6 +300,9 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
+  ],
+
+  cellb2: [
     {
       q: "Nucleoproteins consist of DNA and which protein?",
       a: ["Albumin", "Keratin", "Histone", "Actin", "Collagen"],
@@ -316,8 +319,6 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
-  ],
-  cellb2: [
     {
       q: "According to the fluid mosaic model, membrane proteins can move within the lipid bilayer. This means they can also:",
       a: [
@@ -614,6 +615,9 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
+  ],
+
+  cellb3: [
     {
       q: "Which of the following are membrane-less organelles?",
       a: [
@@ -696,8 +700,6 @@ window.TEST_QUESTIONS = {
       a: ["Cristae", "Cisternae", "Vesicles", "Lamellae", "Tubules"],
       correct: 1,
     },
-  ],
-  cellb3: [
     {
       q: "Which face of the Golgi apparatus receives vesicles from the endoplasmic reticulum?",
       a: [
@@ -827,8 +829,6 @@ window.TEST_QUESTIONS = {
       a: ["Dynein", "Actin", "Keratin", "Kinesin", "Tubulin"],
       correct: 3,
     },
-  ],
-  cellb4: [
     {
       q: "Signaling molecules that bind to receptors are called:",
       a: ["Enzymes", "Ligands", "Cofactors", "Hormones only", "Cytokines only"],
@@ -870,6 +870,9 @@ window.TEST_QUESTIONS = {
       a: ["Gi", "Gq", "Gs", "All G proteins", "Ras"],
       correct: 3,
     },
+  ],
+
+  cellb4: [
     {
       q: "Which G protein activates adenylate cyclase, increasing cAMP production?",
       a: ["Gi", "Gq", "Gs", "G12", "Gt"],
@@ -1039,8 +1042,6 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
-  ],
-  cellb5: [
     {
       q: "The stable membrane potential of an unstimulated cell is called the:",
       a: [
@@ -1119,7 +1120,8 @@ window.TEST_QUESTIONS = {
       correct: 1,
     },
   ],
-  cellb6: [
+
+  cellb5: [
     {
       q: "What is the most abundant and widely distributed type of collagen?",
       a: ["Type II", "Type III", "Type IV", "Type I", "Type V"],
@@ -1367,7 +1369,8 @@ window.TEST_QUESTIONS = {
       correct: 3,
     },
   ],
-  cellb7: [
+
+  cellb6: [
     {
       q: "α1-Antitrypsin deficiency results in excessive activity of:",
       a: ["Collagenase", "Elastase", "Polymerase", "Topoisomerase", "Helicase"],
@@ -1589,8 +1592,6 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
-  ],
-  cellb8: [
     {
       q: "Which type of mutation is not inherited by offspring?",
       a: [
@@ -1646,6 +1647,9 @@ window.TEST_QUESTIONS = {
       ],
       correct: 3,
     },
+  ],
+
+  cellb7: [
     {
       q: "Which mutation results from deletion or insertion of one or more nucleotides, altering the reading frame?",
       a: [
@@ -1861,8 +1865,6 @@ window.TEST_QUESTIONS = {
       a: ["AUG", "UAG", "GCG", "UGG", "AGG"],
       correct: 1,
     },
-  ],
-  cellb9: [
     {
       q: "The ability of different codons to code for the same amino acid is known as:",
       a: [
@@ -1906,6 +1908,9 @@ window.TEST_QUESTIONS = {
       a: ["tRNA", "rRNA", "mRNA", "snRNA", "miRNA"],
       correct: 2,
     },
+  ],
+
+  cellb8: [
     {
       q: "The 5′ cap added during post-transcriptional modification contains:",
       a: ["Adenine", "Guanine", "7-Methylguanosine", "Cytosine", "Uracil"],
@@ -1964,8 +1969,6 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
-  ],
-  cellb10: [
     {
       q: "What is a sequence of nucleotides in DNA?",
       a: ["Chromosome", "Gene", "Allele", "Genome", "Locus"],
@@ -2172,391 +2175,97 @@ window.TEST_QUESTIONS = {
       a: ["Mosaicism", "Heteroplasmy", "Isodisomy", "Pleiotropy", "Penetrance"],
       correct: 1,
     },
-    {
-      q: "Isodisomy involves two identical chromosome copies from one parent and usually results from:",
-      a: [
-        "Mitosis error",
-        "Meiosis I error",
-        "Meiosis II error",
-        "DNA replication error",
-        "Crossing over",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Heterodisomy involves two different homologous chromosomes from one parent and usually results from:",
-      a: [
-        "Mitosis error",
-        "Meiosis I error",
-        "Meiosis II error",
-        "DNA repair error",
-        "Gene conversion",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What law is used to determine the frequency of genotypes and alleles in a population?",
-      a: [
-        "Mendel's Law of Segregation",
-        "Hardy–Weinberg Law",
-        "Law of Independent Assortment",
-        "Law of Dominance",
-        "Chromosome Theory of Inheritance",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What refers to random changes in allele frequencies from one generation to the next due to chance events?",
-      a: [
-        "Gene flow",
-        "Natural selection",
-        "Gene drift",
-        "Mutation",
-        "Genetic recombination",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which is a clear example of gene drift that occurs when population size drastically decreases?",
-      a: [
-        "Founder effect",
-        "Natural selection",
-        "Bottleneck effect",
-        "Gene flow",
-        "Mutation",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which is an example of gene drift that occurs when a small group separates from a larger population to establish a new colony?",
-      a: [
-        "Bottleneck effect",
-        "Founder effect",
-        "Crossing over",
-        "Genetic recombination",
-        "Natural selection",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Prader–Willi syndrome and Angelman syndrome are examples of:",
-      a: [
-        "Trinucleotide repeat disorders",
-        "Imprinting diseases",
-        "Mitochondrial diseases",
-        "Autosomal dominant diseases",
-        "X-linked recessive diseases",
-      ],
-      correct: 1,
-    },
-    {
-      q: "In Prader–Willi syndrome, the chromosome loss or mutation affects the:",
-      a: [
-        "Maternal chromosome 15",
-        "Paternal chromosome 15",
-        "Maternal X chromosome",
-        "Paternal Y chromosome",
-        "Chromosome 21",
-      ],
-      correct: 1,
-    },
   ],
-  cellb11: [
-    {
-      q: "What is a sequence of nucleotides in DNA?",
-      a: ["Chromosome", "Gene", "Allele", "Genome", "Locus"],
-      correct: 1,
-    },
-    {
-      q: "What is a locus?",
-      a: [
-        "A mutation in DNA",
-        "A chromosome arm",
-        "Physical location of a gene on a chromosome",
-        "A DNA replication site",
-        "A protein-coding sequence",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is the complete set of chromosomes in the cell nucleus, described both qualitatively and quantitatively?",
-      a: ["Genome", "Genotype", "Karyotype", "Chromatid", "Haplotype"],
-      correct: 2,
-    },
-    {
-      q: "What is the frequency with which a specific allele manifests its effect among individuals of a population?",
-      a: [
-        "Expressivity",
-        "Pleiotropy",
-        "Penetrance",
-        "Anticipation",
-        "Mosaicism",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What indicates how often a disease appears among individuals carrying a specific allele?",
-      a: [
-        "Expressivity",
-        "Penetrance",
-        "Dominance",
-        "Codominance",
-        "Heterogeneity",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is the degree to which a particular allele is phenotypically expressed among different individuals?",
-      a: [
-        "Penetrance",
-        "Expressivity",
-        "Mosaicism",
-        "Pleiotropy",
-        "Heteroplasmy",
-      ],
-      correct: 1,
-    },
-    {
-      q: "In which type of chromosome is the centromere located in the middle, dividing the chromosome into two equal arms?",
-      a: [
-        "Acrocentric",
-        "Telocentric",
-        "Metacentric",
-        "Submetacentric",
-        "Holocentric",
-      ],
-      correct: 2,
-    },
-    {
-      q: "In which type of chromosome is the centromere slightly off-center, resulting in unequal arms?",
-      a: [
-        "Acrocentric",
-        "Metacentric",
-        "Submetacentric",
-        "Telocentric",
-        "Holocentric",
-      ],
-      correct: 2,
-    },
-    {
-      q: "In which type of chromosome is the p arm extremely short compared with the q arm and may contain a satellite segment?",
-      a: [
-        "Metacentric",
-        "Submetacentric",
-        "Acrocentric",
-        "Telocentric",
-        "Dicentric",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Gametes are formed by meiosis and contain a haploid number of chromosomes. How many chromosomes do human gametes contain?",
-      a: ["22", "23", "44", "46", "48"],
-      correct: 1,
-    },
-    {
-      q: "Somatic cells divide through:",
-      a: ["Meiosis I", "Meiosis II", "Mitosis", "Binary fission", "Amitosis"],
-      correct: 2,
-    },
-    {
-      q: "Somatic cells contain:",
-      a: [
-        "Haploid chromosome set",
-        "Triploid chromosome set",
-        "Diploid chromosome set",
-        "Tetraploid chromosome set",
-        "Monoploid chromosome set",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is it called when a single gene influences two or more distinct phenotypic traits?",
-      a: [
-        "Penetrance",
-        "Pleiotropy",
-        "Mosaicism",
-        "Heteroplasmy",
-        "Anticipation",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is the phenomenon in which the severity of a genetic mutation increases when the mutated gene is passed from parent to offspring?",
-      a: [
-        "Pleiotropy",
-        "Penetrance",
-        "Anticipation",
-        "Mosaicism",
-        "Heterodisomy",
-      ],
-      correct: 2,
-    },
-    {
-      q: "The increasing severity seen in Huntington disease and myotonic dystrophy across generations is called:",
-      a: [
-        "Expressivity",
-        "Anticipation",
-        "Mosaicism",
-        "Heteroplasmy",
-        "Penetrance",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is the presence of genetically distinct cell populations within an organism?",
-      a: ["Heteroplasmy", "Mosaicism", "Chimerism", "Pleiotropy", "Isodisomy"],
-      correct: 1,
-    },
-    {
-      q: "Down syndrome, McCune-Albright syndrome, Turner syndrome, and Klinefelter syndrome may exhibit:",
-      a: [
-        "Penetrance",
-        "Expressivity",
-        "Mosaicism",
-        "Anticipation",
-        "Heteroplasmy",
-      ],
-      correct: 2,
-    },
-    {
-      q: "What is it called when different mutations within the same gene produce a similar phenotypic outcome?",
-      a: [
-        "Locus heterogeneity",
-        "Allelic heterogeneity",
-        "Mosaicism",
-        "Heteroplasmy",
-        "Pleiotropy",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Alkaptonuria, cystic fibrosis, and β-thalassemia are examples of:",
-      a: [
-        "Locus heterogeneity",
-        "Allelic heterogeneity",
-        "Anticipation",
-        "Mosaicism",
-        "Expressivity",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is it called when the same phenotype is produced by mutations in different genes or loci?",
-      a: [
-        "Allelic heterogeneity",
-        "Locus heterogeneity",
-        "Penetrance",
-        "Heteroplasmy",
-        "Pleiotropy",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Cornelia de Lange syndrome, albinism, retinitis pigmentosa, and familial hypercholesterolemia are examples of:",
-      a: [
-        "Allelic heterogeneity",
-        "Locus heterogeneity",
-        "Anticipation",
-        "Mosaicism",
-        "Expressivity",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What is the presence of different forms of mitochondrial DNA (mtDNA) within a single cell called?",
-      a: ["Mosaicism", "Heteroplasmy", "Isodisomy", "Pleiotropy", "Penetrance"],
-      correct: 1,
-    },
-    {
-      q: "Isodisomy involves two identical chromosome copies from one parent and usually results from:",
-      a: [
-        "Mitosis error",
-        "Meiosis I error",
-        "Meiosis II error",
-        "DNA replication error",
-        "Crossing over",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Heterodisomy involves two different homologous chromosomes from one parent and usually results from:",
-      a: [
-        "Mitosis error",
-        "Meiosis I error",
-        "Meiosis II error",
-        "DNA repair error",
-        "Gene conversion",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What law is used to determine the frequency of genotypes and alleles in a population?",
-      a: [
-        "Mendel's Law of Segregation",
-        "Hardy–Weinberg Law",
-        "Law of Independent Assortment",
-        "Law of Dominance",
-        "Chromosome Theory of Inheritance",
-      ],
-      correct: 1,
-    },
-    {
-      q: "What refers to random changes in allele frequencies from one generation to the next due to chance events?",
-      a: [
-        "Gene flow",
-        "Natural selection",
-        "Gene drift",
-        "Mutation",
-        "Genetic recombination",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which is a clear example of gene drift that occurs when population size drastically decreases?",
-      a: [
-        "Founder effect",
-        "Natural selection",
-        "Bottleneck effect",
-        "Gene flow",
-        "Mutation",
-      ],
-      correct: 2,
-    },
-    {
-      q: "Which is an example of gene drift that occurs when a small group separates from a larger population to establish a new colony?",
-      a: [
-        "Bottleneck effect",
-        "Founder effect",
-        "Crossing over",
-        "Genetic recombination",
-        "Natural selection",
-      ],
-      correct: 1,
-    },
-    {
-      q: "Prader–Willi syndrome and Angelman syndrome are examples of:",
-      a: [
-        "Trinucleotide repeat disorders",
-        "Imprinting diseases",
-        "Mitochondrial diseases",
-        "Autosomal dominant diseases",
-        "X-linked recessive diseases",
-      ],
-      correct: 1,
-    },
-    {
-      q: "In Prader–Willi syndrome, the chromosome loss or mutation affects the:",
-      a: [
-        "Maternal chromosome 15",
-        "Paternal chromosome 15",
-        "Maternal X chromosome",
-        "Paternal Y chromosome",
-        "Chromosome 21",
-      ],
-      correct: 1,
-    },
 
+  cellb9: [
+    {
+      q: "Isodisomy involves two identical chromosome copies from one parent and usually results from:",
+      a: [
+        "Mitosis error",
+        "Meiosis I error",
+        "Meiosis II error",
+        "DNA replication error",
+        "Crossing over",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Heterodisomy involves two different homologous chromosomes from one parent and usually results from:",
+      a: [
+        "Mitosis error",
+        "Meiosis I error",
+        "Meiosis II error",
+        "DNA repair error",
+        "Gene conversion",
+      ],
+      correct: 1,
+    },
+    {
+      q: "What law is used to determine the frequency of genotypes and alleles in a population?",
+      a: [
+        "Mendel's Law of Segregation",
+        "Hardy–Weinberg Law",
+        "Law of Independent Assortment",
+        "Law of Dominance",
+        "Chromosome Theory of Inheritance",
+      ],
+      correct: 1,
+    },
+    {
+      q: "What refers to random changes in allele frequencies from one generation to the next due to chance events?",
+      a: [
+        "Gene flow",
+        "Natural selection",
+        "Gene drift",
+        "Mutation",
+        "Genetic recombination",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which is a clear example of gene drift that occurs when population size drastically decreases?",
+      a: [
+        "Founder effect",
+        "Natural selection",
+        "Bottleneck effect",
+        "Gene flow",
+        "Mutation",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Which is an example of gene drift that occurs when a small group separates from a larger population to establish a new colony?",
+      a: [
+        "Bottleneck effect",
+        "Founder effect",
+        "Crossing over",
+        "Genetic recombination",
+        "Natural selection",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Prader–Willi syndrome and Angelman syndrome are examples of:",
+      a: [
+        "Trinucleotide repeat disorders",
+        "Imprinting diseases",
+        "Mitochondrial diseases",
+        "Autosomal dominant diseases",
+        "X-linked recessive diseases",
+      ],
+      correct: 1,
+    },
+    {
+      q: "In Prader–Willi syndrome, the chromosome loss or mutation affects the:",
+      a: [
+        "Maternal chromosome 15",
+        "Paternal chromosome 15",
+        "Maternal X chromosome",
+        "Paternal Y chromosome",
+        "Chromosome 21",
+      ],
+      correct: 1,
+    },
     {
       q: "What is the disorder caused by a mutation in the maternal UBE3A gene on chromosome 15?",
       a: [
@@ -2775,17 +2484,8 @@ window.TEST_QUESTIONS = {
       ],
       correct: 2,
     },
-    {
-      q: "Which trinucleotide repeat disorder mainly damages muscle cells?",
-      a: [
-        "Huntington disease",
-        "Myotonic dystrophy type 1",
-        "Fragile X syndrome",
-        "Friedreich ataxia",
-        "MELAS",
-      ],
-      correct: 1,
-    },
+  ],
+  cellb10: [
     {
       q: "Myotonic dystrophy type 1 results from expansion of which trinucleotide repeat in the 3′ UTR?",
       a: ["CGG", "GAA", "CTG", "CAG", "GCG"],
