@@ -1099,6 +1099,23 @@ function parseTestNameFromCard(card) {
   return null;
 }
 
+function getTestCardQuestionCount(testName) {
+  if (!testName) return null;
+  if (
+    typeof window.tests === "object" &&
+    Array.isArray(window.tests[testName])
+  ) {
+    return window.tests[testName].length;
+  }
+  if (
+    typeof window.TEST_QUESTIONS === "object" &&
+    Array.isArray(window.TEST_QUESTIONS[testName])
+  ) {
+    return window.TEST_QUESTIONS[testName].length;
+  }
+  return null;
+}
+
 function renderTestStats() {
   const prepContext = getPrepContext();
   const summary = prepContext?.sessionId
@@ -1111,6 +1128,13 @@ function renderTestStats() {
     if (!testName) return;
     card.dataset.testName = testName;
 
+    const footer = card.querySelector(".question-footer");
+    if (footer) {
+      const questionCount = getTestCardQuestionCount(testName);
+      footer.innerText =
+        questionCount !== null ? `${questionCount} ta savol` : footer.innerText;
+    }
+
     let statEl = card.querySelector(".test-card-stats");
     if (!statEl) {
       statEl = document.createElement("div");
@@ -1119,7 +1143,6 @@ function renderTestStats() {
       statEl.style.marginTop = "0.65rem";
       statEl.style.lineHeight = "1.4";
       statEl.style.minHeight = "2.4rem";
-      const footer = card.querySelector(".question-footer");
       if (footer) {
         footer.insertAdjacentElement("afterend", statEl);
       } else {
