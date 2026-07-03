@@ -1099,6 +1099,46 @@ function parseTestNameFromCard(card) {
   return null;
 }
 
+function buildTestCardHtml(options) {
+  const testName = options.testName || options.id || "";
+  const title = options.title || testName;
+  const wrapperClass = options.wrapperClass || "col-6 col-md-3";
+  const cardClass = options.cardClass || "test-card";
+  const iconClass = options.iconClass || "bi bi-journal-medical fs-3";
+  const themeClass = options.themeClass || "bg-success-subtle text-success";
+  const footerText = options.footerText || "";
+  const extraAttributes = options.extraAttributes || "";
+
+  return `
+    <div class="${wrapperClass}">
+      <div class="${cardClass}" onclick="startTest('${testName}')" ${extraAttributes}>
+        <div class="test-icon ${themeClass}">
+          <i class="${iconClass}"></i>
+        </div>
+        <div class="test-title fw-semibold">${title}</div>
+        <div class="question-footer">${footerText}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderTestCards(containerSelector, cards, options = {}) {
+  const container = document.querySelector(containerSelector);
+  if (!container) return;
+
+  const html = cards
+    .map((card) =>
+      buildTestCardHtml(Object.assign({}, options.cardDefaults || {}, card)),
+    )
+    .join("");
+
+  container.innerHTML = html;
+
+  if (options.afterRender && typeof options.afterRender === "function") {
+    options.afterRender();
+  }
+}
+
 function getTestCardQuestionCount(testName) {
   if (!testName) return null;
   if (
