@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson - Pulse Medical</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fb 0%, #e8f2ff 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #2563eb, #1d4ed8) !important;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .container-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .breadcrumb-section {
+            display: none;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .video-section {
+            background: white;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .video-player-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 14px;
+            background: #000;
+            margin-bottom: 18px;
+        }
+
+        .video-player-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 14px;
+        }
+
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: #f1f5f9;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .lesson-meta-icon {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            flex-shrink: 0;
+        }
+
+        .lesson-meta-content h3 {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            margin: 0 0 3px 0;
+            font-weight: 600;
+        }
+
+        .lesson-meta-content p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-weight: 600;
+            color: #0f172a;
+            margin: 0;
+        }
+
+        .lesson-header {
+            margin-bottom: 20px;
+        }
+
+        .lesson-title {
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .lesson-description {
+            color: #64748b;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            line-height: 1.5;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .btn-custom {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-prev {
+            background: #f1f5f9;
+            color: #2563eb;
+            border: 2px solid #2563eb;
+        }
+
+        .btn-prev:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-next {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-disabled:hover {
+            background: inherit;
+            color: inherit;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sidebar-card {
+            background: white;
+            border-radius: 14px;
+            padding: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .sidebar-title {
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lessons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .lesson-item {
+            padding: 10px;
+            border-radius: 8px;
+            background: #f8fafc;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        .lesson-item:hover {
+            background: #e8f2ff;
+            color: #2563eb;
+        }
+
+        .lesson-item.active {
+            background: var(--subject-color, #2563eb);
+            color: white;
+            border-left-color: var(--subject-color, #2563eb);
+            font-weight: 600;
+        }
+
+        .progress-info {
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .progress-info strong {
+            color: var(--subject-color, #2563eb);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .sidebar-card {
+                flex: 1;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                gap: 12px;
+                margin-top: 14px;
+            }
+
+            .video-section {
+                padding: 14px;
+            }
+
+            .lesson-meta {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-custom {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                gap: 12px;
+            }
+
+            .sidebar-card {
+                flex: 1;
+                min-width: 140px;
+                padding: 12px;
+            }
+
+            .lessons-list {
+                max-height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-wrapper {
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .video-section {
+                padding: 10px;
+                border-radius: 12px;
+            }
+
+            .video-player-container {
+                margin-bottom: 12px;
+            }
+
+            .lesson-meta {
+                padding: 12px;
+                gap: 8px;
+            }
+
+            .lesson-header {
+                margin-bottom: 14px;
+            }
+
+            .action-buttons {
+                gap: 6px;
+                margin-top: 12px;
+            }
+
+            .btn-custom {
+                padding: 8px 14px;
+                font-size: 0.75rem;
+                gap: 4px;
+            }
+
+            .sidebar {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .sidebar-card {
+                padding: 10px;
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .sidebar-title {
+                font-size: 0.75rem;
+                margin-bottom: 8px;
+            }
+
+            .lessons-list {
+                max-height: 200px;
+                gap: 6px;
+            }
+
+            .lesson-item {
+                padding: 8px;
+                font-size: 0.7rem;
+            }
+
+            .progress-info {
+                padding: 10px;
+                font-size: 0.75rem;
+            }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: clamp(0.75rem, 2vw, 0.9rem);
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: #2563eb;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            font-size: 0.95rem;
+        }
+
+        .back-home-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+        }
+
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+
+        .tests-section {
+            background: white;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            margin-top: 18px;
+        }
+
+        .tests-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .test-card {
+            background: linear-gradient(135deg, var(--card-bg, #f0f9ff), var(--card-bg-light, #e0f2fe));
+            border: 2px solid var(--subject-color, #2563eb);
+            border-radius: 12px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 100px;
+        }
+
+        .test-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+            background: linear-gradient(135deg, var(--subject-color, #2563eb), var(--subject-color-light, #3b82f6));
+            color: white;
+            border-color: var(--subject-color, #2563eb);
+        }
+
+        .test-card-icon {
+            font-size: 1.8rem;
+        }
+
+        .test-card-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .test-card-count {
+            font-size: 0.7rem;
+            opacity: 0.7;
+        }
+
+        .notes {
+            width: 100%;
+            max-width: none;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+        }
+
+        .notes-header {
+            background: #2563eb;
+            color: white;
+            padding: 18px 22px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .notes-content {
+            height: 75vh;
+            overflow: hidden;
+        }
+
+        .notes-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        .notes-content.show {
+            display: block;
+        }
+
+        .arrow {
+            transition: .3s;
+        }
+
+        .arrow.rotate {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width:768px) {
+
+            .notes-content {
+                height: 60vh;
+                padding: 0;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="../../index.html" class="navbar-brand d-flex align-items-center gap-2">
+                <img src="../../assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+                Pulse Go
+            </a>
+            <a href="../index.html" class="back-home-btn">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+        </div>
+    </nav>
+
+    <!-- CONTAINER -->
+    <div class="container-main">
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb-section">
+            <a href="../index.html" class="back-home-btn">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Lessons</a></li>
+                    <li class="breadcrumb-item"><a href="#" id="subjectLink">Subject</a></li>
+                    <li class="breadcrumb-item"><a href="#" id="topicLink">Topic</a></li>
+                    <li class="breadcrumb-item active" id="lessonBreadcrumb">Lesson</li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content-wrapper">
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+                <!-- VIDEO SECTION -->
+                <div class="video-section">
+                    <div class="video-player-container">
+                        <iframe id="videoPlayer" src="" allowfullscreen
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                    </div>
+                    <div id="videoErrorMessage" class="text-danger small mt-2" style="display: none;">
+                        No valid YouTube video found for this lesson. Check the lesson video ID or try another lesson.
+                    </div>
+
+                    <!-- LESSON HEADER -->
+                    <div class="lesson-header">
+                        <h1 class="lesson-title" id="lessonTitle"></h1>
+                        <!-- <p class="lesson-description" id="lessonDescription">
+                            Video darslarni ko'rib mavzuni o'rganing va amaliy testlar orqali bilimingizni
+                            mustahkamlang
+                        </p> -->
+                    </div>
+
+
+                    <div class="action-buttons">
+                        <button class="btn-custom btn-prev" id="prevBtn" onclick="previousLesson()">
+                            <i class="bi bi-chevron-left"></i> Oldingisi
+                        </button>
+                        <button class="btn-custom btn-next" id="nextBtn" onclick="nextLesson()">
+                            Keyingisi <i class="bi bi-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <!-- PROGRESS CARD -->
+                <div class="sidebar-card">
+                    <div class="progress-info">
+                        <strong id="progressText">1/3</strong><br>
+                        <span>Lessons</span>
+                    </div>
+                </div>
+
+                <!-- LESSONS LIST CARD -->
+                <div class="sidebar-card">
+                    <div class="sidebar-title">
+                        <i class="bi bi-list-check"></i> Lessons
+                    </div>
+                    <div class="lessons-list" id="lessonsList">
+                        <!-- Dynamically populated -->
+                    </div>
+                </div>
+            </div>
+            <!-- Practice Tests -->
+            <section id="test-selection" class="mt-4">
+
+                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="testsAccordion">
+
+                    <div class="accordion-item border-0">
+
+                        <h2 class="accordion-header">
+
+                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#practiceTests" aria-expanded="true" aria-controls="practiceTests">
+
+                                <i class="bi bi-pencil-square me-2 text-primary"></i>
+
+                                Practice Tests
+
+                                <span class="badge bg-primary ms-2" id="testsCount">
+                                    0
+                                </span>
+
+                            </button>
+
+                        </h2>
+
+                        <div id="practiceTests" class="accordion-collapse collapse show">
+
+                            <div class="accordion-body">
+
+                                <div class="row g-3" id="testsGrid"></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Notes -->
+            <section id="notes" class="mt-4">
+
+                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="notesAccordion">
+
+                    <div class="accordion-item border-0">
+
+                        <h2 class="accordion-header">
+
+                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#lessonNotes" aria-expanded="false" aria-controls="lessonNotes">
+
+                                <i class="bi bi-file-earmark-text me-2 text-primary"></i>
+
+                                Notes
+
+                                <span class="badge bg-primary ms-2">
+                                    1
+                                </span>
+
+                            </button>
+
+                        </h2>
+
+                        <div id="lessonNotes" class="accordion-collapse collapse">
+
+                            <div class="accordion-body p-0">
+
+                                <div class="notes-content">
+
+                                    <iframe
+                                        src="../../pdfjs/web/viewer.html?file=../../../../../../pdf/organ-systems.pdf">
+                                    </iframe>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <div id="common-modals"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/test.js"></script>
+    <script src="../js/data.js"></script>
+
+    <script>
+        let lessonData = null;
+        let lessonIndex = 0;
+
+        function extractYoutubeId(value) {
+            if (!value || typeof value !== 'string') return null;
+
+            const trimmed = value.trim();
+            const urlMatch = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|v\/))([A-Za-z0-9_-]{11})/);
+            if (urlMatch) return urlMatch[1];
+
+            if (/^[A-Za-z0-9_-]{11}$/.test(trimmed)) return trimmed;
+            return null;
+        }
+
+        function loadLessonContent() {
+            const data = sessionStorage.getItem('currentLesson');
+            console.log('loadLessonContent: currentLesson sessionStorage value:', data);
+
+            if (!data) {
+                console.warn('No currentLesson found in sessionStorage, redirecting to lesson list');
+                window.location.href = '../index.html';
+                return;
+            }
+
+            lessonData = JSON.parse(data);
+            lessonIndex = lessonData.currentIndex || 0;
+            console.log('Parsed lessonData:', lessonData, 'starting index:', lessonIndex);
+
+            // Load subject tests dynamically
+            loadSubjectTests();
+
+            // Display lesson
+            displayLesson(lessonIndex);
+
+            // Populate lessons list
+            populateLessonsList();
+
+            // Update breadcrumbs
+            document.getElementById('topicNameDisplay').textContent = lessonData.topicName;
+        }
+
+        function loadSubjectTests() {
+
+            if (!lessonData || !lessonData.subjectId) return;
+
+            // oldin yuklangan bo'lsa qayta yuklamasin
+            if (window.TEST_QUESTIONS) {
+                initializeTestEnv();
+                return;
+            }
+
+            const script = document.createElement("script");
+            script.src = `../../${lessonData.subjectId}/tests.js`;
+
+            script.onload = () => {
+                console.log("Tests loaded");
+                initializeTestEnv();
+            };
+
+            script.onerror = () => {
+                console.error("Cannot load tests.js");
+            };
+
+            document.head.appendChild(script);
+        }
+
+        function loadTestsForTopic() {
+
+            if (!lessonData) return;
+
+            const currentLesson = lessonData.lessons[lessonIndex];
+
+            if (!currentLesson) return;
+
+            const testNames = currentLesson.tests || [];
+
+            // badge
+            document.getElementById("testsCount").textContent = testNames.length;
+
+            // accordion
+            const collapse = document.getElementById("practiceTests");
+
+            if (!testNames.length) {
+                collapse.classList.remove("show");
+                return;
+            }
+
+            collapse.classList.add("show");
+
+            // renderTestCards uchun array tayyorlaymiz
+            const cards = testNames.map(name => ({
+                testName: name,
+                title: name
+            }));
+
+            // Eski system ishlashi uchun
+            window.tests = window.TEST_QUESTIONS;
+
+            renderTestCards("#testsGrid", cards);
+        }
+        function displayLesson(index) {
+            if (!lessonData || index < 0 || index >= lessonData.lessons.length) {
+                console.warn('displayLesson: invalid lessonData or index', lessonData, index);
+                return;
+            }
+
+            const lesson = lessonData.lessons[index];
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoErrorMessage = document.getElementById('videoErrorMessage');
+
+            console.log('Displaying lesson:', {
+                index,
+                lessonId: lesson.id,
+                title: lesson.title,
+                youtubeId: lesson.youtubeId
+            });
+
+            const normalizedYoutubeId = extractYoutubeId(lesson.youtubeId);
+            const hasValidYoutubeId = Boolean(normalizedYoutubeId);
+
+            if (hasValidYoutubeId) {
+                videoPlayer.src = `https://www.youtube.com/embed/${normalizedYoutubeId}?autoplay=0&controls=1&modestbranding=1`;
+                videoErrorMessage.style.display = 'none';
+            } else {
+                videoPlayer.src = '';
+                videoErrorMessage.style.display = 'block';
+                console.error('Invalid YouTube video ID for lesson:', lesson);
+            }
+
+            // Update title and breadcrumb
+            document.getElementById('lessonTitle').textContent = lesson.title;
+            document.getElementById('lessonBreadcrumb').textContent = lesson.title;
+
+            // Breadcrumb links (need to reconstruct from stored data)
+            document.getElementById('subjectLink').textContent = lessonData.subjectName;
+            document.getElementById('topicLink').textContent = lessonData.topicName;
+
+            // Update progress
+            document.getElementById('progressText').textContent = `${index + 1}/${lessonData.lessons.length}`;
+
+            // Update button states
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            if (index === 0) {
+                prevBtn.classList.add('btn-disabled');
+            } else {
+                prevBtn.classList.remove('btn-disabled');
+            }
+
+            if (index === lessonData.lessons.length - 1) {
+                nextBtn.classList.add('btn-disabled');
+            } else {
+                nextBtn.classList.remove('btn-disabled');
+            }
+
+            // Update active lesson in list
+            document.querySelectorAll('.lesson-item').forEach((item, i) => {
+                if (i === index) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Scroll current lesson into view
+            const currentItem = document.querySelector(`.lesson-item[data-index="${index}"]`);
+            if (currentItem) {
+                currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Update Practice Tests
+            if (window.TEST_QUESTIONS) {
+                loadTestsForTopic();
+            }
+        }
+
+        function populateLessonsList() {
+            const list = document.getElementById('lessonsList');
+            list.innerHTML = '';
+
+            lessonData.lessons.forEach((lesson, index) => {
+                const item = document.createElement('div');
+                item.className = 'lesson-item';
+                item.setAttribute('data-index', index);
+                item.innerHTML = `<i class="bi bi-play-circle"></i> ${index + 1}. ${lesson.title}`;
+
+                if (index === lessonIndex) {
+                    item.classList.add('active');
+                }
+
+                item.addEventListener('click', () => {
+                    lessonIndex = index;
+                    displayLesson(lessonIndex);
+                });
+
+                list.appendChild(item);
+            });
+
+            // Set sidebar card color
+            document.documentElement.style.setProperty('--subject-color', lessonData.subjectColor || '#2563eb');
+        }
+
+        function nextLesson() {
+            const nextIndex = lessonIndex + 1;
+            if (nextIndex < lessonData.lessons.length) {
+                lessonIndex = nextIndex;
+                displayLesson(lessonIndex);
+            }
+        }
+
+        function previousLesson() {
+            const prevIndex = lessonIndex - 1;
+            if (prevIndex >= 0) {
+                lessonIndex = prevIndex;
+                displayLesson(lessonIndex);
+            }
+        }
+
+        function getSubjectIdFromLesson() {
+            if (!lessonData || !lessonData.subjectId) return null;
+            return lessonData.subjectId;
+        }
+
+        function initializeTestEnv() {
+
+            if (!window.TEST_QUESTIONS) {
+                console.warn("TEST_QUESTIONS not loaded.");
+                return;
+            }
+
+            loadTestsForTopic();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadLessonContent);
+    </script>
+</body>
+
+</html>

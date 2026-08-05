@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons - Pulse Medical</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/styles/styles.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fb 0%, #e8f2ff 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #2563eb, #1d4ed8) !important;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 24px 16px;
+            background: white;
+            border-radius: 16px;
+            margin: 20px auto;
+            max-width: 1400px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            flex-wrap: wrap;
+        }
+
+        .subject-icon-large {
+            font-size: clamp(2rem, 6vw, 3rem);
+        }
+
+        .header-content h1 {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .header-content p {
+            color: #64748b;
+            margin: 0;
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        .container-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        @media (min-width: 1024px) {
+            .container-main {
+                padding: 0 20px;
+            }
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            padding: 24px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 14px;
+            padding: 20px 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--card-color, #2563eb);
+            position: relative;
+            overflow: hidden;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.06), transparent);
+            transition: right 0.4s;
+        }
+
+        .topic-card:hover::before {
+            right: 100%;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        @media (hover: none) {
+            .topic-card:active {
+                transform: translateY(-3px);
+            }
+        }
+
+        .topic-number {
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--card-color, #2563eb);
+            color: white;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        .topic-title {
+            font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .lessons-count {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 10px;
+            background: var(--card-color, #2563eb);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0.85;
+        }
+
+        .topic-card:hover .topic-title {
+            color: var(--card-color, #2563eb);
+        }
+
+        .topic-expand {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .topic-card:hover .topic-expand {
+            opacity: 1;
+            gap: 10px;
+        }
+
+        .topic-expand i {
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .topic-card:hover .topic-expand i {
+            transform: translateX(4px);
+        }
+
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 18px 12px;
+                gap: 10px;
+                margin: 12px auto;
+            }
+
+            .topics-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+                padding: 16px 0;
+            }
+
+            .topic-card {
+                padding: 14px 12px;
+                min-height: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topics-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+
+            .topic-card {
+                padding: 12px 10px;
+                min-height: 120px;
+            }
+
+            .topic-number {
+                width: 32px;
+                height: 32px;
+                font-size: 0.75rem;
+            }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+            font-size: 0.9rem;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+
+        .no-data i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="../../../index.html" class="navbar-brand d-flex align-items-center gap-2">
+                <img src="../../../assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+                Pulse Go
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTAINER -->
+    <div class="container-main">
+        <!-- HEADER SECTION -->
+        <div class="header-section">
+            <a href="../index.html" class="back-btn">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+            <div class="subject-icon-large" id="subjectIcon"></div>
+            <div class="header-content">
+                <h1 id="subjectTitle"></h1>
+                <p id="subjectDesc"></p>
+            </div>
+        </div>
+
+        <!-- TOPICS GRID -->
+        <div class="topics-grid" id="topicsContainer">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/data.js"></script>
+
+    <script>
+        // Get subject ID from URL path
+        function getSubjectIdFromPath() {
+            const parts = window.location.pathname.split('/');
+            for (let i = 0; i < parts.length; i++) {
+                if (parts[i] === 'lessons' && i + 1 < parts.length) {
+                    return parts[i + 1];
+                }
+            }
+            return null;
+        }
+
+        // Load subject and topics
+        function loadSubjectContent() {
+            const subjectId = getSubjectIdFromPath();
+
+            if (!subjectId) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            const subject = getSubject(subjectId);
+            if (!subject) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            // Set header
+            document.getElementById('subjectIcon').textContent = subject.icon;
+            document.getElementById('subjectTitle').textContent = subject.name;
+            document.getElementById('subjectDesc').textContent = subject.description;
+
+            // Load topics
+            const topics = getSubjectTopics(subjectId);
+            const container = document.getElementById('topicsContainer');
+
+            if (topics.length === 0) {
+                container.innerHTML = `
+                    <div class="no-data">
+                        <i class="bi bi-inbox"></i>
+                        <p>No topics available yet</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            topics.forEach((topic, index) => {
+                const card = document.createElement('div');
+                card.className = 'topic-card';
+                card.style.setProperty('--card-color', subject.color);
+
+                card.innerHTML = `
+                    <div class="topic-number">${index + 1}</div>
+                    <h3 class="topic-title">${topic.topic}</h3>
+                    <span class="lessons-count">
+                        <i class="bi bi-file-text"></i> ${topic.lessons.length} dars
+                    </span>
+                    <div class="topic-expand">
+                        <span>View lessons</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    if (!topic.lessons || topic.lessons.length === 0) {
+                        console.warn('Topic has no lessons:', topic);
+                        return;
+                    }
+
+                    sessionStorage.setItem('currentLesson', JSON.stringify({
+                        lessons: topic.lessons,
+                        currentIndex: 0,
+                        topicName: topic.topic,
+                        subjectName: subject.name,
+                        subjectIcon: subject.icon,
+                        subjectColor: subject.color,
+                        subjectId: subjectId,
+                        lessonId: topic.lessons[0]?.id || null
+                    }));
+                    window.location.href = '../lesson/index.html';
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadSubjectContent);
+    </script>
+</body>
+
+</html>

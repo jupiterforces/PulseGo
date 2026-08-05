@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons - Pulse Medical</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/styles/styles.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fb 0%, #e8f2ff 100%);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(90deg, #2563eb, #1d4ed8) !important;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            margin: 30px auto;
+            max-width: 1400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .subject-icon-large {
+            font-size: 2.5rem;
+        }
+
+        .header-content h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 5px;
+        }
+
+        .header-content p {
+            color: #64748b;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #2563eb;
+            border-radius: 12px;
+            color: #2563eb;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateX(-4px);
+        }
+
+        .container-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        @media (min-width: 1024px) {
+            .container-main {
+                padding: 0 20px;
+            }
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+            padding: 24px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 14px;
+            padding: 18px 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 140px;
+            justify-content: space-between;
+        }
+
+        .lesson-card::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(37, 99, 235, 0.06), transparent);
+            transition: top 0.4s;
+        }
+
+        .lesson-card:hover::before {
+            top: 0;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            border-color: var(--card-color, #2563eb);
+        }
+
+        @media (hover: none) {
+            .lesson-card:active {
+                transform: translateY(-3px);
+            }
+        }
+
+        .lesson-icon {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 8px;
+        }
+
+        .lesson-number {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: var(--card-color, #2563eb);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 16px;
+            margin-bottom: 10px;
+            width: fit-content;
+            opacity: 0.9;
+        }
+
+        .lesson-title {
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            flex-grow: 1;
+        }
+
+        .lesson-action {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            color: var(--card-color, #2563eb);
+            font-weight: 600;
+            margin-top: 10px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-card:hover .lesson-action {
+            opacity: 1;
+            gap: 10px;
+        }
+
+        .lesson-action i {
+            transition: transform 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .lesson-card:hover .lesson-action i {
+            transform: translateX(4px);
+        }
+
+        /* MOBILE OPTIMIZATIONS */
+        @media (max-width: 768px) {
+            .lessons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 12px;
+                padding: 16px 0;
+            }
+
+            .lesson-card {
+                padding: 14px 12px;
+                min-height: 120px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lessons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 10px;
+            }
+
+            .lesson-card {
+                padding: 12px 10px;
+                min-height: 100px;
+            }
+
+            .lesson-number {
+                font-size: 0.65rem;
+                padding: 2px 8px;
+            }
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1e40af, #1d4ed8);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .breadcrumb-section {
+            background: transparent;
+            padding: 20px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+        }
+
+        .breadcrumb-item {
+            color: #64748b;
+        }
+
+        .breadcrumb-item.active {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .breadcrumb-item a {
+            color: #2563eb;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .breadcrumb-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a href="../../index.html" class="navbar-brand d-flex align-items-center gap-2">
+                <img src="../../assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+                Pulse Go
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- CONTAINER -->
+    <div class="container-main">
+        <!-- BREADCRUMB -->
+        <div class="breadcrumb-section">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Lessons</a></li>
+                    <li class="breadcrumb-item"><a href="#" id="subjectLink">Subject</a></li>
+                    <li class="breadcrumb-item active" id="topicBreadcrumb">Topic</li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- HEADER SECTION -->
+        <div class="header-section">
+            <a href="javascript:history.back()" class="back-btn">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+            <div class="subject-icon-large" id="subjectIcon"></div>
+            <div class="header-content">
+                <h1 id="topicTitle"></h1>
+                <p id="topicSubtitle"></p>
+            </div>
+        </div>
+
+        <!-- LESSONS GRID -->
+        <div class="lessons-grid" id="lessonsContainer">
+            <!-- Dynamically populated -->
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Pulse Medical. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/data.js"></script>
+
+    <script>
+        // Load topic and its lessons
+        function loadTopicContent() {
+            const topicData = sessionStorage.getItem('currentTopic');
+
+            if (!topicData) {
+                window.location.href = '../index.html';
+                return;
+            }
+
+            const topic = JSON.parse(topicData);
+
+            // Update header
+            document.getElementById('subjectIcon').textContent = topic.subjectIcon;
+            document.getElementById('topicTitle').textContent = topic.topicName;
+            document.getElementById('topicSubtitle').textContent = topic.subjectName;
+            document.getElementById('topicBreadcrumb').textContent = topic.topicName;
+
+            // Update breadcrumb link
+            document.getElementById('subjectLink').href = `../${topic.subjectId}/index.html`;
+            document.getElementById('subjectLink').textContent = topic.subjectName;
+
+            // Load lessons
+            const container = document.getElementById('lessonsContainer');
+            container.innerHTML = '';
+
+            topic.lessons.forEach((lesson, index) => {
+                const card = document.createElement('div');
+                card.className = 'lesson-card';
+                card.style.setProperty('--card-color', topic.subjectColor);
+
+                card.innerHTML = `
+                    <div class="lesson-number">Lesson ${index + 1}</div>
+                    <span class="lesson-icon">📺</span>
+                    <h3 class="lesson-title">${lesson.title}</h3>
+                    <div class="lesson-action">
+                        <span>Watch Video</span>
+                        <i class="bi bi-play-circle-fill"></i>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => {
+                    // Store lesson data
+                    sessionStorage.setItem('currentLesson', JSON.stringify({
+                        lessons: topic.lessons,
+                        currentIndex: index,
+                        topicName: topic.topicName,
+                        subjectName: topic.subjectName,
+                        subjectIcon: topic.subjectIcon,
+                        subjectColor: topic.subjectColor,
+                        subjectId: topic.subjectId,
+                        lessonId: topic.lessons[index]?.id || null
+                    }));
+                    console.log('Redirecting to lesson page with currentLesson:', {
+                        lessonId: topic.lessons[index]?.id,
+                        currentIndex: index,
+                        topicName: topic.topicName,
+                        subjectName: topic.subjectName
+                    });
+                    window.location.href = '../lesson/index.html';
+                });
+
+                container.appendChild(card);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadTopicContent);
+    </script>
+</body>
+
+</html>
