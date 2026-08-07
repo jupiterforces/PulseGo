@@ -188,6 +188,7 @@
             const clearBtn = document.getElementById('clearBtn');
 
             function showStatus(msg, ok) {
+                if (!statusEl) return;
                 statusEl.textContent = msg;
                 statusEl.style.color = ok ? 'green' : 'red';
             }
@@ -195,9 +196,9 @@
             // show username from Data (fallback to "Anonim")
             try {
                 const user = window.Data && typeof window.Data.getUser === 'function' ? window.Data.getUser() : null;
-                usernameEl.textContent = user && user.name ? user.name : 'Anonim';
+                if (usernameEl) usernameEl.textContent = user && user.name ? user.name : 'Anonim';
             } catch (e) {
-                usernameEl.textContent = 'Anonim';
+                if (usernameEl) usernameEl.textContent = 'Anonim';
             }
 
             document.getElementById('feedbackForm').addEventListener('submit', async function (ev) {
