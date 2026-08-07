@@ -1,0 +1,318 @@
+<link rel="stylesheet" href="/assets/styles/styles.css">
+
+<div class="modal fade" id="resultModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content tg-ultra-modal">
+
+            <div class="modal-body text-center p-4">
+
+                <!-- ICON -->
+                <div class="tg-ultra-icon mb-3">
+                    <i class="bi bi-trophy-fill"></i>
+                </div>
+
+                <!-- TITLE -->
+                <h5 class="tg-ultra-title">Here we go 🎉</h5>
+
+                <div class="tg-result-visual">
+
+                    <svg class="progress-ring" width="160" height="160">
+                        <circle class="progress-ring__bg" cx="80" cy="80" r="62"></circle>
+                        <circle class="progress-ring__circle" cx="80" cy="80" r="62"></circle>
+                    </svg>
+
+                    <!-- CENTER TEXT -->
+                    <div class="tg-percent-center">
+                        <span id="percent-text">0</span>
+                    </div>
+
+                </div>
+
+                <div id="final-score" class="tg-final-score-text"></div>
+
+                <!-- ACTIONS -->
+                <div class="tg-ultra-actions">
+
+                    <button onclick="reviewMistakes()" class="tg-ultra-btn primary">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <span>Xatolarni to'g'rilash</span>
+                    </button>
+
+                    <button onclick="generateCertificate()" class="tg-ultra-btn">
+                        <i class="bi bi-award-fill"></i>
+                        <span>Sertifikat</span>
+                    </button>
+
+                    <button onclick="shareResult()" class="tg-ultra-btn">
+                        <i class="bi bi-telegram"></i>
+                        <span>Ulashish</span>
+                    </button>
+
+                    <!-- RED MINIMAL CLOSE -->
+                    <button onclick="closeResult()" class="tg-ultra-btn danger">
+                        <i class="bi bi-x-lg"></i>
+                        <span>Yopish</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- TEST SCREEN SECTION -->
+<section class="pb-5 mt-3">
+    <div class="container d-flex justify-content-center">
+        <div id="test-screen" class="tg-test-card d-none">
+            <div class="pulsego-brand">PulseGo</div>
+            <!-- TOP BAR -->
+            <div class="tg-test-header">
+                <h6 id="test-title" class="mb-0 fw-semibold"></h6>
+
+                <div class="d-flex align-items-center gap-2">
+                    <span id="timer" class="tg-timer">⏱ 25s</span>
+                    <button onclick="stopTest()" class="tg-close-btn">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- QUESTION -->
+            <div class="tg-question">
+                <p id="question-container"></p>
+            </div>
+
+            <!-- ANSWERS -->
+            <div id="answer-buttons" class="tg-answers"></div>
+
+            <!-- RESULT (fallback) -->
+            <div id="result" class="d-none"></div>
+
+        </div>
+    </div>
+</section>
+
+<!-- EXIT TEST MODAL -->
+<div class="modal fade" id="exitTestModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 exit-modal">
+
+            <div class="modal-body text-center p-4">
+
+                <div class="exit-icon mb-3">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                </div>
+
+                <h4 class="fw-bold mb-2">
+                    Testni yakunlaysizmi?
+                </h4>
+
+                <p class="text-muted mb-4">
+                    Agar chiqib ketsangiz test natijalari saqlanmaydi.
+                </p>
+
+                <div class="d-flex gap-2">
+
+                    <button type="button" class="btn btn-light border w-50 py-3 rounded-4 fw-semibold"
+                        data-bs-dismiss="modal">
+                        Bekor qilish
+                    </button>
+
+                    <button type="button" class="btn btn-danger w-50 py-3 rounded-4 fw-semibold" id="confirmExitTest">
+                        Ha, chiqish
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- CERTIFICATE POPUP -->
+<div id="certificate-popup" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius:20px; background:#f1f5f9; padding:20px; text-align:center;">
+            <h5 class="fw-bold mb-3">Write your name to take the sertificate</h5>
+            <input type="text" id="cert-name-input" class="form-control mb-3" placeholder="Ism Familiya">
+            <button class="btn btn-primary w-50" onclick="generateCertificate()">Download</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content bg-transparent border-0 shadow-none">
+
+            <!-- Close button -->
+            <button type="button" class="btn-close btn-close-red position-absolute top-0 end-0 m-3 z-3"
+                data-bs-dismiss="modal" aria-label="Close">
+            </button>
+
+            <!-- Image -->
+            <div class="modal-body text-center p-0">
+
+                <img id="modalImage" src="" class="img-fluid rounded-4 shadow-lg" style="
+                        max-height: 90vh;
+                        object-fit: contain;
+                        cursor: pointer;
+                    ">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div id="userModal" class="pg-modal hidden">
+    <div class="pg-card">
+        <div class="pg-header">
+            <div class="pg-logo"><img src="/assets/img/PulseGo.jpg"
+                    style="width: 100px; height: 100px; border-radius: 50%;" alt="PulseGo Logo"></div>
+            <!-- <h2>Profilingizni yarating</h2> -->
+            <!-- <p>PulseGo'dan foydalanishni boshlash uchun ma'lumotlaringizni kiriting</p> -->
+        </div>
+
+        <form id="pg-form">
+            <div class="pg-group">
+                <label>To'liq ism va familiya</label>
+                <input id="pg-name" type="text" placeholder="Masalan: Jasur Xolmurodov" required />
+            </div>
+
+            <div class="pg-group">
+                <label>Guruh</label>
+                <input id="pg-about" type="text" placeholder="Masalan: Dav 25/25" required />
+            </div>
+
+            <button type="submit" class="pg-btn">
+                Davom etish
+            </button>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="feedbackModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0 rounded-4">
+
+            <!-- HEADER -->
+            <div class="modal-header border-0">
+                <h5 class="modal-title fw-bold">PulseGo Feedback</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- BODY -->
+            <form id="feedbackForm">
+
+                <div class="modal-body">
+
+                    <label class="form-label fw-semibold">
+                        Platformamiz sizga yoqyaptimi?
+                    </label>
+                    <select class="form-select mb-3" id="fb-liked" required>
+                        <option value="">Tanlang</option>
+                        <option value="yes">Ha</option>
+                        <option value="no">Yo'q</option>
+                    </select>
+
+                    <label class="form-label fw-semibold">
+                        Afzalliklari
+                    </label>
+                    <textarea id="fb-advantages" class="form-control mb-3" rows="3" placeholder="Nimalar yoqdi?"
+                        required></textarea>
+
+                    <label class="form-label fw-semibold">
+                        Kamchiliklari
+                    </label>
+                    <textarea id="fb-disadvantages" class="form-control" rows="3" placeholder="Nimalar yoqmadi?"
+                        required></textarea>
+
+                    <!-- alert -->
+                    <div id="fb-error" class="alert alert-danger d-none mt-2 py-2">
+                        Iltimos, barcha maydonlarni to‘ldiring!
+                    </div>
+
+                </div>
+
+                <!-- FOOTER -->
+                <div class="modal-footer border-0">
+
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                        Bekor qilish
+                    </button>
+
+                    <button type="submit" class="btn btn-primary">
+                        Yuborish
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const liked = document.getElementById("fb-liked").value.trim();
+        const advantages = document.getElementById("fb-advantages").value.trim();
+        const disadvantages = document.getElementById("fb-disadvantages").value.trim();
+        const errorBox = document.getElementById("fb-error");
+
+        if (!liked || !advantages || !disadvantages) {
+            errorBox.classList.remove("d-none");
+            return;
+        }
+
+        errorBox.classList.add("d-none");
+
+        const data = {
+            liked,
+            advantages,
+            disadvantages,
+            time: new Date().toISOString()
+        };
+
+        console.log("Feedback sent:", data);
+
+        // modal close
+        const modalEl = document.getElementById("feedbackModal");
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+
+        // reset
+        this.reset();
+
+        alert("Rahmat! Fikringiz yuborildi 🚀");
+    });
+</script>
+<script>
+    const modalEl = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImage");
+
+    // Rasm ochish
+    img.onclick = () => {
+        modalImg.src = q.photo;
+
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+    };
+
+    // Rasm ustiga bosilganda yopiladi
+    modalImg.onclick = () => {
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        modal.hide();
+    };
+</script>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
