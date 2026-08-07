@@ -1141,11 +1141,11 @@ function renderTestCards(containerSelector, cards, options = {}) {
 
 function getTestCardQuestionCount(testName) {
   if (!testName) return null;
-  if (
-    typeof window.tests === "object" &&
-    Array.isArray(window.tests[testName])
-  ) {
-    return window.tests[testName].length;
+  const availableTests =
+    typeof tests !== "undefined" ? tests : window.tests || {};
+
+  if (Array.isArray(availableTests[testName])) {
+    return availableTests[testName].length;
   }
   if (
     typeof window.TEST_QUESTIONS === "object" &&
@@ -1647,7 +1647,9 @@ async function startTest(testName) {
     await window.showAdModal(); // 👈 MUHIM FIX
   }
 
-  currentTest = tests[testName];
+  const availableTests =
+    typeof tests !== "undefined" ? tests : window.tests || {};
+  currentTest = availableTests[testName];
   currentTestName = testName;
   currentIndex = 0;
   score = 0;

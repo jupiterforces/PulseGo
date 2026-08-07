@@ -245,23 +245,39 @@
 
   async function submitFeedback({ liked, advantages, disadvantages }) {
     const data = load();
-
-    if (!data.user?.uid) {
-      throw new Error("User not found");
-    }
+    // Allow anonymous submissions if no stored user
+    const user = data.user || { uid: null, name: "Anonymous", about: "" };
 
     const mod = await import("../../firebase.js");
 
-    await mod.setDoc(
-      mod.doc(mod.db, "users", data.user.uid, "feedbacks", "first_feedback"),
-      {
-        liked,
-        advantages,
-        disadvantages,
-        createdAt: new Date().toISOString(),
-      },
-    );
+    try {
+      if (user && user.uid) {
+        await mod.setDoc(
+          mod.doc(mod.db, "users", user.uid, "feedbacks", "first_feedback"),
+          {
+            liked,
+            advantages,
+            disadvantages,
+            createdAt: new Date().toISOString(),
+          },
+        );
+      } else {
+        // write to a top-level feedbacks collection for anonymous users
+        const id = String(Date.now());
+        await mod.setDoc(mod.doc(mod.db, "feedbacks", id), {
+          liked,
+          advantages,
+          disadvantages,
+          user: { uid: "anonymous", name: "Anonymous" },
+          createdAt: new Date().toISOString(),
+        });
+      }
+    } catch (e) {
+      // rethrow so callers can handle / show errors
+      throw e;
+    }
 
+    // mark locally that feedback was submitted to avoid repeated prompts
     markFeedbackSubmitted();
 
     return true;
