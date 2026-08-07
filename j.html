@@ -95,6 +95,15 @@
 
         <h3>📊 PulseGo Pro Analytics</h3>
 
+        <div class="mb-2">
+            <div class="btn-group" role="group" aria-label="views">
+                <button id="viewUsersBtn" type="button" class="btn btn-sm btn-primary"
+                    onclick="setView('users')">Foydalanuvchilar</button>
+                <button id="viewFeedbackBtn" type="button" class="btn btn-sm btn-outline-light"
+                    onclick="setView('feedbacks')">Fikr-mulohazalar</button>
+            </div>
+        </div>
+
         <!-- CONTROLS -->
         <div class="glass p-3 mb-3">
 
@@ -110,8 +119,14 @@
         </div>
 
         <!-- LIST -->
-        <div class="glass p-3">
+        <div id="usersPanel" class="glass p-3">
             <div id="list"></div>
+        </div>
+
+        <!-- FEEDBACKS -->
+        <div id="feedbackPanel" class="glass p-3 mt-3 d-none">
+            <h5>Fikr-mulohazalar (oxirgi yuborilganlar birinchi)</h5>
+            <div id="feedbackList"></div>
         </div>
 
     </div>
@@ -119,10 +134,11 @@
     <script type="module">
 
         import { db } from "./firebase.js";
-        import { collection, getDocs }
+        import { collection, getDocs, collectionGroup }
             from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         let USERS = [];
+        let FEEDBACKS = [];
         let MODE = "percent";
 
         // ----------------------
@@ -149,11 +165,11 @@
             USERS = [];
 
             snap.forEach(doc => {
-
                 const u = doc.data();
                 const o = u.overview || {};
 
                 USERS.push({
+                    uid: doc.id,
                     name: u.name,
                     about: u.about || "",
                     percent: o.percent || 0,
@@ -164,12 +180,108 @@
             });
 
             render();
+            await loadFeedbacks();
+        }
+
+        // load both top-level anonymous feedbacks and per-user feedback subcollections
+        async function loadFeedbacks() {
+            FEEDBACKS = [];
+
+            // top-level anonymous/general feedbacks
+            try {
+                console.log('Loading top-level feedbacks...');
+                const top = await getDocs(collection(db, "feedbacks"));
+                top.forEach(d => {
+                    const f = d.data();
+                    FEEDBACKS.push({
+                        id: d.id,
+                        user: f.user || { name: f.name || 'Anonim' },
+                        liked: f.liked,
+                        advantages: f.advantages || '',
+                        disadvantages: f.disadvantages || '',
+                        createdAt: f.createdAt || null
+                    });
+                });
+                console.log('Top-level feedbacks loaded:', FEEDBACKS.length);
+            } catch (e) {
+                console.warn('No top-level feedbacks or failed to load', e);
+            }
+
+            // fetch all subcollection 'feedbacks' across the DB using collectionGroup
+            try {
+                console.log('Loading collectionGroup feedbacks...');
+                const cg = await getDocs(collectionGroup(db, 'feedbacks'));
+                const userMap = Object.fromEntries(USERS.map(u => [u.uid, u.name]));
+                let cgCount = 0;
+                cg.forEach(d => {
+                    const f = d.data();
+                    // attempt to find parent user id from ref path (users/{uid}/feedbacks/{doc})
+                    let uid = null;
+                    try {
+                        uid = d.ref.parent && d.ref.parent.parent ? d.ref.parent.parent.id : null;
+                    } catch (e) {
+                        uid = null;
+                    }
+                    const name = f.user?.name || (uid ? userMap[uid] : null) || 'Anonim';
+                    FEEDBACKS.push({
+                        id: d.id,
+                        user: { name, uid },
+                        liked: f.liked,
+                        advantages: f.advantages || '',
+                        disadvantages: f.disadvantages || '',
+                        createdAt: f.createdAt || null
+                    });
+                    cgCount++;
+                });
+                console.log('CollectionGroup feedbacks loaded:', cgCount);
+            } catch (e) {
+                console.warn('Failed to load collectionGroup feedbacks', e);
+            }
+
+            // sort newest-first by createdAt (fallback to id numeric)
+            FEEDBACKS.sort((a, b) => {
+                const ta = a.createdAt ? new Date(a.createdAt).getTime() : Number(a.id) || 0;
+                const tb = b.createdAt ? new Date(b.createdAt).getTime() : Number(b.id) || 0;
+                return tb - ta;
+            });
+
+            renderFeedbacks();
         }
 
         // ----------------------
         window.setMode = function (mode) {
             MODE = mode;
             render();
+        };
+
+        // toggle between users view and feedbacks view
+        window.setView = async function (view) {
+            const usersPanel = document.getElementById('usersPanel');
+            const feedbackPanel = document.getElementById('feedbackPanel');
+            const usersBtn = document.getElementById('viewUsersBtn');
+            const fbBtn = document.getElementById('viewFeedbackBtn');
+
+            // hide/show panels explicitly
+            usersPanel.classList.toggle('d-none', view !== 'users');
+            feedbackPanel.classList.toggle('d-none', view !== 'feedbacks');
+
+            // ensure underlying list is emptied when showing feedbacks to avoid visual overlap
+            if (view === 'feedbacks') {
+                try { document.getElementById('list').innerHTML = ''; } catch (e) { }
+                usersBtn.classList.remove('btn-primary');
+                usersBtn.classList.add('btn-outline-light');
+                fbBtn.classList.remove('btn-outline-light');
+                fbBtn.classList.add('btn-primary');
+                await loadFeedbacks();
+                renderFeedbacks();
+            } else {
+                // restore users view
+                fbBtn.classList.remove('btn-primary');
+                fbBtn.classList.add('btn-outline-light');
+                usersBtn.classList.remove('btn-outline-light');
+                usersBtn.classList.add('btn-primary');
+                render();
+            }
         };
 
         // ----------------------
@@ -215,6 +327,44 @@
 
             document.getElementById("list").innerHTML = html;
         };
+
+        function renderFeedbacks() {
+            const el = document.getElementById('feedbackList');
+            if (!el) return;
+
+            if (!FEEDBACKS || !FEEDBACKS.length) {
+                el.innerHTML = '<div class="muted-small">Hozircha fikr-mulohaza yo\'q</div>';
+                return;
+            }
+
+            let h = '';
+            FEEDBACKS.forEach(f => {
+                const when = f.createdAt ? new Date(f.createdAt).toLocaleString() : '';
+                const name = escapeHtml(f.user?.name || 'Anonim');
+                const liked = escapeHtml(String(f.liked || ''));
+                const adv = f.advantages ? `<div><strong>Afzalliklar:</strong> ${escapeHtml(f.advantages)}</div>` : '';
+                const dis = f.disadvantages ? `<div><strong>Kamchiliklar:</strong> ${escapeHtml(f.disadvantages)}</div>` : '';
+
+                h += '<div class="user-card">';
+                h += '<div><b>' + name + '</b>';
+                h += '<div class="muted-small">' + when + '</div></div>';
+                h += '<div style="text-align:left;max-width:65%;">';
+                h += '<div><strong>Xulosa:</strong> ' + liked + '</div>';
+                h += adv + dis;
+                h += '</div></div>';
+            });
+
+            el.innerHTML = h;
+        }
+
+        function escapeHtml(s) {
+            return String(s)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
 
     </script>
 
