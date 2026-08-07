@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Project styles -->
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+
     <style>
         * {
             -webkit-tap-highlight-color: transparent;
@@ -18,13 +21,13 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f4f7fb;
-            color: #0f172a;
+            background: var(--tg-bg);
+            color: var(--tg-text);
             padding-bottom: 85px;
         }
 
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid #e9eef5;
             box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
@@ -33,8 +36,13 @@
         .navbar-brand {
             font-weight: 700;
             font-size: 17px;
-            color: #0f172a !important;
+            color: var(--tg-text) !important;
             letter-spacing: -0.3px;
+        }
+
+        .navbar-brand img {
+            border: 2px solid #fff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
         }
 
         .navbar .btn-light {
@@ -43,7 +51,7 @@
             border-radius: 999px;
             font-size: 13px;
             font-weight: 600;
-            color: #0f172a;
+            color: var(--tg-text);
             padding: 6px 14px;
             transition: .2s ease;
         }
@@ -52,181 +60,324 @@
             background: #e2e8f0;
         }
 
-        .section-title {
-            font-size: 1.2rem;
+        /* PAGE HEADER */
+        .page-header {
+            padding: 28px 0 18px;
+        }
+
+        .page-header h1 {
+            font-size: 22px;
             font-weight: 800;
-            margin-bottom: 8px;
+            color: var(--tg-text);
+            letter-spacing: -0.5px;
         }
 
-        .section-subtitle {
-            color: #64748b;
-            font-size: 0.95rem;
+        .page-header p {
+            color: var(--tg-muted);
+            font-size: 14px;
+            margin-bottom: 0;
         }
 
-        .prep-panel {
-            background: white;
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        /* MAIN STAT CARDS */
+        .main-stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            text-align: center;
+            height: 100%;
+            transition: transform .2s ease, box-shadow .2s ease;
         }
 
-        .prep-stat-card {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 16px 18px;
-            min-height: 104px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        .main-stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
         }
 
-        .prep-stat-card:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08);
-        }
-
-        .prep-stat-card .metric-label {
-            display: block;
-            color: #475569;
-            font-size: 0.75rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .prep-stat-card .metric-value {
-            margin: 0;
-            color: #0f172a;
-            font-size: 1.6rem;
-            font-weight: 800;
-            line-height: 1.1;
-        }
-
-        .prep-stat-card.accuracy {
+        .main-stat-card.accuracy {
             background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border-color: #bfdbfe;
+        }
+
+        .main-stat-card.completion {
+            background: linear-gradient(135deg, #ecfdf5, #bbf7d0);
+        }
+
+        .main-stat-card .stat-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--tg-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .main-stat-card .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--tg-text);
+            line-height: 1;
+        }
+
+        .main-stat-card.accuracy .stat-value {
             color: #1d4ed8;
         }
 
-        .prep-stat-card.completion {
-            background: linear-gradient(135deg, #ecfdf5, #bbf7d0);
-            border-color: #86efac;
+        .main-stat-card.completion .stat-value {
             color: #166534;
         }
 
-        .prep-stat-card.mistakes {
-            background: linear-gradient(135deg, #fff1f2, #fee2e2);
-            border-color: #fecaca;
-            color: #991b1b;
+        /* STATS TOGGLE */
+        .stats-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            color: var(--tg-text);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            transition: all .2s ease;
         }
 
-        .prep-test-row {
-            background: white;
+        .stats-toggle:hover {
+            background: #f8fafc;
+        }
+
+        .stats-toggle i {
+            transition: transform .25s ease;
+        }
+
+        .stats-toggle[aria-expanded="true"] i {
+            transform: rotate(180deg);
+        }
+
+        /* DETAIL STATS */
+        .detail-stat-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            text-align: center;
+        }
+
+        .detail-stat-card .stat-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--tg-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .detail-stat-card .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--tg-text);
+        }
+
+        /* PANEL */
+        .prep-panel {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+        }
+
+        /* SUBJECT CARD */
+        .subject-card {
+            background: #fff;
             border: 1px solid #e2e8f0;
             border-radius: 18px;
-            padding: 14px 16px;
+            padding: 18px;
+            height: 100%;
+            transition: all .2s ease;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+            border-color: #0d6efd;
+        }
+
+        .subject-card .subject-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--tg-text);
+            margin-bottom: 4px;
+        }
+
+        .subject-card .subject-meta {
+            font-size: 12px;
+            color: var(--tg-muted);
             margin-bottom: 12px;
         }
 
-        .prep-test-row:hover {
-            border-color: #2563eb;
-            background: #eff6ff;
-        }
-
-        .prep-test-card {
-            border: 1px solid #e2e8f0;
-            border-radius: 24px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 12px 26px rgba(15, 23, 42, 0.06);
-            background: #ffffff;
-        }
-
-        .prep-test-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.1);
-        }
-
-        .prep-test-card .btn {
+        .subject-card .progress {
+            height: 8px;
             border-radius: 999px;
+            background: #e2e8f0;
+            margin-bottom: 12px;
         }
 
-        .prep-session-meta {
-            border-top: 1px solid #e2e8f0;
-            padding-top: 14px;
-            margin-top: 4px;
-        }
-
-        .prep-header-small {
-            color: #64748b;
-            font-size: 0.95rem;
-        }
-
-        .prep-summary-label {
-            color: #475569;
-            font-size: 0.9rem;
-        }
-
-        .prep-summary-value {
-            color: #0f172a;
-            font-size: 1.25rem;
-            font-weight: 700;
-        }
-
-        @media (max-width: 768px) {
-            .prep-footer {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        .btn-stats {
-
-            background: #fff;
-
-            border: 1px solid #e5e7eb;
-
+        .subject-card .progress-bar {
             border-radius: 999px;
+            background: linear-gradient(90deg, #0d6efd, #00c6ff);
+        }
 
-            padding: 10px 18px;
+        .subject-card .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--tg-muted);
+            margin-bottom: 12px;
+        }
 
+        .subject-card .stat-row strong {
+            color: var(--tg-text);
+        }
+
+        .subject-card .btn {
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 600;
-
-            box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
-
         }
 
-        .btn-stats:hover {
-
-            background: #f8fafc;
-
+        .remove-subject-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
         }
 
-        .prep-stat-card {
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+        }
 
+        .empty-state i {
+            font-size: 48px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        .empty-state h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tg-text);
+        }
+
+        .empty-state p {
+            font-size: 13px;
+            color: var(--tg-muted);
+            margin-bottom: 0;
+        }
+
+        /* MODAL */
+        .modal-content {
+            border-radius: 24px;
+            border: none;
+        }
+
+        .add-subject-card {
+            width: 100%;
+            text-align: left;
+            display: block;
             padding: 16px;
-
-            min-height: 88px;
-
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
-
+            background: #fff;
+            color: var(--tg-text);
+            font-weight: 600;
+            transition: all .2s ease;
         }
 
-        .metric-value {
-
-            font-size: 28px;
-
+        .add-subject-card:hover {
+            border-color: #0d6efd;
+            background: #f4f8ff;
         }
 
-        .metric-label {
+        .add-subject-card.active {
+            border-color: #0d6efd;
+            background: #0d6efd;
+            color: #fff;
+        }
 
+        .add-subject-card .text-muted {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .add-subject-card.active .text-muted {
+            color: rgba(255, 255, 255, 0.85) !important;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 68px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(18px);
+            border-top: 1px solid #e5eaf1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1050;
+        }
+
+        .bottom-nav .nav-item {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            color: #64748b;
             font-size: 11px;
+            font-weight: 600;
+            transition: .2s ease;
+        }
 
+        .bottom-nav .nav-item i {
+            display: block;
+            font-size: 21px;
+            margin-bottom: 2px;
+        }
+
+        .bottom-nav .nav-item.active {
+            color: #0d6efd;
+        }
+
+        .bottom-nav .nav-item:hover {
+            color: #0d6efd;
+        }
+
+        @media(max-width:768px) {
+            .page-header h1 {
+                font-size: 20px;
+            }
+
+            .main-stat-card .stat-value {
+                font-size: 26px;
+            }
         }
     </style>
 </head>
 
 <body data-page="prep-detail">
+
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="/preparation/index.html">
@@ -239,196 +390,231 @@
         </div>
     </nav>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
-
-
-        <div class="row row-cols-2 row-cols-md-4 mt-3 g-3 mb-3">
-
-            <div class="col">
-                <div class="prep-stat-card accuracy">
-                    <span class="metric-label">Aniqlik</span>
-                    <p class="metric-value" id="prep-accuracy">0%</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card completion">
-                    <span class="metric-label">Tugatish</span>
-                    <p class="metric-value" id="prep-completion">0%</p>
-                </div>
-            </div>
-            <button class="btn btn-light btn-sm" data-bs-toggle="collapse" data-bs-target="#statsCollapse">
-                <h4>Statistics</h4>
-                <i class="bi bi-bar-chart"></i>
-
-            </button>
-        </div>
-
-    </div>
-
-    <div class="collapse" id="statsCollapse">
-
-        <div class="row row-cols-3 row-cols-md-4 g-3 mb-3">
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Mavzular</span>
-                    <p class="metric-value" id="prep-subject-count-card">0</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Jami testlar</span>
-                    <p class="metric-value" id="prep-total-tests">0</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Jami savollar</span>
-                    <p class="metric-value" id="prep-total-questions">0</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Qolgan savollar</span>
-                    <p class="metric-value" id="prep-remaining-questions">0</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row row-cols-3 row-cols-md-4 g-3 mb-3">
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Yechilgan savollar</span>
-                    <p class="metric-value" id="prep-solved">0</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Qolgan testlar</span>
-                    <p class="metric-value" id="prep-remaining-tests">0</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">To'g'ri javoblar</span>
-                    <p class="metric-value" id="prep-correct">0</p>
-                </div>
-            </div>
-            <div class="col">
-                <div class="prep-stat-card">
-                    <span class="metric-label">Noto'g'ri javoblar</span>
-                    <p class="metric-value" id="prep-wrong">0</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section class="py-4">
+    <!-- PAGE HEADER -->
+    <section class="page-header">
         <div class="container">
-            <div id="prep-not-found" class="prep-panel text-center d-none">
-                <h3 class="mb-3">Sessiya topilmadi</h3>
-                <p class="text-muted mb-4">Iltimos, to'g'ri tayyorgarlik sessiyasi identifikatorini tekshiring yoki
-                    qayta yarating.</p>
-                <a href="/preparation/index.html" class="btn btn-primary">Preparation sahifasiga qaytish</a>
-            </div>
-
-            <div id="prep-detail">
-                <div class="mb-4">
-                    <div class="section-title" id="prep-subject-title">Mavzu</div>
-                    <div class="section-subtitle">
+            <div class="d-flex justify-content-between align-items-start flex-column flex-md-row gap-3">
+                <div>
+                    <h1 id="prep-subject-title">Mavzu</h1>
+                    <p>
                         <span id="prep-exam-type">-</span> · <span id="prep-created-at">-</span>
-                    </div>
+                    </p>
                 </div>
-
-                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4 prep-session-meta">
-                    <div class="small text-muted d-flex gap-3 flex-wrap align-items-center">
-                        <span class="border-end pe-3"><span id="prep-subject-count-label">0 mavzu</span></span>
-                        <span class="border-end pe-3"><span id="prep-subject-tests-label">0 ta test</span></span>
-                        <span><span id="prep-updated-at">So'nggi yangilanish: -</span></span>
-                    </div>
-                    <div class="d-flex gap-2 flex-wrap">
-                        <button id="prep-add-subject-button" class="btn btn-outline-primary btn-sm">Mavzu
-                            qo'shish</button>
-                        <button id="prep-delete-session-button" class="btn btn-outline-danger btn-sm">Sessiyani
-                            o'chirish</button>
-                    </div>
-                </div>
-
-                <div class="prep-panel mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            <h5 class="mb-1">Tanlangan mavzular</h5>
-                            <div class="text-muted">Mavzular bo'yicha tayyorgarlikni boshqarish uchun mavzuni
-                                tanlang.</div>
-                        </div>
-                        <button id="prep-open-planner-button" type="button"
-                            class="btn btn-outline-primary btn-sm">Planner</button>
-                    </div>
-                    <div class="row g-3" id="prep-tests-grid"></div>
-                    <div id="prep-review-section"></div>
-                </div>
-
-                <div class="text-muted">Sessiyaga oid xatolar: <strong id="prep-session-mistake-count">0</strong>
-                </div>
-
-                <div class="modal fade" id="addSubjectModal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content border-0">
-                            <div class="modal-header border-0">
-                                <div>
-                                    <h5 class="modal-title fw-bold">Mavzuni qo'shish</h5>
-                                    <div class="text-muted">Sessiyaga yangi mavzularni qo'shing.</div>
-                                </div>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row g-3" id="available-subject-list"></div>
-                            </div>
-                            <div class="modal-footer border-0">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Bekor
-                                    qilish</button>
-                                <button id="save-add-subjects" type="button" class="btn btn-primary"
-                                    disabled>Saqlash</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="prepPlannerModal" tabindex="-1">
-                    <div class="modal-dialog modal-dialog-centered modal-lg">
-                        <div class="modal-content border-0">
-                            <div class="modal-header border-0">
-                                <div>
-                                    <h5 class="modal-title fw-bold">Planner</h5>
-                                    <div class="text-muted">Imtihon muddati asosida kunlik reja tuzamiz.</div>
-                                </div>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label class="form-label fw-semibold">Imtihon sanasi</label>
-                                    <input type="date" class="form-control" id="prep-deadline-input">
-                                </div>
-                                <div class="d-flex gap-2 mb-3">
-                                    <button id="prep-save-deadline-button" type="button"
-                                        class="btn btn-primary btn-sm">Saqlash</button>
-                                    <button id="prep-clear-deadline-button" type="button"
-                                        class="btn btn-outline-secondary btn-sm">Tozalash</button>
-                                </div>
-                                <div id="prep-planner-body"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="d-flex gap-2">
+                    <button id="prep-add-subject-button" class="btn btn-outline-primary btn-sm rounded-pill">
+                        <i class="bi bi-plus-lg"></i> Mavzu qo'shish
+                    </button>
+                    <button id="prep-delete-session-button" class="btn btn-outline-danger btn-sm rounded-pill">
+                        <i class="bi bi-trash"></i>
+                    </button>
                 </div>
             </div>
+        </div>
     </section>
 
-    <div id="test-selection" class="d-none"></div>
-    <div id="common-modals"></div>
+    <!-- MAIN STATS -->
+    <section class="pb-3">
+        <div class="container">
+            <div class="row g-3 mb-3">
+                <div class="col-6 col-md-3">
+                    <div class="main-stat-card accuracy">
+                        <div class="stat-label">Aniqlik</div>
+                        <div class="stat-value" id="prep-accuracy">0%</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="main-stat-card completion">
+                        <div class="stat-label">Tugatish</div>
+                        <div class="stat-value" id="prep-completion">0%</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="main-stat-card">
+                        <div class="stat-label">Yechilgan</div>
+                        <div class="stat-value" id="prep-solved">0</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="main-stat-card">
+                        <div class="stat-label">Qolgan savollar</div>
+                        <div class="stat-value" id="prep-remaining-questions">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mb-2">
+                <a class="stats-toggle" data-bs-toggle="collapse" href="#statsCollapse" role="button"
+                    aria-expanded="false" aria-controls="statsCollapse">
+                    <i class="bi bi-bar-chart"></i>
+                    Batafsil statistika
+                    <i class="bi bi-chevron-down"></i>
+                </a>
+            </div>
+
+            <div class="collapse" id="statsCollapse">
+                <div class="row g-3">
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">Mavzular</div>
+                            <div class="stat-value" id="prep-subject-count-card">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">Jami testlar</div>
+                            <div class="stat-value" id="prep-total-tests">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">Jami savollar</div>
+                            <div class="stat-value" id="prep-total-questions">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">Qolgan testlar</div>
+                            <div class="stat-value" id="prep-remaining-tests">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">To'g'ri javoblar</div>
+                            <div class="stat-value" id="prep-correct">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">Noto'g'ri javoblar</div>
+                            <div class="stat-value" id="prep-wrong">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">Xatolar soni</div>
+                            <div class="stat-value" id="prep-mistake-count">0</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="detail-stat-card">
+                            <div class="stat-label">So'nggi yangilanish</div>
+                            <div class="stat-value" id="prep-updated-at" style="font-size:13px;">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOT FOUND -->
+    <section class="py-4 d-none" id="prep-not-found">
+        <div class="container">
+            <div class="empty-state">
+                <i class="bi bi-exclamation-circle"></i>
+                <h3>Sessiya topilmadi</h3>
+                <p>Iltimos, to'g'ri tayyorgarlik sessiyasi identifikatorini tekshiring yoki qayta yarating.</p>
+                <a href="/preparation/index.html" class="btn btn-primary mt-3">Preparation sahifasiga qaytish</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAIL -->
+    <section class="py-4" id="prep-detail">
+        <div class="container">
+            <div class="prep-panel mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="mb-1 fw-bold">Tanlangan mavzular</h5>
+                        <div class="text-muted small">Mavzular bo'yicha tayyorgarlikni boshqarish uchun tanlang.</div>
+                    </div>
+                    <button id="prep-open-planner-button" type="button"
+                        class="btn btn-outline-primary btn-sm rounded-pill">
+                        <i class="bi bi-calendar-week"></i> Planner
+                    </button>
+                </div>
+                <div class="row g-3" id="prep-tests-grid"></div>
+                <div id="prep-review-section" class="mt-3"></div>
+            </div>
+
+            <div class="text-muted small">
+                Sessiyaga oid xatolar: <strong id="prep-session-mistake-count">0</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADD SUBJECT MODAL -->
+    <div class="modal fade" id="addSubjectModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <div>
+                        <h5 class="modal-title fw-bold">Mavzuni qo'shish</h5>
+                        <div class="text-muted small">Sessiyaga yangi mavzularni qo'shing.</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3" id="available-subject-list"></div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Bekor
+                        qilish</button>
+                    <button id="save-add-subjects" type="button" class="btn btn-primary" disabled>Saqlash</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PLANNER MODAL -->
+    <div class="modal fade" id="prepPlannerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <div>
+                        <h5 class="modal-title fw-bold">Planner</h5>
+                        <div class="text-muted small">Imtihon muddati asosida kunlik reja tuzamiz.</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Imtihon sanasi</label>
+                        <input type="date" class="form-control" id="prep-deadline-input">
+                    </div>
+                    <div class="d-flex gap-2 mb-3">
+                        <button id="prep-save-deadline-button" type="button"
+                            class="btn btn-primary btn-sm">Saqlash</button>
+                        <button id="prep-clear-deadline-button" type="button"
+                            class="btn btn-outline-secondary btn-sm">Tozalash</button>
+                    </div>
+                    <div id="prep-planner-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav d-lg-none">
+        <a href="/" class="nav-item">
+            <i class="bi bi-house-fill"></i>
+            <span>Asosiy</span>
+        </a>
+        <a href="/tests" class="nav-item">
+            <i class="bi bi-ui-checks-grid"></i>
+            <span>Testlar</span>
+        </a>
+        <a href="/preparation" class="nav-item active">
+            <i class="bi bi-journal-bookmark-fill"></i>
+            <span>Tayyorgarlik</span>
+        </a>
+        <a href="/profile" class="nav-item">
+            <i class="bi bi-person"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
 
     <script src="/assets/js/data.js"></script>
-    <script src="/assets/js/test.js"></script>
+    <script src="prep-data.js"></script>
     <script src="./preparation.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

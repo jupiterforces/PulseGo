@@ -15,6 +15,9 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Project styles -->
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+
     <style>
         * {
             -webkit-tap-highlight-color: transparent;
@@ -22,15 +25,14 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f4f7fb;
-            color: #fff;
+            background: var(--tg-bg);
+            color: var(--tg-text);
             padding-bottom: 85px;
         }
 
         /* NAVBAR */
-
         .navbar {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.92);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid #e9eef5;
             box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
@@ -39,7 +41,7 @@
         .navbar-brand {
             font-weight: 700;
             font-size: 17px;
-            color: #0f172a !important;
+            color: var(--tg-text) !important;
             letter-spacing: -0.3px;
         }
 
@@ -54,7 +56,7 @@
             border-radius: 999px;
             font-size: 13px;
             font-weight: 600;
-            color: #0f172a;
+            color: var(--tg-text);
             padding: 6px 14px;
             transition: .2s ease;
         }
@@ -63,157 +65,222 @@
             background: #e2e8f0;
         }
 
-        /* SECTION */
-
-        .tests-section {
-            padding: 20px 0;
+        /* PAGE HEADER */
+        .page-header {
+            padding: 28px 0 14px;
         }
 
-        /* CARD */
-
-        .nav-test-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 26px;
-            min-height: 160px;
-            background-size: cover;
-            background-position: center;
-            transition: all .3s ease;
-            box-shadow:
-                0 10px 30px rgba(0, 0, 0, 0.08);
+        .page-header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--tg-text);
+            letter-spacing: -0.5px;
         }
 
-        .nav-test-card:hover {
-            transform: translateY(-5px);
-            box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.18);
+        .page-header p {
+            color: var(--tg-muted);
+            font-size: 14px;
+            margin-bottom: 0;
         }
 
-        /* BACKGROUND IMAGES */
-
-        .anatomy-card {
-            background-image:
-                url('https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1200');
+        /* SUBJECT NAV */
+        .subject-nav {
+            position: sticky;
+            top: 66px;
+            z-index: 1020;
+            background: var(--tg-bg);
+            padding: 10px 0 14px;
+            margin-bottom: 6px;
         }
 
-        .exam-card {
-            background-image:
-                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200');
-        }
-
-        .bio-card {
-            background-image:
-                url('https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=1200');
-        }
-
-        .random-card {
-            background-image:
-                url('https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1200');
-        }
-
-        /* OVERLAY */
-
-        .card-overlay {
+        .subject-nav::after {
+            content: '';
             position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(to right,
-                    rgba(15, 23, 42, 0.92),
-                    rgba(15, 23, 42, 0.65));
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 14px;
+            background: linear-gradient(to bottom, var(--tg-bg), transparent);
+            pointer-events: none;
         }
 
-        .card-body {
-            position: relative;
-            z-index: 2;
-            padding: 18px;
+        .subject-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
         }
 
-        /* ICON */
+        .subject-pills::-webkit-scrollbar {
+            display: none;
+        }
 
-        .card-avatar {
-            width: 54px;
-            height: 54px;
-            min-width: 54px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+        .subject-pill {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            color: var(--tg-text);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all .2s ease;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        }
 
+        .subject-pill i {
+            font-size: 14px;
+        }
+
+        .subject-pill:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .subject-pill.active {
+            background: var(--tg-text);
+            color: #fff;
+            border-color: var(--tg-text);
+        }
+
+        /* GROUP SECTION */
+        .group-section {
+            margin-bottom: 14px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+        }
+
+        .group-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 18px;
+            cursor: pointer;
+            user-select: none;
+            transition: background .2s ease;
+        }
+
+        .group-header:hover {
+            background: #f8fafc;
+        }
+
+        .group-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-
-            font-size: 22px;
-            color: white;
-        }
-
-        /* TEXT */
-
-        .card-title-custom {
-            font-size: 15px;
-            font-weight: 700;
+            font-size: 18px;
             color: #fff;
-            margin-bottom: 2px;
-            line-height: 1.3;
         }
 
-        .card-subtitle-custom {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 10px;
+        .group-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tg-text);
         }
 
-        /* TEST COUNT */
+        .group-title-wrap {
+            flex-grow: 1;
+            min-width: 0;
+        }
 
-        .test-count {
+        .group-total {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
+            margin-top: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tg-muted);
+        }
 
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .group-total i {
+            font-size: 11px;
+        }
 
-            color: white;
+        .group-count-badge {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
             padding: 5px 10px;
             border-radius: 999px;
+            background: #f1f5f9;
+            color: var(--tg-text);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .group-count-badge i {
             font-size: 11px;
+            color: var(--tg-muted);
+        }
+
+        .group-subtitle {
+            font-size: 12px;
+            color: var(--tg-muted);
+            margin-top: -2px;
+        }
+
+        .group-chevron {
+            margin-left: auto;
+            font-size: 18px;
+            color: var(--tg-muted);
+            transition: transform .25s ease;
+        }
+
+        .group-section.open .group-chevron {
+            transform: rotate(180deg);
+        }
+
+        .group-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s ease, padding .35s ease;
+            padding: 0 18px;
+        }
+
+        .group-section.open .group-body {
+            max-height: 2000px;
+            padding: 4px 18px 18px;
+        }
+
+        /* TEST CARD */
+        .test-card {
+            text-decoration: none;
+            display: block;
+        }
+
+        .test-card .test-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+
+        .test-card .test-title {
+            font-size: 13px;
             font-weight: 600;
         }
 
-        /* ENGLISH */
-
-        .english-pill {
-            background: white;
-            color: #111827;
+        .test-card .question-footer {
             font-size: 11px;
-            font-weight: 700;
-            padding: 5px 10px;
-            border-radius: 999px;
-        }
-
-        /* START BUTTON */
-
-        .start-btn {
-            width: 38px;
-            height: 38px;
-            min-width: 38px;
-            border-radius: 12px;
-            background: white;
-            color: #111827;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            transition: .2s ease;
-        }
-
-        .nav-test-card:hover .start-btn {
-            transform: translateX(3px);
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
         /* BOTTOM NAV */
-
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -254,24 +321,21 @@
         }
 
         /* MOBILE */
-
         @media(max-width:768px) {
-
-            .row.g-3 {
-                --bs-gutter-y: 14px;
-                --bs-gutter-x: 14px;
+            .page-header h1 {
+                font-size: 22px;
             }
 
-            .card-body {
-                padding: 16px;
+            .group-title {
+                font-size: 15px;
             }
 
-            .card-title-custom {
-                font-size: 14px;
+            .subject-nav {
+                top: 62px;
             }
 
-            .nav-test-card {
-                min-height: 150px;
+            .group-count-badge {
+                display: none;
             }
         }
     </style>
@@ -280,10 +344,8 @@
 <body>
 
     <!-- NAVBAR -->
-
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-
             <a class="navbar-brand d-flex align-items-center gap-2" href="/">
                 <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
                 Pulse Go
@@ -292,238 +354,35 @@
             <a href="/" class="btn btn-light btn-sm">
                 <i class="bi bi-house"></i> Home
             </a>
-
         </div>
     </nav>
 
-    <!-- TEST SECTION -->
-
-    <section class="tests-section">
+    <!-- PAGE HEADER -->
+    <section class="page-header">
         <div class="container">
-
-            <div class="row g-3">
-
-                <!-- CARD 1 -->
-
-                <div class="col-md-4 col-12">
-
-                    <a href="/anatomy" class="text-decoration-none">
-
-                        <div class="card nav-test-card anatomy-card border-0">
-
-                            <div class="card-overlay"></div>
-
-                            <div class="card-body d-flex align-items-center">
-
-                                <div class="card-avatar">
-                                    <i class="bi bi-heart-pulse"></i>
-                                </div>
-
-                                <div class="flex-grow-1 ms-3">
-
-                                    <div class="card-title-custom">
-                                        Anatomiya testlari
-                                    </div>
-
-                                    <div class="card-subtitle-custom">
-                                        Mavzular bo'yicha testlar
-                                    </div>
-
-                                    <div class="d-flex align-items-center gap-2 flex-wrap">
-
-                                        <div class="test-count">
-                                            <i class="bi bi-ui-checks-grid"></i>
-                                            454 test
-                                        </div>
-
-                                        <span class="english-pill">
-                                            ENG
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="start-btn">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <!-- CARD 2 -->
-
-                <div class="col-md-4 col-12">
-
-                    <a href="/anatomy/yn/" class="text-decoration-none">
-
-                        <div class="card nav-test-card exam-card border-0">
-
-                            <div class="card-overlay"></div>
-
-                            <div class="card-body d-flex align-items-center">
-
-                                <div class="card-avatar">
-                                    <i class="bi bi-journal-check"></i>
-                                </div>
-
-                                <div class="flex-grow-1 ms-3">
-
-                                    <div class="card-title-custom">
-                                        Yakuniy rasmli testlar
-                                    </div>
-
-                                    <div class="card-subtitle-custom">
-                                        YN uchun maxsus
-                                    </div>
-
-                                    <div class="d-flex align-items-center gap-2 flex-wrap">
-
-                                        <div class="test-count">
-                                            <i class="bi bi-ui-checks-grid"></i>
-                                            500+ test
-                                        </div>
-
-                                        <span class="english-pill">
-                                            ENG
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="start-btn">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <!-- CARD 3 -->
-
-                <div class="col-md-4 col-12">
-
-                    <a href="/embriology" class="text-decoration-none">
-
-                        <div class="card nav-test-card bio-card border-0">
-
-                            <div class="card-overlay"></div>
-
-                            <div class="card-body d-flex align-items-center">
-
-                                <div class="card-avatar">
-                                    <i class="bi bi-virus"></i>
-                                </div>
-
-                                <div class="flex-grow-1 ms-3">
-
-                                    <div class="card-title-custom">
-                                        Hujayra biologiyasi
-                                    </div>
-
-                                    <div class="card-subtitle-custom">
-                                        Mavzular bo'yicha testlar
-                                    </div>
-
-                                    <div class="d-flex align-items-center gap-2 flex-wrap">
-
-                                        <div class="test-count">
-                                            <i class="bi bi-ui-checks-grid"></i>
-                                            454 test
-                                        </div>
-
-                                        <span class="english-pill">
-                                            ENG
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="start-btn">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
-                <!-- CARD 4 -->
-
-                <div class="col-md-4 col-12">
-
-                    <a href="#" class="text-decoration-none">
-
-                        <div class="card nav-test-card random-card border-0">
-
-                            <div class="card-overlay"></div>
-
-                            <div class="card-body d-flex align-items-center">
-
-                                <div class="card-avatar">
-                                    <i class="bi bi-lightning-charge"></i>
-                                </div>
-
-                                <div class="flex-grow-1 ms-3">
-
-                                    <div class="card-title-custom">
-                                        YN test baza
-                                    </div>
-
-                                    <div class="card-subtitle-custom">
-                                        30 ta random test
-                                    </div>
-
-                                    <div class="d-flex align-items-center gap-2 flex-wrap">
-
-                                        <div class="test-count">
-                                            <i class="bi bi-ui-checks-grid"></i>
-                                            3000+ test
-                                        </div>
-
-                                        <span class="english-pill">
-                                            ENG
-                                        </span>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="start-btn">
-                                    <i class="bi bi-arrow-right"></i>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </a>
-
-                </div>
-
+            <h1>Testlar</h1>
+            <p>Kerakli fan va mavzuni tanlang</p>
+        </div>
+    </section>
+
+    <!-- SUBJECT NAV -->
+    <div class="subject-nav">
+        <div class="container">
+            <div class="subject-pills" id="subject-pills">
+                <!-- Pills rendered from tests-data.js -->
             </div>
+        </div>
+    </div>
 
+    <!-- TEST GROUPS -->
+    <section class="tests-section">
+        <div class="container" id="groups-container">
+            <!-- Groups rendered from tests-data.js -->
         </div>
     </section>
 
     <!-- BOTTOM NAV -->
-
     <nav class="bottom-nav d-lg-none">
-
         <a href="/" class="nav-item">
             <i class="bi bi-house-fill"></i>
             <span>Asosiy</span>
@@ -538,12 +397,146 @@
             <i class="bi bi-journal-text"></i>
             <span>Caselar</span>
         </a>
-                </a> <a href="/profile" class="nav-item">
-            <i class="bi bi-journal-text"></i>
+
+        <a href="/profile" class="nav-item">
+            <i class="bi bi-person"></i>
             <span>Profil</span>
         </a>
-
     </nav>
+
+    <!-- Test data -->
+    <script src="tests-data.js"></script>
+
+    <!-- Render groups -->
+    <script>
+        const bgColors = {
+            danger: '#dc2626',
+            success: '#16a34a',
+            warning: '#d97706',
+            info: '#0891b2',
+            primary: '#2563eb',
+            dark: '#1f2937'
+        };
+
+        function renderPills() {
+            const container = document.getElementById('subject-pills');
+            container.innerHTML = testGroups.map(group => `
+                <a href="#group-${group.id}" class="subject-pill" data-group="${group.id}">
+                    <i class="bi ${group.icon}"></i>
+                    ${group.title}
+                </a>
+            `).join('');
+        }
+
+        function renderGroups() {
+            const container = document.getElementById('groups-container');
+
+            container.innerHTML = testGroups.map(group => `
+                <div class="group-section" id="group-${group.id}" data-group="${group.id}">
+                    <div class="group-header" onclick="openGroup('${group.id}')">
+                        <div class="group-icon" style="background: ${bgColors[group.color] || bgColors.primary}">
+                            <i class="bi ${group.icon}"></i>
+                        </div>
+                        <div class="group-title-wrap">
+                            <div class="group-title">${group.title}</div>
+                            <div class="group-total">
+                                <i class="bi bi-ui-checks-grid"></i>
+                                ${group.totalQuestions || 0} ta savol
+                            </div>
+                        </div>
+                        <span class="group-count-badge">
+                            <i class="bi bi-ui-checks-grid"></i>
+                            ${group.totalQuestions || 0}
+                        </span>
+                        <i class="bi bi-chevron-down group-chevron"></i>
+                    </div>
+
+                    <div class="group-body">
+                        <div class="row g-3">
+                            ${group.tests.map(test => `
+                                <div class="col-6 col-md-3">
+                                    <a href="${test.url}" class="test-card">
+                                        <div class="test-card h-100">
+                                            <div class="test-icon bg-${group.color}-subtle text-${group.color}">
+                                                <i class="bi bi-journal-medical"></i>
+                                            </div>
+                                            <div class="test-title">${test.title}</div>
+                                            <div class="question-footer">${test.count}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openGroup(id) {
+            const sections = document.querySelectorAll('.group-section');
+            const target = document.getElementById('group-' + id);
+            const isAlreadyOpen = target.classList.contains('open');
+
+            sections.forEach(section => section.classList.remove('open'));
+
+            if (!isAlreadyOpen) {
+                target.classList.add('open');
+            }
+
+            updateActivePill();
+        }
+
+        function updateActivePill() {
+            const openSection = document.querySelector('.group-section.open');
+            const pills = document.querySelectorAll('.subject-pill');
+
+            pills.forEach(pill => {
+                const isActive = openSection && pill.dataset.group === openSection.dataset.group;
+                pill.classList.toggle('active', isActive);
+            });
+        }
+
+        // Smooth scroll + open group when clicking a pill
+        document.getElementById('subject-pills').addEventListener('click', function (e) {
+            const pill = e.target.closest('.subject-pill');
+            if (!pill) return;
+            e.preventDefault();
+
+            const id = pill.dataset.group;
+            openGroup(id);
+
+            const section = document.getElementById('group-' + id);
+            const navOffset = document.querySelector('.subject-nav').offsetHeight + 70;
+            const top = section.getBoundingClientRect().top + window.scrollY - navOffset;
+
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+
+        // Highlight active pill on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.group-section');
+            const pills = document.querySelectorAll('.subject-pill');
+            const navOffset = document.querySelector('.subject-nav').offsetHeight + 80;
+
+            let current = null;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= navOffset && rect.bottom > navOffset) {
+                    current = section.dataset.group;
+                }
+            });
+
+            if (current) {
+                pills.forEach(pill => {
+                    pill.classList.toggle('active', pill.dataset.group === current);
+                });
+            }
+        }, { passive: true });
+
+        renderPills();
+        renderGroups();
+        updateActivePill();
+    </script>
 
 </body>
 

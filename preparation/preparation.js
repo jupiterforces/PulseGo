@@ -1,111 +1,4 @@
 const PREP_SESSION_KEY = "preparationSessions";
-const PREP_EXAM_TYPES = [
-  { id: "final", title: "Final Exam" },
-  { id: "grant", title: "Grant Exam" },
-];
-const PREP_SUBJECTS = [
-  {
-    id: "anatomy",
-    title: "Anatomiya",
-    script: "/anatomy/tests.js",
-    page: "/anatomy/",
-    tests: [
-      { id: "mock1", title: "Peritoneum", count: 20 },
-      { id: "mock2", title: "Anatomy Chapter 1", count: 20 },
-      { id: "mock3", title: "Accessory GI Organs", count: 20 },
-      { id: "mock4", title: "Celiac and Mesenteric Arteries", count: 20 },
-      { id: "mock5", title: "Portal Vena", count: null },
-      { id: "mock6", title: "Kidney (1)", count: 20 },
-      { id: "mock7", title: "Kidney (2)", count: 20 },
-      { id: "mock8", title: "Posterior Abdominal Wall Vessels", count: 20 },
-      { id: "L22", title: "Upper Limb", count: 20 },
-      { id: "mockUpperLimb2", title: "Upper Limb 2", count: 10 },
-      { id: "mockLowerLimbArteries", title: "Lower Limb Arteries", count: 20 },
-    ],
-  },
-  {
-    id: "anatomy-yn",
-    title: "Anatomiya Yakuniy",
-    script: "/anatomy/imgtests.js",
-    page: "/anatomy/yn/",
-    tests: Array.from({ length: 15 }, (_, index) => ({
-      id: `mock${index + 1}`,
-      title: `Yakuniy test ${index + 1}`,
-      count: null,
-    })),
-  },
-  {
-    id: "cellbiology",
-    title: "Hujayra biologiyasi",
-    script: "/cellbiology/tests.js",
-    page: "/cellbiology/",
-    tests: Array.from({ length: 11 }, (_, index) => ({
-      id: `cellb${index + 1}`,
-      title: `Bo'lim ${index + 1}`,
-      count: null,
-    })),
-  },
-  {
-    id: "embriology",
-    title: "Embriologiya",
-    script: "/embriology/tests.js",
-    page: "/embriology/",
-    tests: [
-      { id: "u1", title: "Test 1", count: 17 },
-      { id: "u2", title: "Test 2", count: 10 },
-      { id: "u3", title: "Test 3", count: 16 },
-      { id: "u4", title: "Test 4", count: 15 },
-      { id: "u5", title: "Test 5", count: 36 },
-      { id: "u6", title: "Test 6", count: 11 },
-      { id: "u7", title: "Test 7", count: 23 },
-      { id: "u8", title: "Test 8", count: 10 },
-      { id: "u9", title: "Test 9", count: 10 },
-      { id: "review", title: "Review", count: 35 },
-    ],
-  },
-  {
-    id: "embriology cases",
-    title: "Embriologiya caselar",
-    script: "/embriology/cases.js",
-    page: "/embriology/cases.html",
-    tests: [
-      { id: "c1", title: "Test 1", count: 20 },
-      { id: "c2", title: "Test 2", count: 20 },
-      { id: "c3", title: "Test 3", count: 20 },
-      { id: "c4", title: "Test 4", count: 20 },
-      { id: "c5", title: "Test 5", count: 22 },
-      { id: "c6", title: "Test 6", count: 12 },
-      { id: "c7", title: "Test 7", count: 7 },
-      { id: "c8", title: "Test 8", count: 6 },
-    ],
-  },
-  {
-    id: "chemistry",
-    title: "Kimyo",
-    script: "/chemistry/tests.js",
-    page: "/chemistry/",
-    tests: [
-      { id: "aminoacids", title: "Amino Acids", count: null },
-      { id: "vitamins", title: "Vitamins", count: null },
-      { id: "enzymes", title: "Enzymes", count: null },
-      { id: "nucleicAcids", title: "Nucleic Acids", count: null },
-      { id: "lipids", title: "Lipids", count: null },
-      {
-        id: "peptidesAndProteins",
-        title: "Peptides and Proteins",
-        count: null,
-      },
-      { id: "carbohydrates", title: "Carbohydrates", count: null },
-      { id: "q50", title: "Q50", count: 30 },
-      { id: "q100", title: "Q100", count: 30 },
-      { id: "q150", title: "Q150", count: 30 },
-      { id: "all", title: "All Questions", count: null },
-      { id: "latin1", title: "Latin 1", count: null },
-      { id: "latin2", title: "Latin 2", count: null },
-      { id: "latin3", title: "Latin 3", count: null },
-    ],
-  },
-];
 
 function getStoredPrepData() {
   if (window.Data && typeof window.Data._getRawData === "function") {
@@ -151,9 +44,124 @@ function getSessionSelectedSubjects(session) {
 }
 
 function getSubjectQuestionCount(subject) {
-  const total = subject.tests.reduce((sum, test) => sum + (test.count || 0), 0);
-  const hasUnknown = subject.tests.some((test) => test.count == null);
+  const tests = Array.isArray(subject.tests) ? subject.tests : [];
+  const total = tests.reduce((sum, test) => sum + (test.count || 0), 0);
+  const hasUnknown = tests.some((test) => test.count == null);
   return { total, hasUnknown };
+}
+
+// Ensure subject.tests exists: try to dynamically load subject.script and detect globals
+function ensureSubjectTests(subject) {
+  return new Promise((resolve) => {
+    if (!subject) return resolve([]);
+    if (Array.isArray(subject.tests) && subject.tests.length)
+      return resolve(subject.tests);
+
+    const beforeKeys = new Set(Object.keys(window));
+    if (!subject.script) return resolve([]);
+
+    const script = document.createElement("script");
+    script.src = subject.script + "?_prep_ts=" + Date.now();
+    script.async = true;
+    script.onload = () => {
+      try {
+        const afterKeys = Object.keys(window).filter((k) => !beforeKeys.has(k));
+        let detected = [];
+
+        // Check for container objects like window.tests = {mock1: [...], mock2: [...]}
+        afterKeys.forEach((k) => {
+          const val = window[k];
+          if (!val) return;
+          // object-with-array-values pattern
+          if (typeof val === "object" && !Array.isArray(val)) {
+            const values = Object.values(val);
+            if (values.length && values.every((v) => Array.isArray(v))) {
+              Object.keys(val).forEach((testId) => {
+                const arr = val[testId];
+                detected.push({
+                  id: testId,
+                  title: prettyTestTitle(testId),
+                  count: arr.length,
+                });
+              });
+            }
+          }
+          // direct array assigned: window.someArray = [...] => treat as single test
+          if (Array.isArray(val)) {
+            detected.push({
+              id: k,
+              title: prettyTestTitle(k),
+              count: val.length,
+            });
+          }
+        });
+
+        // Fallback: look for common global names
+        const commonNames = [
+          "tests",
+          "mockTests",
+          "imgTests",
+          "cellb1",
+          "u1",
+          "window.tests",
+        ];
+        commonNames.forEach((name) => {
+          const v = window[name];
+          if (!v) return;
+          if (typeof v === "object" && !Array.isArray(v)) {
+            Object.keys(v).forEach((testId) => {
+              const arr = v[testId];
+              if (Array.isArray(arr))
+                detected.push({
+                  id: testId,
+                  title: prettyTestTitle(testId),
+                  count: arr.length,
+                });
+            });
+          } else if (Array.isArray(v)) {
+            detected.push({
+              id: name,
+              title: prettyTestTitle(name),
+              count: v.length,
+            });
+          }
+        });
+
+        // Deduplicate by id
+        const map = new Map();
+        detected.forEach((t) => {
+          if (t && t.id) map.set(t.id, t);
+        });
+        const tests = Array.from(map.values());
+
+        if (tests.length) {
+          subject.tests = tests;
+        } else {
+          subject.tests = [];
+        }
+        resolve(subject.tests);
+      } catch (e) {
+        console.error("Error detecting tests for subject", subject.id, e);
+        subject.tests = subject.tests || [];
+        resolve(subject.tests);
+      }
+    };
+    script.onerror = () => {
+      console.warn("Failed to load subject script", subject.script);
+      subject.tests = subject.tests || [];
+      resolve(subject.tests);
+    };
+    document.head.appendChild(script);
+  });
+}
+
+function prettyTestTitle(id) {
+  if (!id) return "Test";
+  // Convert camel or snake to readable
+  return String(id)
+    .replace(/[_-]/g, " ")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/\b\w/g, (m) => m.toUpperCase());
 }
 
 function getSessionMeta(session) {
@@ -243,46 +251,35 @@ function buildSubjectCardHtml(session) {
   const subjectCount = selectedSubjects.length;
   const subjectLabel =
     subjectCount === 1 ? selectedSubjects[0].title : `${subjectCount} ta mavzu`;
-  const summaryLabel = `${subjectCount} ta mavzu · ${selectedSubjects.reduce(
+  const summaryLabel = `${session.examType} · ${selectedSubjects.reduce(
     (sum, subject) => sum + subject.tests.length,
     0,
   )} ta test`;
 
   return `
     <div class="col-md-4 col-12">
-      <div class="card nav-test-card border-0 prep-session-card" data-session-id="${session.id}">
-        <div class="card-overlay"></div>
-        <div class="card-body d-flex flex-column gap-3">
-          <div>
-            <div class="card-title-custom">${subjectLabel}</div>
-            <div class="card-subtitle-custom">${session.examType}</div>
-            <div class="text-white text-opacity-75" style="font-size:0.9rem;">${summaryLabel}</div>
-          </div>
-          <div>
-            <div class="test-count mb-2">
-              <i class="bi bi-ui-checks-grid"></i>
-              ${totals.totalQuestions.toLocaleString()} savol
-            </div>
-            <div class="text-white text-opacity-75" style="font-size:0.95rem;">
-              Hal qilingan: ${totals.solvedQuestions.toLocaleString()}<br>
-              To'g'ri: ${totals.correctAnswers.toLocaleString()} • Noto'g'ri: ${totals.wrongAnswers.toLocaleString()}
-            </div>
-          </div>
-          <div>
-            <div class="progress" style="height:10px; border-radius:999px; overflow:hidden; background:rgba(255,255,255,.16);">
-              <div class="progress-bar bg-white" role="progressbar" style="width:${progress}%"></div>
-            </div>
-            <div class="d-flex justify-content-between text-white text-opacity-75 mt-1" style="font-size:0.85rem;">
-              <span>${progress}%</span>
-              <span>${totals.accuracy}% aniqlik</span>
-            </div>
-          </div>
-          <div class="d-flex gap-2">
-            <button class="btn btn-light btn-sm w-100 prep-open-session-btn" data-session-id="${session.id}">Davom etish</button>
-            <button class="btn btn-outline-light btn-sm prep-delete-session-btn" data-session-id="${session.id}">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
+      <div class="session-card h-100" data-session-id="${session.id}">
+        <div class="session-title">${subjectLabel}</div>
+        <div class="session-meta">${summaryLabel}</div>
+
+        <div class="session-progress">
+          <div class="session-progress-bar" style="width:${progress}%"></div>
+        </div>
+
+        <div class="session-stats">
+          <span><i class="bi bi-ui-checks-grid"></i> ${totals.totalQuestions.toLocaleString()} savol</span>
+          <span><i class="bi bi-check-circle"></i> ${totals.solvedQuestions.toLocaleString()}</span>
+          <span><i class="bi bi-x-circle"></i> ${totals.wrongAnswers.toLocaleString()}</span>
+          <span><i class="bi bi-bullseye"></i> ${totals.accuracy}%</span>
+        </div>
+
+        <div class="session-actions">
+          <button class="btn btn-primary flex-grow-1 prep-open-session-btn" data-session-id="${session.id}">
+            <i class="bi bi-play-fill"></i> Davom etish
+          </button>
+          <button class="btn btn-outline-danger prep-delete-session-btn" data-session-id="${session.id}">
+            <i class="bi bi-trash"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -297,9 +294,10 @@ function renderPrepSessions() {
   if (sessions.length === 0) {
     container.innerHTML = `
       <div class="col-12">
-        <div class="card border-0 p-4 text-center" style="background: rgba(255,255,255,.82); box-shadow: 0 10px 30px rgba(15,23,42,.06);">
-          <h3 class="mb-3">Hech qanday tayyorgarlik sessiyasi yo'q</h3>
-          <p class="text-muted">Yangi tayyorgarlik sessiyasini yaratish uchun + tugmasini bosing.</p>
+        <div class="empty-state">
+          <i class="bi bi-journal-bookmark"></i>
+          <h3>Hech qanday tayyorgarlik sessiyasi yo'q</h3>
+          <p>Yangi tayyorgarlik sessiyasini yaratish uchun + tugmasini bosing.</p>
         </div>
       </div>
     `;
@@ -362,7 +360,165 @@ function createPrepSession(examTypeId, subjectIds) {
   return newSession;
 }
 
+function renderPrepSubjects() {
+  const pillsContainer = document.getElementById("subject-pills");
+  const groupsContainer = document.getElementById("groups-container");
+  if (!pillsContainer || !groupsContainer) return;
+
+  const bgColors = {
+    danger: "#dc2626",
+    success: "#16a34a",
+    warning: "#d97706",
+    info: "#0891b2",
+    primary: "#2563eb",
+    dark: "#1f2937",
+  };
+
+  function getTotalQuestions(subject) {
+    const tests = Array.isArray(subject.tests) ? subject.tests : [];
+    const total = tests.reduce((sum, test) => sum + (test.count || 0), 0);
+    return total > 0 ? `${total} ta savol` : `${tests.length} ta test`;
+  }
+
+  pillsContainer.innerHTML = PREP_SUBJECTS.map(
+    (subject) => `
+      <a href="#group-${subject.id}" class="subject-pill" data-group="${subject.id}">
+        <i class="bi ${subject.icon || "bi-journal-medical"}"></i>
+        ${subject.title}
+      </a>
+    `,
+  ).join("");
+
+  groupsContainer.innerHTML = PREP_SUBJECTS.map(
+    (subject) => `
+      <div class="group-section" id="group-${subject.id}" data-group="${subject.id}">
+        <div class="group-header" onclick="openPrepGroup('${subject.id}')">
+          <div class="group-icon" style="background: ${bgColors[subject.color] || bgColors.primary}">
+            <i class="bi ${subject.icon || "bi-journal-medical"}"></i>
+          </div>
+          <div class="group-title-wrap">
+            <div class="group-title">${subject.title}</div>
+            <div class="group-total">
+              <i class="bi bi-ui-checks-grid"></i>
+              ${getTotalQuestions(subject)}
+            </div>
+          </div>
+          <span class="group-count-badge">
+            <i class="bi bi-ui-checks-grid"></i>
+            ${Array.isArray(subject.tests) ? subject.tests.length : 0} ta test
+          </span>
+          <i class="bi bi-chevron-down group-chevron"></i>
+        </div>
+
+        <div class="group-body">
+          <div class="row g-3">
+            ${(subject.tests || [])
+              .map(
+                (test) => `
+              <div class="col-6 col-md-3">
+                <div class="test-card prep-index-test-card" data-subject-id="${subject.id}" data-test-id="${encodeURIComponent(test.id)}" data-page="${subject.page || ""}">
+                  <div class="test-card h-100">
+                    <div class="test-icon bg-${subject.color || "primary"}-subtle text-${subject.color || "primary"}">
+                      <i class="bi bi-journal-medical"></i>
+                    </div>
+                    <div class="test-title">${test.title}</div>
+                    <div class="question-footer">${test.count ? test.count + " ta" : "Test"}</div>
+                  </div>
+                </div>
+              </div>
+            `,
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `,
+  ).join("");
+
+  // Wire index test cards to create a quick session and start the test
+  groupsContainer.querySelectorAll(".prep-index-test-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const subjectId = card.dataset.subjectId;
+      const testId = decodeURIComponent(card.dataset.testId);
+      const page = card.dataset.page || "/preparation";
+      const subject = findPrepSubject(subjectId);
+      if (!subject) return;
+
+      // Find or create a quick preparation session for this subject
+      let sessions = getPrepSessions();
+      let session = sessions.find(
+        (s) =>
+          s.examType === "Quick Prep" &&
+          s.selectedSubjects.length === 1 &&
+          s.selectedSubjects[0] === subjectId,
+      );
+
+      if (!session) {
+        session = {
+          id: crypto.randomUUID(),
+          examType: "Quick Prep",
+          selectedSubjects: [subjectId],
+          createdAt: new Date().toISOString(),
+          startedAt: new Date().toISOString(),
+          lastActivityAt: new Date().toISOString(),
+          subjectStats: {},
+          testResults: [],
+          stats: {
+            totalQuestions: 0,
+            solvedQuestions: 0,
+            correctAnswers: 0,
+            wrongAnswers: 0,
+            accuracy: 0,
+            updatedAt: null,
+          },
+        };
+        sessions.unshift(session);
+        savePrepSessions(sessions);
+      }
+
+      initSubjectStatsIfMissing(session, subject);
+      session.subjectStats[subject.id].tests[testId] = session.subjectStats[
+        subject.id
+      ].tests[testId] || {
+        solvedQuestions: 0,
+        totalQuestions: subject.tests.find((t) => t.id === testId)?.count || 0,
+        correctAnswers: 0,
+        wrongAnswers: 0,
+        completed: false,
+        accuracy: 0,
+        lastPlayedAt: null,
+      };
+      session.lastActivityAt = new Date().toISOString();
+      savePrepSession(session);
+
+      const q = `?prepSession=${session.id}&prepSubject=${subjectId}&prepTest=${encodeURIComponent(testId)}`;
+      window.location.href = page + q;
+    });
+  });
+}
+
+function openPrepGroup(id) {
+  const sections = document.querySelectorAll(".group-section");
+  const target = document.getElementById("group-" + id);
+  const isAlreadyOpen = target.classList.contains("open");
+
+  sections.forEach((section) => section.classList.remove("open"));
+
+  if (!isAlreadyOpen) {
+    target.classList.add("open");
+  }
+
+  const openSection = document.querySelector(".group-section.open");
+  document.querySelectorAll(".subject-pill").forEach((pill) => {
+    pill.classList.toggle(
+      "active",
+      openSection && pill.dataset.group === openSection.dataset.group,
+    );
+  });
+}
+
 function initializePrepIndexPage() {
+  renderPrepSubjects();
   renderPrepSessions();
 
   const addButton = document.getElementById("new-prep-button");
@@ -535,12 +691,10 @@ function initializePrepDetailPage() {
     );
     setTextById("prep-exam-type", session.examType);
     setTextById("prep-created-at", `Boshlangan: ${createdAtLabel}`);
-    setTextById("prep-updated-at", `So'nggi yangilanish: ${updatedAtLabel}`);
+    setTextById("prep-updated-at", updatedAtLabel);
 
     // summary / cards
     setTextById("prep-subject-count-card", selectedSubjects.length);
-    setTextById("prep-subject-count-label", `${selectedSubjects.length} mavzu`);
-    setTextById("prep-subject-tests-label", `${meta.totalTests} ta test`);
     setTextById("prep-total-tests", meta.totalTests);
     setTextById("prep-total-questions", meta.totalQuestions);
     setTextById("prep-solved", totals.solvedQuestions);
@@ -562,45 +716,37 @@ function initializePrepDetailPage() {
               getSubjectQuestionCount(subject);
             const solved = subjectStat.totalQuestions || 0;
             const correct = subjectStat.correctAnswers || 0;
+            const wrong = subjectStat.wrongAnswers || 0;
             const accuracy = subjectStat.accuracy || 0;
             const mistakes = subjectStat.mistakesCount || 0;
+            const progress = totalSubjectQuestions
+              ? Math.round((solved / totalSubjectQuestions) * 100)
+              : 0;
             const questionLabel = hasUnknown
               ? `${totalSubjectQuestions} ta savol + noma'lum`
               : `${totalSubjectQuestions} ta savol`;
 
             return `
               <div class="col-lg-4 col-md-6 col-12">
-                <div class="card prep-test-card h-100" data-subject-id="${subject.id}">
-                  <div class="card-body d-flex flex-column justify-content-between">
-                    <div>
-                      <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div>
-                          <h6 class="fw-semibold mb-1">${subject.title}</h6>
-                          <div class="text-muted" style="font-size:0.95rem;">${questionLabel}</div>
-                        </div>
-                        <button type="button" class="btn btn-outline-danger btn-sm remove-subject-btn" data-subject-id="${subject.id}">
-                          <i class="bi bi-x-lg"></i>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="mt-3">
-                      <div class="d-flex justify-content-between mb-1">
-                        <span class="text-muted">Yechilgan</span>
-                        <strong>${solved}</strong>
-                      </div>
-                      <div class="d-flex justify-content-between mb-1">
-                        <span class="text-muted">Aniqlik</span>
-                        <strong>${accuracy}%</strong>
-                      </div>
-                      <div class="d-flex justify-content-between mb-3">
-                        <span class="text-muted">Xatolar</span>
-                        <strong>${mistakes}</strong>
-                      </div>
-                      <a href="${subject.page}?prepSession=${session.id}&prepSubject=${subject.id}" class="btn btn-primary w-100 btn-sm">
-                        Mavzuga o'tish
-                      </a>
-                    </div>
+                <div class="subject-card" data-subject-id="${subject.id}">
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="subject-title">${subject.title}</div>
+                    <button type="button" class="btn btn-outline-danger btn-sm remove-subject-btn" data-subject-id="${subject.id}">
+                      <i class="bi bi-x-lg"></i>
+                    </button>
                   </div>
+                  <div class="subject-meta">${questionLabel}</div>
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width:${progress}%"></div>
+                  </div>
+                  <div class="stat-row">
+                    <span>Yechilgan <strong>${solved}</strong></span>
+                    <span>Aniqlik <strong>${accuracy}%</strong></span>
+                    <span>Xatolar <strong>${mistakes}</strong></span>
+                  </div>
+                  <a href="/preparation/tests.html?id=${session.id}&subject=${subject.id}" class="btn btn-primary w-100">
+                    Testlarni ko'rish
+                  </a>
                 </div>
               </div>
             `;
@@ -608,9 +754,10 @@ function initializePrepDetailPage() {
           .join("")
       : `
         <div class="col-12">
-          <div class="card p-4 text-center border-0" style="background: #f8fafc;">
-            <h5 class="mb-2">Hozircha hech qanday mavzu tanlanmagan.</h5>
-            <p class="text-muted mb-3">Yangi mavzu qo'shish uchun yuqoridagi tugmani bosing.</p>
+          <div class="empty-state">
+            <i class="bi bi-journal-bookmark"></i>
+            <h3>Hozircha hech qanday mavzu tanlanmagan.</h3>
+            <p>Yangi mavzu qo'shish uchun yuqoridagi tugmani bosing.</p>
           </div>
         </div>
       `;
@@ -618,9 +765,13 @@ function initializePrepDetailPage() {
     const reviewSection = document.getElementById("prep-review-section");
     if (reviewSection) {
       reviewSection.innerHTML = `
-        <div class="d-flex gap-2 flex-wrap align-items-center mt-3">
-          <a href="/xatolar/?action=view&sessionId=${session.id}" class="btn btn-outline-primary btn-sm">Xatolarni ko'rish</a>
-          <a href="/xatolar/?action=review&sessionId=${session.id}" class="btn btn-outline-success btn-sm">Xatolarni yechish</a>
+        <div class="d-flex gap-2 flex-wrap align-items-center">
+          <a href="/xatolar/?action=view&sessionId=${session.id}" class="btn btn-outline-primary btn-sm rounded-pill">
+            <i class="bi bi-eye"></i> Xatolarni ko'rish
+          </a>
+          <a href="/xatolar/?action=review&sessionId=${session.id}" class="btn btn-outline-success btn-sm rounded-pill">
+            <i class="bi bi-arrow-repeat"></i> Xatolarni yechish
+          </a>
         </div>
       `;
     }
@@ -814,4 +965,224 @@ window.addEventListener("DOMContentLoaded", () => {
   if (page === "prep-detail") {
     initializePrepDetailPage();
   }
+  if (page === "prep-tests") {
+    initializePrepTestsPage();
+  }
 });
+
+function initSubjectStatsIfMissing(session, subject) {
+  if (!session || !subject) return;
+  session.subjectStats = session.subjectStats || {};
+  const subj = session.subjectStats[subject.id] || { tests: {} };
+  subj.tests = subj.tests || {};
+  session.subjectStats[subject.id] = subj;
+}
+
+async function initializePrepTestsPage() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get("id");
+  const subjectId = params.get("subject");
+  const session = getPrepSession(sessionId);
+  const subject = findPrepSubject(subjectId);
+
+  const container = document.getElementById("prep-tests-container");
+  const headerTitle = document.getElementById("prep-tests-title");
+  const headerMeta = document.getElementById("prep-tests-meta");
+  const headerTitle2 = document.getElementById("prep-tests-header-title");
+  const headerMeta2 = document.getElementById("prep-tests-header-meta");
+  const statsGrid = document.getElementById("prep-tests-stats");
+
+  if (!session || !subject) {
+    if (container)
+      container.innerHTML = `
+        <div class="empty-state">
+          <i class="bi bi-exclamation-circle"></i>
+          <h3>Mavzu yoki sessiya topilmadi.</h3>
+        </div>
+      `;
+    return;
+  }
+
+  headerTitle && (headerTitle.innerText = subject.title);
+  headerTitle2 && (headerTitle2.innerText = subject.title);
+  // Ensure subject stats structure
+  initSubjectStatsIfMissing(session, subject);
+
+  const tests = await ensureSubjectTests(subject);
+  const subjectQuestionCount = getSubjectQuestionCount(subject).total;
+  const subjectTotalTests = tests.length;
+  const metaText = `${subjectTotalTests} test · ${subjectQuestionCount} savol`;
+  headerMeta && (headerMeta.innerText = metaText);
+  headerMeta2 && (headerMeta2.innerText = metaText);
+
+  // Compute per-test stats from session
+  const subjectStats = session.subjectStats?.[subject.id] || { tests: {} };
+
+  // Summary cards
+  const solvedTestsCount = Object.values(subjectStats.tests || {}).filter(
+    (t) => t.completed,
+  ).length;
+  const totalTestsCount = tests.length;
+  const remainingTests = Math.max(0, totalTestsCount - solvedTestsCount);
+  const solvedQuestions = Object.values(subjectStats.tests || {}).reduce(
+    (sum, t) => sum + (t.solvedQuestions || 0),
+    0,
+  );
+  const accuracy = (() => {
+    const totalCorrect = Object.values(subjectStats.tests || {}).reduce(
+      (s, t) => s + (t.correctAnswers || 0),
+      0,
+    );
+    const totalAnswered = Object.values(subjectStats.tests || {}).reduce(
+      (s, t) => s + ((t.correctAnswers || 0) + (t.wrongAnswers || 0)),
+      0,
+    );
+    return totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+  })();
+
+  const subjectCompletion = subjectTotalTests
+    ? Math.round((solvedTestsCount / subjectTotalTests) * 100)
+    : 0;
+
+  if (statsGrid) {
+    statsGrid.innerHTML = `
+      <div class="col-6 col-md-3">
+        <div class="main-stat-card completion">
+          <div class="stat-label">Tugatish</div>
+          <div class="stat-value">${subjectCompletion}%</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="main-stat-card accuracy">
+          <div class="stat-label">Aniqlik</div>
+          <div class="stat-value">${accuracy}%</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="main-stat-card">
+          <div class="stat-label">Yechilgan testlar</div>
+          <div class="stat-value">${solvedTestsCount}</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="main-stat-card">
+          <div class="stat-label">Qolgan testlar</div>
+          <div class="stat-value">${remainingTests}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const progressBadge = document.getElementById("sessionBadge");
+  if (progressBadge) {
+    progressBadge.innerText = `Progress ${subjectCompletion}%`;
+  }
+
+  // Render test cards
+  const grid = document.getElementById("prep-tests-grid");
+  if (!grid) return;
+  if (!tests.length) {
+    grid.innerHTML = `
+      <div class="col-12">
+        <div class="empty-state">
+          <i class="bi bi-folder-x"></i>
+          <h3>Testlar topilmadi</h3>
+          <p>Bu mavzu uchun test skripti yuklandi, lekin testlar aniqlanmadi.</p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+  grid.innerHTML = tests
+    .map((test) => {
+      const tStat = subjectStats.tests?.[test.id] || {};
+      const totalQ = test.count || 0;
+      const solvedQ = tStat.solvedQuestions || 0;
+      const correctQ = tStat.correctAnswers || 0;
+      const wrongQ = tStat.wrongAnswers || 0;
+      const testAccuracy =
+        correctQ + wrongQ
+          ? Math.round((correctQ / (correctQ + wrongQ)) * 100)
+          : 0;
+      const progress = totalQ
+        ? Math.round((solvedQ / totalQ) * 100)
+        : tStat.completed
+          ? 100
+          : 0;
+      const completed = tStat.completed || progress === 100;
+      const hasStarted = solvedQ > 0 || correctQ > 0 || wrongQ > 0;
+
+      let statusClass = "status-new";
+      let statusIcon = "bi-circle";
+      let footerClass = "footer-default";
+      let footerText = `${totalQ || "?"} ta savol`;
+
+      if (completed) {
+        if (testAccuracy >= 80) {
+          statusClass = "status-done";
+          footerClass = "footer-success";
+        } else if (testAccuracy >= 50) {
+          statusClass = "status-mid";
+          footerClass = "footer-warning";
+        } else {
+          statusClass = "status-bad";
+          footerClass = "footer-danger";
+        }
+        statusIcon = "bi-check-lg";
+        footerText = `${testAccuracy}% · ${correctQ}/${totalQ || "?"}`;
+      } else if (hasStarted) {
+        statusClass = "status-mid";
+        statusIcon = "bi-hourglass-split";
+        footerClass = "footer-warning";
+        footerText = `${progress}% · ${solvedQ}/${totalQ || "?"}`;
+      }
+
+      return `
+      <div class="col-6 col-md-3">
+        <div class="test-card start-test-btn" data-test-id="${test.id}">
+          <div class="status-badge ${statusClass}">
+            <i class="bi ${statusIcon}"></i>
+          </div>
+          <div class="test-icon bg-primary-subtle text-primary">
+            <i class="bi bi-journal-medical"></i>
+          </div>
+          <div class="test-title">${test.title}</div>
+          <div class="test-meta">${totalQ ? totalQ + " ta savol" : "Test"}</div>
+          <div class="mini-stats">
+            <span><i class="bi bi-check-circle text-success"></i> ${correctQ}</span>
+            <span><i class="bi bi-x-circle text-danger"></i> ${wrongQ}</span>
+            <span><i class="bi bi-bullseye text-primary"></i> ${testAccuracy}%</span>
+          </div>
+          <div class="question-footer ${footerClass}">${footerText}</div>
+        </div>
+      </div>
+    `;
+    })
+    .join("");
+
+  // Wire start buttons
+  grid.querySelectorAll(".start-test-btn").forEach((card) => {
+    card.addEventListener("click", () => {
+      const testId = card.dataset.testId;
+      // ensure stats placeholder
+      initSubjectStatsIfMissing(session, subject);
+      session.subjectStats[subject.id].tests[testId] = session.subjectStats[
+        subject.id
+      ].tests[testId] || {
+        solvedQuestions: 0,
+        totalQuestions: tests.find((t) => t.id === testId)?.count || 0,
+        correctAnswers: 0,
+        wrongAnswers: 0,
+        completed: false,
+        accuracy: 0,
+        lastPlayedAt: null,
+      };
+      session.lastActivityAt = new Date().toISOString();
+      savePrepSession(session);
+      // Redirect to original subject page with prep params
+      const base = subject.page || "/";
+      const q = `?prepSession=${sessionId}&prepSubject=${subjectId}&prepTest=${encodeURIComponent(testId)}`;
+      window.location.href = base + q;
+    });
+  });
+}
