@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>PulseGo — Fikr-mulohaza</title>
+    <link rel="stylesheet" href="../assets/styles/styles.css" />
+    <style>
+        :root {
+            --bg: #f7f9fb;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --accent: #0b74de;
+            --radius: 12px;
+            --gap: 18px;
+            --max-width: 900px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: var(--bg);
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #0f172a;
+            margin: 0
+        }
+
+        .feedback-wrap {
+            max-width: var(--max-width);
+            margin: 36px auto;
+            padding: 16px
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 28px rgba(16, 24, 40, 0.06);
+            padding: 28px
+        }
+
+        h1 {
+            margin: 0 0 6px 0;
+            font-size: 1.5rem
+        }
+
+        p.lead {
+            margin: 0 0 14px 0;
+            color: var(--muted)
+        }
+
+        hr.sep {
+            border: 0;
+            border-top: 1px solid #e6eef8;
+            margin: 16px 0
+        }
+
+        form {
+            display: grid;
+            gap: var(--gap)
+        }
+
+        .row {
+            display: flex;
+            gap: 12px
+        }
+
+        .col {
+            flex: 1
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 8px
+        }
+
+        select,
+        textarea,
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e6eef8;
+            border-radius: 10px;
+            background: #fbfdff;
+            font-size: 0.95rem;
+            resize: vertical
+        }
+
+        textarea {
+            min-height: 120px
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 0;
+            cursor: pointer
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid #d1e4fb;
+            color: var(--accent)
+        }
+
+        #status {
+            font-size: 0.95rem;
+            color: var(--muted)
+        }
+
+        @media (max-width:640px) {
+            .card {
+                padding: 18px
+            }
+
+            h1 {
+                font-size: 1.25rem
+            }
+
+            .row {
+                flex-direction: column
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="feedback-wrap">
+        <div class="card">
+            <h1>Fikr-mulohaza</h1>
+            <p class="lead">Platforma haqida qisqacha fikringizni yuboring — har bir javob biz uchun muhim.</p>
+            <hr class="sep" />
+
+            <!-- <p>Tizimga kirgan: <strong id="username">Yuklanmoqda…</strong></p> -->
+
+            <form id="feedbackForm">
+                <div class="row">
+                    <div class="col">
+                        <label for="liked">PulseGo yoqadimi?</label>
+                        <select id="liked" required>
+                            <option value="yes">Ha</option>
+                            <option value="no">Yo'q</option>
+                            <option value="neutral">Neytral</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="advantages">Nimasi yoqdi / Afzalliklar</label>
+                    <textarea id="advantages" placeholder="Nimasi yaxshi edi..."></textarea>
+                </div>
+
+                <div>
+                    <label for="disadvantages">Nimani yaxshilash mumkin / Kamchiliklar</label>
+                    <textarea id="disadvantages" placeholder="Qanday o'zgarishlar kutyapsiz..."></textarea>
+                </div>
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Fikr yuborish</button>
+                    <button type="button" class="btn btn-ghost" id="clearBtn">Tozalash</button>
+                    <div id="status" aria-live="polite"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/data.js"></script>
+    <script>
+        (function () {
+            const usernameEl = document.getElementById('username');
+            const statusEl = document.getElementById('status');
+            const clearBtn = document.getElementById('clearBtn');
+
+            function showStatus(msg, ok) {
+                statusEl.textContent = msg;
+                statusEl.style.color = ok ? 'green' : 'red';
+            }
+
+            // show username from Data (fallback to "Anonim")
+            try {
+                const user = window.Data && typeof window.Data.getUser === 'function' ? window.Data.getUser() : null;
+                usernameEl.textContent = user && user.name ? user.name : 'Anonim';
+            } catch (e) {
+                usernameEl.textContent = 'Anonim';
+            }
+
+            document.getElementById('feedbackForm').addEventListener('submit', async function (ev) {
+                ev.preventDefault();
+                showStatus('Yuborilmoqda...', true);
+                const liked = document.getElementById('liked').value;
+                const advantages = document.getElementById('advantages').value.trim();
+                const disadvantages = document.getElementById('disadvantages').value.trim();
+                try {
+                    await window.Data.submitFeedback({ liked, advantages, disadvantages });
+                    showStatus('Rahmat — fikr yuborildi!', true);
+                } catch (err) {
+                    console.error('Feedback failed', err);
+                    showStatus("Fikr yuborishda xatolik. Iltimos, keyinroq qayta urinib ko'ring.", false);
+                }
+            });
+
+            clearBtn.addEventListener('click', function () {
+                document.getElementById('advantages').value = '';
+                document.getElementById('disadvantages').value = '';
+                showStatus('', true);
+            });
+        })();
+    </script>
+</body>
+
+</html>
