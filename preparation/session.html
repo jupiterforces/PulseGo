@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sessiya – Pulse Go</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/styles.css">
+  <style>
+    *{-webkit-tap-highlight-color:transparent}
+    body{font-family:'Inter',sans-serif;background:var(--tg-bg);color:var(--tg-text);padding-bottom:90px}
+    .navbar{background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid #e9eef5;box-shadow:0 4px 14px rgba(15,23,42,.04)}
+    .navbar-brand{font-weight:700;font-size:17px;color:var(--tg-text)!important}
+    .navbar-brand img{box-shadow:0 4px 14px rgba(0,0,0,.08)}
+
+    .session-hero{border-radius:24px;padding:28px 24px 24px;position:relative;overflow:hidden;margin-bottom:16px;color:#fff}
+    .session-hero::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}
+    .session-hero::after{content:'';position:absolute;bottom:-60px;left:-30px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.05)}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);border-radius:999px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:.3px;margin-bottom:14px}
+    .hero-title{font-size:24px;font-weight:800;margin-bottom:4px;letter-spacing:-.5px}
+    .hero-date{font-size:13px;opacity:.85;display:flex;align-items:center;gap:5px}
+    .hero-countdown{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.22);border-radius:12px;padding:8px 16px;font-size:16px;font-weight:800;margin-top:16px}
+
+    .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+    @media(max-width:480px){.stats-bar{grid-template-columns:repeat(2,1fr)}}
+    .stat-tile{background:#fff;border-radius:18px;padding:14px 12px;text-align:center;box-shadow:0 4px 14px rgba(15,23,42,.05)}
+    .stat-tile-val{font-size:22px;font-weight:800;color:var(--tg-text);letter-spacing:-.5px}
+    .stat-tile-label{font-size:11px;color:var(--tg-muted);font-weight:600;margin-top:2px}
+    .stat-tile.highlight .stat-tile-val{color:#2563eb}
+
+    .overall-ring-wrap{background:#fff;border-radius:20px;padding:20px;display:flex;align-items:center;gap:20px;box-shadow:0 4px 14px rgba(15,23,42,.05);margin-bottom:18px}
+    .ring-svg-wrap{position:relative;flex-shrink:0}
+    .ring-svg-wrap svg{display:block}
+    .ring-center-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .ring-pct{font-size:22px;font-weight:800;color:var(--tg-text)}
+    .ring-pct-sign{font-size:12px;color:var(--tg-muted);font-weight:600}
+    .ring-info{flex:1;min-width:0}
+    .ring-info-title{font-size:16px;font-weight:800;color:var(--tg-text);margin-bottom:4px}
+    .ring-info-sub{font-size:13px;color:var(--tg-muted);margin-bottom:10px}
+    .ring-breakdown{display:flex;gap:12px;flex-wrap:wrap}
+    .rb-item{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:600}
+    .rb-dot{width:8px;height:8px;border-radius:50%}
+
+    .group-section{margin-bottom:12px;background:#fff;border-radius:20px;box-shadow:0 4px 14px rgba(15,23,42,.04);overflow:hidden}
+    .group-header{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;user-select:none;transition:background .2s ease}
+    .group-header:hover{background:#f8fafc}
+    .group-icon{width:40px;height:40px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0}
+    .group-title{font-size:16px;font-weight:700;color:var(--tg-text)}
+    .group-title-wrap{flex-grow:1;min-width:0}
+    .group-subtitle{font-size:12px;color:var(--tg-muted);margin-top:2px}
+    .group-count-badge{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:999px;background:#f1f5f9;color:var(--tg-text);font-size:12px;font-weight:700;white-space:nowrap}
+    .group-chevron{margin-left:auto;font-size:18px;color:var(--tg-muted);transition:transform .25s ease}
+    .group-section.open .group-chevron{transform:rotate(180deg)}
+    .group-body{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease;padding:0 18px}
+    .group-section.open .group-body{max-height:2000px;padding:4px 18px 18px}
+
+    .test-card{background:linear-gradient(180deg,#ffffff,#f8fafc);border-radius:var(--tg-radius,18px);padding:18px 12px 42px;text-align:center;cursor:pointer;height:100%;transition:all .35s ease;box-shadow:0 6px 18px rgba(0,0,0,.06);position:relative;user-select:none}
+    .test-card:hover{transform:translateY(-5px) scale(1.02)}
+    .test-card.card-success{border-bottom:3px solid #22c55e}
+    .test-card.card-warning{border-bottom:3px solid #f59e0b}
+    .test-card.card-danger{border-bottom:3px solid #ef4444}
+    .test-icon{width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;margin:0 auto 10px}
+    .test-title{font-size:13px;font-weight:600;margin-bottom:4px}
+    .question-footer{position:absolute;bottom:0;left:0;right:0;padding:6px 10px;background:#0d6efd;color:#fff;font-size:11px;font-weight:600;text-align:center;border-radius:0 0 var(--tg-radius,18px) var(--tg-radius,18px);letter-spacing:.3px}
+    .test-card.card-success .question-footer{background:#16a34a}
+    .test-card.card-warning .question-footer{background:#d97706}
+    .test-card.card-danger .question-footer{background:#dc2626}
+
+    .mistakes-card{background:#fff;border-radius:20px;box-shadow:0 4px 14px rgba(15,23,42,.05);padding:18px 20px;display:flex;align-items:center;gap:16px;margin-bottom:16px;cursor:pointer;transition:.25s ease;border-left:4px solid #ef4444}
+    .mistakes-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(15,23,42,.1)}
+    .mistakes-icon{width:48px;height:48px;border-radius:16px;background:#fef2f2;color:#dc2626;font-size:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .mistakes-label{font-size:15px;font-weight:700;color:var(--tg-text)}
+    .mistakes-sub{font-size:12px;color:var(--tg-muted);margin-top:2px}
+    .mistakes-count-badge{margin-left:auto;background:#fef2f2;color:#dc2626;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700}
+
+    .stats-card{background:#fff;border-radius:20px;box-shadow:0 4px 14px rgba(15,23,42,.05);padding:20px;margin-bottom:16px}
+    .stats-card-title{font-size:15px;font-weight:800;color:var(--tg-text);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .stat-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:13px}
+    .stat-row:last-child{border-bottom:none}
+    .stat-row-label{color:var(--tg-muted);font-weight:500}
+    .stat-row-val{font-weight:700;color:var(--tg-text)}
+    .section-heading{font-size:14px;font-weight:700;color:var(--tg-muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;padding-left:4px}
+    .btn-delete-session{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;border-radius:14px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s}
+    .btn-delete-session:hover{background:#dc2626;color:#fff}
+
+    /* ORALIQ */
+    .oraliq-tabs{display:flex;gap:8px;margin-bottom:20px;background:#fff;border-radius:16px;padding:6px;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+    .oraliq-tab{flex:1;padding:10px 8px;border-radius:12px;border:none;background:transparent;font-size:12px;font-weight:700;color:var(--tg-muted);cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:4px}
+    .oraliq-tab i{font-size:18px}
+    .oraliq-tab.active{background:linear-gradient(135deg,#d97706,#92400e);color:#fff;box-shadow:0 4px 14px rgba(217,119,6,.3)}
+    .oraliq-section{display:none}
+    .oraliq-section.active{display:block}
+
+    .flip-card-wrap{perspective:1200px;margin-bottom:20px;min-height:280px}
+    .flip-card-inner{position:relative;width:100%;min-height:280px;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1)}
+    .flip-card-wrap.flipped .flip-card-inner{transform:rotateY(180deg)}
+    .flip-card-face{position:absolute;width:100%;min-height:280px;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;padding:28px 24px;display:flex;flex-direction:column}
+    .flip-card-front{background:#fff;box-shadow:0 8px 30px rgba(15,23,42,.1);border:2px solid #e2e8f0;justify-content:space-between}
+    .flip-card-back{background:linear-gradient(135deg,#fffbeb,#fef3c7);box-shadow:0 8px 30px rgba(217,119,6,.18);border:2px solid #fde68a;transform:rotateY(180deg);justify-content:flex-start;overflow:hidden}
+    .fc-badge{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--tg-muted);margin-bottom:12px}
+    .fc-question{font-size:17px;font-weight:700;color:var(--tg-text);line-height:1.5;flex:1}
+    .fc-hint{font-size:12px;color:var(--tg-muted);display:flex;align-items:center;gap:5px;margin-top:16px}
+    .fc-answer{font-size:14px;color:#78350f;line-height:1.7;overflow-y:auto;max-height:240px}
+    .fc-answer-label{font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#d97706;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+    .fc-nav{display:flex;align-items:center;gap:12px}
+    .fc-btn{width:44px;height:44px;border-radius:50%;border:2px solid #e2e8f0;background:#fff;color:var(--tg-text);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;flex-shrink:0}
+    .fc-btn:hover{background:#f1f5f9;transform:scale(1.08)}
+    .fc-btn:disabled{opacity:.3;pointer-events:none}
+    .fc-progress{flex:1;text-align:center;font-size:13px;font-weight:700;color:var(--tg-muted)}
+    .fc-shuffle-btn{background:#f1f5f9;border:1.5px solid #e2e8f0;border-radius:14px;padding:10px 18px;font-size:13px;font-weight:600;color:var(--tg-text);cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s}
+    .fc-shuffle-btn:hover{background:#e2e8f0}
+
+    .qa-accordion{display:flex;flex-direction:column;gap:8px}
+    .qa-item{background:#fff;border-radius:18px;box-shadow:0 3px 12px rgba(15,23,42,.05);overflow:hidden;transition:box-shadow .2s}
+    .qa-item.open{box-shadow:0 8px 24px rgba(15,23,42,.1)}
+    .qa-header{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;cursor:pointer;user-select:none}
+    .qa-header:hover{background:#fafbfc}
+    .qa-num{width:26px;height:26px;border-radius:8px;background:#f1f5f9;color:var(--tg-muted);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .qa-item.open .qa-num{background:#d97706;color:#fff}
+    .qa-q-text{font-size:14px;font-weight:600;color:var(--tg-text);flex:1;line-height:1.4}
+    .qa-chevron{font-size:16px;color:var(--tg-muted);flex-shrink:0;transition:transform .25s;margin-top:2px}
+    .qa-item.open .qa-chevron{transform:rotate(180deg)}
+    .qa-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .qa-item.open .qa-body{max-height:900px}
+    .qa-answer-block{padding:4px 18px 18px 56px}
+    .qa-answer-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:#d97706;margin-bottom:8px;display:flex;align-items:center;gap:4px}
+    .qa-answer-text{font-size:14px;color:var(--tg-text);line-height:1.75;white-space:pre-line}
+
+    .qa-voice-section{padding:14px 18px 18px 56px;border-top:1px solid #f1f5f9}
+    .qa-voice-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--tg-muted);margin-bottom:10px;display:flex;align-items:center;gap:5px}
+    .voice-rec-btn{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:12px;border:none;font-size:13px;font-weight:700;cursor:pointer;transition:.2s}
+    .voice-rec-btn.start{background:#f0fdf4;color:#16a34a;border:1.5px solid #bbf7d0}
+    .voice-rec-btn.start:hover{background:#dcfce7}
+    .voice-rec-btn.stop{background:#fef2f2;color:#dc2626;border:1.5px solid #fecaca;animation:recPulse 1.2s infinite}
+    @keyframes recPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.3)}50%{box-shadow:0 0 0 8px rgba(220,38,38,0)}}
+    .voice-recordings-list{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+    .voice-item{display:flex;align-items:center;gap:10px;background:#f8fafc;border-radius:12px;padding:10px 14px}
+    .voice-play-btn{width:34px;height:34px;border-radius:50%;border:none;background:#2563eb;color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:.2s}
+    .voice-play-btn:hover{transform:scale(1.1)}
+    .voice-play-btn.playing{background:#d97706}
+    .voice-info{flex:1}
+    .voice-date{font-size:11px;color:var(--tg-muted)}
+    .voice-duration{font-size:12px;font-weight:600;color:var(--tg-text)}
+    .voice-del-btn{background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer;padding:4px;transition:.2s}
+    .voice-del-btn:hover{transform:scale(1.2)}
+    .voice-audio-progress{flex:1;height:4px;border-radius:999px;background:#e2e8f0;overflow:hidden}
+    .voice-audio-fill{height:100%;background:#2563eb;width:0;transition:width .3s}
+
+    .oraliq-stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+    .oraliq-stat-tile{background:#fff;border-radius:16px;padding:16px;box-shadow:0 3px 12px rgba(15,23,42,.05);text-align:center}
+    .oraliq-stat-val{font-size:26px;font-weight:800;color:var(--tg-text)}
+    .oraliq-stat-lbl{font-size:11px;color:var(--tg-muted);font-weight:600;margin-top:2px}
+
+    @media(max-width:768px){.hero-title{font-size:20px}.stats-bar{gap:8px}}
+  </style>
+</head>
+<body data-page="prep-detail">
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+        <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+        Pulse Go
+      </a>
+      <a href="/preparation/" class="btn btn-light btn-sm rounded-pill">
+        <i class="bi bi-arrow-left"></i> Orqaga
+      </a>
+    </div>
+  </nav>
+
+  <div id="test-selection">
+    <div class="container py-3" id="session-content">
+      <div class="text-center py-5 text-muted">
+        <div class="spinner-border text-primary mb-3" role="status"></div>
+        <p>Sessiya yuklanmoqda...</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav d-lg-none">
+    <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+    <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
+    <a href="/preparation/" class="bn-item active">
+      <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+      <span>Tayyorlanish</span>
+    </a>
+    <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+    <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+  </nav>
+
+  <div id="common-modals"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/preparation/prep-data.js"></script>
+  <script src="/preparation/oraliq-data.js"></script>
+  <script src="/assets/js/test.js"></script>
+  <script>
+    /* ===== URL PARAM ===== */
+    var SESSION_ID = new URLSearchParams(location.search).get('id');
+
+    /* ===== OVERRIDE test.js hooks ===== */
+    function getPrepContext() {
+      return window.__prepOverrideContext || null;
+    }
+    window.__prepOverrideContext = SESSION_ID ? { sessionId: SESSION_ID, subjectId: null } : null;
+
+    function closeResult() {
+      var modalEl = document.getElementById('resultModal');
+      if (modalEl) { var m = bootstrap.Modal.getInstance(modalEl); if (m) m.hide(); }
+      window.__prepOverrideContext = SESSION_ID ? { sessionId: SESSION_ID, subjectId: null } : null;
+      try { currentTest = []; currentIndex = 0; score = 0; isReviewingStoredMistakes = false; } catch(e) {}
+      var nav = document.querySelector('.navbar'); if (nav) nav.style.display = '';
+      var sel = document.getElementById('test-selection'); if (sel) sel.classList.remove('d-none');
+      setTimeout(function() { try { renderTestStats(); } catch(e){} refreshStats(); }, 100);
+    }
+
+    /* ===== DATA HELPERS ===== */
+    function getSession() {
+      try {
+        var data = JSON.parse(localStorage.getItem('pulsego_data_v1') || '{}');
+        var sessions = data.preparationSessions || [];
+        for (var i = 0; i < sessions.length; i++) { if (sessions[i].id === SESSION_ID) return sessions[i]; }
+      } catch(e) {}
+      return null;
+    }
+
+    function deleteSession() {
+      if (!confirm("Bu sessiyani o'chirishni tasdiqlaysizmi?")) return;
+      try {
+        var data = JSON.parse(localStorage.getItem('pulsego_data_v1') || '{}');
+        data.preparationSessions = (data.preparationSessions || []).filter(function(s) { return s.id !== SESSION_ID; });
+        localStorage.setItem('pulsego_data_v1', JSON.stringify(data));
+      } catch(e) {}
+      location.href = '/preparation/';
+    }
+
+    function getSessionMistakes() {
+      try {
+        var data = JSON.parse(localStorage.getItem('pulsego_data_v1') || '{}');
+        return (data.mistakes || []).filter(function(m) { return m.prepSessionId === SESSION_ID; });
+      } catch(e) { return []; }
+    }
+
+    /* ===== HELPERS ===== */
+    function daysUntil(dateStr) {
+      if (!dateStr) return null;
+      var today = new Date(); today.setHours(0,0,0,0);
+      var exam = new Date(dateStr); exam.setHours(0,0,0,0);
+      return Math.round((exam - today) / 86400000);
+    }
+
+    function countdownText(days) {
+      if (days === null || days === undefined) return null;
+      if (days < 0)  return { text: 'Imtihon tugagan',         color: '#94a3b8' };
+      if (days === 0) return { text: "Bugun imtihon! \uD83D\uDD25", color: '#dc2626' };
+      if (days === 1) return { text: '1 kun qoldi \u26A1',        color: '#dc2626' };
+      if (days <= 7)  return { text: days + ' kun qoldi',         color: '#d97706' };
+      return { text: days + ' kun qoldi', color: '#16a34a' };
+    }
+
+    function percentColor(pct) {
+      if (pct >= 80) return '#22c55e';
+      if (pct >= 56) return '#f59e0b';
+      if (pct > 0)   return '#ef4444';
+      return '#94a3b8';
+    }
+
+    function buildRingOffset(pct, r) {
+      var c = 2 * Math.PI * r;
+      return c - (pct / 100) * c;
+    }
+
+    function formatDuration(secs) {
+      var m = Math.floor(secs / 60);
+      var s = Math.floor(secs % 60);
+      return m + ':' + (s < 10 ? '0' : '') + s;
+    }
+
+    function fmtDate(isoStr) {
+      if (!isoStr) return 'Belgilanmagan';
+      return new Date(isoStr).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
+
+    /* ===== YAKUNIY / GRANT SESSION ===== */
+    function renderSessionPage() {
+      var session = getSession();
+      var container = document.getElementById('session-content');
+      if (!session) {
+        container.innerHTML = '<div class="text-center py-5"><h4>Sessiya topilmadi</h4>'
+          + '<a href="/preparation/" class="btn btn-primary rounded-pill mt-3">Orqaga</a></div>';
+        return;
+      }
+
+      var et      = getExamType(session.examType);
+      var stats   = session.stats || {};
+      var pct     = stats.accuracy || 0;
+      var days    = daysUntil(session.examDate);
+      var cd      = countdownText(days);
+      var mistakes= getSessionMistakes();
+      var R       = 46;
+      var circ    = 2 * Math.PI * R;
+      var dateStr = fmtDate(session.examDate);
+      var crDate  = new Date(session.createdAt).toLocaleDateString('uz-UZ');
+
+      var heroGrad  = et ? et.gradient  : 'linear-gradient(135deg,#2563eb,#1d4ed8)';
+      var heroIcon  = et ? et.icon      : 'bi-journals';
+      var heroLabel = et ? et.label     : session.examType;
+      var cdHtml = cd
+        ? '<div class="hero-countdown" style="border:2px solid rgba(255,255,255,.3)">'
+          + '<i class="bi bi-alarm"></i> ' + cd.text + '</div>'
+        : '';
+
+      var ringStroke = percentColor(pct);
+      var ringOffset = buildRingOffset(pct, R);
+      var ringHtml = '<svg width="110" height="110" viewBox="0 0 110 110">'
+        + '<circle cx="55" cy="55" r="' + R + '" fill="none" stroke="#f1f5f9" stroke-width="8"/>'
+        + '<circle cx="55" cy="55" r="' + R + '" fill="none" stroke="' + ringStroke + '" stroke-width="8"'
+        + ' stroke-linecap="round" stroke-dasharray="' + circ + '" stroke-dashoffset="' + ringOffset + '"'
+        + ' transform="rotate(-90 55 55)" style="transition:stroke-dashoffset .6s ease"/>'
+        + '</svg>';
+
+      var testCount  = Object.values(session.tests || {}).reduce(function(a,v){ return a + v.length; }, 0);
+      var subjCount  = (session.subjects || []).length;
+
+      var subjectsHtml = '';
+      (session.subjects || []).forEach(function(subId) {
+        var sub = getSubject(subId);
+        if (!sub) return;
+        var selKeys = session.tests[subId] || [];
+        if (!selKeys.length) return;
+        var subStat = (session.subjectStats || {})[subId] || {};
+        var subAcc  = subStat.accuracy || 0;
+        var subSolved = subStat.totalQuestions || 0;
+        var cardsHtml = '<div class="row g-3">';
+        selKeys.forEach(function(key) {
+          var tc = sub.tests.find(function(t) { return t.key === key; });
+          var tTitle = tc ? tc.title : key;
+          var tCount = tc ? tc.count + ' ta savol' : '';
+          cardsHtml += '<div class="col-6 col-md-3">'
+            + '<div class="test-card" data-test-name="' + key + '" onclick="runPrepTest(\'' + subId + '\',\'' + key + '\')">'
+            + '<div class="test-icon"><i class="bi bi-journal-medical"></i></div>'
+            + '<div class="test-title fw-semibold">' + tTitle + '</div>'
+            + '<div class="question-footer">' + tCount + '</div>'
+            + '</div></div>';
+        });
+        cardsHtml += '</div>';
+        subjectsHtml += '<div class="group-section" id="gs-' + subId + '">'
+          + '<div class="group-header" onclick="toggleGroup(\'' + subId + '\')">'
+          + '<div class="group-icon" style="background:' + sub.bgColor + '"><i class="bi ' + sub.icon + '"></i></div>'
+          + '<div class="group-title-wrap">'
+          +   '<div class="group-title">' + sub.label + '</div>'
+          +   '<div class="group-subtitle" id="gs-sub-' + subId + '">' + selKeys.length + ' ta test &middot; ' + subSolved + ' ta yechilgan</div>'
+          + '</div>'
+          + '<div class="group-count-badge" id="gs-badge-' + subId + '" style="color:' + percentColor(subAcc) + '">' + subAcc + '%</div>'
+          + '<i class="bi bi-chevron-down group-chevron"></i>'
+          + '</div><div class="group-body">' + cardsHtml + '</div></div>';
+      });
+
+      container.innerHTML = ''
+        + '<div class="session-hero" style="background:' + heroGrad + '">'
+        +   '<div class="hero-badge"><i class="bi ' + heroIcon + '"></i> ' + heroLabel + '</div>'
+        +   '<div class="hero-title">Tayyorlanish sessiyasi</div>'
+        +   '<div class="hero-date"><i class="bi bi-calendar3"></i> ' + dateStr + '</div>'
+        +   cdHtml
+        + '</div>'
+        + '<div class="overall-ring-wrap">'
+        +   '<div class="ring-svg-wrap">' + ringHtml
+        +     '<div class="ring-center-text"><span class="ring-pct" id="ring-pct-val">' + pct + '</span><span class="ring-pct-sign">%</span></div>'
+        +   '</div>'
+        +   '<div class="ring-info">'
+        +     '<div class="ring-info-title">Umumiy progress</div>'
+        +     '<div class="ring-info-sub" id="ring-sub">' + (stats.solvedQuestions||0) + ' ta savol yechilgan</div>'
+        +     '<div class="ring-breakdown">'
+        +       '<div class="rb-item" id="rb-correct"><div class="rb-dot" style="background:#22c55e"></div> To\'g\'ri: ' + (stats.correctAnswers||0) + '</div>'
+        +       '<div class="rb-item" id="rb-wrong"><div class="rb-dot" style="background:#ef4444"></div> Xato: ' + (stats.wrongAnswers||0) + '</div>'
+        +     '</div>'
+        +   '</div>'
+        + '</div>'
+        + '<div class="stats-bar mb-4">'
+        +   '<div class="stat-tile highlight"><div class="stat-tile-val">' + subjCount + '</div><div class="stat-tile-label">Fanlar</div></div>'
+        +   '<div class="stat-tile"><div class="stat-tile-val">' + testCount + '</div><div class="stat-tile-label">Testlar</div></div>'
+        +   '<div class="stat-tile"><div class="stat-tile-val" id="st-solved">' + (stats.solvedQuestions||0) + '</div><div class="stat-tile-label">Yechilgan</div></div>'
+        +   '<div class="stat-tile"><div class="stat-tile-val" id="st-acc" style="color:' + percentColor(pct) + '">' + pct + '%</div><div class="stat-tile-label">Aniqlik</div></div>'
+        + '</div>'
+        + '<div class="section-heading">Fanlar va testlar</div>'
+        + '<div id="subjects-accordion">' + (subjectsHtml || '<p class="text-muted text-center py-3">Fanlar tanlanmagan</p>') + '</div>'
+        + '<div class="section-heading mt-4">Xatolar</div>'
+        + '<div class="mistakes-card" onclick="openXatolarForSession()">'
+        +   '<div class="mistakes-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>'
+        +   '<div><div class="mistakes-label">Xatolarni ko\'rish</div><div class="mistakes-sub">Faqat shu sessiya xatolari</div></div>'
+        +   '<div class="mistakes-count-badge" id="mistakes-badge">' + mistakes.length + ' ta</div>'
+        +   '<i class="bi bi-chevron-right text-muted ms-1"></i>'
+        + '</div>'
+        + '<div class="section-heading mt-2">Statistika</div>'
+        + '<div class="stats-card">'
+        +   '<div class="stats-card-title"><i class="bi bi-bar-chart-fill text-primary"></i> Umumiy statistika</div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Fanlar soni</span><span class="stat-row-val">' + subjCount + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Testlar soni</span><span class="stat-row-val">' + testCount + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Yechilgan savollar</span><span id="st-row-solved" class="stat-row-val">' + (stats.solvedQuestions||0) + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">To\'g\'ri javoblar</span><span id="st-row-correct" class="stat-row-val" style="color:#22c55e">' + (stats.correctAnswers||0) + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Xato javoblar</span><span id="st-row-wrong" class="stat-row-val" style="color:#ef4444">' + (stats.wrongAnswers||0) + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Saqlangan xatolar</span><span id="st-row-mistakes" class="stat-row-val" style="color:#ef4444">' + mistakes.length + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Umumiy aniqlik</span><span id="st-row-acc" class="stat-row-val" style="color:' + percentColor(pct) + '">' + pct + '%</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Imtihon sanasi</span><span class="stat-row-val">' + dateStr + '</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Yaratilgan</span><span class="stat-row-val">' + crDate + '</span></div>'
+        + '</div>'
+        + '<div class="d-flex justify-content-end mt-3 mb-2">'
+        +   '<button class="btn-delete-session" onclick="deleteSession()"><i class="bi bi-trash3"></i> Sessiyani o\'chirish</button>'
+        + '</div>';
+
+      setTimeout(function() { try { renderTestStats(); } catch(e) {} }, 50);
+    }
+
+    function refreshStats() {
+      var session = getSession();
+      if (!session) return;
+      var stats = session.stats || {};
+      var pct = stats.accuracy || 0;
+      var R = 46; var circ = 2 * Math.PI * R;
+
+      var circle = document.querySelector('.ring-svg-wrap circle:last-child');
+      if (circle) {
+        circle.style.stroke = percentColor(pct);
+        circle.setAttribute('stroke-dashoffset', buildRingOffset(pct, R));
+      }
+      var el;
+      el = document.getElementById('ring-pct-val'); if (el) el.textContent = pct;
+      el = document.getElementById('ring-sub'); if (el) el.textContent = (stats.solvedQuestions||0) + ' ta savol yechilgan';
+      el = document.getElementById('rb-correct'); if (el) el.innerHTML = '<div class="rb-dot" style="background:#22c55e"></div> To\'g\'ri: ' + (stats.correctAnswers||0);
+      el = document.getElementById('rb-wrong');   if (el) el.innerHTML = '<div class="rb-dot" style="background:#ef4444"></div> Xato: ' + (stats.wrongAnswers||0);
+      el = document.getElementById('st-solved'); if (el) el.textContent = stats.solvedQuestions || 0;
+      el = document.getElementById('st-acc'); if (el) { el.textContent = pct + '%'; el.style.color = percentColor(pct); }
+      el = document.getElementById('st-row-solved');  if (el) el.textContent = (stats.solvedQuestions||0) + ' ta';
+      el = document.getElementById('st-row-correct'); if (el) el.textContent = (stats.correctAnswers||0) + ' ta';
+      el = document.getElementById('st-row-wrong');   if (el) el.textContent = (stats.wrongAnswers||0) + ' ta';
+      el = document.getElementById('st-row-acc'); if (el) { el.textContent = pct + '%'; el.style.color = percentColor(pct); }
+      var mistakes = getSessionMistakes();
+      el = document.getElementById('mistakes-badge');    if (el) el.textContent = mistakes.length + ' ta';
+      el = document.getElementById('st-row-mistakes'); if (el) el.textContent = mistakes.length + ' ta';
+
+      (session.subjects || []).forEach(function(subId) {
+        var sub = getSubject(subId);
+        var subStat = (session.subjectStats || {})[subId] || {};
+        var subAcc  = subStat.accuracy || 0;
+        var subSolved = subStat.totalQuestions || 0;
+        el = document.getElementById('gs-badge-' + subId);
+        if (el) { el.textContent = subAcc + '%'; el.style.color = percentColor(subAcc); }
+        el = document.getElementById('gs-sub-' + subId);
+        if (el && sub) el.textContent = (session.tests[subId]||[]).length + ' ta test \u00B7 ' + subSolved + ' ta yechilgan';
+      });
+    }
+
+    function toggleGroup(subId) {
+      var el = document.getElementById('gs-' + subId);
+      if (el) el.classList.toggle('open');
+    }
+
+    /* ===== INLINE TEST RUNNER ===== */
+    var _loadedScripts = {};
+    function loadScriptDynamic(src) {
+      return new Promise(function(resolve, reject) {
+        if (_loadedScripts[src]) return resolve();
+        if (document.querySelector('script[src="' + src + '"]')) { _loadedScripts[src] = true; return resolve(); }
+        var s = document.createElement('script');
+        s.src = src; s.async = false;
+        s.onload = function() { _loadedScripts[src] = true; resolve(); };
+        s.onerror = function() { reject(new Error('Script load failed: ' + src)); };
+        document.head.appendChild(s);
+      });
+    }
+
+    async function runPrepTest(subjectId, testKey) {
+      var sub = getSubject(subjectId);
+      var tc = sub ? sub.tests.find(function(t) { return t.key === testKey; }) : null;
+      if (!sub || !tc) { alert('Test topilmadi'); return; }
+      window.__prepOverrideContext = { sessionId: SESSION_ID, subjectId: subjectId };
+      try { await loadScriptDynamic(sub.questionsFile); }
+      catch(e) { alert('Savollar yuklanmadi: ' + sub.questionsFile); window.__prepOverrideContext = { sessionId: SESSION_ID, subjectId: null }; return; }
+      if (!window.TEST_QUESTIONS || !window.TEST_QUESTIONS[testKey]) {
+        alert(tc.title + ' uchun savollar topilmadi');
+        window.__prepOverrideContext = { sessionId: SESSION_ID, subjectId: null };
+        return;
+      }
+      var count = tc.count === 'all' ? 'all' : tc.count;
+      window.tests = {};
+      window.tests[testKey] = getRandomTest(window.TEST_QUESTIONS[testKey], count);
+      startTest(testKey);
+    }
+
+    function openXatolarForSession() {
+      setXatolarSessionId(SESSION_ID);
+      openXatolarModal();
+    }
+
+    /* ===== ORALIQ NAZORAT RENDERER ===== */
+    var oraliqCards = [];
+    var oraliqIdx   = 0;
+    var isFlipped   = false;
+
+    function renderOraliqSession() {
+      var session   = getSession();
+      var container = document.getElementById('session-content');
+      if (!session) {
+        container.innerHTML = '<div class="text-center py-5"><h4>Sessiya topilmadi</h4>'
+          + '<a href="/preparation/" class="btn btn-primary rounded-pill mt-3">Orqaga</a></div>';
+        return;
+      }
+
+      var et       = getExamType(session.examType);
+      var subId    = session.oraliqSubject;
+      var sub      = getSubject(subId);
+      var oData    = getOraliqData(subId);
+      var questions= oData ? oData.questions : [];
+      var days     = daysUntil(session.examDate);
+      var cd       = countdownText(days);
+      var dateStr  = fmtDate(session.examDate);
+      var vStats   = getSessionVoiceStats(SESSION_ID);
+
+      oraliqCards = shuffleOraliq(questions);
+      oraliqIdx   = 0;
+      isFlipped   = false;
+
+      var heroGrad  = et ? et.gradient  : 'linear-gradient(135deg,#d97706,#92400e)';
+      var heroIcon  = et ? et.icon      : 'bi-mic';
+      var heroLabel = et ? et.label     : "Og'zaki imtihon";
+      var subLabel  = sub ? sub.label   : "Og'zaki sessiya";
+      var cdHtml = cd
+        ? '<div class="hero-countdown" style="border:2px solid rgba(255,255,255,.3)">'
+          + '<i class="bi bi-alarm"></i> ' + cd.text + '</div>'
+        : '';
+
+      var accordionHtml = '<div class="qa-accordion" id="qa-accordion">';
+      questions.forEach(function(q, i) { accordionHtml += buildQaItem(q, i, subId); });
+      accordionHtml += '</div>';
+
+      container.innerHTML = ''
+        + '<div class="session-hero" style="background:' + heroGrad + '">'
+        +   '<div class="hero-badge"><i class="bi ' + heroIcon + '"></i> ' + heroLabel + '</div>'
+        +   '<div class="hero-title">' + subLabel + '</div>'
+        +   '<div class="hero-date"><i class="bi bi-calendar3"></i> ' + dateStr + '</div>'
+        +   cdHtml
+        + '</div>'
+        + '<div class="oraliq-tabs">'
+        +   '<button class="oraliq-tab active" id="tab-rand" onclick="switchOraliqTab(\'randomizer\')"><i class="bi bi-shuffle"></i>Randomizer</button>'
+        +   '<button class="oraliq-tab" id="tab-all" onclick="switchOraliqTab(\'allquestions\')"><i class="bi bi-list-ul"></i>Barcha savollar</button>'
+        +   '<button class="oraliq-tab" id="tab-stats" onclick="switchOraliqTab(\'stats\')"><i class="bi bi-bar-chart-fill"></i>Statistika</button>'
+        + '</div>'
+        + '<div class="oraliq-section active" id="oraliq-randomizer">'
+        +   '<div class="d-flex align-items-center justify-content-between mb-3">'
+        +     '<span style="font-size:13px;color:var(--tg-muted);font-weight:600"><i class="bi bi-layers me-1"></i>' + questions.length + ' ta savol</span>'
+        +     '<button class="fc-shuffle-btn" onclick="reshuffleCards()"><i class="bi bi-shuffle"></i> Aralashtirish</button>'
+        +   '</div>'
+        +   '<div class="flip-card-wrap" id="flipCardWrap" onclick="flipCard()">'
+        +     '<div class="flip-card-inner" id="flipCardInner">'
+        +       '<div class="flip-card-face flip-card-front">'
+        +         '<div><div class="fc-badge"><i class="bi bi-question-circle me-1"></i>Savol</div>'
+        +         '<div class="fc-question" id="fc-q-text">Yuklanmoqda...</div></div>'
+        +         '<div><div class="fc-hint"><i class="bi bi-hand-index"></i> Javobni ko\'rish uchun kartochkani bosing</div></div>'
+        +       '</div>'
+        +       '<div class="flip-card-face flip-card-back">'
+        +         '<div class="fc-answer-label"><i class="bi bi-check-circle-fill"></i> Javob</div>'
+        +         '<div class="fc-answer" id="fc-a-text">...</div>'
+        +       '</div>'
+        +     '</div>'
+        +   '</div>'
+        +   '<div class="fc-nav mt-3">'
+        +     '<button class="fc-btn" id="fc-prev" onclick="event.stopPropagation();prevCard()" title="Oldingi"><i class="bi bi-arrow-left"></i></button>'
+        +     '<div class="fc-progress" id="fc-progress">1 / ' + questions.length + '</div>'
+        +     '<button class="fc-btn" id="fc-next" onclick="event.stopPropagation();nextCard()" title="Keyingi"><i class="bi bi-arrow-right"></i></button>'
+        +   '</div>'
+        + '</div>'
+        + '<div class="oraliq-section" id="oraliq-allquestions">' + accordionHtml + '</div>'
+        + '<div class="oraliq-section" id="oraliq-stats">' + buildOraliqStats(session, questions, vStats, dateStr, days) + '</div>'
+        + '<div class="d-flex justify-content-end mt-4 mb-2">'
+        +   '<button class="btn-delete-session" onclick="deleteSession()"><i class="bi bi-trash3"></i> Sessiyani o\'chirish</button>'
+        + '</div>';
+
+      setCard(0);
+    }
+
+    function switchOraliqTab(tab) {
+      var tabIds = { randomizer: 'rand', allquestions: 'all', stats: 'stats' };
+      document.querySelectorAll('.oraliq-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.oraliq-section').forEach(function(s) { s.classList.remove('active'); });
+      var tabEl = document.getElementById('tab-' + tabIds[tab]);
+      var secEl = document.getElementById('oraliq-' + tab);
+      if (tabEl) tabEl.classList.add('active');
+      if (secEl) secEl.classList.add('active');
+      if (tab === 'stats') {
+        var sess = getSession();
+        var sid  = sess ? sess.oraliqSubject : null;
+        var qs   = sid ? getOraliqQuestions(sid) : [];
+        var vs   = getSessionVoiceStats(SESSION_ID);
+        var d    = daysUntil(sess ? sess.examDate : null);
+        var ds   = fmtDate(sess ? sess.examDate : null);
+        if (secEl) secEl.innerHTML = buildOraliqStats(sess, qs, vs, ds, d);
+      }
+    }
+
+    /* ── Flip card ── */
+    function setCard(idx) {
+      if (!oraliqCards.length) return;
+      oraliqIdx = idx; isFlipped = false;
+      var wrap = document.getElementById('flipCardWrap');
+      if (wrap) wrap.classList.remove('flipped');
+      var q = oraliqCards[idx];
+      var qEl   = document.getElementById('fc-q-text');
+      var aEl   = document.getElementById('fc-a-text');
+      var prog  = document.getElementById('fc-progress');
+      var prevB = document.getElementById('fc-prev');
+      var nextB = document.getElementById('fc-next');
+      if (qEl) qEl.textContent = q.q;
+      if (aEl) aEl.textContent = q.a;
+      if (prog) prog.textContent = (idx + 1) + ' / ' + oraliqCards.length;
+      if (prevB) prevB.disabled = (idx === 0);
+      if (nextB) nextB.disabled = (idx === oraliqCards.length - 1);
+    }
+
+    function flipCard() {
+      var wrap = document.getElementById('flipCardWrap');
+      if (!wrap) return;
+      isFlipped = !isFlipped;
+      wrap.classList.toggle('flipped', isFlipped);
+    }
+
+    function nextCard() { if (oraliqIdx < oraliqCards.length - 1) setCard(oraliqIdx + 1); }
+    function prevCard() { if (oraliqIdx > 0) setCard(oraliqIdx - 1); }
+
+    function reshuffleCards() {
+      var sess = getSession();
+      var sid  = sess ? sess.oraliqSubject : null;
+      var qs   = sid ? getOraliqQuestions(sid) : [];
+      oraliqCards = shuffleOraliq(qs);
+      setCard(0);
+      var btn = document.querySelector('.fc-shuffle-btn');
+      if (btn) {
+        btn.innerHTML = '<i class="bi bi-check-lg"></i> Aralashtirildi';
+        setTimeout(function(){ btn.innerHTML = '<i class="bi bi-shuffle"></i> Aralashtirish'; }, 1500);
+      }
+    }
+
+    /* ── Q&A items ── */
+    function buildQaItem(q, idx, subId) {
+      var voices    = getVoicesForQuestion(SESSION_ID, q.id);
+      var vcBadge   = voices.length > 0
+        ? '<span style="font-size:11px;color:#d97706;font-weight:700;margin-right:4px"><i class="bi bi-mic-fill"></i>' + voices.length + '</span>'
+        : '';
+      var voiceList = '';
+      voices.forEach(function(v) { voiceList += buildVoiceItem(v, q.id); });
+      return '<div class="qa-item" id="qa-' + q.id + '">'
+        + '<div class="qa-header" onclick="toggleQaItem(\'' + q.id + '\')">'
+        +   '<div class="qa-num">' + (idx + 1) + '</div>'
+        +   '<div class="qa-q-text">' + q.q + '</div>'
+        +   vcBadge
+        +   '<i class="bi bi-chevron-down qa-chevron"></i>'
+        + '</div>'
+        + '<div class="qa-body">'
+        +   '<div class="qa-answer-block">'
+        +     '<div class="qa-answer-label"><i class="bi bi-check2-circle"></i> Javob</div>'
+        +     '<div class="qa-answer-text">' + q.a + '</div>'
+        +   '</div>'
+        +   '<div class="qa-voice-section">'
+        +     '<div class="qa-voice-label"><i class="bi bi-mic"></i> Ovozli javoblar</div>'
+        +     '<button class="voice-rec-btn start" id="vrec-btn-' + q.id + '" onclick="toggleRecording(\'' + q.id + '\',\'' + subId + '\')">'
+        +       '<i class="bi bi-mic-fill"></i> Ovoz yozish'
+        +     '</button>'
+        +     '<div class="voice-recordings-list" id="vlist-' + q.id + '">' + voiceList + '</div>'
+        +   '</div>'
+        + '</div>'
+        + '</div>';
+    }
+
+    function buildVoiceItem(v, qId) {
+      var dt  = new Date(v.date);
+      var dStr = dt.toLocaleDateString('uz-UZ', { day:'2-digit', month:'short' })
+               + ' ' + dt.toLocaleTimeString('uz-UZ', { hour:'2-digit', minute:'2-digit' });
+      return '<div class="voice-item" id="vi-' + v.id + '">'
+        + '<button class="voice-play-btn" id="vplay-' + v.id + '" onclick="playVoice(\'' + v.id + '\',\'' + qId + '\',\'' + SESSION_ID + '\')" title="Eshitish"><i class="bi bi-play-fill"></i></button>'
+        + '<div class="voice-info">'
+        +   '<div class="voice-duration">' + formatDuration(v.duration || 0) + '</div>'
+        +   '<div class="voice-date">' + dStr + '</div>'
+        + '</div>'
+        + '<div class="voice-audio-progress"><div class="voice-audio-fill" id="vprog-' + v.id + '"></div></div>'
+        + '<button class="voice-del-btn" onclick="removeVoice(\'' + v.id + '\',\'' + qId + '\')" title="O\'chirish"><i class="bi bi-trash3"></i></button>'
+        + '</div>';
+    }
+
+    function toggleQaItem(qId) {
+      var item = document.getElementById('qa-' + qId);
+      if (!item) return;
+      var wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.qa-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    }
+
+    /* ── Voice recording ── */
+    var activeRecorders = {};
+    var playingAudios   = {};
+
+    async function toggleRecording(qId, subId) {
+      if (activeRecorders[qId]) { activeRecorders[qId].recorder.stop(); return; }
+      try {
+        var stream    = await navigator.mediaDevices.getUserMedia({ audio: true });
+        var chunks    = [];
+        var startTime = Date.now();
+        var mr = new MediaRecorder(stream, { mimeType: 'audio/webm' });
+        mr.ondataavailable = function(e) { if (e.data.size > 0) chunks.push(e.data); };
+        mr.onstop = function() {
+          stream.getTracks().forEach(function(t) { t.stop(); });
+          var duration = (Date.now() - startTime) / 1000;
+          var blob   = new Blob(chunks, { type: 'audio/webm' });
+          var reader = new FileReader();
+          reader.onload = function() {
+            var entry = { id: 'v_' + Date.now(), dataUrl: reader.result, duration: duration, date: new Date().toISOString() };
+            var ok = saveVoiceForQuestion(SESSION_ID, qId, entry);
+            if (!ok) alert("Xotira to'lib qoldi, eski yozuvlarni o'chiring.");
+            delete activeRecorders[qId];
+            var btn = document.getElementById('vrec-btn-' + qId);
+            if (btn) { btn.className = 'voice-rec-btn start'; btn.innerHTML = '<i class="bi bi-mic-fill"></i> Ovoz yozish'; }
+            var list = document.getElementById('vlist-' + qId);
+            if (list) list.insertAdjacentHTML('beforeend', buildVoiceItem(entry, qId));
+            // update badge
+            var qaItem = document.getElementById('qa-' + qId);
+            if (qaItem) {
+              var voices  = getVoicesForQuestion(SESSION_ID, qId);
+              var badge   = qaItem.querySelector('.qa-header span[style*="d97706"]');
+              if (badge) badge.innerHTML = '<i class="bi bi-mic-fill"></i>' + voices.length;
+              else {
+                var chev = qaItem.querySelector('.qa-chevron');
+                if (chev) chev.insertAdjacentHTML('beforebegin',
+                  '<span style="font-size:11px;color:#d97706;font-weight:700;margin-right:4px"><i class="bi bi-mic-fill"></i>' + voices.length + '</span>');
+              }
+            }
+          };
+          reader.readAsDataURL(blob);
+        };
+        activeRecorders[qId] = { recorder: mr };
+        mr.start();
+        var btn = document.getElementById('vrec-btn-' + qId);
+        if (btn) { btn.className = 'voice-rec-btn stop'; btn.innerHTML = '<i class="bi bi-stop-fill"></i> To\'xtatish'; }
+      } catch(e) { alert('Mikrofon ruxsati kerak: ' + e.message); }
+    }
+
+    function playVoice(voiceId, qId, sessId) {
+      Object.keys(playingAudios).forEach(function(vid) {
+        playingAudios[vid].pause();
+        var b = document.getElementById('vplay-' + vid);
+        if (b) { b.classList.remove('playing'); b.innerHTML = '<i class="bi bi-play-fill"></i>'; }
+        var p = document.getElementById('vprog-' + vid);
+        if (p) p.style.width = '0';
+      });
+      playingAudios = {};
+      var voices = getVoicesForQuestion(sessId, qId);
+      var v = voices.find(function(x) { return x.id === voiceId; });
+      if (!v) return;
+      var audio = new Audio(v.dataUrl);
+      playingAudios[voiceId] = audio;
+      var btn  = document.getElementById('vplay-' + voiceId);
+      var prog = document.getElementById('vprog-' + voiceId);
+      if (btn) { btn.classList.add('playing'); btn.innerHTML = '<i class="bi bi-pause-fill"></i>'; }
+      audio.ontimeupdate = function() {
+        if (prog && audio.duration) prog.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      };
+      audio.onended = function() {
+        if (btn) { btn.classList.remove('playing'); btn.innerHTML = '<i class="bi bi-play-fill"></i>'; }
+        if (prog) prog.style.width = '0';
+        delete playingAudios[voiceId];
+      };
+      audio.play().catch(function(e) { alert('Audio oynatilmadi: ' + e.message); });
+    }
+
+    function removeVoice(voiceId, qId) {
+      if (!confirm("Bu ovoz yozuvini o'chirishni tasdiqlaysizmi?")) return;
+      deleteVoice(SESSION_ID, qId, voiceId);
+      var el = document.getElementById('vi-' + voiceId); if (el) el.remove();
+      var qaItem = document.getElementById('qa-' + qId);
+      if (qaItem) {
+        var voices = getVoicesForQuestion(SESSION_ID, qId);
+        var badge  = qaItem.querySelector('.qa-header span[style*="d97706"]');
+        if (badge) { if (voices.length > 0) badge.innerHTML = '<i class="bi bi-mic-fill"></i>' + voices.length; else badge.remove(); }
+      }
+    }
+
+    /* ── Oraliq stats ── */
+    function buildOraliqStats(session, questions, vStats, dateStr, days) {
+      var qLen  = questions.length;
+      var qWV   = vStats.questionsWithVoice;
+      var tV    = vStats.totalVoices;
+      var dColor= (days !== null && days >= 0) ? '#16a34a' : '#94a3b8';
+      var dText = (days !== null) ? (days < 0 ? '\u2014' : days) : '\u2014';
+      var crDate= session ? new Date(session.createdAt).toLocaleDateString('uz-UZ') : '';
+      var cd    = countdownText(days);
+      var cdRow = cd ? '<div class="stat-row"><span class="stat-row-label">Qolgan vaqt</span><span class="stat-row-val" style="color:' + cd.color + '">' + cd.text + '</span></div>' : '';
+      return '<div class="oraliq-stat-grid">'
+        + '<div class="oraliq-stat-tile"><div class="oraliq-stat-val">' + qLen + '</div><div class="oraliq-stat-lbl">Jami savollar</div></div>'
+        + '<div class="oraliq-stat-tile"><div class="oraliq-stat-val" style="color:#d97706">' + qWV + '</div><div class="oraliq-stat-lbl">Yozilgan savollar</div></div>'
+        + '<div class="oraliq-stat-tile"><div class="oraliq-stat-val" style="color:#2563eb">' + tV + '</div><div class="oraliq-stat-lbl">Jami yozuvlar</div></div>'
+        + '<div class="oraliq-stat-tile"><div class="oraliq-stat-val" style="color:' + dColor + '">' + dText + '</div><div class="oraliq-stat-lbl">Kun qoldi</div></div>'
+        + '</div>'
+        + '<div class="stats-card">'
+        +   '<div class="stats-card-title"><i class="bi bi-info-circle text-warning"></i> Ma\'lumot</div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Imtihon turi</span><span class="stat-row-val">Og\'zaki nazorat</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Imtihon sanasi</span><span class="stat-row-val">' + dateStr + '</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Jami savollar</span><span class="stat-row-val">' + qLen + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Yozuv bor savollar</span><span class="stat-row-val" style="color:#d97706">' + qWV + ' / ' + qLen + '</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Jami audio yozuvlar</span><span class="stat-row-val" style="color:#2563eb">' + tV + ' ta</span></div>'
+        +   '<div class="stat-row"><span class="stat-row-label">Yaratilgan</span><span class="stat-row-val">' + crDate + '</span></div>'
+        +   cdRow
+        + '</div>'
+        + '<div class="d-flex justify-content-between align-items-center mt-3 mb-2">'
+        +   '<span style="font-size:12px;color:var(--tg-muted)">Barcha ovoz yozuvlarini o\'chirish</span>'
+        +   '<button class="btn-delete-session" onclick="confirmClearVoices()"><i class="bi bi-mic-mute"></i> Tozalash</button>'
+        + '</div>';
+    }
+
+    function confirmClearVoices() {
+      if (!confirm("Bu sessiyaning barcha ovoz yozuvlarini o'chirishni tasdiqlaysizmi?")) return;
+      clearAllSessionVoices(SESSION_ID);
+      var sess    = getSession();
+      var sid     = sess ? sess.oraliqSubject : null;
+      var qs      = sid ? getOraliqQuestions(sid) : [];
+      var vs      = getSessionVoiceStats(SESSION_ID);
+      var d       = daysUntil(sess ? sess.examDate : null);
+      var ds      = fmtDate(sess ? sess.examDate : null);
+      var statsEl = document.getElementById('oraliq-stats');
+      if (statsEl) statsEl.innerHTML = buildOraliqStats(sess, qs, vs, ds, d);
+      alert("Barcha ovoz yozuvlari o'chirildi.");
+    }
+
+    /* ===== INIT ===== */
+    if (!SESSION_ID) {
+      document.getElementById('session-content').innerHTML =
+        '<div class="text-center py-5"><h4>ID ko\'rsatilmagan</h4>'
+        + '<a href="/preparation/" class="btn btn-primary rounded-pill mt-3">Orqaga</a></div>';
+    } else {
+      var _s = getSession();
+      if (_s && _s.examType === 'oraliq') renderOraliqSession();
+      else renderSessionPage();
+    }
+  </script>
+</body>
+</html>

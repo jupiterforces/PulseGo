@@ -1,405 +1,579 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lessons - Pulse Medical</title>
+    <title>Darslar - Pulse Medical</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/styles/styles.css">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fb 0%, #e8f2ff 100%);
-            min-height: 100vh;
             font-family: 'Inter', sans-serif;
+            background: var(--tg-bg);
+            color: var(--tg-text);
+            padding-bottom: 85px;
         }
 
+        /* NAVBAR */
         .navbar {
-            background: linear-gradient(90deg, #2563eb, #1d4ed8) !important;
-            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.15);
-            padding: 12px 0 !important;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid #e9eef5;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
         }
 
         .navbar-brand {
             font-weight: 700;
-            font-size: clamp(1rem, 3vw, 1.3rem);
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 17px;
+            color: var(--tg-text) !important;
+            letter-spacing: -0.3px;
         }
 
         .navbar-brand img {
-            width: clamp(32px, 5vw, 40px);
-            height: clamp(32px, 5vw, 40px);
+            border: 2px solid #fff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
         }
 
-        .hero-section {
-            text-align: center;
-            padding: clamp(24px, 5vw, 40px) clamp(16px, 3vw, 20px);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
-            border-radius: 20px;
-            margin: clamp(16px, 3vw, 20px) auto;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        .navbar .btn-light {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--tg-text);
+            padding: 6px 14px;
+            transition: .2s ease;
         }
 
-        .hero-title {
-            font-size: clamp(1.8rem, 5vw, 2.8rem);
+        .navbar .btn-light:hover {
+            background: #e2e8f0;
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            padding: 28px 0 14px;
+        }
+
+        .page-header h1 {
+            font-size: 24px;
             font-weight: 800;
-            background: linear-gradient(135deg, #2563eb, #1e3a8a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
+            color: var(--tg-text);
             letter-spacing: -0.5px;
         }
 
-        .hero-subtitle {
-            font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-            color: #64748b;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+        .page-header p {
+            color: var(--tg-muted);
+            font-size: 14px;
+            margin-bottom: 0;
         }
 
-        .subjects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: clamp(12px, 3vw, 20px);
-            padding: clamp(12px, 3vw, 20px);
-            max-width: 1400px;
-            margin: 0 auto;
+        /* SUBJECT NAV */
+        .subject-nav {
+            position: sticky;
+            top: 66px;
+            z-index: 1020;
+            background: var(--tg-bg);
+            padding: 10px 0 14px;
+            margin-bottom: 6px;
         }
 
-        .subject-card {
-            background: white;
-            border-radius: 16px;
-            padding: clamp(16px, 3vw, 24px);
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-            min-height: 240px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .subject-card::before {
+        .subject-nav::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 14px;
+            background: linear-gradient(to bottom, var(--tg-bg), transparent);
+            pointer-events: none;
         }
 
-        .subject-card:hover::before {
-            left: 100%;
+        .subject-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: none;
         }
 
-        .subject-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 1);
-            border-color: #2563eb;
+        .subject-pills::-webkit-scrollbar {
+            display: none;
         }
 
-        @media (hover: none) {
-            .subject-card:active {
-                transform: translateY(-4px);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            }
-        }
-
-        .subject-icon {
-            font-size: clamp(2.5rem, 8vw, 3.5rem);
-            margin-bottom: 12px;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .subject-card:hover .subject-icon {
-            transform: scale(1.1);
-        }
-
-        .subject-name {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 8px;
-        }
-
-        .subject-description {
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            color: #64748b;
-            margin-bottom: 16px;
-            line-height: 1.4;
-        }
-
-        .subject-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: white;
-            background: var(--color);
-            opacity: 0.9;
-        }
-
-        .container-main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 12px;
-        }
-
-        @media (min-width: 1024px) {
-            .container-main {
-                padding: 0 20px;
-            }
-        }
-
-        .back-btn {
+        .subject-pill {
+            flex: 0 0 auto;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: white;
-            border: none;
-            border-radius: 12px;
-            color: #2563eb;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            color: var(--tg-text);
+            font-size: 13px;
             font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all .2s ease;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 30px;
         }
 
-        .back-btn:hover {
+        .subject-pill i {
+            font-size: 14px;
+        }
+
+        .subject-pill:hover {
+            background: #f8fafc;
+            transform: translateY(-1px);
+        }
+
+        .subject-pill.active {
+            background: var(--tg-text);
+            color: #fff;
+            border-color: var(--tg-text);
+        }
+
+        /* GROUP SECTION */
+        .group-section {
+            margin-bottom: 14px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+            overflow: hidden;
+        }
+
+        .group-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 18px;
+            cursor: pointer;
+            user-select: none;
+            transition: background .2s ease;
+        }
+
+        .group-header:hover {
+            background: #f8fafc;
+        }
+
+        .group-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .group-title-wrap {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .group-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tg-text);
+        }
+
+        .group-total {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tg-muted);
+        }
+
+        .group-total i {
+            font-size: 11px;
+        }
+
+        .group-count-badge {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 10px;
+            border-radius: 999px;
             background: #f1f5f9;
-            transform: translateX(-4px);
+            color: var(--tg-text);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
         }
 
-        footer {
-            background: linear-gradient(135deg, #1e40af, #1d4ed8);
-            color: white;
-            padding: 30px 20px;
+        .group-count-badge i {
+            font-size: 11px;
+            color: var(--tg-muted);
+        }
+
+        .group-chevron {
+            font-size: 18px;
+            color: var(--tg-muted);
+            transition: transform .25s ease;
+            flex-shrink: 0;
+        }
+
+        .group-section.open .group-chevron {
+            transform: rotate(180deg);
+        }
+
+        .group-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .35s ease, padding .35s ease;
+            padding: 0 18px;
+        }
+
+        .group-section.open .group-body {
+            max-height: 4000px;
+            padding: 4px 18px 18px;
+        }
+
+        /* TOPIC CARD */
+        .topic-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px;
+            background: #f8fafc;
+            border: 1px solid #e9eef5;
+            border-radius: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: all .2s ease;
+        }
+
+        .topic-card:hover {
+            background: #fff;
+            border-color: #c7d7f0;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .topic-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .topic-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--tg-text);
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .topic-meta {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--tg-muted);
+        }
+
+        .topic-meta i {
+            font-size: 10px;
+        }
+
+        .topic-meta.no-lessons {
+            color: #94a3b8;
+        }
+
+        /* EMPTY TOPIC BADGE */
+        .topic-empty-badge {
+            margin-top: 4px;
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            color: #94a3b8;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 68px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(18px);
+            border-top: 1px solid #e5eaf1;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1050;
+        }
+
+        .bottom-nav .nav-item {
+            flex: 1;
             text-align: center;
-            margin-top: 40px;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            text-decoration: none;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 600;
+            transition: .2s ease;
         }
 
-        /* MOBILE OPTIMIZATIONS */
-        @media (max-width: 768px) {
-            body {
-                padding-bottom: 20px;
-            }
-
-            .navbar {
-                padding: 10px 0 !important;
-            }
-
-            .navbar-brand {
-                font-size: 1.1rem;
-            }
-
-            .hero-section {
-                padding: 24px 14px;
-                margin: 12px auto;
-                border-radius: 16px;
-            }
-
-            .hero-title {
-                font-size: clamp(1.4rem, 5vw, 2.2rem);
-            }
-
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .subjects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-                gap: 12px;
-                padding: 12px;
-            }
-
-            .subject-card {
-                padding: 16px 12px;
-                min-height: 220px;
-                border-radius: 14px;
-            }
-
-            .subject-icon {
-                font-size: 2.4rem;
-            }
-
-            .subject-name {
-                font-size: 1rem;
-                margin: 8px 0;
-            }
-
-            footer {
-                padding: 20px 16px;
-                font-size: 0.8rem;
-            }
+        .bottom-nav .nav-item i {
+            display: block;
+            font-size: 21px;
+            margin-bottom: 2px;
         }
 
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 8px 0 !important;
-            }
-
-            .navbar-brand {
-                font-size: 1rem;
-                gap: 6px;
-            }
-
-            .navbar-brand img {
-                width: 32px;
-                height: 32px;
-            }
-
-            .hero-section {
-                padding: 16px 12px;
-                margin: 8px auto;
-                border-radius: 12px;
-            }
-
-            .hero-title {
-                font-size: 1.5rem;
-                margin-bottom: 8px;
-            }
-
-            .hero-subtitle {
-                font-size: 0.8rem;
-                line-height: 1.4;
-            }
-
-            .subjects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .subject-card {
-                padding: 12px 10px;
-                min-height: 200px;
-                border-radius: 12px;
-            }
-
-            .subject-icon {
-                font-size: 2rem;
-            }
-
-            .subject-name {
-                font-size: 0.9rem;
-                margin: 6px 0;
-            }
-
-            .subject-description {
-                font-size: 0.7rem;
-                margin-bottom: 8px;
-            }
-
-            .subject-badge {
-                padding: 4px 10px;
-                font-size: 0.7rem;
-            }
-
-            footer {
-                padding: 16px 12px;
-                font-size: 0.75rem;
-                margin-top: 20px;
-            }
+        .bottom-nav .nav-item.active {
+            color: #0d6efd;
         }
 
-        @media (max-width: 480px) {
-            .subjects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-                gap: 10px;
-                padding: 10px;
+        .bottom-nav .nav-item:hover {
+            color: #0d6efd;
+        }
+
+        /* MOBILE */
+        @media(max-width:768px) {
+            .page-header h1 {
+                font-size: 22px;
             }
 
-            .subject-card {
-                padding: 14px 10px;
-                min-height: 200px;
+            .group-title {
+                font-size: 15px;
+            }
+
+            .subject-nav {
+                top: 62px;
+            }
+
+            .group-count-badge {
+                display: none;
             }
         }
     </style>
 </head>
 
 <body>
+
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a href="../../index.html" class="navbar-brand d-flex align-items-center gap-2">
-                <img src="../../assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
+                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
                 Pulse Go
+            </a>
+            <a href="/" class="btn btn-light btn-sm">
+                <i class="bi bi-house"></i> Home
             </a>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <div class="container-main">
-        <div class="hero-section">
-            <h1 class="hero-title">📚 Lessons</h1>
-            <!-- <p class="hero-subtitle">Choose a subject to explore comprehensive lessons with video tutorials</p> -->
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Darslar</h1>
+            <p>Fan va mavzuni tanlang</p>
         </div>
+    </section>
 
-        <!-- SUBJECTS GRID -->
-        <div class="subjects-grid" id="subjectsContainer">
-            <!-- Dynamically populated -->
+    <!-- SUBJECT PILLS -->
+    <div class="subject-nav">
+        <div class="container">
+            <div class="subject-pills" id="subject-pills"></div>
         </div>
     </div>
 
+    <!-- LESSON GROUPS -->
+    <section class="lessons-section">
+        <div class="container" id="groups-container"></div>
+    </section>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- BOTTOM NAVIGATION FOOTER -->
+    <nav class="bottom-nav d-lg-none">
+        <a href="../" class="bn-item ">
+            <i class="bi bi-house-fill"></i>
+            <span>Asosiy</span>
+        </a>
+        <a href="/tests/" class="bn-item">
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+            <span>QBank</span>
+        </a>
+        <a href="/preparation/" class="bn-item bn-fab">
+            <span class="bn-fab-btn"><i class="bi bi-plus-lg"></i></span>
+            <span>Tayyorlanish</span>
+        </a>
+        <a href="/lessons" class="bn-item active">
+            <i class="bi bi-book-half"></i>
+            <span>Darslar</span>
+        </a>
+        <a href="../profile" class="bn-item">
+            <i class="bi bi-person-fill"></i>
+            <span>Profil</span>
+        </a>
+    </nav>
     <script src="./js/data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Load and display subjects
-        function loadSubjects() {
-            const container = document.getElementById('subjectsContainer');
-            container.innerHTML = '';
+        const COLOR_MAP = {
+            danger: '#dc2626',
+            success: '#16a34a',
+            warning: '#d97706',
+            info: '#0891b2',
+            primary: '#2563eb',
+            dark: '#1f2937',
+        };
 
-            LESSONS_DATA.subjects.forEach(subject => {
-                const card = document.createElement('div');
-                card.className = 'subject-card';
-                card.style.setProperty('--color', subject.color);
-                card.innerHTML = `
-                    <span class="subject-icon">${subject.icon}</span>
-                    <h3 class="subject-name">${subject.name}</h3>
-                    <p class="subject-description">${subject.description}</p>
-                    <span class="subject-badge">Darsni boshlash</span>
-                `;
+        // Build sessionStorage payload and navigate to lesson player
+        function openTopic(subjectId, topicId) {
+            const subject = getSubject(subjectId);
+            const topics = getSubjectTopics(subjectId);
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic || !topic.lessons.length) return;
 
-                card.addEventListener('click', () => {
-                    window.location.href = `./${subject.id}/index.html`;
-                });
+            const payload = {
+                subjectId,
+                subjectName: subject.name,
+                subjectColor: COLOR_MAP[subject.color] || '#2563eb',
+                topicName: topic.topic,
+                lessons: topic.lessons,
+                currentIndex: 0,
+            };
+            sessionStorage.setItem('currentLesson', JSON.stringify(payload));
+            window.location.href = '/lessons/lesson/index.html';
+        }
 
-                container.appendChild(card);
+        function renderPills() {
+            const container = document.getElementById('subject-pills');
+            container.innerHTML = LESSONS_DATA.subjects.map(s => `
+                <span class="subject-pill" data-group="${s.id}">
+                    <i class="bi ${s.icon}"></i>${s.name}
+                </span>
+            `).join('');
+        }
+
+        function renderGroups() {
+            const container = document.getElementById('groups-container');
+            container.innerHTML = LESSONS_DATA.subjects.map(subject => {
+                const topics = getSubjectTopics(subject.id);
+                const totalLessons = topics.reduce((n, t) => n + t.lessons.length, 0);
+                const bgColor = COLOR_MAP[subject.color] || '#2563eb';
+
+                const topicCards = topics.map(topic => {
+                    const count = topic.lessons.length;
+                    const hasLessons = count > 0;
+                    const clickable = hasLessons ? `onclick="openTopic('${subject.id}','${topic.id}')"` : '';
+                    const metaClass = hasLessons ? '' : 'no-lessons';
+                    const metaText = hasLessons
+                        ? `<i class="bi bi-play-circle"></i> ${count} ta dars`
+                        : `<i class="bi bi-hourglass"></i> Tez orada`;
+
+                    return `
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="topic-card${hasLessons ? '' : ' opacity-75'}" ${clickable}>
+                                <div class="topic-icon" style="background:${bgColor}20; color:${bgColor}">
+                                    <i class="bi ${topic.icon || 'bi-journal-text'}"></i>
+                                </div>
+                                <div class="flex-grow-1 min-w-0">
+                                    <div class="topic-name">${topic.topic}</div>
+                                    <div class="topic-meta ${metaClass}">${metaText}</div>
+                                </div>
+                                ${hasLessons ? `<i class="bi bi-chevron-right text-muted" style="font-size:13px;flex-shrink:0"></i>` : ''}
+                            </div>
+                        </div>`;
+                }).join('');
+
+                return `
+                    <div class="group-section" id="group-${subject.id}" data-group="${subject.id}">
+                        <div class="group-header" onclick="toggleGroup('${subject.id}')">
+                            <div class="group-icon" style="background:${bgColor}">
+                                <i class="bi ${subject.icon}"></i>
+                            </div>
+                            <div class="group-title-wrap">
+                                <div class="group-title">${subject.name}</div>
+                                <div class="group-total">
+                                    <i class="bi bi-book"></i>
+                                    ${totalLessons} ta dars
+                                </div>
+                            </div>
+                            <span class="group-count-badge">
+                                <i class="bi bi-collection"></i>
+                                ${topics.length} mavzu
+                            </span>
+                            <i class="bi bi-chevron-down group-chevron"></i>
+                        </div>
+                        <div class="group-body">
+                            <div class="row g-3">${topicCards}</div>
+                        </div>
+                    </div>`;
+            }).join('');
+        }
+
+        function toggleGroup(id) {
+            const sections = document.querySelectorAll('.group-section');
+            const target = document.getElementById('group-' + id);
+            const wasOpen = target.classList.contains('open');
+            sections.forEach(s => s.classList.remove('open'));
+            if (!wasOpen) target.classList.add('open');
+            updateActivePill();
+        }
+
+        function updateActivePill() {
+            const openSection = document.querySelector('.group-section.open');
+            document.querySelectorAll('.subject-pill').forEach(pill => {
+                pill.classList.toggle('active', openSection && pill.dataset.group === openSection.dataset.group);
             });
         }
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', loadSubjects);
+        document.addEventListener('click', e => {
+            const pill = e.target.closest('.subject-pill');
+            if (!pill) return;
+            const id = pill.dataset.group;
+            toggleGroup(id);
+            const section = document.getElementById('group-' + id);
+            const navH = document.querySelector('.subject-nav').offsetHeight + 70;
+            const top = section.getBoundingClientRect().top + window.scrollY - navH;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            const pills = document.querySelectorAll('.subject-pill');
+            const navH = document.querySelector('.subject-nav').offsetHeight + 80;
+            let current = null;
+            document.querySelectorAll('.group-section').forEach(s => {
+                const r = s.getBoundingClientRect();
+                if (r.top <= navH && r.bottom > navH) current = s.dataset.group;
+            });
+            if (current) {
+                pills.forEach(p => p.classList.toggle('active', p.dataset.group === current));
+            }
+        }, { passive: true });
+
+        renderPills();
+        renderGroups();
+        updateActivePill();
     </script>
+
 </body>
 
 </html>

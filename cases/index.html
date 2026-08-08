@@ -268,29 +268,34 @@
 
         </div>
 
-        <!-- BOTTOM NAVIGATION FOOTER -->
         <nav class="bottom-nav d-lg-none">
-            <a href="../" class="nav-item">
+            <a href="../" class="bn-item ">
                 <i class="bi bi-house-fill"></i>
                 <span>Asosiy</span>
             </a>
-            <a href="../tests/" class="nav-item">
-                <i class="bi bi-ui-checks-grid"></i>
-                <span>Testlar</span>
+            <a href="/tests/" class="bn-item active">
+                <i class="bi bi-grid-3x3-gap-fill"></i>
+                <span>QBank</span>
             </a>
-            <a href="../cases/" class="nav-item active">
-                <i class="bi bi-journal-text"></i>
-                <span>Caselar</span>
+            <a href="/preparation/" class="bn-item bn-fab">
+                <span class="bn-fab-btn"><i class="bi bi-plus-lg"></i></span>
+                <span>Tayyorlanish</span>
             </a>
-                    </a> <a href="/profile" class="nav-item">
-            <i class="bi bi-journal-text"></i>
-            <span>Profil</span>
-        </a>
+            <a href="/lessons" class="bn-item">
+                <i class="bi bi-book-half"></i>
+                <span>Darslar</span>
+            </a>
+            <a href="../profile" class="bn-item">
+                <i class="bi bi-person-fill"></i>
+                <span>Profil</span>
+            </a>
         </nav>
 
     </section>
 
     <div id="common-modals"></div>
+
+
 
     <script src="../cases/tests.js"></script>
     <script src="../assets/js/test.js"></script>
@@ -404,7 +409,7 @@
             cases2: getRandomTest(TEST_QUESTIONS.cases2),
             case_bio: getRandomTest(TEST_QUESTIONS.case_bio),
             embryo: getRandomTest(TEST_QUESTIONS.embryo),
-            anatomy1: getRandomTest(TEST_QUESTIONS.anatomy1)
+            anatomy1: getRandomTest(TEST_QUESTIONS.anatomy1,)
         };
 
         renderTests('anatomy');

@@ -1721,9 +1721,12 @@ async function initAutoTest() {
 
     const params = new URLSearchParams(window.location.search);
     const testName = params.get("test");
+    const prepTest = params.get("prepTest");
 
     if (testName && tests[testName]) {
       startTest(testName);
+    } else if (prepTest && tests[prepTest]) {
+      startTest(prepTest);
     }
   });
 }
