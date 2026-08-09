@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="/assets/styles/styles.css">
 
     <style>
-        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -21,202 +24,689 @@
             padding-bottom: 90px;
         }
 
-        /* ── NAVBAR ─────────────────────────────── */
-        .navbar {
-            background: rgba(255,255,255,.94);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid #e9eef5;
-            box-shadow: 0 4px 14px rgba(15,23,42,.04);
-        }
-        .navbar-brand { font-weight: 700; font-size: 17px; color: var(--tg-text) !important; }
-        .navbar-brand img { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
-
         /* ── PAGE HEADER ───────────────────────── */
-        .page-header { padding: 28px 0 18px; }
-        .page-header h1 { font-size: 26px; font-weight: 800; color: var(--tg-text); letter-spacing: -.5px; }
-        .page-header p  { color: var(--tg-muted); font-size: 14px; margin-bottom: 0; }
+        .page-header {
+            padding: 28px 0 18px;
+        }
+
+        .page-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--tg-text);
+            letter-spacing: -.5px;
+        }
+
+        .page-header p {
+            color: var(--tg-muted);
+            font-size: 14px;
+            margin-bottom: 0;
+        }
 
         /* ── ADD SESSION BTN ───────────────────── */
         .btn-add-session {
-            background: linear-gradient(135deg,#2563eb,#1d4ed8);
-            color: #fff; border: none; border-radius: 16px;
-            padding: 12px 22px; font-size: 14px; font-weight: 700;
-            display: flex; align-items: center; gap: 8px;
-            box-shadow: 0 6px 20px rgba(37,99,235,.35);
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+            border: none;
+            border-radius: 16px;
+            padding: 12px 22px;
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, .35);
             transition: .25s ease;
         }
-        .btn-add-session:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,99,235,.45); color: #fff; }
+
+        .btn-add-session:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(37, 99, 235, .45);
+            color: #fff;
+        }
 
         /* ── EMPTY STATE ───────────────────────── */
-        .empty-state { text-align: center; padding: 64px 24px; }
-        .empty-icon {
-            width: 80px; height: 80px; border-radius: 24px;
-            background: linear-gradient(135deg,#eff6ff,#dbeafe);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 36px; color: #2563eb; margin: 0 auto 20px;
+        .empty-state {
+            text-align: center;
+            padding: 64px 24px;
         }
-        .empty-state h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-        .empty-state p  { color: var(--tg-muted); font-size: 14px; margin-bottom: 24px; }
+
+        .empty-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #2563eb;
+            margin: 0 auto 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            color: var(--tg-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
 
         /* ── SESSION CARD ──────────────────────── */
         .session-card {
-            background: #fff; border-radius: 22px;
-            box-shadow: 0 6px 24px rgba(15,23,42,.07);
-            overflow: hidden; cursor: pointer;
+            background: #fff;
+            border-radius: 22px;
+            box-shadow: 0 6px 24px rgba(15, 23, 42, .07);
+            overflow: hidden;
+            cursor: pointer;
             transition: transform .28s ease, box-shadow .28s ease;
             position: relative;
         }
-        .session-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(15,23,42,.12); }
 
-        .sc-header { padding: 18px 18px 14px; display: flex; align-items: flex-start; gap: 14px; }
-        .sc-type-icon {
-            width: 48px; height: 48px; border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; color: #fff; flex-shrink: 0;
+        .session-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
         }
-        .sc-info { flex: 1; min-width: 0; }
-        .sc-exam-name { font-size: 16px; font-weight: 800; color: var(--tg-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .sc-date { font-size: 12px; color: var(--tg-muted); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
+
+        .sc-header {
+            padding: 18px 18px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .sc-type-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .sc-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .sc-exam-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--tg-text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .sc-date {
+            font-size: 12px;
+            color: var(--tg-muted);
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
 
         .sc-percent-badge {
-            flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; flex-direction: column;
-            font-size: 14px; font-weight: 800; border: 3px solid #e2e8f0;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 14px;
+            font-weight: 800;
+            border: 3px solid #e2e8f0;
         }
-        .sc-percent-badge.good { border-color: #22c55e; color: #16a34a; }
-        .sc-percent-badge.mid  { border-color: #f59e0b; color: #d97706; }
-        .sc-percent-badge.low  { border-color: #ef4444; color: #dc2626; }
-        .sc-percent-badge.zero { border-color: #cbd5e1; color: #94a3b8; }
 
-        .sc-progress-wrap { padding: 0 18px 8px; }
-        .sc-progress-track { height: 6px; background: #f1f5f9; border-radius: 999px; overflow: hidden; }
-        .sc-progress-fill  { height: 100%; border-radius: 999px; transition: width .6s ease; }
+        .sc-percent-badge.good {
+            border-color: #22c55e;
+            color: #16a34a;
+        }
 
-        .sc-footer { padding: 10px 18px 48px; display: flex; gap: 16px; flex-wrap: wrap; }
-        .sc-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--tg-muted); }
-        .sc-stat i { font-size: 13px; }
+        .sc-percent-badge.mid {
+            border-color: #f59e0b;
+            color: #d97706;
+        }
+
+        .sc-percent-badge.low {
+            border-color: #ef4444;
+            color: #dc2626;
+        }
+
+        .sc-percent-badge.zero {
+            border-color: #cbd5e1;
+            color: #94a3b8;
+        }
+
+        .sc-progress-wrap {
+            padding: 0 18px 8px;
+        }
+
+        .sc-progress-track {
+            height: 6px;
+            background: #f1f5f9;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .sc-progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width .6s ease;
+        }
+
+        .sc-footer {
+            padding: 10px 18px 48px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .sc-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tg-muted);
+        }
+
+        .sc-stat i {
+            font-size: 13px;
+        }
 
         .sc-countdown {
-            position: absolute; top: 12px; right: 12px;
-            background: #f1f5f9; border-radius: 999px; padding: 4px 10px;
-            font-size: 11px; font-weight: 700; color: var(--tg-text);
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #f1f5f9;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--tg-text);
         }
-        .sc-countdown.urgent { background: #fef2f2; color: #dc2626; }
-        .sc-countdown.soon   { background: #fffbeb; color: #d97706; }
-        .sc-countdown.ok     { background: #f0fdf4; color: #16a34a; }
-        .sc-countdown.past   { background: #f8fafc; color: #94a3b8; }
 
-        .session-card.accent-danger  { border-top: 3px solid #dc2626; }
-        .session-card.accent-warning { border-top: 3px solid #d97706; }
-        .session-card.accent-success { border-top: 3px solid #16a34a; }
-        .session-card.accent-primary { border-top: 3px solid #2563eb; }
+        .sc-countdown.urgent {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .sc-countdown.soon {
+            background: #fffbeb;
+            color: #d97706;
+        }
+
+        .sc-countdown.ok {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .sc-countdown.past {
+            background: #f8fafc;
+            color: #94a3b8;
+        }
+
+        .session-card.accent-danger {
+            border-top: 3px solid #dc2626;
+        }
+
+        .session-card.accent-warning {
+            border-top: 3px solid #d97706;
+        }
+
+        .session-card.accent-success {
+            border-top: 3px solid #16a34a;
+        }
+
+        .session-card.accent-primary {
+            border-top: 3px solid #2563eb;
+        }
 
         /* ── WIZARD MODAL ──────────────────────── */
-        .wizard-modal .modal-content { border: none; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 60px rgba(15,23,42,.18); }
-        .wizard-header  { padding: 24px 24px 0; border-bottom: none; }
-        .wizard-title   { font-size: 20px; font-weight: 800; color: var(--tg-text); }
-        .wizard-step-dots { display: flex; gap: 6px; margin-top: 14px; margin-bottom: 2px; }
-        .wsd { height: 4px; border-radius: 999px; background: #e2e8f0; flex: 1; transition: background .3s; }
-        .wsd.active { background: #2563eb; }
-        .wsd.done   { background: #22c55e; }
+        .wizard-modal .modal-content {
+            border: none;
+            border-radius: 26px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, .18);
+        }
+
+        .wizard-header {
+            padding: 24px 24px 0;
+            border-bottom: none;
+        }
+
+        .wizard-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--tg-text);
+        }
+
+        .wizard-step-dots {
+            display: flex;
+            gap: 6px;
+            margin-top: 14px;
+            margin-bottom: 2px;
+        }
+
+        .wsd {
+            height: 4px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            flex: 1;
+            transition: background .3s;
+        }
+
+        .wsd.active {
+            background: #2563eb;
+        }
+
+        .wsd.done {
+            background: #22c55e;
+        }
 
         .wizard-body {
             padding: 20px 24px 24px;
-            max-height: 58vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+            max-height: 58vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
-        .wizard-body::-webkit-scrollbar { width: 5px; }
-        .wizard-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+
+        .wizard-body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .wizard-body::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
 
         .wizard-footer {
-            padding: 14px 20px 18px; border-top: 1px solid #eef2f7;
-            display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #fff;
+            padding: 14px 20px 18px;
+            border-top: 1px solid #eef2f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: #fff;
         }
-        .btn-wiz-back, .btn-wiz-next {
-            border: none; border-radius: 14px; padding: 11px 20px;
-            font-size: 14px; font-weight: 700; transition: .2s ease; cursor: pointer;
+
+        .btn-wiz-back,
+        .btn-wiz-next {
+            border: none;
+            border-radius: 14px;
+            padding: 11px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: .2s ease;
+            cursor: pointer;
         }
-        .btn-wiz-back { background: #f1f5f9; color: #334155; }
-        .btn-wiz-back:hover { background: #e2e8f0; }
-        .btn-wiz-next { margin-left: auto; background: linear-gradient(135deg,#2563eb,#1d4ed8); color: #fff; box-shadow: 0 8px 18px rgba(37,99,235,.25); }
-        .btn-wiz-next:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(37,99,235,.32); }
-        .btn-wiz-next:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .btn-wiz-back {
+            background: #f1f5f9;
+            color: #334155;
+        }
+
+        .btn-wiz-back:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-wiz-next {
+            margin-left: auto;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+            box-shadow: 0 8px 18px rgba(37, 99, 235, .25);
+        }
+
+        .btn-wiz-next:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, .32);
+        }
+
+        .btn-wiz-next:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
 
         /* Step 1 – exam type cards */
         .exam-type-card {
-            border: 2px solid #e2e8f0; border-radius: 18px; padding: 18px 16px;
-            cursor: pointer; display: flex; align-items: center; gap: 14px; background: #fff;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 18px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
             transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
         }
-        .exam-type-card:hover    { border-color: #2563eb; background: #eff6ff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,.12); }
-        .exam-type-card.selected { border-color: #2563eb; background: #eff6ff; box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
-        .etc-icon  { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; flex-shrink: 0; }
-        .etc-label { font-size: 16px; font-weight: 700; color: var(--tg-text); }
-        .etc-desc  { font-size: 12px; color: var(--tg-muted); margin-top: 2px; }
+
+        .exam-type-card:hover {
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, .12);
+        }
+
+        .exam-type-card.selected {
+            border-color: #2563eb;
+            background: #eff6ff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+        }
+
+        .etc-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .etc-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--tg-text);
+        }
+
+        .etc-desc {
+            font-size: 12px;
+            color: var(--tg-muted);
+            margin-top: 2px;
+        }
 
         /* Step 2 – subject rows */
-        .subject-row { border: 1.5px solid #e2e8f0; border-radius: 16px; overflow: hidden; margin-bottom: 10px; transition: border-color .2s; }
-        .subject-row.has-selected { border-color: #2563eb; }
-        .subject-row-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; background: #fff; user-select: none; }
-        .subject-row-header:hover { background: #f8fafc; }
-        .sr-icon    { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 17px; color: #fff; flex-shrink: 0; }
-        .sr-label   { flex: 1; font-size: 14px; font-weight: 700; color: var(--tg-text); }
-        .sr-count   { font-size: 12px; font-weight: 600; color: var(--tg-muted); background: #f1f5f9; border-radius: 999px; padding: 3px 10px; }
-        .sr-chevron { font-size: 16px; color: var(--tg-muted); transition: transform .25s; }
-        .subject-row.open .sr-chevron { transform: rotate(180deg); }
+        .subject-row {
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            transition: border-color .2s;
+        }
 
-        .subject-row-body { max-height: 0; overflow: hidden; transition: max-height .28s ease; background: #f8fafc; padding: 0 16px; }
-        .subject-row.open .subject-row-body { max-height: none; padding: 10px 16px 14px; overflow-y: visible; }
-        .subject-row-body::-webkit-scrollbar { width: 4px; }
-        .subject-row-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+        .subject-row.has-selected {
+            border-color: #2563eb;
+        }
+
+        .subject-row-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            background: #fff;
+            user-select: none;
+        }
+
+        .subject-row-header:hover {
+            background: #f8fafc;
+        }
+
+        .sr-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .sr-label {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tg-text);
+        }
+
+        .sr-count {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tg-muted);
+            background: #f1f5f9;
+            border-radius: 999px;
+            padding: 3px 10px;
+        }
+
+        .sr-chevron {
+            font-size: 16px;
+            color: var(--tg-muted);
+            transition: transform .25s;
+        }
+
+        .subject-row.open .sr-chevron {
+            transform: rotate(180deg);
+        }
+
+        .subject-row-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .28s ease;
+            background: #f8fafc;
+            padding: 0 16px;
+        }
+
+        .subject-row.open .subject-row-body {
+            max-height: none;
+            padding: 10px 16px 14px;
+            overflow-y: visible;
+        }
+
+        .subject-row-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .subject-row-body::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 999px;
+        }
 
         .select-all-row {
-            background: #fff; border: 1px solid #e2e8f0; border-radius: 11px;
-            padding: 8px 10px; display: flex; align-items: center; gap: 8px;
-            font-size: 12px; font-weight: 600; color: var(--tg-text); margin-bottom: 8px; cursor: pointer;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 11px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tg-text);
+            margin-bottom: 8px;
+            cursor: pointer;
         }
+
         .test-check-item {
-            background: #fff; border: 1px solid #e2e8f0; border-radius: 11px;
-            padding: 8px 10px; display: flex; align-items: center; gap: 8px;
-            margin-bottom: 7px; cursor: pointer;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 11px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 7px;
+            cursor: pointer;
         }
-        .test-check-item:hover { border-color: #bfdbfe; background: #f8fbff; }
-        .tci-title { flex: 1; font-size: 12px; font-weight: 600; color: var(--tg-text); margin: 0; }
-        .tci-count { font-size: 11px; color: var(--tg-muted); background: #f1f5f9; border-radius: 999px; padding: 3px 8px; font-weight: 600; }
+
+        .test-check-item:hover {
+            border-color: #bfdbfe;
+            background: #f8fbff;
+        }
+
+        .tci-title {
+            flex: 1;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--tg-text);
+            margin: 0;
+        }
+
+        .tci-count {
+            font-size: 11px;
+            color: var(--tg-muted);
+            background: #f1f5f9;
+            border-radius: 999px;
+            padding: 3px 8px;
+            font-weight: 600;
+        }
 
         /* Step 3 – date */
-        .date-input-wrap { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 12px; }
-        .date-label { font-size: 12px; color: var(--tg-muted); font-weight: 600; margin-bottom: 6px; }
-        #examDateInput { width: 100%; border: 1px solid #cbd5e1; border-radius: 10px; padding: 8px 10px; font-size: 14px; outline: none; font-family: inherit; }
-        #examDateInput:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
+        .date-input-wrap {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 12px;
+        }
+
+        .date-label {
+            font-size: 12px;
+            color: var(--tg-muted);
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        #examDateInput {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 8px 10px;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        #examDateInput:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+        }
 
         /* Share modal */
-        .share-import-card { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 8px 28px rgba(15,23,42,.09); }
+        .share-import-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 28px rgba(15, 23, 42, .09);
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
-                Pulse Go
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <div class="sidebar-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+            </div>
+            <div>
+                <div class="sidebar-brand">Pulse Go</div>
+                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+            </div>
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user" id="sidebarUser">
+            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+            <div>
+                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+                <div class="sidebar-user-sub">Pulse Go Member</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Asosiy</div>
+            <a href="/" class="sidebar-link active" onclick="closeSidebar()">
+                <i class="bi bi-house-fill"></i> Asosiy
             </a>
-            <a href="/" class="btn btn-light btn-sm rounded-pill">
-                <i class="bi bi-house"></i> Home
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-journals"></i> Tayyorlanish
+            </a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
+            </a>
+
+            <div class="sidebar-section-label">O'quv materiallari</div>
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-book-half"></i> Online Darslar
+            </a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-collection-fill"></i> Kitoblar
+            </a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-body-text"></i> Anatomiya
+            </a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
+            </a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-flask-fill"></i> Kimyo
+            </a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-egg-fill"></i> Embriologiya
+            </a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
+            </a>
+
+            <div class="sidebar-section-label">Profil</div>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-person-fill"></i> Mening profilim
+            </a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
+            </a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
+                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
             </a>
         </div>
-    </nav>
+    </aside>
 
+    <nav class="top-navbar">
+        <div class="container">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+                Pulse Go
+            </a>
+            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+        </div>
+    </nav>
     <!-- PAGE HEADER -->
     <section class="page-header">
         <div class="container">
             <div class="d-flex align-items-center justify-content-between gap-3 flex-wrap">
-                <div>
+                <!-- <div>
                     <h1>Tayyorlanish</h1>
                     <p>Imtihon sessiyalari va progress</p>
-                </div>
+                </div> -->
                 <button class="btn-add-session" onclick="openWizard()">
                     <i class="bi bi-plus-lg"></i>
                     Sessiya qo'shish
@@ -296,6 +786,19 @@
         //  DATA HELPERS
         // ══════════════════════════════════════════════════════
 
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
         function safeLocalStorage(op, key, val) {
             try {
                 if (op === 'get') return localStorage.getItem(key);
@@ -332,34 +835,34 @@
 
         function daysUntil(dateStr) {
             if (!dateStr) return null;
-            var today = new Date(); today.setHours(0,0,0,0);
-            var exam  = new Date(dateStr); exam.setHours(0,0,0,0);
+            var today = new Date(); today.setHours(0, 0, 0, 0);
+            var exam = new Date(dateStr); exam.setHours(0, 0, 0, 0);
             return Math.round((exam - today) / 86400000);
         }
         function countdownClass(days) {
             if (days === null) return 'zero';
-            if (days < 0)  return 'past';
+            if (days < 0) return 'past';
             if (days <= 3) return 'urgent';
             if (days <= 7) return 'soon';
             return 'ok';
         }
         function countdownLabel(days) {
             if (days === null) return '';
-            if (days < 0)  return 'Tugagan';
+            if (days < 0) return 'Tugagan';
             if (days === 0) return 'Bugun!';
             if (days === 1) return '1 kun qoldi';
             return days + ' kun qoldi';
         }
         function percentClass(pct) {
-            if (pct === 0)   return 'zero';
-            if (pct >= 80)   return 'good';
-            if (pct >= 56)   return 'mid';
+            if (pct === 0) return 'zero';
+            if (pct >= 80) return 'good';
+            if (pct >= 56) return 'mid';
             return 'low';
         }
         function progressColor(pct) {
             if (pct >= 80) return '#22c55e';
             if (pct >= 56) return '#f59e0b';
-            if (pct > 0)   return '#ef4444';
+            if (pct > 0) return '#ef4444';
             return '#cbd5e1';
         }
         function accentClass(examTypeId) {
@@ -369,12 +872,12 @@
         function totalQuestionsInSession(session) {
             if (!session.tests || !session.subjects) return 0;
             var total = 0;
-            session.subjects.forEach(function(subId) {
+            session.subjects.forEach(function (subId) {
                 var sub = getSubject(subId);
                 if (!sub || !Array.isArray(sub.tests)) return;
                 var selectedTests = session.tests[subId] || [];
-                selectedTests.forEach(function(key) {
-                    var tc = sub.tests.find(function(t) { return t.key === key; });
+                selectedTests.forEach(function (key) {
+                    var tc = sub.tests.find(function (t) { return t.key === key; });
                     if (tc) total += (tc.count === 'all' ? 20 : tc.count);
                 });
             });
@@ -385,7 +888,7 @@
             var container = document.getElementById('sessions-container');
             var sessions = getStoredSessions();
 
-            sessions.sort(function(a, b) {
+            sessions.sort(function (a, b) {
                 var FAR = new Date('2999-01-01').getTime();
                 var da = a.examDate ? new Date(a.examDate).getTime() : FAR;
                 var db = b.examDate ? new Date(b.examDate).getTime() : FAR;
@@ -402,7 +905,7 @@
                 return;
             }
 
-            var html = sessions.map(function(s) {
+            var html = sessions.map(function (s) {
                 var et = getExamType(s.examType);
                 var stats = s.stats || { accuracy: 0, solvedQuestions: 0, correctAnswers: 0 };
                 var pct = stats.accuracy || 0;
@@ -410,7 +913,7 @@
                 var cdClass = countdownClass(days);
                 var cdLabel = countdownLabel(days);
                 var subjCount = (s.subjects || []).length;
-                var testCount = Object.values(s.tests || {}).reduce(function(a, v) { return a + v.length; }, 0);
+                var testCount = Object.values(s.tests || {}).reduce(function (a, v) { return a + v.length; }, 0);
                 var dateFormatted = s.examDate
                     ? new Date(s.examDate).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' })
                     : 'Sana belgilanmagan';
@@ -465,7 +968,7 @@
         }
 
         function updateWizDots() {
-            [1, 2, 3].forEach(function(n) {
+            [1, 2, 3].forEach(function (n) {
                 var el = document.getElementById('dot' + n);
                 el.className = 'wsd ' + (n < wizStep ? 'done' : n === wizStep ? 'active' : '');
             });
@@ -492,7 +995,7 @@
             if (wizStep === 1) {
                 document.getElementById('wizardTitle').textContent = 'Imtihon turini tanlang';
                 body.innerHTML = '<div class="d-flex flex-column gap-3">'
-                    + PREP_CONFIG.examTypes.map(function(et) {
+                    + PREP_CONFIG.examTypes.map(function (et) {
                         return '<div class="exam-type-card ' + (wizData.examType === et.id ? 'selected' : '') + '" onclick="selectExamType(\'' + et.id + '\')">'
                             + '<div class="etc-icon" style="background:' + et.gradient + '"><i class="bi ' + et.icon + '"></i></div>'
                             + '<div><div class="etc-label">' + et.label + '</div><div class="etc-desc">' + et.desc + '</div></div>'
@@ -504,10 +1007,10 @@
             } else if (wizStep === 2) {
                 if (wizData.examType === 'oraliq') {
                     document.getElementById('wizardTitle').textContent = 'Fanni tanlang';
-                    var availSubs = PREP_CONFIG.subjects.filter(function(s) { return ORALIQ_DATA[s.id]; });
+                    var availSubs = PREP_CONFIG.subjects.filter(function (s) { return ORALIQ_DATA[s.id]; });
                     body.innerHTML = '<p style="font-size:13px;color:var(--tg-muted);margin-bottom:16px"><i class="bi bi-info-circle me-1"></i>Oraliq nazorat uchun bitta fan tanlang.</p>'
                         + '<div class="d-flex flex-column gap-3">'
-                        + availSubs.map(function(sub) {
+                        + availSubs.map(function (sub) {
                             var oData = ORALIQ_DATA[sub.id];
                             var qCount = oData ? oData.questions.length : 0;
                             var isSelected = wizData.oraliqSubject === sub.id;
@@ -524,11 +1027,11 @@
 
                 document.getElementById('wizardTitle').textContent = 'Fanlar va testlarni tanlang';
                 var availableSubjects = getSubjectsForExamType(wizData.examType);
-                body.innerHTML = availableSubjects.map(function(sub) {
+                body.innerHTML = availableSubjects.map(function (sub) {
                     var tests = Array.isArray(sub.tests) ? sub.tests : [];
                     var selectedTests = wizData.subjects[sub.id] || [];
-                    var allKeys = tests.map(function(t) { return t.key; });
-                    var allSelected = allKeys.every(function(k) { return selectedTests.includes(k); });
+                    var allKeys = tests.map(function (t) { return t.key; });
+                    var allSelected = allKeys.every(function (k) { return selectedTests.includes(k); });
                     var hasSelected = selectedTests.length > 0;
 
                     return '<div class="subject-row ' + (hasSelected ? 'has-selected' : '') + '" id="sr-' + sub.id + '">'
@@ -543,7 +1046,7 @@
                         + '<input type="checkbox" id="chk-all-' + sub.id + '" ' + (allSelected ? 'checked' : '') + ' onclick="event.stopPropagation()">'
                         + '<label for="chk-all-' + sub.id + '" style="cursor:pointer">Barchasini tanlash</label>'
                         + '</div>'
-                        + tests.map(function(t) {
+                        + tests.map(function (t) {
                             return '<div class="test-check-item" onclick="toggleTest(\'' + sub.id + '\',\'' + t.key + '\')">'
                                 + '<input type="checkbox" id="chk-' + sub.id + '-' + t.key + '" ' + (selectedTests.includes(t.key) ? 'checked' : '') + ' onclick="event.stopPropagation()">'
                                 + '<label for="chk-' + sub.id + '-' + t.key + '" class="tci-title" style="cursor:pointer">' + t.title + '</label>'
@@ -571,7 +1074,7 @@
                             + '</div>';
                     }
                 } else {
-                    summaryHtml = Object.entries(wizData.subjects).map(function(entry) {
+                    summaryHtml = Object.entries(wizData.subjects).map(function (entry) {
                         var subId = entry[0]; var keys = entry[1];
                         var s2 = getSubject(subId);
                         return s2 ? '<div class="d-flex align-items-center gap-2 mb-2">'
@@ -603,7 +1106,7 @@
                 if (wizData.examType === 'oraliq') {
                     btn.disabled = !wizData.oraliqSubject;
                 } else {
-                    btn.disabled = !Object.values(wizData.subjects).some(function(v) { return v.length > 0; });
+                    btn.disabled = !Object.values(wizData.subjects).some(function (v) { return v.length > 0; });
                 }
             } else {
                 btn.disabled = false;
@@ -619,11 +1122,11 @@
 
         function selectOraliqSubject(subId) {
             wizData.oraliqSubject = subId;
-            document.querySelectorAll('[id^="oraliq-check-"]').forEach(function(el) { el.style.display = 'none'; });
-            document.querySelectorAll('.exam-type-card').forEach(function(el) { el.classList.remove('selected'); });
+            document.querySelectorAll('[id^="oraliq-check-"]').forEach(function (el) { el.style.display = 'none'; });
+            document.querySelectorAll('.exam-type-card').forEach(function (el) { el.classList.remove('selected'); });
             var checkEl = document.getElementById('oraliq-check-' + subId);
             if (checkEl) { checkEl.style.display = 'block'; checkEl.closest('.exam-type-card').classList.add('selected'); }
-            setTimeout(function() { wizNext(); }, 250);
+            setTimeout(function () { wizNext(); }, 250);
         }
 
         function toggleSubjectRow(subId) {
@@ -643,9 +1146,9 @@
         function toggleAllTests(subId) {
             var sub = getSubject(subId);
             if (!sub || !Array.isArray(sub.tests)) return;
-            var allKeys = sub.tests.map(function(t) { return t.key; });
+            var allKeys = sub.tests.map(function (t) { return t.key; });
             var selected = wizData.subjects[subId] || [];
-            var allSelected = allKeys.every(function(k) { return selected.includes(k); });
+            var allSelected = allKeys.every(function (k) { return selected.includes(k); });
             if (allSelected) { delete wizData.subjects[subId]; } else { wizData.subjects[subId] = allKeys.slice(); }
             updateSubjectRowUI(subId);
             validateWiz();
@@ -655,17 +1158,17 @@
             var sub = getSubject(subId);
             if (!sub || !Array.isArray(sub.tests)) return;
             var selected = wizData.subjects[subId] || [];
-            var allKeys = sub.tests.map(function(t) { return t.key; });
+            var allKeys = sub.tests.map(function (t) { return t.key; });
             var countEl = document.getElementById('src-' + subId);
             if (countEl) countEl.textContent = selected.length + ' / ' + sub.tests.length;
             var row = document.getElementById('sr-' + subId);
             if (row) row.classList.toggle('has-selected', selected.length > 0);
-            sub.tests.forEach(function(t) {
+            sub.tests.forEach(function (t) {
                 var chk = document.getElementById('chk-' + subId + '-' + t.key);
                 if (chk) chk.checked = selected.includes(t.key);
             });
             var allChk = document.getElementById('chk-all-' + subId);
-            if (allChk) allChk.checked = allKeys.every(function(k) { return selected.includes(k); });
+            if (allChk) allChk.checked = allKeys.every(function (k) { return selected.includes(k); });
         }
 
         function wizNext() {
@@ -674,7 +1177,7 @@
                 if (wizData.examType === 'oraliq') {
                     if (!wizData.oraliqSubject) { alert('Fan tanlang!'); return; }
                 } else {
-                    if (!Object.values(wizData.subjects).some(function(v) { return v.length > 0; })) { alert('Kamida 1 ta test tanlang!'); return; }
+                    if (!Object.values(wizData.subjects).some(function (v) { return v.length > 0; })) { alert('Kamida 1 ta test tanlang!'); return; }
                 }
             }
             if (wizStep === 3) {
@@ -713,7 +1216,7 @@
             createSession(session);
             bootstrap.Modal.getOrCreateInstance(document.getElementById('wizardModal')).hide();
             renderSessions();
-            setTimeout(function() { location.href = '/preparation/session.html?id=' + id; }, 300);
+            setTimeout(function () { location.href = '/preparation/session.html?id=' + id; }, 300);
         }
 
         // ══════════════════════════════════════════════════════
@@ -746,8 +1249,8 @@
         function copyShareLink(url) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(url)
-                    .then(function() { showToast('Havola nusxalandi!'); })
-                    .catch(function() { if (fallbackCopy(url)) showToast('Havola nusxalandi!'); });
+                    .then(function () { showToast('Havola nusxalandi!'); })
+                    .catch(function () { if (fallbackCopy(url)) showToast('Havola nusxalandi!'); });
             } else {
                 if (fallbackCopy(url)) showToast('Havola nusxalandi!');
             }
@@ -761,7 +1264,7 @@
 
         function shareSession(sessionId) {
             var sessions = getStoredSessions();
-            var s = sessions.find(function(x) { return x.id === sessionId; });
+            var s = sessions.find(function (x) { return x.id === sessionId; });
             if (!s) return;
             try {
                 var raw = safeLocalStorage('get', 'pulsego_data_v1');
@@ -777,7 +1280,7 @@
                 var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
                 if (isMobile && typeof navigator.share === 'function') {
                     navigator.share({ title: 'PulseGo sessiya', url: url })
-                        .catch(function() { openShareLinkModal(url); copyShareLink(url); });
+                        .catch(function () { openShareLinkModal(url); copyShareLink(url); });
                 } else {
                     openShareLinkModal(url);
                     copyShareLink(url);
@@ -798,7 +1301,7 @@
             t.textContent = msg;
             t.style.opacity = '1';
             clearTimeout(t._timer);
-            t._timer = setTimeout(function() { t.style.opacity = '0'; }, 2500);
+            t._timer = setTimeout(function () { t.style.opacity = '0'; }, 2500);
         }
 
         function getShareTokenFromUrl() {
@@ -863,7 +1366,7 @@
                 var sub = getSubject(payload.oraliqSubject);
                 subjectsList = sub ? '<li>' + sub.label + ' \u2013 og\'zaki</li>' : '';
             } else {
-                (payload.subjects || []).forEach(function(sid) {
+                (payload.subjects || []).forEach(function (sid) {
                     var sub2 = getSubject(sid);
                     var tc = (payload.tests && payload.tests[sid]) ? payload.tests[sid].length : 0;
                     subjectsList += '<li>' + (sub2 ? sub2.label : sid) + ' \u2013 ' + tc + ' ta test</li>';
@@ -930,18 +1433,22 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="border:none;border-radius:22px;overflow:hidden">
                 <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-link-45deg me-2 text-primary"></i>Ulashish havolasi</h5>
+                    <h5 class="modal-title fw-bold"><i class="bi bi-link-45deg me-2 text-primary"></i>Ulashish havolasi
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body pt-2">
-                    <label for="shareLinkInput" class="form-label" style="font-size:12px;color:var(--tg-muted)">Havola</label>
+                    <label for="shareLinkInput" class="form-label"
+                        style="font-size:12px;color:var(--tg-muted)">Havola</label>
                     <div class="input-group mb-2">
                         <input id="shareLinkInput" type="text" class="form-control" readonly>
-                        <button class="btn btn-primary" type="button" onclick="copyShareLink(document.getElementById('shareLinkInput').value)">
+                        <button class="btn btn-primary" type="button"
+                            onclick="copyShareLink(document.getElementById('shareLinkInput').value)">
                             <i class="bi bi-clipboard"></i>
                         </button>
                     </div>
-                    <div style="font-size:12px;color:var(--tg-muted)">Qabul qiluvchi ushbu havolani ochsa sessiya ma'lumotlari chiqadi va Qo'shish tugmasi bilan qo'sha oladi.</div>
+                    <div style="font-size:12px;color:var(--tg-muted)">Qabul qiluvchi ushbu havolani ochsa sessiya
+                        ma'lumotlari chiqadi va Qo'shish tugmasi bilan qo'sha oladi.</div>
                 </div>
             </div>
         </div>
@@ -961,4 +1468,5 @@
     </div>
 
 </body>
+
 </html>

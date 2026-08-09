@@ -375,19 +375,97 @@
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="/">
-                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle">
-                Pulse Go
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <div class="sidebar-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+            </div>
+            <div>
+                <div class="sidebar-brand">Pulse Go</div>
+                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+            </div>
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user" id="sidebarUser">
+            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+            <div>
+                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+                <div class="sidebar-user-sub">Pulse Go Member</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Asosiy</div>
+            <a href="/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-house-fill"></i> Asosiy
             </a>
-            <a href="/" class="btn btn-light btn-sm">
-                <i class="bi bi-house"></i> Home
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-journals"></i> Tayyorlanish
+            </a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
+            </a>
+
+            <div class="sidebar-section-label">O'quv materiallari</div>
+            <a href="/lessons" class="sidebar-link active" onclick="closeSidebar()">
+                <i class="bi bi-book-half"></i> Online Darslar
+            </a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-collection-fill"></i> Kitoblar
+            </a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-body-text"></i> Anatomiya
+            </a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
+            </a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-flask-fill"></i> Kimyo
+            </a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-egg-fill"></i> Embriologiya
+            </a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
+            </a>
+
+            <div class="sidebar-section-label">Profil</div>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-person-fill"></i> Mening profilim
+            </a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
+            </a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
+                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
             </a>
         </div>
-    </nav>
+    </aside>
 
+    <nav class="top-navbar">
+        <div class="container">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+                Pulse Go
+            </a>
+            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+        </div>
+    </nav>
     <!-- PAGE HEADER -->
     <section class="page-header">
         <div class="container">
@@ -435,6 +513,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
         const COLOR_MAP = {
             danger: '#dc2626',
             success: '#16a34a',

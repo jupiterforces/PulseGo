@@ -27,235 +27,6 @@
             overflow-x: hidden;
         }
 
-        .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, .45);
-            backdrop-filter: blur(4px);
-            z-index: 1040;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .3s ease;
-        }
-
-        .sidebar-overlay.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 288px;
-            background: #fff;
-            z-index: 1050;
-            transform: translateX(-100%);
-            transition: transform .3s cubic-bezier(.4, 0, .2, 1);
-            box-shadow: 8px 0 40px rgba(15, 23, 42, .12);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar.open {
-            transform: translateX(0);
-        }
-
-        .sidebar-head {
-            padding: 24px 20px 16px;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar-logo {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .sidebar-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .sidebar-brand {
-            font-size: 17px;
-            font-weight: 800;
-            color: var(--tg-text);
-        }
-
-        .sidebar-tagline {
-            font-size: 11px;
-            color: var(--tg-muted);
-        }
-
-        .sidebar-user {
-            margin: 12px 16px;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border-radius: 16px;
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 800;
-            flex-shrink: 0;
-        }
-
-        .sidebar-user-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--tg-text);
-        }
-
-        .sidebar-user-sub {
-            font-size: 11px;
-            color: #2563eb;
-            font-weight: 600;
-        }
-
-        .sidebar-nav {
-            flex: 1;
-            overflow-y: auto;
-            padding: 8px 12px;
-        }
-
-        .sidebar-section-label {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--tg-muted);
-            text-transform: uppercase;
-            letter-spacing: .6px;
-            padding: 12px 8px 6px;
-        }
-
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 11px 12px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: var(--tg-text);
-            font-size: 14px;
-            font-weight: 600;
-            transition: background .18s, color .18s;
-            margin-bottom: 2px;
-        }
-
-        .sidebar-link:hover,
-        .sidebar-link.active {
-            background: #eff6ff;
-            color: #2563eb;
-        }
-
-        .sidebar-link i {
-            font-size: 18px;
-            width: 22px;
-            text-align: center;
-            color: var(--tg-muted);
-            flex-shrink: 0;
-        }
-
-        .sidebar-link:hover i,
-        .sidebar-link.active i {
-            color: #2563eb;
-        }
-
-        .sidebar-footer {
-            padding: 12px 16px;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .top-navbar {
-            background: rgba(255, 255, 255, .94);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid #e9eef5;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, .04);
-            padding: 10px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1030;
-        }
-
-        .top-navbar .container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-hamburger {
-            background: #f1f5f9;
-            border: none;
-            border-radius: 12px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--tg-text);
-            cursor: pointer;
-            transition: background .2s;
-            flex-shrink: 0;
-        }
-
-        .btn-hamburger:hover {
-            background: #e2e8f0;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            font-size: 17px;
-            color: var(--tg-text);
-            text-decoration: none;
-            flex: 1;
-        }
-
-        .nav-logo img {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
-        }
-
-        .btn-nav-profile {
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            border: none;
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-            text-decoration: none;
-            flex-shrink: 0;
-        }
-
         .hero-section {
             padding: 20px 0 16px;
         }
@@ -710,7 +481,6 @@
 
     <section class="hero-section">
         <div class="container">
-            <div class="hero-greeting">Xush kelibsiz,</div>
             <div class="hero-name" id="heroUserName">Foydalanuvchi 👋</div>
 
             <div class="stats-grid">
@@ -752,7 +522,7 @@
                 <div class="pb-title"><i class="bi bi-stars me-1"></i>Platforma haqida</div>
                 <div class="pb-stats">
                     <div class="pb-stat">
-                        <div class="pb-stat-val">500+</div>
+                        <div class="pb-stat-val">300+</div>
                         <div class="pb-stat-label">Foydalanuvchi</div>
                     </div>
                     <div class="pb-stat">
@@ -763,10 +533,10 @@
                         <div class="pb-stat-val">6</div>
                         <div class="pb-stat-label">Fanlar</div>
                     </div>
-                    <div class="pb-stat">
+                    <!-- <div class="pb-stat">
                         <div class="pb-stat-val">85+</div>
                         <div class="pb-stat-label">Kitoblar</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
