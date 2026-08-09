@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uz">
 
 <head>
@@ -12,9 +12,7 @@
     <link rel="stylesheet" href="/assets/styles/styles.css">
 
     <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -25,585 +23,174 @@
 
         /* ── NAVBAR ─────────────────────────────── */
         .navbar {
-            background: rgba(255, 255, 255, .94);
+            background: rgba(255,255,255,.94);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid #e9eef5;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, .04);
+            box-shadow: 0 4px 14px rgba(15,23,42,.04);
         }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--tg-text) !important;
-        }
-
-        .navbar-brand img {
-            box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
-        }
+        .navbar-brand { font-weight: 700; font-size: 17px; color: var(--tg-text) !important; }
+        .navbar-brand img { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
 
         /* ── PAGE HEADER ───────────────────────── */
-        .page-header {
-            padding: 28px 0 18px;
-        }
-
-        .page-header h1 {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--tg-text);
-            letter-spacing: -.5px;
-        }
-
-        .page-header p {
-            color: var(--tg-muted);
-            font-size: 14px;
-            margin-bottom: 0;
-        }
+        .page-header { padding: 28px 0 18px; }
+        .page-header h1 { font-size: 26px; font-weight: 800; color: var(--tg-text); letter-spacing: -.5px; }
+        .page-header p  { color: var(--tg-muted); font-size: 14px; margin-bottom: 0; }
 
         /* ── ADD SESSION BTN ───────────────────── */
         .btn-add-session {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #fff;
-            border: none;
-            border-radius: 16px;
-            padding: 12px 22px;
-            font-size: 14px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 6px 20px rgba(37, 99, 235, .35);
+            background: linear-gradient(135deg,#2563eb,#1d4ed8);
+            color: #fff; border: none; border-radius: 16px;
+            padding: 12px 22px; font-size: 14px; font-weight: 700;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 6px 20px rgba(37,99,235,.35);
             transition: .25s ease;
         }
-
-        .btn-add-session:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(37, 99, 235, .45);
-            color: #fff;
-        }
+        .btn-add-session:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,99,235,.45); color: #fff; }
 
         /* ── EMPTY STATE ───────────────────────── */
-        .empty-state {
-            text-align: center;
-            padding: 64px 24px;
-        }
-
+        .empty-state { text-align: center; padding: 64px 24px; }
         .empty-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            color: #2563eb;
-            margin: 0 auto 20px;
+            width: 80px; height: 80px; border-radius: 24px;
+            background: linear-gradient(135deg,#eff6ff,#dbeafe);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px; color: #2563eb; margin: 0 auto 20px;
         }
-
-        .empty-state h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .empty-state p {
-            color: var(--tg-muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
+        .empty-state h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .empty-state p  { color: var(--tg-muted); font-size: 14px; margin-bottom: 24px; }
 
         /* ── SESSION CARD ──────────────────────── */
         .session-card {
-            background: #fff;
-            border-radius: 22px;
-            box-shadow: 0 6px 24px rgba(15, 23, 42, .07);
-            overflow: hidden;
-            cursor: pointer;
-            transition: all .28s ease;
+            background: #fff; border-radius: 22px;
+            box-shadow: 0 6px 24px rgba(15,23,42,.07);
+            overflow: hidden; cursor: pointer;
+            transition: transform .28s ease, box-shadow .28s ease;
             position: relative;
         }
+        .session-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(15,23,42,.12); }
 
-        .session-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
-        }
-
-        .sc-header {
-            padding: 18px 18px 14px;
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-        }
-
+        .sc-header { padding: 18px 18px 14px; display: flex; align-items: flex-start; gap: 14px; }
         .sc-type-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            color: #fff;
-            flex-shrink: 0;
+            width: 48px; height: 48px; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: #fff; flex-shrink: 0;
         }
-
-        .sc-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .sc-exam-name {
-            font-size: 16px;
-            font-weight: 800;
-            color: var(--tg-text);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .sc-date {
-            font-size: 12px;
-            color: var(--tg-muted);
-            margin-top: 3px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+        .sc-info { flex: 1; min-width: 0; }
+        .sc-exam-name { font-size: 16px; font-weight: 800; color: var(--tg-text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .sc-date { font-size: 12px; color: var(--tg-muted); margin-top: 3px; display: flex; align-items: center; gap: 4px; }
 
         .sc-percent-badge {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            font-size: 14px;
-            font-weight: 800;
-            border: 3px solid #e2e8f0;
+            flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; flex-direction: column;
+            font-size: 14px; font-weight: 800; border: 3px solid #e2e8f0;
         }
+        .sc-percent-badge.good { border-color: #22c55e; color: #16a34a; }
+        .sc-percent-badge.mid  { border-color: #f59e0b; color: #d97706; }
+        .sc-percent-badge.low  { border-color: #ef4444; color: #dc2626; }
+        .sc-percent-badge.zero { border-color: #cbd5e1; color: #94a3b8; }
 
-        .sc-percent-badge.good {
-            border-color: #22c55e;
-            color: #16a34a;
-        }
+        .sc-progress-wrap { padding: 0 18px 8px; }
+        .sc-progress-track { height: 6px; background: #f1f5f9; border-radius: 999px; overflow: hidden; }
+        .sc-progress-fill  { height: 100%; border-radius: 999px; transition: width .6s ease; }
 
-        .sc-percent-badge.mid {
-            border-color: #f59e0b;
-            color: #d97706;
-        }
-
-        .sc-percent-badge.low {
-            border-color: #ef4444;
-            color: #dc2626;
-        }
-
-        .sc-percent-badge.zero {
-            border-color: #cbd5e1;
-            color: #94a3b8;
-        }
-
-        .sc-progress-wrap {
-            padding: 0 18px 8px;
-        }
-
-        .sc-progress-track {
-            height: 6px;
-            background: #f1f5f9;
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .sc-progress-fill {
-            height: 100%;
-            border-radius: 999px;
-            transition: width .6s ease;
-        }
-
-        .sc-footer {
-            padding: 10px 18px 16px;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .sc-stat {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--tg-muted);
-        }
-
-        .sc-stat i {
-            font-size: 13px;
-        }
+        .sc-footer { padding: 10px 18px 48px; display: flex; gap: 16px; flex-wrap: wrap; }
+        .sc-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--tg-muted); }
+        .sc-stat i { font-size: 13px; }
 
         .sc-countdown {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: #f1f5f9;
-            border-radius: 999px;
-            padding: 4px 10px;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--tg-text);
+            position: absolute; top: 12px; right: 12px;
+            background: #f1f5f9; border-radius: 999px; padding: 4px 10px;
+            font-size: 11px; font-weight: 700; color: var(--tg-text);
         }
+        .sc-countdown.urgent { background: #fef2f2; color: #dc2626; }
+        .sc-countdown.soon   { background: #fffbeb; color: #d97706; }
+        .sc-countdown.ok     { background: #f0fdf4; color: #16a34a; }
+        .sc-countdown.past   { background: #f8fafc; color: #94a3b8; }
 
-        .sc-countdown.urgent {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-
-        .sc-countdown.soon {
-            background: #fffbeb;
-            color: #d97706;
-        }
-
-        .sc-countdown.ok {
-            background: #f0fdf4;
-            color: #16a34a;
-        }
-
-        .sc-countdown.past {
-            background: #f8fafc;
-            color: #94a3b8;
-        }
-
-        /* card color accent strips */
-        .session-card.accent-danger {
-            border-top: 3px solid #dc2626;
-        }
-
-        .session-card.accent-warning {
-            border-top: 3px solid #d97706;
-        }
-
-        .session-card.accent-success {
-            border-top: 3px solid #16a34a;
-        }
-
-        .session-card.accent-primary {
-            border-top: 3px solid #2563eb;
-        }
+        .session-card.accent-danger  { border-top: 3px solid #dc2626; }
+        .session-card.accent-warning { border-top: 3px solid #d97706; }
+        .session-card.accent-success { border-top: 3px solid #16a34a; }
+        .session-card.accent-primary { border-top: 3px solid #2563eb; }
 
         /* ── WIZARD MODAL ──────────────────────── */
-        .wizard-modal .modal-content {
-            border: none;
-            border-radius: 26px;
-            overflow: hidden;
-            box-shadow: 0 24px 60px rgba(15, 23, 42, .18);
-        }
-
-        .wizard-header {
-            padding: 24px 24px 0;
-            border-bottom: none;
-        }
-
-        .wizard-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: var(--tg-text);
-        }
-
-        .wizard-step-dots {
-            display: flex;
-            gap: 6px;
-            margin-top: 14px;
-            margin-bottom: 2px;
-        }
-
-        .wsd {
-            height: 4px;
-            border-radius: 999px;
-            background: #e2e8f0;
-            flex: 1;
-            transition: background .3s;
-        }
-
-        .wsd.active {
-            background: #2563eb;
-        }
-
-        .wsd.done {
-            background: #22c55e;
-        }
+        .wizard-modal .modal-content { border: none; border-radius: 26px; overflow: hidden; box-shadow: 0 24px 60px rgba(15,23,42,.18); }
+        .wizard-header  { padding: 24px 24px 0; border-bottom: none; }
+        .wizard-title   { font-size: 20px; font-weight: 800; color: var(--tg-text); }
+        .wizard-step-dots { display: flex; gap: 6px; margin-top: 14px; margin-bottom: 2px; }
+        .wsd { height: 4px; border-radius: 999px; background: #e2e8f0; flex: 1; transition: background .3s; }
+        .wsd.active { background: #2563eb; }
+        .wsd.done   { background: #22c55e; }
 
         .wizard-body {
             padding: 20px 24px 24px;
+            max-height: 58vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
         }
+        .wizard-body::-webkit-scrollbar { width: 5px; }
+        .wizard-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+
+        .wizard-footer {
+            padding: 14px 20px 18px; border-top: 1px solid #eef2f7;
+            display: flex; align-items: center; justify-content: space-between; gap: 10px; background: #fff;
+        }
+        .btn-wiz-back, .btn-wiz-next {
+            border: none; border-radius: 14px; padding: 11px 20px;
+            font-size: 14px; font-weight: 700; transition: .2s ease; cursor: pointer;
+        }
+        .btn-wiz-back { background: #f1f5f9; color: #334155; }
+        .btn-wiz-back:hover { background: #e2e8f0; }
+        .btn-wiz-next { margin-left: auto; background: linear-gradient(135deg,#2563eb,#1d4ed8); color: #fff; box-shadow: 0 8px 18px rgba(37,99,235,.25); }
+        .btn-wiz-next:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(37,99,235,.32); }
+        .btn-wiz-next:disabled { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
 
         /* Step 1 – exam type cards */
         .exam-type-card {
-            border: 2px solid #e2e8f0;
-            border-radius: 18px;
-            padding: 20px 16px;
-            cursor: pointer;
-            transition: all .22s ease;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: #fff;
+            border: 2px solid #e2e8f0; border-radius: 18px; padding: 18px 16px;
+            cursor: pointer; display: flex; align-items: center; gap: 14px; background: #fff;
+            transition: border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
         }
-
-        .exam-type-card:hover {
-            border-color: #2563eb;
-            background: #eff6ff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, .12);
-        }
-
-        .exam-type-card.selected {
-            border-color: #2563eb;
-            background: #eff6ff;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
-        }
-
-        .etc-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #fff;
-            flex-shrink: 0;
-        }
-
-        .etc-label {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--tg-text);
-        }
-
-        .etc-desc {
-            font-size: 12px;
-            color: var(--tg-muted);
-            margin-top: 2px;
-        }
+        .exam-type-card:hover    { border-color: #2563eb; background: #eff6ff; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,.12); }
+        .exam-type-card.selected { border-color: #2563eb; background: #eff6ff; box-shadow: 0 0 0 3px rgba(37,99,235,.15); }
+        .etc-icon  { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; flex-shrink: 0; }
+        .etc-label { font-size: 16px; font-weight: 700; color: var(--tg-text); }
+        .etc-desc  { font-size: 12px; color: var(--tg-muted); margin-top: 2px; }
 
         /* Step 2 – subject rows */
-        .subject-row {
-            border: 1.5px solid #e2e8f0;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 10px;
-            transition: border-color .2s;
-        }
+        .subject-row { border: 1.5px solid #e2e8f0; border-radius: 16px; overflow: hidden; margin-bottom: 10px; transition: border-color .2s; }
+        .subject-row.has-selected { border-color: #2563eb; }
+        .subject-row-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; background: #fff; user-select: none; }
+        .subject-row-header:hover { background: #f8fafc; }
+        .sr-icon    { width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 17px; color: #fff; flex-shrink: 0; }
+        .sr-label   { flex: 1; font-size: 14px; font-weight: 700; color: var(--tg-text); }
+        .sr-count   { font-size: 12px; font-weight: 600; color: var(--tg-muted); background: #f1f5f9; border-radius: 999px; padding: 3px 10px; }
+        .sr-chevron { font-size: 16px; color: var(--tg-muted); transition: transform .25s; }
+        .subject-row.open .sr-chevron { transform: rotate(180deg); }
 
-        .subject-row.has-selected {
-            border-color: #2563eb;
-        }
-
-        .subject-row-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            cursor: pointer;
-            background: #fff;
-            user-select: none;
-        }
-
-        .subject-row-header:hover {
-            background: #f8fafc;
-        }
-
-        .sr-icon {
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 17px;
-            color: #fff;
-            flex-shrink: 0;
-        }
-
-        .sr-label {
-            flex: 1;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--tg-text);
-        }
-
-        .sr-count {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--tg-muted);
-            background: #f1f5f9;
-            border-radius: 999px;
-            padding: 3px 10px;
-        }
-
-        .sr-chevron {
-            font-size: 16px;
-            color: var(--tg-muted);
-            transition: transform .25s;
-        }
-
-        .subject-row.open .sr-chevron {
-            transform: rotate(180deg);
-        }
-
-        .subject-row-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .3s ease;
-            background: #f8fafc;
-            padding: 0 16px;
-        }
-
-        .subject-row.open .subject-row-body {
-            max-height: 800px;
-            padding: 10px 16px 14px;
-        }
-
-        .test-check-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background .2s;
-        }
-
-        .test-check-item:hover {
-            background: #eff6ff;
-        }
-
-        .test-check-item input[type=checkbox] {
-            width: 17px;
-            height: 17px;
-            accent-color: #2563eb;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        .tci-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--tg-text);
-            flex: 1;
-        }
-
-        .tci-count {
-            font-size: 11px;
-            color: var(--tg-muted);
-        }
+        .subject-row-body { max-height: 0; overflow: hidden; transition: max-height .28s ease; background: #f8fafc; padding: 0 16px; }
+        .subject-row.open .subject-row-body { max-height: none; padding: 10px 16px 14px; overflow-y: visible; }
+        .subject-row-body::-webkit-scrollbar { width: 4px; }
+        .subject-row-body::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
 
         .select-all-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px 10px;
-            font-size: 12px;
-            font-weight: 700;
-            color: #2563eb;
-            cursor: pointer;
-            border-bottom: 1px solid #e2e8f0;
-            margin-bottom: 6px;
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 11px;
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 600; color: var(--tg-text); margin-bottom: 8px; cursor: pointer;
         }
-
-        .select-all-row input[type=checkbox] {
-            width: 15px;
-            height: 15px;
-            accent-color: #2563eb;
-            cursor: pointer;
+        .test-check-item {
+            background: #fff; border: 1px solid #e2e8f0; border-radius: 11px;
+            padding: 8px 10px; display: flex; align-items: center; gap: 8px;
+            margin-bottom: 7px; cursor: pointer;
         }
+        .test-check-item:hover { border-color: #bfdbfe; background: #f8fbff; }
+        .tci-title { flex: 1; font-size: 12px; font-weight: 600; color: var(--tg-text); margin: 0; }
+        .tci-count { font-size: 11px; color: var(--tg-muted); background: #f1f5f9; border-radius: 999px; padding: 3px 8px; font-weight: 600; }
 
         /* Step 3 – date */
-        .date-input-wrap {
-            border: 1.5px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 16px 18px;
-            background: #fff;
-            transition: border-color .2s;
-        }
+        .date-input-wrap { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 12px; }
+        .date-label { font-size: 12px; color: var(--tg-muted); font-weight: 600; margin-bottom: 6px; }
+        #examDateInput { width: 100%; border: 1px solid #cbd5e1; border-radius: 10px; padding: 8px 10px; font-size: 14px; outline: none; font-family: inherit; }
+        #examDateInput:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(37,99,235,.12); }
 
-        .date-input-wrap:focus-within {
-            border-color: #2563eb;
-        }
-
-        .date-label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--tg-muted);
-            text-transform: uppercase;
-            letter-spacing: .4px;
-            margin-bottom: 8px;
-        }
-
-        .date-input-wrap input[type=date] {
-            border: none;
-            outline: none;
-            font-size: 16px;
-            font-weight: 700;
-            font-family: 'Inter', sans-serif;
-            color: var(--tg-text);
-            background: transparent;
-            width: 100%;
-        }
-
-        /* wizard footer */
-        .wizard-footer {
-            padding: 16px 24px 22px;
-            border-top: 1px solid #f1f5f9;
-            display: flex;
-            gap: 10px;
-            justify-content: flex-end;
-        }
-
-        .btn-wiz-back {
-            background: #f1f5f9;
-            border: none;
-            border-radius: 14px;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--tg-text);
-            transition: .2s;
-        }
-
-        .btn-wiz-back:hover {
-            background: #e2e8f0;
-        }
-
-        .btn-wiz-next {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            border: none;
-            border-radius: 14px;
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            box-shadow: 0 6px 18px rgba(37, 99, 235, .3);
-            transition: .2s;
-        }
-
-        .btn-wiz-next:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 24px rgba(37, 99, 235, .4);
-            color: #fff;
-        }
-
-        .btn-wiz-next:disabled {
-            opacity: .5;
-            pointer-events: none;
-        }
-
-        /* ── BOTTOM NAV ────────────────────────── */
-        @media(max-width:768px) {
-            .page-header h1 {
-                font-size: 22px;
-            }
-        }
+        /* Share modal */
+        .share-import-card { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 8px 28px rgba(15,23,42,.09); }
     </style>
 </head>
 
@@ -641,19 +228,14 @@
     <!-- SESSIONS GRID -->
     <section class="pb-3">
         <div class="container">
-            <div id="sessions-container">
-                <!-- Rendered by JS -->
-            </div>
+            <div id="sessions-container"></div>
         </div>
     </section>
 
-    <!-- ══════════════════════════════════════════
-       ADD SESSION WIZARD MODAL
-  ══════════════════════════════════════════ -->
+    <!-- ADD SESSION WIZARD MODAL -->
     <div class="modal fade wizard-modal" id="wizardModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
-
                 <div class="wizard-header">
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="wizard-title" id="wizardTitle">Yangi sessiya</div>
@@ -668,11 +250,7 @@
                         1/3 – Imtihon turini tanlang
                     </div>
                 </div>
-
-                <div class="wizard-body" id="wizardBody">
-                    <!-- Steps rendered by JS -->
-                </div>
-
+                <div class="wizard-body" id="wizardBody"></div>
                 <div class="wizard-footer">
                     <button class="btn-wiz-back d-none" id="wizBtnBack" onclick="wizBack()">
                         <i class="bi bi-arrow-left me-1"></i> Orqaga
@@ -715,29 +293,35 @@
 
     <script>
         // ══════════════════════════════════════════════════════
-        //  DATA HELPERS  (relies on test.js infrastructure via
-        //  localStorage – same keys as test.js uses)
+        //  DATA HELPERS
         // ══════════════════════════════════════════════════════
+
+        function safeLocalStorage(op, key, val) {
+            try {
+                if (op === 'get') return localStorage.getItem(key);
+                if (op === 'set') { localStorage.setItem(key, val); return true; }
+            } catch (e) { return null; }
+        }
 
         function getStoredSessions() {
             try {
-                const raw = localStorage.getItem('pulsego_data_v1');
-                const data = raw ? JSON.parse(raw) : {};
+                var raw = safeLocalStorage('get', 'pulsego_data_v1');
+                var data = raw ? JSON.parse(raw) : {};
                 return Array.isArray(data.preparationSessions) ? data.preparationSessions : [];
             } catch (e) { return []; }
         }
 
         function saveStoredSessions(sessions) {
             try {
-                const raw = localStorage.getItem('pulsego_data_v1');
-                const data = raw ? JSON.parse(raw) : {};
+                var raw = safeLocalStorage('get', 'pulsego_data_v1');
+                var data = raw ? JSON.parse(raw) : {};
                 data.preparationSessions = sessions;
-                localStorage.setItem('pulsego_data_v1', JSON.stringify(data));
+                safeLocalStorage('set', 'pulsego_data_v1', JSON.stringify(data));
             } catch (e) { }
         }
 
         function createSession(session) {
-            const sessions = getStoredSessions();
+            var sessions = getStoredSessions();
             sessions.unshift(session);
             saveStoredSessions(sessions);
         }
@@ -748,56 +332,49 @@
 
         function daysUntil(dateStr) {
             if (!dateStr) return null;
-            const today = new Date(); today.setHours(0, 0, 0, 0);
-            const exam = new Date(dateStr); exam.setHours(0, 0, 0, 0);
+            var today = new Date(); today.setHours(0,0,0,0);
+            var exam  = new Date(dateStr); exam.setHours(0,0,0,0);
             return Math.round((exam - today) / 86400000);
         }
-
         function countdownClass(days) {
             if (days === null) return 'zero';
-            if (days < 0) return 'past';
+            if (days < 0)  return 'past';
             if (days <= 3) return 'urgent';
             if (days <= 7) return 'soon';
             return 'ok';
         }
-
         function countdownLabel(days) {
             if (days === null) return '';
-            if (days < 0) return 'Tugagan';
+            if (days < 0)  return 'Tugagan';
             if (days === 0) return 'Bugun!';
             if (days === 1) return '1 kun qoldi';
-            return `${days} kun qoldi`;
+            return days + ' kun qoldi';
         }
-
         function percentClass(pct) {
-            if (pct === 0) return 'zero';
-            if (pct >= 80) return 'good';
-            if (pct >= 56) return 'mid';
+            if (pct === 0)   return 'zero';
+            if (pct >= 80)   return 'good';
+            if (pct >= 56)   return 'mid';
             return 'low';
         }
-
         function progressColor(pct) {
             if (pct >= 80) return '#22c55e';
             if (pct >= 56) return '#f59e0b';
-            if (pct > 0) return '#ef4444';
+            if (pct > 0)   return '#ef4444';
             return '#cbd5e1';
         }
-
         function accentClass(examTypeId) {
-            const et = getExamType(examTypeId);
-            if (!et) return '';
-            return 'accent-' + et.color;
+            var et = getExamType(examTypeId);
+            return et ? 'accent-' + et.color : '';
         }
-
         function totalQuestionsInSession(session) {
             if (!session.tests || !session.subjects) return 0;
-            let total = 0;
-            session.subjects.forEach(subId => {
-                const sub = getSubject(subId);
-                if (!sub) return;
-                const selectedTests = (session.tests[subId] || []);
-                selectedTests.forEach(key => {
-                    const tc = sub.tests.find(t => t.key === key);
+            var total = 0;
+            session.subjects.forEach(function(subId) {
+                var sub = getSubject(subId);
+                if (!sub || !Array.isArray(sub.tests)) return;
+                var selectedTests = session.tests[subId] || [];
+                selectedTests.forEach(function(key) {
+                    var tc = sub.tests.find(function(t) { return t.key === key; });
                     if (tc) total += (tc.count === 'all' ? 20 : tc.count);
                 });
             });
@@ -805,123 +382,103 @@
         }
 
         function renderSessions() {
-            const container = document.getElementById('sessions-container');
-            const sessions = getStoredSessions();
+            var container = document.getElementById('sessions-container');
+            var sessions = getStoredSessions();
+
+            sessions.sort(function(a, b) {
+                var FAR = new Date('2999-01-01').getTime();
+                var da = a.examDate ? new Date(a.examDate).getTime() : FAR;
+                var db = b.examDate ? new Date(b.examDate).getTime() : FAR;
+                return da - db;
+            });
 
             if (!sessions.length) {
-                container.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-icon"><i class="bi bi-journals"></i></div>
-            <h3>Sessiya yo'q</h3>
-            <p>Imtihonga tayyorlanish uchun sessiya yarating va o'z progressingizni kuzating.</p>
-            <button class="btn-add-session mx-auto" onclick="openWizard()" style="justify-content:center">
-              <i class="bi bi-plus-lg"></i>
-              Birinchi sessiyani yarating
-            </button>
-          </div>
-        `;
+                container.innerHTML = '<div class="empty-state">'
+                    + '<div class="empty-icon"><i class="bi bi-journals"></i></div>'
+                    + '<h3>Sessiya yo\'q</h3>'
+                    + '<p>Imtihonga tayyorlanish uchun sessiya yarating va o\'z progressingizni kuzating.</p>'
+                    + '<button class="btn-add-session mx-auto" onclick="openWizard()" style="justify-content:center">'
+                    + '<i class="bi bi-plus-lg"></i> Birinchi sessiyani yarating</button></div>';
                 return;
             }
 
-            const html = sessions.map(s => {
-                const et = getExamType(s.examType);
-                const stats = s.stats || { accuracy: 0, solvedQuestions: 0, correctAnswers: 0 };
-                const pct = stats.accuracy || 0;
-                const days = daysUntil(s.examDate);
-                const cdClass = countdownClass(days);
-                const cdLabel = countdownLabel(days);
-                const totalQ = totalQuestionsInSession(s);
-                const subjCount = (s.subjects || []).length;
-                const testCount = Object.values(s.tests || {}).reduce((a, v) => a + v.length, 0);
-                const dateFormatted = s.examDate
+            var html = sessions.map(function(s) {
+                var et = getExamType(s.examType);
+                var stats = s.stats || { accuracy: 0, solvedQuestions: 0, correctAnswers: 0 };
+                var pct = stats.accuracy || 0;
+                var days = daysUntil(s.examDate);
+                var cdClass = countdownClass(days);
+                var cdLabel = countdownLabel(days);
+                var subjCount = (s.subjects || []).length;
+                var testCount = Object.values(s.tests || {}).reduce(function(a, v) { return a + v.length; }, 0);
+                var dateFormatted = s.examDate
                     ? new Date(s.examDate).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' })
                     : 'Sana belgilanmagan';
 
-                return `
-          <div class="col-12 col-md-6">
-            <div class="session-card ${accentClass(s.examType)}" onclick="location.href='/preparation/session.html?id=${s.id}'">
-              ${cdLabel ? `<div class="sc-countdown ${cdClass}"><i class="bi bi-alarm me-1"></i>${cdLabel}</div>` : ''}
+                var oraliqStats = '';
+                if (s.examType === 'oraliq') {
+                    var oSub = getSubject(s.oraliqSubject);
+                    var oData = window.ORALIQ_DATA ? (ORALIQ_DATA[s.oraliqSubject] || null) : null;
+                    var qCount = oData ? oData.questions.length : 0;
+                    var vStats = typeof getSessionVoiceStats === 'function' ? getSessionVoiceStats(s.id) : { questionsWithVoice: 0 };
+                    oraliqStats = '<div class="sc-stat"><i class="bi bi-book"></i>' + (oSub ? oSub.label : 'Fan') + '</div>'
+                        + '<div class="sc-stat"><i class="bi bi-chat-square-text"></i>' + qCount + ' ta savol</div>'
+                        + '<div class="sc-stat"><i class="bi bi-mic"></i>' + vStats.questionsWithVoice + ' ta yozilgan</div>';
+                } else {
+                    oraliqStats = '<div class="sc-stat"><i class="bi bi-book"></i>' + subjCount + ' ta fan</div>'
+                        + '<div class="sc-stat"><i class="bi bi-ui-checks-grid"></i>' + testCount + ' ta test</div>'
+                        + '<div class="sc-stat"><i class="bi bi-check-circle"></i>' + (stats.correctAnswers || 0) + ' / ' + Math.max(stats.solvedQuestions || 0, stats.correctAnswers || 0) + ' ta to\'g\'ri</div>';
+                }
 
-              <div class="sc-header">
-                <div class="sc-type-icon" style="background:${et ? et.gradient : '#2563eb'}">
-                  <i class="bi ${et ? et.icon : 'bi-journals'}"></i>
-                </div>
-                <div class="sc-info">
-                  <div class="sc-exam-name">${et ? et.label : s.examType}</div>
-                  <div class="sc-date"><i class="bi bi-calendar3"></i>${dateFormatted}</div>
-                </div>
-                <div class="sc-percent-badge ${percentClass(pct)}">
-                  <span>${pct}</span>
-                  <span style="font-size:10px;font-weight:500;">%</span>
-                </div>
-              </div>
-
-              <div class="sc-progress-wrap">
-                <div class="sc-progress-track">
-                  <div class="sc-progress-fill" style="width:${pct}%;background:${progressColor(pct)}"></div>
-                </div>
-              </div>
-
-              <div class="sc-footer">
-                ${s.examType === 'oraliq' ? (() => {
-                        const oSub = getSubject(s.oraliqSubject);
-                        const oData = window.ORALIQ_DATA ? (ORALIQ_DATA[s.oraliqSubject] || null) : null;
-                        const qCount = oData ? oData.questions.length : 0;
-                        const vStats = typeof getSessionVoiceStats === 'function' ? getSessionVoiceStats(s.id) : { questionsWithVoice: 0, totalVoices: 0 };
-                        return `
-                    <div class="sc-stat"><i class="bi bi-book"></i>${oSub ? oSub.label : 'Fan'}</div>
-                    <div class="sc-stat"><i class="bi bi-chat-square-text"></i>${qCount} ta savol</div>
-                    <div class="sc-stat"><i class="bi bi-mic"></i>${vStats.questionsWithVoice} ta yozilgan</div>
-                  `;
-                    })() : `
-                    <div class="sc-stat"><i class="bi bi-book"></i>${subjCount} ta fan</div>
-                    <div class="sc-stat"><i class="bi bi-ui-checks-grid"></i>${testCount} ta test</div>
-                    <div class="sc-stat"><i class="bi bi-check-circle"></i>${stats.correctAnswers || 0} / ${Math.max(stats.solvedQuestions || 0, stats.correctAnswers || 0)} ta to'g'ri</div>
-                `}
-              </div>
-            </div>
-          </div>
-        `;
+                return '<div class="col-12 col-md-6">'
+                    + '<div class="session-card ' + accentClass(s.examType) + '" onclick="location.href=\'/preparation/session.html?id=' + s.id + '\'" style="position:relative">'
+                    + '<button class="btn btn-sm" onclick="event.stopPropagation();shareSession(\'' + s.id + '\')" title="Ulashish" style="position:absolute;bottom:12px;right:12px;z-index:2;background:rgba(241,245,249,.92);border:none;border-radius:12px;padding:6px 10px;font-size:13px;color:#475569;backdrop-filter:blur(8px)"><i class="bi bi-share"></i></button>'
+                    + (cdLabel ? '<div class="sc-countdown ' + cdClass + '"><i class="bi bi-alarm me-1"></i>' + cdLabel + '</div>' : '')
+                    + '<div class="sc-header">'
+                    + '<div class="sc-type-icon" style="background:' + (et ? et.gradient : '#2563eb') + '"><i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
+                    + '<div class="sc-info">'
+                    + '<div class="sc-exam-name">' + (et ? et.label : s.examType) + '</div>'
+                    + '<div class="sc-date"><i class="bi bi-calendar3"></i>' + dateFormatted + '</div>'
+                    + '</div>'
+                    + '<div class="sc-percent-badge ' + percentClass(pct) + '"><span>' + pct + '</span><span style="font-size:10px;font-weight:500">%</span></div>'
+                    + '</div>'
+                    + '<div class="sc-progress-wrap"><div class="sc-progress-track"><div class="sc-progress-fill" style="width:' + pct + '%;background:' + progressColor(pct) + '"></div></div></div>'
+                    + '<div class="sc-footer">' + oraliqStats + '</div>'
+                    + '</div></div>';
             }).join('');
 
-            container.innerHTML = `<div class="row g-3">${html}</div>`;
+            container.innerHTML = '<div class="row g-3">' + html + '</div>';
         }
 
         // ══════════════════════════════════════════════════════
         //  WIZARD STATE
         // ══════════════════════════════════════════════════════
 
-        let wizStep = 1;
-        let wizData = {
-            examType: null,       // selected exam type id
-            subjects: {},         // { subjectId: [testKey, ...] }  (yakuniy/grant)
-            oraliqSubject: null,  // selected subject id (oraliq only)
-            examDate: null
-        };
+        var wizStep = 1;
+        var wizData = { examType: null, subjects: {}, oraliqSubject: null, examDate: null };
 
         function openWizard() {
             wizStep = 1;
-            wizData = { examType: null, subjects: {}, examDate: null };
+            wizData = { examType: null, subjects: {}, oraliqSubject: null, examDate: null };
             renderWizStep();
             bootstrap.Modal.getOrCreateInstance(document.getElementById('wizardModal')).show();
         }
 
         function updateWizDots() {
-            [1, 2, 3].forEach(n => {
-                const el = document.getElementById('dot' + n);
+            [1, 2, 3].forEach(function(n) {
+                var el = document.getElementById('dot' + n);
                 el.className = 'wsd ' + (n < wizStep ? 'done' : n === wizStep ? 'active' : '');
             });
-            const isOraliq = wizData.examType === 'oraliq';
-            const labels = [
-                '1/3 – Imtihon turini tanlang',
-                isOraliq ? '2/3 – Fanni tanlang' : '2/3 – Fanlar va testlarni tanlang',
-                '3/3 – Imtihon sanasini belgilang'
+            var isOraliq = wizData.examType === 'oraliq';
+            var labels = [
+                '1/3 \u2013 Imtihon turini tanlang',
+                isOraliq ? '2/3 \u2013 Fanni tanlang' : '2/3 \u2013 Fanlar va testlarni tanlang',
+                '3/3 \u2013 Imtihon sanasini belgilang'
             ];
             document.getElementById('wizardStepLabel').textContent = labels[wizStep - 1];
             document.getElementById('wizBtnBack').classList.toggle('d-none', wizStep === 1);
-            const nextBtn = document.getElementById('wizBtnNext');
-            // hide Next button on oraliq step 2 (auto-advances on card click)
-            const hideNext = (wizData.examType === 'oraliq' && wizStep === 2);
+            var nextBtn = document.getElementById('wizBtnNext');
+            var hideNext = (wizData.examType === 'oraliq' && wizStep === 2);
             nextBtn.classList.toggle('d-none', hideNext);
             nextBtn.innerHTML = wizStep < 3
                 ? 'Davom etish <i class="bi bi-arrow-right ms-1"></i>'
@@ -930,170 +487,126 @@
 
         function renderWizStep() {
             updateWizDots();
-            const body = document.getElementById('wizardBody');
+            var body = document.getElementById('wizardBody');
 
             if (wizStep === 1) {
-                document.getElementById('wizardTitle').textContent = "Imtihon turini tanlang";
-                body.innerHTML = `
-          <div class="d-flex flex-column gap-3">
-            ${PREP_CONFIG.examTypes.map(et => `
-              <div class="exam-type-card ${wizData.examType === et.id ? 'selected' : ''}"
-                   onclick="selectExamType('${et.id}')">
-                <div class="etc-icon" style="background:${et.gradient}">
-                  <i class="bi ${et.icon}"></i>
-                </div>
-                <div>
-                  <div class="etc-label">${et.label}</div>
-                  <div class="etc-desc">${et.desc}</div>
-                </div>
-                <div class="ms-auto" id="etc-check-${et.id}" style="display:${wizData.examType === et.id ? 'block' : 'none'}">
-                  <i class="bi bi-check-circle-fill text-primary fs-4"></i>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        `;
+                document.getElementById('wizardTitle').textContent = 'Imtihon turini tanlang';
+                body.innerHTML = '<div class="d-flex flex-column gap-3">'
+                    + PREP_CONFIG.examTypes.map(function(et) {
+                        return '<div class="exam-type-card ' + (wizData.examType === et.id ? 'selected' : '') + '" onclick="selectExamType(\'' + et.id + '\')">'
+                            + '<div class="etc-icon" style="background:' + et.gradient + '"><i class="bi ' + et.icon + '"></i></div>'
+                            + '<div><div class="etc-label">' + et.label + '</div><div class="etc-desc">' + et.desc + '</div></div>'
+                            + '<div class="ms-auto" id="etc-check-' + et.id + '" style="display:' + (wizData.examType === et.id ? 'block' : 'none') + '"><i class="bi bi-check-circle-fill text-primary fs-4"></i></div>'
+                            + '</div>';
+                    }).join('')
+                    + '</div>';
 
             } else if (wizStep === 2) {
-                // ── ORALIQ: only subject picker (no tests) ──
                 if (wizData.examType === 'oraliq') {
                     document.getElementById('wizardTitle').textContent = 'Fanni tanlang';
-                    const availableSubjects = PREP_CONFIG.subjects.filter(s => ORALIQ_DATA[s.id]);
-                    body.innerHTML = `
-                      <p style="font-size:13px;color:var(--tg-muted);margin-bottom:16px">
-                        <i class="bi bi-info-circle me-1"></i>Oraliq nazorat uchun bitta fan tanlang.
-                      </p>
-                      <div class="d-flex flex-column gap-3">
-                        ${availableSubjects.map(sub => {
-                        const oData = ORALIQ_DATA[sub.id];
-                        const qCount = oData ? oData.questions.length : 0;
-                        const isSelected = wizData.oraliqSubject === sub.id;
-                        return `
-                            <div class="exam-type-card ${isSelected ? 'selected' : ''}"
-                                 onclick="selectOraliqSubject('${sub.id}')">
-                              <div class="etc-icon" style="background:${sub.bgColor}">
-                                <i class="bi ${sub.icon}"></i>
-                              </div>
-                              <div>
-                                <div class="etc-label">${sub.label}</div>
-                                <div class="etc-desc">${qCount} ta og'zaki savol</div>
-                              </div>
-                              <div class="ms-auto" style="display:${isSelected ? 'block' : 'none'}" id="oraliq-check-${sub.id}">
-                                <i class="bi bi-check-circle-fill text-primary fs-4"></i>
-                              </div>
-                            </div>
-                          `;
-                    }).join('')}
-                      </div>
-                    `;
+                    var availSubs = PREP_CONFIG.subjects.filter(function(s) { return ORALIQ_DATA[s.id]; });
+                    body.innerHTML = '<p style="font-size:13px;color:var(--tg-muted);margin-bottom:16px"><i class="bi bi-info-circle me-1"></i>Oraliq nazorat uchun bitta fan tanlang.</p>'
+                        + '<div class="d-flex flex-column gap-3">'
+                        + availSubs.map(function(sub) {
+                            var oData = ORALIQ_DATA[sub.id];
+                            var qCount = oData ? oData.questions.length : 0;
+                            var isSelected = wizData.oraliqSubject === sub.id;
+                            return '<div class="exam-type-card ' + (isSelected ? 'selected' : '') + '" onclick="selectOraliqSubject(\'' + sub.id + '\')">'
+                                + '<div class="etc-icon" style="background:' + sub.bgColor + '"><i class="bi ' + sub.icon + '"></i></div>'
+                                + '<div><div class="etc-label">' + sub.label + '</div><div class="etc-desc">' + qCount + ' ta og\'zaki savol</div></div>'
+                                + '<div class="ms-auto" style="display:' + (isSelected ? 'block' : 'none') + '" id="oraliq-check-' + sub.id + '"><i class="bi bi-check-circle-fill text-primary fs-4"></i></div>'
+                                + '</div>';
+                        }).join('')
+                        + '</div>';
                     validateWiz();
                     return;
                 }
-                // ── YAKUNIY / GRANT: subjects + tests ──
-                document.getElementById('wizardTitle').textContent = "Fanlar va testlarni tanlang";
-                const availableSubjects = getSubjectsForExamType(wizData.examType);
-                body.innerHTML = availableSubjects.map(sub => {
-                    const selectedTests = wizData.subjects[sub.id] || [];
-                    const allKeys = sub.tests.map(t => t.key);
-                    const allSelected = allKeys.every(k => selectedTests.includes(k));
-                    const hasSelected = selectedTests.length > 0;
 
-                    return `
-            <div class="subject-row ${hasSelected ? 'has-selected' : ''}" id="sr-${sub.id}">
-              <div class="subject-row-header" onclick="toggleSubjectRow('${sub.id}')">
-                <div class="sr-icon" style="background:${sub.bgColor}">
-                  <i class="bi ${sub.icon}"></i>
-                </div>
-                <div class="sr-label">${sub.label}</div>
-                <span class="sr-count" id="src-${sub.id}">
-                  ${selectedTests.length} / ${sub.tests.length}
-                </span>
-                <i class="bi bi-chevron-down sr-chevron"></i>
-              </div>
-              <div class="subject-row-body">
-                <div class="select-all-row" onclick="toggleAllTests('${sub.id}')">
-                  <input type="checkbox" id="chk-all-${sub.id}" ${allSelected ? 'checked' : ''} onclick="event.stopPropagation()">
-                  <label for="chk-all-${sub.id}" style="cursor:pointer">Barchasini tanlash</label>
-                </div>
-                ${sub.tests.map(t => `
-                  <div class="test-check-item" onclick="toggleTest('${sub.id}','${t.key}')">
-                    <input type="checkbox" id="chk-${sub.id}-${t.key}"
-                           ${selectedTests.includes(t.key) ? 'checked' : ''}
-                           onclick="event.stopPropagation()">
-                    <label for="chk-${sub.id}-${t.key}" class="tci-title" style="cursor:pointer">${t.title}</label>
-                    <span class="tci-count">${t.count} ta</span>
-                  </div>
-                `).join('')}
-              </div>
-            </div>
-          `;
+                document.getElementById('wizardTitle').textContent = 'Fanlar va testlarni tanlang';
+                var availableSubjects = getSubjectsForExamType(wizData.examType);
+                body.innerHTML = availableSubjects.map(function(sub) {
+                    var tests = Array.isArray(sub.tests) ? sub.tests : [];
+                    var selectedTests = wizData.subjects[sub.id] || [];
+                    var allKeys = tests.map(function(t) { return t.key; });
+                    var allSelected = allKeys.every(function(k) { return selectedTests.includes(k); });
+                    var hasSelected = selectedTests.length > 0;
+
+                    return '<div class="subject-row ' + (hasSelected ? 'has-selected' : '') + '" id="sr-' + sub.id + '">'
+                        + '<div class="subject-row-header" onclick="toggleSubjectRow(\'' + sub.id + '\')">'
+                        + '<div class="sr-icon" style="background:' + sub.bgColor + '"><i class="bi ' + sub.icon + '"></i></div>'
+                        + '<div class="sr-label">' + sub.label + '</div>'
+                        + '<span class="sr-count" id="src-' + sub.id + '">' + selectedTests.length + ' / ' + tests.length + '</span>'
+                        + '<i class="bi bi-chevron-down sr-chevron"></i>'
+                        + '</div>'
+                        + '<div class="subject-row-body">'
+                        + '<div class="select-all-row" onclick="toggleAllTests(\'' + sub.id + '\')">'
+                        + '<input type="checkbox" id="chk-all-' + sub.id + '" ' + (allSelected ? 'checked' : '') + ' onclick="event.stopPropagation()">'
+                        + '<label for="chk-all-' + sub.id + '" style="cursor:pointer">Barchasini tanlash</label>'
+                        + '</div>'
+                        + tests.map(function(t) {
+                            return '<div class="test-check-item" onclick="toggleTest(\'' + sub.id + '\',\'' + t.key + '\')">'
+                                + '<input type="checkbox" id="chk-' + sub.id + '-' + t.key + '" ' + (selectedTests.includes(t.key) ? 'checked' : '') + ' onclick="event.stopPropagation()">'
+                                + '<label for="chk-' + sub.id + '-' + t.key + '" class="tci-title" style="cursor:pointer">' + t.title + '</label>'
+                                + '<span class="tci-count">' + t.count + ' ta</span>'
+                                + '</div>';
+                        }).join('')
+                        + '</div></div>';
                 }).join('');
 
             } else if (wizStep === 3) {
-                document.getElementById('wizardTitle').textContent = "Imtihon sanasini belgilang";
-                const today = new Date();
-                const minDate = today.toISOString().split('T')[0];
+                document.getElementById('wizardTitle').textContent = 'Imtihon sanasini belgilang';
+                var today = new Date();
+                var minDate = today.toISOString().split('T')[0];
 
-                let summaryHtml = '';
+                var summaryHtml = '';
                 if (wizData.examType === 'oraliq') {
-                    const sub = getSubject(wizData.oraliqSubject);
-                    const oData = ORALIQ_DATA[wizData.oraliqSubject];
-                    const qCount = oData ? oData.questions.length : 0;
-                    summaryHtml = sub ? `
-                      <div class="d-flex align-items-center gap-2 mb-2">
-                        <div style="width:28px;height:28px;border-radius:8px;background:${sub.bgColor};display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0">
-                          <i class="bi ${sub.icon}"></i>
-                        </div>
-                        <span style="font-size:13px;font-weight:600">${sub.label}</span>
-                        <span class="ms-auto" style="font-size:12px;color:var(--tg-muted)">${qCount} ta og'zaki savol</span>
-                      </div>
-                    ` : '';
+                    var sub = getSubject(wizData.oraliqSubject);
+                    var oData = ORALIQ_DATA[wizData.oraliqSubject];
+                    var qCount = oData ? oData.questions.length : 0;
+                    if (sub) {
+                        summaryHtml = '<div class="d-flex align-items-center gap-2 mb-2">'
+                            + '<div style="width:28px;height:28px;border-radius:8px;background:' + sub.bgColor + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0"><i class="bi ' + sub.icon + '"></i></div>'
+                            + '<span style="font-size:13px;font-weight:600">' + sub.label + '</span>'
+                            + '<span class="ms-auto" style="font-size:12px;color:var(--tg-muted)">' + qCount + ' ta og\'zaki savol</span>'
+                            + '</div>';
+                    }
                 } else {
-                    const selectedCount = Object.values(wizData.subjects).reduce((a, v) => a + v.length, 0);
-                    summaryHtml = Object.entries(wizData.subjects).map(([subId, keys]) => {
-                        const sub = getSubject(subId);
-                        return sub ? `<div class="d-flex align-items-center gap-2 mb-2">
-                          <div style="width:28px;height:28px;border-radius:8px;background:${sub.bgColor};display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0">
-                            <i class="bi ${sub.icon}"></i>
-                          </div>
-                          <span style="font-size:13px;font-weight:600">${sub.label}</span>
-                          <span class="ms-auto" style="font-size:12px;color:var(--tg-muted)">${keys.length} ta test</span>
-                        </div>` : '';
+                    summaryHtml = Object.entries(wizData.subjects).map(function(entry) {
+                        var subId = entry[0]; var keys = entry[1];
+                        var s2 = getSubject(subId);
+                        return s2 ? '<div class="d-flex align-items-center gap-2 mb-2">'
+                            + '<div style="width:28px;height:28px;border-radius:8px;background:' + s2.bgColor + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0"><i class="bi ' + s2.icon + '"></i></div>'
+                            + '<span style="font-size:13px;font-weight:600">' + s2.label + '</span>'
+                            + '<span class="ms-auto" style="font-size:12px;color:var(--tg-muted)">' + keys.length + ' ta test</span>'
+                            + '</div>' : '';
                     }).join('');
                 }
 
-                body.innerHTML = `
-                  <div class="date-input-wrap mb-4">
-                    <div class="date-label">Imtihon sanasi</div>
-                    <input type="date" id="examDateInput" value="${wizData.examDate || ''}" min="${minDate}">
-                  </div>
-                  <div style="background:#f8fafc;border-radius:16px;padding:16px;">
-                    <div style="font-size:12px;font-weight:700;color:var(--tg-muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px">
-                      <i class="bi bi-list-check me-1"></i>
-                      ${wizData.examType === 'oraliq' ? "Og'zaki imtihon" : 'Tanlangan testlar'}
-                    </div>
-                    ${summaryHtml}
-                  </div>
-                `;
+                body.innerHTML = '<div class="date-input-wrap mb-4">'
+                    + '<div class="date-label">Imtihon sanasi</div>'
+                    + '<input type="date" id="examDateInput" value="' + (wizData.examDate || '') + '" min="' + minDate + '">'
+                    + '</div>'
+                    + '<div style="background:#f8fafc;border-radius:16px;padding:16px;">'
+                    + '<div style="font-size:12px;font-weight:700;color:var(--tg-muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:12px">'
+                    + '<i class="bi bi-list-check me-1"></i>' + (wizData.examType === 'oraliq' ? 'Og\'zaki imtihon' : 'Tanlangan testlar') + '</div>'
+                    + summaryHtml + '</div>';
             }
 
-            // validate next btn
             validateWiz();
         }
 
         function validateWiz() {
-            const btn = document.getElementById('wizBtnNext');
+            var btn = document.getElementById('wizBtnNext');
             if (wizStep === 1) {
                 btn.disabled = !wizData.examType;
             } else if (wizStep === 2) {
                 if (wizData.examType === 'oraliq') {
                     btn.disabled = !wizData.oraliqSubject;
                 } else {
-                    const hasAny = Object.values(wizData.subjects).some(v => v.length > 0);
-                    btn.disabled = !hasAny;
+                    btn.disabled = !Object.values(wizData.subjects).some(function(v) { return v.length > 0; });
                 }
             } else {
-                btn.disabled = false; // date optional
+                btn.disabled = false;
             }
         }
 
@@ -1106,25 +619,21 @@
 
         function selectOraliqSubject(subId) {
             wizData.oraliqSubject = subId;
-            // update UI briefly, then auto-advance
-            document.querySelectorAll('[id^="oraliq-check-"]').forEach(el => el.style.display = 'none');
-            document.querySelectorAll('.exam-type-card').forEach(el => el.classList.remove('selected'));
-            const checkEl = document.getElementById('oraliq-check-' + subId);
+            document.querySelectorAll('[id^="oraliq-check-"]').forEach(function(el) { el.style.display = 'none'; });
+            document.querySelectorAll('.exam-type-card').forEach(function(el) { el.classList.remove('selected'); });
+            var checkEl = document.getElementById('oraliq-check-' + subId);
             if (checkEl) { checkEl.style.display = 'block'; checkEl.closest('.exam-type-card').classList.add('selected'); }
-            // auto-proceed to next step after a brief visual feedback
             setTimeout(function() { wizNext(); }, 250);
         }
 
         function toggleSubjectRow(subId) {
-            const row = document.getElementById('sr-' + subId);
-            row.classList.toggle('open');
+            document.getElementById('sr-' + subId).classList.toggle('open');
         }
 
         function toggleTest(subId, testKey) {
-            const selected = wizData.subjects[subId] || [];
-            const idx = selected.indexOf(testKey);
-            if (idx === -1) selected.push(testKey);
-            else selected.splice(idx, 1);
+            var selected = wizData.subjects[subId] || [];
+            var idx = selected.indexOf(testKey);
+            if (idx === -1) selected.push(testKey); else selected.splice(idx, 1);
             wizData.subjects[subId] = selected;
             if (selected.length === 0) delete wizData.subjects[subId];
             updateSubjectRowUI(subId);
@@ -1132,59 +641,45 @@
         }
 
         function toggleAllTests(subId) {
-            const sub = getSubject(subId);
-            if (!sub) return;
-            const allKeys = sub.tests.map(t => t.key);
-            const selected = wizData.subjects[subId] || [];
-            const allSelected = allKeys.every(k => selected.includes(k));
-            if (allSelected) {
-                delete wizData.subjects[subId];
-            } else {
-                wizData.subjects[subId] = [...allKeys];
-            }
+            var sub = getSubject(subId);
+            if (!sub || !Array.isArray(sub.tests)) return;
+            var allKeys = sub.tests.map(function(t) { return t.key; });
+            var selected = wizData.subjects[subId] || [];
+            var allSelected = allKeys.every(function(k) { return selected.includes(k); });
+            if (allSelected) { delete wizData.subjects[subId]; } else { wizData.subjects[subId] = allKeys.slice(); }
             updateSubjectRowUI(subId);
             validateWiz();
         }
 
         function updateSubjectRowUI(subId) {
-            const sub = getSubject(subId);
-            if (!sub) return;
-            const selected = wizData.subjects[subId] || [];
-            const allKeys = sub.tests.map(t => t.key);
-
-            // update count badge
-            const countEl = document.getElementById('src-' + subId);
-            if (countEl) countEl.textContent = `${selected.length} / ${sub.tests.length}`;
-
-            // update row border
-            const row = document.getElementById('sr-' + subId);
+            var sub = getSubject(subId);
+            if (!sub || !Array.isArray(sub.tests)) return;
+            var selected = wizData.subjects[subId] || [];
+            var allKeys = sub.tests.map(function(t) { return t.key; });
+            var countEl = document.getElementById('src-' + subId);
+            if (countEl) countEl.textContent = selected.length + ' / ' + sub.tests.length;
+            var row = document.getElementById('sr-' + subId);
             if (row) row.classList.toggle('has-selected', selected.length > 0);
-
-            // update individual checkboxes
-            sub.tests.forEach(t => {
-                const chk = document.getElementById(`chk-${subId}-${t.key}`);
+            sub.tests.forEach(function(t) {
+                var chk = document.getElementById('chk-' + subId + '-' + t.key);
                 if (chk) chk.checked = selected.includes(t.key);
             });
-
-            // update select-all checkbox
-            const allChk = document.getElementById(`chk-all-${subId}`);
-            if (allChk) allChk.checked = allKeys.every(k => selected.includes(k));
+            var allChk = document.getElementById('chk-all-' + subId);
+            if (allChk) allChk.checked = allKeys.every(function(k) { return selected.includes(k); });
         }
 
         function wizNext() {
             if (wizStep === 1 && !wizData.examType) return;
             if (wizStep === 2) {
                 if (wizData.examType === 'oraliq') {
-                    if (!wizData.oraliqSubject) { alert("Fan tanlang!"); return; }
+                    if (!wizData.oraliqSubject) { alert('Fan tanlang!'); return; }
                 } else {
-                    const hasAny = Object.values(wizData.subjects).some(v => v.length > 0);
-                    if (!hasAny) { alert("Kamida 1 ta test tanlang!"); return; }
+                    if (!Object.values(wizData.subjects).some(function(v) { return v.length > 0; })) { alert('Kamida 1 ta test tanlang!'); return; }
                 }
             }
             if (wizStep === 3) {
-                // read date
-                const dateInput = document.getElementById('examDateInput');
-                wizData.examDate = dateInput?.value || null;
+                var dateInput = document.getElementById('examDateInput');
+                wizData.examDate = dateInput ? dateInput.value : null;
                 saveSession();
                 return;
             }
@@ -1199,44 +694,223 @@
         }
 
         function saveSession() {
-            const id = 'prep_' + Date.now();
-            const isOraliq = wizData.examType === 'oraliq';
-            const session = {
-                id,
+            var id = 'prep_' + Date.now();
+            var isOraliq = wizData.examType === 'oraliq';
+            var session = {
+                id: id,
                 examType: wizData.examType,
                 examDate: wizData.examDate || null,
                 createdAt: new Date().toISOString(),
                 subjects: isOraliq ? [wizData.oraliqSubject] : Object.keys(wizData.subjects),
                 tests: isOraliq ? {} : wizData.subjects,
                 oraliqSubject: isOraliq ? wizData.oraliqSubject : null,
-                stats: {
-                    totalQuestions: 0,
-                    solvedQuestions: 0,
-                    correctAnswers: 0,
-                    wrongAnswers: 0,
-                    accuracy: 0,
-                    updatedAt: null
-                },
+                stats: { totalQuestions: 0, solvedQuestions: 0, correctAnswers: 0, wrongAnswers: 0, accuracy: 0, updatedAt: null },
                 subjectStats: {},
                 testResults: [],
                 startedAt: null,
                 lastActivityAt: null
             };
-
             createSession(session);
             bootstrap.Modal.getOrCreateInstance(document.getElementById('wizardModal')).hide();
             renderSessions();
+            setTimeout(function() { location.href = '/preparation/session.html?id=' + id; }, 300);
+        }
 
-            // Navigate to the new session
-            setTimeout(() => {
-                location.href = `/preparation/session.html?id=${id}`;
-            }, 300);
+        // ══════════════════════════════════════════════════════
+        //  SHARE SESSION
+        // ══════════════════════════════════════════════════════
+
+        function encodeBase64Url(str) {
+            return btoa(unescape(encodeURIComponent(str)))
+                .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        }
+        function decodeBase64Url(str) {
+            var s = String(str || '').replace(/-/g, '+').replace(/_/g, '/');
+            var pad = s.length % 4 === 0 ? '' : '='.repeat(4 - s.length % 4);
+            return decodeURIComponent(escape(atob(s + pad)));
+        }
+
+        function fallbackCopy(text) {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px';
+            document.body.appendChild(ta);
+            ta.select(); ta.setSelectionRange(0, text.length);
+            var ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+            document.body.removeChild(ta);
+            return ok;
+        }
+
+        function copyShareLink(url) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url)
+                    .then(function() { showToast('Havola nusxalandi!'); })
+                    .catch(function() { if (fallbackCopy(url)) showToast('Havola nusxalandi!'); });
+            } else {
+                if (fallbackCopy(url)) showToast('Havola nusxalandi!');
+            }
+        }
+
+        function openShareLinkModal(url) {
+            var inp = document.getElementById('shareLinkInput');
+            if (inp) inp.value = url;
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('shareLinkModal')).show();
+        }
+
+        function shareSession(sessionId) {
+            var sessions = getStoredSessions();
+            var s = sessions.find(function(x) { return x.id === sessionId; });
+            if (!s) return;
+            try {
+                var raw = safeLocalStorage('get', 'pulsego_data_v1');
+                var d = raw ? JSON.parse(raw) : {};
+                var creatorName = (d.user && d.user.name) ? d.user.name : 'Foydalanuvchi';
+                var payload = {
+                    id: s.id, examType: s.examType, examDate: s.examDate,
+                    subjects: s.subjects, tests: s.tests, oraliqSubject: s.oraliqSubject,
+                    creatorName: creatorName
+                };
+                var encoded = encodeBase64Url(JSON.stringify(payload));
+                var url = location.origin + '/preparation/?share=' + encodeURIComponent(encoded);
+                var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+                if (isMobile && typeof navigator.share === 'function') {
+                    navigator.share({ title: 'PulseGo sessiya', url: url })
+                        .catch(function() { openShareLinkModal(url); copyShareLink(url); });
+                } else {
+                    openShareLinkModal(url);
+                    copyShareLink(url);
+                }
+            } catch (e) {
+                alert('Ulashishda xatolik: ' + e.message);
+            }
+        }
+
+        function showToast(msg) {
+            var t = document.getElementById('share-toast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'share-toast';
+                t.style.cssText = 'position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;z-index:9999;transition:opacity .3s;pointer-events:none';
+                document.body.appendChild(t);
+            }
+            t.textContent = msg;
+            t.style.opacity = '1';
+            clearTimeout(t._timer);
+            t._timer = setTimeout(function() { t.style.opacity = '0'; }, 2500);
+        }
+
+        function checkShareParam() {
+            var params = new URLSearchParams(location.search);
+            var encoded = params.get('share');
+            if (!encoded) return;
+            try {
+                var payload = JSON.parse(decodeBase64Url(decodeURIComponent(encoded)));
+                showShareImportModal(payload);
+            } catch (e) {
+                console.warn('Invalid share param', e);
+            }
+        }
+
+        function showShareImportModal(payload) {
+            var bodyEl = document.getElementById('shareImportBody');
+            if (!bodyEl) { console.warn('shareImportBody not found'); return; }
+
+            var et = getExamType(payload.examType);
+            var etLabel = et ? et.label : payload.examType;
+            var dateStr = payload.examDate
+                ? new Date(payload.examDate).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' })
+                : 'Sana belgilanmagan';
+
+            var subjectsList = '';
+            if (payload.examType === 'oraliq' && payload.oraliqSubject) {
+                var sub = getSubject(payload.oraliqSubject);
+                subjectsList = sub ? '<li>' + sub.label + ' \u2013 og\'zaki</li>' : '';
+            } else {
+                (payload.subjects || []).forEach(function(sid) {
+                    var sub2 = getSubject(sid);
+                    var tc = (payload.tests && payload.tests[sid]) ? payload.tests[sid].length : 0;
+                    subjectsList += '<li>' + (sub2 ? sub2.label : sid) + ' \u2013 ' + tc + ' ta test</li>';
+                });
+            }
+
+            var html = '<div class="share-import-card">'
+                + '<div class="d-flex align-items-center gap-2 mb-3">'
+                + '<div style="width:44px;height:44px;border-radius:14px;background:' + (et ? et.gradient : '#2563eb') + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px"><i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
+                + '<div><div style="font-size:15px;font-weight:800">' + etLabel + '</div><div style="font-size:12px;color:var(--tg-muted)">' + dateStr + '</div></div></div>'
+                + '<div style="font-size:13px;color:var(--tg-muted);margin-bottom:8px">Yuboruvchi: <b style="color:var(--tg-text)">' + (payload.creatorName || 'Noma\'lum') + '</b></div>'
+                + '<ul style="font-size:13px;color:var(--tg-text);margin:0 0 16px;padding-left:18px">' + subjectsList + '</ul>'
+                + '<div class="d-flex gap-2">'
+                + '<button class="btn btn-primary flex-fill rounded-3" onclick="importSharedSession(window._sharePayload)"><i class="bi bi-plus-lg me-1"></i>Qo\'shish</button>'
+                + '<button class="btn btn-light flex-fill rounded-3" onclick="bootstrap.Modal.getInstance(document.getElementById(\'shareImportModal\')).hide()">Bekor</button>'
+                + '</div></div>';
+
+            window._sharePayload = payload;
+            bodyEl.innerHTML = html;
+            bootstrap.Modal.getOrCreateInstance(document.getElementById('shareImportModal')).show();
+        }
+
+        function importSharedSession(payload) {
+            if (!payload) return;
+            var session = {
+                id: 'prep_' + Date.now(),
+                examType: payload.examType,
+                examDate: payload.examDate || null,
+                createdAt: new Date().toISOString(),
+                subjects: payload.subjects || [],
+                tests: payload.tests || {},
+                oraliqSubject: payload.oraliqSubject || null,
+                stats: { totalQuestions: 0, solvedQuestions: 0, correctAnswers: 0, wrongAnswers: 0, accuracy: 0, updatedAt: null },
+                subjectStats: {}, testResults: [], startedAt: null, lastActivityAt: null
+            };
+            createSession(session);
+            bootstrap.Modal.getInstance(document.getElementById('shareImportModal')).hide();
+            history.replaceState({}, '', '/preparation/');
+            renderSessions();
+            showToast('Sessiya qo\'shildi!');
         }
 
         // ── INIT ──────────────────────────────────────────────
         renderSessions();
+        // defer checkShareParam so modal HTML (below this script) is parsed first
+        setTimeout(checkShareParam, 0);
     </script>
 
-</body>
+    <!-- SHARE LINK MODAL -->
+    <div class="modal fade" id="shareLinkModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border:none;border-radius:22px;overflow:hidden">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-link-45deg me-2 text-primary"></i>Ulashish havolasi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <label for="shareLinkInput" class="form-label" style="font-size:12px;color:var(--tg-muted)">Havola</label>
+                    <div class="input-group mb-2">
+                        <input id="shareLinkInput" type="text" class="form-control" readonly>
+                        <button class="btn btn-primary" type="button" onclick="copyShareLink(document.getElementById('shareLinkInput').value)">
+                            <i class="bi bi-clipboard"></i>
+                        </button>
+                    </div>
+                    <div style="font-size:12px;color:var(--tg-muted)">Qabul qiluvchi ushbu havolani ochsa sessiya ma'lumotlari chiqadi va Qo'shish tugmasi bilan qo'sha oladi.</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- SHARE IMPORT MODAL -->
+    <div class="modal fade" id="shareImportModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border:none;border-radius:24px;overflow:hidden">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-share me-2 text-primary"></i>Sessiya ulashildi</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="shareImportBody"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
 </html>

@@ -3,513 +3,499 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pulse Go – Tibbiy Tayyorlanish</title>
+    <meta name="description" content="Pulse Go – tibbiy testlar, darslar va tayyorlanish platformasi.">
 
-    <!-- SEO Meta -->
-    <meta name="description"
-        content="Pulse Medical – tibbiy testlar, ishonchli manbalar va zamonaviy bilim platformasi. Talabalar va mutaxassislar uchun.">
-
-    <meta name="keywords"
-        content="Pulse Medical, tibbiy testlar, anatomiya test, medical platform, tibbiyot, online test">
-
-    <meta name="author" content="Pulse Medical">
-
-    <!-- Open Graph (Telegram / Facebook) -->
-    <meta property="og:title" content="Pulse Medical">
-    <meta property="og:description" content="Tibbiy testlar, bilimlar va professional platforma">
-    <meta property="og:image" content="../assets/img/PulseGo.jpg">
-    <meta property="og:type" content="website">
-
-    <title>Pulse Medical</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
 
     <style>
         * {
-            margin: 0;
-            padding: 0;
+            -webkit-tap-highlight-color: transparent;
             box-sizing: border-box;
-        }
-
-        :root {
-            --bg: #f5f7fb;
-            --card: #ffffff;
-            --text: #0f172a;
-            --muted: #64748b;
-            --primary: #2563eb;
-            --shadow:
-                0 10px 30px rgba(15, 23, 42, 0.06);
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: var(--tg-bg);
+            color: var(--tg-text);
+            padding-bottom: 90px;
             overflow-x: hidden;
-            padding-bottom: 100px;
         }
 
-        /* NAVBAR */
-
-        .navbar {
-            background: rgba(255, 255, 255, .82);
-            backdrop-filter: blur(18px);
-
-            border-bottom:
-                1px solid rgba(0, 0, 0, .04);
-
-            padding-top: 14px;
-            padding-bottom: 14px;
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, .45);
+            backdrop-filter: blur(4px);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s ease;
         }
 
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 1.1rem;
-            letter-spacing: -.3px;
-
-            color: var(--text) !important;
+        .sidebar-overlay.show {
+            opacity: 1;
+            pointer-events: all;
         }
 
-        .navbar-brand img {
-            width: 40px;
-            height: 40px;
-
-            border-radius: 50%;
-            object-fit: cover;
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 288px;
+            background: #fff;
+            z-index: 1050;
+            transform: translateX(-100%);
+            transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+            box-shadow: 8px 0 40px rgba(15, 23, 42, .12);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* HERO */
-
-        .hero {
-            position: relative;
-
-            padding:
-                80px 0 35px;
-
-            overflow: hidden;
+        .sidebar.open {
+            transform: translateX(0);
         }
 
-        .hero::before {
-            content: "";
-
-            position: absolute;
-
-            width: 300px;
-            height: 300px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(37, 99, 235, .08);
-
-            filter: blur(80px);
-
-            top: -100px;
-            right: -100px;
-        }
-
-        .hero-top {
+        .sidebar-head {
+            padding: 24px 20px 16px;
+            border-bottom: 1px solid #f1f5f9;
             display: flex;
             align-items: center;
-            gap: 16px;
-        }
-
-        .hero-avatar {
-            width: 74px;
-            height: 74px;
-
-            border-radius: 24px;
-
-            object-fit: cover;
-
-            box-shadow:
-                0 12px 25px rgba(15, 23, 42, .12);
-        }
-
-        .hero-title {
-            font-size: 2rem;
-            font-weight: 800;
-            line-height: 1.1;
-
-            margin-bottom: 6px;
-        }
-
-        .hero-sub {
-            color: var(--muted);
-            font-size: 14px;
-        }
-
-        .hero-boxes {
-            margin-top: 26px;
-
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-
             gap: 12px;
         }
 
-        .hero-box {
-            background: white;
-
-            border-radius: 22px;
-
-            padding: 16px;
-
-            box-shadow: var(--shadow);
+        .sidebar-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            overflow: hidden;
+            flex-shrink: 0;
         }
 
-        .hero-box h3 {
-            font-size: 1.1rem;
+        .sidebar-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sidebar-brand {
+            font-size: 17px;
             font-weight: 800;
-            margin-bottom: 3px;
+            color: var(--tg-text);
         }
 
-        .hero-box p {
-            margin: 0;
-            color: var(--muted);
-            font-size: 12px;
+        .sidebar-tagline {
+            font-size: 11px;
+            color: var(--tg-muted);
         }
 
-        /* SECTION */
+        .sidebar-user {
+            margin: 12px 16px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-        .app-section {
-            padding-top: 30px;
+        .sidebar-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .sidebar-user-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tg-text);
+        }
+
+        .sidebar-user-sub {
+            font-size: 11px;
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 12px;
+        }
+
+        .sidebar-section-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--tg-muted);
+            text-transform: uppercase;
+            letter-spacing: .6px;
+            padding: 12px 8px 6px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--tg-text);
+            font-size: 14px;
+            font-weight: 600;
+            transition: background .18s, color .18s;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .sidebar-link i {
+            font-size: 18px;
+            width: 22px;
+            text-align: center;
+            color: var(--tg-muted);
+            flex-shrink: 0;
+        }
+
+        .sidebar-link:hover i,
+        .sidebar-link.active i {
+            color: #2563eb;
+        }
+
+        .sidebar-footer {
+            padding: 12px 16px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .top-navbar {
+            background: rgba(255, 255, 255, .94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid #e9eef5;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, .04);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+
+        .top-navbar .container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-hamburger {
+            background: #f1f5f9;
+            border: none;
+            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--tg-text);
+            cursor: pointer;
+            transition: background .2s;
+            flex-shrink: 0;
+        }
+
+        .btn-hamburger:hover {
+            background: #e2e8f0;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--tg-text);
+            text-decoration: none;
+            flex: 1;
+        }
+
+        .nav-logo img {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+        }
+
+        .btn-nav-profile {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border: none;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .hero-section {
+            padding: 20px 0 16px;
+        }
+
+        .hero-greeting {
+            font-size: 13px;
+            color: var(--tg-muted);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .hero-name {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--tg-text);
+            letter-spacing: -.5px;
+            margin-bottom: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .stat-tile {
+            background: #fff;
+            border-radius: 18px;
+            padding: 16px 14px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, .06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-tile-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .stat-tile-val {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--tg-text);
+            letter-spacing: -.5px;
+            line-height: 1;
+        }
+
+        .stat-tile-label {
+            font-size: 11px;
+            color: var(--tg-muted);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .platform-banner {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb, #7c3aed);
+            border-radius: 22px;
+            padding: 20px;
+            color: #fff;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-banner::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .platform-banner::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 30px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .pb-title {
+            font-size: 13px;
+            font-weight: 600;
+            opacity: .85;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .pb-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .pb-stat {
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .pb-stat-val {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -.5px;
+        }
+
+        .pb-stat-label {
+            font-size: 10px;
+            opacity: .75;
+            font-weight: 500;
         }
 
         .section-head {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-
+            justify-content: space-between;
             margin-bottom: 14px;
         }
 
         .section-title {
-            font-size: 1.15rem;
+            font-size: 17px;
             font-weight: 800;
+            color: var(--tg-text);
         }
 
         .section-link {
-            text-decoration: none;
-            color: var(--primary);
-
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 600;
+            color: #2563eb;
+            text-decoration: none;
         }
 
-        /* HORIZONTAL */
+        .app-section {
+            margin-bottom: 28px;
+        }
 
-        .horizontal-scroll {
+        .carousel-wrap {
+            position: relative;
+        }
+
+        .carousel-track {
             display: flex;
             gap: 12px;
-
             overflow-x: auto;
-            overflow-y: hidden;
-
-            scroll-behavior: smooth;
-
-            padding-bottom: 6px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
+            scrollbar-width: none;
         }
 
-        .horizontal-scroll::-webkit-scrollbar {
+        .carousel-track::-webkit-scrollbar {
             display: none;
         }
 
-        /* COURSE CARD */
+        .carousel-track>* {
+            scroll-snap-align: start;
+        }
 
         .course-card {
-            position: relative;
-
-            min-width: 145px;
-            max-width: 145px;
-
-            background: white;
-
-            border-radius: 24px;
-
+            min-width: 148px;
+            max-width: 148px;
+            border-radius: 18px;
             overflow: hidden;
-
+            cursor: pointer;
+            position: relative;
             flex-shrink: 0;
-
-            box-shadow: var(--shadow);
-
-            transition: .25s ease;
+            transition: transform .22s;
         }
 
         .course-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .course-image {
             width: 100%;
-            height: 100px;
-
+            height: 108px;
             object-fit: cover;
+            display: block;
         }
 
         .course-overlay {
             position: absolute;
             inset: 0;
-
-            background:
-                linear-gradient(to top,
-                    rgba(15, 23, 42, .88),
-                    transparent 60%);
+            background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, .72) 100%);
         }
 
         .course-body {
             position: absolute;
-
-            bottom: 12px;
-            left: 12px;
-            right: 12px;
-
-            color: white;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 10px 12px;
         }
 
         .course-tag {
             display: inline-block;
-
-            padding: 4px 8px;
-
-            border-radius: 999px;
-
-            background:
-                rgba(255, 255, 255, .14);
-
-            backdrop-filter: blur(10px);
-
             font-size: 9px;
-            font-weight: 700;
-
-            margin-bottom: 7px;
+            font-weight: 800;
+            background: rgba(255, 255, 255, .18);
+            color: #fff;
+            border-radius: 999px;
+            padding: 2px 8px;
+            margin-bottom: 4px;
+            backdrop-filter: blur(4px);
         }
 
         .course-name {
-            font-size: .95rem;
-            font-weight: 700;
-        }
-
-        /* MINI CARD */
-
-        .mini-card {
-            min-width: 120px;
-
-            background: white;
-
-            border-radius: 22px;
-
-            padding: 14px;
-
-            flex-shrink: 0;
-
-            box-shadow: var(--shadow);
-
-            transition: .25s ease;
-        }
-
-        .mini-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .mini-icon {
-            width: 44px;
-            height: 44px;
-
-            border-radius: 14px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background:
-                linear-gradient(135deg,
-                    #2563eb,
-                    #3b82f6);
-
-            color: white;
-
-            font-size: 18px;
-
-            margin-bottom: 10px;
-        }
-
-        .mini-title {
-            font-size: .85rem;
-            font-weight: 700;
-        }
-
-        /* DARK TEST CARD */
-
-        .test-card {
-            min-width: 180px;
-
-            background:
-                linear-gradient(135deg,
-                    #0f172a,
-                    #1e293b);
-
-            border-radius: 24px;
-
-            padding: 18px;
-
-            color: white;
-
-            flex-shrink: 0;
-
-            position: relative;
-
-            overflow: hidden;
-        }
-
-        .test-card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 130px;
-            height: 130px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255, 255, 255, .05);
-
-            top: -50px;
-            right: -50px;
-        }
-
-        .test-top {
-            font-size: 10px;
-            opacity: .7;
-
-            margin-bottom: 10px;
-        }
-
-        .test-name {
-            font-size: 1rem;
-            font-weight: 800;
-
-            margin-bottom: 14px;
-        }
-
-        .test-btn {
-            border: none;
-
-            width: 38px;
-            height: 38px;
-
-            border-radius: 50%;
-
-            background: white;
-
-            color: #0f172a;
-        }
-
-        /* CATEGORY CHIPS */
-
-        .chips {
-            display: flex;
-            gap: 10px;
-
-            overflow-x: auto;
-
-            margin-top: 20px;
-        }
-
-        .chips::-webkit-scrollbar {
-            display: none;
-        }
-
-        .chip {
-            padding: 10px 16px;
-
-            border-radius: 999px;
-
-            background: white;
-
-            white-space: nowrap;
-
             font-size: 13px;
             font-weight: 700;
-
-            box-shadow:
-                0 4px 14px rgba(15, 23, 42, .04);
-        }
-
-        .chip.active {
-            background:
-                linear-gradient(135deg,
-                    #2563eb,
-                    #3b82f6);
-
-            color: white;
-        }
-
-        /* MOBILE */
-
-        @media(max-width:768px) {
-
-            .container {
-                padding-left: 14px;
-                padding-right: 14px;
-            }
-
-            .hero {
-                padding-top: 70px;
-            }
-
-            .hero-title {
-                font-size: 1.7rem;
-            }
-
-            .hero-boxes {
-                gap: 8px;
-            }
-
-            .hero-box {
-                padding: 12px;
-            }
-
-            .course-card {
-                min-width: 135px;
-                max-width: 135px;
-            }
-
-            .mini-card {
-                min-width: 110px;
-            }
-
-            .test-card {
-                min-width: 165px;
-            }
+            color: #fff;
+            line-height: 1.2;
         }
 
         .publisher-card {
-            position: relative;
             min-width: 170px;
             max-width: 170px;
-            height: 130px;
-
-            border-radius: 22px;
+            height: 120px;
+            border-radius: 18px;
             overflow: hidden;
-
+            cursor: pointer;
+            position: relative;
             flex-shrink: 0;
-
-            box-shadow: var(--shadow);
-            transition: .25s ease;
+            transition: transform .22s;
         }
 
         .publisher-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
         }
 
         .publisher-img {
@@ -521,453 +507,430 @@
         .publisher-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top,
-                    rgba(15, 23, 42, .85),
-                    transparent 60%);
+            background: linear-gradient(180deg, transparent 30%, rgba(15, 23, 42, .7) 100%);
         }
 
         .publisher-body {
             position: absolute;
-            bottom: 12px;
-            left: 12px;
-            right: 12px;
-            color: white;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 12px 12px;
         }
 
         .publisher-name {
-            font-size: .95rem;
+            font-size: 14px;
             font-weight: 800;
+            color: #fff;
         }
 
         .publisher-meta {
-            font-size: 12px;
-            opacity: .85;
-            margin-top: 2px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, .75);
         }
 
-        /* =========================
-   RESPONSIVE FIXES
-========================= */
-
-        @media (max-width: 768px) {
-
-            /* COURSE CARD */
-
-            .course-card {
-                min-width: 128px;
-                max-width: 128px;
-                border-radius: 20px;
-            }
-
-            .course-image {
-                height: 92px;
-            }
-
-            .course-body {
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-            }
-
-            .course-name {
-                font-size: .82rem;
-            }
-
-            .course-tag {
-                font-size: 8px;
-                padding: 3px 7px;
-            }
-
-            /* PUBLISHER CARD */
-
-            .publisher-card {
-                min-width: 145px;
-                max-width: 145px;
-                height: 112px;
-                border-radius: 18px;
-            }
-
-            .publisher-body {
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-            }
-
-            .publisher-name {
-                font-size: .82rem;
-                line-height: 1.2;
-            }
-
-            .publisher-meta {
-                font-size: 10px;
-            }
-
-            /* TEST CARD */
-
-            .test-card {
-                min-width: 155px;
-                border-radius: 20px;
-                padding: 15px;
-            }
-
-            .test-top {
-                font-size: 8px;
-                margin-bottom: 8px;
-            }
-
-            .test-name {
-                font-size: .88rem;
-                margin-bottom: 12px;
-            }
-
-            .test-btn {
-                width: 34px;
-                height: 34px;
-                font-size: 13px;
-            }
-
-            /* SECTION TITLE */
-
-            .section-title {
-                font-size: 1rem;
-            }
-
-            .section-link {
-                font-size: 12px;
-            }
-
-            /* GAP */
-
-            .horizontal-scroll {
-                gap: 10px;
-            }
+        .test-card-home {
+            min-width: 180px;
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            border-radius: 20px;
+            padding: 18px 16px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform .22s;
+            position: relative;
+            overflow: hidden;
         }
 
-
-        /* EXTRA SMALL DEVICES */
-
-        @media (max-width: 420px) {
-
-            .course-card {
-                min-width: 118px;
-                max-width: 118px;
-            }
-
-            .course-image {
-                height: 84px;
-            }
-
-            .publisher-card {
-                min-width: 135px;
-                max-width: 135px;
-                height: 104px;
-            }
-
-            .test-card {
-                min-width: 145px;
-            }
-
-            .publisher-name,
-            .course-name,
-            .test-name {
-                font-size: .78rem;
-            }
-
-            .publisher-meta {
-                font-size: 9px;
-            }
-
-            .horizontal-scroll {
-                gap: 8px;
-            }
+        .test-card-home:hover {
+            transform: translateY(-4px);
         }
 
+        .test-card-home::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+        }
 
-        /* LARGE TABLETS + DESKTOP */
+        .tc-top {
+            font-size: 9px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, .7);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: 8px;
+        }
 
-        @media (min-width: 992px) {
+        .tc-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 14px;
+        }
 
-            .course-card {
-                min-width: 175px;
-                max-width: 175px;
-            }
+        .tc-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
 
-            .course-image {
-                height: 120px;
-            }
+        .session-quick-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, .07);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform .22s, box-shadow .22s;
+        }
 
-            .publisher-card {
-                min-width: 210px;
-                max-width: 210px;
-                height: 150px;
-            }
-
-            .publisher-name {
-                font-size: 1rem;
-            }
-
-            .publisher-meta {
-                font-size: 13px;
-            }
-
-            .test-card {
-                min-width: 220px;
-            }
-
-            .test-name {
-                font-size: 1.1rem;
-            }
+        .session-quick-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, .1);
+            color: inherit;
         }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QX686G4TT9"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-QX686G4TT9');
 </script>
 
-
 <body>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
-    <!-- NAVBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <div class="sidebar-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+            </div>
+            <div>
+                <div class="sidebar-brand">Pulse Go</div>
+                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+            </div>
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
 
-    <nav class="navbar sticky-top">
+        <div class="sidebar-user" id="sidebarUser">
+            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+            <div>
+                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+                <div class="sidebar-user-sub">Pulse Go Member</div>
+            </div>
+        </div>
 
-        <div class="container">
-
-            <a href="#" class="navbar-brand d-flex align-items-center gap-2">
-
-                <img src="../assets/img/PulseGo.jpg">
-
-                Pulse Go
-
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Asosiy</div>
+            <a href="/" class="sidebar-link active" onclick="closeSidebar()">
+                <i class="bi bi-house-fill"></i> Asosiy
+            </a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-journals"></i> Tayyorlanish
+            </a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="sidebar-section-label">O'quv materiallari</div>
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-book-half"></i> Online Darslar
+            </a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-collection-fill"></i> Kitoblar
+            </a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-body-text"></i> Anatomiya
+            </a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
+            </a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-flask-fill"></i> Kimyo
+            </a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-egg-fill"></i> Embriologiya
+            </a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
+            </a>
 
-            <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-                <ul class="navbar-nav gap-3 align-items-lg-center">
-                    <li class="nav-item"><a class="nav-link active" href="#about">Biz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Xizmatlar</a></li>
-                    <li class="nav-item">
-                        <a class="btn btn-light btn-sm px-3" href="https://t.me/broinibek" target="_blank">
-                            <i class="bi bi-telephone-fill me-1"></i> Kontakt
-                        </a>
-                    </li>
+            <div class="sidebar-section-label">Profil</div>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-person-fill"></i> Mening profilim
+            </a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
+            </a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
+            </a>
+        </nav>
 
-                </ul>
-            </div>
-
+        <div class="sidebar-footer">
+            <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
+                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+            </a>
         </div>
+    </aside>
 
+    <nav class="top-navbar">
+        <div class="container">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+                Pulse Go
+            </a>
+            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+        </div>
     </nav>
 
-    <!-- COURSES -->
-
-    <section class="app-section">
-
+    <section class="hero-section">
         <div class="container">
+            <div class="hero-greeting">Xush kelibsiz,</div>
+            <div class="hero-name" id="heroUserName">Foydalanuvchi 👋</div>
 
-            <div class="section-head">
-
-                <div class="section-title">
-                    Online darslar
+            <div class="stats-grid">
+                <div class="stat-tile">
+                    <div class="stat-tile-icon" style="background:#eff6ff;color:#2563eb">
+                        <i class="bi bi-ui-checks-grid"></i>
+                    </div>
+                    <div class="stat-tile-val" id="statTotalTests">0</div>
+                    <div class="stat-tile-label">Jami testlar</div>
                 </div>
-
-                <a href="lessons/index.html" class="section-link">
-                    View all
-                </a>
-
+                <div class="stat-tile">
+                    <div class="stat-tile-icon" style="background:#f0fdf4;color:#16a34a">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <div class="stat-tile-val" id="statAccuracy">0%</div>
+                    <div class="stat-tile-label">O'rtacha aniqlik</div>
+                </div>
+                <div class="stat-tile">
+                    <div class="stat-tile-icon" style="background:#fdf4ff;color:#7c3aed">
+                        <i class="bi bi-journals"></i>
+                    </div>
+                    <div class="stat-tile-val" id="statSessions">0</div>
+                    <div class="stat-tile-label">Sessiyalar</div>
+                </div>
+                <div class="stat-tile">
+                    <div class="stat-tile-icon" style="background:#fff7ed;color:#ea580c">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+                    <div class="stat-tile-val" id="statMistakes">0</div>
+                    <div class="stat-tile-label">Xatolar</div>
+                </div>
             </div>
-
-            <div class="horizontal-scroll">
-
-                <div class="course-card" onclick="window.open('https://t.me/impuls_mind/305')">
-
-                    <img src=" assets/img/impulsmind.jpg" class="course-image">
-
-                    <div class="course-overlay"></div>
-
-                    <div class="course-body">
-
-                        <div class="course-tag">
-                            TOP
-                        </div>
-
-                        <div class="course-name">
-                            Impuls Mind
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="course-card" onclick="window.open('https://t.me/dr_muhammadmaruf/191')">
-
-                    <img src="/assets/img/MM.jpg" class="course-image">
-
-                    <div class="course-overlay"></div>
-
-                    <div class="course-body">
-
-                        <div class="course-tag">
-                            NEW
-                        </div>
-
-                        <div class="course-name">
-                            dr. M M
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="course-card" onclick="window.open('https://t.me/Doctor_Ubaydullaev/785')">
-
-                    <img src="/assets/img/drubaydullayev.jpg" class="course-image">
-
-                    <div class="course-overlay"></div>
-
-                    <div class="course-body">
-
-                        <div class="course-tag">
-                            PRO
-                        </div>
-
-                        <div class="course-name">
-                            dr. Ubaydullayev
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
         </div>
-
     </section>
 
-    <!-- BOOKS (PRO VERSION) -->
-
     <section class="app-section">
-
         <div class="container">
-
-            <div class="section-head">
-
-                <div class="section-title">
-                    Kitoblar
-                </div>
-
-                <a href="#" class="section-link">
-                    Open
-                </a>
-
-            </div>
-
-            <div class="horizontal-scroll">
-
-
-                <!-- CARD 1 -->
-                <div class="publisher-card" onclick="window.location.href='../books/?id=medical-details'">
-
-                    <img src="/assets/img/photo_2025-10-15_15-59-01.jpg" class="publisher-img">
-
-                    <div class="publisher-overlay"></div>
-
-                    <div class="publisher-body">
-
-                        <div class="publisher-name">
-                            Medical Details
-                        </div>
-
-                        <div class="publisher-meta">
-                            45+ books
-                        </div>
-
+            <div class="platform-banner">
+                <div class="pb-title"><i class="bi bi-stars me-1"></i>Platforma haqida</div>
+                <div class="pb-stats">
+                    <div class="pb-stat">
+                        <div class="pb-stat-val">500+</div>
+                        <div class="pb-stat-label">Foydalanuvchi</div>
                     </div>
-
-                </div>
-
-                <!-- CARD 2 -->
-                <div class="publisher-card" onclick="window.location.href='../books/?id=iti-books'">
-
-                    <img src="/assets/img/ITI kitoblar.jpg" class="publisher-img">
-
-                    <div class="publisher-overlay"></div>
-
-                    <div class="publisher-body">
-
-                        <div class="publisher-name">
-                            ITI Kitoblar
-                        </div>
-
-                        <div class="publisher-meta">
-                            40+ books
-                        </div>
-
+                    <div class="pb-stat">
+                        <div class="pb-stat-val">3000+</div>
+                        <div class="pb-stat-label">Test savollari</div>
                     </div>
-
+                    <div class="pb-stat">
+                        <div class="pb-stat-val">6</div>
+                        <div class="pb-stat-label">Fanlar</div>
+                    </div>
+                    <div class="pb-stat">
+                        <div class="pb-stat-val">85+</div>
+                        <div class="pb-stat-label">Kitoblar</div>
+                    </div>
                 </div>
             </div>
-
         </div>
-
-    </section>
-    <!-- TESTS -->
-
-    <section class="app-section">
-
-        <div class="container">
-
-            <div class="section-head">
-
-                <div class="section-title">
-                    Testlar
-                </div>
-
-                <a href="#" class="section-link">
-                    Start
-                </a>
-
-            </div>
-
-            <div class="horizontal-scroll">
-
-                <a href="../anatomy/yn/index.html" class="text-decoration-none text-reset d-block h-100">
-                    <div class="test-card">
-
-                        <div class="test-top">
-                            500+ QUESTIONS
-                        </div>
-
-                        <div class="test-name">
-                            Anatomiya YN
-                        </div>
-
-                        <button class="test-btn">
-                            <i class="bi bi-play-fill"></i>
-                        </button>
-
-                    </div>
-                </a>
-
-            </div>
-
-        </div>
-
     </section>
 
-    <!-- BOTTOM NAVIGATION FOOTER -->
+    <section class="app-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-title">Online darslar</div>
+                <a href="/lessons" class="section-link">Barchasi <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="carousel-track" id="coursesTrack">
+                    <div class="course-card" onclick="window.open('https://t.me/impuls_mind/305')">
+                        <img src="/assets/img/impulsmind.jpg" class="course-image" alt="">
+                        <div class="course-overlay"></div>
+                        <div class="course-body">
+                            <div class="course-tag">TOP</div>
+                            <div class="course-name">Impuls Mind</div>
+                        </div>
+                    </div>
+                    <div class="course-card" onclick="window.open('https://t.me/dr_muhammadmaruf/191')">
+                        <img src="/assets/img/MM.jpg" class="course-image" alt="">
+                        <div class="course-overlay"></div>
+                        <div class="course-body">
+                            <div class="course-tag">NEW</div>
+                            <div class="course-name">dr. M M</div>
+                        </div>
+                    </div>
+                    <div class="course-card" onclick="window.open('https://t.me/Doctor_Ubaydullaev/785')">
+                        <img src="/assets/img/drubaydullayev.jpg" class="course-image" alt="">
+                        <div class="course-overlay"></div>
+                        <div class="course-body">
+                            <div class="course-tag">PRO</div>
+                            <div class="course-name">dr. Ubaydullayev</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-title">Kitoblar</div>
+                <a href="/books/" class="section-link">Ochish <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="carousel-track" id="booksTrack">
+                    <div class="publisher-card" onclick="window.location.href='/books/?id=medical-details'">
+                        <img src="/assets/img/photo_2025-10-15_15-59-01.jpg" class="publisher-img" alt="">
+                        <div class="publisher-overlay"></div>
+                        <div class="publisher-body">
+                            <div class="publisher-name">Medical Details</div>
+                            <div class="publisher-meta">45+ kitob</div>
+                        </div>
+                    </div>
+                    <div class="publisher-card" onclick="window.location.href='/books/?id=iti-books'">
+                        <img src="/assets/img/ITI kitoblar.jpg" class="publisher-img" alt="">
+                        <div class="publisher-overlay"></div>
+                        <div class="publisher-body">
+                            <div class="publisher-name">ITI Kitoblar</div>
+                            <div class="publisher-meta">40+ kitob</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-title">Testlar</div>
+                <a href="/tests/" class="section-link">Barchasi <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="carousel-track" id="testsTrack">
+                    <a href="/anatomy/yn/index.html" class="text-decoration-none">
+                        <div class="test-card-home">
+                            <div class="tc-top">500+ SAVOLLAR</div>
+                            <div class="tc-name">Anatomiya YN</div>
+                            <button class="tc-btn"><i class="bi bi-play-fill"></i></button>
+                        </div>
+                    </a>
+                    <a href="/cellbiology/" class="text-decoration-none">
+                        <div class="test-card-home" style="background:linear-gradient(135deg,#065f46,#059669)">
+                            <div class="tc-top">200+ SAVOLLAR</div>
+                            <div class="tc-name">Hujayra Biologiyasi</div>
+                            <button class="tc-btn"><i class="bi bi-play-fill"></i></button>
+                        </div>
+                    </a>
+                    <a href="/chemistry/" class="text-decoration-none">
+                        <div class="test-card-home" style="background:linear-gradient(135deg,#7c2d12,#ea580c)">
+                            <div class="tc-top">300+ SAVOLLAR</div>
+                            <div class="tc-name">Kimyo</div>
+                            <button class="tc-btn"><i class="bi bi-play-fill"></i></button>
+                        </div>
+                    </a>
+                    <a href="/embriology/" class="text-decoration-none">
+                        <div class="test-card-home" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)">
+                            <div class="tc-top">150+ SAVOLLAR</div>
+                            <div class="tc-name">Embriologiya</div>
+                            <button class="tc-btn"><i class="bi bi-play-fill"></i></button>
+                        </div>
+                    </a>
+                    <a href="/cases/" class="text-decoration-none">
+                        <div class="test-card-home" style="background:linear-gradient(135deg,#0c4a6e,#0284c7)">
+                            <div class="tc-top">100+ SAVOLLAR</div>
+                            <div class="tc-name">Klinik holatlar</div>
+                            <button class="tc-btn"><i class="bi bi-play-fill"></i></button>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-section">
+        <div class="container">
+            <div class="section-head">
+                <div class="section-title">Tezkor o'tishlar</div>
+            </div>
+            <div class="d-flex flex-column gap-2">
+                <a href="/preparation/" class="session-quick-card">
+                    <div
+                        style="width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#2563eb,#1d4ed8);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0">
+                        <i class="bi bi-journals"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:14px;font-weight:700">Tayyorlanish</div>
+                        <div style="font-size:12px;color:var(--tg-muted)">Sessiyalar va progress</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto text-muted"></i>
+                </a>
+                <a href="/xatolar/" class="session-quick-card">
+                    <div
+                        style="width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#dc2626,#b91c1c);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:14px;font-weight:700">Xatolar tahlili</div>
+                        <div style="font-size:12px;color:var(--tg-muted)">Noto'g'ri javoblarni ko'rib chiqing</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto text-muted"></i>
+                </a>
+                <a href="/profile" class="session-quick-card">
+                    <div
+                        style="width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,#7c3aed,#6d28d9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;flex-shrink:0">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:14px;font-weight:700">Profilim</div>
+                        <div style="font-size:12px;color:var(--tg-muted)">Statistika va sozlamalar</div>
+                    </div>
+                    <i class="bi bi-chevron-right ms-auto text-muted"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <nav class="bottom-nav d-lg-none">
-        <a href="../" class="bn-item active">
+        <a href="/" class="bn-item active">
             <i class="bi bi-house-fill"></i>
             <span>Asosiy</span>
         </a>
@@ -975,25 +938,101 @@
             <i class="bi bi-grid-3x3-gap-fill"></i>
             <span>QBank</span>
         </a>
-        <a href="/preparation/" class="bn-item bn-fab">
-            <span class="bn-fab-btn"><i class="bi bi-plus-lg"></i></span>
-            <!-- <span>Tayyorlanish</span> -->
+        <a href="/preparation/" class="bn-item">
+            <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+            <span>Tayyorlanish</span>
         </a>
         <a href="/lessons" class="bn-item">
             <i class="bi bi-book-half"></i>
             <span>Darslar</span>
         </a>
-        <a href="../profile" class="bn-item">
+        <a href="/profile" class="bn-item">
             <i class="bi bi-person-fill"></i>
             <span>Profil</span>
         </a>
     </nav>
 
-    <!-- Bootstrap -->
-    <script type="module" src="./auth-guard.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/data.js"></script>
+    <script type="module" src="/auth-guard.js"></script>
 
+    <script>
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function loadStats() {
+            try {
+                var raw = localStorage.getItem('pulsego_data_v1');
+                if (!raw) return;
+                var d = JSON.parse(raw);
+
+                var user = (d && d.user) ? d.user : {};
+                var name = user.name || 'Foydalanuvchi';
+                var initial = name.charAt(0).toUpperCase();
+
+                document.getElementById('heroUserName').textContent = name + ' 👋';
+                document.getElementById('sidebarUserName').textContent = name;
+                document.getElementById('sidebarAvatarText').textContent = initial;
+                document.getElementById('navAvatarBtn').textContent = initial;
+
+                var tests = Array.isArray(d.tests) ? d.tests : [];
+                var totalTests = tests.length;
+                var totalCorrect = 0;
+                var totalQ = 0;
+                tests.forEach(function (t) {
+                    totalQ += (t.totalQuestions || 0);
+                    totalCorrect += (t.correctAnswers || 0);
+                });
+                var pct = totalQ > 0 ? Math.round(totalCorrect / totalQ * 100) : 0;
+
+                var sessions = Array.isArray(d.preparationSessions) ? d.preparationSessions : [];
+                var mistakes = Array.isArray(d.mistakes) ? d.mistakes : [];
+                var resolved = Array.isArray(d.resolvedMistakes) ? d.resolvedMistakes : [];
+                var activeMistakes = mistakes.length - resolved.length;
+
+                document.getElementById('statTotalTests').textContent = totalTests;
+                document.getElementById('statAccuracy').textContent = pct + '%';
+                document.getElementById('statSessions').textContent = sessions.length;
+                document.getElementById('statMistakes').textContent = Math.max(0, activeMistakes);
+            } catch (e) {
+                console.warn('Stats load error', e);
+            }
+        }
+
+        function autoScroll(trackId, intervalMs) {
+            var track = document.getElementById(trackId);
+            if (!track) return;
+            var direction = 1;
+            setInterval(function () {
+                var maxScroll = track.scrollWidth - track.clientWidth;
+                if (maxScroll <= 0) return;
+                var step = track.children[0] ? track.children[0].offsetWidth + 12 : 160;
+                var next = track.scrollLeft + direction * step;
+                if (next >= maxScroll) {
+                    direction = -1;
+                    next = maxScroll;
+                } else if (next <= 0) {
+                    direction = 1;
+                    next = 0;
+                }
+                track.scrollTo({ left: next, behavior: 'smooth' });
+            }, intervalMs);
+        }
+
+        loadStats();
+        setTimeout(function () { autoScroll('coursesTrack', 3200); }, 1000);
+        setTimeout(function () { autoScroll('booksTrack', 4000); }, 1600);
+        setTimeout(function () { autoScroll('testsTrack', 2800); }, 800);
+    </script>
 </body>
 
 </html>
