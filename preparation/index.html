@@ -801,21 +801,56 @@
             t._timer = setTimeout(function() { t.style.opacity = '0'; }, 2500);
         }
 
-        function checkShareParam() {
-            var params = new URLSearchParams(location.search);
-            var encoded = params.get('share');
-            if (!encoded) return;
+        function getShareTokenFromUrl() {
+            var token = null;
             try {
-                var payload = JSON.parse(decodeBase64Url(decodeURIComponent(encoded)));
-                showShareImportModal(payload);
+                var params = new URLSearchParams(location.search || '');
+                token = params.get('share');
+            } catch (e) { }
+
+            if (!token && location.hash) {
+                var h = location.hash.replace(/^#/, '');
+                if (h.indexOf('share=') === 0) token = h.slice(6);
+                if (!token && h.indexOf('?') !== -1) {
+                    try {
+                        var hParams = new URLSearchParams(h.split('?')[1]);
+                        token = hParams.get('share');
+                    } catch (e2) { }
+                }
+            }
+
+            return token;
+        }
+
+        function checkShareParam() {
+            var encoded = getShareTokenFromUrl();
+            if (!encoded) return;
+
+            var decodedOnce = encoded;
+            try { decodedOnce = decodeURIComponent(encoded); } catch (e) { }
+
+            try {
+                var payload = JSON.parse(decodeBase64Url(decodedOnce));
+                showShareImportModal(payload, 0);
             } catch (e) {
                 console.warn('Invalid share param', e);
+                showToast('Ulashish havolasi buzilgan yoki noto\'g\'ri.');
             }
         }
 
-        function showShareImportModal(payload) {
+        function showShareImportModal(payload, retryCount) {
+            retryCount = retryCount || 0;
             var bodyEl = document.getElementById('shareImportBody');
-            if (!bodyEl) { console.warn('shareImportBody not found'); return; }
+            if (!bodyEl) {
+                if (retryCount < 12) {
+                    setTimeout(function () { showShareImportModal(payload, retryCount + 1); }, 80);
+                    return;
+                }
+                console.warn('shareImportBody not found');
+                var shouldImport = confirm('Sessiya topildi. Modal ochilmadi. Baribir sessiyani qo\'shishni xohlaysizmi?');
+                if (shouldImport) importSharedSession(payload);
+                return;
+            }
 
             var et = getExamType(payload.examType);
             var etLabel = et ? et.label : payload.examType;
@@ -848,7 +883,13 @@
 
             window._sharePayload = payload;
             bodyEl.innerHTML = html;
-            bootstrap.Modal.getOrCreateInstance(document.getElementById('shareImportModal')).show();
+            var modalEl = document.getElementById('shareImportModal');
+            if (window.bootstrap && bootstrap.Modal && modalEl) {
+                bootstrap.Modal.getOrCreateInstance(modalEl).show();
+            } else {
+                var shouldImport2 = confirm('Sessiya topildi. Oynani ochib bo\'lmadi. Sessiyani qo\'shaymi?');
+                if (shouldImport2) importSharedSession(payload);
+            }
         }
 
         function importSharedSession(payload) {
@@ -872,9 +913,16 @@
         }
 
         // ── INIT ──────────────────────────────────────────────
-        renderSessions();
-        // defer checkShareParam so modal HTML (below this script) is parsed first
-        setTimeout(checkShareParam, 0);
+        function initPreparationPage() {
+            renderSessions();
+            checkShareParam();
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPreparationPage);
+        } else {
+            initPreparationPage();
+        }
     </script>
 
     <!-- SHARE LINK MODAL -->
