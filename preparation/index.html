@@ -116,6 +116,7 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
+            margin-top: 7px;
         }
 
         .sc-type-icon {
@@ -226,7 +227,7 @@
 
         .sc-countdown {
             position: absolute;
-            top: 12px;
+            top: 5px;
             right: 12px;
             background: #f1f5f9;
             border-radius: 999px;
@@ -935,7 +936,7 @@
 
                 return '<div class="col-12 col-md-6">'
                     + '<div class="session-card ' + accentClass(s.examType) + '" onclick="location.href=\'/preparation/session.html?id=' + s.id + '\'" style="position:relative">'
-                    + '<button class="btn btn-sm" onclick="event.stopPropagation();shareSession(\'' + s.id + '\')" title="Ulashish" style="position:absolute;bottom:12px;right:12px;z-index:2;background:rgba(241,245,249,.92);border:none;border-radius:12px;padding:6px 10px;font-size:13px;color:#475569;backdrop-filter:blur(8px)"><i class="bi bi-share"></i></button>'
+                    + '<button class="btn btn-sm" onclick="event.stopPropagation();shareSession(\'' + s.id + '\')" title="Ulashish" style="position:absolute;bottom:40px;right:12px;z-index:2;background:rgba(241,245,249,.92);border:none;border-radius:12px;padding:6px 10px;font-size:13px;color:#475569;backdrop-filter:blur(8px)"><i class="bi bi-share"></i></button>'
                     + (cdLabel ? '<div class="sc-countdown ' + cdClass + '"><i class="bi bi-alarm me-1"></i>' + cdLabel + '</div>' : '')
                     + '<div class="sc-header">'
                     + '<div class="sc-type-icon" style="background:' + (et ? et.gradient : '#2563eb') + '"><i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
@@ -1435,14 +1436,9 @@
 
             if (alreadyAdded) {
 
-                mainButton =
-                    '<button class="btn btn-success flex-fill rounded-3" ' +
-                    'onclick="openExistingSharedSession(\'' +
-                    existingSession.id +
-                    '\')">' +
-                    '<i class="bi bi-box-arrow-in-right me-1"></i>' +
-                    'Sessiyani ochish' +
-                    '</button>';
+                location.href =
+                    '/preparation/session.html?id=' +
+                    encodeURIComponent(existingSession.id);
 
             } else {
 
