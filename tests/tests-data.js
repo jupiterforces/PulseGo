@@ -5,8 +5,33 @@
 
 const testGroups = [
   {
-    id: "anatomy",
+    id: "cellbiology",
+    title: "Hujayra biologiyasi",
+    subtitle: "Mavzular bo'yicha testlar",
+    totalQuestions: 454,
+    icon: "bi-virus",
+    color: "success",
+    tests: [
+      {
+        id: "cellbio-all",
+        title: "Cellbio",
+        count: "454 ta",
+        url: "/cellbiology",
+      },
+    ],
+  },
+  {
+    id: "anatomy1",
     title: "Anatomiya",
+    subtitle: "Mavzular bo'yicha testlar",
+    totalQuestions: "Tez orada",
+    icon: "bi-heart-pulse",
+    color: "danger",
+    tests: [],
+  },
+  {
+    id: "anatomy2",
+    title: "Anatomiya 2-semester",
     subtitle: "Mavzular bo'yicha testlar",
     totalQuestions: 1000,
     icon: "bi-heart-pulse",
@@ -27,24 +52,17 @@ const testGroups = [
     ],
   },
   {
-    id: "cellbiology",
-    title: "Hujayra biologiyasi",
+    id: "anatomy3",
+    title: "Anatomiya 3-semester",
     subtitle: "Mavzular bo'yicha testlar",
-    totalQuestions: 454,
-    icon: "bi-virus",
-    color: "success",
-    tests: [
-      {
-        id: "cellbio-all",
-        title: "Cellbio",
-        count: "454 ta",
-        url: "/cellbiology",
-      },
-    ],
+    totalQuestions: "Tez orada",
+    icon: "bi-heart-pulse",
+    color: "danger",
+    tests: [],
   },
   {
-    id: "embriology",
-    title: "Embriologiya",
+    id: "embriology2",
+    title: "Embriologiya 2-semester",
     subtitle: "Mavzular bo'yicha testlar",
     totalQuestions: 350,
     icon: "bi-baby",
@@ -63,6 +81,15 @@ const testGroups = [
         url: "/embriology/cases.html",
       },
     ],
+  },
+  {
+    id: "embriology3",
+    title: "Embriologiya 3-semester",
+    subtitle: "Mavzular bo'yicha testlar",
+    totalQuestions: "Tez orada",
+    icon: "bi-baby",
+    color: "warning",
+    tests: [],
   },
   {
     id: "chemistry",

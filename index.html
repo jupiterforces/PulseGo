@@ -481,36 +481,21 @@
 
     <section class="hero-section">
         <div class="container">
-            <div class="hero-name" id="heroUserName">Foydalanuvchi 👋</div>
 
             <div class="stats-grid">
                 <div class="stat-tile">
                     <div class="stat-tile-icon" style="background:#eff6ff;color:#2563eb">
                         <i class="bi bi-ui-checks-grid"></i>
                     </div>
-                    <div class="stat-tile-val" id="statTotalTests">0</div>
-                    <div class="stat-tile-label">Jami testlar</div>
+                    <div class="stat-tile-val" id="accuracyDetail">0</div>
+                    <div class="stat-tile-label">Ishlangan savollar</div>
                 </div>
                 <div class="stat-tile">
                     <div class="stat-tile-icon" style="background:#f0fdf4;color:#16a34a">
                         <i class="bi bi-graph-up-arrow"></i>
                     </div>
-                    <div class="stat-tile-val" id="statAccuracy">0%</div>
+                    <div class="stat-tile-val" id="accuracyText">0%</div>
                     <div class="stat-tile-label">O'rtacha aniqlik</div>
-                </div>
-                <div class="stat-tile">
-                    <div class="stat-tile-icon" style="background:#fdf4ff;color:#7c3aed">
-                        <i class="bi bi-journals"></i>
-                    </div>
-                    <div class="stat-tile-val" id="statSessions">0</div>
-                    <div class="stat-tile-label">Sessiyalar</div>
-                </div>
-                <div class="stat-tile">
-                    <div class="stat-tile-icon" style="background:#fff7ed;color:#ea580c">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                    </div>
-                    <div class="stat-tile-val" id="statMistakes">0</div>
-                    <div class="stat-tile-label">Xatolar</div>
                 </div>
             </div>
         </div>
@@ -587,7 +572,7 @@
             </div>
             <div class="carousel-wrap">
                 <div class="carousel-track" id="booksTrack">
-                    <div class="publisher-card" onclick="window.location.href='/books/?id=medical-details'">
+                    <div class="publisher-card" onclick="window.location.href='https://t.me/synapthic/1249'">
                         <img src="/assets/img/photo_2025-10-15_15-59-01.jpg" class="publisher-img" alt="">
                         <div class="publisher-overlay"></div>
                         <div class="publisher-body">
@@ -595,7 +580,7 @@
                             <div class="publisher-meta">45+ kitob</div>
                         </div>
                     </div>
-                    <div class="publisher-card" onclick="window.location.href='/books/?id=iti-books'">
+                    <div class="publisher-card" onclick="window.location.href='https://t.me/impulskitoblari'">
                         <img src="/assets/img/ITI kitoblar.jpg" class="publisher-img" alt="">
                         <div class="publisher-overlay"></div>
                         <div class="publisher-body">
@@ -749,12 +734,35 @@
                 var name = user.name || 'Foydalanuvchi';
                 var initial = name.charAt(0).toUpperCase();
 
-                document.getElementById('heroUserName').textContent = name + ' 👋';
                 document.getElementById('sidebarUserName').textContent = name;
                 document.getElementById('sidebarAvatarText').textContent = initial;
                 document.getElementById('navAvatarBtn').textContent = initial;
-
                 var tests = Array.isArray(d.tests) ? d.tests : [];
+
+                var totalCorrect = 0;
+                var totalQuestions = 0;
+
+                tests.forEach(function (t) {
+                    totalCorrect += Number(t.correct || 0);
+                    totalQuestions += Number(t.total || 0);
+                });
+
+                var percent = totalQuestions > 0
+                    ? Math.round((totalCorrect / totalQuestions) * 100)
+                    : 0;
+                var accuracyText = document.getElementById('accuracyText');
+                var accuracyDetail = document.getElementById('accuracyDetail');
+
+                if (accuracyText) {
+                    accuracyText.textContent = percent + '%';
+                }
+
+                if (accuracyDetail) {
+                    accuracyDetail.textContent =
+                        totalQuestions
+                }
+
+
                 var totalTests = tests.length;
                 var totalCorrect = 0;
                 var totalQ = 0;
@@ -773,6 +781,8 @@
                 document.getElementById('statAccuracy').textContent = pct + '%';
                 document.getElementById('statSessions').textContent = sessions.length;
                 document.getElementById('statMistakes').textContent = Math.max(0, activeMistakes);
+
+
             } catch (e) {
                 console.warn('Stats load error', e);
             }

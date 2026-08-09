@@ -1343,79 +1343,286 @@
 
         function showShareImportModal(payload, retryCount) {
             retryCount = retryCount || 0;
+
             var bodyEl = document.getElementById('shareImportBody');
+
             if (!bodyEl) {
                 if (retryCount < 12) {
-                    setTimeout(function () { showShareImportModal(payload, retryCount + 1); }, 80);
+                    setTimeout(function () {
+                        showShareImportModal(payload, retryCount + 1);
+                    }, 80);
                     return;
                 }
+
                 console.warn('shareImportBody not found');
-                var shouldImport = confirm('Sessiya topildi. Modal ochilmadi. Baribir sessiyani qo\'shishni xohlaysizmi?');
-                if (shouldImport) importSharedSession(payload);
+
+                var shouldImport = confirm(
+                    'Sessiya topildi. Modal ochilmadi. Baribir sessiyani qo‘shishni xohlaysizmi?'
+                );
+
+                if (shouldImport) {
+                    importSharedSession(payload);
+                }
+
                 return;
             }
 
             var et = getExamType(payload.examType);
             var etLabel = et ? et.label : payload.examType;
+
             var dateStr = payload.examDate
-                ? new Date(payload.examDate).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' })
+                ? new Date(payload.examDate).toLocaleDateString('uz-UZ', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                })
                 : 'Sana belgilanmagan';
 
+            // ═══════════════════════════════════════════════
+            // OLDIN QO'SHILGANMI?
+            // ═══════════════════════════════════════════════
+
+            var sessions = getStoredSessions();
+
+            var existingSession = sessions.find(function (s) {
+                return s.sharedFromId === payload.id;
+            });
+
+            var alreadyAdded = !!existingSession;
+
+            // ═══════════════════════════════════════════════
+            // SUBJECTS
+            // ═══════════════════════════════════════════════
+
             var subjectsList = '';
+
             if (payload.examType === 'oraliq' && payload.oraliqSubject) {
+
                 var sub = getSubject(payload.oraliqSubject);
-                subjectsList = sub ? '<li>' + sub.label + ' \u2013 og\'zaki</li>' : '';
+
+                subjectsList = sub
+                    ? '<li>' + sub.label + ' – og‘zaki</li>'
+                    : '';
+
             } else {
+
                 (payload.subjects || []).forEach(function (sid) {
+
                     var sub2 = getSubject(sid);
-                    var tc = (payload.tests && payload.tests[sid]) ? payload.tests[sid].length : 0;
-                    subjectsList += '<li>' + (sub2 ? sub2.label : sid) + ' \u2013 ' + tc + ' ta test</li>';
+
+                    var tc = (
+                        payload.tests &&
+                        payload.tests[sid]
+                    )
+                        ? payload.tests[sid].length
+                        : 0;
+
+                    subjectsList +=
+                        '<li>' +
+                        (sub2 ? sub2.label : sid) +
+                        ' – ' +
+                        tc +
+                        ' ta test' +
+                        '</li>';
                 });
             }
 
-            var html = '<div class="share-import-card">'
-                + '<div class="d-flex align-items-center gap-2 mb-3">'
-                + '<div style="width:44px;height:44px;border-radius:14px;background:' + (et ? et.gradient : '#2563eb') + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px"><i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
-                + '<div><div style="font-size:15px;font-weight:800">' + etLabel + '</div><div style="font-size:12px;color:var(--tg-muted)">' + dateStr + '</div></div></div>'
-                + '<div style="font-size:13px;color:var(--tg-muted);margin-bottom:8px">Yuboruvchi: <b style="color:var(--tg-text)">' + (payload.creatorName || 'Noma\'lum') + '</b></div>'
-                + '<ul style="font-size:13px;color:var(--tg-text);margin:0 0 16px;padding-left:18px">' + subjectsList + '</ul>'
-                + '<div class="d-flex gap-2">'
-                + '<button class="btn btn-primary flex-fill rounded-3" onclick="importSharedSession(window._sharePayload)"><i class="bi bi-plus-lg me-1"></i>Qo\'shish</button>'
-                + '<button class="btn btn-light flex-fill rounded-3" onclick="bootstrap.Modal.getInstance(document.getElementById(\'shareImportModal\')).hide()">Bekor</button>'
-                + '</div></div>';
+            // ═══════════════════════════════════════════════
+            // BUTTON
+            // ═══════════════════════════════════════════════
 
-            window._sharePayload = payload;
-            bodyEl.innerHTML = html;
-            var modalEl = document.getElementById('shareImportModal');
-            if (window.bootstrap && bootstrap.Modal && modalEl) {
-                bootstrap.Modal.getOrCreateInstance(modalEl).show();
+            var mainButton;
+
+            if (alreadyAdded) {
+
+                mainButton =
+                    '<button class="btn btn-success flex-fill rounded-3" ' +
+                    'onclick="openExistingSharedSession(\'' +
+                    existingSession.id +
+                    '\')">' +
+                    '<i class="bi bi-box-arrow-in-right me-1"></i>' +
+                    'Sessiyani ochish' +
+                    '</button>';
+
             } else {
-                var shouldImport2 = confirm('Sessiya topildi. Oynani ochib bo\'lmadi. Sessiyani qo\'shaymi?');
-                if (shouldImport2) importSharedSession(payload);
+
+                mainButton =
+                    '<button class="btn btn-primary flex-fill rounded-3" ' +
+                    'onclick="importSharedSession(window._sharePayload)">' +
+                    '<i class="bi bi-plus-lg me-1"></i>' +
+                    'Qo‘shish' +
+                    '</button>';
+            }
+
+            // ═══════════════════════════════════════════════
+            // MODAL HTML
+            // ═══════════════════════════════════════════════
+
+            var html =
+                '<div class="share-import-card">'
+
+                + '<div class="d-flex align-items-center gap-2 mb-3">'
+
+                + '<div style="' +
+                'width:44px;' +
+                'height:44px;' +
+                'border-radius:14px;' +
+                'background:' + (et ? et.gradient : '#2563eb') + ';' +
+                'display:flex;' +
+                'align-items:center;' +
+                'justify-content:center;' +
+                'color:#fff;' +
+                'font-size:20px' +
+                '">' +
+                '<i class="bi ' +
+                (et ? et.icon : 'bi-journals') +
+                '"></i>' +
+                '</div>'
+
+                + '<div>' +
+                '<div style="font-size:15px;font-weight:800">' +
+                etLabel +
+                '</div>' +
+
+                '<div style="font-size:12px;color:var(--tg-muted)">' +
+                dateStr +
+                '</div>' +
+
+                '</div>' +
+                '</div>'
+
+                + '<div style="font-size:13px;color:var(--tg-muted);margin-bottom:8px">' +
+                'Yuboruvchi: ' +
+                '<b style="color:var(--tg-text)">' +
+                (payload.creatorName || 'Noma‘lum') +
+                '</b>' +
+                '</div>'
+
+                + '<ul style="font-size:13px;color:var(--tg-text);margin:0 0 16px;padding-left:18px">' +
+                subjectsList +
+                '</ul>'
+
+            // Agar oldin qo'shilgan bo'lsa
+            window._sharePayload = payload;
+
+            // Agar session oldin qo'shilgan bo'lsa,
+            // modalni UMUMAN ochmaymiz — to'g'ridan-to'g'ri sessionga kiramiz.
+            if (alreadyAdded) {
+                location.href = '/preparation/session.html?id=' +
+                    encodeURIComponent(existingSession.id);
+                return;
+            }
+
+            // Faqat yangi session bo'lsa modalni ko'rsatamiz
+            bodyEl.innerHTML = html;
+
+            var modalEl = document.getElementById('shareImportModal');
+
+            if (
+                window.bootstrap &&
+                bootstrap.Modal &&
+                modalEl
+            ) {
+                bootstrap.Modal
+                    .getOrCreateInstance(modalEl)
+                    .show();
+            } else {
+
+                var shouldImport2 = confirm(
+                    'Sessiya topildi. Sessiyani qo‘shamizmi?'
+                );
+
+                if (shouldImport2) {
+                    importSharedSession(payload);
+                }
             }
         }
 
         function importSharedSession(payload) {
             if (!payload) return;
+
+            var sessions = getStoredSessions();
+
+            // Shu shared session oldin qo'shilganmi?
+            var existingSession = sessions.find(function (s) {
+                return s.sharedFromId === payload.id;
+            });
+
+            // Agar oldin qo'shilgan bo'lsa — yangi session yaratmaymiz
+            if (existingSession) {
+                var modal = document.getElementById('shareImportModal');
+                if (modal) {
+                    bootstrap.Modal.getOrCreateInstance(modal).hide();
+                }
+
+                history.replaceState({}, '', '/preparation/');
+
+                // To'g'ridan-to'g'ri mavjud session ichiga kiramiz
+                location.href = '/preparation/session.html?id=' + encodeURIComponent(existingSession.id);
+                return;
+            }
+
+            // Birinchi marta qo'shilmoqda
             var session = {
                 id: 'prep_' + Date.now(),
+
+                // MUHIM:
+                // original shared session ID ni saqlaymiz
+                sharedFromId: payload.id,
+
                 examType: payload.examType,
                 examDate: payload.examDate || null,
                 createdAt: new Date().toISOString(),
+
                 subjects: payload.subjects || [],
                 tests: payload.tests || {},
                 oraliqSubject: payload.oraliqSubject || null,
-                stats: { totalQuestions: 0, solvedQuestions: 0, correctAnswers: 0, wrongAnswers: 0, accuracy: 0, updatedAt: null },
-                subjectStats: {}, testResults: [], startedAt: null, lastActivityAt: null
-            };
-            createSession(session);
-            bootstrap.Modal.getInstance(document.getElementById('shareImportModal')).hide();
-            history.replaceState({}, '', '/preparation/');
-            renderSessions();
-            showToast('Sessiya qo\'shildi!');
-        }
 
+                stats: {
+                    totalQuestions: 0,
+                    solvedQuestions: 0,
+                    correctAnswers: 0,
+                    wrongAnswers: 0,
+                    accuracy: 0,
+                    updatedAt: null
+                },
+
+                subjectStats: {},
+                testResults: [],
+                startedAt: null,
+                lastActivityAt: null
+            };
+
+            sessions.push(session);
+            saveStoredSessions(sessions);
+
+            var modalEl = document.getElementById('shareImportModal');
+
+            if (modalEl) {
+                bootstrap.Modal.getOrCreateInstance(modalEl).hide();
+            }
+
+            history.replaceState({}, '', '/preparation/');
+
+            renderSessions();
+
+            showToast('Sessiya qo‘shildi!');
+
+            // Qo'shilgandan keyin ichiga kiramiz
+            setTimeout(function () {
+                location.href = '/preparation/session.html?id=' +
+                    encodeURIComponent(session.id);
+            }, 300);
+        }
         // ── INIT ──────────────────────────────────────────────
+
+        function openExistingSharedSession(sessionId) {
+            if (!sessionId) return;
+
+            location.href =
+                '/preparation/session.html?id=' +
+                encodeURIComponent(sessionId);
+        }
         function initPreparationPage() {
             renderSessions();
             checkShareParam();
