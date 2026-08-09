@@ -1502,18 +1502,31 @@
                 subjectsList +
                 '</ul>'
 
-            // Agar oldin qo'shilgan bo'lsa
+                // Agar oldin qo'shilgan bo'lsa
+                + (
+                    alreadyAdded
+                        ? '<div style="background:#f0fdf4;color:#16a34a;border-radius:12px;padding:10px 12px;font-size:12px;font-weight:600;margin-bottom:12px">' +
+                        '<i class="bi bi-check-circle-fill me-1"></i>' +
+                        'Bu sessiya sizning profilingizga allaqachon qo‘shilgan.' +
+                        '</div>'
+                        : ''
+                )
+
+                + '<div class="d-flex gap-2">'
+
+                + mainButton
+
+                + '<button class="btn btn-light flex-fill rounded-3" ' +
+                'onclick="bootstrap.Modal.getInstance(document.getElementById(\'shareImportModal\')).hide()">' +
+                'Bekor' +
+                '</button>'
+
+                + '</div>'
+
+                + '</div>';
+
             window._sharePayload = payload;
 
-            // Agar session oldin qo'shilgan bo'lsa,
-            // modalni UMUMAN ochmaymiz — to'g'ridan-to'g'ri sessionga kiramiz.
-            if (alreadyAdded) {
-                location.href = '/preparation/session.html?id=' +
-                    encodeURIComponent(existingSession.id);
-                return;
-            }
-
-            // Faqat yangi session bo'lsa modalni ko'rsatamiz
             bodyEl.innerHTML = html;
 
             var modalEl = document.getElementById('shareImportModal');
@@ -1523,17 +1536,29 @@
                 bootstrap.Modal &&
                 modalEl
             ) {
+
                 bootstrap.Modal
                     .getOrCreateInstance(modalEl)
                     .show();
+
             } else {
 
                 var shouldImport2 = confirm(
-                    'Sessiya topildi. Sessiyani qo‘shamizmi?'
+                    alreadyAdded
+                        ? 'Bu sessiya allaqachon qo‘shilgan. Uni ochamizmi?'
+                        : 'Sessiya topildi. Sessiyani qo‘shamizmi?'
                 );
 
                 if (shouldImport2) {
-                    importSharedSession(payload);
+
+                    if (alreadyAdded) {
+
+                        openExistingSharedSession(existingSession.id);
+
+                    } else {
+
+                        importSharedSession(payload);
+                    }
                 }
             }
         }
