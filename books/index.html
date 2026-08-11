@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#126e6c">
+  <title>Books — PulseIMI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/styles.css">
+  <link rel="stylesheet" href="./assets/bookstyles.css">
+
+</head>
+
+<body>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+      </div>
+      <div>
+        <div class="sidebar-brand">Pulse Go</div>
+        <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+      </div>
+      <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <div class="sidebar-user" id="sidebarUser">
+      <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+        <div class="sidebar-user-sub">Pulse Go Member</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Asosiy</div>
+      <a href="/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-house-fill"></i> Asosiy
+      </a>
+      <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-journals"></i> Tayyorlanish
+      </a>
+      <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
+      </a>
+
+      <div class="sidebar-section-label">O'quv materiallari</div>
+      <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-book-half"></i> Online Darslar
+      </a>
+      <a href="/books/" class="sidebar-link active" onclick="closeSidebar()">
+        <i class="bi bi-collection-fill"></i> Kitoblar
+      </a>
+      <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-body-text"></i> Anatomiya
+      </a>
+      <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
+      </a>
+      <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-flask-fill"></i> Kimyo
+      </a>
+      <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-egg-fill"></i> Embriologiya
+      </a>
+      <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
+      </a>
+
+      <div class="sidebar-section-label">Profil</div>
+      <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-person-fill"></i> Mening profilim
+      </a>
+      <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
+      </a>
+      <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
+        <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="https://t.me/broinibek" target="_blank" class="sidebar-link" style="background:#f0fdf4;color:#16a34a">
+        <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+      </a>
+    </div>
+  </aside>
+
+  <nav class="top-navbar">
+    <div class="container">
+      <button class="btn-hamburger" onclick="openSidebar()">
+        <i class="bi bi-list"></i>
+      </button>
+      <a href="/" class="nav-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+        Pulse Go
+      </a>
+      <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+    </div>
+  </nav>
+
+
+  <main class="page">
+    <div class="toolbar">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m20 20-4-4" />
+        </svg>
+        <input id="search" type="search" placeholder="Kitob, muallif yoki mavzu qidiring...">
+      </label>
+      <select id="sort">
+        <option value="default">Tavsiya etilgan</option>
+        <option value="az">A → Z</option>
+        <option value="za">Z → A</option>
+        <option value="newest">Yangilari</option>
+      </select>
+    </div>
+
+    <nav id="courseFilter" class="filter course-filter" aria-label="Kurslar"></nav>
+    <nav id="subjectFilter" class="filter subject-filter" aria-label="Fanlar"></nav>
+
+    <div class="heading">
+      <h2>Kitoblar</h2><span id="count" class="count"></span>
+    </div>
+    <section id="grid" class="grid">
+      <div id="empty" class="empty">
+        <h3>Kitob topilmadi</h3>
+        <p>Qidiruv yoki filterlarni o‘zgartirib ko‘ring.</p>
+      </div>
+    </section>
+    <section class="hero mt-5">
+      <div class="heroText">
+        <span class="eyebrow"><span class="dot"></span> PulseIMI Library</span>
+        <h1>Medical Books</h1>
+        <p>Anatomiyadan klinik fanlargacha — oqish, takrorlash va imtihonga tayyorlanish uchun kerakli kitoblar bir
+          joyda.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b id="totalBooks">0</b><span>Kitob</span></div>
+        <div class="stat"><b id="totalSubjects">0</b><span>Fan</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="./bookdata.js"> </script>
+</body>
+
+</html>

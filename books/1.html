@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitoblar — Pulse Go</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6f8fb;
+            --surface: #fff;
+            --text: #172033;
+            --muted: #7b8497;
+            --border: #e8ecf2;
+            --primary: #315efb;
+            --primary-soft: #eef2ff;
+            --green: #18a66a;
+            --green-soft: #eaf9f2;
+            --shadow: 0 10px 35px rgba(24, 34, 55, .055);
+            --radius: 20px
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Inter, sans-serif;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        .main {
+            min-height: 100vh
+        }
+
+        .topbar {
+            height: 72px;
+            background: rgba(246, 248, 251, .86);
+            backdrop-filter: blur(14px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 38px;
+            position: sticky;
+            top: 0;
+            z-index: 500
+        }
+
+        .breadcrumb-text {
+            color: var(--muted);
+            font-size: 12px
+        }
+
+        .breadcrumb-text strong {
+            color: var(--text)
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px
+        }
+
+        .icon-btn {
+            width: 39px;
+            height: 39px;
+            border: 1px solid var(--border);
+            background: #fff;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            color: #667085;
+            transition: .2s
+        }
+
+        .icon-btn:hover {
+            color: var(--primary);
+            border-color: #d8e0ff;
+            background: #fafbff
+        }
+
+        .avatar {
+            width: 39px;
+            height: 39px;
+            border-radius: 12px;
+            background: #172033;
+            color: #fff;
+            display: grid;
+            place-items: center;
+            font-size: 12px;
+            font-weight: 700
+        }
+
+        .content {
+            max-width: 1450px;
+            margin: auto;
+            padding: 25px 38px 60px
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #172033 0%, #263b69 100%);
+            border-radius: 24px;
+            padding: 35px 38px;
+            color: #fff;
+            margin-bottom: 28px;
+            min-height: 205px;
+            display: flex;
+            align-items: center
+        }
+
+        .hero:before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .055);
+            right: 70px;
+            top: -120px
+        }
+
+        .hero:after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .08);
+            right: -40px;
+            bottom: -70px
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 100px;
+            padding: 6px 11px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 13px
+        }
+
+        .hero h1 {
+            font-size: clamp(26px, 3vw, 36px);
+            letter-spacing: -1.2px;
+            font-weight: 800;
+            margin: 0 0 9px
+        }
+
+        .hero p {
+            margin: 0;
+            color: rgba(255, 255, 255, .68);
+            font-size: 13px;
+            line-height: 1.7;
+            max-width: 540px
+        }
+
+        .hero-icon {
+            position: absolute;
+            right: 85px;
+            font-size: 110px;
+            opacity: .075;
+            transform: rotate(-9deg)
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 28px
+        }
+
+        .stat {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 13px
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 18px
+        }
+
+        .stat:nth-child(2) .stat-icon {
+            background: var(--green-soft);
+            color: var(--green)
+        }
+
+        .stat:nth-child(3) .stat-icon {
+            background: #fff5e9;
+            color: #e8952e
+        }
+
+        .stat-number {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -.4px
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 2px
+        }
+
+        .section-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px
+        }
+
+        .section-title {
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            margin: 0
+        }
+
+        .section-subtitle {
+            color: var(--muted);
+            font-size: 11px;
+            margin-top: 4px
+        }
+
+        .toolbar {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 11px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 21px
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca4b4
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 43px;
+            border: 1px solid transparent;
+            background: #f7f8fa;
+            border-radius: 12px;
+            padding: 0 14px 0 40px;
+            font-size: 12px;
+            outline: 0;
+            color: var(--text);
+            transition: .2s
+        }
+
+        .search-box input:focus {
+            background: #fff;
+            border-color: #dce3ff;
+            box-shadow: 0 0 0 3px rgba(49, 94, 251, .06)
+        }
+
+        .filter-btn {
+            border: 1px solid var(--border);
+            background: #fff;
+            height: 43px;
+            border-radius: 12px;
+            padding: 0 15px;
+            color: #687286;
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap
+        }
+
+        .filter-btn:hover {
+            border-color: #d6ddff;
+            color: var(--primary)
+        }
+
+        .categories {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-bottom: 23px
+        }
+
+        .category {
+            border: 1px solid var(--border);
+            background: #fff;
+            color: #7a8393;
+            padding: 8px 13px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .category:hover {
+            border-color: #ccd6ff;
+            color: var(--primary)
+        }
+
+        .category.active {
+            color: #fff;
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 5px 14px rgba(49, 94, 251, .18)
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 17px
+        }
+
+        .book-card {
+            position: relative;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 19px;
+            overflow: hidden;
+            transition: .25s ease
+        }
+
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: #dfe5ef
+        }
+
+        .book-cover {
+            height: 220px;
+            margin: 10px;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 17px
+        }
+
+        .cover-blue {
+            background: linear-gradient(145deg, #dce8ff, #8faeff)
+        }
+
+        .cover-green {
+            background: linear-gradient(145deg, #dff8ec, #8bd5b0)
+        }
+
+        .cover-purple {
+            background: linear-gradient(145deg, #eee7ff, #b9a4ef)
+        }
+
+        .cover-orange {
+            background: linear-gradient(145deg, #fff0d9, #f2b96e)
+        }
+
+        .cover-dark {
+            background: linear-gradient(145deg, #34476c, #151d30)
+        }
+
+        .cover-pink {
+            background: linear-gradient(145deg, #ffe4ed, #ef9fbb)
+        }
+
+        .cover-cyan {
+            background: linear-gradient(145deg, #dcf7fa, #84cfd9)
+        }
+
+        .cover-yellow {
+            background: linear-gradient(145deg, #fff9d9, #ead57b)
+        }
+
+        .cover-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: .18;
+            background-image: radial-gradient(circle at 20% 20%, white 1px, transparent 1px);
+            background-size: 13px 13px
+        }
+
+        .cover-symbol {
+            position: absolute;
+            right: 13px;
+            top: 12px;
+            font-size: 72px;
+            opacity: .18;
+            transform: rotate(10deg)
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2
+        }
+
+        .cover-type {
+            display: inline-block;
+            padding: 5px 8px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .62);
+            backdrop-filter: blur(5px);
+            color: #28354e;
+            font-size: 8px;
+            font-weight: 800;
+            letter-spacing: .4px;
+            margin-bottom: 8px
+        }
+
+        .cover-title {
+            color: #18243a;
+            font-size: 17px;
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: -.5px;
+            max-width: 170px
+        }
+
+        .cover-dark .cover-title,
+        .cover-dark .cover-type {
+            color: #fff
+        }
+
+        .cover-dark .cover-type {
+            background: rgba(255, 255, 255, .12)
+        }
+
+        .favorite {
+            position: absolute;
+            right: 18px;
+            top: 18px;
+            width: 31px;
+            height: 31px;
+            border: 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .72);
+            backdrop-filter: blur(5px);
+            color: #6e7788;
+            display: grid;
+            place-items: center;
+            z-index: 5;
+            cursor: pointer;
+            transition: .2s
+        }
+
+        .favorite:hover,
+        .favorite.active {
+            color: #ed657e;
+            background: #fff
+        }
+
+        .book-body {
+            padding: 7px 16px 16px
+        }
+
+        .book-meta {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #9098a7;
+            font-size: 9px;
+            margin-bottom: 9px
+        }
+
+        .book-name {
+            font-size: 13px;
+            font-weight: 750;
+            line-height: 1.35;
+            margin-bottom: 6px
+        }
+
+        .book-description {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.55;
+            min-height: 31px;
+            margin-bottom: 13px
+        }
+
+        .book-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .book-tag {
+            color: #687286;
+            font-size: 9px;
+            font-weight: 700;
+            background: #f5f6f8;
+            padding: 5px 8px;
+            border-radius: 7px
+        }
+
+        .open-book {
+            width: 33px;
+            height: 33px;
+            border: 0;
+            background: var(--primary-soft);
+            color: var(--primary);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            transition: .2s
+        }
+
+        .open-book:hover {
+            background: var(--primary);
+            color: #fff
+        }
+
+        .empty {
+            display: none;
+            text-align: center;
+            background: #fff;
+            border: 1px dashed var(--border);
+            border-radius: 20px;
+            padding: 60px 20px
+        }
+
+        .empty i {
+            font-size: 35px;
+            color: #b5bcc8
+        }
+
+        .empty h3 {
+            font-size: 16px;
+            margin: 14px 0 5px
+        }
+
+        .empty p {
+            color: var(--muted);
+            font-size: 11px;
+            margin: 0
+        }
+
+        .mobile-top {
+            display: none
+        }
+
+        @media(max-width:1200px) {
+            .books-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr))
+            }
+
+            .hero-icon {
+                right: 40px
+            }
+        }
+
+        @media(max-width:900px) {
+            .sidebar {
+                display: none
+            }
+
+            .main {
+                margin-left: 0
+            }
+
+            .mobile-top {
+                display: flex;
+                height: 64px;
+                background: #fff;
+                border-bottom: 1px solid var(--border);
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 17px
+            }
+
+            .topbar {
+                display: none
+            }
+
+            .content {
+                padding: 18px 17px 50px
+            }
+
+            .books-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr))
+            }
+
+            .hero {
+                padding: 27px
+            }
+
+            .hero-icon {
+                right: 15px;
+                font-size: 90px
+            }
+        }
+
+        @media(max-width:600px) {
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 9px
+            }
+
+            .hero {
+                min-height: 220px;
+                border-radius: 20px
+            }
+
+            .hero-icon {
+                right: -5px;
+                bottom: -5px;
+                top: auto
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch
+            }
+
+            .filter-btn {
+                justify-content: center
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px
+            }
+
+            .book-cover {
+                height: 185px;
+                padding: 12px;
+                margin: 7px
+            }
+
+            .cover-title {
+                font-size: 14px
+            }
+
+            .cover-symbol {
+                font-size: 55px
+            }
+
+            .book-body {
+                padding: 6px 11px 12px
+            }
+
+            .book-description {
+                display: none
+            }
+
+            .book-name {
+                font-size: 11px
+            }
+
+            .book-meta {
+                font-size: 8px
+            }
+
+            .book-tag {
+                display: none
+            }
+
+            .open-book {
+                width: 30px;
+                height: 30px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <div class="sidebar-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+            </div>
+            <div>
+                <div class="sidebar-brand">Pulse Go</div>
+                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+            </div>
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user" id="sidebarUser">
+            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+            <div>
+                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+                <div class="sidebar-user-sub">Pulse Go Member</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Asosiy</div>
+            <a href="/" class="sidebar-link active" onclick="closeSidebar()">
+                <i class="bi bi-house-fill"></i> Asosiy
+            </a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-journals"></i> Tayyorlanish
+            </a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
+            </a>
+
+            <div class="sidebar-section-label">O'quv materiallari</div>
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-book-half"></i> Online Darslar
+            </a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-collection-fill"></i> Kitoblar
+            </a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-body-text"></i> Anatomiya
+            </a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
+            </a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-flask-fill"></i> Kimyo
+            </a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-egg-fill"></i> Embriologiya
+            </a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
+            </a>
+
+            <div class="sidebar-section-label">Profil</div>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-person-fill"></i> Mening profilim
+            </a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
+            </a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
+                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+            </a>
+        </div>
+    </aside>
+
+    <nav class="top-navbar">
+        <div class="container">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+                Pulse Go
+            </a>
+            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+        </div>
+    </nav>
+
+
+    <main class="main">
+        <div class="content">
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">Barcha kitoblar</h2>
+                    <div class="section-subtitle">O'zingizga kerakli materialni tanlang</div>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div class="search-box"><i class="bi bi-search"></i><input id="searchInput" type="search"
+                        placeholder="Kitob nomi yoki mavzu bo'yicha qidiring..."></div>
+                <button class="filter-btn" onclick="showFavorites()"><i class="bi bi-heart"></i> Saqlanganlar</button>
+            </div>
+
+            <div class="categories">
+                <button class="category active" data-filter="all">Barchasi</button>
+                <button class="category" data-filter="anatomy">Anatomiya</button>
+                <button class="category" data-filter="physiology">Fiziologiya</button>
+                <button class="category" data-filter="clinical">Klinik</button>
+                <button class="category" data-filter="chemistry">Kimyo</button>
+                <button class="category" data-filter="biology">Biologiya</button>
+                <button class="category" data-filter="other">Boshqa</button>
+            </div>
+
+            <div class="books-grid" id="booksGrid">
+                <article class="book-card" data-category="anatomy" data-title="Gray's Anatomy">
+                    <div class="book-cover cover-blue">
+                        <div class="cover-pattern"></div><i class="bi bi-person-standing cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">ANATOMY</div>
+                            <div class="cover-title">Gray's Anatomy</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Clinical</span><span>•</span><span>2025</span></div>
+                        <div class="book-name">Gray's Anatomy for Students</div>
+                        <div class="book-description">Anatomiya bo'yicha asosiy va klinik bilimlar.</div>
+                        <div class="book-footer"><span class="book-tag">1,200+ pages</span><button class="open-book"
+                                onclick="openBook('Gray\\s Anatomy')"><i class="bi bi-arrow-up-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="physiology" data-title="Guyton Physiology">
+                    <div class="book-cover cover-green">
+                        <div class="cover-pattern"></div><i class="bi bi-heart-pulse cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">PHYSIOLOGY</div>
+                            <div class="cover-title">Guyton Physiology</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Medical</span><span>•</span><span>2024</span></div>
+                        <div class="book-name">Guyton and Hall Physiology</div>
+                        <div class="book-description">Inson fiziologiyasining fundamental tamoyillari.</div>
+                        <div class="book-footer"><span class="book-tag">1,160 pages</span><button class="open-book"
+                                onclick="openBook('Guyton Physiology')"><i class="bi bi-arrow-up-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="clinical" data-title="Harrison Internal Medicine">
+                    <div class="book-cover cover-dark">
+                        <div class="cover-pattern"></div><i class="bi bi-hospital cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">CLINICAL</div>
+                            <div class="cover-title">Harrison's Internal Medicine</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Clinical</span><span>•</span><span>2025</span></div>
+                        <div class="book-name">Harrison's Principles</div>
+                        <div class="book-description">Ichki kasalliklar va klinik diagnostika.</div>
+                        <div class="book-footer"><span class="book-tag">2,900 pages</span><button class="open-book"
+                                onclick="openBook('Harrison Internal Medicine')"><i
+                                    class="bi bi-arrow-up-right"></i></button></div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="chemistry" data-title="Medical Biochemistry">
+                    <div class="book-cover cover-orange">
+                        <div class="cover-pattern"></div><i class="bi bi-flask cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">CHEMISTRY</div>
+                            <div class="cover-title">Medical Biochemistry</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Biochemistry</span><span>•</span><span>2024</span></div>
+                        <div class="book-name">Harper's Illustrated Biochemistry</div>
+                        <div class="book-description">Biokimyo va metabolik jarayonlar.</div>
+                        <div class="book-footer"><span class="book-tag">800 pages</span><button class="open-book"
+                                onclick="openBook('Medical Biochemistry')"><i class="bi bi-arrow-up-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="biology" data-title="Molecular Biology">
+                    <div class="book-cover cover-purple">
+                        <div class="cover-pattern"></div><i class="bi bi-diagram-3 cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">BIOLOGY</div>
+                            <div class="cover-title">Molecular Biology</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Biology</span><span>•</span><span>2024</span></div>
+                        <div class="book-name">Molecular Biology of the Cell</div>
+                        <div class="book-description">Hujayra biologiyasi va molekulyar mexanizmlar.</div>
+                        <div class="book-footer"><span class="book-tag">1,400 pages</span><button class="open-book"
+                                onclick="openBook('Molecular Biology')"><i class="bi bi-arrow-up-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="clinical" data-title="Clinical Examination">
+                    <div class="book-cover cover-pink">
+                        <div class="cover-pattern"></div><i class="bi bi-person-vcard cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">CLINICAL</div>
+                            <div class="cover-title">Clinical Examination</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Clinical</span><span>•</span><span>2025</span></div>
+                        <div class="book-name">Macleod's Clinical Examination</div>
+                        <div class="book-description">Bemorni tekshirish va klinik ko'nikmalar.</div>
+                        <div class="book-footer"><span class="book-tag">480 pages</span><button class="open-book"
+                                onclick="openBook('Clinical Examination')"><i class="bi bi-arrow-up-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="anatomy" data-title="Netter Atlas">
+                    <div class="book-cover cover-cyan">
+                        <div class="cover-pattern"></div><i class="bi bi-person-standing cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">ANATOMY</div>
+                            <div class="cover-title">Netter Atlas</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Anatomy</span><span>•</span><span>2025</span></div>
+                        <div class="book-name">Atlas of Human Anatomy</div>
+                        <div class="book-description">Anatomik tuzilmalarni vizual o'rganish.</div>
+                        <div class="book-footer"><span class="book-tag">640 pages</span><button class="open-book"
+                                onclick="openBook('Netter Atlas')"><i class="bi bi-arrow-up-right"></i></button></div>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="other" data-title="Medical Terminology">
+                    <div class="book-cover cover-yellow">
+                        <div class="cover-pattern"></div><i class="bi bi-journal-medical cover-symbol"></i><button
+                            class="favorite" onclick="toggleFavorite(this)"><i class="bi bi-heart"></i></button>
+                        <div class="cover-content">
+                            <div class="cover-type">REFERENCE</div>
+                            <div class="cover-title">Medical Terminology</div>
+                        </div>
+                    </div>
+                    <div class="book-body">
+                        <div class="book-meta"><span>Reference</span><span>•</span><span>2025</span></div>
+                        <div class="book-name">Medical Terminology Guide</div>
+                        <div class="book-description">Tibbiy terminlar va ularning ma'nolari.</div>
+                        <div class="book-footer"><span class="book-tag">350 pages</span><button class="open-book"
+                                onclick="openBook('Medical Terminology')"><i class="bi bi-arrow-up-right"></i></button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="empty" id="emptyState"><i class="bi bi-search"></i>
+                <h3>Kitob topilmadi</h3>
+                <p>Qidiruv so'rovingizni yoki kategoriyani o'zgartirib ko'ring.</p>
+            </div>
+        </div>
+
+        <section class="stats">
+            <div class="stat">
+                <div class="stat-icon"><i class="bi bi-book"></i></div>
+                <div>
+                    <div class="stat-number" id="totalBooks">48+</div>
+                    <div class="stat-label">Jami kitoblar</div>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="stat-icon"><i class="bi bi-heart"></i></div>
+                <div>
+                    <div class="stat-number" id="savedBooks">0</div>
+                    <div class="stat-label">Saqlangan kitoblar</div>
+                </div>
+            </div>
+            <div class="stat">
+                <div class="stat-icon"><i class="bi bi-layers"></i></div>
+                <div>
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Yo'nalish</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="modal fade" id="bookModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border:0;border-radius:22px;overflow:hidden">
+                <div class="modal-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-4">
+                        <div>
+                            <div
+                                style="color:#315efb;font-size:10px;font-weight:800;letter-spacing:.7px;margin-bottom:7px">
+                                PULSE GO LIBRARY</div>
+                            <h3 id="modalBookTitle"
+                                style="font-size:20px;font-weight:800;letter-spacing:-.5px;margin:0"></h3>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div style="background:#f6f8fb;border-radius:15px;padding:18px;margin-bottom:18px">
+                        <div style="display:flex;gap:12px;align-items:center">
+                            <div
+                                style="width:44px;height:44px;border-radius:13px;background:#eef2ff;color:#315efb;display:grid;place-items:center;font-size:19px">
+                                <i class="bi bi-book"></i>
+                            </div>
+                            <div>
+                                <div style="font-size:12px;font-weight:700">Kitob tayyor</div>
+                                <div style="color:#7b8497;font-size:10px;margin-top:3px">PDF viewer orqali o'qish mumkin
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn w-100"
+                        style="height:46px;border-radius:13px;background:#315efb;color:#fff;font-size:12px;font-weight:700"
+                        onclick="alert('Bu yerga PDF viewer pathini ulaysiz.')"><i
+                            class="bi bi-book-open me-2"></i>Kitobni ochish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+
+        const searchInput = document.getElementById("searchInput"), books = [...document.querySelectorAll(".book-card")], emptyState = document.getElementById("emptyState"), categories = [...document.querySelectorAll(".category")];
+        let currentCategory = "all", favoritesOnly = false;
+        searchInput.addEventListener("input", filterBooks);
+        categories.forEach(category => category.addEventListener("click", () => { categories.forEach(c => c.classList.remove("active")); category.classList.add("active"); currentCategory = category.dataset.filter; favoritesOnly = false; filterBooks() }));
+        function filterBooks() { const query = searchInput.value.toLowerCase().trim(); let visible = 0; books.forEach(book => { const title = book.dataset.title.toLowerCase(), category = book.dataset.category, isFavorite = book.querySelector(".favorite").classList.contains("active"), show = title.includes(query) && (currentCategory === "all" || category === currentCategory) && (!favoritesOnly || isFavorite); book.style.display = show ? "" : "none"; if (show) visible++ }); emptyState.style.display = visible === 0 ? "block" : "none" }
+        function toggleFavorite(button) { button.classList.toggle("active"); const icon = button.querySelector("i"); if (button.classList.contains("active")) { icon.classList.remove("bi-heart"); icon.classList.add("bi-heart-fill") } else { icon.classList.remove("bi-heart-fill"); icon.classList.add("bi-heart") } updateFavoriteCount(); saveFavorites(); if (favoritesOnly) filterBooks() }
+        function updateFavoriteCount() { document.getElementById("savedBooks").textContent = document.querySelectorAll(".favorite.active").length }
+        function showFavorites() { favoritesOnly = true; categories.forEach(c => c.classList.remove("active")); filterBooks() }
+        function saveFavorites() { const favorites = books.filter(book => book.querySelector(".favorite").classList.contains("active")).map(book => book.dataset.title); localStorage.setItem("pulsego_book_favorites", JSON.stringify(favorites)) }
+        function loadFavorites() { const saved = JSON.parse(localStorage.getItem("pulsego_book_favorites") || "[]"); books.forEach(book => { if (saved.includes(book.dataset.title)) { const button = book.querySelector(".favorite"), icon = button.querySelector("i"); button.classList.add("active"); icon.classList.remove("bi-heart"); icon.classList.add("bi-heart-fill") } }); updateFavoriteCount() }
+        function openBook(title) { document.getElementById("modalBookTitle").textContent = title; new bootstrap.Modal(document.getElementById("bookModal")).show() }
+        loadFavorites();
+    </script>
+</body>
+
+</html>
