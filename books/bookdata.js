@@ -271,8 +271,8 @@ function renderBooks() {
 }
 function telegramLink(b) {
   if (b.buyLink) return b.buyLink;
-  const msg = `Assalamu alaykum, men "${b.title}" kitobini sotib olmoqchiman`;
-  return `https://t.me/${("broinibek" || "broinibek").replace(/^@/, "")}?text=${encodeURIComponent(msg)}`;
+  const msg = `Assalamu alaykum, men "${b.title}" kitobini sotib olmoqchiman | pulseimi.qzz.io/books dan yo'naltirildi`;
+  return `https://t.me/${("a_abdulmalikovich" || "@broinibek").replace(/^@/, "")}?text=${encodeURIComponent(msg)}`;
 }
 function openBookModal(b) {
   $("bookModal")?.remove();
