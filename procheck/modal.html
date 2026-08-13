@@ -1,0 +1,707 @@
+<!-- ============================================
+     PulseGo PRO Modal
+     /procheck/modal.html
+
+     UI ONLY
+     Existing IDs / functionality preserved
+============================================= -->
+
+<style>
+    /* =========================================================
+   PULSEGO PRO MODAL
+   Bootstrap-inspired / PulseGo style
+========================================================= */
+
+    #pulseProModal.pulse-pro-modal-root {
+        position: fixed !important;
+        inset: 0 !important;
+
+        width: 100vw !important;
+        height: 100vh !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        z-index: 2147483647 !important;
+
+        font-family:
+            Inter,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            Helvetica,
+            Arial,
+            sans-serif !important;
+
+        box-sizing: border-box !important;
+
+        isolation: isolate !important;
+    }
+
+    #pulseProModal *,
+    #pulseProModal *::before,
+    #pulseProModal *::after {
+        box-sizing: border-box !important;
+    }
+
+
+    /* =========================================================
+   OVERLAY
+========================================================= */
+
+    #pulseProModal .pulse-pro-overlay {
+        position: fixed !important;
+        inset: 0 !important;
+
+        width: 100vw !important;
+        height: 100vh !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 24px !important;
+
+        background: rgba(15, 23, 42, 0.55) !important;
+
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+
+        overflow-y: auto !important;
+
+        animation: pulseProFade .2s ease-out;
+    }
+
+
+    /* =========================================================
+   MODAL CARD
+========================================================= */
+
+    #pulseProModal .pulse-pro-modal {
+        position: relative !important;
+
+        width: 100% !important;
+        max-width: 440px !important;
+
+        margin: auto !important;
+
+        padding: 34px 32px 30px !important;
+
+        background: #ffffff !important;
+
+        border: 1px solid #e9eeee !important;
+
+        border-radius: 20px !important;
+
+        box-shadow:
+            0 24px 60px rgba(15, 23, 42, .16),
+            0 8px 25px rgba(15, 23, 42, .07) !important;
+
+        text-align: center !important;
+
+        overflow: hidden !important;
+
+        animation: pulseProModal .25s ease-out;
+    }
+
+
+    /* =========================================================
+   TOP ACCENT
+========================================================= */
+
+    #pulseProModal .pulse-pro-modal::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+        right: 0;
+
+        height: 4px;
+
+        background: linear-gradient(90deg,
+                #176f6b,
+                #248b84);
+    }
+
+
+    /* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+    #pulseProModal .pulse-pro-close {
+        position: absolute !important;
+
+        top: 14px !important;
+        right: 14px !important;
+
+        width: 34px !important;
+        height: 34px !important;
+
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 0 !important;
+
+        border: 1px solid #e7ecec !important;
+        border-radius: 10px !important;
+
+        background: #f8faf9 !important;
+
+        color: #7b8586 !important;
+
+        font-size: 21px !important;
+        font-weight: 400 !important;
+
+        line-height: 1 !important;
+
+        cursor: pointer !important;
+
+        transition:
+            background-color .18s ease,
+            color .18s ease,
+            border-color .18s ease,
+            transform .18s ease !important;
+    }
+
+    #pulseProModal .pulse-pro-close:hover {
+        background: #eef4f3 !important;
+
+        color: #176f6b !important;
+
+        border-color: #d7e5e3 !important;
+
+        transform: rotate(90deg) !important;
+    }
+
+    #pulseProModal .pulse-pro-close:focus-visible {
+        outline: 3px solid rgba(23, 111, 107, .18) !important;
+        outline-offset: 2px !important;
+    }
+
+
+    /* =========================================================
+   PRO ICON
+========================================================= */
+
+    #pulseProModal .pulse-pro-icon {
+        width: 68px !important;
+        height: 68px !important;
+
+        margin: 4px auto 17px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        border-radius: 18px !important;
+
+        background:
+            linear-gradient(145deg,
+                #176f6b,
+                #248b84) !important;
+
+        color: #ffffff !important;
+
+        font-size: 28px !important;
+
+        box-shadow:
+            0 10px 24px rgba(23, 111, 107, .20) !important;
+    }
+
+    #pulseProModal .pulse-pro-icon span {
+        display: block !important;
+
+        transform: translateY(-1px) !important;
+    }
+
+
+    /* =========================================================
+   BADGE
+========================================================= */
+
+    #pulseProModal .pulse-pro-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        min-height: 27px !important;
+
+        padding: 5px 10px !important;
+
+        border: 1px solid #dcebea !important;
+
+        border-radius: 999px !important;
+
+        background: #edf7f6 !important;
+
+        color: #176f6b !important;
+
+        font-size: 10px !important;
+        font-weight: 800 !important;
+
+        letter-spacing: .08em !important;
+
+        line-height: 1 !important;
+
+        margin-bottom: 13px !important;
+    }
+
+
+    /* =========================================================
+   TITLE
+========================================================= */
+
+    #pulseProModal .pulse-pro-modal h2 {
+        margin: 0 38px 9px !important;
+
+        color: #172020 !important;
+
+        font-size: 24px !important;
+        font-weight: 800 !important;
+
+        line-height: 1.3 !important;
+
+        letter-spacing: -.025em !important;
+    }
+
+
+    /* =========================================================
+   DESCRIPTION
+========================================================= */
+
+    #pulseProModal .pulse-pro-modal p {
+        width: 100% !important;
+        max-width: 350px !important;
+
+        margin: 0 auto 25px !important;
+
+        color: #727d7e !important;
+
+        font-size: 14px !important;
+        font-weight: 400 !important;
+
+        line-height: 1.65 !important;
+    }
+
+    #pulseProModal .pulse-pro-modal p strong {
+        color: #176f6b !important;
+
+        font-weight: 700 !important;
+    }
+
+
+    /* =========================================================
+   ACTIONS
+========================================================= */
+
+    #pulseProModal .pulse-pro-actions {
+        width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+
+        gap: 9px !important;
+    }
+
+
+    /* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+    #pulseProModal .pulse-pro-primary {
+        width: 100% !important;
+        min-height: 50px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        gap: 8px !important;
+
+        padding: 12px 18px !important;
+
+        border: 1px solid #176f6b !important;
+        border-radius: 12px !important;
+
+        background: #176f6b !important;
+
+        color: #ffffff !important;
+
+        font-size: 14px !important;
+        font-weight: 700 !important;
+
+        line-height: 1.2 !important;
+
+        text-decoration: none !important;
+
+        cursor: pointer !important;
+
+        box-shadow:
+            0 5px 14px rgba(23, 111, 107, .16) !important;
+
+        transition:
+            background-color .18s ease,
+            border-color .18s ease,
+            transform .18s ease,
+            box-shadow .18s ease !important;
+    }
+
+    #pulseProModal .pulse-pro-primary:hover {
+        background: #145f5c !important;
+
+        border-color: #145f5c !important;
+
+        color: #ffffff !important;
+
+        transform: translateY(-1px) !important;
+
+        box-shadow:
+            0 8px 20px rgba(23, 111, 107, .22) !important;
+    }
+
+    #pulseProModal .pulse-pro-primary:active {
+        transform: translateY(0) !important;
+
+        box-shadow:
+            0 4px 10px rgba(23, 111, 107, .14) !important;
+    }
+
+    #pulseProModal .pulse-pro-primary:focus-visible {
+        outline: 3px solid rgba(23, 111, 107, .20) !important;
+        outline-offset: 2px !important;
+    }
+
+
+    /* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+    #pulseProModal .pulse-pro-secondary {
+        width: 100% !important;
+        min-height: 48px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 11px 18px !important;
+
+        border: 1px solid #e2e8e7 !important;
+        border-radius: 12px !important;
+
+        background: #f8faf9 !important;
+
+        color: #596465 !important;
+
+        font-size: 14px !important;
+        font-weight: 700 !important;
+
+        line-height: 1.2 !important;
+
+        cursor: pointer !important;
+
+        transition:
+            background-color .18s ease,
+            color .18s ease,
+            border-color .18s ease !important;
+    }
+
+    #pulseProModal .pulse-pro-secondary:hover {
+        background: #f0f5f4 !important;
+
+        border-color: #d5e1df !important;
+
+        color: #176f6b !important;
+    }
+
+    #pulseProModal .pulse-pro-secondary:active {
+        background: #eaf1f0 !important;
+    }
+
+    #pulseProModal .pulse-pro-secondary:focus-visible {
+        outline: 3px solid rgba(23, 111, 107, .14) !important;
+        outline-offset: 2px !important;
+    }
+
+
+    /* =========================================================
+   BUTTON ICON
+========================================================= */
+
+    #pulseProModal .pulse-pro-button-icon {
+        display: inline-flex !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        font-size: 15px !important;
+
+        line-height: 1 !important;
+    }
+
+
+    /* =========================================================
+   ANIMATIONS
+========================================================= */
+
+    @keyframes pulseProFade {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes pulseProModal {
+        from {
+            opacity: 0;
+            transform: translateY(12px) scale(.98);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+
+    /* =========================================================
+   TABLET
+========================================================= */
+
+    @media (max-width: 576px) {
+
+        #pulseProModal .pulse-pro-overlay {
+            padding: 18px !important;
+
+            align-items: center !important;
+        }
+
+        #pulseProModal .pulse-pro-modal {
+            max-width: 430px !important;
+
+            padding:
+                32px 24px 25px !important;
+
+            border-radius: 18px !important;
+        }
+
+        #pulseProModal .pulse-pro-icon {
+            width: 62px !important;
+            height: 62px !important;
+
+            margin-bottom: 15px !important;
+
+            border-radius: 16px !important;
+
+            font-size: 26px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal h2 {
+            margin-left: 25px !important;
+            margin-right: 25px !important;
+
+            font-size: 22px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal p {
+            font-size: 14px !important;
+
+            margin-bottom: 22px !important;
+        }
+    }
+
+
+    /* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+    @media (max-width: 380px) {
+
+        #pulseProModal .pulse-pro-overlay {
+            padding: 12px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal {
+            padding:
+                29px 18px 20px !important;
+
+            border-radius: 16px !important;
+        }
+
+        #pulseProModal .pulse-pro-close {
+            top: 11px !important;
+            right: 11px !important;
+
+            width: 32px !important;
+            height: 32px !important;
+        }
+
+        #pulseProModal .pulse-pro-icon {
+            width: 58px !important;
+            height: 58px !important;
+
+            border-radius: 15px !important;
+
+            font-size: 24px !important;
+        }
+
+        #pulseProModal .pulse-pro-badge {
+            font-size: 9px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal h2 {
+            margin-left: 15px !important;
+            margin-right: 15px !important;
+
+            font-size: 20px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal p {
+            font-size: 13px !important;
+
+            line-height: 1.55 !important;
+        }
+
+        #pulseProModal .pulse-pro-primary,
+        #pulseProModal .pulse-pro-secondary {
+            min-height: 46px !important;
+
+            font-size: 13px !important;
+
+            border-radius: 11px !important;
+        }
+    }
+
+
+    /* =========================================================
+   VERY SHORT SCREENS
+========================================================= */
+
+    @media (max-height: 600px) {
+
+        #pulseProModal .pulse-pro-overlay {
+            align-items: flex-start !important;
+
+            padding-top: 12px !important;
+            padding-bottom: 12px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal {
+            margin-top: auto !important;
+            margin-bottom: auto !important;
+
+            padding-top: 28px !important;
+            padding-bottom: 22px !important;
+        }
+
+        #pulseProModal .pulse-pro-icon {
+            width: 54px !important;
+            height: 54px !important;
+
+            margin-bottom: 10px !important;
+        }
+
+        #pulseProModal .pulse-pro-modal p {
+            margin-bottom: 16px !important;
+        }
+    }
+
+
+    /* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+        #pulseProModal .pulse-pro-overlay,
+        #pulseProModal .pulse-pro-modal {
+            animation: none !important;
+        }
+
+        #pulseProModal * {
+            transition: none !important;
+        }
+    }
+</style>
+
+
+<!-- =====================================================
+     MODAL HTML
+     IDs intentionally preserved
+====================================================== -->
+
+<div id="pulseProModal" class="pulse-pro-modal-root">
+
+    <div class="pulse-pro-overlay">
+
+        <div class="pulse-pro-modal" role="dialog" aria-modal="true" aria-labelledby="pulseProTitle"
+            aria-describedby="pulseProDescription">
+
+            <!-- CLOSE -->
+
+            <button class="pulse-pro-close" id="pulseProClose" type="button" aria-label="Close">
+                &times;
+            </button>
+
+
+            <!-- ICON -->
+
+            <div class="pulse-pro-icon">
+                <span>✦</span>
+            </div>
+
+
+            <!-- BADGE -->
+
+            <div class="pulse-pro-badge">
+                PULSE GO PRO
+            </div>
+
+
+            <!-- TITLE -->
+
+            <h2 id="pulseProTitle">
+                Bu test Pro uchun
+            </h2>
+
+
+            <!-- DESCRIPTION -->
+
+            <p id="pulseProDescription">
+                Ushbu testni ishlash uchun
+                <strong>Pro tarifiga</strong>
+                o'tishingiz kerak.
+            </p>
+
+
+            <!-- ACTIONS -->
+
+            <div class="pulse-pro-actions">
+
+                <a href="/billing/?plan=pro_monthly" class="pulse-pro-primary">
+                    <span class="pulse-pro-button-icon">
+                        ✦
+                    </span>
+
+                    Tariflarni ko'rish
+                </a>
+
+
+                <button id="pulseProCloseBtn" class="pulse-pro-secondary" type="button">
+                    Keyinroq
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

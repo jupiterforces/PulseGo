@@ -1,0 +1,574 @@
+/* ============================================
+   PulseGo Billing
+   /billing/billing.css
+============================================ */
+
+.billing-page {
+    min-height: calc(100vh - 70px);
+    padding: 42px 20px 90px;
+    background: #f7f8f8;
+}
+
+
+/* ============================================
+   HEADER
+============================================ */
+
+.billing-header {
+    max-width: 720px;
+    margin: 0 auto 38px;
+    text-align: center;
+}
+
+.billing-header h1 {
+    margin: 0 0 10px;
+    color: #172022;
+    font-size: clamp(30px, 4vw, 42px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.035em;
+}
+
+.billing-header p {
+    max-width: 600px;
+    margin: 0 auto;
+    color: #6d7779;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* ============================================
+   PLANS
+============================================ */
+
+.billing-plans {
+    width: 100%;
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
+
+/* ============================================
+   DESKTOP
+   3 CARDS / ROW
+============================================ */
+
+.billing-plans > [class*="col-"] {
+    width: 33.333333% !important;
+    flex: 0 0 33.333333% !important;
+}
+
+
+/* ============================================
+   CARD
+============================================ */
+
+.billing-card {
+    position: relative;
+
+    height: 100%;
+    min-height: 590px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 32px 30px 28px;
+
+    background: #ffffff;
+
+    border: 1px solid #dfe5e4;
+    border-radius: 21px;
+
+    box-shadow:
+        0 10px 30px rgba(16, 24, 24, .065);
+
+    overflow: hidden;
+
+    transition:
+        transform .22s ease,
+        box-shadow .22s ease,
+        border-color .22s ease;
+}
+
+
+/* top line */
+
+.billing-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 7px;
+
+    background: #176f6b;
+}
+
+.billing-card-orange::before {
+    background: #e8752d;
+}
+
+
+/* hover */
+
+.billing-card:hover {
+    transform: translateY(-4px);
+
+    border-color: #d3dcda;
+
+    box-shadow:
+        0 18px 42px rgba(16, 24, 24, .11);
+}
+
+
+/* ============================================
+   TOP
+============================================ */
+
+.billing-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    min-height: 38px;
+}
+
+.billing-card h2 {
+    margin: 0;
+
+    color: #172022;
+
+    font-size: 24px;
+    font-weight: 750;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.025em;
+}
+
+
+/* ============================================
+   BADGE
+============================================ */
+
+.billing-badge {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 30px;
+
+    padding: 0 13px;
+
+    border-radius: 999px;
+
+    background: #edf7f6;
+
+    color: #176b68;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .05em;
+
+    white-space: nowrap;
+}
+
+.billing-card-orange .billing-badge {
+    background: #fff1e8;
+    color: #e8752d;
+}
+
+.billing-card-vip .billing-badge {
+    background: #e8752d;
+    color: #ffffff;
+}
+
+
+/* ============================================
+   PRICE
+============================================ */
+
+.billing-price-row {
+    display: flex;
+    align-items: baseline;
+
+    gap: 9px;
+
+    margin-top: 28px;
+
+    min-height: 62px;
+}
+
+.billing-price {
+    color: #172022;
+
+    font-size: clamp(40px, 4vw, 52px);
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -0.045em;
+}
+
+.billing-currency {
+    color: #455153;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.billing-period {
+    margin-top: 4px;
+
+    color: #737d7f;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    line-height: 1.2;
+}
+
+
+/* ============================================
+   DESCRIPTION
+============================================ */
+
+.billing-description {
+    min-height: 76px;
+
+    margin: 27px 0 23px;
+
+    color: #737d7f;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+}
+
+
+/* ============================================
+   FEATURES
+============================================ */
+
+.billing-features {
+    flex: 1;
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 20px 0 22px;
+
+    border-top: 1px solid #eef1f0;
+    border-bottom: 1px solid #e3e7e6;
+}
+
+.billing-features li {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    margin: 0 0 14px;
+
+    color: #30383a;
+
+    font-size: 14px;
+
+    line-height: 1.45;
+}
+
+.billing-features li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ============================================
+   CHECK DOT
+============================================ */
+
+.billing-dot {
+    position: relative;
+
+    flex: 0 0 17px;
+
+    width: 17px;
+    height: 17px;
+
+    margin-top: 1px;
+
+    border-radius: 50%;
+
+    background: #176f6b;
+}
+
+.billing-card-orange .billing-dot {
+    background: #e8752d;
+}
+
+.billing-dot::after {
+    content: "";
+
+    position: absolute;
+
+    left: 5px;
+    top: 4px;
+
+    width: 5px;
+    height: 3px;
+
+    border-left: 1.5px solid #ffffff;
+    border-bottom: 1.5px solid #ffffff;
+
+    transform: rotate(-45deg);
+}
+
+
+/* ============================================
+   BUY BUTTON
+============================================ */
+
+.billing-buy-btn {
+    width: 100%;
+
+    min-height: 54px;
+
+    margin-top: 23px;
+
+    padding: 12px 18px;
+
+    border: 0;
+    border-radius: 14px;
+
+    background: #176f6b;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease;
+}
+
+.billing-card-orange .billing-buy-btn {
+    background: #e8752d;
+}
+
+.billing-buy-btn:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(.98);
+
+    box-shadow:
+        0 11px 24px rgba(0, 0, 0, .12);
+}
+
+.billing-buy-btn:active {
+    transform: translateY(0);
+}
+
+.billing-buy-btn:disabled {
+    cursor: default;
+    opacity: .55;
+    box-shadow: none;
+}
+
+.billing-buy-btn:disabled:hover {
+    transform: none;
+    filter: none;
+}
+
+
+/* ============================================
+   TABLET
+   2 CARDS / ROW
+============================================ */
+
+@media (max-width: 1199.98px) {
+
+    .billing-plans > [class*="col-"] {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+    }
+
+    .billing-card {
+        min-height: 570px;
+    }
+}
+
+
+/* ============================================
+   MOBILE
+   1 CARD / ROW
+============================================ */
+
+@media (max-width: 767.98px) {
+
+    .billing-page {
+        padding: 28px 15px 75px;
+    }
+
+    .billing-header {
+        margin-bottom: 30px;
+    }
+
+    .billing-header h1 {
+        font-size: 30px;
+    }
+
+    .billing-header p {
+        font-size: 14px;
+    }
+
+
+    /* 1 card per row */
+
+    .billing-plans > [class*="col-"] {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+
+        padding-left: 7px !important;
+        padding-right: 7px !important;
+    }
+
+
+    .billing-card {
+        min-height: 0;
+
+        padding: 30px 25px 25px;
+
+        border-radius: 20px;
+    }
+
+    .billing-card h2 {
+        font-size: 22px;
+    }
+
+    .billing-price-row {
+        margin-top: 26px;
+    }
+
+    .billing-price {
+        font-size: 45px;
+    }
+
+    .billing-description {
+        min-height: 0;
+
+        margin:
+            25px 0 22px;
+
+        font-size: 14px;
+    }
+
+    .billing-features {
+        padding:
+            20px 0 22px;
+    }
+
+    .billing-features li {
+        font-size: 14px;
+        margin-bottom: 13px;
+    }
+
+    .billing-buy-btn {
+        min-height: 52px;
+
+        margin-top: 21px;
+
+        font-size: 15px;
+    }
+}
+
+
+/* ============================================
+   SMALL PHONES
+============================================ */
+
+@media (max-width: 430px) {
+
+    .billing-page {
+        padding:
+            22px 12px 65px;
+    }
+
+    .billing-header {
+        margin-bottom: 25px;
+    }
+
+    .billing-header h1 {
+        font-size: 27px;
+    }
+
+    .billing-header p {
+        font-size: 13px;
+    }
+
+    .billing-plans > [class*="col-"] {
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+
+    .billing-card {
+        padding:
+            27px 21px 23px;
+
+        border-radius: 18px;
+    }
+
+    .billing-card h2 {
+        font-size: 20px;
+    }
+
+    .billing-badge {
+        min-height: 27px;
+        padding: 0 10px;
+        font-size: 9px;
+    }
+
+    .billing-price {
+        font-size: 41px;
+    }
+
+    .billing-description {
+        font-size: 13px;
+    }
+
+    .billing-features li {
+        font-size: 13px;
+    }
+}
+
+.billing-card {
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.billing-card-focused {
+    border-color: #176f6b !important;
+
+    box-shadow:
+        0 0 0 4px rgba(23, 111, 107, .12),
+        0 20px 45px rgba(16, 24, 24, .14) !important;
+
+    transform: translateY(-4px);
+}

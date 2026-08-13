@@ -29,7 +29,7 @@ const app = initializeApp(firebaseConfig);
 
 // Firestore exports
 export const db = getFirestore(app);
-export { setDoc, doc };
+export { setDoc, doc, getDoc };
 
 export async function fetchTestsFromFirestore(
   collectionName = "premiumTests",

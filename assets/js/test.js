@@ -1644,12 +1644,130 @@ async function startTest(testName) {
 
   // 🔥 ADS SHOW + WAIT
   if (window.showAdModal) {
-    await window.showAdModal(); // 👈 MUHIM FIX
+    await window.showAdModal();
   }
 
   const availableTests =
     typeof tests !== "undefined" ? tests : window.tests || {};
-  currentTest = availableTests[testName];
+
+  // ============================================================
+  // TESTNI OLISH
+  // ============================================================
+
+  const selectedTest = availableTests[testName];
+
+  if (!selectedTest) {
+    console.error(`❌ Test topilmadi: ${testName}`);
+    return;
+  }
+
+  // ============================================================
+  // 🔐 PRO TEST CHECK
+  // FAQAT START TEST BOSILGANDA ISHLAYDI
+  // ============================================================
+
+  if (
+    selectedTest &&
+    typeof selectedTest === "object" &&
+    selectedTest.pro === true
+  ) {
+    console.log(`🔐 PRO test tanlandi: ${testName}`);
+
+    // ----------------------------------------------------------
+    // 1. PRO ACCESS CHECK
+    // ----------------------------------------------------------
+
+    const allowed = await checkProAccess();
+
+    if (!allowed) {
+      console.log(`🔒 PRO testga ruxsat yo‘q: ${testName}`);
+
+      // Modal checkProAccess() ichida chiqadi.
+      // Test boshlanmaydi.
+      return;
+    }
+
+    console.log(`💎 PRO access tasdiqlandi: ${testName}`);
+
+    // ----------------------------------------------------------
+    // 2. FIRESTORE'DAN PRO TESTNI OLISH
+    // ----------------------------------------------------------
+
+    try {
+      console.log(`☁️ PRO test Firestore'dan yuklanmoqda: ${testName}`);
+
+      const testRef = doc(db, "testSets", "anatomy_tests");
+
+      const snapshot = await getDoc(testRef);
+
+      if (!snapshot.exists()) {
+        console.error("❌ Firestore document topilmadi: anatomy_tests");
+
+        return;
+      }
+
+      const firestoreData = snapshot.data();
+
+      if (!firestoreData || typeof firestoreData !== "object") {
+        console.error("❌ Firestore data noto‘g‘ri");
+
+        return;
+      }
+
+      const firestoreTest = firestoreData[testName];
+
+      if (!firestoreTest) {
+        console.error(`❌ Firestore'da "${testName}" topilmadi`);
+
+        return;
+      }
+
+      // --------------------------------------------------------
+      // FIRESTORE FORMATINI TEKSHIRISH
+      // --------------------------------------------------------
+
+      let convertedTest = null;
+
+      if (Array.isArray(firestoreTest)) {
+        convertedTest = firestoreTest;
+      } else if (firestoreTest && Array.isArray(firestoreTest.questions)) {
+        convertedTest = firestoreTest.questions;
+      } else if (firestoreTest && Array.isArray(firestoreTest.data)) {
+        convertedTest = firestoreTest.data;
+      }
+
+      if (!convertedTest) {
+        console.error(`❌ ${testName} test formatini convert qilib bo‘lmadi`);
+
+        return;
+      }
+
+      // --------------------------------------------------------
+      // PRO TEST TAYYOR
+      // --------------------------------------------------------
+
+      console.log(`🔥 PRO test Firestore'dan olindi: ${testName}`);
+
+      currentTest = convertedTest;
+    } catch (error) {
+      console.error(`❌ PRO testni Firestore'dan olishda xatolik:`, error);
+
+      return;
+    }
+  } else {
+    // ==========================================================
+    // 🟢 FREE TEST
+    // ==========================================================
+
+    console.log(`🟢 FREE test: ${testName}`);
+
+    currentTest = selectedTest;
+  }
+
+  // ============================================================
+  // ORIGINAL TEST START LOGIC
+  // ============================================================
+
   currentTestName = testName;
   currentIndex = 0;
   score = 0;
@@ -1657,25 +1775,37 @@ async function startTest(testName) {
   mistakes = [];
 
   const selection = document.getElementById("test-selection");
+
   const screen = document.getElementById("test-screen");
+
   const result = document.getElementById("result");
 
-  if (selection) selection.classList.add("d-none");
-  if (screen) screen.classList.remove("d-none");
-  if (result) result.classList.add("d-none");
+  if (selection) {
+    selection.classList.add("d-none");
+  }
+
+  if (screen) {
+    screen.classList.remove("d-none");
+  }
+
+  if (result) {
+    result.classList.add("d-none");
+  }
 
   const title = document.getElementById("test-title");
+
   const question = document.getElementById("question-container");
+
   const answers = document.getElementById("answer-buttons");
 
   if (!title || !question || !answers) {
     console.error("Test screen elementlari topilmadi");
+
     return;
   }
 
   showQuestion();
 }
-
 // Xatolarni ko‘rish
 function reviewMistakes() {
   if (mistakes.length === 0) {
@@ -1765,6 +1895,18 @@ async function maybeShowFeedback() {
   const modal = new bootstrap.Modal(modalEl);
 
   modal.show();
+}
+
+function openSidebar() {
+  document.getElementById("sidebar").classList.add("open");
+  document.getElementById("sidebarOverlay").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("sidebarOverlay").classList.remove("show");
+  document.body.style.overflow = "";
 }
 
 window.addEventListener("DOMContentLoaded", () => {
