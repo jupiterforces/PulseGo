@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Pulse Go — tibbiy ta'lim platformasi">
+
+    <title>Pulse Go — Kirish</title>
+
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Bootstrap Icons -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+
+    <!-- Google Font -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+    <!-- Pulse Auth CSS -->
+
+    <link rel="stylesheet" href="./auth.css">
+
+</head>
+
+
+<body>
+
+
+    <main class="auth-page">
+
+
+        <!-- Background decoration -->
+
+        <div class="auth-decoration auth-decoration-1"></div>
+
+        <div class="auth-decoration auth-decoration-2"></div>
+
+
+        <div class="container">
+
+
+            <div class="row justify-content-center">
+
+
+                <div class="col-12 col-md-8 col-lg-5">
+
+
+                    <!-- AUTH CARD -->
+
+                    <div class="auth-card">
+
+
+                        <!-- BRAND -->
+
+                        <div class="auth-brand">
+
+                            <img src="/assets/img/PulseGo.jpg" alt="Pulse Go" class="auth-logo">
+
+                            <div>
+
+                                <div class="brand-name">
+                                    Pulse Go
+                                </div>
+
+                                <div class="brand-subtitle">
+                                    Tibbiy ta'lim platformasi
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- LOGIN VIEW -->
+
+                        <section id="loginView" class="auth-view">
+
+                            <div class="auth-heading">
+
+                                <div class="welcome-icon">
+
+                                    <i class="bi bi-person-fill"></i>
+
+                                </div>
+
+                                <h1>
+                                    Xush kelibsiz 👋
+                                </h1>
+
+                                <p>
+                                    Pulse Go hisobingizga kiring
+                                    va o‘qishni davom ettiring.
+                                </p>
+
+                            </div>
+
+
+                            <!-- ERROR -->
+
+                            <div id="errorBox" class="alert alert-danger d-none" role="alert"></div>
+
+
+                            <!-- GOOGLE BUTTON -->
+
+                            <button id="googleLoginBtn" type="button" class="google-login-btn">
+
+                                <span class="google-icon">
+
+                                    <svg width="20" height="20" viewBox="0 0 24 24">
+
+                                        <path fill="#4285F4"
+                                            d="M21.35 12.27c0-.79-.07-1.55-.2-2.27H12v4.3h5.24a4.48 4.48 0 0 1-1.95 2.94v2.45h3.15c1.85-1.7 2.91-4.2 2.91-7.42z" />
+
+                                        <path fill="#34A853"
+                                            d="M12 21.6c2.65 0 4.88-.88 6.5-2.38l-3.15-2.45c-.87.58-1.98.92-3.35.92-2.57 0-4.75-1.73-5.53-4.06H3.22v2.53A9.82 9.82 0 0 0 12 21.6z" />
+
+                                        <path fill="#FBBC05"
+                                            d="M6.47 13.63A5.9 5.9 0 0 1 6.16 12c0-.57.1-1.12.31-1.63V7.84H3.22A9.82 9.82 0 0 0 2.2 12c0 1.58.38 3.07 1.02 4.16l3.25-2.53z" />
+
+                                        <path fill="#EA4335"
+                                            d="M12 6.31c1.44 0 2.73.5 3.75 1.49l2.8-2.8C16.88 3.4 14.65 2.4 12 2.4a9.82 9.82 0 0 0-8.78 5.44l3.25 2.53C7.25 8.04 9.43 6.31 12 6.31z" />
+
+                                    </svg>
+
+                                </span>
+
+                                <span id="googleButtonText">
+                                    Google bilan davom etish
+                                </span>
+
+                            </button>
+
+
+                            <div class="divider">
+
+                                <span>
+                                    yoki
+                                </span>
+
+                            </div>
+
+
+                            <div class="security-note">
+
+                                <i class="bi bi-shield-check"></i>
+
+                                <span>
+                                    Xavfsiz Google autentifikatsiyasi
+                                </span>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- PROFILE VIEW -->
+
+                        <section id="profileView" class="auth-view d-none">
+
+
+                            <div class="auth-heading">
+
+                                <div class="welcome-icon profile-icon">
+
+                                    <i class="bi bi-person-vcard-fill"></i>
+
+                                </div>
+
+                                <h1>
+                                    Profilingizni yarating
+                                </h1>
+
+                                <p>
+                                    Pulse Go sizga mos kontent
+                                    ko‘rsatishi uchun ma'lumotlaringizni kiriting.
+                                </p>
+
+                            </div>
+
+
+                            <!-- GOOGLE ACCOUNT -->
+
+                            <div class="google-account">
+
+                                <img id="profilePhoto" src="/assets/img/PulseGo.jpg" alt="Profile">
+
+                                <div class="google-account-info">
+
+                                    <strong id="profileGoogleName">
+                                        Google User
+                                    </strong>
+
+                                    <span id="profileGoogleEmail">
+                                        email@example.com
+                                    </span>
+
+                                </div>
+
+                                <i class="bi bi-check-circle-fill account-check"></i>
+
+                            </div>
+
+
+                            <!-- PROFILE ERROR -->
+
+                            <div id="profileErrorBox" class="alert alert-danger d-none" role="alert"></div>
+
+
+                            <!-- PROFILE FORM -->
+
+                            <form id="profileForm">
+
+
+                                <!-- FIRST NAME -->
+
+                                <div class="form-group">
+
+                                    <label for="firstName">
+
+                                        <i class="bi bi-person"></i>
+
+                                        Ism
+
+                                    </label>
+
+                                    <input id="firstName" type="text" class="form-control pulse-input"
+                                        placeholder="Masalan: Jahongir" autocomplete="given-name" required>
+
+                                </div>
+
+
+                                <!-- LAST NAME -->
+
+                                <div class="form-group">
+
+                                    <label for="lastName">
+
+                                        <i class="bi bi-person-badge"></i>
+
+                                        Familiya
+
+                                    </label>
+
+                                    <input id="lastName" type="text" class="form-control pulse-input"
+                                        placeholder="Masalan: ..." autocomplete="family-name" required>
+
+                                </div>
+
+
+                                <!-- COURSE -->
+
+                                <div class="form-group">
+
+                                    <label for="course">
+
+                                        <i class="bi bi-mortarboard"></i>
+
+                                        Kurs
+
+                                    </label>
+
+                                    <select id="course" class="form-select pulse-input" required>
+
+                                        <option value="">
+                                            Kursingizni tanlang
+                                        </option>
+
+                                        <option value="1-kurs">
+                                            1-kurs
+                                        </option>
+
+                                        <option value="2-kurs">
+                                            2-kurs
+                                        </option>
+
+                                        <option value="3-kurs">
+                                            3-kurs
+                                        </option>
+
+                                        <option value="4-kurs">
+                                            4-kurs
+                                        </option>
+
+                                        <option value="5-kurs">
+                                            5-kurs
+                                        </option>
+
+                                        <option value="6-kurs">
+                                            6-kurs
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- SUBMIT -->
+
+                                <button id="saveProfileBtn" type="submit" class="primary-btn">
+
+                                    <span>
+                                        Profilni yaratish
+                                    </span>
+
+                                    <i class="bi bi-arrow-right"></i>
+
+                                </button>
+
+                            </form>
+
+
+                            <div class="profile-security">
+
+                                <i class="bi bi-lock-fill"></i>
+
+                                Ma'lumotlaringiz xavfsiz saqlanadi
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- FOOTER -->
+
+                        <div class="auth-footer">
+
+                            <span>
+                                © 2026 Pulse Go
+                            </span>
+
+                            <span>
+                                •
+                            </span>
+
+                            <span>
+                                Medical Education
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- AUTH JS -->
+
+    <script type="module" src="./auth.js"></script>
+
+</body>
+
+</html>
