@@ -2,6 +2,9 @@
 // Common utility functions
 // ----------------------
 
+import { db } from "../../firebase.js";
+import { doc, getDoc } from "../../firebase.js";
+
 // Arrayni aralashtirish
 function shuffle(array) {
   return [...array]
@@ -10,13 +13,13 @@ function shuffle(array) {
     .map(({ value }) => value);
 }
 
-// Random test yaratish
 function getRandomTest(questions, n = "all") {
   const shuffledQuestions =
     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
 
   return shuffledQuestions.map((q) => {
     const shuffledAnswers = shuffle(q.a);
+
     return {
       q: q.q,
       photo: q.photo || null,
@@ -25,6 +28,8 @@ function getRandomTest(questions, n = "all") {
     };
   });
 }
+console.log("🔥 GLOBAL getRandomTest:", typeof window.getRandomTest);
+window.getRandomTest = getRandomTest;
 
 function loadFallbackResults() {
   try {
@@ -1499,6 +1504,8 @@ function stopTest() {
     modal.hide();
   };
 }
+window.stopTest = stopTest;
+
 function showResultPopup() {
   document.getElementById("test-screen").classList.add("d-none");
 
@@ -1623,6 +1630,9 @@ function shareResult() {
   const tgLink = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
   window.open(tgLink, "_blank");
 }
+
+// import { db } from "../firebase.js";
+// import { doc, getDoc } from "../firebase.js";
 
 async function startTest(testName) {
   console.log("START TEST");
@@ -1806,6 +1816,9 @@ async function startTest(testName) {
 
   showQuestion();
 }
+
+window.startTest = startTest;
+
 // Xatolarni ko‘rish
 function reviewMistakes() {
   if (mistakes.length === 0) {
