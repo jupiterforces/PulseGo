@@ -159,6 +159,8 @@ async function loadTests() {
 
   window.TEST_QUESTIONS = finalTests;
 
+  window.tests = finalTests;
+
   // --------------------------------------------------------
   // 5. WORKER'GA SIGNAL
   // --------------------------------------------------------

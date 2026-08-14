@@ -510,11 +510,15 @@
 
     <div id="common-modals"></div>
 
-    <script src="/anatomy/anatomyoldtests.js"></script>
 
     <script type="module" src="/anatomy/firetests.js"></script>
 
-    <script src="/assets/js/test.js"></script>
+    <script src="/anatomy/anatomyoldtests.js"></script>
+
+
+
+
+    <script type="module" src="/assets/js/test.js"></script>
 
     <script type="module">
         import { checkProAccess } from "/procheck/procheck.js";
@@ -522,7 +526,7 @@
         window.checkProAccess = checkProAccess;
     </script>
 
-    <script>
+    <!-- <script>
         window.addEventListener("testsLoaded", () => {
 
             console.log("🔥 testsLoaded received");
@@ -566,8 +570,8 @@
 
                     window.tests[testName] =
                         count === null
-                            ? getRandomTest(testData)
-                            : getRandomTest(testData, count);
+                            ? window.getRandomTest(testData)
+                            : window.getRandomTest(testData, count);
 
                     console.log(
                         `🟢 ${testName} FREE test tayyor`
@@ -629,7 +633,7 @@
             );
 
         });
-    </script>
+    </script> -->
 
     <div class="modal fade" id="proModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
