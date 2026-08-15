@@ -359,14 +359,15 @@
 
     <div id="common-modals"></div>
 
-    <script src="/embriology/tests.js"></script>
-    <script src="/assets/js/test.js"></script>
+    <script src="../assets/js/test-utils.js"></script>
+    <script src="/chemistry/tests.js"></script>
+    <script type="module" src="/assets/js/test.js"></script>
 
 
 
 
     <script>
-        const tests = {
+        window.tests = {
             aminoacids: getRandomTest(TEST_QUESTIONS.aminoacids),
             vitamins: getRandomTest(TEST_QUESTIONS.vitamins),
             enzymes: getRandomTest(TEST_QUESTIONS.enzymes),
@@ -384,7 +385,7 @@
 
         };
 
-        const testTitleMap = {
+        window.testTitleMap = {
             aminoacids: "aminoacids",
             vitamins: "vitamins",
             enzymes: "enzymes",

@@ -2,9 +2,6 @@
 // Common utility functions
 // ----------------------
 
-import { db } from "../../firebase.js";
-import { doc, getDoc } from "../../firebase.js";
-
 // Arrayni aralashtirish
 function shuffle(array) {
   return [...array]
@@ -13,13 +10,13 @@ function shuffle(array) {
     .map(({ value }) => value);
 }
 
+// Random test yaratish
 function getRandomTest(questions, n = "all") {
   const shuffledQuestions =
     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
 
   return shuffledQuestions.map((q) => {
     const shuffledAnswers = shuffle(q.a);
-
     return {
       q: q.q,
       photo: q.photo || null,
@@ -29,9 +26,6 @@ function getRandomTest(questions, n = "all") {
   });
 }
 
-window.getRandomTest = getRandomTest;
-
-console.log("🔥 GLOBAL getRandomTest:", typeof window.getRandomTest);
 function loadFallbackResults() {
   try {
     const raw = localStorage.getItem("pulsego_test_results_v1");
@@ -1147,10 +1141,8 @@ function renderTestCards(containerSelector, cards, options = {}) {
 
 function getTestCardQuestionCount(testName) {
   if (!testName) return null;
-  const availableTests = window.tests || {};
-
-  // const availableTests =
-  //   typeof tests !== "undefined" ? tests : window.tests || {};
+  const availableTests =
+    typeof tests !== "undefined" ? tests : window.tests || {};
 
   if (Array.isArray(availableTests[testName])) {
     return availableTests[testName].length;
@@ -1507,8 +1499,6 @@ function stopTest() {
     modal.hide();
   };
 }
-window.stopTest = stopTest;
-
 function showResultPopup() {
   document.getElementById("test-screen").classList.add("d-none");
 
@@ -1634,9 +1624,6 @@ function shareResult() {
   window.open(tgLink, "_blank");
 }
 
-// import { db } from "../firebase.js";
-// import { doc, getDoc } from "../firebase.js";
-
 async function startTest(testName) {
   console.log("START TEST");
 
@@ -1657,140 +1644,12 @@ async function startTest(testName) {
 
   // 🔥 ADS SHOW + WAIT
   if (window.showAdModal) {
-    await window.showAdModal();
+    await window.showAdModal(); // 👈 MUHIM FIX
   }
 
-  const availableTests = window.tests || {};
-
-  console.log("🧪 TEST NAME:", testName);
-  console.log("🧪 AVAILABLE TESTS:", availableTests);
-  console.log("🧪 AVAILABLE KEYS:", Object.keys(availableTests));
-
-  const selectedTest = availableTests[testName];
-
-  console.log("🧪 SELECTED TEST:", selectedTest);
-
-  // const availableTests =
-  //   typeof tests !== "undefined" ? tests : window.tests || {};
-
-  // ============================================================
-  // TESTNI OLISH
-  // ============================================================
-
-  // const selectedTest = availableTests[testName];
-
-  // if (!selectedTest) {
-  //   console.error(`❌ Test topilmadi: ${testName}`);
-  //   return;
-  // }
-
-  // ============================================================
-  // 🔐 PRO TEST CHECK
-  // FAQAT START TEST BOSILGANDA ISHLAYDI
-  // ============================================================
-
-  if (
-    selectedTest &&
-    typeof selectedTest === "object" &&
-    selectedTest.pro === true
-  ) {
-    console.log(`🔐 PRO test tanlandi: ${testName}`);
-
-    // ----------------------------------------------------------
-    // 1. PRO ACCESS CHECK
-    // ----------------------------------------------------------
-
-    const allowed = await checkProAccess();
-
-    if (!allowed) {
-      console.log(`🔒 PRO testga ruxsat yo‘q: ${testName}`);
-
-      // Modal checkProAccess() ichida chiqadi.
-      // Test boshlanmaydi.
-      return;
-    }
-
-    console.log(`💎 PRO access tasdiqlandi: ${testName}`);
-
-    // ----------------------------------------------------------
-    // 2. FIRESTORE'DAN PRO TESTNI OLISH
-    // ----------------------------------------------------------
-
-    try {
-      console.log(`☁️ PRO test Firestore'dan yuklanmoqda: ${testName}`);
-
-      const testRef = doc(db, "testSets", "anatomy_tests");
-
-      const snapshot = await getDoc(testRef);
-
-      if (!snapshot.exists()) {
-        console.error("❌ Firestore document topilmadi: anatomy_tests");
-
-        return;
-      }
-
-      const firestoreData = snapshot.data();
-
-      if (!firestoreData || typeof firestoreData !== "object") {
-        console.error("❌ Firestore data noto‘g‘ri");
-
-        return;
-      }
-
-      const firestoreTest = firestoreData[testName];
-
-      if (!firestoreTest) {
-        console.error(`❌ Firestore'da "${testName}" topilmadi`);
-
-        return;
-      }
-
-      // --------------------------------------------------------
-      // FIRESTORE FORMATINI TEKSHIRISH
-      // --------------------------------------------------------
-
-      let convertedTest = null;
-
-      if (Array.isArray(firestoreTest)) {
-        convertedTest = firestoreTest;
-      } else if (firestoreTest && Array.isArray(firestoreTest.questions)) {
-        convertedTest = firestoreTest.questions;
-      } else if (firestoreTest && Array.isArray(firestoreTest.data)) {
-        convertedTest = firestoreTest.data;
-      }
-
-      if (!convertedTest) {
-        console.error(`❌ ${testName} test formatini convert qilib bo‘lmadi`);
-
-        return;
-      }
-
-      // --------------------------------------------------------
-      // PRO TEST TAYYOR
-      // --------------------------------------------------------
-
-      console.log(`🔥 PRO test Firestore'dan olindi: ${testName}`);
-
-      currentTest = convertedTest;
-    } catch (error) {
-      console.error(`❌ PRO testni Firestore'dan olishda xatolik:`, error);
-
-      return;
-    }
-  } else {
-    // ==========================================================
-    // 🟢 FREE TEST
-    // ==========================================================
-
-    console.log(`🟢 FREE test: ${testName}`);
-
-    currentTest = selectedTest;
-  }
-
-  // ============================================================
-  // ORIGINAL TEST START LOGIC
-  // ============================================================
-
+  const availableTests =
+    typeof tests !== "undefined" ? tests : window.tests || {};
+  currentTest = availableTests[testName];
   currentTestName = testName;
   currentIndex = 0;
   score = 0;
@@ -1798,39 +1657,24 @@ async function startTest(testName) {
   mistakes = [];
 
   const selection = document.getElementById("test-selection");
-
   const screen = document.getElementById("test-screen");
-
   const result = document.getElementById("result");
 
-  if (selection) {
-    selection.classList.add("d-none");
-  }
-
-  if (screen) {
-    screen.classList.remove("d-none");
-  }
-
-  if (result) {
-    result.classList.add("d-none");
-  }
+  if (selection) selection.classList.add("d-none");
+  if (screen) screen.classList.remove("d-none");
+  if (result) result.classList.add("d-none");
 
   const title = document.getElementById("test-title");
-
   const question = document.getElementById("question-container");
-
   const answers = document.getElementById("answer-buttons");
 
   if (!title || !question || !answers) {
     console.error("Test screen elementlari topilmadi");
-
     return;
   }
 
   showQuestion();
 }
-
-window.startTest = startTest;
 
 // Xatolarni ko‘rish
 function reviewMistakes() {

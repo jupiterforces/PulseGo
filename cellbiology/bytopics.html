@@ -180,14 +180,15 @@
     </section>
     <div id="common-modals"></div>
 
-    <script src="/assets/js/test.js"></script>
+    <script src="/assets/js/test-utils.js"></script>
     <script src="./bytopics.js"></script>
+    <script type="module" src="/assets/js/test.js"></script>
 
 
 
 
     <script>
-        const tests = {
+        window.tests = {
             m1: getRandomTest(TEST_QUESTIONS.m1),
             m2: getRandomTest(TEST_QUESTIONS.m2),
             m3: getRandomTest(TEST_QUESTIONS.m3),
@@ -232,7 +233,7 @@
         };
 
 
-        const testTitleMap = {
+        window.testTitleMap = {
             m1: "HUJAYRA BIOLOGIYASIGA KIRISH",
             m2: "HUJAYRA MEMBRANASI",
             m3: "HUJAYRA SIGNALIZATSIYASI",

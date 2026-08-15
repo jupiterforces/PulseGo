@@ -312,14 +312,15 @@
 
     <div id="common-modals"></div>
 
+    <script src="/assets/js/test-utils.js"></script>
     <script src="/cellbiology/tests.js"></script>
-    <script src="/assets/js/test.js"></script>
+    <script type="module" src="/assets/js/test.js"></script>
 
 
 
 
     <script>
-        const tests = {
+        window.tests = {
             cellb1: getRandomTest(TEST_QUESTIONS.cellb1),
             cellb2: getRandomTest(TEST_QUESTIONS.cellb2),
             cellb3: getRandomTest(TEST_QUESTIONS.cellb3),
@@ -332,7 +333,7 @@
             cellb10: getRandomTest(TEST_QUESTIONS.cellb10),
         };
 
-        const testTitleMap = {
+        window.testTitleMap = {
             cellb1: "CellBiology 1",
             cellb2: "CellBiology 2",
             cellb3: "CellBiology 3",
@@ -385,7 +386,7 @@
             modal.show();
         }
     </script>
-
+    <script type="module" src="../auth-guard.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

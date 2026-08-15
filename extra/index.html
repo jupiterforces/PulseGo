@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BMI Hisoblash — PulseGo</title>
+    <style>
+        :root {
+            --accent: #1976d2;
+            --bg: #f6f8fa;
+            --card: #ffffff
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: #111
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 16px auto;
+            padding: 20px;
+            background: var(--card);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .06);
+            border-radius: 8px
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 0 0 16px;
+            color: #333
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .field {
+            flex: 1 1 200px;
+            min-width: 180px
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px
+        }
+
+        input[type=number],
+        input[type=text] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 12px
+        }
+
+        button {
+            background: var(--accent);
+            color: #fff;
+            border: 0;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer
+        }
+
+        button.secondary {
+            background: #6c757d
+        }
+
+        .result {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #f1f9ff;
+            border: 1px solid #d8eeff
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px
+        }
+
+        th,
+        td {
+            padding: 8px;
+            border: 1px solid #eee;
+            text-align: left
+        }
+
+        tr.highlight {
+            background: linear-gradient(90deg, rgba(25, 118, 210, 0.08), transparent)
+        }
+
+        .small {
+            font-size: 13px;
+            color: #555
+        }
+
+        @media(max-width:520px) {
+            .row {
+                flex-direction: column
+            }
+
+            .container {
+                padding: 12px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>BMI Hisoblash (Tana massasi indeksi)</h1>
+        <p class="lead">Iltimos, bo‘y va vazningizni kiriting — natija va toifani ko‘rasiz. Ma'lumotlar brauzerning
+            <strong>localStorage</strong>iga username bo‘yicha saqlanadi.
+        </p>
+
+        <div class="small">Foydalanuvchi: <span id="displayUser">(aniqlanmagan)</span></div>
+
+        <div class="row" style="margin-top:12px">
+            <div class="field">
+                <label for="height">Bo'y (santimetrda, masalan: 175)</label>
+                <input id="height" type="number" min="20" step="0.1" placeholder="cm">
+            </div>
+            <div class="field">
+                <label for="weight">Vazn (kilogramm, masalan: 70)</label>
+                <input id="weight" type="number" min="1" step="0.1" placeholder="kg">
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="btnCalc">Hisoblash</button>
+            <button id="btnClear" class="secondary">Formani tozalash</button>
+            <div style="margin-left:auto" class="small">Bo'y metrga o'girish: cm / 100</div>
+        </div>
+
+        <div id="output" class="result" style="display:none">
+            <div><strong>Sizning BMI:</strong> <span id="bmiValue"></span></div>
+            <div><strong>Toifa:</strong> <span id="bmiCategory"></span></div>
+            <div class="small" id="savedNote" style="margin-top:8px;color:#2b6c2b"></div>
+        </div>
+
+        <h3 style="margin-top:18px">BMI ta'rifi</h3>
+        <table id="bmiTable">
+            <thead>
+                <tr>
+                    <th>Toifa</th>
+                    <th>BMI oralig‘i (kg/m²)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-min="-999" data-max="18.49">
+                    <td>Kam vazn</td>
+                    <td>&lt; 18.50</td>
+                </tr>
+                <tr data-min="18.5" data-max="24.99">
+                    <td>Norma</td>
+                    <td>18.50 - 24.99</td>
+                </tr>
+                <tr data-min="25" data-max="29.99">
+                    <td>Ortiqcha vazn (Preobez)</td>
+                    <td>25.00 - 29.99</td>
+                </tr>
+                <tr data-min="30" data-max="34.99">
+                    <td>Semizlik, I daraja</td>
+                    <td>30.00 - 34.99</td>
+                </tr>
+                <tr data-min="35" data-max="39.99">
+                    <td>Semizlik, II daraja</td>
+                    <td>35.00 - 39.99</td>
+                </tr>
+                <tr data-min="40" data-max="999">
+                    <td>Semizlik, III daraja (og‘ir)</td>
+                    <td>&ge; 40.00</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="small" style="margin-top:12px">Eslatma: BMI umumiy ko‘rsatkich bo‘lib, ayniqsa sportchilar va o‘sish
+            davridagi bolalar uchun alohida baholash talab qilinadi.</p>
+    </main>
+
+    <script type="module">
+        import { db, setDoc, doc } from '../firebase.js';
+        // Helper: get username from localStorage using common keys
+        function getStoredUsername() {
+            const keys = ['uid', 'username', 'user', 'name'];
+            for (const k of keys) {
+                const v = localStorage.getItem(k);
+                if (v && v.trim()) return v.trim();
+            }
+            return null;
+        }
+
+        function showUser(u) {
+            document.getElementById('displayUser').textContent = u ? u : '(aniqlanmagan)';
+        }
+
+        function getCategory(bmi) {
+            if (bmi < 18.5) return 'Kam vazn';
+            if (bmi < 25) return 'Norma';
+            if (bmi < 30) return 'Ortiqcha vazn (Preobez)';
+            if (bmi < 35) return 'Semizlik, I daraja';
+            if (bmi < 40) return 'Semizlik, II daraja';
+            return 'Semizlik, III daraja (og\'ir)';
+        }
+
+        function highlightTable(bmi) {
+            const rows = document.querySelectorAll('#bmiTable tbody tr');
+            rows.forEach(r => r.classList.remove('highlight'));
+            if (isNaN(bmi)) return;
+            rows.forEach(r => {
+                const min = parseFloat(r.dataset.min);
+                const max = parseFloat(r.dataset.max);
+                if (bmi >= min && bmi <= max) r.classList.add('highlight');
+            });
+        }
+
+        function saveRecord(uid, record) {
+            if (!uid) return false;
+            const key = 'bmi_records';
+            let all = {};
+            try { all = JSON.parse(localStorage.getItem(key) || '{}'); } catch (e) { all = {}; }
+            if (!Array.isArray(all[uid])) all[uid] = [];
+            all[uid].push(record);
+            localStorage.setItem(key, JSON.stringify(all));
+            return true;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const stored = getStoredUsername();
+            showUser(stored);
+
+            document.getElementById('btnCalc').addEventListener('click', async () => {
+                const hVal = parseFloat(document.getElementById('height').value);
+                const wVal = parseFloat(document.getElementById('weight').value);
+                const uid = stored; // do not ask — take from localStorage
+
+                if (!hVal || !wVal || hVal <= 0 || wVal <= 0) {
+                    alert('Iltimos, to‘g‘ri bo‘y va vazn kiriting (musbat sonlar).');
+                    return;
+                }
+
+                if (!uid) {
+                    document.getElementById('savedNote').textContent = 'Foydalanuvchi topilmadi localStorage-da — Firebasega yozilmadi.';
+                }
+
+                const height_m = hVal / 100.0;
+                const bmi = +(wVal / (height_m * height_m)).toFixed(2);
+                const category = getCategory(bmi);
+
+                document.getElementById('bmiValue').textContent = bmi;
+                document.getElementById('bmiCategory').textContent = category;
+                document.getElementById('output').style.display = 'block';
+                highlightTable(bmi);
+
+                const record = { timestamp: new Date().toISOString(), height_cm: +hVal, weight_kg: +wVal, bmi, category };
+                let savedLocal = false;
+                if (uid) {
+                    try { localStorage.setItem('uid', uid); } catch (e) { }
+                    savedLocal = saveRecord(uid, record);
+                }
+
+                // Write to Firestore under users/{uid}/bmi_records/{id}
+                if (uid) {
+                    try {
+                        const id = Date.now().toString();
+                        await setDoc(doc(db, 'users', uid, 'bmi_records', id), record);
+                        document.getElementById('savedNote').textContent = 'Natija saqlandi: localStorage va Firebase.';
+                    } catch (err) {
+                        console.error('Firebase yozishda xato:', err);
+                        document.getElementById('savedNote').textContent = 'LocalStorage-ga saqlandi; Firebasega yozishda xato.';
+                    }
+                } else {
+                    if (savedLocal) document.getElementById('savedNote').textContent = 'Natija faqat localStorage-ga saqlandi.';
+                }
+
+                showUser(uid);
+            });
+
+            document.getElementById('btnClear').addEventListener('click', () => {
+                document.getElementById('height').value = '';
+                document.getElementById('weight').value = '';
+                document.getElementById('bmiValue').textContent = '';
+                document.getElementById('bmiCategory').textContent = '';
+                document.getElementById('output').style.display = 'none';
+                highlightTable(NaN);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -378,9 +378,10 @@
     <div id="common-modals"></div>
 
 
+    <script src="../assets/js/test-utils.js"></script>
 
     <script src="../cases/tests.js"></script>
-    <script src="../assets/js/test.js"></script>
+    <script type="module" src="../assets/js/test.js"></script>
 
     <script>
         const categories = {
@@ -482,7 +483,7 @@
         });
 
         // Initialize
-        const tests = {
+        window.tests = {
             cases: getRandomTest(TEST_QUESTIONS.cases),
             chapter2: getRandomTest(TEST_QUESTIONS.chapter2),
             chapter3: getRandomTest(TEST_QUESTIONS.chapter3),

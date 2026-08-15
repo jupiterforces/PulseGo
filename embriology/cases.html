@@ -284,14 +284,15 @@
 
     <div id="common-modals"></div>
 
+    <script src="../assets/js/test-utils.js"></script>
     <script src="/embriology/cases.js"></script>
-    <script src="/assets/js/test.js"></script>
+    <script type="module" src="/assets/js/test.js"></script>
 
 
 
 
     <script>
-        const tests = {
+        window.tests = {
             generalembryo: getRandomTest(TEST_QUESTIONS.generalembryo),
             nervous: getRandomTest(TEST_QUESTIONS.nervous),
             cardio: getRandomTest(TEST_QUESTIONS.cardio),
@@ -304,7 +305,7 @@
 
         };
 
-        const testTitleMap = {
+        window.testTitleMap = {
             generalembryo: "Embryo Unit1",
             nervous: "Nervous",
             cardio: "cardio",
