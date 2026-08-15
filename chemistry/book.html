@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Pulse Medical – tibbiy testlar, ishonchli manbalar va zamonaviy bilim platformasi. Talabalar va mutaxassislar uchun.">
+    <meta name="keywords"
+        content="Pulse Medical, tibbiy testlar, anatomiya test, medical platform, tibbiyot, online test">
+    <meta name="author" content="Pulse Medical">
+    <meta property="og:title" content="Pulse Medical">
+    <meta property="og:description" content="Yakuniy nazorat uchun Mock testlar">
+    <meta property="og:image" content="Pulse.jpg">
+    <meta property="og:type" content="website">
+    <title>Biokimyo – Pulse Go</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 16px;
+            --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+        }
+
+        body {
+            background: var(--bg);
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text);
+        }
+
+        .section-head {
+            margin-bottom: 14px;
+        }
+
+        .section-head h5 {
+            font-weight: 800;
+            font-size: 1.15rem;
+            margin: 0 0 2px;
+        }
+
+        .section-head .sub {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Overall stats – pulseimi style */
+        .overall-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .stat-box {
+            background: var(--card);
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .stat-box .stat-value {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.2;
+        }
+
+        .stat-box .stat-label {
+            font-size: 0.72rem;
+            color: var(--muted);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .stat-box.accent .stat-value {
+            color: var(--primary);
+        }
+
+        .stat-box.success .stat-value {
+            color: #16a34a;
+        }
+
+        .accordion-item {
+            border-radius: var(--radius) !important;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border) !important;
+        }
+
+        .accordion-button {
+            background: var(--card) !important;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 14px 16px;
+            box-shadow: none !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: #eff6ff !important;
+            color: var(--primary);
+        }
+
+        .accordion-body {
+            background: #fafbfc;
+            padding: 14px 12px 16px !important;
+        }
+
+        @media (max-width: 576px) {
+            .stat-box .stat-value {
+                font-size: 1.15rem;
+            }
+
+            .stat-box {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QX686G4TT9"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QX686G4TT9');
+</script>
+
+<body class="bg-light">
+
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <div class="sidebar-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+            </div>
+            <div>
+                <div class="sidebar-brand">Pulse Go</div>
+                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+            </div>
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user" id="sidebarUser">
+            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+            <div>
+                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+                <div class="sidebar-user-sub">Pulse Go Member</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Asosiy</div>
+            <a href="/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-house-fill"></i> Asosiy
+            </a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-journals"></i> Tayyorlanish
+            </a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
+            </a>
+
+            <div class="sidebar-section-label">O'quv materiallari</div>
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-book-half"></i> Online Darslar
+            </a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-collection-fill"></i> Kitoblar
+            </a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-body-text"></i> Anatomiya
+            </a>
+            <a href="/cellbiology/" class="sidebar-link active" onclick="closeSidebar()">
+                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
+            </a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-flask-fill"></i> Kimyo
+            </a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-egg-fill"></i> Embriologiya
+            </a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
+            </a>
+
+            <div class="sidebar-section-label">Profil</div>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-person-fill"></i> Mening profilim
+            </a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
+            </a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
+                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
+                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+            </a>
+        </div>
+    </aside>
+
+    <nav class="top-navbar">
+        <div class="container">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+                Pulse Go
+            </a>
+            <a href="/tests/" class="btn btn-light btn-sm rounded-pill">
+                <i class="bi bi-arrow-left"></i> Orqaga
+            </a>
+            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+        </div>
+    </nav>
+
+    <section id="test-selection" class="py-3">
+        <div class="container" style="max-width: 720px;">
+
+            <div class="section-head">
+                <h5>Biokimyo</h5>
+                <div class="sub">BRS · Chapter 1 · Energiya metabolizmi</div>
+            </div>
+
+            <!-- OVERALL STATS -->
+            <div class="overall-stats" id="overallStats">
+                <div class="stat-box">
+                    <div class="stat-value" id="statTotalQ">0</div>
+                    <div class="stat-label">Savollar</div>
+                </div>
+                <div class="stat-box accent">
+                    <div class="stat-value" id="statTaken">0</div>
+                    <div class="stat-label">Ishlangan</div>
+                </div>
+                <div class="stat-box success">
+                    <div class="stat-value" id="statPercent">0%</div>
+                    <div class="stat-label">O‘rtacha</div>
+                </div>
+            </div>
+
+            <div class="accordion border-0 mb-3" id="anatomyAccordion">
+                <div class="accordion-item border-0">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#anatomyTests" aria-expanded="true">
+                            <i class="bi bi-heart-pulse me-2 text-danger"></i>
+                            Biokimyo testlari
+                        </button>
+                    </h2>
+                    <div id="anatomyTests" class="accordion-collapse collapse show">
+                        <div class="accordion-body pt-3">
+                            <div class="row g-3" id="anatomy-test-cards"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="bottom-nav d-lg-none">
+            <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+            <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill active"></i><span>QBank</span></a>
+            <a href="/preparation/" class="bn-item">
+                <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+                <span>Tayyorlanish</span>
+            </a>
+            <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+            <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+        </nav>
+    </section>
+
+    <div id="common-modals"></div>
+
+    <script src="/assets/js/test-utils.js"></script>
+    <script src="./brs_ch1.js"></script>
+    <script type="module" src="/assets/js/testcases.js"></script>
+
+    <script>
+        function openSidebar() {
+            document.getElementById('sidebar')?.classList.add('open');
+            document.getElementById('sidebarOverlay')?.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeSidebar() {
+            document.getElementById('sidebar')?.classList.remove('open');
+            document.getElementById('sidebarOverlay')?.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        window.tests = {
+            m1: getRandomTest(TEST_QUESTIONS.m1, 1),
+        };
+
+        window.testTitleMap = {
+            m1: "Energiya metabolizmi va oziqlanish: Asosiy prinsiplar",
+        };
+
+        const ALL_CARDS = [
+            { testName: "m1", title: testTitleMap.m1 },
+        ];
+
+        function getTestSummarySafe() {
+            if (typeof buildTestSummary === 'function') {
+                return buildTestSummary();
+            }
+            try {
+                const raw = localStorage.getItem('pulsego_test_results_v1');
+                const tests = raw ? (JSON.parse(raw).tests || []) : [];
+                const byTest = {};
+                let totalQ = 0, totalC = 0, runs = 0;
+                tests.forEach(e => {
+                    const name = e.testName || 'unknown';
+                    if (!byTest[name]) {
+                        byTest[name] = { last: null, attempts: 0, totalCorrect: 0, totalQuestions: 0 };
+                    }
+                    byTest[name].attempts++;
+                    byTest[name].totalCorrect += e.correct || 0;
+                    byTest[name].totalQuestions += e.total || 0;
+                    if (!byTest[name].last || new Date(e.date) > new Date(byTest[name].last.date)) {
+                        byTest[name].last = e;
+                    }
+                    totalQ += e.total || 0;
+                    totalC += e.correct || 0;
+                    runs++;
+                });
+                return {
+                    byTest,
+                    overview: {
+                        totalRuns: runs,
+                        totalQuestions: totalQ,
+                        totalCorrect: totalC,
+                        overallPercent: totalQ ? Math.round((totalC / totalQ) * 100) : 0
+                    }
+                };
+            } catch (e) {
+                return {
+                    byTest: {},
+                    overview: { totalRuns: 0, totalQuestions: 0, totalCorrect: 0, overallPercent: 0 }
+                };
+            }
+        }
+
+        function computeOverallStats() {
+            let totalQuestions = 0;
+            ALL_CARDS.forEach(c => {
+                const t = window.tests?.[c.testName];
+                if (Array.isArray(t)) totalQuestions += t.length;
+                else if (window.TEST_QUESTIONS?.[c.testName]) {
+                    totalQuestions += window.TEST_QUESTIONS[c.testName].length;
+                }
+            });
+
+            const summary = getTestSummarySafe();
+            let taken = 0;
+            let sumPercent = 0;
+            let withScore = 0;
+
+            ALL_CARDS.forEach(c => {
+                const st = summary.byTest[c.testName];
+                if (st && st.last) {
+                    taken++;
+                    const avg = st.totalQuestions
+                        ? Math.round((st.totalCorrect / st.totalQuestions) * 100)
+                        : (st.last.percent || 0);
+                    sumPercent += avg;
+                    withScore++;
+                }
+            });
+
+            const avgPercent = withScore ? Math.round(sumPercent / withScore) : 0;
+
+            document.getElementById('statTotalQ').textContent = totalQuestions;
+            document.getElementById('statTaken').textContent = `${taken}/${ALL_CARDS.length}`;
+            document.getElementById('statPercent').textContent = avgPercent + '%';
+        }
+
+        function renderCards() {
+            if (typeof renderTestCards === 'function') {
+                renderTestCards('#anatomy-test-cards', ALL_CARDS);
+            } else {
+                const grid = document.getElementById('anatomy-test-cards');
+                if (!grid) return;
+                grid.innerHTML = ALL_CARDS.map(c => `
+                    <div class="col-6 col-md-4">
+                        <div class="test-card" onclick="startTest('${c.testName}')">
+                            <div class="test-icon bg-success-subtle text-success">
+                                <i class="bi bi-journal-medical fs-3"></i>
+                            </div>
+                            <div class="test-title fw-semibold">${c.title}</div>
+                            <div class="question-footer"></div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // card stats (mavjud tizim)
+            if (typeof renderTestStats === 'function') {
+                setTimeout(() => renderTestStats(), 60);
+            } else if (typeof initTestStats === 'function') {
+                setTimeout(() => initTestStats(), 60);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            computeOverallStats();
+            renderCards();
+        });
+
+        window.addEventListener('focus', () => {
+            computeOverallStats();
+            renderCards();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

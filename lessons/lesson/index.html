@@ -1,742 +1,416 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson - Pulse Medical</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Dars – Pulse Go</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles/styles.css">
 
-
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --radius: 18px;
+            --shadow: 0 4px 24px rgba(15, 23, 42, 0.07);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            background: linear-gradient(135deg, #f5f7fb 0%, #e8f2ff 100%);
+            background: var(--bg);
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text);
             min-height: 100vh;
-            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .navbar {
-            background: linear-gradient(90deg, #2563eb, #1d4ed8) !important;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.3rem;
-            letter-spacing: -0.5px;
-        }
-
-        .container-main {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .breadcrumb-section {
-            display: none;
-        }
-
-        .content-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 280px;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .video-section {
+        /* ========== TOP NAV ========== */
+        .top-navbar {
             background: white;
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .video-player-container {
+        .top-navbar .container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 1100px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            object-fit: cover;
+        }
+
+        .btn-hamburger {
+            width: 38px;
+            height: 38px;
+            border: none;
+            background: #f1f5f9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .btn-nav-profile {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: auto;
+            font-size: 0.9rem;
+        }
+
+        /* ========== MAIN CONTAINER ========== */
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 16px 14px 100px;
+        }
+
+        /* ========== VIDEO SECTION ========== */
+        .video-section {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .video-player-wrap {
             position: relative;
             padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 14px;
-            background: #000;
-            margin-bottom: 18px;
+            background: #0f172a;
         }
 
-        .video-player-container iframe {
+        .video-player-wrap iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 14px;
         }
 
-        .lesson-meta {
+        .video-tabs {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px;
-            background: #f1f5f9;
-            border-radius: 12px;
-            margin-bottom: 18px;
+            gap: 6px;
+            padding: 12px 14px 0;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
 
-        .lesson-meta-icon {
-            font-size: clamp(1.2rem, 3vw, 1.5rem);
+        .video-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .video-tab {
             flex-shrink: 0;
-        }
-
-        .lesson-meta-content h3 {
-            font-size: 0.75rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            margin: 0 0 3px 0;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #f1f5f9;
+            border: none;
+            font-size: 0.8rem;
             font-weight: 600;
+            color: var(--muted);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        .lesson-meta-content p {
-            font-size: clamp(0.9rem, 2.5vw, 1rem);
-            font-weight: 600;
-            color: #0f172a;
-            margin: 0;
+        .video-tab.active {
+            background: var(--primary);
+            color: white;
         }
 
-        .lesson-header {
-            margin-bottom: 20px;
+        .video-tab:hover:not(.active) {
+            background: #e2e8f0;
+        }
+
+        .video-info {
+            padding: 16px 16px 18px;
         }
 
         .lesson-title {
-            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-size: 1.25rem;
             font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 8px;
-            line-height: 1.2;
+            line-height: 1.3;
+            margin-bottom: 6px;
         }
 
-        .lesson-description {
-            color: #64748b;
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            line-height: 1.5;
+        .lesson-meta {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: 16px;
         }
 
-        .action-buttons {
+        .nav-buttons {
             display: flex;
-            gap: 10px;
-            margin-top: 18px;
-            flex-wrap: wrap;
+            gap: 8px;
         }
 
-        .btn-custom {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
+        .btn-nav {
+            flex: 1;
+            display: flex;
             align-items: center;
+            justify-content: center;
             gap: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
+            padding: 11px 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
         .btn-prev {
             background: #f1f5f9;
-            color: #2563eb;
-            border: 2px solid #2563eb;
-        }
-
-        .btn-prev:hover {
-            background: #2563eb;
-            color: white;
+            color: var(--primary);
         }
 
         .btn-next {
-            background: #2563eb;
+            background: var(--primary);
             color: white;
-        }
-
-        .btn-next:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
         }
 
         .btn-disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+            opacity: 0.4;
+            pointer-events: none;
         }
 
-        .btn-disabled:hover {
-            background: inherit;
-            color: inherit;
+        /* ========== SECTIONS ========== */
+        .section {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            overflow: hidden;
         }
 
-        /* SIDEBAR */
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .sidebar-card {
-            background: white;
-            border-radius: 14px;
-            padding: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .sidebar-title {
-            font-size: clamp(0.85rem, 2vw, 1rem);
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 12px;
+        .section-header {
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: space-between;
+            padding: 16px 16px 12px;
         }
 
-        .lessons-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .lesson-item {
-            padding: 10px;
-            border-radius: 8px;
-            background: #f8fafc;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-            font-size: 0.8rem;
-            color: #64748b;
-            line-height: 1.3;
-        }
-
-        .lesson-item:hover {
-            background: #e8f2ff;
-            color: #2563eb;
-        }
-
-        .lesson-item.active {
-            background: var(--subject-color, #2563eb);
-            color: white;
-            border-left-color: var(--subject-color, #2563eb);
-            font-weight: 600;
-        }
-
-        .progress-info {
-            background: #f8fafc;
-            padding: 14px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #64748b;
-            line-height: 1.4;
-        }
-
-        .progress-info strong {
-            color: var(--subject-color, #2563eb);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .content-wrapper {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-
-            .sidebar {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .sidebar-card {
-                flex: 1;
-                min-width: 200px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .content-wrapper {
-                gap: 12px;
-                margin-top: 14px;
-            }
-
-            .video-section {
-                padding: 14px;
-            }
-
-            .lesson-meta {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .btn-custom {
-                width: 100%;
-                justify-content: center;
-                padding: 10px 16px;
-                font-size: 0.85rem;
-            }
-
-            .sidebar {
-                flex-direction: row;
-                gap: 12px;
-            }
-
-            .sidebar-card {
-                flex: 1;
-                min-width: 140px;
-                padding: 12px;
-            }
-
-            .lessons-list {
-                max-height: 250px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .content-wrapper {
-                gap: 10px;
-                margin-top: 10px;
-            }
-
-            .video-section {
-                padding: 5px;
-                border-radius: 12px;
-            }
-
-            .video-player-container {
-                margin-bottom: 12px;
-            }
-
-            .lesson-meta {
-                padding: 12px;
-                gap: 8px;
-            }
-
-            .lesson-header {
-                margin-bottom: 14px;
-            }
-
-            .action-buttons {
-                gap: 6px;
-                margin-top: 12px;
-            }
-
-            .btn-custom {
-                padding: 8px 14px;
-                font-size: 0.75rem;
-                gap: 4px;
-            }
-
-            .sidebar {
-                flex-direction: row;
-                gap: 10px;
-            }
-
-            .sidebar-card {
-                padding: 10px;
-                flex: 1;
-                min-width: 120px;
-            }
-
-            .sidebar-title {
-                font-size: 0.75rem;
-                margin-bottom: 8px;
-            }
-
-            .lessons-list {
-                max-height: 200px;
-                gap: 6px;
-            }
-
-            .lesson-item {
-                padding: 8px;
-                font-size: 0.7rem;
-            }
-
-            .progress-info {
-                padding: 10px;
-                font-size: 0.75rem;
-            }
-        }
-
-        footer {
-            background: linear-gradient(135deg, #1e40af, #1d4ed8);
-            color: white;
-            padding: 24px 20px;
-            text-align: center;
-            margin-top: 30px;
-            font-size: clamp(0.75rem, 2vw, 0.9rem);
-        }
-
-        .back-home-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 18px;
-            background: #2563eb;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        .section-title {
             font-size: 0.95rem;
-        }
-
-        .back-home-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
-        }
-
-        .back-home-btn:active {
-            transform: translateY(0);
-        }
-
-        .tests-section {
-            background: white;
-            border-radius: 16px;
-            padding: 18px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-            margin-top: 18px;
-        }
-
-        .tests-title {
-            font-size: 1.1rem;
             font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .badge-count {
+            background: var(--primary);
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 999px;
+        }
+
+        /* ========== TESTS GRID ========== */
         .tests-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
+            padding: 4px 16px 20px;
         }
 
         .test-card {
-            background: linear-gradient(135deg, var(--card-bg, #f0f9ff), var(--card-bg-light, #e0f2fe));
-            border: 2px solid var(--subject-color, #2563eb);
-            border-radius: 12px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            border-radius: 16px;
+            padding: 20px 14px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.22s ease;
+            min-height: 120px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            min-height: 100px;
         }
 
-        .test-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
-            background: linear-gradient(135deg, var(--subject-color, #2563eb), var(--subject-color-light, #3b82f6));
+        .test-card:hover,
+        .test-card:active {
+            background: var(--primary);
+            border-color: var(--primary);
             color: white;
-            border-color: var(--subject-color, #2563eb);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(37, 99, 235, 0.2);
         }
 
         .test-card-icon {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
+            line-height: 1;
         }
 
         .test-card-name {
             font-weight: 600;
             font-size: 0.9rem;
+            line-height: 1.3;
         }
 
         .test-card-count {
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             opacity: 0.7;
         }
 
-        .notes {
-            width: 100%;
-            max-width: none;
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
+        @media (min-width: 768px) {
+            .tests-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+            }
+
+            .test-card {
+                min-height: 130px;
+                padding: 22px 16px;
+            }
         }
 
-        .notes-header {
-            background: #2563eb;
-            color: white;
-            padding: 18px 22px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 18px;
-            font-weight: 600;
+        /* ========== NOTES ========== */
+        .notes-body {
+            height: 65vh;
+            background: #f8fafc;
         }
 
-        .notes-content {
-            height: 75vh;
-            overflow: hidden;
-        }
-
-        .notes-content iframe {
+        .notes-body iframe {
             width: 100%;
             height: 100%;
             border: none;
-            display: block;
         }
 
-        .notes-content.show {
-            display: block;
+        /* ========== LESSONS LIST ========== */
+        .lessons-section {
+            background: var(--card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 16px;
+            padding: 16px;
         }
 
-        .arrow {
-            transition: .3s;
-        }
-
-        .arrow.rotate {
-            transform: rotate(180deg);
-        }
-
-        @media (max-width:768px) {
-
-            .notes-content {
-                height: 60vh;
-                padding: 0;
-            }
-
-        }
-
-        .lesson-sidebar {
+        .lessons-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-        }
-
-        @media (max-width: 1024px) {
-            .lesson-sidebar {
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .lesson-sidebar {
-                flex-direction: row;
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .lesson-sidebar {
-                flex-direction: row;
-                gap: 10px;
-            }
-        }
-
-        /* =========================================================
-   TOPIC NAVIGATION
-========================================================= */
-
-        .topics-list {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-            max-height: 420px;
+            gap: 6px;
+            max-height: 260px;
             overflow-y: auto;
+            margin-top: 12px;
         }
 
-        .topic-nav-item {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-
-            padding: 10px 11px;
-
-            border-radius: 9px;
-
+        .lesson-item {
+            padding: 12px 14px;
+            border-radius: 12px;
             background: #f8fafc;
-            color: #475569;
-
+            font-size: 0.84rem;
+            color: var(--muted);
             cursor: pointer;
-
-            font-size: 0.78rem;
-            line-height: 1.35;
-
+            transition: all 0.2s;
             border-left: 3px solid transparent;
-
-            transition: all 0.2s ease;
-        }
-
-        .topic-nav-item i {
-            flex-shrink: 0;
-            font-size: 0.9rem;
-        }
-
-        .topic-nav-item:hover {
-            background: #e8f2ff;
-            color: var(--subject-color, #2563eb);
-            transform: translateX(2px);
-        }
-
-        .topic-nav-item.active {
-            background: var(--subject-color, #2563eb);
-            color: white;
-            border-left-color: var(--subject-color, #2563eb);
-            font-weight: 600;
-        }
-
-        .topic-nav-item.active i {
-            color: white;
-        }
-
-        .topic-nav-number {
-            min-width: 20px;
-            height: 20px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 6px;
-
-            background: rgba(37, 99, 235, 0.1);
-
-            font-size: 0.68rem;
-            font-weight: 700;
-        }
-
-        .topic-nav-item.active .topic-nav-number {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .topic-nav-title {
-            flex: 1;
-        }
-
-        @media (max-width: 1024px) {
-
-            .topic-navigation-card {
-                flex: 1 1 100%;
-            }
-
-        }
-
-        @media (max-width: 768px) {
-
-            .topic-navigation-card {
-                flex: 1 1 100%;
-            }
-
-        }
-
-        @media (max-width: 480px) {
-
-            .topic-nav-item {
-                padding: 8px 9px;
-                font-size: 0.7rem;
-            }
-
-            .topic-nav-number {
-                min-width: 18px;
-                height: 18px;
-                font-size: 0.62rem;
-            }
-
-        }
-
-        /* =========================================================
-   TOPICS SIDE PANEL
-========================================================= */
-
-        .topics-open-btn {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-
-            z-index: 1040;
-
             display: flex;
             align-items: center;
             gap: 8px;
+        }
 
-            padding: 13px 16px;
+        .lesson-item:hover {
+            background: #eff6ff;
+            color: var(--primary);
+        }
 
-            background: #2563eb;
+        .lesson-item.active {
+            background: var(--primary);
             color: white;
-
-            border: none;
-            border-radius: 12px 0 0 12px;
-
-            font-size: 0.85rem;
+            border-left-color: var(--primary-dark);
             font-weight: 600;
-
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
-
-            cursor: pointer;
-
-            transition: all 0.25s ease;
         }
 
-        .topics-open-btn:hover {
-            padding-right: 21px;
-            background: #1d4ed8;
-        }
-
-        .topics-open-btn i {
+        .lesson-item i {
             font-size: 1rem;
+            flex-shrink: 0;
         }
 
+        /* ========== TOPICS FAB & SIDEBAR ========== */
+        .topics-fab {
+            position: fixed;
+            right: 14px;
+            bottom: 20px;
+            z-index: 90;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+            cursor: pointer;
+            transition: all 0.25s;
+        }
 
-        /* =========================================================
-   OVERLAY
-========================================================= */
+        .topics-fab:active {
+            transform: scale(0.96);
+        }
 
         .topics-overlay {
             position: fixed;
             inset: 0;
-
-            background: rgba(15, 23, 42, 0.35);
-
+            background: rgba(15, 23, 42, 0.45);
             z-index: 1045;
-
             opacity: 0;
             visibility: hidden;
-
-            transition: all 0.3s ease;
-
-            backdrop-filter: blur(2px);
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
         }
 
         .topics-overlay.show {
@@ -744,31 +418,18 @@
             visibility: visible;
         }
 
-
-        /* =========================================================
-   SIDEBAR
-========================================================= */
-
         .topics-sidebar {
             position: fixed;
-
             top: 0;
             right: 0;
-
-            width: 340px;
-            max-width: 90vw;
-            height: 100vh;
-
+            width: 320px;
+            max-width: 88vw;
+            height: 100%;
             background: white;
-
             z-index: 1050;
-
-            box-shadow: -8px 0 30px rgba(0, 0, 0, 0.12);
-
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12);
             transform: translateX(100%);
-
-            transition: transform 0.35s cubic-bezier(.4, 0, .2, 1);
-
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
         }
@@ -777,212 +438,195 @@
             transform: translateX(0);
         }
 
-
-        /* =========================================================
-   HEADER
-========================================================= */
-
-        .topics-sidebar-header {
-            min-height: 76px;
-
-            padding: 16px 18px;
-
+        .topics-header {
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            background: linear-gradient(135deg,
-                    #2563eb,
-                    #1d4ed8);
-
-            color: white;
         }
 
-        .topics-sidebar-title {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-
+        .topics-header h3 {
             font-size: 1.05rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
         }
 
-        .topics-sidebar-title i {
-            font-size: 1.15rem;
-        }
-
-        .topics-sidebar-subtitle {
-            margin-top: 3px;
-
-            font-size: 0.72rem;
-
-            opacity: 0.8;
-        }
-
-
-        .topics-close-btn {
+        .topics-close {
             width: 36px;
             height: 36px;
-
             border: none;
-            border-radius: 9px;
-
-            background: rgba(255, 255, 255, 0.15);
-
-            color: white;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            cursor: pointer;
-
-            transition: all 0.2s ease;
-        }
-
-        .topics-close-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-
-        /* =========================================================
-   CONTENT
-========================================================= */
-
-        .topics-sidebar-content {
-            flex: 1;
-
-            overflow-y: auto;
-
-            padding: 16px;
-        }
-
-        .topics-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-
-        /* =========================================================
-   TOPIC ITEM
-========================================================= */
-
-        .topic-nav-item {
-            display: flex;
-            align-items: center;
-
-            gap: 10px;
-
-            width: 100%;
-
-            padding: 12px;
-
             border-radius: 10px;
-
-            background: #f8fafc;
-
-            color: #475569;
-
-            cursor: pointer;
-
-            border-left: 3px solid transparent;
-
-            transition: all 0.2s ease;
-        }
-
-        .topic-nav-item:hover {
-            background: #e8f2ff;
-
-            color: #2563eb;
-
-            transform: translateX(-2px);
-        }
-
-        .topic-nav-item.active {
-            background: #2563eb;
-
+            background: rgba(255, 255, 255, 0.18);
             color: white;
-
-            border-left-color: #1d4ed8;
-
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        .topic-nav-number {
-            width: 27px;
-            height: 27px;
-
-            flex-shrink: 0;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
-            border-radius: 8px;
-
-            background: #e2e8f0;
-
-            color: #475569;
-
-            font-size: 0.72rem;
-
-            font-weight: 700;
+            cursor: pointer;
         }
 
-        .topic-nav-item.active .topic-nav-number {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .topic-nav-item i {
-            font-size: 1rem;
-        }
-
-        .topic-nav-title {
+        .topics-content {
             flex: 1;
-
-            font-size: 0.82rem;
-
-            font-weight: 500;
-
-            line-height: 1.35;
+            overflow-y: auto;
+            padding: 14px;
         }
 
-        .topic-nav-item.active .topic-nav-title {
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 12px;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #475569;
+            cursor: pointer;
+            margin-bottom: 8px;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .topic-item:hover {
+            background: #eff6ff;
+            color: var(--primary);
+        }
+
+        .topic-item.active {
+            background: var(--primary);
+            color: white;
+            border-left-color: var(--primary-dark);
             font-weight: 600;
         }
 
+        .topic-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
 
-        /* =========================================================
-   MOBILE
-========================================================= */
+        .topic-item.active .topic-num {
+            background: rgba(255, 255, 255, 0.22);
+            color: white;
+        }
 
-        @media (max-width: 576px) {
+        .topic-title {
+            flex: 1;
+            font-size: 0.84rem;
+            line-height: 1.3;
+        }
 
-            .topics-open-btn {
-                top: auto;
-                bottom: 20px;
+        /* ========== TEST OVERLAY ========== */
+        .test-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+        }
 
-                transform: none;
+        .test-overlay.show {
+            display: flex;
+        }
 
-                padding: 12px 15px;
+        .test-overlay-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(6px);
+        }
 
-                border-radius: 12px 0 0 12px;
+        .test-overlay-content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #f8fafc;
+            margin: 12px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        /* ========== ENHANCED TOP NAV ========== */
+        .top-navbar .container {
+            max-width: 1140px;
+        }
+
+        .quick-nav {
+            background: #f8fafc;
+            padding: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .quick-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .quick-nav-btn:hover {
+            color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .quick-nav-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+        }
+
+        .nav-avatar-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-avatar-btn:hover {
+            transform: scale(1.05);
+            color: white;
+        }
+
+        @media (max-width: 640px) {
+            .test-overlay-content {
+                margin: 0;
+                border-radius: 0;
             }
-
-            .topics-sidebar {
-                width: 320px;
-                max-width: 88vw;
-            }
-
         }
     </style>
 </head>
 
 <body>
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
+    <!-- SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
             <div class="sidebar-logo">
@@ -996,7 +640,6 @@
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
-
         <div class="sidebar-user" id="sidebarUser">
             <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
             <div>
@@ -1004,54 +647,38 @@
                 <div class="sidebar-user-sub">Pulse Go Member</div>
             </div>
         </div>
-
         <nav class="sidebar-nav">
             <div class="sidebar-section-label">Asosiy</div>
-            <a href="/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-house-fill"></i> Asosiy
-            </a>
-            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-journals"></i> Tayyorlanish
-            </a>
-            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
-            </a>
+            <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
+                Tayyorlanish</a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test
+                QBank</a>
 
             <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link active" onclick="closeSidebar()">
-                <i class="bi bi-book-half"></i> Online Darslar
-            </a>
-            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-collection-fill"></i> Kitoblar
-            </a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-body-text"></i> Anatomiya
-            </a>
-            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
-            </a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-flask-fill"></i> Kimyo
-            </a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-egg-fill"></i> Embriologiya
-            </a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
-            </a>
+            <a href="/lessons" class="sidebar-link active" onclick="closeSidebar()"><i class="bi bi-book-half"></i>
+                Online Darslar</a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
+                Kitoblar</a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i>
+                Anatomiya</a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i>
+                Hujayra biologiyasi</a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i>
+                Kimyo</a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
+                Embriologiya</a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i>
+                Klinik holat</a>
 
             <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-person-fill"></i> Mening profilim
-            </a>
-            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
-            </a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
-            </a>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
+                profilim</a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i
+                    class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i>
+                Fikr bildirish</a>
         </nav>
-
         <div class="sidebar-footer">
             <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
                 style="background:#f0fdf4;color:#16a34a">
@@ -1060,741 +687,475 @@
         </div>
     </aside>
 
+    <!-- TOP NAV -->
+    <!-- TOP NAV -->
     <nav class="top-navbar">
-        <div class="container">
-            <button class="btn-hamburger" onclick="openSidebar()">
-                <i class="bi bi-list"></i>
-            </button>
-            <a href="/" class="nav-logo">
-                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
-                Pulse Go
-            </a>
-            <a href="/lessons/" class="btn btn-light btn-sm rounded-pill">
-                <i class="bi bi-arrow-left"></i> Orqaga
-            </a>
-            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn-hamburger" onclick="openSidebar()">
+                    <i class="bi bi-list"></i>
+                </button>
+                <a href="/" class="nav-logo">
+                    <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+                    <span>Pulse Go</span>
+                </a>
+            </div>
+
+            <!-- Tezkor navigatsiya tugmalari (Desktop va planshetlar uchun) -->
+            <div class="quick-nav d-none d-md-flex align-items-center gap-2">
+                <a href="/lessons" class="quick-nav-btn active">
+                    <i class="bi bi-play-circle-fill"></i> Videolar
+                </a>
+                <a href="/tests/" class="quick-nav-btn">
+                    <i class="bi bi-grid-3x3-gap-fill"></i> Testlar
+                </a>
+                <a href="/preparation/" class="quick-nav-btn">
+                    <i class="bi bi-journals"></i> Tayyorlanish
+                </a>
+            </div>
+
+            <div class="d-flex align-items-center gap-2">
+                <!-- Qidiruv yoki qo'shimcha tugma -->
+                <button class="btn-hamburger" onclick="openTopicsSidebar()" title="Mavzular ro'yxati">
+                    <i class="bi bi-list-ul"></i>
+                </button>
+                <a href="/profile" class="nav-avatar-btn" id="navAvatarBtn">P</a>
+            </div>
         </div>
     </nav>
+    <!-- PAGE CONTENT -->
+    <div class="page">
 
-    <!-- CONTAINER -->
-    <div class="container-main">
-        <!-- BREADCRUMB -->
-        <div class="breadcrumb-section">
-            <a href="../index.html" class="back-home-btn">
-                <i class="bi bi-arrow-left"></i> Back
-            </a>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../index.html">Lessons</a></li>
-                    <li class="breadcrumb-item"><a href="#" id="subjectLink">Subject</a></li>
-                    <li class="breadcrumb-item"><a href="#" id="topicLink">Topic</a></li>
-                    <li class="breadcrumb-item active" id="lessonBreadcrumb">Lesson</li>
-                </ol>
-            </nav>
-        </div>
+        <!-- 1. VIDEO SECTION -->
+        <div class="video-section">
+            <div class="video-tabs" id="videoTabs" style="display: none;"></div>
 
-        <!-- CONTENT -->
-        <div class="content-wrapper">
-            <!-- MAIN CONTENT -->
-            <div class="main-content">
-                <!-- VIDEO SECTION -->
-                <div class="video-section">
-                    <div class="video-player-container">
-                        <iframe id="videoPlayer" src="" allowfullscreen
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-                    </div>
-                    <div id="videoErrorMessage" class="text-danger small mt-2" style="display: none;">
-                        No valid YouTube video found for this lesson. Check the lesson video ID or try another lesson.
-                    </div>
-
-                    <!-- LESSON HEADER -->
-                    <div class="lesson-header">
-                        <h1 class="lesson-title" id="lessonTitle"></h1>
-                        <!-- <p class="lesson-description" id="lessonDescription">
-                            Video darslarni ko'rib mavzuni o'rganing va amaliy testlar orqali bilimingizni
-                            mustahkamlang
-                        </p> -->
-                    </div>
-
-
-                    <div class="action-buttons">
-                        <button class="btn-custom btn-prev" id="prevBtn" onclick="previousLesson()">
-                            <i class="bi bi-chevron-left"></i> Oldingisi
-                        </button>
-                        <button class="btn-custom btn-next" id="nextBtn" onclick="nextLesson()">
-                            Keyingisi <i class="bi bi-chevron-right"></i>
-                        </button>
-                    </div>
-                </div>
+            <div class="video-player-wrap">
+                <iframe id="videoPlayer" src="" allowfullscreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
             </div>
 
-            <div class="lesson-sidebar">
-
-                <!-- CURRENT LESSON PROGRESS -->
-                <div class="sidebar-card">
-
-                    <div class="progress-info">
-                        <strong id="progressText">1/3</strong><br>
-                        <span>Darslar</span>
-                    </div>
-
-                </div>
-
-                <!-- LESSONS LIST -->
-                <div class="sidebar-card">
-
-                    <div class="sidebar-title">
-                        <i class="bi bi-list-check"></i>
-                        Darslar
-                    </div>
-
-                    <div class="lessons-list" id="lessonsList">
-                        <!-- Dynamically populated -->
-                    </div>
-
-                </div>
-
+            <div id="videoErrorMessage" class="text-danger small px-3 pt-2" style="display:none;">
+                Video topilmadi
             </div>
-            <!-- Practice Tests -->
-            <section id="test-selection" class="mt-4">
 
-                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="testsAccordion">
+            <div class="video-info">
+                <h1 class="lesson-title" id="lessonTitle"></h1>
+                <div class="lesson-meta" id="lessonMeta"></div>
 
-                    <div class="accordion-item border-0">
-
-                        <h2 class="accordion-header">
-
-                            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#practiceTests" aria-expanded="true" aria-controls="practiceTests">
-
-                                <i class="bi bi-pencil-square me-2 text-primary"></i>
-
-                                Practice Tests
-
-                                <span class="badge bg-primary ms-2" id="testsCount">
-                                    0
-                                </span>
-
-                            </button>
-
-                        </h2>
-
-                        <div id="practiceTests" class="accordion-collapse collapse show">
-
-                            <div class="accordion-body">
-
-                                <div class="row g-3" id="testsGrid"></div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                <div class="nav-buttons">
+                    <button class="btn-nav btn-prev" id="prevBtn" onclick="previousLesson()">
+                        <i class="bi bi-chevron-left"></i> Oldingisi
+                    </button>
+                    <button class="btn-nav btn-next" id="nextBtn" onclick="nextLesson()">
+                        Keyingisi <i class="bi bi-chevron-right"></i>
+                    </button>
                 </div>
-
-            </section>
-
-
-            <!-- Notes -->
-            <section id="notes" class="mt-4">
-
-                <div class="accordion shadow-sm rounded-4 overflow-hidden" id="notesAccordion">
-
-                    <div class="accordion-item border-0">
-
-                        <h2 class="accordion-header">
-
-                            <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#lessonNotes" aria-expanded="false" aria-controls="lessonNotes">
-
-                                <i class="bi bi-file-earmark-text me-2 text-primary"></i>
-
-                                Notes
-
-                                <span class="badge bg-primary ms-2">
-                                    1
-                                </span>
-
-                            </button>
-
-                        </h2>
-
-                        <div id="lessonNotes" class="accordion-collapse collapse">
-
-                            <div class="accordion-body p-0">
-
-                                <div class="notes-content">
-
-                                    <iframe
-                                        src="../../pdfjs/web/viewer.html?file=../../../../../../pdf/organ-systems.pdf">
-                                    </iframe>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-            <!-- TOPICS OPEN BUTTON -->
-            <button class="topics-open-btn" id="topicsOpenBtn" onclick="openTopicsSidebar()">
-                <i class="bi bi-list-ul"></i>
-                <span>Darslar</span>
-            </button>
-
-            <!-- TOPICS OVERLAY -->
-            <div class="topics-overlay" id="topicsOverlay" onclick="closeTopicsSidebar()"></div>
-
-            <!-- TOPICS SIDEBAR -->
-            <aside class="topics-sidebar" id="topicsSidebar">
-
-                <!-- SUBJECT TOPICS NAVIGATION -->
-                <div class="sidebar-card topic-navigation-card">
-
-                    <div class="sidebar-title">
-                        <i class="bi bi-list-ul"></i>
-                        Mavzular
-                    </div>
-
-                    <div class="topics-list" id="topicsList">
-                        <!-- Dynamically populated -->
-                    </div>
-
-                </div>
-            </aside>
+            </div>
         </div>
+
+        <!-- 2. PRACTICE TESTS -->
+        <div class="section" id="test-selection">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="bi bi-pencil-square"></i>
+                    Practice Tests
+                </div>
+                <span class="badge-count" id="testsCount">0</span>
+            </div>
+            <div class="tests-grid" id="testsGrid"></div>
+        </div>
+
+
+        <!-- 4. CURRENT TOPIC LESSONS -->
+        <div class="lessons-section">
+            <div class="section-title">
+                <i class="bi bi-collection-play"></i>
+                Ushbu mavzu darslari
+                <span class="badge-count ms-auto" id="progressText">1/3</span>
+            </div>
+            <div class="lessons-list" id="lessonsList"></div>
+        </div>
+
     </div>
+
+    <!-- TOPICS FAB -->
+    <button class="topics-fab" onclick="openTopicsSidebar()">
+        <i class="bi bi-list-ul"></i>
+        Mavzular
+    </button>
+
+    <!-- TOPICS SIDEBAR -->
+    <div class="topics-overlay" id="topicsOverlay" onclick="closeTopicsSidebar()"></div>
+    <aside class="topics-sidebar" id="topicsSidebar">
+        <div class="topics-header">
+            <h3><i class="bi bi-list-ul"></i> Mavzular</h3>
+            <button class="topics-close" onclick="closeTopicsSidebar()">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="topics-content">
+            <div id="topicsList"></div>
+        </div>
+    </aside>
 
     <div id="common-modals"></div>
 
-    <!-- Scripts -->
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/js/test.js"></script>
+    <script src="/assets/js/test-utils.js"></script>
+    <script type="module" src="../../assets/js/test.js"></script>
     <script src="../js/data.js"></script>
 
     <script>
-        function populateTopicsNavigation() {
-
-            if (!lessonData || !lessonData.subjectId) {
-                return;
-            }
-
-            const topicsList = document.getElementById("topicsList");
-
-            if (!topicsList) return;
-
-            topicsList.innerHTML = "";
-
-            const subjectId = lessonData.subjectId;
-
-            const topics = getSubjectTopics(subjectId);
-
-            // Subject nomini chiqarish
-            const subjectName = document.getElementById("topicsSubjectName");
-
-            if (subjectName) {
-                subjectName.textContent = lessonData.subjectName || subjectId;
-            }
-
-            topics.forEach((topic, index) => {
-
-                const item = document.createElement("div");
-
-                item.className = "topic-nav-item";
-
-                if (topic.id === lessonData.topicId) {
-                    item.classList.add("active");
-                }
-
-                item.innerHTML = `
-            <span class="topic-nav-number">
-                ${index + 1}
-            </span>
-
-            <i class="bi ${topic.icon || "bi-folder"}"></i>
-
-            <span class="topic-nav-title">
-                ${topic.topic}
-            </span>
-        `;
-
-                item.addEventListener("click", () => {
-
-                    openTopic(topic.id);
-
-                });
-
-                topicsList.appendChild(item);
-
-            });
-        }
-        function openTopicsSidebar() {
-
-            const sidebar = document.getElementById("topicsSidebar");
-            const overlay = document.getElementById("topicsOverlay");
-
-            sidebar.classList.add("open");
-            overlay.classList.add("show");
-
-            document.body.style.overflow = "hidden";
-        }
-
-
-        function closeTopicsSidebar() {
-
-            const sidebar = document.getElementById("topicsSidebar");
-            const overlay = document.getElementById("topicsOverlay");
-
-            sidebar.classList.remove("open");
-            overlay.classList.remove("show");
-
-            document.body.style.overflow = "";
-        }
-
-        function openTopic(topicId) {
-
-            if (!lessonData || !lessonData.subjectId) {
-                return;
-            }
-
-            const subjectId = lessonData.subjectId;
-
-            /*
-             * Tanlangan subject ichidan topicni topamiz
-             */
-            const topics = getSubjectTopics(subjectId);
-
-            const topic = topics.find(t => t.id === topicId);
-
-            if (!topic) {
-                console.error("Topic not found:", topicId);
-                return;
-            }
-
-            /*
-             * Shu topicdagi birinchi darsni olamiz
-             */
-            const firstLesson = topic.lessons?.[0];
-
-            if (!firstLesson) {
-
-                alert("Bu mavzuda hozircha dars mavjud emas.");
-
-                return;
-            }
-
-            /*
-             * Yangi sessionStorage data
-             */
-            const newLessonData = {
-
-                subjectId: subjectId,
-
-                subjectName: lessonData.subjectName,
-
-                subjectColor: lessonData.subjectColor,
-
-                topicId: topic.id,
-
-                topicName: topic.topic,
-
-                lessons: topic.lessons,
-
-                currentIndex: 0
-
-            };
-
-            sessionStorage.setItem(
-                "currentLesson",
-                JSON.stringify(newLessonData)
-            );
-
-            /*
-             * Shu lesson page qayta ochiladi
-             */
-            window.location.href = window.location.pathname;
-
-        }
-
+        // ========== SIDEBAR ==========
         function openSidebar() {
             document.getElementById('sidebar').classList.add('open');
             document.getElementById('sidebarOverlay').classList.add('show');
             document.body.style.overflow = 'hidden';
         }
-
         function closeSidebar() {
             document.getElementById('sidebar').classList.remove('open');
             document.getElementById('sidebarOverlay').classList.remove('show');
             document.body.style.overflow = '';
         }
 
+        // ========== TOPICS ==========
+        function openTopicsSidebar() {
+            document.getElementById('topicsSidebar').classList.add('open');
+            document.getElementById('topicsOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeTopicsSidebar() {
+            document.getElementById('topicsSidebar').classList.remove('open');
+            document.getElementById('topicsOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function populateTopicsNavigation() {
+            if (!lessonData || !lessonData.subjectId) return;
+            const list = document.getElementById('topicsList');
+            if (!list) return;
+            list.innerHTML = '';
+
+            const topics = getSubjectTopics(lessonData.subjectId);
+            topics.forEach((topic, i) => {
+                const el = document.createElement('div');
+                el.className = 'topic-item' + (topic.id === lessonData.topicId ? ' active' : '');
+                el.innerHTML = `
+        <span class="topic-num">${i + 1}</span>
+        <span class="topic-title">${topic.topic}</span>
+      `;
+                el.onclick = () => openTopic(topic.id);
+                list.appendChild(el);
+            });
+        }
+
+        function openTopic(topicId) {
+            if (!lessonData) return;
+            const topics = getSubjectTopics(lessonData.subjectId);
+            const topic = topics.find(t => t.id === topicId);
+            if (!topic || !topic.lessons?.length) {
+                alert("Bu mavzuda dars yo‘q");
+                return;
+            }
+
+            sessionStorage.setItem('currentLesson', JSON.stringify({
+                subjectId: lessonData.subjectId,
+                subjectName: lessonData.subjectName,
+                subjectColor: lessonData.subjectColor,
+                topicId: topic.id,
+                topicName: topic.topic,
+                lessons: topic.lessons,
+                currentIndex: 0
+            }));
+            location.href = location.pathname;
+        }
+
+        // ========== MULTI VIDEO ==========
+        let currentVideos = [];
+        let currentVideoIndex = 0;
+
+        function renderVideoTabs() {
+            const tabsEl = document.getElementById('videoTabs');
+            if (!tabsEl) return;
+
+            if (currentVideos.length <= 1) {
+                tabsEl.style.display = 'none';
+                return;
+            }
+
+            tabsEl.style.display = 'flex';
+            tabsEl.innerHTML = currentVideos.map((v, i) => `
+      <button class="video-tab ${i === currentVideoIndex ? 'active' : ''}"
+              onclick="switchVideo(${i})">
+        ${v.title || 'Video ' + (i + 1)}
+      </button>
+    `).join('');
+        }
+
+        function switchVideo(index) {
+            if (index < 0 || index >= currentVideos.length) return;
+            currentVideoIndex = index;
+            const video = currentVideos[index];
+            const id = extractYoutubeId(video.id || video.youtubeId || video);
+            const player = document.getElementById('videoPlayer');
+            const err = document.getElementById('videoErrorMessage');
+
+            if (id) {
+                player.src = `https://www.youtube.com/embed/${id}?autoplay=0&controls=1&modestbranding=1&rel=0`;
+                err.style.display = 'none';
+            } else {
+                player.src = '';
+                err.style.display = 'block';
+            }
+            renderVideoTabs();
+        }
+
+        // ========== LESSON LOGIC ==========
         let lessonData = null;
         let lessonIndex = 0;
 
         function extractYoutubeId(value) {
             if (!value || typeof value !== 'string') return null;
-
-            const trimmed = value.trim();
-            const urlMatch = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|v\/))([A-Za-z0-9_-]{11})/);
-            if (urlMatch) return urlMatch[1];
-
-            if (/^[A-Za-z0-9_-]{11}$/.test(trimmed)) return trimmed;
+            const t = value.trim();
+            const m = t.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|v\/))([A-Za-z0-9_-]{11})/);
+            if (m) return m[1];
+            if (/^[A-Za-z0-9_-]{11}$/.test(t)) return t;
             return null;
         }
 
         function loadLessonContent() {
+            const params = new URLSearchParams(location.search);
+            const externalId = params.get('id');
 
-            // ============================================================
-            // 1. EXTERNAL URL orqali lesson ID ni tekshirish
-            //    Masalan: /lesson/?id=cellbio-1-2
-            // ============================================================
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const externalLessonId = urlParams.get("id");
-
-            console.log("External lesson ID:", externalLessonId);
-
-
-            // ============================================================
-            // 2. Agar URL'da ID bo'lsa
-            // ============================================================
-
-            if (externalLessonId) {
-
-                // data.js dagi helper orqali lessonni topamiz
-                const result = getLessonWithTopic(externalLessonId);
-
-                console.log("External lesson result:", result);
-
+            if (externalId) {
+                const result = getLessonWithTopic(externalId);
                 if (!result) {
-                    console.error("Lesson not found:", externalLessonId);
-
-                    // Noto'g'ri ID bo'lsa lessons sahifasiga qaytaramiz
-                    window.location.href = "../index.html";
+                    location.href = '../index.html';
                     return;
                 }
-
-
-                // ========================================================
-                // 3. Shu lesson qaysi topic ichida ekanini topamiz
-                // ========================================================
-
-                const topicLessons = result.topic.lessons;
-
-                const currentIndex = topicLessons.findIndex(
-                    lesson => lesson.id === externalLessonId
-                );
-
-
-                // ========================================================
-                // 4. Eski lessonData formatini yaratamiz
-                // ========================================================
+                const lessons = result.topic.lessons;
+                const idx = lessons.findIndex(l => l.id === externalId);
 
                 lessonData = {
                     subjectId: result.subjectId,
                     subjectName: result.subject.name,
                     subjectColor: result.subject.color,
-
                     topicId: result.topic.id,
                     topicName: result.topic.topic,
-
-                    lessons: topicLessons,
-
-                    currentIndex: currentIndex >= 0 ? currentIndex : 0
+                    lessons,
+                    currentIndex: idx >= 0 ? idx : 0
                 };
-
                 lessonIndex = lessonData.currentIndex;
-
-
-                console.log("Created lessonData from URL:", lessonData);
-
-
-                // ========================================================
-                // 5. Keyingi kodlaringni O'ZGARTIRMAY ishlatamiz
-                // ========================================================
-
-                loadSubjectTests();
-
-                displayLesson(lessonIndex);
-
-                populateLessonsList();
-
-                populateTopicsNavigation();
-
-                // Update breadcrumbs
-                const topicNameDisplay =
-                    document.getElementById('topicNameDisplay');
-
-                if (topicNameDisplay) {
-                    topicNameDisplay.textContent = lessonData.topicName;
+            } else {
+                const raw = sessionStorage.getItem('currentLesson');
+                if (!raw) {
+                    location.href = '../index.html';
+                    return;
                 }
-
-                return;
+                lessonData = JSON.parse(raw);
+                lessonIndex = lessonData.currentIndex || 0;
             }
 
-
-            // ============================================================
-            // 6. AGAR URL'DA ID YO'Q BO'LSA
-            //    Eski sessionStorage sistemang ishlaydi
-            // ============================================================
-
-            const data = sessionStorage.getItem('currentLesson');
-
-            console.log(
-                'loadLessonContent: currentLesson sessionStorage value:',
-                data
-            );
-
-
-            if (!data) {
-                console.warn(
-                    'No currentLesson found in sessionStorage, redirecting to lesson list'
-                );
-
-                window.location.href = '../index.html';
-                return;
-            }
-
-
-            lessonData = JSON.parse(data);
-
-            lessonIndex = lessonData.currentIndex || 0;
-
-            console.log(
-                'Parsed lessonData:',
-                lessonData,
-                'starting index:',
-                lessonIndex
-            );
-
-
-            // Load subject tests dynamically
             loadSubjectTests();
-
-
-            // Display lesson
             displayLesson(lessonIndex);
-
-
-            // Populate lessons list
             populateLessonsList();
-
-
-            // Topics navigation
             populateTopicsNavigation();
-
-
-            // Update breadcrumbs
-            const topicNameDisplay =
-                document.getElementById('topicNameDisplay');
-
-            if (topicNameDisplay) {
-                topicNameDisplay.textContent = lessonData.topicName;
-            }
         }
 
-        function loadSubjectTests() {
-
-            if (!lessonData || !lessonData.subjectId) return;
-
-            // oldin yuklangan bo'lsa qayta yuklamasin
-            if (window.TEST_QUESTIONS) {
-                initializeTestEnv();
-                return;
-            }
-
-            const script = document.createElement("script");
-            script.src = `../../${lessonData.subjectId}/tests.js`;
-
-            script.onload = () => {
-                console.log("Tests loaded");
-                initializeTestEnv();
-            };
-
-            script.onerror = () => {
-                console.error("Cannot load tests.js");
-            };
-
-            document.head.appendChild(script);
-        }
-
-        function loadTestsForTopic() {
-
-            if (!lessonData) return;
-
-            const currentLesson = lessonData.lessons[lessonIndex];
-
-            if (!currentLesson) return;
-
-            const testNames = currentLesson.tests || [];
-
-            // badge
-            document.getElementById("testsCount").textContent = testNames.length;
-
-            // accordion
-            const collapse = document.getElementById("practiceTests");
-
-            if (!testNames.length) {
-                collapse.classList.remove("show");
-                return;
-            }
-
-            collapse.classList.add("show");
-
-            // renderTestCards uchun array tayyorlaymiz
-            const cards = testNames.map(name => ({
-                testName: name,
-                title: name
-            }));
-
-            // Eski system ishlashi uchun
-            window.tests = window.TEST_QUESTIONS;
-
-            renderTestCards("#testsGrid", cards);
-        }
         function displayLesson(index) {
-            if (!lessonData || index < 0 || index >= lessonData.lessons.length) {
-                console.warn('displayLesson: invalid lessonData or index', lessonData, index);
-                return;
-            }
+            if (!lessonData || index < 0 || index >= lessonData.lessons.length) return;
 
             const lesson = lessonData.lessons[index];
-            const videoPlayer = document.getElementById('videoPlayer');
-            const videoErrorMessage = document.getElementById('videoErrorMessage');
 
-            console.log('Displaying lesson:', {
-                index,
-                lessonId: lesson.id,
-                title: lesson.title,
-                youtubeId: lesson.youtubeId
+            document.getElementById('lessonTitle').textContent = lesson.title || '';
+            document.getElementById('lessonMeta').textContent =
+                `${lessonData.subjectName || ''} · ${lessonData.topicName || ''}`;
+
+            document.getElementById('progressText').textContent =
+                `${index + 1}/${lessonData.lessons.length}`;
+
+            document.getElementById('prevBtn').classList.toggle('btn-disabled', index === 0);
+            document.getElementById('nextBtn').classList.toggle('btn-disabled', index === lessonData.lessons.length - 1);
+
+            document.querySelectorAll('.lesson-item').forEach((el, i) => {
+                el.classList.toggle('active', i === index);
             });
 
-            const normalizedYoutubeId = extractYoutubeId(lesson.youtubeId);
-            const hasValidYoutubeId = Boolean(normalizedYoutubeId);
-
-            if (hasValidYoutubeId) {
-                videoPlayer.src = `https://www.youtube.com/embed/${normalizedYoutubeId}?autoplay=0&controls=1&modestbranding=1`;
-                videoErrorMessage.style.display = 'none';
+            if (Array.isArray(lesson.videos) && lesson.videos.length) {
+                currentVideos = lesson.videos;
+            } else if (lesson.youtubeId) {
+                currentVideos = [{ title: 'Asosiy video', id: lesson.youtubeId }];
             } else {
-                videoPlayer.src = '';
-                videoErrorMessage.style.display = 'block';
-                console.error('Invalid YouTube video ID for lesson:', lesson);
+                currentVideos = [];
             }
 
-            // Update title and breadcrumb
-            document.getElementById('lessonTitle').textContent = lesson.title;
-            document.getElementById('lessonBreadcrumb').textContent = lesson.title;
-
-            // Breadcrumb links (need to reconstruct from stored data)
-            document.getElementById('subjectLink').textContent = lessonData.subjectName;
-            document.getElementById('topicLink').textContent = lessonData.topicName;
-
-            // Update progress
-            document.getElementById('progressText').textContent = `${index + 1}/${lessonData.lessons.length}`;
-
-            // Update button states
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-
-            if (index === 0) {
-                prevBtn.classList.add('btn-disabled');
+            currentVideoIndex = 0;
+            if (currentVideos.length) {
+                switchVideo(0);
             } else {
-                prevBtn.classList.remove('btn-disabled');
+                document.getElementById('videoPlayer').src = '';
+                document.getElementById('videoErrorMessage').style.display = 'block';
+                document.getElementById('videoTabs').style.display = 'none';
             }
 
-            if (index === lessonData.lessons.length - 1) {
-                nextBtn.classList.add('btn-disabled');
-            } else {
-                nextBtn.classList.remove('btn-disabled');
-            }
-
-            // Update active lesson in list
-            document.querySelectorAll('.lesson-item').forEach((item, i) => {
-                if (i === index) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-
-            // Scroll current lesson into view
-            const currentItem = document.querySelector(`.lesson-item[data-index="${index}"]`);
-            if (currentItem) {
-                currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-
-            // Update Practice Tests
-            if (window.TEST_QUESTIONS) {
-                loadTestsForTopic();
-            }
+            if (window.TEST_QUESTIONS) loadTestsForTopic();
         }
 
         function populateLessonsList() {
             const list = document.getElementById('lessonsList');
             list.innerHTML = '';
 
-            lessonData.lessons.forEach((lesson, index) => {
-                const item = document.createElement('div');
-                item.className = 'lesson-item';
-                item.setAttribute('data-index', index);
-                item.innerHTML = `<i class="bi bi-play-circle"></i> ${index + 1}. ${lesson.title}`;
-
-                if (index === lessonIndex) {
-                    item.classList.add('active');
-                }
-
-                item.addEventListener('click', () => {
-                    lessonIndex = index;
-                    displayLesson(lessonIndex);
-                });
-
-                list.appendChild(item);
+            lessonData.lessons.forEach((lesson, i) => {
+                const el = document.createElement('div');
+                el.className = 'lesson-item' + (i === lessonIndex ? ' active' : '');
+                el.innerHTML = `<i class="bi bi-play-circle"></i> ${i + 1}. ${lesson.title}`;
+                el.onclick = () => {
+                    lessonIndex = i;
+                    displayLesson(i);
+                };
+                list.appendChild(el);
             });
-
-            // Set sidebar card color
-            document.documentElement.style.setProperty('--subject-color', lessonData.subjectColor || '#2563eb');
         }
 
         function nextLesson() {
-            const nextIndex = lessonIndex + 1;
-            if (nextIndex < lessonData.lessons.length) {
-                lessonIndex = nextIndex;
+            if (lessonIndex + 1 < lessonData.lessons.length) {
+                lessonIndex++;
                 displayLesson(lessonIndex);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
         function previousLesson() {
-            const prevIndex = lessonIndex - 1;
-            if (prevIndex >= 0) {
-                lessonIndex = prevIndex;
+            if (lessonIndex > 0) {
+                lessonIndex--;
                 displayLesson(lessonIndex);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        function getSubjectIdFromLesson() {
-            if (!lessonData || !lessonData.subjectId) return null;
-            return lessonData.subjectId;
+        // ========== TESTS ==========
+        function loadSubjectTests() {
+            if (!lessonData?.subjectId) return;
+            if (window.TEST_QUESTIONS) {
+                initializeTestEnv();
+                return;
+            }
+            const subject = getSubject(lessonData.subjectId);
+            if (!subject?.testSource) return;
+            const s = document.createElement('script');
+            s.src = subject.testSource;
+            s.onload = initializeTestEnv;
+            document.head.appendChild(s);
         }
 
         function initializeTestEnv() {
-
-            if (!window.TEST_QUESTIONS) {
-                console.warn("TEST_QUESTIONS not loaded.");
-                return;
+            if (window.TEST_QUESTIONS) {
+                window.tests = window.TEST_QUESTIONS;
+                loadTestsForTopic();
             }
-
-            loadTestsForTopic();
         }
 
-        // Initialize
+        // FAQAT BITTA loadTestsForTopic — renderTestCards ISHLATILMAYDI
+        // FAQAT BITTA loadTestsForTopic — renderTestCards ISHLATILMAYDI
+        function loadTestsForTopic() {
+            if (!lessonData) return;
+            const lesson = lessonData.lessons[lessonIndex];
+            const names = lesson?.tests || [];
+
+            const countEl = document.getElementById('testsCount');
+            if (countEl) countEl.textContent = names.length;
+
+            const grid = document.getElementById('testsGrid');
+            if (!grid) return;
+
+            const getCount = (name) => {
+                const t = window.TEST_QUESTIONS || window.tests || {};
+                if (Array.isArray(t[name])) return t[name].length;
+                return null;
+            };
+
+            grid.innerHTML = names.map(name => {
+                const count = getCount(name);
+                const countHtml = count !== null
+                    ? `<div class="test-card-count">${count} ta savol</div>`
+                    : '';
+
+                return `
+      <div class="test-card" onclick="startTest('${name}')">
+        <div class="test-card-icon"><i class="bi bi-journal-text"></i></div>
+        <div class="test-card-name">${name}</div>
+        ${countHtml}
+      </div>
+    `;
+            }).join('');
+        }
+        // Testni overlayda ochish
+        function openTestInOverlay(testName) {
+            const overlay = document.getElementById('testOverlay');
+            const content = document.getElementById('testOverlayContent');
+            if (!overlay || !content) return;
+
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+
+            // startTest window da bo‘lishi kerak (test.js module)
+            const startFn = window.startTest;
+            if (typeof startFn === 'function') {
+                startFn(testName);
+
+                setTimeout(() => {
+                    const testScreen = document.getElementById('test-screen');
+                    if (testScreen) {
+                        if (testScreen.parentElement !== content) {
+                            content.innerHTML = '';
+                            content.appendChild(testScreen);
+                        }
+                        testScreen.classList.remove('d-none');
+                        testScreen.style.display = 'block';
+                    }
+                }, 80);
+            } else {
+                console.warn('startTest topilmadi');
+                // fallback: oddiy start
+                if (typeof startTest === 'function') startTest(testName);
+            }
+        }
+
+        function closeTestOverlay() {
+            const overlay = document.getElementById('testOverlay');
+            if (overlay) overlay.classList.remove('show');
+            document.body.style.overflow = '';
+
+            const testScreen = document.getElementById('test-screen');
+            if (testScreen) testScreen.classList.add('d-none');
+        }
+
+        // closeResult override — test tugaganda overlay yopilsin
+        document.addEventListener('DOMContentLoaded', () => {
+            const check = setInterval(() => {
+                if (typeof window.closeResult === 'function') {
+                    const original = window.closeResult;
+                    window.closeResult = function () {
+                        original.apply(this, arguments);
+                        closeTestOverlay();
+                    };
+                    clearInterval(check);
+                }
+            }, 200);
+            setTimeout(() => clearInterval(check), 5000);
+        });
+
         document.addEventListener('DOMContentLoaded', loadLessonContent);
     </script>
+    <!-- ========== TEST OVERLAY ========== -->
+    <div id="testOverlay" class="test-overlay">
+        <div class="test-overlay-backdrop"></div>
+        <div class="test-overlay-content" id="testOverlayContent">
+            <!-- test.js dagi test-screen shu yerga ko‘chiriladi yoki ichida ishlaydi -->
+        </div>
+    </div>
 </body>
 
 </html>

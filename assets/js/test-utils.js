@@ -7,16 +7,20 @@ function getRandomTest(questions, n = "all") {
     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
 
   return shuffledQuestions.map((q) => {
+    const correctAnswer = q.a[q.correct]; // to‘g‘ri javobni oldindan olib qo‘yamiz
     const shuffledAnswers = shuffle(q.a);
 
     return {
       q: q.q,
       photo: q.photo || null,
       a: shuffledAnswers,
-      correct: shuffledAnswers.indexOf(q.a[q.correct]),
+      correct: shuffledAnswers.indexOf(correctAnswer),
+      explanation: q.explanation || null, // ← shu qatorni qo‘shing
     };
   });
 }
+
+window.getRandomTest = getRandomTest;
 
 window.getRandomTest = getRandomTest;
 
