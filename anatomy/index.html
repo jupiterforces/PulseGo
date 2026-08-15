@@ -510,14 +510,15 @@
 
     <div id="common-modals"></div>
 
+    <script src="/assets/js/test-utils.js"></script>
     <script src="/anatomy/tests.js"></script>
-    <script src="/assets/js/test.js"></script>
-
-
-
 
     <script>
-        const tests = {
+        console.log("GET RANDOM:", typeof getRandomTest);
+        console.log("WINDOW GET RANDOM:", typeof window.getRandomTest);
+        console.log("QUESTIONS:", typeof TEST_QUESTIONS);
+
+        window.tests = {
             mock1: getRandomTest(TEST_QUESTIONS.mock1, 20),
             mock2: getRandomTest(TEST_QUESTIONS.mock2, 20),
             mock3: getRandomTest(TEST_QUESTIONS.mock3, 20),
@@ -527,11 +528,17 @@
             mock7: getRandomTest(TEST_QUESTIONS.mock7, 20),
             mock8: getRandomTest(TEST_QUESTIONS.mock8, 20),
             L22: getRandomTest(TEST_QUESTIONS.L22, 20),
-            mockUpperLimb2: getRandomTest(TEST_QUESTIONS.mockUpperLimb2, 10),
-            mockLowerLimbArteries: getRandomTest(TEST_QUESTIONS.mockLowerLimbArteries, 20),
+            mockUpperLimb2: getRandomTest(
+                TEST_QUESTIONS.mockUpperLimb2,
+                10
+            ),
+            mockLowerLimbArteries: getRandomTest(
+                TEST_QUESTIONS.mockLowerLimbArteries,
+                20
+            ),
         };
 
-        const testTitleMap = {
+        window.testTitleMap = {
             mock1: "Peritoneum",
             mock2: "Anatomy Chapter 1",
             mock3: "Accessory GI Organs",
@@ -543,9 +550,12 @@
             L22: "Upper limb",
             mockUpperLimb2: "Upper Limb 2",
             mockLowerLimbArteries: "Lower Limb Arteries",
-        }
+        };
 
+        console.log("🔥 TESTS:", window.tests);
     </script>
+
+    <script type="module" src="/assets/js/test.js"></script>
 
     <div class="modal fade" id="proModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">

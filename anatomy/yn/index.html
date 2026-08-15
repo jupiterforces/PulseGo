@@ -390,11 +390,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="/assets/js/test-utils.js"></script>
     <script src="/anatomy/imgtests.js"></script>
-    <script src="/assets/js/test.js"></script>
 
     <script>
-        const tests = {
+        window.tests = {
             mock1: getRandomTest(TEST_QUESTIONS.mock1),
             mock2: getRandomTest(TEST_QUESTIONS.mock2),
             mock3: getRandomTest(TEST_QUESTIONS.mock3),
@@ -412,7 +412,7 @@
             mock15: getRandomTest(TEST_QUESTIONS.mock15),
         };
 
-        const testTitleMap = {
+        window.testTitleMap = {
             mock1: "1-5 img",
             mock2: "6-10 img",
             mock3: "11-15 img",
@@ -431,6 +431,7 @@
         };
 
     </script>
+    <script type="module" src="/assets/js/test.js"></script>
 
 
     <!-- PRO MODAL -->

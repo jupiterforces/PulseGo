@@ -3377,3 +3377,27 @@ window.TEST_QUESTIONS = {
     },
   ],
 };
+
+// function shuffle(array) {
+//   return [...array].sort(() => Math.random() - 0.5);
+// }
+
+// function getRandomTest(questions, n = "all") {
+//   const shuffledQuestions =
+//     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
+
+//   return shuffledQuestions.map((q) => {
+//     const shuffledAnswers = shuffle(q.a);
+
+//     return {
+//       q: q.q,
+//       photo: q.photo || null,
+//       a: shuffledAnswers,
+//       correct: shuffledAnswers.indexOf(q.a[q.correct]),
+//     };
+//   });
+// }
+
+// window.getRandomTest = getRandomTest;
+
+// console.log("🔥 TESTS.JS getRandomTest:", typeof window.getRandomTest);
