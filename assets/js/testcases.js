@@ -46,6 +46,10 @@ function saveTestProgress() {
       total: currentTest.length,
       timeLeft,
       totalTestTime,
+      // Full exam state so resume restores navigator lock / colors
+      examQuestionResults: examQuestionResults || {},
+      examFlagged: Array.from(examFlaggedQuestions || []),
+      examNotes: examNotes || {},
       updatedAt: new Date().toISOString(),
     };
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(data));
@@ -96,67 +100,129 @@ function loadFallbackResults() {
   }
 }
 
+function buildResultEntry(resultData) {
+  const total = resultData.total || 0;
+  const correct = resultData.correct || 0;
+  const solved =
+    resultData.solved != null
+      ? resultData.solved
+      : correct + (resultData.wrong || 0);
+  const wrong =
+    resultData.wrong != null ? resultData.wrong : Math.max(0, solved - correct);
+  const unsolved =
+    resultData.unsolved != null
+      ? resultData.unsolved
+      : Math.max(0, total - solved);
+  const percent =
+    resultData.percent != null
+      ? resultData.percent
+      : solved === 0
+        ? 0
+        : Math.round((correct / solved) * 100);
+
+  return {
+    id: Date.now(),
+    testName: resultData.testName || "unknown",
+    total,
+    correct,
+    solved,
+    wrong,
+    unsolved,
+    percent,
+    date: new Date().toISOString(),
+    mistakesCount: resultData.mistakes?.length || wrong || 0,
+    partial: !!resultData.partial,
+  };
+}
+
+/**
+ * ALWAYS write localStorage first (source of truth for page stats),
+ * then sync to Data layer if available.
+ */
 function saveTestResult(resultData) {
+  const entry = buildResultEntry(resultData);
+  let localOk = false;
+
+  // 1) Local durable store — never skip this
+  try {
+    const raw = localStorage.getItem("pulsego_test_results_v1");
+    const obj = raw ? JSON.parse(raw) : { tests: [] };
+    if (!Array.isArray(obj.tests)) obj.tests = [];
+    obj.tests.push(entry);
+    // keep last 200 runs
+    if (obj.tests.length > 200) obj.tests = obj.tests.slice(-200);
+    localStorage.setItem("pulsego_test_results_v1", JSON.stringify(obj));
+    localOk = true;
+  } catch (e) {
+    console.error("Failed to save local test result", e);
+  }
+
+  // 2) Also mirror into pulsego_data_v1.results if present
+  try {
+    const raw = localStorage.getItem("pulsego_data_v1");
+    const data = raw ? JSON.parse(raw) : {};
+    data.results = Array.isArray(data.results) ? data.results : [];
+    data.results.push(entry);
+    if (data.results.length > 200) data.results = data.results.slice(-200);
+    localStorage.setItem("pulsego_data_v1", JSON.stringify(data));
+  } catch (e) {
+    console.error("Failed to mirror result into pulsego_data_v1", e);
+  }
+
+  // 3) Cloud / Data layer (best effort, after local)
   if (window.Data?.recordTestResult) {
     try {
-      return Data.recordTestResult(resultData);
+      Data.recordTestResult(resultData);
     } catch (e) {
       console.error("Data.recordTestResult failed", e);
     }
   }
 
+  // 4) Notify listing pages
+  try {
+    window.dispatchEvent(
+      new CustomEvent("pulse:result-saved", { detail: entry }),
+    );
+  } catch (e) {}
+
+  return localOk ? entry : null;
+}
+
+/** Unified results for pages/stats (local first, then Data) */
+function getUnifiedTestResults() {
+  const map = new Map();
+  const add = (list) => {
+    if (!Array.isArray(list)) return;
+    list.forEach((e) => {
+      if (!e) return;
+      const key = `${e.testName}|${e.date}|${e.correct}|${e.total}|${e.solved}`;
+      if (!map.has(key)) map.set(key, e);
+    });
+  };
   try {
     const raw = localStorage.getItem("pulsego_test_results_v1");
-    const obj = raw ? JSON.parse(raw) : { tests: [] };
-
-    const total = resultData.total || 0;
-    const correct = resultData.correct || 0;
-    const solved =
-      resultData.solved != null
-        ? resultData.solved
-        : correct + (resultData.wrong || 0);
-    const wrong =
-      resultData.wrong != null
-        ? resultData.wrong
-        : Math.max(0, solved - correct);
-    const unsolved =
-      resultData.unsolved != null
-        ? resultData.unsolved
-        : Math.max(0, total - solved);
-    const percent =
-      resultData.percent != null
-        ? resultData.percent
-        : solved === 0
-          ? 0
-          : Math.round((correct / solved) * 100);
-
-    const entry = {
-      id: Date.now(),
-      testName: resultData.testName || "unknown",
-      total,
-      correct,
-      solved,
-      wrong,
-      unsolved,
-      percent,
-      date: new Date().toISOString(),
-      mistakesCount: resultData.mistakes?.length || wrong || 0,
-      partial: !!resultData.partial,
-    };
-
-    obj.tests.push(entry);
-    localStorage.setItem("pulsego_test_results_v1", JSON.stringify(obj));
-    return entry;
-  } catch (e) {
-    console.error("Failed to save fallback test result", e);
-    return null;
-  }
+    const obj = raw ? JSON.parse(raw) : {};
+    add(obj.tests);
+  } catch (e) {}
+  try {
+    const raw = localStorage.getItem("pulsego_data_v1");
+    const data = raw ? JSON.parse(raw) : {};
+    add(data.results);
+    add(data.testResults);
+  } catch (e) {}
+  try {
+    if (window.Data?.getResults) add(Data.getResults());
+  } catch (e) {}
+  return Array.from(map.values());
 }
 
 function getTestResults() {
+  const unified = getUnifiedTestResults();
+  if (unified.length) return unified;
   if (window.Data?.getResults) {
     try {
-      return Data.getResults();
+      const remote = Data.getResults();
+      if (Array.isArray(remote) && remote.length) return remote;
     } catch (e) {
       console.error("Data.getResults failed", e);
     }
@@ -1591,6 +1657,15 @@ function ensureExamHeaderStyles() {
     body.exam-mode-active #question-container ::selection {
       background: #fde047;
     }
+    /* Hide native browser/OS selection menus; only our toolbar */
+    body.exam-mode-active #question-container,
+    body.exam-mode-active #question-container * {
+      -webkit-touch-callout: none !important;
+    }
+    body.exam-mode-active #question-container {
+      -webkit-user-select: text;
+      user-select: text;
+    }
     body.exam-mode-active mark.exam-hl {
       background: #fde047;
       color: inherit;
@@ -2328,25 +2403,73 @@ function toggleOptionStrike(btn, e) {
 }
 
 /* ---------- Text selection toolbar (highlight / copy / unhighlight / translate soon) ---------- */
+let __examSelToolbarBound = false;
+
 function ensureExamSelectionToolbar() {
-  if (document.getElementById("exam-sel-toolbar")) return;
-  const tip = document.createElement("div");
-  tip.id = "exam-sel-toolbar";
-  tip.innerHTML = `
-    <button type="button" data-act="highlight"><i class="bi bi-highlighter"></i> Highlight</button>
-    <button type="button" data-act="unhighlight"><i class="bi bi-eraser"></i> Unhighlight</button>
-    <button type="button" data-act="copy"><i class="bi bi-clipboard"></i> Copy</button>
-    <button type="button" class="locked" data-act="translate"><i class="bi bi-translate"></i> Translate · soon</button>
-  `;
-  document.body.appendChild(tip);
-  tip.addEventListener("mousedown", (e) => e.preventDefault());
-  tip.querySelectorAll("button").forEach((b) => {
-    b.onclick = () => handleExamSelectionAction(b.getAttribute("data-act"));
-  });
+  if (!document.getElementById("exam-sel-toolbar")) {
+    const tip = document.createElement("div");
+    tip.id = "exam-sel-toolbar";
+    tip.setAttribute("role", "toolbar");
+    tip.setAttribute("aria-label", "Matn vositalari");
+    tip.innerHTML = `
+      <button type="button" data-act="highlight"><i class="bi bi-highlighter"></i> Highlight</button>
+      <button type="button" data-act="unhighlight"><i class="bi bi-eraser"></i> Unhighlight</button>
+      <button type="button" data-act="copy"><i class="bi bi-clipboard"></i> Copy</button>
+      <button type="button" class="locked" data-act="translate"><i class="bi bi-translate"></i> Translate · soon</button>
+    `;
+    document.body.appendChild(tip);
+    // Keep selection when pressing toolbar
+    tip.addEventListener("mousedown", (e) => e.preventDefault());
+    tip.addEventListener("touchstart", (e) => e.preventDefault(), {
+      passive: false,
+    });
+    tip.querySelectorAll("button").forEach((b) => {
+      b.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        handleExamSelectionAction(b.getAttribute("data-act"));
+      };
+    });
+  }
+
+  if (__examSelToolbarBound) return;
+  __examSelToolbarBound = true;
 
   document.addEventListener("mouseup", onExamTextSelection);
   document.addEventListener("touchend", onExamTextSelection, { passive: true });
+  document.addEventListener("selectionchange", onExamTextSelectionQuiet);
   document.addEventListener("scroll", hideExamSelectionToolbar, true);
+
+  // Block native context menu (PC right-click + long-press menu where possible)
+  document.addEventListener(
+    "contextmenu",
+    (e) => {
+      if (!document.body.classList.contains("exam-mode-active")) return;
+      const container = document.getElementById("question-container");
+      if (container && container.contains(e.target)) {
+        e.preventDefault();
+        e.stopPropagation();
+        onExamTextSelection();
+      }
+    },
+    true,
+  );
+
+  // Block native copy/search shortcuts from opening browser UI on selection inside exam
+  document.addEventListener(
+    "copy",
+    (e) => {
+      if (!document.body.classList.contains("exam-mode-active")) return;
+      const container = document.getElementById("question-container");
+      const sel = window.getSelection();
+      if (!container || !sel || sel.isCollapsed) return;
+      if (sel.anchorNode && container.contains(sel.anchorNode)) {
+        // allow our own copy button (uses clipboard API), block default bubble chrome if any
+        // don't preventDefault here if user used our button — only reduce browser UI noise
+      }
+    },
+    true,
+  );
 }
 
 function hideExamSelectionToolbar() {
@@ -2355,30 +2478,62 @@ function hideExamSelectionToolbar() {
   examSelectionRange = null;
 }
 
+function positionExamSelectionToolbar() {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) {
+    hideExamSelectionToolbar();
+    return;
+  }
+  const node = sel.anchorNode;
+  const container = document.getElementById("question-container");
+  if (!container || !node || !container.contains(node)) {
+    hideExamSelectionToolbar();
+    return;
+  }
+  // Don't show toolbar when selecting inside our toolbar itself
+  const tip = document.getElementById("exam-sel-toolbar");
+  if (tip && tip.contains(node)) return;
+
+  examSelectionRange = sel.getRangeAt(0).cloneRange();
+  if (!tip) return;
+  tip.style.display = "flex";
+  const rect = examSelectionRange.getBoundingClientRect();
+  if (!rect || (rect.width === 0 && rect.height === 0)) return;
+
+  // Prefer above selection; if no room, below
+  const tipH = tip.offsetHeight || 44;
+  const tipW = tip.offsetWidth || 280;
+  let top = window.scrollY + rect.top - tipH - 12;
+  if (rect.top < tipH + 16) {
+    top = window.scrollY + rect.bottom + 12;
+  }
+  let left = window.scrollX + rect.left + rect.width / 2 - tipW / 2;
+  left = Math.max(
+    8,
+    Math.min(left, window.scrollX + window.innerWidth - tipW - 8),
+  );
+  tip.style.top = `${Math.max(8, top)}px`;
+  tip.style.left = `${left}px`;
+  tip.style.transform = "none";
+}
+
 function onExamTextSelection() {
   if (!document.body.classList.contains("exam-mode-active")) return;
-  setTimeout(() => {
-    const sel = window.getSelection();
-    if (!sel || sel.isCollapsed || !sel.rangeCount) {
-      hideExamSelectionToolbar();
-      return;
-    }
-    const node = sel.anchorNode;
-    const container = document.getElementById("question-container");
-    if (!container || !node || !container.contains(node)) {
-      hideExamSelectionToolbar();
-      return;
-    }
-    examSelectionRange = sel.getRangeAt(0).cloneRange();
-    const rect = examSelectionRange.getBoundingClientRect();
-    const tip = document.getElementById("exam-sel-toolbar");
-    if (!tip) return;
-    tip.style.display = "flex";
-    const top = window.scrollY + rect.top - tip.offsetHeight - 10;
-    const left = window.scrollX + rect.left + rect.width / 2;
-    tip.style.top = `${Math.max(8, top)}px`;
-    tip.style.left = `${Math.min(window.innerWidth - 40, Math.max(40, left))}px`;
-  }, 10);
+  // Delay so mobile selection handles settle; then show ONLY our toolbar
+  setTimeout(positionExamSelectionToolbar, 30);
+}
+
+function onExamTextSelectionQuiet() {
+  if (!document.body.classList.contains("exam-mode-active")) return;
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed) {
+    // keep toolbar if user is tapping it (selection may clear)
+    return;
+  }
+  const container = document.getElementById("question-container");
+  if (!container || !sel.anchorNode || !container.contains(sel.anchorNode))
+    return;
+  positionExamSelectionToolbar();
 }
 
 function handleExamSelectionAction(act) {
@@ -3279,7 +3434,7 @@ function closeResult() {
   hideExamHeader();
 }
 
-window.startTest = closeResult;
+window.closeResult = closeResult;
 
 function shareResult() {
   const text = `Pulse Medical\n\nMy result:\n\n${score} / ${currentTest.length}`;
@@ -3374,6 +3529,25 @@ async function startTest(testName) {
       score = saved.score || 0;
       mistakes = saved.mistakes || [];
       timeLeft = saved.timeLeft > 0 ? saved.timeLeft : totalTestTime;
+      // Restore per-question status (lock + navigator colors)
+      examQuestionResults =
+        saved.examQuestionResults &&
+        typeof saved.examQuestionResults === "object"
+          ? saved.examQuestionResults
+          : {};
+      examFlaggedQuestions = new Set(
+        Array.isArray(saved.examFlagged) ? saved.examFlagged : [],
+      );
+      examNotes =
+        saved.examNotes && typeof saved.examNotes === "object"
+          ? saved.examNotes
+          : {};
+      // If landing on already-answered question, mark checked
+      if (examQuestionResults[currentIndex]) {
+        answerChecked = true;
+        selectedAnswerIndex =
+          examQuestionResults[currentIndex].selected ?? null;
+      }
     } else {
       clearTestProgress();
     }
@@ -3400,6 +3574,100 @@ async function startTest(testName) {
 }
 
 window.startTest = startTest;
+
+/**
+ * Build a short path from weakest tests among given ids (or all known results).
+ * Unique tutor-style entry: one tap → practice what hurts.
+ */
+function startWeakPath(testIds = null, maxQuestions = 15) {
+  const ids =
+    Array.isArray(testIds) && testIds.length
+      ? testIds
+      : Object.keys(window.tests || {});
+
+  const results = getUnifiedTestResults();
+  const byTest = {};
+  results.forEach((e) => {
+    const name = e.testName;
+    if (!ids.includes(name)) return;
+    if (!byTest[name])
+      byTest[name] = { correct: 0, solved: 0, lastPercent: 100 };
+    const solved =
+      e.solved != null ? e.solved : (e.correct || 0) + (e.wrong || 0);
+    byTest[name].correct += e.correct || 0;
+    byTest[name].solved += solved;
+    const pct =
+      e.percent != null
+        ? e.percent
+        : solved
+          ? Math.round(((e.correct || 0) / solved) * 100)
+          : 100;
+    byTest[name].lastPercent = Math.min(byTest[name].lastPercent, pct);
+  });
+
+  // Rank weakest first; unattempted get mild priority after weak
+  const ranked = ids
+    .map((name) => {
+      const st = byTest[name];
+      if (!st) return { name, score: 40, unattempted: true }; // unattempted middle priority
+      const avg = st.solved
+        ? Math.round((st.correct / st.solved) * 100)
+        : st.lastPercent;
+      return { name, score: avg, unattempted: false };
+    })
+    .sort((a, b) => a.score - b.score);
+
+  const pool = [];
+  for (const item of ranked) {
+    const bank = window.tests?.[item.name];
+    if (!Array.isArray(bank) || !bank.length) continue;
+    // Prefer full bank questions (already shuffled sets ok)
+    bank.forEach((q) => {
+      pool.push({
+        q: q.q,
+        photo: q.photo || null,
+        a: q.a,
+        correct: q.correct,
+        explanation: q.explanation || null,
+        _fromTest: item.name,
+      });
+    });
+    if (pool.length >= maxQuestions * 2) break;
+  }
+
+  if (!pool.length) {
+    alert("Zaif yo'l uchun savol topilmadi. Avval kamida 1 ta test ishlang.");
+    return;
+  }
+
+  // Shuffle and cut
+  const selected = shuffle(pool).slice(0, Math.min(maxQuestions, pool.length));
+
+  currentTest = selected;
+  currentTestName = "weak-path";
+  currentIndex = 0;
+  score = 0;
+  mistakes = [];
+  answerChecked = false;
+  selectedAnswerIndex = null;
+  examQuestionResults = {};
+  examFlaggedQuestions = new Set();
+  examNotes = {};
+  examFontScale = 1;
+  document.documentElement.style.setProperty("--exam-font-scale", "1");
+  totalTestTime = Math.max(currentTest.length * 180, 60);
+  timeLeft = totalTestTime;
+  clearTestProgress();
+
+  document.getElementById("test-selection")?.classList.add("d-none");
+  document.getElementById("test-screen")?.classList.remove("d-none");
+  document.getElementById("result")?.classList.add("d-none");
+
+  showQuestion();
+  startCaseTimer();
+}
+
+window.startWeakPath = startWeakPath;
 
 function reviewMistakes() {
   if (mistakes.length === 0) {
@@ -3553,6 +3821,8 @@ window.selectAnswer = selectAnswer;
 window.checkCurrentAnswer = checkCurrentAnswer;
 window.stopTest = stopTest;
 window.startTest = startTest;
+window.startWeakPath = startWeakPath;
+window.getUnifiedTestResults = getUnifiedTestResults;
 window.openXatolarModal = openXatolarModal;
 window.downloadXatolar = downloadXatolar;
 window.startXatolarReview = startXatolarReview;
