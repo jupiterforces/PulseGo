@@ -1808,7 +1808,7 @@ function ensureExamHeaderStyles() {
     /* Text selection floating toolbar */
     #exam-sel-toolbar {
       position: absolute;
-      z-index: 2000;
+      z-index: 10050;
       display: none;
       align-items: center;
       gap: 2px;
@@ -1816,7 +1816,11 @@ function ensureExamHeaderStyles() {
       background: #0f172a;
       border-radius: 10px;
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.28);
-      transform: translateX(-50%);
+      transform: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+      pointer-events: auto;
     }
     #exam-sel-toolbar button {
       border: none;
@@ -1831,6 +1835,9 @@ function ensureExamHeaderStyles() {
       display: inline-flex;
       align-items: center;
       gap: 0.25rem;
+      -webkit-user-select: none;
+      user-select: none;
+      touch-action: manipulation;
     }
     #exam-sel-toolbar button:hover { background: rgba(255,255,255,0.12); color: #fff; }
     #exam-sel-toolbar button.locked { opacity: 0.55; }
@@ -2402,8 +2409,10 @@ function toggleOptionStrike(btn, e) {
   btn.classList.toggle("exam-struck");
 }
 
-/* ---------- Text selection toolbar (highlight / copy / unhighlight / translate soon) ---------- */
+/* ---------- Text selection toolbar (highlight / copy / unhighlight) ---------- */
 let __examSelToolbarBound = false;
+let examSelectionText = "";
+let examSelToolbarPinned = false; // true while interacting with toolbar
 
 function ensureExamSelectionToolbar() {
   if (!document.getElementById("exam-sel-toolbar")) {
@@ -2418,17 +2427,30 @@ function ensureExamSelectionToolbar() {
       <button type="button" class="locked" data-act="translate"><i class="bi bi-translate"></i> Translate · soon</button>
     `;
     document.body.appendChild(tip);
-    // Keep selection when pressing toolbar
-    tip.addEventListener("mousedown", (e) => e.preventDefault());
-    tip.addEventListener("touchstart", (e) => e.preventDefault(), {
-      passive: false,
-    });
+
+    // CRITICAL: keep browser from clearing selection when pressing toolbar (mobile + desktop)
+    const pin = (e) => {
+      examSelToolbarPinned = true;
+      e.preventDefault();
+      e.stopPropagation();
+    };
+    tip.addEventListener("pointerdown", pin, true);
+    tip.addEventListener("mousedown", pin, true);
+    tip.addEventListener("touchstart", pin, { capture: true, passive: false });
+
     tip.querySelectorAll("button").forEach((b) => {
-      b.onclick = (e) => {
+      const run = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        examSelToolbarPinned = true;
         handleExamSelectionAction(b.getAttribute("data-act"));
+        setTimeout(() => {
+          examSelToolbarPinned = false;
+        }, 300);
       };
+      // pointerup works more reliably than click on mobile after preventDefault on touchstart
+      b.addEventListener("pointerup", run);
+      b.addEventListener("click", run);
     });
   }
 
@@ -2438,73 +2460,107 @@ function ensureExamSelectionToolbar() {
   document.addEventListener("mouseup", onExamTextSelection);
   document.addEventListener("touchend", onExamTextSelection, { passive: true });
   document.addEventListener("selectionchange", onExamTextSelectionQuiet);
-  document.addEventListener("scroll", hideExamSelectionToolbar, true);
 
-  // Block native context menu (PC right-click + long-press menu where possible)
+  // Don't hide toolbar on scroll if pinned
+  document.addEventListener(
+    "scroll",
+    () => {
+      if (!examSelToolbarPinned) hideExamSelectionToolbar(false);
+    },
+    true,
+  );
+
+  // Block native context menu in exam question area (PC + many mobiles)
   document.addEventListener(
     "contextmenu",
     (e) => {
       if (!document.body.classList.contains("exam-mode-active")) return;
       const container = document.getElementById("question-container");
-      if (container && container.contains(e.target)) {
+      const tip = document.getElementById("exam-sel-toolbar");
+      if (
+        (container && container.contains(e.target)) ||
+        (tip && tip.contains(e.target))
+      ) {
         e.preventDefault();
         e.stopPropagation();
-        onExamTextSelection();
+        captureExamSelection();
+        positionExamSelectionToolbar();
       }
     },
     true,
   );
 
-  // Block native copy/search shortcuts from opening browser UI on selection inside exam
+  // Extra: long-press selectstart noise
   document.addEventListener(
-    "copy",
+    "selectstart",
     (e) => {
       if (!document.body.classList.contains("exam-mode-active")) return;
-      const container = document.getElementById("question-container");
-      const sel = window.getSelection();
-      if (!container || !sel || sel.isCollapsed) return;
-      if (sel.anchorNode && container.contains(sel.anchorNode)) {
-        // allow our own copy button (uses clipboard API), block default bubble chrome if any
-        // don't preventDefault here if user used our button — only reduce browser UI noise
+      const tip = document.getElementById("exam-sel-toolbar");
+      if (tip && tip.contains(e.target)) {
+        e.preventDefault();
       }
     },
     true,
   );
 }
 
-function hideExamSelectionToolbar() {
+function hideExamSelectionToolbar(clearRange = true) {
   const tip = document.getElementById("exam-sel-toolbar");
   if (tip) tip.style.display = "none";
-  examSelectionRange = null;
+  if (clearRange && !examSelToolbarPinned) {
+    examSelectionRange = null;
+    examSelectionText = "";
+  }
+}
+
+function captureExamSelection() {
+  const sel = window.getSelection();
+  if (!sel || sel.isCollapsed || !sel.rangeCount) return false;
+  const node = sel.anchorNode;
+  const container = document.getElementById("question-container");
+  if (!container || !node || !container.contains(node)) return false;
+  const tip = document.getElementById("exam-sel-toolbar");
+  if (tip && tip.contains(node)) return false;
+  try {
+    examSelectionRange = sel.getRangeAt(0).cloneRange();
+    examSelectionText = sel.toString();
+    return examSelectionText.length > 0;
+  } catch (e) {
+    return false;
+  }
 }
 
 function positionExamSelectionToolbar() {
-  const sel = window.getSelection();
-  if (!sel || sel.isCollapsed || !sel.rangeCount) {
-    hideExamSelectionToolbar();
-    return;
-  }
-  const node = sel.anchorNode;
-  const container = document.getElementById("question-container");
-  if (!container || !node || !container.contains(node)) {
-    hideExamSelectionToolbar();
-    return;
-  }
-  // Don't show toolbar when selecting inside our toolbar itself
-  const tip = document.getElementById("exam-sel-toolbar");
-  if (tip && tip.contains(node)) return;
+  if (!document.body.classList.contains("exam-mode-active")) return;
 
-  examSelectionRange = sel.getRangeAt(0).cloneRange();
+  // Prefer live selection; fall back to saved range
+  const hasLive = captureExamSelection();
+  if (!hasLive && !examSelectionRange) {
+    if (!examSelToolbarPinned) hideExamSelectionToolbar(true);
+    return;
+  }
+
+  const tip = document.getElementById("exam-sel-toolbar");
   if (!tip) return;
-  tip.style.display = "flex";
-  const rect = examSelectionRange.getBoundingClientRect();
+
+  let rect = null;
+  try {
+    rect = examSelectionRange.getBoundingClientRect();
+  } catch (e) {}
+  if (!rect || (rect.width === 0 && rect.height === 0)) {
+    // fallback: use selection rects
+    const sel = window.getSelection();
+    if (sel && sel.rangeCount) {
+      rect = sel.getRangeAt(0).getBoundingClientRect();
+    }
+  }
   if (!rect || (rect.width === 0 && rect.height === 0)) return;
 
-  // Prefer above selection; if no room, below
+  tip.style.display = "flex";
   const tipH = tip.offsetHeight || 44;
   const tipW = tip.offsetWidth || 280;
   let top = window.scrollY + rect.top - tipH - 12;
-  if (rect.top < tipH + 16) {
+  if (rect.top < tipH + 20) {
     top = window.scrollY + rect.bottom + 12;
   }
   let left = window.scrollX + rect.left + rect.width / 2 - tipW / 2;
@@ -2517,81 +2573,201 @@ function positionExamSelectionToolbar() {
   tip.style.transform = "none";
 }
 
-function onExamTextSelection() {
+function onExamTextSelection(e) {
   if (!document.body.classList.contains("exam-mode-active")) return;
-  // Delay so mobile selection handles settle; then show ONLY our toolbar
-  setTimeout(positionExamSelectionToolbar, 30);
+  // Ignore if ending on toolbar
+  const tip = document.getElementById("exam-sel-toolbar");
+  if (tip && e?.target && tip.contains(e.target)) return;
+  // Mobile needs a longer settle time for selection handles
+  setTimeout(() => {
+    if (captureExamSelection()) positionExamSelectionToolbar();
+  }, 40);
+  setTimeout(() => {
+    if (captureExamSelection()) positionExamSelectionToolbar();
+  }, 120);
 }
 
 function onExamTextSelectionQuiet() {
   if (!document.body.classList.contains("exam-mode-active")) return;
+  if (examSelToolbarPinned) return;
   const sel = window.getSelection();
-  if (!sel || sel.isCollapsed) {
-    // keep toolbar if user is tapping it (selection may clear)
-    return;
-  }
+  if (!sel || sel.isCollapsed) return;
   const container = document.getElementById("question-container");
   if (!container || !sel.anchorNode || !container.contains(sel.anchorNode))
     return;
+  captureExamSelection();
   positionExamSelectionToolbar();
 }
 
+/** Robust highlight that works across element boundaries */
+function applyExamHighlight(range) {
+  if (!range || range.collapsed) return false;
+
+  // Try simple path first
+  try {
+    const mark = document.createElement("mark");
+    mark.className = "exam-hl";
+    range.surroundContents(mark);
+    return true;
+  } catch (e) {
+    /* fall through */
+  }
+
+  // Walk text nodes inside range
+  try {
+    const container = document.getElementById("question-container");
+    if (!container) return false;
+
+    const root =
+      range.commonAncestorContainer.nodeType === 1
+        ? range.commonAncestorContainer
+        : range.commonAncestorContainer.parentElement;
+
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue || !node.nodeValue.trim())
+          return NodeFilter.FILTER_REJECT;
+        if (!container.contains(node)) return NodeFilter.FILTER_REJECT;
+        try {
+          return range.intersectsNode(node)
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
+        } catch (err) {
+          return NodeFilter.FILTER_REJECT;
+        }
+      },
+    });
+
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    if (!nodes.length) {
+      // last resort extract
+      const frag = range.extractContents();
+      const mark = document.createElement("mark");
+      mark.className = "exam-hl";
+      mark.appendChild(frag);
+      range.insertNode(mark);
+      return true;
+    }
+
+    nodes.forEach((textNode) => {
+      let start = 0;
+      let end = textNode.nodeValue.length;
+      if (textNode === range.startContainer) start = range.startOffset;
+      if (textNode === range.endContainer) end = range.endOffset;
+      if (start >= end) return;
+
+      const full = textNode.nodeValue;
+      const before = full.slice(0, start);
+      const mid = full.slice(start, end);
+      const after = full.slice(end);
+
+      const mark = document.createElement("mark");
+      mark.className = "exam-hl";
+      mark.textContent = mid;
+
+      const parent = textNode.parentNode;
+      if (before)
+        parent.insertBefore(document.createTextNode(before), textNode);
+      parent.insertBefore(mark, textNode);
+      if (after) parent.insertBefore(document.createTextNode(after), textNode);
+      parent.removeChild(textNode);
+    });
+    return true;
+  } catch (err) {
+    console.warn("highlight failed", err);
+    return false;
+  }
+}
+
 function handleExamSelectionAction(act) {
-  if (!examSelectionRange) return;
+  // Re-capture if still available
+  captureExamSelection();
+  if (!examSelectionRange && !examSelectionText) {
+    console.warn("No selection saved");
+    return;
+  }
+
   if (act === "translate") {
     alert("Tarjima tez orada qo'shiladi (soon).");
     return;
   }
+
   if (act === "copy") {
-    const text = examSelectionRange.toString();
-    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(text);
-    else {
+    const text = examSelectionText || examSelectionRange?.toString() || "";
+    const done = () => {
+      hideExamSelectionToolbar(true);
+      window.getSelection()?.removeAllRanges();
+    };
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard
+        .writeText(text)
+        .then(done)
+        .catch(() => {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          done();
+        });
+    } else {
       const ta = document.createElement("textarea");
       ta.value = text;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       ta.remove();
+      done();
     }
-    hideExamSelectionToolbar();
     return;
   }
+
   if (act === "highlight") {
+    // Restore range into live selection so DOM ops stay valid
     try {
-      const mark = document.createElement("mark");
-      mark.className = "exam-hl";
-      examSelectionRange.surroundContents(mark);
-    } catch (e) {
-      // partial nodes — fallback extract
-      try {
-        const frag = examSelectionRange.extractContents();
-        const mark = document.createElement("mark");
-        mark.className = "exam-hl";
-        mark.appendChild(frag);
-        examSelectionRange.insertNode(mark);
-      } catch (err) {
-        console.warn("highlight failed", err);
-      }
-    }
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(examSelectionRange);
+    } catch (e) {}
+
+    const ok = applyExamHighlight(examSelectionRange);
+    if (!ok) console.warn("Highlight could not apply");
     window.getSelection()?.removeAllRanges();
-    hideExamSelectionToolbar();
+    examSelectionRange = null;
+    examSelectionText = "";
+    hideExamSelectionToolbar(true);
     return;
   }
+
   if (act === "unhighlight") {
-    const root = examSelectionRange.commonAncestorContainer;
-    const el = root.nodeType === 1 ? root : root.parentElement;
-    const marks =
-      el?.closest?.("#question-container")?.querySelectorAll("mark.exam-hl") ||
-      [];
-    marks.forEach((m) => {
-      if (!examSelectionRange.intersectsNode(m)) return;
-      const parent = m.parentNode;
-      while (m.firstChild) parent.insertBefore(m.firstChild, m);
-      parent.removeChild(m);
-      parent.normalize();
-    });
+    try {
+      const container = document.getElementById("question-container");
+      if (!container || !examSelectionRange) return;
+      const marks = Array.from(container.querySelectorAll("mark.exam-hl"));
+      marks.forEach((m) => {
+        let hit = false;
+        try {
+          hit = examSelectionRange.intersectsNode(m);
+        } catch (e) {
+          hit = true;
+        }
+        if (!hit) return;
+        const parent = m.parentNode;
+        while (m.firstChild) parent.insertBefore(m.firstChild, m);
+        parent.removeChild(m);
+        parent.normalize();
+      });
+    } catch (e) {
+      console.warn("unhighlight failed", e);
+    }
     window.getSelection()?.removeAllRanges();
-    hideExamSelectionToolbar();
+    examSelectionRange = null;
+    examSelectionText = "";
+    hideExamSelectionToolbar(true);
   }
 }
 
