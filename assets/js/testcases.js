@@ -83,6 +83,116 @@ function clearTestProgress() {
   } catch (e) {}
 }
 
+const SESSION_MODE_KEY = "pulsego_session_mode_v1";
+let examSessionMode = "study"; // "study" | "exam"
+
+function normalizeSessionMode(raw) {
+  const m = String(raw || "")
+    .toLowerCase()
+    .trim();
+  if (["exam", "exam_mode", "exam-mode", "imtihon"].includes(m)) return "exam";
+  if (
+    ["study", "study_mode", "study-mode", "o'rganish", "organish"].includes(m)
+  )
+    return "study";
+  return null;
+}
+
+/** Read mode from URL ?mode=exam|study (global link support) */
+function resolveSessionModeFromUrl() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return normalizeSessionMode(params.get("mode"));
+  } catch (e) {
+    return null;
+  }
+}
+
+function resolveSessionMode() {
+  const fromUrl = resolveSessionModeFromUrl();
+  if (fromUrl) return fromUrl;
+  try {
+    const saved = localStorage.getItem(SESSION_MODE_KEY);
+    const n = normalizeSessionMode(saved);
+    if (n) return n;
+  } catch (e) {}
+  return "study";
+}
+
+function setExamSessionMode(mode, opts = {}) {
+  const updateUrl = opts.updateUrl !== false;
+  const next = mode === "exam" ? "exam" : "study";
+  examSessionMode = next;
+  try {
+    localStorage.setItem(SESSION_MODE_KEY, next);
+  } catch (e) {}
+
+  document.body.classList.toggle("pulse-exam-strict", next === "exam");
+  document.body.classList.toggle("pulse-study-mode", next === "study");
+
+  if (updateUrl) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("mode", next);
+      history.replaceState({}, "", url.toString());
+    } catch (e) {}
+  }
+
+  ensureExamModeToggle();
+  updateExamModeToggleUI();
+  updateExamHeader();
+  // Refresh controls if mid-question (hide/show explanation)
+  try {
+    if (document.getElementById("case-controls")) renderCaseControls();
+  } catch (e) {}
+}
+
+function getExamSessionMode() {
+  return examSessionMode === "exam" ? "exam" : "study";
+}
+
+function isExamStrictMode() {
+  return getExamSessionMode() === "exam";
+}
+
+function ensureExamModeToggle() {
+  const timerEl = document.getElementById("timer");
+  if (!timerEl) return;
+  if (document.getElementById("exam-mode-toggle")) return;
+
+  const wrap = document.createElement("div");
+  wrap.id = "exam-mode-toggle";
+  wrap.title = "Rejim: Study (izoh bilan) yoki Exam (imtihon)";
+  wrap.innerHTML = `
+    <button type="button" data-mode="study">Study</button>
+    <button type="button" data-mode="exam">Exam</button>
+  `;
+  // Insert right after timer
+  if (timerEl.parentNode) {
+    timerEl.parentNode.insertBefore(wrap, timerEl.nextSibling);
+  }
+
+  wrap.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setExamSessionMode(btn.getAttribute("data-mode"));
+    });
+  });
+  updateExamModeToggleUI();
+}
+
+function updateExamModeToggleUI() {
+  const wrap = document.getElementById("exam-mode-toggle");
+  if (!wrap) return;
+  wrap.querySelectorAll("button").forEach((btn) => {
+    btn.classList.toggle(
+      "active",
+      btn.getAttribute("data-mode") === getExamSessionMode(),
+    );
+  });
+}
+
 function formatTime(sec) {
   const m = Math.floor(Math.max(0, sec) / 60);
   const s = Math.max(0, sec) % 60;
@@ -1456,15 +1566,52 @@ function ensureExamHeaderStyles() {
       align-items: center;
       justify-content: center;
       gap: 0.3rem;
+      min-width: 4.4rem;
       font-variant-numeric: tabular-nums;
       font-weight: 700;
       font-size: 0.9rem;
-      min-width: 4.4rem;
       padding: 0.3rem 0.7rem;
       border-radius: 999px;
-
+      background: transparent;
       color: #f0fdfa;
       border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    /* Mode switch near timer */
+    #exam-mode-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      overflow: hidden;
+      background: transparent;
+      flex-shrink: 0;
+    }
+    #exam-mode-toggle button {
+      border: none;
+      background: transparent;
+      color: rgba(240,253,250,0.7);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.28rem 0.55rem;
+      line-height: 1;
+      cursor: pointer;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+    }
+    #exam-mode-toggle button.active {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+    }
+    #exam-mode-toggle button:hover:not(.active) {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+    body.pulse-exam-strict #exam-mode-toggle button[data-mode="exam"].active {
+      background: rgba(239,68,68,0.35);
+    }
+    body.pulse-study-mode #exam-mode-toggle button[data-mode="study"].active {
+      background: rgba(37,99,235,0.4);
     }
     #timer.tg-timer.warning {
       background: rgba(251, 146, 60, 0.25);
@@ -1875,7 +2022,7 @@ function ensureExamHeaderStyles() {
       }
       #exam-bar.exam-bar { min-height: 48px; height: 48px; padding: 0 0.55rem; }
       #test-title.exam-progress { font-size: 0.95rem; }
-      #timer.tg-timer { font-size: 0.8rem; min-width: 3.8rem; padding: 0.25rem 0.5rem; }
+      #timer.tg-timer { font-size: 0.8rem; min-width: 4.4rem; padding: 0.25rem 0.5rem; }
       .exam-bar .exam-btn-label { display: none; }
       .exam-bar .btn { padding: 0.35rem 0.5rem; }
       #exam-bottom-bar .exam-tool span { font-size: 0.6rem; }
@@ -2095,7 +2242,6 @@ const EXAM_MOTIVATE_WRONG = [
   "Iye, uka, miyangiz qayerga ketdi?",
   "Bu savolni ko'rib, javobni o'zingizcha to'qib yuboribsiz-ku.",
   "Mayli, bo'libdi. Hali odam bo'lib ketasiz.",
-  "Ibn Sino ko'rganidami shuni",
   "Iye, bunaqa oson savolda ham bizni xafa qildingiz-ku.",
   "Mayli, bu safar miyangiz ishlashdan bosh tortibdi.",
   "Xato qildingiz. Endi bahona qidirmaymiz, keyingisini olamiz.",
@@ -2826,6 +2972,9 @@ function updateExamHeader() {
     else if (timeLeft <= 180) timerEl.classList.add("warning");
   }
 
+  ensureExamModeToggle();
+  updateExamModeToggleUI();
+
   if (prevBtn) prevBtn.disabled = currentIndex <= 0;
 
   if (nextBtn) {
@@ -3014,8 +3163,11 @@ function renderCaseControls() {
   if (!controls) return;
 
   const q = currentTest[currentIndex];
+  // Study = show izoh; Exam = hide (strict)
   const hasExplanation =
-    typeof q?.explanation === "string" && q.explanation.trim().length > 0;
+    !isExamStrictMode() &&
+    typeof q?.explanation === "string" &&
+    q.explanation.trim().length > 0;
 
   if (!answerChecked) {
     controls.innerHTML = `
@@ -3626,6 +3778,9 @@ async function startTest(testName) {
   console.log("START TEST");
   initPrepContext();
   isReviewingStoredMistakes = false;
+  // Mode from ?mode=exam|study (or saved preference)
+  examSessionMode = resolveSessionMode();
+  setExamSessionMode(examSessionMode, { updateUrl: true });
   window.Data?.smartSync?.();
 
   if (window.showAdModal) {
@@ -3936,6 +4091,15 @@ function closeSidebar() {
 
 window.addEventListener("DOMContentLoaded", () => {
   console.log("DOM ready");
+  examSessionMode = resolveSessionMode();
+  document.body.classList.toggle(
+    "pulse-exam-strict",
+    examSessionMode === "exam",
+  );
+  document.body.classList.toggle(
+    "pulse-study-mode",
+    examSessionMode === "study",
+  );
   initTestStats();
   initPrepContext();
   showPrepBanner();
@@ -4006,3 +4170,6 @@ window.viewMistake = viewMistake;
 window.viewQuestion = viewQuestion;
 window.showExamHeader = showExamHeader;
 window.hideExamHeader = hideExamHeader;
+window.setExamSessionMode = setExamSessionMode;
+window.getExamSessionMode = getExamSessionMode;
+window.isExamStrictMode = isExamStrictMode;
