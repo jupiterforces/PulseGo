@@ -297,7 +297,6 @@ body {
 }
 
 #timer {
-    background: linear-gradient(135deg, var(--tg-blue), #00c6ff) !important;
     color: white;
     padding: 6px 12px;
     border-radius: 999px;
@@ -333,13 +332,12 @@ body {
 
 /* TIMER */
 .tg-timer {
-    background: linear-gradient(135deg, #0088cc, #00c6ff);
     color: #fff;
     font-weight: 600;
     font-size: 13px;
     padding: 6px 12px;
     border-radius: 999px;
-    box-shadow: 0 6px 16px rgba(0, 136, 204, .45);
+    /* box-shadow: 0 6px 16px rgba(0, 136, 204, .45); */
 }
 
 /* CLOSE */

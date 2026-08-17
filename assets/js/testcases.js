@@ -1462,7 +1462,7 @@ function ensureExamHeaderStyles() {
       min-width: 4.4rem;
       padding: 0.3rem 0.7rem;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.12);
+
       color: #f0fdfa;
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
