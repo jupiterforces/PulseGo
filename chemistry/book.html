@@ -2,437 +2,906 @@
 <html lang="uz">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Pulse Medical – tibbiy testlar, ishonchli manbalar va zamonaviy bilim platformasi. Talabalar va mutaxassislar uchun.">
-    <meta name="keywords"
-        content="Pulse Medical, tibbiy testlar, anatomiya test, medical platform, tibbiyot, online test">
-    <meta name="author" content="Pulse Medical">
-    <meta property="og:title" content="Pulse Medical">
-    <meta property="og:description" content="Yakuniy nazorat uchun Mock testlar">
-    <meta property="og:image" content="Pulse.jpg">
-    <meta property="og:type" content="website">
-    <title>Biokimyo – Pulse Go</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pulse Medical – tibbiy testlar, ishonchli manbalar va zamonaviy bilim platformasi.">
+  <meta name="keywords" content="Pulse Medical, biokimyo, BRS, online test">
+  <meta name="author" content="Pulse Medical">
+  <meta property="og:title" content="Biokimyo – Pulse Go">
+  <meta property="og:description" content="BRS Chapter 1 · Energiya metabolizmi testlari">
+  <meta property="og:type" content="website">
+  <title>Biokimyo – Pulse Go</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/styles/styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/styles.css">
+  <link rel="stylesheet" href="/assets/styles/casestyles.css">
 
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --bg: #f1f5f9;
-            --card: #ffffff;
-            --text: #0f172a;
-            --muted: #64748b;
-            --border: #e2e8f0;
-            --radius: 16px;
-            --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
-        }
+  <style>
+    :root {
+      --primary: #2563eb;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 16px;
+      --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    }
 
-        body {
-            background: var(--bg);
-            font-family: 'Inter', system-ui, sans-serif;
-            color: var(--text);
-        }
+    body {
+      background: var(--bg);
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-        .section-head {
-            margin-bottom: 14px;
-        }
+    .section-head {
+      margin-bottom: 14px;
+    }
 
-        .section-head h5 {
-            font-weight: 800;
-            font-size: 1.15rem;
-            margin: 0 0 2px;
-        }
+    .section-head h5 {
+      font-weight: 800;
+      font-size: 1.15rem;
+      margin: 0 0 2px;
+    }
 
-        .section-head .sub {
-            font-size: 0.8rem;
-            color: var(--muted);
-        }
+    .section-head .sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
 
-        /* Overall stats – pulseimi style */
-        .overall-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 18px;
-        }
+    .overall-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
 
-        .stat-box {
-            background: var(--card);
-            border-radius: 14px;
-            padding: 14px 10px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-        }
+    .stat-box {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
 
-        .stat-box .stat-value {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--text);
-            line-height: 1.2;
-        }
+    .stat-box .stat-value {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
 
-        .stat-box .stat-label {
-            font-size: 0.72rem;
-            color: var(--muted);
-            font-weight: 500;
-            margin-top: 4px;
-        }
+    .stat-box .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
 
-        .stat-box.accent .stat-value {
-            color: var(--primary);
-        }
+    .stat-box.accent .stat-value {
+      color: var(--primary);
+    }
 
-        .stat-box.success .stat-value {
-            color: #16a34a;
-        }
+    .stat-box.success .stat-value {
+      color: #16a34a;
+    }
 
-        .accordion-item {
-            border-radius: var(--radius) !important;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border) !important;
-        }
+    .stats-detail {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
 
-        .accordion-button {
-            background: var(--card) !important;
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding: 14px 16px;
-            box-shadow: none !important;
-        }
+    .stats-detail .mini {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
 
-        .accordion-button:not(.collapsed) {
-            background: #eff6ff !important;
-            color: var(--primary);
-        }
+    .stats-detail .mini strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
 
-        .accordion-body {
-            background: #fafbfc;
-            padding: 14px 12px 16px !important;
-        }
+    .stats-detail .mini span {
+      font-size: 0.68rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
 
-        @media (max-width: 576px) {
-            .stat-box .stat-value {
-                font-size: 1.15rem;
-            }
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
 
-            .stat-box {
-                padding: 12px 8px;
-            }
-        }
-    </style>
+    .quick-actions .btn {
+      border-radius: 999px;
+      font-weight: 650;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+    }
+
+    .search-row {
+      margin-bottom: 12px;
+    }
+
+    .search-row .form-control {
+      border-radius: 12px;
+      border-color: var(--border);
+      font-size: 0.9rem;
+      padding: 0.65rem 0.9rem;
+    }
+
+    .progress-hint {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      font-size: 0.85rem;
+    }
+
+    .progress-hint.show {
+      display: flex;
+    }
+
+    .progress-hint strong {
+      color: #1e40af;
+    }
+
+    .accordion-item {
+      border-radius: var(--radius) !important;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border) !important;
+    }
+
+    .accordion-button {
+      background: var(--card) !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 16px;
+      box-shadow: none !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: #eff6ff !important;
+      color: var(--primary);
+    }
+
+    .accordion-body {
+      background: #fafbfc;
+      padding: 14px 12px 16px !important;
+    }
+
+    @media (max-width: 576px) {
+      .stat-box .stat-value {
+        font-size: 1.1rem;
+      }
+
+      .stat-box {
+        padding: 12px 8px;
+      }
+
+      .stats-detail {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .progress-hint {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QX686G4TT9"></script>
 <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-QX686G4TT9');
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-QX686G4TT9');
 </script>
 
 <body class="bg-light">
 
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-head">
-            <div class="sidebar-logo">
-                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
-            </div>
-            <div>
-                <div class="sidebar-brand">Pulse Go</div>
-                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
-            </div>
-            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
-                <i class="bi bi-x-lg"></i>
-            </button>
-        </div>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+      </div>
+      <div>
+        <div class="sidebar-brand">Pulse Go</div>
+        <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+      </div>
+      <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
 
-        <div class="sidebar-user" id="sidebarUser">
-            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
-            <div>
-                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
-                <div class="sidebar-user-sub">Pulse Go Member</div>
-            </div>
-        </div>
+    <div class="sidebar-user" id="sidebarUser">
+      <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+        <div class="sidebar-user-sub">Pulse Go Member</div>
+      </div>
+    </div>
 
-        <nav class="sidebar-nav">
-            <div class="sidebar-section-label">Asosiy</div>
-            <a href="/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-house-fill"></i> Asosiy
-            </a>
-            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-journals"></i> Tayyorlanish
-            </a>
-            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
-            </a>
-
-            <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-book-half"></i> Online Darslar
-            </a>
-            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-collection-fill"></i> Kitoblar
-            </a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-body-text"></i> Anatomiya
-            </a>
-            <a href="/cellbiology/" class="sidebar-link active" onclick="closeSidebar()">
-                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
-            </a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-flask-fill"></i> Kimyo
-            </a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-egg-fill"></i> Embriologiya
-            </a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
-            </a>
-
-            <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-person-fill"></i> Mening profilim
-            </a>
-            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
-            </a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
-                style="background:#f0fdf4;color:#16a34a">
-                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
-            </a>
-        </div>
-    </aside>
-
-    <nav class="top-navbar">
-        <div class="container">
-            <button class="btn-hamburger" onclick="openSidebar()">
-                <i class="bi bi-list"></i>
-            </button>
-            <a href="/" class="nav-logo">
-                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
-                Pulse Go
-            </a>
-            <a href="/tests/" class="btn btn-light btn-sm rounded-pill">
-                <i class="bi bi-arrow-left"></i> Orqaga
-            </a>
-            <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
-        </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Asosiy</div>
+      <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
+      <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
+        Tayyorlanish</a>
+      <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test
+        QBank</a>
+      <div class="sidebar-section-label">O'quv materiallari</div>
+      <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online
+        Darslar</a>
+      <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i> Kitoblar</a>
+      <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i> Anatomiya</a>
+      <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i> Hujayra
+        biologiyasi</a>
+      <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i> Kimyo</a>
+      <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
+        Embriologiya</a>
+      <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i> Klinik
+        holat</a>
+      <div class="sidebar-section-label">Profil</div>
+      <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
+        profilim</a>
+      <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-exclamation-triangle-fill"></i>
+        Xatolar tahlili</a>
+      <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i> Fikr
+        bildirish</a>
     </nav>
 
-    <section id="test-selection" class="py-3">
-        <div class="container" style="max-width: 720px;">
+    <div class="sidebar-footer">
+      <a href="https://t.me/broinibek" target="_blank" class="sidebar-link" style="background:#f0fdf4;color:#16a34a">
+        <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+      </a>
+    </div>
+  </aside>
 
-            <div class="section-head">
-                <h5>Biokimyo</h5>
-                <div class="sub">BRS · Chapter 1 · Energiya metabolizmi</div>
-            </div>
+  <nav class="top-navbar">
+    <div class="container">
+      <button class="btn-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
+      <a href="/" class="nav-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
+      </a>
+      <a href="/tests/" class="btn btn-light btn-sm rounded-pill">
+        <i class="bi bi-arrow-left"></i> Orqaga
+      </a>
+      <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+    </div>
+  </nav>
 
-            <!-- OVERALL STATS -->
-            <div class="overall-stats" id="overallStats">
-                <div class="stat-box">
-                    <div class="stat-value" id="statTotalQ">0</div>
-                    <div class="stat-label">Savollar</div>
-                </div>
-                <div class="stat-box accent">
-                    <div class="stat-value" id="statTaken">0</div>
-                    <div class="stat-label">Ishlangan</div>
-                </div>
-                <div class="stat-box success">
-                    <div class="stat-value" id="statPercent">0%</div>
-                    <div class="stat-label">O‘rtacha</div>
-                </div>
-            </div>
+  <section id="test-selection" class="py-3">
+    <div class="container" style="max-width: 720px;">
 
-            <div class="accordion border-0 mb-3" id="anatomyAccordion">
-                <div class="accordion-item border-0">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#anatomyTests" aria-expanded="true">
-                            <i class="bi bi-heart-pulse me-2 text-danger"></i>
-                            Biokimyo testlari
-                        </button>
-                    </h2>
-                    <div id="anatomyTests" class="accordion-collapse collapse show">
-                        <div class="accordion-body pt-3">
-                            <div class="row g-3" id="anatomy-test-cards"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="section-head">
+        <h5>Biokimyo</h5>
+        <div class="sub">BRS · Chapter 1 · Energiya metabolizmi</div>
+      </div>
 
+      <div class="overall-stats" id="overallStats">
+        <div class="stat-box">
+          <div class="stat-value" id="statTotalQ">0</div>
+          <div class="stat-label">Savollar</div>
         </div>
+        <div class="stat-box accent">
+          <div class="stat-value" id="statTaken">0</div>
+          <div class="stat-label">Ishlangan</div>
+        </div>
+        <div class="stat-box success">
+          <div class="stat-value" id="statPercent">0%</div>
+          <div class="stat-label">Aniqlik</div>
+        </div>
+      </div>
 
-        <nav class="bottom-nav d-lg-none">
-            <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
-            <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill active"></i><span>QBank</span></a>
-            <a href="/preparation/" class="bn-item">
-                <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
-                <span>Tayyorlanish</span>
-            </a>
-            <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
-            <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
-        </nav>
-    </section>
+      <div class="stats-detail" id="statsDetail">
+        <div class="mini">
+          <strong id="statCorrect">0</strong>
+          <span>To'g'ri</span>
+        </div>
+        <div class="mini">
+          <strong id="statWrong">0</strong>
+          <span>Xato</span>
+        </div>
+        <div class="mini">
+          <strong id="statSolved">0</strong>
+          <span>Yechilgan</span>
+        </div>
+        <div class="mini">
+          <strong id="statRuns">0</strong>
+          <span>Urinish</span>
+        </div>
+      </div>
 
-    <div id="common-modals"></div>
+      <div class="progress-hint" id="progressHint">
+        <div>
+          <strong id="progressHintText">Davom ettirish mumkin</strong>
+          <div class="text-muted" id="progressHintSub" style="font-size:0.78rem"></div>
+        </div>
+        <button type="button" class="btn btn-sm btn-primary rounded-pill" id="btnResumeProgress">Davom etish</button>
+      </div>
 
-    <script src="/assets/js/test-utils.js"></script>
-    <script src="./brs_ch1.js"></script>
-    <script type="module" src="/assets/js/testcases.js"></script>
+      <div class="quick-actions">
+        <button type="button" class="btn btn-primary btn-sm" id="btnContinueWeak">
+          <i class="bi bi-lightning-charge-fill"></i> Zaifdan davom
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="btnStartNext">
+          <i class="bi bi-play-fill"></i> Keyingi ishlanmagan
+        </button>
+        <button type="button" class="btn btn-outline-secondary btn-sm" id="btnRefreshStats">
+          <i class="bi bi-arrow-clockwise"></i> Yangilash
+        </button>
+      </div>
 
-    <script>
-        function openSidebar() {
-            document.getElementById('sidebar')?.classList.add('open');
-            document.getElementById('sidebarOverlay')?.classList.add('show');
-            document.body.style.overflow = 'hidden';
+      <div class="search-row">
+        <input type="search" class="form-control" id="testSearch" placeholder="Test qidirish..." autocomplete="off">
+      </div>
+
+      <div class="accordion border-0 mb-3" id="anatomyAccordion">
+        <div class="accordion-item border-0">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#anatomyTests" aria-expanded="true">
+              <i class="bi bi-heart-pulse me-2 text-danger"></i>
+              Biokimyo testlari
+            </button>
+          </h2>
+          <div id="anatomyTests" class="accordion-collapse collapse show">
+            <div class="accordion-body pt-3">
+              <div class="row g-3" id="anatomy-test-cards"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <nav class="bottom-nav d-lg-none">
+      <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+      <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
+      <a href="/preparation/" class="bn-item">
+        <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+        <span>Tayyorlanish</span>
+      </a>
+      <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+      <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+    </nav>
+  </section>
+
+  <div id="common-modals"></div>
+
+  <script src="/assets/js/test-utils.js"></script>
+  <script src="./brs_ch1.js"></script>
+  <script type="module" src="/assets/js/testcases.js"></script>
+
+  <script>
+    /* =========================================================
+       Page stats — matches YOUR real localStorage keys:
+       - pulsego_data_v1          (mistakes, results, prep)
+       - pulsego_test_results_v1  (if present)
+       - pulsego_unsolved_v1      (partial exits: m1, m2, …)
+       - pulsego_test_progress_v1 (in-progress: m2, …)
+       ========================================================= */
+
+    const LS_RESULTS = "pulsego_test_results_v1";
+    const LS_DATA = "pulsego_data_v1";
+    const LS_UNSOLVED = "pulsego_unsolved_v1";
+    const LS_PROGRESS = "pulsego_test_progress_v1";
+
+    function openSidebar() {
+      document.getElementById("sidebar")?.classList.add("open");
+      document.getElementById("sidebarOverlay")?.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar")?.classList.remove("open");
+      document.getElementById("sidebarOverlay")?.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    window.tests = {
+      m1: getRandomTest(TEST_QUESTIONS.m1),
+      m2: getRandomTest(TEST_QUESTIONS.m2),
+      m3: getRandomTest(TEST_QUESTIONS.m3),
+      m4: getRandomTest(TEST_QUESTIONS.m4),
+      m5: getRandomTest(TEST_QUESTIONS.m5),
+    };
+
+    window.testTitleMap = {
+      m1: "Energiya metabolizmi va oziqlanish: Asosiy prinsiplar",
+      m2: "Oqsil tuzilishi, Fermentlar",
+      m3: "Transkriptsiya, translatsiya",
+      m4: "Hujayra biologiyasi va signalizatsiya",
+      m5: "ATF sintezlashi va kisloroddan zaharlanish",
+    };
+
+    const ALL_CARDS = [
+      { testName: "m1", title: testTitleMap.m1 },
+      { testName: "m2", title: testTitleMap.m2 },
+      { testName: "m3", title: testTitleMap.m3 },
+      { testName: "m4", title: testTitleMap.m4 },
+      { testName: "m5", title: testTitleMap.m5 },
+    ];
+
+    const PAGE_IDS = ALL_CARDS.map((c) => c.testName);
+
+    function readJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        return JSON.parse(raw);
+      } catch (e) {
+        return fallback;
+      }
+    }
+
+    function isPageTest(name) {
+      if (!name) return false;
+      const n = String(name).toLowerCase();
+      return PAGE_IDS.some((id) => n === id.toLowerCase() || n.includes(id.toLowerCase()));
+    }
+
+    function normalizeEntry(e) {
+      if (!e || typeof e !== "object") return null;
+      const testName = String(e.testName || e.name || e.id || e.test || "unknown");
+      const correct = Number(e.correct ?? e.correctAnswers ?? e.score ?? 0) || 0;
+      const total = Number(e.total ?? e.totalQuestions ?? 0) || 0;
+      let wrong = e.wrong != null ? Number(e.wrong) : null;
+      if (wrong == null && e.mistakesCount != null) wrong = Number(e.mistakesCount) || 0;
+      if (wrong == null && Array.isArray(e.mistakes)) wrong = e.mistakes.length;
+      if (wrong == null && total >= correct) wrong = Math.max(0, total - correct);
+      if (wrong == null) wrong = 0;
+      let solved = e.solved != null ? Number(e.solved) : correct + wrong;
+      if (!solved && total) solved = Math.min(total, correct + wrong);
+      if (solved < correct) solved = correct;
+      let percent = e.percent != null ? Number(e.percent) : null;
+      if (percent == null) {
+        percent = solved > 0
+          ? Math.round((correct / solved) * 100)
+          : total > 0
+            ? Math.round((correct / total) * 100)
+            : 0;
+      }
+      return {
+        testName,
+        correct,
+        wrong,
+        solved,
+        total,
+        percent,
+        date: e.date || e.createdAt || e.updatedAt || null,
+        partial: !!e.partial,
+        source: e._source || "unknown",
+      };
+    }
+
+    /** Build synthetic result from unsolved session */
+    function entryFromUnsolvedSession(sess) {
+      if (!sess || !isPageTest(sess.testName)) return null;
+      const total = Number(sess.total) || 0;
+      const unsolvedCount = Array.isArray(sess.questions)
+        ? sess.questions.length
+        : Number(sess.unsolvedCount) || 0;
+      const solved = Math.max(0, total - unsolvedCount);
+      // We only know unsolved count; correct unknown → use 0 correct unless stored
+      const correct = Number(sess.correct) || 0;
+      const wrong = Math.max(0, solved - correct);
+      return normalizeEntry({
+        testName: sess.testName,
+        correct,
+        wrong,
+        solved,
+        total,
+        partial: true,
+        date: sess.date,
+        _source: "unsolved",
+      });
+    }
+
+    /** Build entry from live progress */
+    function entryFromProgress(p) {
+      if (!p || !isPageTest(p.testName)) return null;
+      const correct = Number(p.score) || 0;
+      const wrong = Array.isArray(p.mistakes) ? p.mistakes.length : 0;
+      const solved = correct + wrong;
+      const total = Number(p.total) || 0;
+      return normalizeEntry({
+        testName: p.testName,
+        correct,
+        wrong,
+        solved,
+        total,
+        partial: true,
+        date: p.updatedAt,
+        _source: "progress",
+      });
+    }
+
+    function getAllResultEntries() {
+      const out = [];
+      const push = (item, source) => {
+        if (!item) return;
+        if (source) item = Object.assign({}, item, { _source: source });
+        const n = normalizeEntry(item);
+        if (n) out.push(n);
+      };
+      const pushList = (list, source) => {
+        if (!Array.isArray(list)) return;
+        list.forEach((x) => push(x, source));
+      };
+
+      // 1) Data API
+      try {
+        if (window.Data?.getResults) pushList(Data.getResults(), "Data.getResults");
+      } catch (e) { }
+
+      // 2) pulsego_test_results_v1
+      try {
+        const obj = readJSON(LS_RESULTS, null);
+        if (obj) {
+          if (Array.isArray(obj.tests)) pushList(obj.tests, "results_v1.tests");
+          else if (Array.isArray(obj)) pushList(obj, "results_v1");
+          else if (Array.isArray(obj.results)) pushList(obj.results, "results_v1.results");
         }
-        function closeSidebar() {
-            document.getElementById('sidebar')?.classList.remove('open');
-            document.getElementById('sidebarOverlay')?.classList.remove('show');
-            document.body.style.overflow = '';
+      } catch (e) { }
+
+      // 3) pulsego_data_v1 — main app store
+      try {
+        const data = readJSON(LS_DATA, {});
+        pushList(data.results, "data.results");
+        pushList(data.testResults, "data.testResults");
+        pushList(data.history, "data.history");
+        if (Array.isArray(data.tests) && data.tests[0]?.correct != null) {
+          pushList(data.tests, "data.tests");
         }
-
-        window.tests = {
-            m1: getRandomTest(TEST_QUESTIONS.m1, 1),
-        };
-
-        window.testTitleMap = {
-            m1: "Energiya metabolizmi va oziqlanish: Asosiy prinsiplar",
-        };
-
-        const ALL_CARDS = [
-            { testName: "m1", title: testTitleMap.m1 },
-        ];
-
-        function getTestSummarySafe() {
-            if (typeof buildTestSummary === 'function') {
-                return buildTestSummary();
-            }
-            try {
-                const raw = localStorage.getItem('pulsego_test_results_v1');
-                const tests = raw ? (JSON.parse(raw).tests || []) : [];
-                const byTest = {};
-                let totalQ = 0, totalC = 0, runs = 0;
-                tests.forEach(e => {
-                    const name = e.testName || 'unknown';
-                    if (!byTest[name]) {
-                        byTest[name] = { last: null, attempts: 0, totalCorrect: 0, totalQuestions: 0 };
-                    }
-                    byTest[name].attempts++;
-                    byTest[name].totalCorrect += e.correct || 0;
-                    byTest[name].totalQuestions += e.total || 0;
-                    if (!byTest[name].last || new Date(e.date) > new Date(byTest[name].last.date)) {
-                        byTest[name].last = e;
-                    }
-                    totalQ += e.total || 0;
-                    totalC += e.correct || 0;
-                    runs++;
-                });
-                return {
-                    byTest,
-                    overview: {
-                        totalRuns: runs,
-                        totalQuestions: totalQ,
-                        totalCorrect: totalC,
-                        overallPercent: totalQ ? Math.round((totalC / totalQ) * 100) : 0
-                    }
-                };
-            } catch (e) {
-                return {
-                    byTest: {},
-                    overview: { totalRuns: 0, totalQuestions: 0, totalCorrect: 0, overallPercent: 0 }
-                };
-            }
+        // prep session embedded results
+        if (Array.isArray(data.preparationSessions)) {
+          data.preparationSessions.forEach((sess) => {
+            pushList(sess.testResults, "prep.testResults");
+          });
         }
-
-        function computeOverallStats() {
-            let totalQuestions = 0;
-            ALL_CARDS.forEach(c => {
-                const t = window.tests?.[c.testName];
-                if (Array.isArray(t)) totalQuestions += t.length;
-                else if (window.TEST_QUESTIONS?.[c.testName]) {
-                    totalQuestions += window.TEST_QUESTIONS[c.testName].length;
-                }
-            });
-
-            const summary = getTestSummarySafe();
-            let taken = 0;
-            let sumPercent = 0;
-            let withScore = 0;
-
-            ALL_CARDS.forEach(c => {
-                const st = summary.byTest[c.testName];
-                if (st && st.last) {
-                    taken++;
-                    const avg = st.totalQuestions
-                        ? Math.round((st.totalCorrect / st.totalQuestions) * 100)
-                        : (st.last.percent || 0);
-                    sumPercent += avg;
-                    withScore++;
-                }
-            });
-
-            const avgPercent = withScore ? Math.round(sumPercent / withScore) : 0;
-
-            document.getElementById('statTotalQ').textContent = totalQuestions;
-            document.getElementById('statTaken').textContent = `${taken}/${ALL_CARDS.length}`;
-            document.getElementById('statPercent').textContent = avgPercent + '%';
+        // mistakes with testName → count as wrong attempts signal
+        if (Array.isArray(data.mistakes)) {
+          const byName = {};
+          data.mistakes.forEach((m) => {
+            const tn = m.testName || "unknown";
+            if (!isPageTest(tn)) return;
+            if (!byName[tn]) byName[tn] = { testName: tn, correct: 0, wrong: 0, date: m.date };
+            byName[tn].wrong += 1;
+            if (m.date) byName[tn].date = m.date;
+          });
+          Object.values(byName).forEach((row) => {
+            row.solved = row.wrong;
+            row.total = row.wrong;
+            row.partial = true;
+            push(row, "data.mistakes");
+          });
         }
+      } catch (e) { }
 
-        function renderCards() {
-            if (typeof renderTestCards === 'function') {
-                renderTestCards('#anatomy-test-cards', ALL_CARDS);
-            } else {
-                const grid = document.getElementById('anatomy-test-cards');
-                if (!grid) return;
-                grid.innerHTML = ALL_CARDS.map(c => `
-                    <div class="col-6 col-md-4">
-                        <div class="test-card" onclick="startTest('${c.testName}')">
-                            <div class="test-icon bg-success-subtle text-success">
-                                <i class="bi bi-journal-medical fs-3"></i>
-                            </div>
-                            <div class="test-title fw-semibold">${c.title}</div>
-                            <div class="question-footer"></div>
-                        </div>
-                    </div>
-                `).join('');
-            }
-
-            // card stats (mavjud tizim)
-            if (typeof renderTestStats === 'function') {
-                setTimeout(() => renderTestStats(), 60);
-            } else if (typeof initTestStats === 'function') {
-                setTimeout(() => initTestStats(), 60);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            computeOverallStats();
-            renderCards();
+      // 4) pulsego_unsolved_v1 — you HAVE m1 / m2 here
+      try {
+        const u = readJSON(LS_UNSOLVED, { sessions: [] });
+        (u.sessions || []).forEach((sess) => {
+          const n = entryFromUnsolvedSession(sess);
+          if (n) out.push(n);
         });
+      } catch (e) { }
 
-        window.addEventListener('focus', () => {
-            computeOverallStats();
-            renderCards();
+      // 5) live progress
+      try {
+        const p = readJSON(LS_PROGRESS, null);
+        const n = entryFromProgress(p);
+        if (n) out.push(n);
+      } catch (e) { }
+
+      // Dedupe: prefer richer entries (higher solved) per testName+date bucket
+      const seen = new Set();
+      return out.filter((e) => {
+        const k = `${e.testName}|${e.date}|${e.correct}|${e.solved}|${e.source}`;
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+    }
+
+    function getPageEntries() {
+      return getAllResultEntries().filter((e) => isPageTest(e.testName));
+    }
+
+    function buildPageStats() {
+      const entries = getPageEntries();
+      const byTest = {};
+
+      let runs = 0;
+      let correctSum = 0;
+      let wrongSum = 0;
+      let solvedSum = 0;
+
+      entries.forEach((e) => {
+        // Canonical key m1..m5
+        let key = e.testName;
+        const found = PAGE_IDS.find(
+          (id) =>
+            key.toLowerCase() === id.toLowerCase() ||
+            key.toLowerCase().includes(id.toLowerCase()),
+        );
+        if (found) key = found;
+
+        runs += 1;
+        correctSum += e.correct;
+        wrongSum += e.wrong;
+        solvedSum += e.solved;
+
+        if (!byTest[key]) {
+          byTest[key] = {
+            attempts: 0,
+            totalCorrect: 0,
+            totalWrong: 0,
+            totalSolved: 0,
+            totalQuestions: 0,
+            last: null,
+          };
+        }
+        const t = byTest[key];
+        t.attempts += 1;
+        t.totalCorrect += e.correct;
+        t.totalWrong += e.wrong;
+        t.totalSolved += e.solved;
+        t.totalQuestions += e.total;
+        if (
+          !t.last ||
+          (e.date && t.last.date && new Date(e.date) > new Date(t.last.date)) ||
+          !t.last.date
+        ) {
+          t.last = Object.assign({}, e, { testName: key });
+        }
+      });
+
+      const takenTests = PAGE_IDS.filter((id) => byTest[id]?.last).length;
+      const accuracy =
+        solvedSum > 0 ? Math.round((correctSum / solvedSum) * 100) : 0;
+
+      let catalogQuestions = 0;
+      ALL_CARDS.forEach((c) => {
+        const t = window.tests?.[c.testName];
+        if (Array.isArray(t)) catalogQuestions += t.length;
+        else if (Array.isArray(window.TEST_QUESTIONS?.[c.testName])) {
+          catalogQuestions += window.TEST_QUESTIONS[c.testName].length;
+        }
+      });
+
+      let weakest = null;
+      Object.keys(byTest).forEach((name) => {
+        const last = byTest[name].last;
+        if (!last) return;
+        if (!weakest || (last.percent ?? 0) < (weakest.percent ?? 0)) {
+          weakest = { testName: name, percent: last.percent ?? 0 };
+        }
+      });
+
+      const nextTodo = ALL_CARDS.find((c) => !byTest[c.testName]?.last) || null;
+
+      const progress = readJSON(LS_PROGRESS, null);
+      const hasProgress =
+        progress &&
+          isPageTest(progress.testName) &&
+          progress.updatedAt &&
+          Date.now() - new Date(progress.updatedAt).getTime() < 24 * 60 * 60 * 1000
+          ? progress
+          : null;
+
+      return {
+        catalogQuestions,
+        takenTests,
+        totalCards: ALL_CARDS.length,
+        runs,
+        correctSum,
+        wrongSum,
+        solvedSum,
+        accuracy,
+        byTest,
+        weakest,
+        nextTodo,
+        hasProgress,
+      };
+    }
+
+    function renderOverallStats() {
+      const s = buildPageStats();
+
+      document.getElementById("statTotalQ").textContent = String(s.catalogQuestions);
+      document.getElementById("statTaken").textContent = `${s.takenTests}/${s.totalCards}`;
+      document.getElementById("statPercent").textContent = `${s.accuracy}%`;
+      document.getElementById("statCorrect").textContent = String(s.correctSum);
+      document.getElementById("statWrong").textContent = String(s.wrongSum);
+      document.getElementById("statSolved").textContent = String(s.solvedSum);
+      document.getElementById("statRuns").textContent = String(s.runs);
+
+      const weakBtn = document.getElementById("btnContinueWeak");
+      const nextBtn = document.getElementById("btnStartNext");
+      if (weakBtn) {
+        weakBtn.disabled = !s.weakest;
+        weakBtn.title = s.weakest
+          ? `Eng past: ${s.weakest.testName} (${s.weakest.percent}%)`
+          : "Hali natija yo'q";
+      }
+      if (nextBtn) {
+        nextBtn.disabled = !s.nextTodo;
+        nextBtn.title = s.nextTodo ? s.nextTodo.title : "Barcha testlar ishlangan";
+      }
+
+      // Resume banner from pulsego_test_progress_v1 (you have m2)
+      const hint = document.getElementById("progressHint");
+      if (hint) {
+        if (s.hasProgress) {
+          const p = s.hasProgress;
+          const solved = (Number(p.score) || 0) + (Array.isArray(p.mistakes) ? p.mistakes.length : 0);
+          hint.classList.add("show");
+          document.getElementById("progressHintText").textContent =
+            `Davom: ${p.testName}`;
+          document.getElementById("progressHintSub").textContent =
+            `Savol ${(p.currentIndex || 0) + 1}/${p.total || "?"} · hozircha ${p.score || 0} to'g'ri`;
+          document.getElementById("btnResumeProgress").onclick = () =>
+            startTestSafe(p.testName);
+        } else {
+          hint.classList.remove("show");
+        }
+      }
+    }
+
+    function startTestSafe(name) {
+      if (!name) return;
+      if (typeof window.startTest === "function") window.startTest(name);
+      else console.warn("startTest not ready", name);
+    }
+
+    function renderCards() {
+      if (typeof renderTestCards === "function") {
+        renderTestCards("#anatomy-test-cards", ALL_CARDS, {
+          cardDefaults: {
+            wrapperClass: "col-6 col-md-4",
+            themeClass: "bg-success-subtle text-success",
+            iconClass: "bi bi-journal-medical fs-3",
+          },
         });
-    </script>
+      } else {
+        const grid = document.getElementById("anatomy-test-cards");
+        if (!grid) return;
+        grid.innerHTML = ALL_CARDS.map(
+          (c) => `
+          <div class="col-6 col-md-4">
+            <div class="test-card" data-test-name="${c.testName}" onclick="startTest('${c.testName}')">
+              <div class="test-icon bg-success-subtle text-success">
+                <i class="bi bi-journal-medical fs-3"></i>
+              </div>
+              <div class="test-title fw-semibold">${c.title}</div>
+              <div class="question-footer"></div>
+            </div>
+          </div>`,
+        ).join("");
+      }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      setTimeout(() => {
+        if (typeof renderTestStats === "function") renderTestStats();
+        else if (typeof initTestStats === "function") initTestStats();
+
+        const s = buildPageStats();
+        document.querySelectorAll(".test-card, .collectioncard").forEach((card) => {
+          const name =
+            card.dataset.testName ||
+            (card.getAttribute("onclick") || "").match(/startTest\(\s*['"]([^'"]+)/)?.[1];
+          if (!name) return;
+          card.dataset.testName = name;
+          const st = s.byTest[name];
+          let statEl = card.querySelector(".test-card-stats");
+          if (!statEl) {
+            statEl = document.createElement("div");
+            statEl.className = "test-card-stats text-secondary";
+            statEl.style.cssText = "font-size:0.8rem;margin-top:0.5rem;line-height:1.35";
+            card.appendChild(statEl);
+          }
+          if (st?.last) {
+            const last = st.last;
+            const avg = st.totalSolved
+              ? Math.round((st.totalCorrect / st.totalSolved) * 100)
+              : last.percent || 0;
+            statEl.innerHTML = `
+              <div><strong>So'nggi:</strong> ${last.correct}/${last.solved || last.total} (${last.percent}%)</div>
+              <div class="text-muted">${st.attempts} urinish · o'rtacha ${avg}%</div>`;
+            card.classList.remove("card-success", "card-warning", "card-danger");
+            if (avg >= 80) card.classList.add("card-success");
+            else if (avg >= 56) card.classList.add("card-warning");
+            else card.classList.add("card-danger");
+          } else {
+            statEl.innerHTML = `<div class="text-muted">Hali ishlanmagan</div>`;
+          }
+        });
+      }, 80);
+    }
+
+    function filterCardsByQuery(q) {
+      const query = (q || "").trim().toLowerCase();
+      document.querySelectorAll("#anatomy-test-cards > [class*='col-']").forEach((col) => {
+        const card = col.querySelector(".test-card, .collectioncard");
+        const title = card?.querySelector(".test-title")?.textContent?.toLowerCase() || "";
+        const name = (card?.dataset.testName || "").toLowerCase();
+        col.style.display = !query || title.includes(query) || name.includes(query) ? "" : "none";
+      });
+    }
+
+    function refreshPageData() {
+      renderOverallStats();
+      renderCards();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      refreshPageData();
+      setTimeout(refreshPageData, 500);
+      setTimeout(refreshPageData, 1500);
+
+      document.getElementById("btnRefreshStats")?.addEventListener("click", refreshPageData);
+      document.getElementById("btnContinueWeak")?.addEventListener("click", () => {
+        const s = buildPageStats();
+        if (s.weakest?.testName) startTestSafe(s.weakest.testName);
+      });
+      document.getElementById("btnStartNext")?.addEventListener("click", () => {
+        const s = buildPageStats();
+        if (s.nextTodo?.testName) startTestSafe(s.nextTodo.testName);
+        else if (s.weakest?.testName) startTestSafe(s.weakest.testName);
+      });
+      document.getElementById("testSearch")?.addEventListener("input", (e) => {
+        filterCardsByQuery(e.target.value);
+      });
+    });
+
+    window.addEventListener("focus", refreshPageData);
+    window.addEventListener("storage", (e) => {
+      if ([LS_RESULTS, LS_DATA, LS_UNSOLVED, LS_PROGRESS].includes(e.key)) {
+        refreshPageData();
+      }
+    });
+
+    window.__pulsePageStats = function () {
+      const all = getAllResultEntries();
+      console.table(
+        all.map((e) => ({
+          testName: e.testName,
+          correct: e.correct,
+          wrong: e.wrong,
+          solved: e.solved,
+          total: e.total,
+          percent: e.percent,
+          source: e.source,
+          date: e.date,
+        })),
+      );
+      return buildPageStats();
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

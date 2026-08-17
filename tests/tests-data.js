@@ -111,6 +111,12 @@ const testGroups = [
         count: "250+ ta",
         url: "/chemistry",
       },
+      {
+        id: "biochem-bytopics",
+        title: "Mavzular bo'yicha caselar",
+        count: "250+ ta",
+        url: "/chemistry/book.html",
+      },
     ],
   },
   {
