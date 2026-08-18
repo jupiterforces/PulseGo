@@ -13,32 +13,6 @@ function shuffle(array) {
     .map(({ value }) => value);
 }
 
-function pickQuestionPhoto(q) {
-  if (!q || typeof q !== "object") return null;
-  return q.photo || q.image || q.qImg || q.questionImg || null;
-}
-
-function pickExplanationImg(q) {
-  if (!q || typeof q !== "object") return null;
-  return (
-    q.img ||
-    q.explanationImg ||
-    q.explanationImage ||
-    q.expImg ||
-    q.explainImg ||
-    null
-  );
-}
-
-/** Keep relative paths for nested pages like /chemistry/cases.html */
-function resolveMediaUrl(src) {
-  if (!src || typeof src !== "string") return null;
-  const s = src.trim();
-  if (!s) return null;
-  if (/^(https?:|data:|blob:|\/)/i.test(s)) return s;
-  return s.replace(/^\.\//, "");
-}
-
 function getRandomTest(questions, n = "all") {
   const shuffledQuestions =
     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
@@ -46,13 +20,11 @@ function getRandomTest(questions, n = "all") {
   return shuffledQuestions.map((q) => {
     const correctAnswer = q.a[q.correct];
     const shuffledAnswers = shuffle(q.a);
-    const photoRaw = pickQuestionPhoto(q);
-    const imgRaw = pickExplanationImg(q);
 
     return {
       q: q.q,
-      photo: resolveMediaUrl(photoRaw),
-      img: resolveMediaUrl(imgRaw),
+      photo: q.photo || null,
+      img: q.img || null,
       a: shuffledAnswers,
       correct: shuffledAnswers.indexOf(correctAnswer),
       explanation: q.explanation || null,
@@ -60,32 +32,7 @@ function getRandomTest(questions, n = "all") {
   });
 }
 
-/** Re-copy photo/img from window.tests if lost during mapping */
-function reattachMediaFromBank(testName, items) {
-  const bank = window.tests?.[testName];
-  if (!Array.isArray(bank) || !Array.isArray(items)) return items;
-  const byQ = new Map();
-  bank.forEach((src) => {
-    if (src && src.q) byQ.set(String(src.q).trim(), src);
-  });
-  return items.map((item) => {
-    if (!item) return item;
-    const src = byQ.get(String(item.q || "").trim());
-    if (!src) return item;
-    const photo = item.photo || resolveMediaUrl(pickQuestionPhoto(src));
-    const img = item.img || resolveMediaUrl(pickExplanationImg(src));
-    return Object.assign({}, item, {
-      photo: photo || null,
-      img: img || null,
-      explanation: item.explanation || src.explanation || null,
-    });
-  });
-}
-
 window.getRandomTest = getRandomTest;
-window.pickExplanationImg = pickExplanationImg;
-window.resolveMediaUrl = resolveMediaUrl;
-window.reattachMediaFromBank = reattachMediaFromBank;
 
 // ========== PROGRESS (localStorage) ==========
 const PROGRESS_KEY = "pulsego_test_progress_v1";
@@ -3293,12 +3240,11 @@ function renderCaseControls() {
   if (!controls) return;
 
   const q = currentTest[currentIndex];
-  const explanationText =
-    typeof q?.explanation === "string" ? q.explanation.trim() : "";
-  const explanationImg =
-    resolveMediaUrl(q?.img) || resolveMediaUrl(pickExplanationImg(q));
-  const showExplanationBlock =
-    !isExamStrictMode() && (!!explanationText || !!explanationImg);
+  // Study = show izoh; Exam = hide (strict)
+  const hasExplanation =
+    !isExamStrictMode() &&
+    typeof q?.explanation === "string" &&
+    q.explanation.trim().length > 0;
 
   if (!answerChecked) {
     controls.innerHTML = `
@@ -3316,11 +3262,10 @@ function renderCaseControls() {
   const feedbackClass = isCorrect ? "correct" : "wrong";
   const feedbackIcon = isCorrect ? "bi-emoji-smile" : "bi-emoji-neutral";
 
+  // Explanation image: prefer q.img (dedicated for explanation), fallback none
+  const explanationImg = q.img || null;
   const explanationImgHtml = explanationImg
-    ? `<div class="mcq-explanation-img"><img src="${explanationImg}" alt="Izoh rasmi" loading="eager" class="mcq-responsive-img" onerror="console.warn('Explanation img failed:', this.src)"></div>`
-    : "";
-  const explanationBodyHtml = explanationText
-    ? `<div class="mcq-explanation-body">${q.explanation}</div>`
+    ? `<div class="mcq-explanation-img"><img src="${explanationImg}" alt="Izoh rasmi" loading="lazy" class="mcq-responsive-img"></div>`
     : "";
 
   controls.innerHTML = `
@@ -3332,13 +3277,18 @@ function renderCaseControls() {
       <i class="bi bi-arrow-right"></i>
     </button>
     ${
-      showExplanationBlock
+      hasExplanation
         ? `<div class="mcq-explanation">
             <div class="mcq-explanation-title"><i class="bi bi-lightbulb"></i> Izoh</div>
-            ${explanationBodyHtml}
+            <div class="mcq-explanation-body">${q.explanation}</div>
             ${explanationImgHtml}
           </div>`
-        : ""
+        : explanationImg
+          ? `<div class="mcq-explanation">
+            <div class="mcq-explanation-title"><i class="bi bi-lightbulb"></i> Izoh</div>
+            ${explanationImgHtml}
+          </div>`
+          : ""
     }`;
 
   const nextBtn = document.getElementById("next-question-btn");
@@ -3979,17 +3929,12 @@ async function startTest(testName) {
       return;
     }
   } else {
-    let bank = [];
-    if (Array.isArray(selectedTest)) bank = selectedTest;
-    else if (selectedTest && Array.isArray(selectedTest.questions))
-      bank = selectedTest.questions;
-    else if (selectedTest && Array.isArray(selectedTest.data))
-      bank = selectedTest.data;
-    currentTest = getRandomTest(bank);
+    if (Array.isArray(selectedTest)) {
+      currentTest = getRandomTest(selectedTest);
+    } else {
+      currentTest = selectedTest || [];
+    }
   }
-
-  // Re-copy img/photo from window.tests if mapping lost them
-  currentTest = reattachMediaFromBank(testName, currentTest);
 
   currentTestName = testName;
   currentIndex = 0;
@@ -4337,50 +4282,3 @@ window.hideExamHeader = hideExamHeader;
 window.setExamSessionMode = setExamSessionMode;
 window.getExamSessionMode = getExamSessionMode;
 window.isExamStrictMode = isExamStrictMode;
-window.getPulseTestDebug = function () {
-  const q = currentTest[currentIndex];
-  const name = currentTestName;
-  const bank = window.tests?.[name];
-  let bankImg = null;
-  let bankKeys = null;
-  if (Array.isArray(bank) && q?.q) {
-    const src = bank.find(
-      (x) => x && String(x.q).trim() === String(q.q).trim(),
-    );
-    if (src) {
-      bankImg = pickExplanationImg(src);
-      bankKeys = Object.keys(src);
-    }
-  }
-  return {
-    mode: getExamSessionMode(),
-    answerChecked,
-    index: currentIndex,
-    total: currentTest.length,
-    testName: name,
-    photo: q?.photo || null,
-    img: q?.img || null,
-    bankImg,
-    bankKeys,
-    hasExplanation: !!(q?.explanation && String(q.explanation).trim()),
-    questionPreview: (q?.q || "").slice(0, 80),
-  };
-};
-Object.defineProperty(window, "currentTest", {
-  get() {
-    return currentTest;
-  },
-  configurable: true,
-});
-Object.defineProperty(window, "currentIndex", {
-  get() {
-    return currentIndex;
-  },
-  configurable: true,
-});
-Object.defineProperty(window, "answerChecked", {
-  get() {
-    return answerChecked;
-  },
-  configurable: true,
-});

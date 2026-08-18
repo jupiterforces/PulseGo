@@ -1773,3 +1773,45 @@ body {
     white-space: pre-wrap;
     word-break: break-word;
 }
+
+/* Question + explanation images */
+.mcq-photo,
+.mcq-explanation-img {
+    text-align: center;
+    margin: 0.85rem 0 1rem;
+    width: 100%;
+}
+
+.mcq-responsive-img,
+.mcq-photo img,
+.mcq-explanation-img img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    max-height: min(70vh, 520px);
+    margin: 0 auto;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 576px) {
+
+    .mcq-responsive-img,
+    .mcq-photo img,
+    .mcq-explanation-img img {
+        max-height: min(50vh, 280px);
+    }
+}
+
+/* Study = no timer */
+body.pulse-study-mode #timer,
+body.pulse-study-mode .tg-timer {
+    display: none !important;
+}
+
+body.pulse-exam-strict #timer,
+body.pulse-exam-strict .tg-timer {
+    display: inline-flex !important;
+}
