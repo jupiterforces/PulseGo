@@ -27,27 +27,84 @@
   function setUser(user) {
     const d = load();
     d.user = user;
-    // mark as dirty (needs sync)
     d.syncedToFirebase = false;
     save(d);
+    console.log("💾 Data.setUser →", user);
   }
 
   function ensureUser() {
-    const user = getUser();
-    if (user && user.name) return Promise.resolve(user);
-
     return new Promise((resolve) => {
+      // ========================================
+      // 1. Prefer authenticated user from pulsego_user_v1
+      // ========================================
+      try {
+        const cachedRaw = localStorage.getItem("pulsego_user_v1");
+        if (cachedRaw) {
+          const cached = JSON.parse(cachedRaw);
+
+          // If this cache has a real Firebase-looking user (has email or photoURL)
+          if (
+            cached.uid &&
+            (cached.email || cached.photoURL || cached.firstName)
+          ) {
+            console.log(
+              "🔐 Found authenticated user in pulsego_user_v1:",
+              cached.uid,
+            );
+
+            const authUser = {
+              uid: cached.uid,
+              name:
+                cached.fullName ||
+                `${cached.firstName || ""} ${cached.lastName || ""}`.trim() ||
+                "User",
+              about: "",
+              email: cached.email || "",
+              photoURL: cached.photoURL || "",
+              createdAt: new Date().toISOString(),
+            };
+
+            // Force overwrite the old anonymous user
+            setUser(authUser);
+
+            // === NEW: Pull remote data if local is empty ===
+            pullFromFirestoreIfEmpty().then(() => {
+              resolve(authUser);
+            });
+
+            return; // important: don't resolve immediately
+          }
+        }
+      } catch (e) {
+        console.warn("Failed to read pulsego_user_v1", e);
+      }
+
+      // ========================================
+      // 2. Fallback to existing local anonymous user
+      // ========================================
+      const user = getUser();
+      if (user && user.name) {
+        console.log("Using existing local user:", user.uid);
+        return resolve(user);
+      }
+
+      // ========================================
+      // 3. Create new anonymous user (modal)
+      // ========================================
       const modal = document.getElementById("userModal");
       const form = document.getElementById("pg-form");
+
+      if (!modal || !form) {
+        console.error("userModal or pg-form not found");
+        return resolve(null);
+      }
 
       modal.classList.remove("hidden");
 
       const handler = (e) => {
         e.preventDefault();
-
         const name = document.getElementById("pg-name").value.trim();
         const about = document.getElementById("pg-about").value.trim();
-
         if (!name) return;
 
         const newUser = {
@@ -58,16 +115,9 @@
         };
 
         setUser(newUser);
-
         modal.classList.add("hidden");
-
-        form.removeEventListener("submit", handler); // 🔥 MUHIM FIX
-
+        form.removeEventListener("submit", handler);
         resolve(newUser);
-
-        // setTimeout(() => {
-        //   window.location.href = "../../profile/";
-        // }, 300);
       };
 
       form.addEventListener("submit", handler);
@@ -138,6 +188,16 @@
     // mark as dirty (needs sync)
     d.syncedToFirebase = false;
     save(d);
+
+    // === NEW: Force immediate sync for authenticated users ===
+    const isAuthUser = !!(d.user?.email || d.user?.photoURL);
+    if (isAuthUser && window.Data?.smartSync) {
+      // run in background so it doesn't slow down the UI
+      window.Data.smartSync().catch((err) => {
+        console.error("Background sync after test failed:", err);
+      });
+    }
+
     return entry;
   }
 
@@ -313,7 +373,81 @@
    this file can remain a plain script while still using ES module exports.
    ========================= */
 
+/* =========================
+   🔥 FIRESTORE SYNC LAYER
+========================= */
+
 const SYNC_KEY = "pulsego_sync_v1";
+
+/**
+ * If the user is authenticated and local data is empty,
+ * download their previous tests + mistakes from Firestore once.
+ */
+async function pullFromFirestoreIfEmpty() {
+  const data = window.Data._getRawData();
+  if (!data || !data.user || !data.user.uid) return;
+
+  const isAuthUser = !!(data.user.email || data.user.photoURL);
+  if (!isAuthUser) return;
+
+  const hasLocalTests = Array.isArray(data.tests) && data.tests.length > 0;
+  const hasLocalMistakes =
+    Array.isArray(data.mistakes) && data.mistakes.length > 0;
+
+  if (hasLocalTests || hasLocalMistakes) {
+    console.log("Local data already exists → skip pull");
+    return;
+  }
+
+  console.log("🔽 Local data is empty → trying to pull from Firestore...");
+
+  try {
+    const mod = await import("../../firebase.js"); // adjust path if needed
+
+    // Check that the needed functions exist
+    if (
+      typeof mod.collection !== "function" ||
+      typeof mod.getDocs !== "function"
+    ) {
+      console.error("firebase.js is missing collection or getDocs exports");
+      return;
+    }
+
+    const { db, collection, getDocs } = mod;
+    const uid = data.user.uid;
+
+    // 1. Pull testResults
+    const testsSnap = await getDocs(collection(db, "user", uid, "testResults"));
+    const tests = [];
+    testsSnap.forEach((docSnap) => {
+      tests.push(docSnap.data());
+    });
+
+    // 2. Pull mistakes
+    const mistakesSnap = await getDocs(collection(db, "user", uid, "mistakes"));
+    const mistakes = [];
+    mistakesSnap.forEach((docSnap) => {
+      mistakes.push(docSnap.data());
+    });
+
+    if (tests.length === 0 && mistakes.length === 0) {
+      console.log("No remote data found for this user");
+      return;
+    }
+
+    // 3. Save into localStorage
+    data.tests = tests;
+    data.mistakes = mistakes;
+    data.syncedToFirebase = true;
+    window.Data._saveRawData(data);
+
+    console.log(
+      `✅ Successfully pulled ${tests.length} tests and ${mistakes.length} mistakes`,
+    );
+  } catch (err) {
+    console.error("Failed to pull data from Firestore:", err);
+  }
+}
 
 function getSyncState() {
   try {
@@ -331,104 +465,151 @@ function setSyncState(state) {
   }
 }
 
-console.log(Data.getUser());
-
 async function syncToFirestore() {
-  const data =
-    window.Data && typeof window.Data._getRawData === "function"
-      ? window.Data._getRawData()
-      : (function () {
-          try {
-            return JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
-          } catch (e) {
-            return {};
-          }
-        })();
+  const data = window.Data._getRawData();
+  if (!data || !data.user || !data.user.uid) {
+    console.log("No user to sync");
+    return;
+  }
 
-  // nothing to sync
-  if (!data || !data.user || !data.user.uid) return;
+  const isAuthUser = !!(data.user.email || data.user.photoURL);
+  const collectionName = isAuthUser ? "user" : "users";
+
+  console.log(`🔄 Syncing to → ${collectionName}/${data.user.uid}`);
 
   try {
-    // dynamic import of the firebase module (ES module) from project root
-    const mod = await import("../../firebase.js");
-    const db = mod.db;
-    const setDoc = mod.setDoc;
-    const doc = mod.doc;
+    const mod = await import("../../firebase.js"); // adjust path if needed
+    const { db, setDoc, doc } = mod;
+    const uid = data.user.uid;
+
+    // 1. Profile + overview
     const overview = window.Data.getOverview();
+    await setDoc(
+      doc(db, collectionName, uid),
+      {
+        uid,
+        name: data.user.name,
+        about: data.user.about || "",
+        email: data.user.email || "",
+        photoURL: data.user.photoURL || "",
+        overview,
+        updatedAt: new Date().toISOString(),
+      },
+      { merge: true },
+    );
 
-    if (!db || typeof setDoc !== "function" || typeof doc !== "function") {
-      console.error("Firebase module missing required exports");
-      return;
+    // 2. Test results
+    for (const test of data.tests || []) {
+      const testRef = doc(
+        db,
+        collectionName,
+        uid,
+        "testResults",
+        String(test.id),
+      );
+      await setDoc(
+        testRef,
+        { ...test, syncedAt: new Date().toISOString() },
+        { merge: true },
+      );
     }
 
-    console.log("Sync: uploading data to Firestore for user", data.user.uid);
-    await setDoc(doc(db, "users", data.user.uid), {
-      uid: data.user.uid,
-      name: data.user.name,
-      about: data.user.about || "",
-      overview: overview,
-    });
-    console.log("AFTER SETDOC");
+    // 3. Mistakes
+    for (const mistake of data.mistakes || []) {
+      const mistakeRef = doc(
+        db,
+        collectionName,
+        uid,
+        "mistakes",
+        String(mistake.id),
+      );
+      await setDoc(
+        mistakeRef,
+        { ...mistake, syncedAt: new Date().toISOString() },
+        { merge: true },
+      );
+    }
 
-    // mark synced in our local data object and separate sync key
     data.syncedToFirebase = true;
-    if (window.Data && typeof window.Data._saveRawData === "function") {
-      window.Data._saveRawData(data);
-    } else {
-      try {
-        localStorage.setItem("pulsego_data_v1", JSON.stringify(data));
-      } catch (e) {}
-    }
+    window.Data._saveRawData(data);
+    setSyncState({
+      synced: true,
+      lastSync: new Date().toISOString(),
+      isAuthUser,
+    });
 
-    setSyncState({ synced: true, lastSync: new Date().toISOString() });
-    console.log("Sync: success");
+    console.log(`✅ Full sync completed → ${collectionName}/${uid}`);
   } catch (e) {
-    console.error("Sync failed:", e);
+    console.error("Firestore sync failed:", e);
   }
 }
 
 async function smartSync() {
   console.log("SMART SYNC RUNNING");
+
   const data =
     window.Data && typeof window.Data._getRawData === "function"
       ? window.Data._getRawData()
-      : (function () {
+      : (() => {
           try {
             return JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
           } catch (e) {
             return {};
           }
         })();
-  if (!data || !data.user || !data.user.uid) return; // nothing to do
 
+  if (!data || !data.user || !data.user.uid) return;
+
+  const isAuthUser = !!(data.user.email || data.user.photoURL);
+
+  // ========================================
+  // AUTHENTICATED USERS → only sync when dirty
+  // ========================================
+  if (isAuthUser) {
+    if (data.syncedToFirebase === false) {
+      console.log("🔐 Auth user – data is dirty → syncing now");
+      await syncToFirestore();
+    } else {
+      console.log("🔐 Auth user – already synced, skipping");
+    }
+    return;
+  }
+
+  // ========================================
+  // ANONYMOUS USERS → once a day
+  // ========================================
   const state = getSyncState();
+
   if (!state.synced) {
+    console.log("Anonymous – never synced → syncing");
     await syncToFirestore();
     return;
   }
 
   const last = state.lastSync;
   const diff = Date.now() - new Date(last || 0).getTime();
-  const THREE_DAYS = 1 * 24 * 60 * 60 * 1000;
-  if (diff > THREE_DAYS) {
+  const ONE_DAY = 24 * 60 * 60 * 1000;
+
+  if (diff > ONE_DAY) {
+    console.log("Anonymous – last sync > 1 day → syncing");
     await syncToFirestore();
   }
 }
 
-// Expose sync helpers on Data for convenience
+// Expose methods
 try {
   if (window.Data) {
     window.Data.syncToFirestore = syncToFirestore;
     window.Data.smartSync = smartSync;
+    window.Data.pullFromFirestoreIfEmpty = pullFromFirestoreIfEmpty; // ← add this
     window.Data.getSyncState = getSyncState;
     window.Data.setSyncState = setSyncState;
   }
 } catch (e) {
-  console.error("Failed to attach sync methods to Data", e);
+  console.error("Failed to attach sync methods", e);
 }
 
-// Auto-run when page loads
-window.addEventListener("DOMContentLoaded", () => {
-  // run in background (no await here)
-  smartSync();
-});
+// ❌ REMOVED: No more automatic sync on every page load
+// window.addEventListener("DOMContentLoaded", () => {
+//   smartSync();
+// });

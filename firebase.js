@@ -1,10 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
   getFirestore,
-  collection,
   setDoc,
   getDoc,
   doc,
+  collection,
+  getDocs, // ← make sure this is imported
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 import {
@@ -29,7 +30,7 @@ const app = initializeApp(firebaseConfig);
 
 // Firestore exports
 export const db = getFirestore(app);
-export { setDoc, doc, getDoc };
+export { setDoc, doc, getDoc, collection, getDocs };
 
 export async function fetchTestsFromFirestore(
   collectionName = "premiumTests",

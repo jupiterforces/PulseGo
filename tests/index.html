@@ -851,6 +851,7 @@
 
     <main class="container" style="padding-top:10px;padding-bottom:28px;">
 
+        <div id="messageView"></div>
         <!-- Toolbar -->
         <div class="toolbar">
             <label class="search-wrap">
@@ -867,10 +868,10 @@
             </button>
 
             <div class="view-toggle">
-                <button type="button" class="view-btn active" id="btnCardView" title="Kartochkalar">
+                <button type="button" class="view-btn" id="btnCardView" title="Kartochkalar">
                     <i class="bi bi-grid-3x3-gap-fill"></i>
                 </button>
-                <button type="button" class="view-btn" id="btnListView" title="Ro‘yxat">
+                <button type="button" class="view-btn active" id="btnListView" title="Ro‘yxat">
                     <i class="bi bi-list-ul"></i>
                 </button>
             </div>
@@ -992,6 +993,12 @@
         <a href="../profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
     </nav>
 
+    <!-- The container – put it wherever you want the ticker to appear -->
+
+    <!-- Include the scripts -->
+    <script src="./messageData.js"></script>
+    <script src="./message.js"></script>
+
     <script src="./welcomerdata.js"></script>
     <script src="./welcomer.js"></script>
     <script src="tests-data.js"></script>
@@ -1014,7 +1021,7 @@
         };
 
         // ---------- State ----------
-        let currentView = 'card';
+        let currentView = 'list';
         let searchQuery = '';
         let filterSubject = 'all';
         let filterPurpose = 'all';
