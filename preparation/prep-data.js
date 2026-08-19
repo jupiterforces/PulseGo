@@ -1,19 +1,19 @@
 // ============================================================
 //  PULSE GO — PREPARATION SECTION DATA
-//  Edit this file to add / remove exam types, subjects, tests
-//  All JS configuration lives here for easy maintenance.
 // ============================================================
 
-const PREP_CONFIG = {
-  // ── Exam Types ──────────────────────────────────────────
-  // id         : unique string key
-  // label      : display name (Uzbek)
-  // icon       : Bootstrap Icon class
-  // color      : Bootstrap color name (danger / warning / success / primary)
-  // gradient   : CSS gradient for card header background
-  // desc       : short subtitle shown in creation wizard
-  // ──────────────────────────────────────────────────────
+window.PREP_CONFIG = {
   examTypes: [
+    {
+      id: "custom",
+      label: "Shaxsiy sessiya",
+      icon: "bi-pencil-square",
+      color: "primary",
+      gradient: "linear-gradient(135deg,#2563eb,#1e40af)",
+      bgLight: "#eff6ff",
+      textColor: "#2563eb",
+      desc: "O‘zingiz nomlang — barcha fan va testlardan tanlang",
+    },
     {
       id: "yakuniy",
       label: "Yakuniy test",
@@ -32,7 +32,7 @@ const PREP_CONFIG = {
       gradient: "linear-gradient(135deg,#d97706,#92400e)",
       bgLight: "#fffbeb",
       textColor: "#d97706",
-      desc: "Oraliq nazoratga mavzular bo'yicha tayyorlanish",
+      desc: "Oraliq nazoratga mavzular bo‘yicha tayyorlanish",
     },
     {
       id: "grant",
@@ -46,19 +46,6 @@ const PREP_CONFIG = {
     },
   ],
 
-  // ── Subjects ─────────────────────────────────────────────
-  // id            : unique string key (must match URL paths)
-  // label         : display name
-  // icon          : Bootstrap Icon class
-  // color         : Bootstrap color name
-  // bgColor       : solid hex for icon backgrounds
-  // examTypes     : array of examType IDs this subject belongs to
-  // questionsFile : absolute URL to the tests.js questions file
-  // tests         : array of { key, title, count }
-  //   key   → key inside window.TEST_QUESTIONS in the questions file
-  //   title → display name shown on test card
-  //   count → number of questions to pick randomly (or 'all')
-  // ──────────────────────────────────────────────────────
   subjects: [
     {
       id: "anatomy",
@@ -66,7 +53,7 @@ const PREP_CONFIG = {
       icon: "bi-heart-pulse",
       color: "danger",
       bgColor: "#dc2626",
-      examTypes: ["yakuniy", "grant"],
+      examTypes: ["yakuniy", "grant", "custom"],
       questionsFile: "/anatomy/tests.js",
       tests: [
         { key: "mock1", title: "Peritoneum", count: 20 },
@@ -91,8 +78,9 @@ const PREP_CONFIG = {
       label: "Fiziologiya",
       icon: "bi-heart-pulse",
       color: "danger",
-      bgColor: "#b1b1b1",
+      bgColor: "#64748b",
       examTypes: ["oraliq"],
+      tests: [],
     },
     {
       id: "cellbiology",
@@ -100,7 +88,7 @@ const PREP_CONFIG = {
       icon: "bi-virus",
       color: "success",
       bgColor: "#16a34a",
-      examTypes: ["yakuniy", "oraliq", "grant"],
+      examTypes: ["yakuniy", "oraliq", "grant", "custom"],
       questionsFile: "/cellbiology/tests.js",
       tests: [
         { key: "cellb1", title: "Hujayra bio 1", count: 20 },
@@ -121,7 +109,7 @@ const PREP_CONFIG = {
       icon: "bi-baby",
       color: "warning",
       bgColor: "#d97706",
-      examTypes: ["yakuniy", "oraliq", "grant"],
+      examTypes: ["yakuniy", "oraliq", "grant", "custom"],
       questionsFile: "/embriology/tests.js",
       tests: [
         { key: "u1", title: "Embriologiya 1", count: 20 },
@@ -141,7 +129,7 @@ const PREP_CONFIG = {
       icon: "bi-flask",
       color: "info",
       bgColor: "#0891b2",
-      examTypes: ["yakuniy", "oraliq", "grant"],
+      examTypes: ["yakuniy", "oraliq", "grant", "custom"],
       questionsFile: "/chemistry/tests.js",
       tests: [
         { key: "aminoacids", title: "Aminokislotalar", count: 20 },
@@ -163,7 +151,7 @@ const PREP_CONFIG = {
       icon: "bi-journal-text",
       color: "primary",
       bgColor: "#2563eb",
-      examTypes: ["yakuniy", "grant"],
+      examTypes: ["yakuniy", "grant", "custom"],
       questionsFile: "/cases/tests.js",
       tests: [
         { key: "cases", title: "Cases 1", count: 20 },
@@ -180,23 +168,41 @@ const PREP_CONFIG = {
   ],
 };
 
-// ── Helper: get exam type config by id ─────────────────────
+// Keep old name for compatibility
+var PREP_CONFIG = window.PREP_CONFIG;
+
 function getExamType(id) {
-  return PREP_CONFIG.examTypes.find((e) => e.id === id) || null;
+  return (
+    PREP_CONFIG.examTypes.find(function (e) {
+      return e.id === id;
+    }) || null
+  );
 }
 
-// ── Helper: get subject config by id ───────────────────────
 function getSubject(id) {
-  return PREP_CONFIG.subjects.find((s) => s.id === id) || null;
+  return (
+    PREP_CONFIG.subjects.find(function (s) {
+      return s.id === id;
+    }) || null
+  );
 }
 
-// ── Helper: get subjects filtered by exam type ─────────────
 function getSubjectsForExamType(examTypeId) {
-  return PREP_CONFIG.subjects.filter((s) => s.examTypes.includes(examTypeId));
+  if (examTypeId === "custom") {
+    return PREP_CONFIG.subjects.filter(function (s) {
+      return Array.isArray(s.tests) && s.tests.length > 0;
+    });
+  }
+  return PREP_CONFIG.subjects.filter(function (s) {
+    return s.examTypes && s.examTypes.indexOf(examTypeId) !== -1;
+  });
 }
 
-// ── Helper: get test config within a subject ───────────────
 function getTestConfig(subjectId, testKey) {
-  const sub = getSubject(subjectId);
-  return sub ? sub.tests.find((t) => t.key === testKey) : null;
+  var sub = getSubject(subjectId);
+  return sub && sub.tests
+    ? sub.tests.find(function (t) {
+        return t.key === testKey;
+      })
+    : null;
 }

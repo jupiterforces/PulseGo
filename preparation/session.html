@@ -1242,7 +1242,15 @@
 
       var heroGrad = et ? et.gradient : 'linear-gradient(135deg,#2563eb,#1d4ed8)';
       var heroIcon = et ? et.icon : 'bi-journals';
-      var heroLabel = et ? et.label : session.examType;
+      var heroLabel = (session.examType === 'custom' && session.customName)
+        ? session.customName
+        : (et ? et.label : session.examType);
+      var heroSubtitle = (session.examType === 'custom' && session.customName)
+        ? (et ? et.label : 'Shaxsiy sessiya')
+        : 'Tayyorlanish sessiyasi';
+      var goalHtml = session.goalNote
+        ? '<div class="hero-date" style="margin-top:6px;opacity:.9"><i class="bi bi-flag"></i> ' + session.goalNote + '</div>'
+        : '';
       var cdHtml = cd
         ? '<div class="hero-countdown" style="border:2px solid rgba(255,255,255,.3)">'
         + '<i class="bi bi-alarm"></i> ' + cd.text + '</div>'
@@ -1296,9 +1304,10 @@
 
       container.innerHTML = ''
         + '<div class="session-hero" style="background:' + heroGrad + '">'
-        + '<div class="hero-badge"><i class="bi ' + heroIcon + '"></i> ' + heroLabel + '</div>'
-        + '<div class="hero-title">Tayyorlanish sessiyasi</div>'
+        + '<div class="hero-badge"><i class="bi ' + heroIcon + '"></i> ' + heroSubtitle + '</div>'
+        + '<div class="hero-title">' + heroLabel + '</div>'
         + '<div class="hero-date"><i class="bi bi-calendar3"></i> ' + dateStr + '</div>'
+        + goalHtml
         + cdHtml
         + '</div>'
         + '<div class="overall-ring-wrap">'

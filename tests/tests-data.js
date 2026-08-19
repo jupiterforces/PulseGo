@@ -1,9 +1,10 @@
 // ============================================================
 //  PULSE GO — TEST GROUPS & CARDS DATA
-//  Edit this file to add / remove / update test groups easily.
+//  course: 1 | 2 | 3  — used by the wizard
+//  img: optional cover image for product-style cards
 // ============================================================
 
-const testGroups = [
+window.testGroups = [
   {
     id: "cellbiology",
     title: "Hujayra biologiyasi",
@@ -11,18 +12,23 @@ const testGroups = [
     totalQuestions: 559,
     icon: "bi-virus",
     color: "success",
+    course: 1,
     tests: [
       {
         id: "cellbio-all",
         title: "Cellbio Grant uchun",
         count: "290 ta",
         url: "/cellbiology",
+        img: "./assets/hujayra.png",
+        tags: ["grant", "grand"],
       },
       {
         id: "cellbio-bytopics",
         title: "Mavzular bo'yicha testlar",
         count: "269 ta",
         url: "/cellbiology/bytopics.html",
+        img: "./assets/hujayra1.png",
+        tags: ["topics", "mavzu"],
       },
     ],
   },
@@ -33,6 +39,7 @@ const testGroups = [
     totalQuestions: "Tez orada",
     icon: "bi-heart-pulse",
     color: "danger",
+    course: 1,
     tests: [],
   },
   {
@@ -42,18 +49,23 @@ const testGroups = [
     totalQuestions: 1000,
     icon: "bi-heart-pulse",
     color: "danger",
+    course: 2,
     tests: [
       {
         id: "anatomy-all",
         title: "Barcha anatomiya testlari",
         count: "454 ta",
         url: "/anatomy",
+        img: "/assets/img/semester.jpg",
+        tags: ["all"],
       },
       {
         id: "anatomy-yn",
         title: "Yakuniy rasmli testlar",
         count: "500+ ta",
         url: "/anatomy/yn/",
+        img: "/assets/img/tests/anatomy-yn.jpg",
+        tags: ["yn", "yakuniy"],
       },
     ],
   },
@@ -64,6 +76,7 @@ const testGroups = [
     totalQuestions: "Tez orada",
     icon: "bi-heart-pulse",
     color: "danger",
+    course: 3,
     tests: [],
   },
   {
@@ -73,18 +86,23 @@ const testGroups = [
     totalQuestions: 350,
     icon: "bi-baby",
     color: "warning",
+    course: 2,
     tests: [
       {
         id: "embryo-all",
         title: "Barcha embriologiya testlari",
         count: "300+ ta",
         url: "/embriology",
+        img: "/assets/img/tests/embryo-all.jpg",
+        tags: ["all"],
       },
       {
         id: "embryo-cases",
         title: "Embriologiya caselari",
         count: "50+ ta",
         url: "/embriology/cases.html",
+        img: "/assets/img/tests/embryo-cases.jpg",
+        tags: ["cases", "case"],
       },
     ],
   },
@@ -95,6 +113,7 @@ const testGroups = [
     totalQuestions: "Tez orada",
     icon: "bi-baby",
     color: "warning",
+    course: 3,
     tests: [],
   },
   {
@@ -104,18 +123,23 @@ const testGroups = [
     totalQuestions: 250,
     icon: "bi-flask",
     color: "info",
+    course: 2,
     tests: [
       {
         id: "chem-all",
         title: "Barcha biokimyo testlari",
         count: "250+ ta",
         url: "/chemistry",
+        img: "/assets/img/tests/chem-all.jpg",
+        tags: ["all"],
       },
       {
         id: "biochem-bytopics",
         title: "Mavzular bo'yicha caselar",
         count: "250+ ta",
         url: "/chemistry/book.html",
+        img: "/assets/img/tests/chem-topics.jpg",
+        tags: ["topics", "mavzu", "cases"],
       },
     ],
   },
@@ -126,12 +150,15 @@ const testGroups = [
     totalQuestions: 100,
     icon: "bi-journal-text",
     color: "primary",
+    course: 0, // all courses
     tests: [
       {
         id: "cases-all",
         title: "Barcha caselar",
         count: "100+ ta",
         url: "/cases",
+        img: "/assets/img/tests/cases-all.jpg",
+        tags: ["cases", "case"],
       },
     ],
   },
@@ -142,18 +169,23 @@ const testGroups = [
     totalQuestions: 3030,
     icon: "bi-lightning-charge",
     color: "dark",
+    course: 0,
     tests: [
       {
         id: "random-yn",
         title: "YN test baza",
         count: "30 ta random",
         url: "#",
+        img: "/assets/img/tests/random-yn.jpg",
+        tags: ["yn"],
       },
       {
         id: "random-all",
         title: "Umumiy test baza",
         count: "3000+ ta",
         url: "#",
+        img: "/assets/img/tests/random-all.jpg",
+        tags: ["all"],
       },
     ],
   },

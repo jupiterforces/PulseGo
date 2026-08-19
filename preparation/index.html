@@ -779,6 +779,8 @@
     </nav>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/tests/welcomerdata.js"></script>
+    <script src="/tests/welcomer.js"></script>
     <script src="/preparation/prep-data.js"></script>
     <script src="/preparation/oraliq-data.js"></script>
 
@@ -786,7 +788,6 @@
         // ══════════════════════════════════════════════════════
         //  DATA HELPERS
         // ══════════════════════════════════════════════════════
-
 
         function openSidebar() {
             document.getElementById('sidebar').classList.add('open');
@@ -830,6 +831,28 @@
             saveStoredSessions(sessions);
         }
 
+        function deleteSession(id) {
+            if (!confirm('Bu sessiyani o‘chirishni xohlaysizmi?')) return;
+            var sessions = getStoredSessions().filter(function (s) { return s.id !== id; });
+            saveStoredSessions(sessions);
+            renderSessions();
+            showToast('Sessiya o‘chirildi');
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function sessionDisplayName(s) {
+            if (s.examType === 'custom' && s.customName) return s.customName;
+            var et = getExamType(s.examType);
+            return et ? et.label : (s.examType || 'Sessiya');
+        }
+
         // ══════════════════════════════════════════════════════
         //  RENDER SESSIONS
         // ══════════════════════════════════════════════════════
@@ -868,26 +891,23 @@
         }
         function accentClass(examTypeId) {
             var et = getExamType(examTypeId);
-            return et ? 'accent-' + et.color : '';
-        }
-        function totalQuestionsInSession(session) {
-            if (!session.tests || !session.subjects) return 0;
-            var total = 0;
-            session.subjects.forEach(function (subId) {
-                var sub = getSubject(subId);
-                if (!sub || !Array.isArray(sub.tests)) return;
-                var selectedTests = session.tests[subId] || [];
-                selectedTests.forEach(function (key) {
-                    var tc = sub.tests.find(function (t) { return t.key === key; });
-                    if (tc) total += (tc.count === 'all' ? 20 : tc.count);
-                });
-            });
-            return total;
+            return et ? 'accent-' + et.color : 'accent-primary';
         }
 
         function renderSessions() {
             var container = document.getElementById('sessions-container');
             var sessions = getStoredSessions();
+
+            // Search filter
+            var searchEl = document.getElementById('sessionSearch');
+            var q = searchEl ? (searchEl.value || '').trim().toLowerCase() : '';
+            if (q) {
+                sessions = sessions.filter(function (s) {
+                    var name = sessionDisplayName(s).toLowerCase();
+                    var note = (s.goalNote || '').toLowerCase();
+                    return name.indexOf(q) !== -1 || note.indexOf(q) !== -1;
+                });
+            }
 
             sessions.sort(function (a, b) {
                 var FAR = new Date('2999-01-01').getTime();
@@ -896,13 +916,21 @@
                 return da - db;
             });
 
-            if (!sessions.length) {
+            if (!getStoredSessions().length) {
                 container.innerHTML = '<div class="empty-state">'
                     + '<div class="empty-icon"><i class="bi bi-journals"></i></div>'
                     + '<h3>Sessiya yo\'q</h3>'
                     + '<p>Imtihonga tayyorlanish uchun sessiya yarating va o\'z progressingizni kuzating.</p>'
                     + '<button class="btn-add-session mx-auto" onclick="openWizard()" style="justify-content:center">'
                     + '<i class="bi bi-plus-lg"></i> Birinchi sessiyani yarating</button></div>';
+                return;
+            }
+
+            if (!sessions.length) {
+                container.innerHTML = '<div class="empty-state">'
+                    + '<div class="empty-icon"><i class="bi bi-search"></i></div>'
+                    + '<h3>Topilmadi</h3>'
+                    + '<p>Qidiruv bo‘yicha sessiya yo‘q. Boshqa so‘z bilan urinib ko‘ring.</p></div>';
                 return;
             }
 
@@ -914,40 +942,48 @@
                 var cdClass = countdownClass(days);
                 var cdLabel = countdownLabel(days);
                 var subjCount = (s.subjects || []).length;
-                var testCount = Object.values(s.tests || {}).reduce(function (a, v) { return a + v.length; }, 0);
+                var testCount = Object.values(s.tests || {}).reduce(function (a, v) { return a + (v ? v.length : 0); }, 0);
                 var dateFormatted = s.examDate
                     ? new Date(s.examDate).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' })
                     : 'Sana belgilanmagan';
+                var displayName = escapeHtml(sessionDisplayName(s));
+                var goalLine = s.goalNote
+                    ? '<div class="sc-date" style="margin-top:2px"><i class="bi bi-flag"></i> ' + escapeHtml(s.goalNote) + '</div>'
+                    : '';
 
-                var oraliqStats = '';
+                var footerStats = '';
                 if (s.examType === 'oraliq') {
                     var oSub = getSubject(s.oraliqSubject);
                     var oData = window.ORALIQ_DATA ? (ORALIQ_DATA[s.oraliqSubject] || null) : null;
                     var qCount = oData ? oData.questions.length : 0;
                     var vStats = typeof getSessionVoiceStats === 'function' ? getSessionVoiceStats(s.id) : { questionsWithVoice: 0 };
-                    oraliqStats = '<div class="sc-stat"><i class="bi bi-book"></i>' + (oSub ? oSub.label : 'Fan') + '</div>'
+                    footerStats = '<div class="sc-stat"><i class="bi bi-book"></i>' + (oSub ? oSub.label : 'Fan') + '</div>'
                         + '<div class="sc-stat"><i class="bi bi-chat-square-text"></i>' + qCount + ' ta savol</div>'
                         + '<div class="sc-stat"><i class="bi bi-mic"></i>' + vStats.questionsWithVoice + ' ta yozilgan</div>';
                 } else {
-                    oraliqStats = '<div class="sc-stat"><i class="bi bi-book"></i>' + subjCount + ' ta fan</div>'
+                    footerStats = '<div class="sc-stat"><i class="bi bi-book"></i>' + subjCount + ' ta fan</div>'
                         + '<div class="sc-stat"><i class="bi bi-ui-checks-grid"></i>' + testCount + ' ta test</div>'
                         + '<div class="sc-stat"><i class="bi bi-check-circle"></i>' + (stats.correctAnswers || 0) + ' / ' + Math.max(stats.solvedQuestions || 0, stats.correctAnswers || 0) + ' ta to\'g\'ri</div>';
                 }
 
                 return '<div class="col-12 col-md-6">'
-                    + '<div class="session-card ' + accentClass(s.examType) + '" onclick="location.href=\'/preparation/session.html?id=' + s.id + '\'" style="position:relative">'
-                    + '<button class="btn btn-sm" onclick="event.stopPropagation();shareSession(\'' + s.id + '\')" title="Ulashish" style="position:absolute;bottom:40px;right:12px;z-index:2;background:rgba(241,245,249,.92);border:none;border-radius:12px;padding:6px 10px;font-size:13px;color:#475569;backdrop-filter:blur(8px)"><i class="bi bi-share"></i></button>'
+                    + '<div class="session-card ' + accentClass(s.examType) + '" onclick="location.href=\'/preparation/session.html?id=' + encodeURIComponent(s.id) + '\'" style="position:relative">'
+                    + '<div style="position:absolute;bottom:40px;right:12px;z-index:2;display:flex;gap:6px">'
+                    + '<button class="btn btn-sm" onclick="event.stopPropagation();shareSession(\'' + s.id + '\')" title="Ulashish" style="background:rgba(241,245,249,.92);border:none;border-radius:12px;padding:6px 10px;font-size:13px;color:#475569;backdrop-filter:blur(8px)"><i class="bi bi-share"></i></button>'
+                    + '<button class="btn btn-sm" onclick="event.stopPropagation();deleteSession(\'' + s.id + '\')" title="O‘chirish" style="background:rgba(254,242,242,.95);border:none;border-radius:12px;padding:6px 10px;font-size:13px;color:#dc2626;backdrop-filter:blur(8px)"><i class="bi bi-trash"></i></button>'
+                    + '</div>'
                     + (cdLabel ? '<div class="sc-countdown ' + cdClass + '"><i class="bi bi-alarm me-1"></i>' + cdLabel + '</div>' : '')
                     + '<div class="sc-header">'
-                    + '<div class="sc-type-icon" style="background:' + (et ? et.gradient : '#2563eb') + '"><i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
+                    + '<div class="sc-type-icon" style="background:' + (et ? et.gradient : 'linear-gradient(135deg,#2563eb,#1e40af)') + '"><i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
                     + '<div class="sc-info">'
-                    + '<div class="sc-exam-name">' + (et ? et.label : s.examType) + '</div>'
+                    + '<div class="sc-exam-name">' + displayName + '</div>'
                     + '<div class="sc-date"><i class="bi bi-calendar3"></i>' + dateFormatted + '</div>'
+                    + goalLine
                     + '</div>'
                     + '<div class="sc-percent-badge ' + percentClass(pct) + '"><span>' + pct + '</span><span style="font-size:10px;font-weight:500">%</span></div>'
                     + '</div>'
                     + '<div class="sc-progress-wrap"><div class="sc-progress-track"><div class="sc-progress-fill" style="width:' + pct + '%;background:' + progressColor(pct) + '"></div></div></div>'
-                    + '<div class="sc-footer">' + oraliqStats + '</div>'
+                    + '<div class="sc-footer">' + footerStats + '</div>'
                     + '</div></div>';
             }).join('');
 
@@ -959,13 +995,34 @@
         // ══════════════════════════════════════════════════════
 
         var wizStep = 1;
-        var wizData = { examType: null, subjects: {}, oraliqSubject: null, examDate: null };
+        var wizData = {
+            examType: null,
+            customName: '',
+            goalNote: '',
+            subjects: {},
+            oraliqSubject: null,
+            examDate: null
+        };
 
         function openWizard() {
             wizStep = 1;
-            wizData = { examType: null, subjects: {}, oraliqSubject: null, examDate: null };
+            wizData = {
+                examType: null,
+                customName: '',
+                goalNote: '',
+                subjects: {},
+                oraliqSubject: null,
+                examDate: null
+            };
             renderWizStep();
             bootstrap.Modal.getOrCreateInstance(document.getElementById('wizardModal')).show();
+        }
+
+        function readCustomFieldsFromDom() {
+            var nameEl = document.getElementById('customNameInput');
+            var goalEl = document.getElementById('goalNoteInput');
+            if (nameEl) wizData.customName = nameEl.value.trim();
+            if (goalEl) wizData.goalNote = goalEl.value.trim();
         }
 
         function updateWizDots() {
@@ -974,9 +1031,14 @@
                 el.className = 'wsd ' + (n < wizStep ? 'done' : n === wizStep ? 'active' : '');
             });
             var isOraliq = wizData.examType === 'oraliq';
+            var isCustom = wizData.examType === 'custom';
             var labels = [
                 '1/3 \u2013 Imtihon turini tanlang',
-                isOraliq ? '2/3 \u2013 Fanni tanlang' : '2/3 \u2013 Fanlar va testlarni tanlang',
+                isOraliq
+                    ? '2/3 \u2013 Fanni tanlang'
+                    : isCustom
+                        ? '2/3 \u2013 Nom va testlar'
+                        : '2/3 \u2013 Fanlar va testlarni tanlang',
                 '3/3 \u2013 Imtihon sanasini belgilang'
             ];
             document.getElementById('wizardStepLabel').textContent = labels[wizStep - 1];
@@ -992,11 +1054,12 @@
         function renderWizStep() {
             updateWizDots();
             var body = document.getElementById('wizardBody');
+            var cfg = window.PREP_CONFIG || PREP_CONFIG;
 
             if (wizStep === 1) {
                 document.getElementById('wizardTitle').textContent = 'Imtihon turini tanlang';
                 body.innerHTML = '<div class="d-flex flex-column gap-3">'
-                    + PREP_CONFIG.examTypes.map(function (et) {
+                    + cfg.examTypes.map(function (et) {
                         return '<div class="exam-type-card ' + (wizData.examType === et.id ? 'selected' : '') + '" onclick="selectExamType(\'' + et.id + '\')">'
                             + '<div class="etc-icon" style="background:' + et.gradient + '"><i class="bi ' + et.icon + '"></i></div>'
                             + '<div><div class="etc-label">' + et.label + '</div><div class="etc-desc">' + et.desc + '</div></div>'
@@ -1008,7 +1071,9 @@
             } else if (wizStep === 2) {
                 if (wizData.examType === 'oraliq') {
                     document.getElementById('wizardTitle').textContent = 'Fanni tanlang';
-                    var availSubs = PREP_CONFIG.subjects.filter(function (s) { return ORALIQ_DATA[s.id]; });
+                    var availSubs = cfg.subjects.filter(function (s) {
+                        return window.ORALIQ_DATA && ORALIQ_DATA[s.id];
+                    });
                     body.innerHTML = '<p style="font-size:13px;color:var(--tg-muted);margin-bottom:16px"><i class="bi bi-info-circle me-1"></i>Oraliq nazorat uchun bitta fan tanlang.</p>'
                         + '<div class="d-flex flex-column gap-3">'
                         + availSubs.map(function (sub) {
@@ -1026,13 +1091,33 @@
                     return;
                 }
 
-                document.getElementById('wizardTitle').textContent = 'Fanlar va testlarni tanlang';
+                var isCustom = wizData.examType === 'custom';
+                document.getElementById('wizardTitle').textContent = isCustom
+                    ? 'Sessiya nomi va testlar'
+                    : 'Fanlar va testlarni tanlang';
+
+                var customFields = '';
+                if (isCustom) {
+                    customFields =
+                        '<div class="mb-3">'
+                        + '<div class="date-label">Sessiya nomi *</div>'
+                        + '<input type="text" id="customNameInput" maxlength="80" placeholder="Masalan: Anatomiya yakuniy oldidan" value="' + escapeHtml(wizData.customName) + '" '
+                        + 'style="width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:10px 12px;font-size:14px;font-family:inherit;outline:none">'
+                        + '</div>'
+                        + '<div class="mb-3">'
+                        + '<div class="date-label">Maqsad / eslatma (ixtiyoriy)</div>'
+                        + '<input type="text" id="goalNoteInput" maxlength="120" placeholder="Masalan: Haftada 3 marta takrorlash" value="' + escapeHtml(wizData.goalNote) + '" '
+                        + 'style="width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:10px 12px;font-size:14px;font-family:inherit;outline:none">'
+                        + '</div>';
+                }
+
                 var availableSubjects = getSubjectsForExamType(wizData.examType);
-                body.innerHTML = availableSubjects.map(function (sub) {
+                body.innerHTML = customFields + availableSubjects.map(function (sub) {
                     var tests = Array.isArray(sub.tests) ? sub.tests : [];
+                    if (!tests.length) return '';
                     var selectedTests = wizData.subjects[sub.id] || [];
                     var allKeys = tests.map(function (t) { return t.key; });
-                    var allSelected = allKeys.every(function (k) { return selectedTests.includes(k); });
+                    var allSelected = allKeys.length > 0 && allKeys.every(function (k) { return selectedTests.indexOf(k) !== -1; });
                     var hasSelected = selectedTests.length > 0;
 
                     return '<div class="subject-row ' + (hasSelected ? 'has-selected' : '') + '" id="sr-' + sub.id + '">'
@@ -1044,18 +1129,42 @@
                         + '</div>'
                         + '<div class="subject-row-body">'
                         + '<div class="select-all-row" onclick="toggleAllTests(\'' + sub.id + '\')">'
-                        + '<input type="checkbox" id="chk-all-' + sub.id + '" ' + (allSelected ? 'checked' : '') + ' onclick="event.stopPropagation()">'
-                        + '<label for="chk-all-' + sub.id + '" style="cursor:pointer">Barchasini tanlash</label>'
+                        + '<input type="checkbox" id="chk-all-' + sub.id + '" '
+                        + (allSelected ? 'checked' : '') + ' '
+                        + 'onclick="event.preventDefault(); event.stopPropagation(); toggleAllTests(\'' + sub.id + '\')">'
+                        + '<label for="chk-all-' + sub.id + '" style="cursor:pointer" '
+                        + 'onclick="event.preventDefault(); event.stopPropagation(); toggleAllTests(\'' + sub.id + '\')">'
+                        + 'Barchasini tanlash</label>'
                         + '</div>'
                         + tests.map(function (t) {
                             return '<div class="test-check-item" onclick="toggleTest(\'' + sub.id + '\',\'' + t.key + '\')">'
-                                + '<input type="checkbox" id="chk-' + sub.id + '-' + t.key + '" ' + (selectedTests.includes(t.key) ? 'checked' : '') + ' onclick="event.stopPropagation()">'
-                                + '<label for="chk-' + sub.id + '-' + t.key + '" class="tci-title" style="cursor:pointer">' + t.title + '</label>'
+                                + '<input type="checkbox" id="chk-' + sub.id + '-' + t.key + '" '
+                                + (selectedTests.indexOf(t.key) !== -1 ? 'checked' : '') + ' '
+                                + 'onclick="event.preventDefault(); event.stopPropagation(); toggleTest(\'' + sub.id + '\',\'' + t.key + '\')">'
+                                + '<label for="chk-' + sub.id + '-' + t.key + '" class="tci-title" style="cursor:pointer" '
+                                + 'onclick="event.preventDefault(); event.stopPropagation(); toggleTest(\'' + sub.id + '\',\'' + t.key + '\')">'
+                                + t.title + '</label>'
                                 + '<span class="tci-count">' + t.count + ' ta</span>'
                                 + '</div>';
                         }).join('')
                         + '</div></div>';
                 }).join('');
+
+                if (isCustom) {
+                    var nameInput = document.getElementById('customNameInput');
+                    var goalInput = document.getElementById('goalNoteInput');
+                    if (nameInput) {
+                        nameInput.addEventListener('input', function () {
+                            wizData.customName = nameInput.value.trim();
+                            validateWiz();
+                        });
+                    }
+                    if (goalInput) {
+                        goalInput.addEventListener('input', function () {
+                            wizData.goalNote = goalInput.value.trim();
+                        });
+                    }
+                }
 
             } else if (wizStep === 3) {
                 document.getElementById('wizardTitle').textContent = 'Imtihon sanasini belgilang';
@@ -1065,7 +1174,7 @@
                 var summaryHtml = '';
                 if (wizData.examType === 'oraliq') {
                     var sub = getSubject(wizData.oraliqSubject);
-                    var oData = ORALIQ_DATA[wizData.oraliqSubject];
+                    var oData = window.ORALIQ_DATA ? ORALIQ_DATA[wizData.oraliqSubject] : null;
                     var qCount = oData ? oData.questions.length : 0;
                     if (sub) {
                         summaryHtml = '<div class="d-flex align-items-center gap-2 mb-2">'
@@ -1075,8 +1184,14 @@
                             + '</div>';
                     }
                 } else {
-                    summaryHtml = Object.entries(wizData.subjects).map(function (entry) {
-                        var subId = entry[0]; var keys = entry[1];
+                    if (wizData.examType === 'custom' && wizData.customName) {
+                        summaryHtml += '<div style="font-size:14px;font-weight:700;margin-bottom:10px"><i class="bi bi-pencil-square me-1"></i>' + escapeHtml(wizData.customName) + '</div>';
+                        if (wizData.goalNote) {
+                            summaryHtml += '<div style="font-size:12px;color:var(--tg-muted);margin-bottom:12px"><i class="bi bi-flag me-1"></i>' + escapeHtml(wizData.goalNote) + '</div>';
+                        }
+                    }
+                    summaryHtml += Object.keys(wizData.subjects).map(function (subId) {
+                        var keys = wizData.subjects[subId] || [];
                         var s2 = getSubject(subId);
                         return s2 ? '<div class="d-flex align-items-center gap-2 mb-2">'
                             + '<div style="width:28px;height:28px;border-radius:8px;background:' + s2.bgColor + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;flex-shrink:0"><i class="bi ' + s2.icon + '"></i></div>'
@@ -1087,7 +1202,7 @@
                 }
 
                 body.innerHTML = '<div class="date-input-wrap mb-4">'
-                    + '<div class="date-label">Imtihon sanasi</div>'
+                    + '<div class="date-label">Imtihon sanasi (ixtiyoriy)</div>'
                     + '<input type="date" id="examDateInput" value="' + (wizData.examDate || '') + '" min="' + minDate + '">'
                     + '</div>'
                     + '<div style="background:#f8fafc;border-radius:16px;padding:16px;">'
@@ -1101,13 +1216,22 @@
 
         function validateWiz() {
             var btn = document.getElementById('wizBtnNext');
+            if (!btn) return;
             if (wizStep === 1) {
                 btn.disabled = !wizData.examType;
             } else if (wizStep === 2) {
                 if (wizData.examType === 'oraliq') {
                     btn.disabled = !wizData.oraliqSubject;
+                } else if (wizData.examType === 'custom') {
+                    readCustomFieldsFromDom();
+                    var hasTests = Object.keys(wizData.subjects).some(function (k) {
+                        return wizData.subjects[k] && wizData.subjects[k].length > 0;
+                    });
+                    btn.disabled = !wizData.customName || !hasTests;
                 } else {
-                    btn.disabled = !Object.values(wizData.subjects).some(function (v) { return v.length > 0; });
+                    btn.disabled = !Object.keys(wizData.subjects).some(function (k) {
+                        return wizData.subjects[k] && wizData.subjects[k].length > 0;
+                    });
                 }
             } else {
                 btn.disabled = false;
@@ -1118,6 +1242,8 @@
             wizData.examType = id;
             wizData.subjects = {};
             wizData.oraliqSubject = null;
+            wizData.customName = '';
+            wizData.goalNote = '';
             renderWizStep();
         }
 
@@ -1126,12 +1252,17 @@
             document.querySelectorAll('[id^="oraliq-check-"]').forEach(function (el) { el.style.display = 'none'; });
             document.querySelectorAll('.exam-type-card').forEach(function (el) { el.classList.remove('selected'); });
             var checkEl = document.getElementById('oraliq-check-' + subId);
-            if (checkEl) { checkEl.style.display = 'block'; checkEl.closest('.exam-type-card').classList.add('selected'); }
+            if (checkEl) {
+                checkEl.style.display = 'block';
+                var card = checkEl.closest('.exam-type-card');
+                if (card) card.classList.add('selected');
+            }
             setTimeout(function () { wizNext(); }, 250);
         }
 
         function toggleSubjectRow(subId) {
-            document.getElementById('sr-' + subId).classList.toggle('open');
+            var row = document.getElementById('sr-' + subId);
+            if (row) row.classList.toggle('open');
         }
 
         function toggleTest(subId, testKey) {
@@ -1149,8 +1280,12 @@
             if (!sub || !Array.isArray(sub.tests)) return;
             var allKeys = sub.tests.map(function (t) { return t.key; });
             var selected = wizData.subjects[subId] || [];
-            var allSelected = allKeys.every(function (k) { return selected.includes(k); });
-            if (allSelected) { delete wizData.subjects[subId]; } else { wizData.subjects[subId] = allKeys.slice(); }
+            var allSelected = allKeys.every(function (k) { return selected.indexOf(k) !== -1; });
+            if (allSelected) {
+                delete wizData.subjects[subId];
+            } else {
+                wizData.subjects[subId] = allKeys.slice();
+            }
             updateSubjectRowUI(subId);
             validateWiz();
         }
@@ -1166,10 +1301,10 @@
             if (row) row.classList.toggle('has-selected', selected.length > 0);
             sub.tests.forEach(function (t) {
                 var chk = document.getElementById('chk-' + subId + '-' + t.key);
-                if (chk) chk.checked = selected.includes(t.key);
+                if (chk) chk.checked = selected.indexOf(t.key) !== -1;
             });
             var allChk = document.getElementById('chk-all-' + subId);
-            if (allChk) allChk.checked = allKeys.every(function (k) { return selected.includes(k); });
+            if (allChk) allChk.checked = allKeys.length > 0 && allKeys.every(function (k) { return selected.indexOf(k) !== -1; });
         }
 
         function wizNext() {
@@ -1177,8 +1312,16 @@
             if (wizStep === 2) {
                 if (wizData.examType === 'oraliq') {
                     if (!wizData.oraliqSubject) { alert('Fan tanlang!'); return; }
+                } else if (wizData.examType === 'custom') {
+                    readCustomFieldsFromDom();
+                    if (!wizData.customName) { alert('Sessiya nomini kiriting!'); return; }
+                    if (!Object.keys(wizData.subjects).some(function (k) { return wizData.subjects[k] && wizData.subjects[k].length; })) {
+                        alert('Kamida 1 ta test tanlang!'); return;
+                    }
                 } else {
-                    if (!Object.values(wizData.subjects).some(function (v) { return v.length > 0; })) { alert('Kamida 1 ta test tanlang!'); return; }
+                    if (!Object.keys(wizData.subjects).some(function (k) { return wizData.subjects[k] && wizData.subjects[k].length; })) {
+                        alert('Kamida 1 ta test tanlang!'); return;
+                    }
                 }
             }
             if (wizStep === 3) {
@@ -1193,6 +1336,9 @@
 
         function wizBack() {
             if (wizStep <= 1) return;
+            if (wizStep === 2 && wizData.examType === 'custom') {
+                readCustomFieldsFromDom();
+            }
             wizStep--;
             renderWizStep();
         }
@@ -1200,15 +1346,25 @@
         function saveSession() {
             var id = 'prep_' + Date.now();
             var isOraliq = wizData.examType === 'oraliq';
+            var isCustom = wizData.examType === 'custom';
             var session = {
                 id: id,
                 examType: wizData.examType,
+                customName: isCustom ? wizData.customName : null,
+                goalNote: isCustom && wizData.goalNote ? wizData.goalNote : null,
                 examDate: wizData.examDate || null,
                 createdAt: new Date().toISOString(),
                 subjects: isOraliq ? [wizData.oraliqSubject] : Object.keys(wizData.subjects),
                 tests: isOraliq ? {} : wizData.subjects,
                 oraliqSubject: isOraliq ? wizData.oraliqSubject : null,
-                stats: { totalQuestions: 0, solvedQuestions: 0, correctAnswers: 0, wrongAnswers: 0, accuracy: 0, updatedAt: null },
+                stats: {
+                    totalQuestions: 0,
+                    solvedQuestions: 0,
+                    correctAnswers: 0,
+                    wrongAnswers: 0,
+                    accuracy: 0,
+                    updatedAt: null
+                },
                 subjectStats: {},
                 testResults: [],
                 startedAt: null,
@@ -1217,7 +1373,9 @@
             createSession(session);
             bootstrap.Modal.getOrCreateInstance(document.getElementById('wizardModal')).hide();
             renderSessions();
-            setTimeout(function () { location.href = '/preparation/session.html?id=' + id; }, 300);
+            setTimeout(function () {
+                location.href = '/preparation/session.html?id=' + encodeURIComponent(id);
+            }, 300);
         }
 
         // ══════════════════════════════════════════════════════
@@ -1272,8 +1430,14 @@
                 var d = raw ? JSON.parse(raw) : {};
                 var creatorName = (d.user && d.user.name) ? d.user.name : 'Foydalanuvchi';
                 var payload = {
-                    id: s.id, examType: s.examType, examDate: s.examDate,
-                    subjects: s.subjects, tests: s.tests, oraliqSubject: s.oraliqSubject,
+                    id: s.id,
+                    examType: s.examType,
+                    customName: s.customName || null,
+                    goalNote: s.goalNote || null,
+                    examDate: s.examDate,
+                    subjects: s.subjects,
+                    tests: s.tests,
+                    oraliqSubject: s.oraliqSubject,
                     creatorName: creatorName
                 };
                 var encoded = encodeBase64Url(JSON.stringify(payload));
@@ -1322,17 +1486,14 @@
                     } catch (e2) { }
                 }
             }
-
             return token;
         }
 
         function checkShareParam() {
             var encoded = getShareTokenFromUrl();
             if (!encoded) return;
-
             var decodedOnce = encoded;
             try { decodedOnce = decodeURIComponent(encoded); } catch (e) { }
-
             try {
                 var payload = JSON.parse(decodeBase64Url(decodedOnce));
                 showShareImportModal(payload, 0);
@@ -1344,261 +1505,102 @@
 
         function showShareImportModal(payload, retryCount) {
             retryCount = retryCount || 0;
-
             var bodyEl = document.getElementById('shareImportBody');
 
             if (!bodyEl) {
                 if (retryCount < 12) {
-                    setTimeout(function () {
-                        showShareImportModal(payload, retryCount + 1);
-                    }, 80);
+                    setTimeout(function () { showShareImportModal(payload, retryCount + 1); }, 80);
                     return;
                 }
-
-                console.warn('shareImportBody not found');
-
-                var shouldImport = confirm(
-                    'Sessiya topildi. Modal ochilmadi. Baribir sessiyani qo‘shishni xohlaysizmi?'
-                );
-
-                if (shouldImport) {
-                    importSharedSession(payload);
-                }
-
+                var shouldImport = confirm('Sessiya topildi. Modal ochilmadi. Baribir sessiyani qo‘shishni xohlaysizmi?');
+                if (shouldImport) importSharedSession(payload);
                 return;
             }
 
             var et = getExamType(payload.examType);
-            var etLabel = et ? et.label : payload.examType;
+            var etLabel = (payload.examType === 'custom' && payload.customName)
+                ? payload.customName
+                : (et ? et.label : payload.examType);
 
             var dateStr = payload.examDate
-                ? new Date(payload.examDate).toLocaleDateString('uz-UZ', {
-                    day: '2-digit',
-                    month: 'long',
-                    year: 'numeric'
-                })
+                ? new Date(payload.examDate).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' })
                 : 'Sana belgilanmagan';
 
-            // ═══════════════════════════════════════════════
-            // OLDIN QO'SHILGANMI?
-            // ═══════════════════════════════════════════════
-
             var sessions = getStoredSessions();
-
-            var existingSession = sessions.find(function (s) {
-                return s.sharedFromId === payload.id;
-            });
-
+            var existingSession = sessions.find(function (s) { return s.sharedFromId === payload.id; });
             var alreadyAdded = !!existingSession;
 
-            // ═══════════════════════════════════════════════
-            // SUBJECTS
-            // ═══════════════════════════════════════════════
-
             var subjectsList = '';
-
             if (payload.examType === 'oraliq' && payload.oraliqSubject) {
-
                 var sub = getSubject(payload.oraliqSubject);
-
-                subjectsList = sub
-                    ? '<li>' + sub.label + ' – og‘zaki</li>'
-                    : '';
-
+                subjectsList = sub ? '<li>' + sub.label + ' – og‘zaki</li>' : '';
             } else {
-
                 (payload.subjects || []).forEach(function (sid) {
-
                     var sub2 = getSubject(sid);
-
-                    var tc = (
-                        payload.tests &&
-                        payload.tests[sid]
-                    )
-                        ? payload.tests[sid].length
-                        : 0;
-
-                    subjectsList +=
-                        '<li>' +
-                        (sub2 ? sub2.label : sid) +
-                        ' – ' +
-                        tc +
-                        ' ta test' +
-                        '</li>';
+                    var tc = (payload.tests && payload.tests[sid]) ? payload.tests[sid].length : 0;
+                    subjectsList += '<li>' + (sub2 ? sub2.label : sid) + ' – ' + tc + ' ta test</li>';
                 });
             }
 
-            // ═══════════════════════════════════════════════
-            // BUTTON
-            // ═══════════════════════════════════════════════
-
             var mainButton;
-
             if (alreadyAdded) {
-
-                location.href =
-                    '/preparation/session.html?id=' +
-                    encodeURIComponent(existingSession.id);
-
-            } else {
-
-                mainButton =
-                    '<button class="btn btn-primary flex-fill rounded-3" ' +
-                    'onclick="importSharedSession(window._sharePayload)">' +
-                    '<i class="bi bi-plus-lg me-1"></i>' +
-                    'Qo‘shish' +
-                    '</button>';
+                location.href = '/preparation/session.html?id=' + encodeURIComponent(existingSession.id);
+                return;
             }
-
-            // ═══════════════════════════════════════════════
-            // MODAL HTML
-            // ═══════════════════════════════════════════════
+            mainButton =
+                '<button class="btn btn-primary flex-fill rounded-3" onclick="importSharedSession(window._sharePayload)">'
+                + '<i class="bi bi-plus-lg me-1"></i>Qo‘shish</button>';
 
             var html =
                 '<div class="share-import-card">'
-
                 + '<div class="d-flex align-items-center gap-2 mb-3">'
-
-                + '<div style="' +
-                'width:44px;' +
-                'height:44px;' +
-                'border-radius:14px;' +
-                'background:' + (et ? et.gradient : '#2563eb') + ';' +
-                'display:flex;' +
-                'align-items:center;' +
-                'justify-content:center;' +
-                'color:#fff;' +
-                'font-size:20px' +
-                '">' +
-                '<i class="bi ' +
-                (et ? et.icon : 'bi-journals') +
-                '"></i>' +
-                '</div>'
-
-                + '<div>' +
-                '<div style="font-size:15px;font-weight:800">' +
-                etLabel +
-                '</div>' +
-
-                '<div style="font-size:12px;color:var(--tg-muted)">' +
-                dateStr +
-                '</div>' +
-
-                '</div>' +
-                '</div>'
-
-                + '<div style="font-size:13px;color:var(--tg-muted);margin-bottom:8px">' +
-                'Yuboruvchi: ' +
-                '<b style="color:var(--tg-text)">' +
-                (payload.creatorName || 'Noma‘lum') +
-                '</b>' +
-                '</div>'
-
-                + '<ul style="font-size:13px;color:var(--tg-text);margin:0 0 16px;padding-left:18px">' +
-                subjectsList +
-                '</ul>'
-
-                // Agar oldin qo'shilgan bo'lsa
-                + (
-                    alreadyAdded
-                        ? '<div style="background:#f0fdf4;color:#16a34a;border-radius:12px;padding:10px 12px;font-size:12px;font-weight:600;margin-bottom:12px">' +
-                        '<i class="bi bi-check-circle-fill me-1"></i>' +
-                        'Bu sessiya sizning profilingizga allaqachon qo‘shilgan.' +
-                        '</div>'
-                        : ''
-                )
-
-                + '<div class="d-flex gap-2">'
-
-                + mainButton
-
-                + '<button class="btn btn-light flex-fill rounded-3" ' +
-                'onclick="bootstrap.Modal.getInstance(document.getElementById(\'shareImportModal\')).hide()">' +
-                'Bekor' +
-                '</button>'
-
-                + '</div>'
-
-                + '</div>';
+                + '<div style="width:44px;height:44px;border-radius:14px;background:' + (et ? et.gradient : '#2563eb') + ';display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px">'
+                + '<i class="bi ' + (et ? et.icon : 'bi-journals') + '"></i></div>'
+                + '<div><div style="font-size:15px;font-weight:800">' + escapeHtml(etLabel) + '</div>'
+                + '<div style="font-size:12px;color:var(--tg-muted)">' + dateStr + '</div></div></div>'
+                + '<div style="font-size:13px;color:var(--tg-muted);margin-bottom:8px">Yuboruvchi: <b style="color:var(--tg-text)">' + escapeHtml(payload.creatorName || 'Noma‘lum') + '</b></div>'
+                + '<ul style="font-size:13px;color:var(--tg-text);margin:0 0 16px;padding-left:18px">' + subjectsList + '</ul>'
+                + '<div class="d-flex gap-2">' + mainButton
+                + '<button class="btn btn-light flex-fill rounded-3" onclick="bootstrap.Modal.getInstance(document.getElementById(\'shareImportModal\')).hide()">Bekor</button>'
+                + '</div></div>';
 
             window._sharePayload = payload;
-
             bodyEl.innerHTML = html;
 
             var modalEl = document.getElementById('shareImportModal');
-
-            if (
-                window.bootstrap &&
-                bootstrap.Modal &&
-                modalEl
-            ) {
-
-                bootstrap.Modal
-                    .getOrCreateInstance(modalEl)
-                    .show();
-
+            if (window.bootstrap && bootstrap.Modal && modalEl) {
+                bootstrap.Modal.getOrCreateInstance(modalEl).show();
             } else {
-
-                var shouldImport2 = confirm(
-                    alreadyAdded
-                        ? 'Bu sessiya allaqachon qo‘shilgan. Uni ochamizmi?'
-                        : 'Sessiya topildi. Sessiyani qo‘shamizmi?'
-                );
-
-                if (shouldImport2) {
-
-                    if (alreadyAdded) {
-
-                        openExistingSharedSession(existingSession.id);
-
-                    } else {
-
-                        importSharedSession(payload);
-                    }
+                if (confirm('Sessiya topildi. Sessiyani qo‘shamizmi?')) {
+                    importSharedSession(payload);
                 }
             }
         }
 
         function importSharedSession(payload) {
             if (!payload) return;
-
             var sessions = getStoredSessions();
+            var existingSession = sessions.find(function (s) { return s.sharedFromId === payload.id; });
 
-            // Shu shared session oldin qo'shilganmi?
-            var existingSession = sessions.find(function (s) {
-                return s.sharedFromId === payload.id;
-            });
-
-            // Agar oldin qo'shilgan bo'lsa — yangi session yaratmaymiz
             if (existingSession) {
                 var modal = document.getElementById('shareImportModal');
-                if (modal) {
-                    bootstrap.Modal.getOrCreateInstance(modal).hide();
-                }
-
+                if (modal) bootstrap.Modal.getOrCreateInstance(modal).hide();
                 history.replaceState({}, '', '/preparation/');
-
-                // To'g'ridan-to'g'ri mavjud session ichiga kiramiz
                 location.href = '/preparation/session.html?id=' + encodeURIComponent(existingSession.id);
                 return;
             }
 
-            // Birinchi marta qo'shilmoqda
             var session = {
                 id: 'prep_' + Date.now(),
-
-                // MUHIM:
-                // original shared session ID ni saqlaymiz
                 sharedFromId: payload.id,
-
                 examType: payload.examType,
+                customName: payload.customName || null,
+                goalNote: payload.goalNote || null,
                 examDate: payload.examDate || null,
                 createdAt: new Date().toISOString(),
-
                 subjects: payload.subjects || [],
                 tests: payload.tests || {},
                 oraliqSubject: payload.oraliqSubject || null,
-
                 stats: {
                     totalQuestions: 0,
                     solvedQuestions: 0,
@@ -1607,7 +1609,6 @@
                     accuracy: 0,
                     updatedAt: null
                 },
-
                 subjectStats: {},
                 testResults: [],
                 startedAt: null,
@@ -1618,35 +1619,28 @@
             saveStoredSessions(sessions);
 
             var modalEl = document.getElementById('shareImportModal');
-
-            if (modalEl) {
-                bootstrap.Modal.getOrCreateInstance(modalEl).hide();
-            }
-
+            if (modalEl) bootstrap.Modal.getOrCreateInstance(modalEl).hide();
             history.replaceState({}, '', '/preparation/');
-
             renderSessions();
-
             showToast('Sessiya qo‘shildi!');
-
-            // Qo'shilgandan keyin ichiga kiramiz
             setTimeout(function () {
-                location.href = '/preparation/session.html?id=' +
-                    encodeURIComponent(session.id);
+                location.href = '/preparation/session.html?id=' + encodeURIComponent(session.id);
             }, 300);
         }
-        // ── INIT ──────────────────────────────────────────────
 
         function openExistingSharedSession(sessionId) {
             if (!sessionId) return;
-
-            location.href =
-                '/preparation/session.html?id=' +
-                encodeURIComponent(sessionId);
+            location.href = '/preparation/session.html?id=' + encodeURIComponent(sessionId);
         }
+
+        // ── INIT ──────────────────────────────────────────────
         function initPreparationPage() {
             renderSessions();
             checkShareParam();
+            var searchEl = document.getElementById('sessionSearch');
+            if (searchEl) {
+                searchEl.addEventListener('input', function () { renderSessions(); });
+            }
         }
 
         if (document.readyState === 'loading') {
@@ -1655,7 +1649,6 @@
             initPreparationPage();
         }
     </script>
-
     <!-- SHARE LINK MODAL -->
     <div class="modal fade" id="shareLinkModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">

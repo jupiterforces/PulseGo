@@ -4,256 +4,750 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tests</title>
+    <meta name="theme-color" content="#0f172a">
+    <title>Testlar — Pulse Go</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Google Font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Project styles -->
     <link rel="stylesheet" href="/assets/styles/styles.css">
 
     <style>
         * {
             -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--tg-bg);
-            color: var(--tg-text);
-            padding-bottom: 85px;
+            background: var(--tg-bg, #f1f5f9);
+            color: var(--tg-text, #0f172a);
+            padding-bottom: 90px;
         }
 
-
-        /* PAGE HEADER */
+        /* ===== HEADER ===== */
         .page-header {
-            padding: 28px 0 14px;
+            padding: 22px 0 6px;
         }
 
         .page-header h1 {
             font-size: 24px;
             font-weight: 800;
-            color: var(--tg-text);
             letter-spacing: -0.5px;
+            margin: 0 0 4px;
         }
 
         .page-header p {
-            color: var(--tg-muted);
+            color: #64748b;
             font-size: 14px;
-            margin-bottom: 0;
+            margin: 0;
         }
 
-        /* SUBJECT NAV */
-        .subject-nav {
-            position: sticky;
-            top: 66px;
-            z-index: 1020;
-            background: var(--tg-bg);
-            padding: 10px 0 14px;
-            margin-bottom: 6px;
-        }
-
-        .subject-nav::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 14px;
-            background: linear-gradient(to bottom, var(--tg-bg), transparent);
-            pointer-events: none;
-        }
-
-        .subject-pills {
+        /* ===== TOOLBAR ===== */
+        .toolbar {
             display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin: 16px 0 18px;
+        }
+
+        .search-wrap {
+            flex: 1 1 200px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 11px 14px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, .04);
+        }
+
+        .search-wrap i {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        .search-wrap input {
+            border: 0;
+            outline: 0;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 500;
+            background: transparent;
+            color: inherit;
+        }
+
+        .search-wrap input::placeholder {
+            color: #94a3b8;
+        }
+
+        .btn-find {
+            display: inline-flex;
+            align-items: center;
             gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 6px;
-            scrollbar-width: none;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 11px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, .2);
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+            white-space: nowrap;
         }
 
-        .subject-pills::-webkit-scrollbar {
-            display: none;
+        .btn-find:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, .28);
+            color: #fff;
         }
 
-        .subject-pill {
-            flex: 0 0 auto;
+        .btn-find i {
+            font-size: 15px;
+        }
+
+        .btn-filter,
+        .view-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 17px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, .04);
+            transition: all .2s;
+        }
+
+        .btn-filter:hover,
+        .view-btn:hover {
+            background: #f8fafc;
+        }
+
+        .btn-filter.active {
+            background: #0f172a;
+            color: #fff;
+            border-color: #0f172a;
+        }
+
+        .view-btn.active {
+            background: #0f172a;
+            color: #fff;
+            border-color: #0f172a;
+        }
+
+        .view-toggle {
+            display: inline-flex;
+            gap: 6px;
+        }
+
+        /* Active filter chips (small) */
+        .active-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+            min-height: 0;
+        }
+
+        .chip {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            color: var(--tg-text);
-            font-size: 13px;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 12px;
             font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: all .2s ease;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+            padding: 5px 10px;
+            border-radius: 999px;
         }
 
-        .subject-pill i {
+        .chip button {
+            border: 0;
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            line-height: 1;
+            cursor: pointer;
             font-size: 14px;
         }
 
-        .subject-pill:hover {
-            background: #f8fafc;
-            transform: translateY(-1px);
-        }
-
-        .subject-pill.active {
-            background: var(--tg-text);
-            color: #fff;
-            border-color: var(--tg-text);
-        }
-
-        /* GROUP SECTION */
-        .group-section {
-            margin-bottom: 14px;
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-            overflow: hidden;
-        }
-
-        .group-header {
+        /* ===== RESULTS ===== */
+        .results-bar {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 16px 18px;
-            cursor: pointer;
-            user-select: none;
-            transition: background .2s ease;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            gap: 10px;
         }
 
-        .group-header:hover {
-            background: #f8fafc;
+        .results-bar h2 {
+            font-size: 17px;
+            font-weight: 800;
+            margin: 0;
         }
 
-        .group-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 14px;
+        .results-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            background: #e2e8f0;
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+
+        /* ===== PRODUCT CARDS ===== */
+        .tests-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (min-width: 576px) {
+            .tests-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .tests-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .product-card {
+            position: relative;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, .05);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(15, 23, 42, .12);
+        }
+
+        .product-cover {
+            position: relative;
+            height: 110px;
+            background-size: cover;
+            background-position: center;
+            background-color: #1e293b;
+        }
+
+        .product-cover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, .75) 0%, transparent 55%);
+        }
+
+        .product-cover-fallback {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            color: #fff;
+            height: 100%;
+            font-size: 32px;
+            color: rgba(255, 255, 255, .9);
         }
 
-        .group-title {
-            font-size: 16px;
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 2;
+            font-size: 10px;
             font-weight: 700;
-            color: var(--tg-text);
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .92);
+            color: #0f172a;
+            backdrop-filter: blur(6px);
         }
 
-        .group-title-wrap {
+        .product-body {
+            padding: 14px 14px 16px;
+            display: flex;
+            flex-direction: column;
             flex-grow: 1;
+        }
+
+        .product-subject {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: .3px;
+            margin-bottom: 4px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #0f172a;
+            margin-bottom: 12px;
+            flex-grow: 1;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .product-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+            background: #f1f5f9;
+            padding: 5px 10px;
+            border-radius: 999px;
+        }
+
+        .product-cta {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #0f172a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background .2s;
+        }
+
+        .product-card:hover .product-cta {
+            background: #2563eb;
+        }
+
+        /* ===== LIST VIEW ===== */
+        .tests-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .product-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 12px 14px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, .04);
+            transition: all .2s;
+        }
+
+        .product-row:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, .08);
+            transform: translateX(3px);
+        }
+
+        .product-row-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            background-size: cover;
+            background-position: center;
+            background-color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 22px;
+            overflow: hidden;
+        }
+
+        .product-row-body {
+            flex: 1;
             min-width: 0;
         }
 
-        .group-total {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            margin-top: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--tg-muted);
-        }
-
-        .group-total i {
+        .product-row-subject {
             font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
         }
 
-        .group-count-badge {
-            margin-left: auto;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 5px 10px;
-            border-radius: 999px;
-            background: #f1f5f9;
-            color: var(--tg-text);
+        .product-row-title {
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-row-count {
             font-size: 12px;
             font-weight: 700;
+            color: #475569;
+            background: #f1f5f9;
+            padding: 5px 10px;
+            border-radius: 999px;
             white-space: nowrap;
         }
 
-        .group-count-badge i {
-            font-size: 11px;
-            color: var(--tg-muted);
+        /* ===== EMPTY ===== */
+        .empty-state {
+            text-align: center;
+            padding: 48px 20px;
+            background: #fff;
+            border-radius: 20px;
+            border: 1px dashed #e2e8f0;
         }
 
-        .group-subtitle {
-            font-size: 12px;
-            color: var(--tg-muted);
-            margin-top: -2px;
+        .empty-state i {
+            font-size: 42px;
+            color: #cbd5e1;
+            margin-bottom: 12px;
         }
 
-        .group-chevron {
-            margin-left: auto;
+        .empty-state h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        /* ===== MODALS (shared) ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(15, 23, 42, .55);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .25s, visibility .25s;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-sheet {
+            width: 100%;
+            max-width: 440px;
+            background: #fff;
+            border-radius: 24px 24px 0 0;
+            padding: 8px 20px 28px;
+            transform: translateY(100%);
+            transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 576px) {
+            .modal-overlay {
+                align-items: center;
+            }
+
+            .modal-sheet {
+                border-radius: 24px;
+                transform: translateY(24px) scale(.96);
+                max-height: 85vh;
+            }
+
+            .modal-overlay.show .modal-sheet {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-overlay.show .modal-sheet {
+            transform: translateY(0);
+        }
+
+        .modal-handle {
+            width: 40px;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 8px auto 16px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .modal-header h3 {
             font-size: 18px;
-            color: var(--tg-muted);
-            transition: transform .25s ease;
+            font-weight: 800;
+            margin: 0;
         }
 
-        .group-section.open .group-chevron {
-            transform: rotate(180deg);
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 0;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
-        .group-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .35s ease, padding .35s ease;
-            padding: 0 18px;
+        /* Wizard steps */
+        .wizard-step {
+            display: none;
+            animation: stepIn .35s ease;
         }
 
-        .group-section.open .group-body {
-            max-height: 2000px;
-            padding: 4px 18px 18px;
-        }
-
-        /* TEST CARD */
-        .test-card {
-            text-decoration: none;
+        .wizard-step.active {
             display: block;
         }
 
-        .test-card .test-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            font-size: 20px;
+        @keyframes stepIn {
+            from {
+                opacity: 0;
+                transform: translateX(16px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .test-card .test-title {
+        .wizard-progress {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .wizard-progress span {
+            flex: 1;
+            height: 4px;
+            border-radius: 4px;
+            background: #e2e8f0;
+            transition: background .3s;
+        }
+
+        .wizard-progress span.done {
+            background: #0f172a;
+        }
+
+        .wizard-q {
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .wizard-hint {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .course-input-wrap {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .course-input-wrap input {
+            flex: 1;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            outline: none;
+            transition: border .2s;
+        }
+
+        .course-input-wrap input:focus {
+            border-color: #0f172a;
+        }
+
+        .option-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .option-btn:hover,
+        .option-btn.selected {
+            background: #0f172a;
+            color: #fff;
+            border-color: #0f172a;
+        }
+
+        .option-btn i {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+            transition: background .2s;
+        }
+
+        .option-btn:hover i,
+        .option-btn.selected i {
+            background: rgba(255, 255, 255, .15);
+            color: #fff;
+        }
+
+        .wizard-nav {
+            display: flex;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .wizard-nav .btn-back {
+            flex: 0 0 auto;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+        }
+
+        .wizard-nav .btn-next {
+            flex: 1;
+            border: 0;
+            background: #0f172a;
+            color: #fff;
+            border-radius: 12px;
+            padding: 12px 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .wizard-nav .btn-next:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+
+        .wizard-nav .btn-next:not(:disabled):hover {
+            background: #1e293b;
+        }
+
+        /* Filter modal options */
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .filter-chip {
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1.5px solid #e2e8f0;
+            background: #fff;
             font-size: 13px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all .2s;
         }
 
-        .test-card .question-footer {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
+        .filter-chip.active {
+            background: #0f172a;
+            color: #fff;
+            border-color: #0f172a;
         }
 
-        /* BOTTOM NAV */
+        .filter-apply {
+            width: 100%;
+            border: 0;
+            background: #0f172a;
+            color: #fff;
+            border-radius: 14px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 8px;
+            cursor: pointer;
+        }
+
+        /* Bottom nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 68px;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, .92);
             backdrop-filter: blur(18px);
             border-top: 1px solid #e5eaf1;
             display: flex;
@@ -262,47 +756,23 @@
             z-index: 1050;
         }
 
-        .bottom-nav .nav-item {
+        .bottom-nav .bn-item {
             flex: 1;
             text-align: center;
             text-decoration: none;
             color: #64748b;
             font-size: 11px;
             font-weight: 600;
-            transition: .2s ease;
         }
 
-        .bottom-nav .nav-item i {
+        .bottom-nav .bn-item i {
             display: block;
             font-size: 21px;
             margin-bottom: 2px;
         }
 
-        .bottom-nav .nav-item.active {
+        .bottom-nav .bn-item.active {
             color: #0d6efd;
-        }
-
-        .bottom-nav .nav-item:hover {
-            color: #0d6efd;
-        }
-
-        /* MOBILE */
-        @media(max-width:768px) {
-            .page-header h1 {
-                font-size: 22px;
-            }
-
-            .group-title {
-                font-size: 15px;
-            }
-
-            .subject-nav {
-                top: 62px;
-            }
-
-            .group-count-badge {
-                display: none;
-            }
         }
     </style>
 </head>
@@ -324,7 +794,6 @@
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
-
         <div class="sidebar-user" id="sidebarUser">
             <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
             <div>
@@ -332,54 +801,36 @@
                 <div class="sidebar-user-sub">Pulse Go Member</div>
             </div>
         </div>
-
         <nav class="sidebar-nav">
             <div class="sidebar-section-label">Asosiy</div>
-            <a href="/" class="sidebar-link active" onclick="closeSidebar()">
-                <i class="bi bi-house-fill"></i> Asosiy
-            </a>
-            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-journals"></i> Tayyorlanish
-            </a>
-            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
-            </a>
-
+            <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
+                Tayyorlanish</a>
+            <a href="/tests/" class="sidebar-link active" onclick="closeSidebar()"><i
+                    class="bi bi-grid-3x3-gap-fill"></i> Test QBank</a>
             <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-book-half"></i> Online Darslar
-            </a>
-            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-collection-fill"></i> Kitoblar
-            </a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-body-text"></i> Anatomiya
-            </a>
-            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
-            </a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-flask-fill"></i> Kimyo
-            </a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-egg-fill"></i> Embriologiya
-            </a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
-            </a>
-
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online
+                Darslar</a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
+                Kitoblar</a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i>
+                Anatomiya</a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i>
+                Hujayra biologiyasi</a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i>
+                Kimyo</a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
+                Embriologiya</a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i>
+                Klinik holat</a>
             <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-person-fill"></i> Mening profilim
-            </a>
-            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
-            </a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
-            </a>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
+                profilim</a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i
+                    class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i>
+                Fikr bildirish</a>
         </nav>
-
         <div class="sidebar-footer">
             <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
                 style="background:#f0fdf4;color:#16a34a">
@@ -390,78 +841,167 @@
 
     <nav class="top-navbar">
         <div class="container">
-            <button class="btn-hamburger" onclick="openSidebar()">
-                <i class="bi bi-list"></i>
-            </button>
+            <button class="btn-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
             <a href="/" class="nav-logo">
-                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
-                Pulse Go
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
             </a>
             <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
         </div>
     </nav>
-    <!-- PAGE HEADER -->
-    <!-- PAGE HEADER -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Testlar</h1>
-            <p>Kerakli fan va mavzuni tanlang</p>
-        </div>
-    </section>
 
-    <!-- SUBJECT NAV -->
-    <div class="subject-nav">
-        <div class="container">
-            <div class="subject-pills" id="subject-pills">
-                <!-- Pills rendered from tests-data.js -->
+    <main class="container" style="padding-top:10px;padding-bottom:28px;">
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <label class="search-wrap">
+                <i class="bi bi-search"></i>
+                <input type="search" id="searchInput" placeholder="Test yoki fan qidiring..." autocomplete="off">
+            </label>
+
+            <button type="button" class="btn-find" id="btnFind">
+                <i class="bi bi-magic"></i> Kerakli testni topish
+            </button>
+
+            <button type="button" class="btn-filter" id="btnFilter" title="Filtr">
+                <i class="bi bi-sliders"></i>
+            </button>
+
+            <div class="view-toggle">
+                <button type="button" class="view-btn active" id="btnCardView" title="Kartochkalar">
+                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                </button>
+                <button type="button" class="view-btn" id="btnListView" title="Ro‘yxat">
+                    <i class="bi bi-list-ul"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Active filter chips -->
+        <div class="active-chips" id="activeChips"></div>
+
+        <div class="results-bar">
+            <h2>Barcha testlar</h2>
+            <span class="results-count" id="resultsCount">0 ta</span>
+        </div>
+
+        <div id="testsContainer" class="tests-grid"></div>
+        <div id="emptyState" class="empty-state" style="display:none;">
+            <i class="bi bi-inbox"></i>
+            <h3>Test topilmadi</h3>
+            <p>Boshqa filter yoki qidiruvni sinab ko‘ring.</p>
+        </div>
+    </main>
+
+    <!-- ===== WIZARD MODAL ===== -->
+    <div class="modal-overlay" id="wizardModal">
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-header">
+                <h3>Kerakli testni topish</h3>
+                <button type="button" class="modal-close" onclick="closeWizard()"><i class="bi bi-x-lg"></i></button>
+            </div>
+
+            <div class="wizard-progress" id="wizardProgress">
+                <span></span><span></span><span></span>
+            </div>
+
+            <!-- Step 1: Course -->
+            <div class="wizard-step active" data-step="1">
+                <div class="wizard-q">Nechanchi kursdasiz?</div>
+                <div class="wizard-hint">Raqam kiriting (masalan: 1, 2 yoki 3)</div>
+                <div class="course-input-wrap">
+                    <input type="number" id="courseInput" min="1" max="6" placeholder="Kurs" inputmode="numeric">
+                </div>
+                <div class="wizard-nav">
+                    <button type="button" class="btn-next" id="step1Next" disabled>Davom etish</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Subject -->
+            <div class="wizard-step" data-step="2">
+                <div class="wizard-q">Qaysi fan bo‘yicha test qidirmoqdasiz?</div>
+                <div class="wizard-hint">Faqat sizning kursingizga mos fanlar ko‘rsatiladi</div>
+                <div class="option-list" id="subjectOptions"></div>
+                <div class="wizard-nav">
+                    <button type="button" class="btn-back" onclick="wizardGo(1)">Orqaga</button>
+                    <button type="button" class="btn-next" id="step2Next" disabled>Davom etish</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Purpose -->
+            <div class="wizard-step" data-step="3">
+                <div class="wizard-q">Qaysi maqsadda test qidirmoqdasiz?</div>
+                <div class="wizard-hint">Birini tanlang</div>
+                <div class="option-list" id="purposeOptions">
+                    <button type="button" class="option-btn" data-purpose="yn">
+                        <i class="bi bi-image"></i> YN (Yakuniy / rasmli)
+                    </button>
+                    <button type="button" class="option-btn" data-purpose="grant">
+                        <i class="bi bi-trophy"></i> Grant / Grand exam
+                    </button>
+                    <button type="button" class="option-btn" data-purpose="cases">
+                        <i class="bi bi-clipboard2-pulse"></i> Clinical cases
+                    </button>
+                    <button type="button" class="option-btn" data-purpose="all">
+                        <i class="bi bi-grid"></i> Shunchaki barini ko‘rish
+                    </button>
+                </div>
+                <div class="wizard-nav">
+                    <button type="button" class="btn-back" onclick="wizardGo(2)">Orqaga</button>
+                    <button type="button" class="btn-next" id="step3Next" disabled>Natijani ko‘rish</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- TEST GROUPS -->
-    <section class="tests-section">
-        <div class="container" id="groups-container">
-            <!-- Groups rendered from tests-data.js -->
-        </div>
-    </section>
+    <!-- ===== FILTER MODAL ===== -->
+    <div class="modal-overlay" id="filterModal">
+        <div class="modal-sheet">
+            <div class="modal-handle"></div>
+            <div class="modal-header">
+                <h3>Filtrlar</h3>
+                <button type="button" class="modal-close" onclick="closeFilterModal()"><i
+                        class="bi bi-x-lg"></i></button>
+            </div>
 
-    <!-- BOTTOM NAVIGATION FOOTER -->
+            <div class="filter-section">
+                <div class="filter-section-title">Fan</div>
+                <div class="filter-options" id="filterSubjects"></div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-section-title">Maqsad</div>
+                <div class="filter-options" id="filterPurposes">
+                    <button type="button" class="filter-chip active" data-purpose="all">Barchasi</button>
+                    <button type="button" class="filter-chip" data-purpose="yn">YN</button>
+                    <button type="button" class="filter-chip" data-purpose="grant">Grant</button>
+                    <button type="button" class="filter-chip" data-purpose="cases">Cases</button>
+                    <button type="button" class="filter-chip" data-purpose="topics">Mavzular bo‘yicha</button>
+                </div>
+            </div>
+
+            <button type="button" class="filter-apply" onclick="applyFilters()">Qo‘llash</button>
+        </div>
+    </div>
+
     <nav class="bottom-nav d-lg-none">
-        <a href="../" class="bn-item ">
-            <i class="bi bi-house-fill"></i>
-            <span>Asosiy</span>
-        </a>
-        <a href="/tests/" class="bn-item active">
-            <i class="bi bi-grid-3x3-gap-fill"></i>
-            <span>QBank</span>
-        </a>
-        <a href="/preparation/" class="bn-item bn-fab">
-            <span class="bn-fab-btn"><i class="bi bi-plus-lg"></i></span>
-            <span>Tayyorlanish</span>
-        </a>
-        <a href="/lessons" class="bn-item">
-            <i class="bi bi-book-half"></i>
-            <span>Darslar</span>
-        </a>
-        <a href="../profile" class="bn-item">
-            <i class="bi bi-person-fill"></i>
-            <span>Profil</span>
-        </a>
+        <a href="../" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+        <a href="/tests/" class="bn-item active"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
+        <a href="/preparation/" class="bn-item"><i class="bi bi-plus-lg"></i><span>Tayyorlanish</span></a>
+        <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+        <a href="../profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
     </nav>
 
-
-    <!-- Test data -->
+    <script src="./welcomerdata.js"></script>
+    <script src="./welcomer.js"></script>
     <script src="tests-data.js"></script>
-
-    <!-- Render groups -->
     <script>
-
+        // ---------- Sidebar ----------
         function openSidebar() {
             document.getElementById('sidebar').classList.add('open');
             document.getElementById('sidebarOverlay').classList.add('show');
             document.body.style.overflow = 'hidden';
         }
-
         function closeSidebar() {
             document.getElementById('sidebar').classList.remove('open');
             document.getElementById('sidebarOverlay').classList.remove('show');
@@ -469,134 +1009,335 @@
         }
 
         const bgColors = {
-            danger: '#dc2626',
-            success: '#16a34a',
-            warning: '#d97706',
-            info: '#0891b2',
-            primary: '#2563eb',
-            dark: '#1f2937'
+            danger: '#dc2626', success: '#16a34a', warning: '#d97706',
+            info: '#0891b2', primary: '#2563eb', dark: '#1f2937'
         };
 
-        function renderPills() {
-            const container = document.getElementById('subject-pills');
-            container.innerHTML = testGroups.map(group => `
-                <a href="#group-${group.id}" class="subject-pill" data-group="${group.id}">
-                    <i class="bi ${group.icon}"></i>
-                    ${group.title}
-                </a>
-            `).join('');
-        }
+        // ---------- State ----------
+        let currentView = 'card';
+        let searchQuery = '';
+        let filterSubject = 'all';
+        let filterPurpose = 'all';
+        let wizard = { course: null, subject: null, purpose: null, step: 1 };
 
-        function renderGroups() {
-            const container = document.getElementById('groups-container');
-
-            container.innerHTML = testGroups.map(group => `
-                <div class="group-section" id="group-${group.id}" data-group="${group.id}">
-                    <div class="group-header" onclick="openGroup('${group.id}')">
-                        <div class="group-icon" style="background: ${bgColors[group.color] || bgColors.primary}">
-                            <i class="bi ${group.icon}"></i>
-                        </div>
-                        <div class="group-title-wrap">
-                            <div class="group-title">${group.title}</div>
-                            <div class="group-total">
-                                <i class="bi bi-ui-checks-grid"></i>
-                                ${group.totalQuestions || 0} ta savol
-                            </div>
-                        </div>
-                        <span class="group-count-badge">
-                            <i class="bi bi-ui-checks-grid"></i>
-                            ${group.totalQuestions || 0}
-                        </span>
-                        <i class="bi bi-chevron-down group-chevron"></i>
-                    </div>
-
-                    <div class="group-body">
-                        <div class="row g-3">
-                            ${group.tests.map(test => `
-                                <div class="col-6 col-md-3">
-                                    <a href="${test.url}" class="test-card">
-                                        <div class="test-card h-100">
-                                            <div class="test-icon bg-${group.color}-subtle text-${group.color}">
-                                                <i class="bi bi-journal-medical"></i>
-                                            </div>
-                                            <div class="test-title">${test.title}</div>
-                                            <div class="question-footer">${test.count}</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function openGroup(id) {
-            const sections = document.querySelectorAll('.group-section');
-            const target = document.getElementById('group-' + id);
-            const isAlreadyOpen = target.classList.contains('open');
-
-            sections.forEach(section => section.classList.remove('open'));
-
-            if (!isAlreadyOpen) {
-                target.classList.add('open');
-            }
-
-            updateActivePill();
-        }
-
-        function updateActivePill() {
-            const openSection = document.querySelector('.group-section.open');
-            const pills = document.querySelectorAll('.subject-pill');
-
-            pills.forEach(pill => {
-                const isActive = openSection && pill.dataset.group === openSection.dataset.group;
-                pill.classList.toggle('active', isActive);
-            });
-        }
-
-        // Smooth scroll + open group when clicking a pill
-        document.getElementById('subject-pills').addEventListener('click', function (e) {
-            const pill = e.target.closest('.subject-pill');
-            if (!pill) return;
-            e.preventDefault();
-
-            const id = pill.dataset.group;
-            openGroup(id);
-
-            const section = document.getElementById('group-' + id);
-            const navOffset = document.querySelector('.subject-nav').offsetHeight + 70;
-            const top = section.getBoundingClientRect().top + window.scrollY - navOffset;
-
-            window.scrollTo({ top, behavior: 'smooth' });
-        });
-
-        // Highlight active pill on scroll
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('.group-section');
-            const pills = document.querySelectorAll('.subject-pill');
-            const navOffset = document.querySelector('.subject-nav').offsetHeight + 80;
-
-            let current = null;
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= navOffset && rect.bottom > navOffset) {
-                    current = section.dataset.group;
-                }
-            });
-
-            if (current) {
-                pills.forEach(pill => {
-                    pill.classList.toggle('active', pill.dataset.group === current);
+        // ---------- Data helpers ----------
+        function getAllTests() {
+            const items = [];
+            (window.testGroups || []).forEach(g => {
+                (g.tests || []).forEach(t => {
+                    items.push({
+                        ...t,
+                        groupId: g.id,
+                        groupTitle: g.title,
+                        groupIcon: g.icon,
+                        groupColor: g.color || 'primary',
+                        course: g.course ?? 0,
+                        tags: t.tags || []
+                    });
                 });
+            });
+            return items;
+        }
+
+        function matchesPurpose(test, purpose) {
+            if (!purpose || purpose === 'all') return true;
+            const tags = (test.tags || []).map(x => x.toLowerCase());
+            const blob = (test.title + ' ' + test.id + ' ' + (test.url || '')).toLowerCase();
+
+            if (purpose === 'yn') return tags.includes('yn') || tags.includes('yakuniy') || blob.includes('yn') || blob.includes('yakuniy') || blob.includes('rasmli');
+            if (purpose === 'grant') return tags.includes('grant') || tags.includes('grand') || blob.includes('grant') || blob.includes('grand');
+            if (purpose === 'cases') return tags.includes('cases') || tags.includes('case') || blob.includes('case') || blob.includes('caselar');
+            if (purpose === 'topics') return tags.includes('topics') || tags.includes('mavzu') || blob.includes('mavzu') || blob.includes('bytopics') || blob.includes("bo'yicha") || blob.includes('bo‘yicha');
+            return true;
+        }
+
+        function getFilteredTests() {
+            let list = getAllTests();
+
+            if (filterSubject !== 'all') {
+                list = list.filter(t => t.groupId === filterSubject);
             }
-        }, { passive: true });
 
-        renderPills();
-        renderGroups();
-        updateActivePill();
+            // Purpose: if exact match empty → still show all of that subject
+            const withPurpose = list.filter(t => matchesPurpose(t, filterPurpose));
+            if (withPurpose.length > 0) {
+                list = withPurpose;
+            }
+            // else keep subject-only list (fallback)
+
+            if (searchQuery.trim()) {
+                const q = searchQuery.trim().toLowerCase();
+                list = list.filter(t =>
+                    t.title.toLowerCase().includes(q) ||
+                    t.groupTitle.toLowerCase().includes(q) ||
+                    (t.count || '').toLowerCase().includes(q)
+                );
+            }
+            return list;
+        }
+
+        // ---------- Render cards ----------
+        function coverStyle(test) {
+            if (test.img) {
+                return `background-image:url('${test.img}');`;
+            }
+            const c = bgColors[test.groupColor] || bgColors.primary;
+            return `background:linear-gradient(135deg, ${c}, #0f172a);`;
+        }
+
+        function renderTests() {
+            const container = document.getElementById('testsContainer');
+            const empty = document.getElementById('emptyState');
+            const countEl = document.getElementById('resultsCount');
+            const list = getFilteredTests();
+
+            countEl.textContent = list.length + ' ta';
+            renderChips();
+
+            if (!list.length) {
+                container.innerHTML = '';
+                container.style.display = 'none';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+            container.style.display = '';
+
+            if (currentView === 'card') {
+                container.className = 'tests-grid';
+                container.innerHTML = list.map(t => `
+          <a href="${t.url}" class="product-card">
+            <div class="product-cover" style="${coverStyle(t)}">
+              <span class="product-badge">${t.groupTitle}</span>
+              ${!t.img ? `<div class="product-cover-fallback"><i class="bi ${t.groupIcon || 'bi-journal-medical'}"></i></div>` : ''}
+            </div>
+            <div class="product-body">
+              <div class="product-subject">${t.groupTitle}</div>
+              <div class="product-title">${t.title}</div>
+              <div class="product-meta">
+                <span class="product-count">${t.count || '—'}</span>
+                <span class="product-cta"><i class="bi bi-arrow-right"></i></span>
+              </div>
+            </div>
+          </a>
+        `).join('');
+            } else {
+                container.className = 'tests-list';
+                container.innerHTML = list.map(t => `
+          <a href="${t.url}" class="product-row">
+            <div class="product-row-thumb" style="${coverStyle(t)}">
+              ${!t.img ? `<i class="bi ${t.groupIcon || 'bi-journal-medical'}"></i>` : ''}
+            </div>
+            <div class="product-row-body">
+              <div class="product-row-subject">${t.groupTitle}</div>
+              <div class="product-row-title">${t.title}</div>
+            </div>
+            <span class="product-row-count">${t.count || '—'}</span>
+            <i class="bi bi-chevron-right" style="color:#94a3b8"></i>
+          </a>
+        `).join('');
+            }
+        }
+
+        function renderChips() {
+            const el = document.getElementById('activeChips');
+            const chips = [];
+            if (filterSubject !== 'all') {
+                const g = (window.testGroups || []).find(x => x.id === filterSubject);
+                chips.push({ key: 'subject', label: g ? g.title : filterSubject });
+            }
+            if (filterPurpose !== 'all') {
+                const labels = { yn: 'YN', grant: 'Grant', cases: 'Cases', topics: 'Mavzular' };
+                chips.push({ key: 'purpose', label: labels[filterPurpose] || filterPurpose });
+            }
+            el.innerHTML = chips.map(c => `
+        <span class="chip">
+          ${c.label}
+          <button type="button" onclick="clearChip('${c.key}')" aria-label="Olib tashlash">×</button>
+        </span>
+      `).join('');
+        }
+
+        function clearChip(key) {
+            if (key === 'subject') filterSubject = 'all';
+            if (key === 'purpose') filterPurpose = 'all';
+            document.getElementById('btnFilter').classList.toggle('active', filterSubject !== 'all' || filterPurpose !== 'all');
+            renderTests();
+        }
+
+        // ---------- Wizard ----------
+        function openWizard() {
+            wizard = { course: null, subject: null, purpose: null, step: 1 };
+            document.getElementById('courseInput').value = '';
+            document.getElementById('step1Next').disabled = true;
+            document.getElementById('step2Next').disabled = true;
+            document.getElementById('step3Next').disabled = true;
+            document.querySelectorAll('#purposeOptions .option-btn').forEach(b => b.classList.remove('selected'));
+            wizardGo(1);
+            document.getElementById('wizardModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeWizard() {
+            document.getElementById('wizardModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function wizardGo(step) {
+            wizard.step = step;
+            document.querySelectorAll('.wizard-step').forEach(s => {
+                s.classList.toggle('active', Number(s.dataset.step) === step);
+            });
+            document.querySelectorAll('#wizardProgress span').forEach((s, i) => {
+                s.classList.toggle('done', i < step);
+            });
+
+            if (step === 2) buildSubjectOptions();
+        }
+
+        function buildSubjectOptions() {
+            const course = wizard.course;
+            const groups = (window.testGroups || []).filter(g =>
+                (g.tests && g.tests.length) && (g.course === 0 || g.course === course || course === null)
+            );
+            const box = document.getElementById('subjectOptions');
+            box.innerHTML = groups.map(g => `
+        <button type="button" class="option-btn" data-id="${g.id}">
+          <i class="bi ${g.icon}"></i> ${g.title}
+        </button>
+      `).join('') || '<p style="color:#94a3b8;font-size:14px">Bu kurs uchun fan topilmadi. Barcha fanlar ko‘rsatiladi.</p>';
+
+            // If none for course, show all with tests
+            if (!groups.length) {
+                const all = (window.testGroups || []).filter(g => g.tests && g.tests.length);
+                box.innerHTML = all.map(g => `
+          <button type="button" class="option-btn" data-id="${g.id}">
+            <i class="bi ${g.icon}"></i> ${g.title}
+          </button>
+        `).join('');
+            }
+
+            box.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    box.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    wizard.subject = btn.dataset.id;
+                    document.getElementById('step2Next').disabled = false;
+                });
+            });
+        }
+
+        // ---------- Filter modal ----------
+        function openFilterModal() {
+            const box = document.getElementById('filterSubjects');
+            const groups = (window.testGroups || []).filter(g => g.tests && g.tests.length);
+            box.innerHTML = `
+        <button type="button" class="filter-chip ${filterSubject === 'all' ? 'active' : ''}" data-subject="all">Barchasi</button>
+        ${groups.map(g => `
+          <button type="button" class="filter-chip ${filterSubject === g.id ? 'active' : ''}" data-subject="${g.id}">${g.title}</button>
+        `).join('')}
+      `;
+            box.querySelectorAll('.filter-chip').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    box.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('#filterPurposes .filter-chip').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.purpose === filterPurpose);
+                btn.onclick = () => {
+                    document.querySelectorAll('#filterPurposes .filter-chip').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                };
+            });
+
+            document.getElementById('filterModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeFilterModal() {
+            document.getElementById('filterModal').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        function applyFilters() {
+            const sub = document.querySelector('#filterSubjects .filter-chip.active');
+            const pur = document.querySelector('#filterPurposes .filter-chip.active');
+            filterSubject = sub ? sub.dataset.subject : 'all';
+            filterPurpose = pur ? pur.dataset.purpose : 'all';
+            document.getElementById('btnFilter').classList.toggle('active', filterSubject !== 'all' || filterPurpose !== 'all');
+            closeFilterModal();
+            renderTests();
+        }
+
+        // ---------- Init ----------
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTests();
+
+            document.getElementById('searchInput').addEventListener('input', e => {
+                searchQuery = e.target.value;
+                renderTests();
+            });
+
+            document.getElementById('btnFind').addEventListener('click', openWizard);
+            document.getElementById('btnFilter').addEventListener('click', openFilterModal);
+
+            document.getElementById('btnCardView').addEventListener('click', () => {
+                currentView = 'card';
+                document.getElementById('btnCardView').classList.add('active');
+                document.getElementById('btnListView').classList.remove('active');
+                renderTests();
+            });
+            document.getElementById('btnListView').addEventListener('click', () => {
+                currentView = 'list';
+                document.getElementById('btnListView').classList.add('active');
+                document.getElementById('btnCardView').classList.remove('active');
+                renderTests();
+            });
+
+            // Wizard step 1
+            const courseInput = document.getElementById('courseInput');
+            courseInput.addEventListener('input', () => {
+                const v = parseInt(courseInput.value, 10);
+                const ok = v >= 1 && v <= 6;
+                document.getElementById('step1Next').disabled = !ok;
+                if (ok) wizard.course = v;
+            });
+            document.getElementById('step1Next').addEventListener('click', () => {
+                if (wizard.course) wizardGo(2);
+            });
+
+            // Step 2 next
+            document.getElementById('step2Next').addEventListener('click', () => {
+                if (wizard.subject) wizardGo(3);
+            });
+
+            // Step 3 purpose
+            document.querySelectorAll('#purposeOptions .option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#purposeOptions .option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    wizard.purpose = btn.dataset.purpose;
+                    document.getElementById('step3Next').disabled = false;
+                });
+            });
+            document.getElementById('step3Next').addEventListener('click', () => {
+                filterSubject = wizard.subject || 'all';
+                filterPurpose = wizard.purpose || 'all';
+                document.getElementById('btnFilter').classList.toggle('active', true);
+                closeWizard();
+                renderTests();
+                // scroll to results
+                document.getElementById('testsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            // Close modals on overlay click
+            document.getElementById('wizardModal').addEventListener('click', e => {
+                if (e.target.id === 'wizardModal') closeWizard();
+            });
+            document.getElementById('filterModal').addEventListener('click', e => {
+                if (e.target.id === 'filterModal') closeFilterModal();
+            });
+        });
     </script>
-
 </body>
 
 </html>
