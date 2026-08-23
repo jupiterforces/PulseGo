@@ -53,11 +53,11 @@ window.testGroups = [
     tests: [
       {
         id: "anatomy-all",
-        title: "Barcha anatomiya testlari",
+        title: "Mavzular bo'yicha testlar",
         count: "454 ta",
         url: "/anatomy",
         img: "./assets/anat1.png",
-        tags: ["all"],
+        tags: ["all", "topics", "mavzu"],
       },
       {
         id: "anatomy-yn",
@@ -85,6 +85,14 @@ window.testGroups = [
         url: "/anatomy/YNquestions.html",
         img: "/assets/img/tests/chem-topics.jpg",
         tags: ["yn", "yakuniy"],
+      },
+      {
+        id: "anatomy3-all",
+        title: "Mavzular bo'yicha testlar",
+        count: "43 ta",
+        url: "/anatomy/a3.html",
+        img: "./assets/anat1.png",
+        tags: ["all", "topics", "mavzu"],
       },
     ],
   },
@@ -206,7 +214,7 @@ window.testGroups = [
         id: "physiology-uw",
         title: "Caselar Uw",
         count: "276 ta",
-        url: "/physeology/u.html",
+        url: "/physeology/U.html",
         img: "/assets/img/tests/physiology-topics.jpg",
         tags: ["cases", "u"],
       },
