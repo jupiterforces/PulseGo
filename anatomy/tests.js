@@ -3376,28 +3376,1567 @@ window.TEST_QUESTIONS = {
       correct: 0,
     },
   ],
+
+  // function shuffle(array) {
+  //   return [...array].sort(() => Math.random() - 0.5);
+  // }
+
+  // function getRandomTest(questions, n = "all") {
+  //   const shuffledQuestions =
+  //     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
+
+  //   return shuffledQuestions.map((q) => {
+  //     const shuffledAnswers = shuffle(q.a);
+
+  //     return {
+  //       q: q.q,
+  //       photo: q.photo || null,
+  //       a: shuffledAnswers,
+  //       correct: shuffledAnswers.indexOf(q.a[q.correct]),
+  //     };
+  //   });
+  // }
+
+  // window.getRandomTest = getRandomTest;
+
+  // console.log("🔥 TESTS.JS getRandomTest:", typeof window.getRandomTest);
+  axillabreast: [
+    {
+      q: "What is the structure that extends between the coracoid process, clavicle, and thoracic wall and envelops the subclavius and pectoralis minor muscles?",
+      a: [
+        "Axillary fascia",
+        "Clavipectoral fascia",
+        "Pectoral fascia",
+        "Axillary sheath",
+        "Deep cervical fascia",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which ligament extends between the coracoid process and the first rib?",
+      a: [
+        "Costocoracoid ligament",
+        "Coracoclavicular ligament",
+        "Coracoacromial ligament",
+        "Superior transverse scapular ligament",
+        "Costoclavicular ligament",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "The cephalic vein, thoracoacromial artery, and lateral pectoral nerve pierce which structure in the clavipectoral fascia?",
+      a: [
+        "Axillary fascia",
+        "Clavipectoral fascia",
+        "Pectoral fascia",
+        "Axillary sheath",
+        "Suspensory fascia",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which structure is a tubular fascial prolongation that encloses the axillary vessels and brachial plexus?",
+      a: [
+        "Pectoral fascia",
+        "Axillary fascia",
+        "Axillary sheath",
+        "Clavipectoral fascia",
+        "Cervical sheath",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Which structure is a pyramid-shaped space located between the upper thoracic wall and the arm?",
+      a: [
+        "Cubital fossa",
+        "Axilla",
+        "Deltopectoral triangle",
+        "Infraclavicular space",
+        "Scapular space",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "What forms the medial wall of the axilla?",
+      a: [
+        "Pectoralis major and minor",
+        "Subscapularis and teres major",
+        "Upper ribs, intercostal muscles, and serratus anterior",
+        "Intertubercular groove of humerus",
+        "Clavicle and subclavius",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "What forms the lateral wall of the axilla?",
+      a: [
+        "Serratus anterior",
+        "Pectoralis minor",
+        "Subscapularis",
+        "Intertubercular groove of the humerus",
+        "First and second ribs",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Which muscles form the posterior wall of the axilla?",
+      a: [
+        "Pectoralis major, pectoralis minor, and subclavius",
+        "Subscapularis, teres major, and latissimus dorsi",
+        "Serratus anterior and intercostal muscles",
+        "Deltoid, teres minor, and supraspinatus",
+        "Biceps brachii and coracobrachialis",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which structures form the anterior wall of the axilla?",
+      a: [
+        "Pectoralis major, pectoralis minor, and clavipectoral fascia",
+        "Subscapularis, teres major, and latissimus dorsi",
+        "Serratus anterior and upper ribs",
+        "Deltoid and coracobrachialis",
+        "Subclavius and serratus anterior",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "What forms the base of the axilla?",
+      a: [
+        "Clavicle and first rib",
+        "Axillary fascia and skin",
+        "Pectoralis major and minor",
+        "Serratus anterior and ribs",
+        "Subscapularis and latissimus dorsi",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "What forms the apex of the axilla?",
+      a: [
+        "Interval between clavicle, first rib, and upper border of scapula",
+        "Interval between second rib, sternum, and clavicle",
+        "Space between humerus, scapula, and clavicle",
+        "Interval between pectoralis major and minor",
+        "Space between first and second ribs",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Which axillary lymph nodes receive lymph from the lateral, anterior, and posterior groups and drain into the apical nodes?",
+      a: [
+        "Pectoral nodes",
+        "Subscapular nodes",
+        "Central nodes",
+        "Brachial nodes",
+        "Parasternal nodes",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Which axillary lymph nodes receive lymph from the upper limb and drain into the central nodes?",
+      a: [
+        "Pectoral nodes",
+        "Brachial (lateral) nodes",
+        "Subscapular nodes",
+        "Apical nodes",
+        "Parasternal nodes",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which axillary lymph nodes receive lymph from the posterior thoracic wall and posterior aspect of the shoulder and drain into the central nodes?",
+      a: [
+        "Pectoral nodes",
+        "Brachial nodes",
+        "Central nodes",
+        "Subscapular nodes",
+        "Apical nodes",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Which axillary lymph nodes receive lymph from the anterior and lateral thoracic walls, including the breast?",
+      a: [
+        "Pectoral nodes",
+        "Subscapular nodes",
+        "Brachial nodes",
+        "Central nodes",
+        "Apical nodes",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Which lymph nodes receive lymph from all axillary node groups and may also receive lymph from the breast before draining into the subclavian trunk?",
+      a: [
+        "Central nodes",
+        "Pectoral nodes",
+        "Brachial nodes",
+        "Apical nodes",
+        "Subscapular nodes",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "The breast typically extends vertically from which ribs?",
+      a: [
+        "First to fourth ribs",
+        "Second to sixth ribs",
+        "Third to seventh ribs",
+        "Fourth to eighth ribs",
+        "Fifth to ninth ribs",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Into which quadrants is the breast divided?",
+      a: [
+        "Superior, inferior, anterior, posterior",
+        "Medial, lateral, superior, inferior",
+        "Upper, lower, lateral, and medial",
+        "Anterior, posterior, medial, and lateral",
+        "Central, superior, inferior, and axillary",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "What structures support the breast?",
+      a: [
+        "Costocoracoid ligaments",
+        "Suspensory ligaments of Cooper",
+        "Coracoclavicular ligaments",
+        "Intercostal membranes",
+        "Clavipectoral ligaments",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "At approximately which intercostal space is the nipple normally located?",
+      a: [
+        "First intercostal space",
+        "Second intercostal space",
+        "Third intercostal space",
+        "Fourth intercostal space",
+        "Sixth intercostal space",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "What is the ring of pigmented skin surrounding the nipple called?",
+      a: [
+        "Lactiferous sinus",
+        "Areola",
+        "Mammary papilla",
+        "Retromammary space",
+        "Axillary tail",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "The medial mammary branches supplying the breast arise from which artery?",
+      a: [
+        "Lateral thoracic artery",
+        "Thoracoacromial artery",
+        "Internal thoracic artery",
+        "Posterior circumflex humeral artery",
+        "Superior thoracic artery",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "The lateral mammary branches supplying the breast arise mainly from which artery?",
+      a: [
+        "Internal thoracic artery",
+        "Lateral thoracic artery",
+        "Superior thoracic artery",
+        "Thoracoacromial artery",
+        "Posterior intercostal artery",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "The pectoral branch supplying the breast arises from which vessel?",
+      a: [
+        "Internal thoracic artery",
+        "Lateral thoracic artery",
+        "Thoracoacromial trunk",
+        "Subscapular artery",
+        "Superior thoracic artery",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "The lateral cutaneous branches supplying the breast arise from which arteries?",
+      a: [
+        "Anterior intercostal arteries",
+        "Posterior intercostal arteries",
+        "Internal thoracic arteries",
+        "Thoracoacromial arteries",
+        "Lateral thoracic arteries",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "The breast is innervated primarily by the anterior and lateral cutaneous branches of which nerves?",
+      a: [
+        "First to fourth intercostal nerves",
+        "Second to sixth intercostal nerves",
+        "Third to seventh intercostal nerves",
+        "Fifth to eighth intercostal nerves",
+        "Cervical spinal nerves",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "What is the condition in which a person has more than one pair of breasts?",
+      a: ["Polythelia", "Amastia", "Polymastia", "Athelia", "Gynecomastia"],
+      correct: 2,
+    },
+
+    {
+      q: "What is the condition in which a person has more than one pair of nipples?",
+      a: ["Polymastia", "Polythelia", "Athelia", "Amastia", "Mastitis"],
+      correct: 1,
+    },
+
+    {
+      q: "What is the absence of breasts called?",
+      a: ["Athelia", "Amastia", "Polymastia", "Polythelia", "Hypomastia"],
+      correct: 1,
+    },
+
+    {
+      q: "What is the absence of nipples called?",
+      a: ["Athelia", "Amastia", "Polymastia", "Polythelia", "Mastoptosis"],
+      correct: 0,
+    },
+
+    {
+      q: "The mammary gland is a modified sweat gland located primarily within which tissue?",
+      a: [
+        "Deep fascia",
+        "Superficial fascia containing fat",
+        "Retromammary space",
+        "Pectoralis major",
+        "Clavipectoral fascia",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which part of the mammary gland extends superolaterally through the deep fascia to lie in the axilla?",
+      a: [
+        "Lactiferous sinus",
+        "Retromammary process",
+        "Axillary tail",
+        "Mammary papilla",
+        "Areolar process",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "The mammary gland is separated from the deep fascia by which structure?",
+      a: [
+        "Axillary sheath",
+        "Retromammary space",
+        "Clavipectoral fascia",
+        "Lactiferous sinus",
+        "Cooper's ligament",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which structure allows the breast some degree of movement over the pectoralis major?",
+      a: [
+        "Suspensory ligaments",
+        "Lactiferous ducts",
+        "Retromammary space",
+        "Axillary tail",
+        "Areola",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Approximately how many lobes of glandular tissue does the mammary gland contain?",
+      a: ["5–10", "10–15", "15–20", "20–25", "25–30"],
+      correct: 2,
+    },
+
+    {
+      q: "Each lobe of the mammary gland opens onto the nipple through which structure?",
+      a: [
+        "Lactiferous sinus",
+        "Lactiferous duct",
+        "Mammary ductule",
+        "Areolar duct",
+        "Retromammary duct",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Each lactiferous duct enlarges to form which structure that serves as a reservoir for milk during lactation?",
+      a: [
+        "Lactiferous sinus",
+        "Mammary sinus",
+        "Areolar sinus",
+        "Retromammary space",
+        "Mammary ampulla",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Which structure serves as a reservoir for milk during lactation?",
+      a: [
+        "Lactiferous duct",
+        "Lactiferous sinus",
+        "Retromammary space",
+        "Axillary tail",
+        "Areola",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which procedure is commonly used for early detection of breast cancer?",
+      a: [
+        "Mammography",
+        "Mastectomy",
+        "Lumpectomy",
+        "Sentinel node biopsy",
+        "Thoracotomy",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Which procedure is used to determine the extent of cancer spread by identifying the first lymph node receiving lymphatic drainage from the tumor?",
+      a: [
+        "Mammography",
+        "Radical mastectomy",
+        "Sentinel node biopsy",
+        "Lumpectomy",
+        "Axillary dissection",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "What are the first lymph nodes to which cancerous cells are likely to spread from a primary tumor called?",
+      a: [
+        "Central lymph nodes",
+        "Sentinel lymph nodes",
+        "Apical lymph nodes",
+        "Parasternal lymph nodes",
+        "Pectoral lymph nodes",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "In which quadrant of the breast does the greatest proportion of breast cancers occur?",
+      a: [
+        "Upper medial quadrant",
+        "Lower medial quadrant",
+        "Lower lateral quadrant",
+        "Upper lateral quadrant",
+        "Central quadrant",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "In breast cancer, attachment and shortening of which structures may produce skin dimpling?",
+      a: [
+        "Lactiferous ducts",
+        "Suspensory ligaments of Cooper",
+        "Intercostal muscles",
+        "Clavipectoral fascia",
+        "Pectoralis minor",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "What is the term for the orange-peel appearance of the skin caused by obstruction of subcutaneous lymphatics in advanced inflammatory breast cancer?",
+      a: [
+        "Peau d'orange",
+        "Polythelia",
+        "Mastoptosis",
+        "Athelia",
+        "Retromammary sign",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Breast cancer may invade the deep fascia of which muscle, causing contraction of the muscle and upward movement of the breast?",
+      a: [
+        "Pectoralis minor",
+        "Serratus anterior",
+        "Pectoralis major",
+        "Subclavius",
+        "Latissimus dorsi",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "What procedure involves removal of the entire breast, pectoralis major and minor muscles, axillary lymph nodes, axillary fascia, and part of the thoracic wall?",
+      a: [
+        "Simple mastectomy",
+        "Lumpectomy",
+        "Modified radical mastectomy",
+        "Radical mastectomy",
+        "Partial mastectomy",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "What is the removal of the breast together with axillary lymph nodes called?",
+      a: [
+        "Lumpectomy",
+        "Simple mastectomy",
+        "Modified radical mastectomy",
+        "Radical mastectomy",
+        "Segmental mastectomy",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "What procedure involves removal of only the palpable mass in carcinoma of the breast?",
+      a: [
+        "Radical mastectomy",
+        "Lumpectomy",
+        "Modified radical mastectomy",
+        "Total mastectomy",
+        "Axillary dissection",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Which nerves may be injured during a radical mastectomy?",
+      a: [
+        "Median and ulnar nerves",
+        "Axillary and musculocutaneous nerves",
+        "Long thoracic and thoracodorsal nerves",
+        "Radial and median nerves",
+        "Suprascapular and axillary nerves",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Which nerves can be injured during radical mastectomy?",
+      a: [
+        "Long thoracic and thoracodorsal nerves",
+        "Median and ulnar nerves",
+        "Musculocutaneous and radial nerves",
+        "Axillary and suprascapular nerves",
+        "Phrenic and vagus nerves",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "The lateral quadrants of the breast primarily drain lymph into which nodes?",
+      a: [
+        "Parasternal nodes",
+        "Apical nodes",
+        "Axillary nodes",
+        "Subscapular nodes",
+        "Cervical nodes",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "The medial quadrants of the breast primarily drain lymph into which nodes?",
+      a: [
+        "Axillary nodes",
+        "Parasternal nodes",
+        "Central nodes",
+        "Brachial nodes",
+        "Subscapular nodes",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Approximately what percentage of lymph from the breast drains primarily to the axillary lymph nodes?",
+      a: ["25%", "40%", "50%", "75%", "90%"],
+      correct: 3,
+    },
+  ],
+  axillabreastuz: [
+    {
+      q: "Korakoid o'simta, o'mrov suyagi va ko'krak devori orasida cho'zilib, subklavius va kichik ko'krak mushaklarini o'rab turuvchi struktura qanday ataladi?",
+      a: [
+        "Qo'ltiq fassiyasi",
+        "Klavipektoral fassiya",
+        "Ko'krak fassiyasi",
+        "Qo'ltiq qini",
+        "Chuqur bo'yin fassiyasi",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Korakoid o'simta bilan birinchi qovurg'a orasida cho'zilgan bog'lam qaysi?",
+      a: [
+        "Kostokorakoid bog'lami",
+        "Korakoklavikulyar bog'lam",
+        "Korakoakromial bog'lam",
+        "Yuqori ko'ndalang skapulyar bog'lam",
+        "Kostoklavikulyar bog'lam",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Vena sefalika, torakoakromial arteriya va lateral pektoral nerv klavipektoral fassiyaning qaysi qismini teshib o'tadi?",
+      a: [
+        "Qo'ltiq fassiyasi",
+        "Klavipektoral fassiya",
+        "Ko'krak fassiyasi",
+        "Qo'ltiq qini",
+        "Osilma fassiya",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Qo'ltiq tomirlari va pleksus brakialisni o'rab turuvchi naysimon fassial davomi qaysi struktura?",
+      a: [
+        "Ko'krak fassiyasi",
+        "Qo'ltiq fassiyasi",
+        "Qo'ltiq qini",
+        "Klavipektoral fassiya",
+        "Bo'yin qini",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Yuqori ko'krak devori bilan qo'l orasida joylashgan piramida shaklidagi bo'shliq qaysi?",
+      a: [
+        "Kubital chuqurcha",
+        "Qo'ltiq osti (aksilla)",
+        "Deltopektoral uchburchak",
+        "Infraklavikulyar bo'shliq",
+        "Skapulyar bo'shliq",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Qo'ltiq ostining medial devorini nima hosil qiladi?",
+      a: [
+        "Katta va kichik ko'krak mushaklari",
+        "Subskapulyar va katta yumaloq mushak",
+        "Yuqori qovurg'alar, qovurg'alararo mushaklar va oldingi arrasimon mushak",
+        "Yelka suyagining intertuberkulyar egati",
+        "O'mrov suyagi va subklavius",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Qo'ltiq ostining lateral devorini nima hosil qiladi?",
+      a: [
+        "Oldingi arrasimon mushak",
+        "Kichik ko'krak mushagi",
+        "Subskapulyar mushak",
+        "Yelka suyagining intertuberkulyar egati",
+        "Birinchi va ikkinchi qovurg'alar",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Qo'ltiq ostining orqa devorini qaysi mushaklar hosil qiladi?",
+      a: [
+        "Katta ko'krak, kichik ko'krak va subklavius mushaklari",
+        "Subskapulyar, katta yumaloq va keng orqa mushaklar",
+        "Oldingi arrasimon va qovurg'alararo mushaklar",
+        "Deltasimon, kichik yumaloq va supraspinatus mushaklari",
+        "Ikki boshli va korakobraxial mushaklar",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Qo'ltiq ostining oldingi devorini qaysi strukturalar hosil qiladi?",
+      a: [
+        "Katta ko'krak, kichik ko'krak mushaklari va klavipektoral fassiya",
+        "Subskapulyar, katta yumaloq va keng orqa mushaklar",
+        "Oldingi arrasimon mushak va yuqori qovurg'alar",
+        "Deltasimon va korakobraxial mushak",
+        "Subklavius va oldingi arrasimon mushak",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Qo'ltiq ostining asosini (tubini) nima hosil qiladi?",
+      a: [
+        "O'mrov suyagi va birinchi qovurg'a",
+        "Qo'ltiq fassiyasi va teri",
+        "Katta va kichik ko'krak mushaklari",
+        "Oldingi arrasimon mushak va qovurg'alar",
+        "Subskapulyar va keng orqa mushak",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Qo'ltiq ostining uchini (cho'qqisini) nima hosil qiladi?",
+      a: [
+        "O'mrov suyagi, birinchi qovurg'a va kurak suyagining yuqori chetlari orasidagi oraliq",
+        "Ikkinchi qovurg'a, to'sh suyagi va o'mrov suyagi orasidagi oraliq",
+        "Yelka suyagi, kurak suyagi va o'mrov suyagi orasidagi bo'shliq",
+        "Katta va kichik ko'krak mushaklari orasidagi oraliq",
+        "Birinchi va ikkinchi qovurg'alar orasidagi bo'shliq",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Lateral, oldingi va orqa guruh limfa tugunlaridan limfa qabul qilib, apikal tugunlarga quyiladigan qo'ltiq osti limfa tugunlari qaysi?",
+      a: [
+        "Pektoral tugunlar",
+        "Subskapulyar tugunlar",
+        "Markaziy (sentral) tugunlar",
+        "Brakial tugunlar",
+        "Parasternal tugunlar",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Yuqori oyoq-qo'ldan limfa qabul qilib, markaziy tugunlarga quyiladigan qo'ltiq osti limfa tugunlari qaysi?",
+      a: [
+        "Pektoral tugunlar",
+        "Brakial (lateral) tugunlar",
+        "Subskapulyar tugunlar",
+        "Apikal tugunlar",
+        "Parasternal tugunlar",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Orqa ko'krak devori va yelkaning orqa qismidan limfa qabul qilib, markaziy tugunlarga quyiladigan qo'ltiq osti limfa tugunlari qaysi?",
+      a: [
+        "Pektoral tugunlar",
+        "Brakial tugunlar",
+        "Markaziy tugunlar",
+        "Subskapulyar tugunlar",
+        "Apikal tugunlar",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Oldingi va lateral ko'krak devoridan, jumladan ko'krak bezidan limfa qabul qiluvchi qo'ltiq osti limfa tugunlari qaysi?",
+      a: [
+        "Pektoral tugunlar",
+        "Subskapulyar tugunlar",
+        "Brakial tugunlar",
+        "Markaziy tugunlar",
+        "Apikal tugunlar",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Barcha qo'ltiq osti tugun guruhlaridan limfa qabul qiluvchi, ko'krak bezidan ham limfa qabul qilishi mumkin bo'lgan va so'ngra subklaviya tomiriga quyiluvchi limfa tugunlari qaysi?",
+      a: [
+        "Markaziy tugunlar",
+        "Pektoral tugunlar",
+        "Brakial tugunlar",
+        "Apikal tugunlar",
+        "Subskapulyar tugunlar",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Ko'krak bezi odatda qaysi qovurg'alar oralig'ida vertikal joylashadi?",
+      a: [
+        "Birinchi-to'rtinchi qovurg'alar",
+        "Ikkinchi-oltinchi qovurg'alar",
+        "Uchinchi-ettinchi qovurg'alar",
+        "To'rtinchi-sakkizinchi qovurg'alar",
+        "Beshinchi-to'qqizinchi qovurg'alar",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezi qanday kvadrantlarga bo'linadi?",
+      a: [
+        "Superior, inferior, oldingi, orqa",
+        "Medial, lateral, superior, inferior",
+        "Yuqori, quyi, lateral va medial",
+        "Oldingi, orqa, medial va lateral",
+        "Markaziy, superior, inferior va aksillyar",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Ko'krak bezini qaysi strukturalar ushlab (osilib) turadi?",
+      a: [
+        "Kostokorakoid bog'lamlari",
+        "Kuper osilma bog'lamlari",
+        "Korakoklavikulyar bog'lamlar",
+        "Qovurg'alararo pardalar",
+        "Klavipektoral bog'lamlar",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak uchi (sosok) odatda qaysi qovurg'alararo bo'shliqda joylashadi?",
+      a: [
+        "Birinchi qovurg'alararo bo'shliq",
+        "Ikkinchi qovurg'alararo bo'shliq",
+        "Uchinchi qovurg'alararo bo'shliq",
+        "To'rtinchi qovurg'alararo bo'shliq",
+        "Oltinchi qovurg'alararo bo'shliq",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Ko'krak uchini o'rab turgan pigmentlangan teri halqasi nima deb ataladi?",
+      a: [
+        "Laktifer sinus",
+        "Areola",
+        "Mammar papilla",
+        "Retromammar bo'shliq",
+        "Aksillyar dum",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezini ta'minlovchi medial mammar tarmoqlari qaysi arteriyadan boshlanadi?",
+      a: [
+        "Lateral torakal arteriya",
+        "Torakoakromial arteriya",
+        "Ichki torakal arteriya",
+        "Orqa aylanma yelka arteriyasi",
+        "Yuqori torakal arteriya",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Ko'krak bezini ta'minlovchi lateral mammar tarmoqlari asosan qaysi arteriyadan boshlanadi?",
+      a: [
+        "Ichki torakal arteriya",
+        "Lateral torakal arteriya",
+        "Yuqori torakal arteriya",
+        "Torakoakromial arteriya",
+        "Orqa qovurg'alararo arteriya",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezini ta'minlovchi pektoral tarmoq qaysi tomirdan boshlanadi?",
+      a: [
+        "Ichki torakal arteriya",
+        "Lateral torakal arteriya",
+        "Torakoakromial tomir",
+        "Subskapulyar arteriya",
+        "Yuqori torakal arteriya",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Ko'krak bezini ta'minlovchi lateral teri tarmoqlari qaysi arteriyalardan boshlanadi?",
+      a: [
+        "Oldingi qovurg'alararo arteriyalar",
+        "Orqa qovurg'alararo arteriyalar",
+        "Ichki torakal arteriyalar",
+        "Torakoakromial arteriyalar",
+        "Lateral torakal arteriyalar",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezi asosan qaysi nervlarning oldingi va lateral teri tarmoqlari orqali innervatsiya qilinadi?",
+      a: [
+        "Birinchi-to'rtinchi qovurg'alararo nervlar",
+        "Ikkinchi-oltinchi qovurg'alararo nervlar",
+        "Uchinchi-ettinchi qovurg'alararo nervlar",
+        "Beshinchi-sakkizinchi qovurg'alararo nervlar",
+        "Bo'yin spinal nervlari",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Bir juftdan ortiq ko'krak bezi bo'lish holati nima deb ataladi?",
+      a: ["Politeliya", "Amastiya", "Polimastiya", "Ateliya", "Ginekomastiya"],
+      correct: 2,
+    },
+
+    {
+      q: "Bir juftdan ortiq ko'krak uchi (sosok) bo'lish holati nima deb ataladi?",
+      a: ["Polimastiya", "Politeliya", "Ateliya", "Amastiya", "Mastit"],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezlarining yo'qligi nima deb ataladi?",
+      a: ["Ateliya", "Amastiya", "Polimastiya", "Politeliya", "Gipomastiya"],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak uchlarining (sosoklarning) yo'qligi nima deb ataladi?",
+      a: ["Ateliya", "Amastiya", "Polimastiya", "Politeliya", "Mastoptoz"],
+      correct: 0,
+    },
+
+    {
+      q: "Sut bezi o'zgargan (modifikatsiyalangan) ter bezi bo'lib, asosan qaysi to'qimada joylashadi?",
+      a: [
+        "Chuqur fassiya",
+        "Yog' to'qimasini o'z ichiga olgan yuza fassiya",
+        "Retromammar bo'shliq",
+        "Katta ko'krak mushagi",
+        "Klavipektoral fassiya",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Sut bezining qaysi qismi chuqur fassiyani kesib o'tib, superolateral yo'nalishda qo'ltiq ostiga cho'ziladi?",
+      a: [
+        "Laktifer sinus",
+        "Retromammar o'simta",
+        "Aksillyar dum",
+        "Mammar papilla",
+        "Areolyar o'simta",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Sut bezi chuqur fassiyadan qaysi struktura orqali ajralib turadi?",
+      a: [
+        "Qo'ltiq qini",
+        "Retromammar bo'shliq",
+        "Klavipektoral fassiya",
+        "Laktifer sinus",
+        "Kuper bog'lami",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezining katta ko'krak mushagi ustida ma'lum darajada harakatlanishiga qaysi struktura imkon beradi?",
+      a: [
+        "Osilma bog'lamlar",
+        "Laktifer yo'llar",
+        "Retromammar bo'shliq",
+        "Aksillyar dum",
+        "Areola",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Sut bezida taxminan nechta bezli to'qima bo'lagi (lobi) mavjud?",
+      a: ["5–10", "10–15", "15–20", "20–25", "25–30"],
+      correct: 2,
+    },
+
+    {
+      q: "Sut bezining har bir bo'lagi ko'krak uchiga qaysi struktura orqali ochiladi?",
+      a: [
+        "Laktifer sinus",
+        "Laktifer yo'l",
+        "Mammar duktula",
+        "Areolyar yo'l",
+        "Retromammar yo'l",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Har bir laktifer yo'l kengayib, laktatsiya davrida sut uchun rezervuar vazifasini bajaruvchi qaysi strukturani hosil qiladi?",
+      a: [
+        "Laktifer sinus",
+        "Mammar sinus",
+        "Areolyar sinus",
+        "Retromammar bo'shliq",
+        "Mammar ampula",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Laktatsiya davrida sut uchun rezervuar vazifasini bajaruvchi struktura qaysi?",
+      a: [
+        "Laktifer yo'l",
+        "Laktifer sinus",
+        "Retromammar bo'shliq",
+        "Aksillyar dum",
+        "Areola",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak saratonini erta aniqlash uchun odatda qaysi usuldan foydalaniladi?",
+      a: [
+        "Mammografiya",
+        "Mastektomiya",
+        "Lumpektomiya",
+        "Sentinel tugun biopsiyasi",
+        "Torakotomiya",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "O'smadan limfa oqimini birinchi bo'lib qabul qiluvchi limfa tugunini aniqlash orqali saraton tarqalish darajasini belgilash uchun qaysi usul qo'llaniladi?",
+      a: [
+        "Mammografiya",
+        "Radikal mastektomiya",
+        "Sentinel tugun biopsiyasi",
+        "Lumpektomiya",
+        "Aksillyar dissektsiya",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Asosiy o'smadan saraton hujayralari birinchi navbatda tarqaladigan limfa tugunlari nima deb ataladi?",
+      a: [
+        "Markaziy limfa tugunlari",
+        "Sentinel limfa tugunlari",
+        "Apikal limfa tugunlari",
+        "Parasternal limfa tugunlari",
+        "Pektoral limfa tugunlari",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezining qaysi kvadrantida saraton kasalligi eng ko'p uchraydi?",
+      a: [
+        "Yuqori medial kvadrant",
+        "Quyi medial kvadrant",
+        "Quyi lateral kvadrant",
+        "Yuqori lateral kvadrant",
+        "Markaziy kvadrant",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Ko'krak saratonida qaysi strukturalarning o'smaga yopishib qisqarishi teri chuqurchalanishiga (dimpling) olib kelishi mumkin?",
+      a: [
+        "Laktifer yo'llar",
+        "Kuper osilma bog'lamlari",
+        "Qovurg'alararo mushaklar",
+        "Klavipektoral fassiya",
+        "Kichik ko'krak mushagi",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Rivojlangan yallig'lanishli ko'krak saratonida teri osti limfa tomirlarining tiqilib qolishi natijasida yuzaga keladigan 'apelsin po'sti' ko'rinishi nima deb ataladi?",
+      a: [
+        "Peau d'orange (apelsin po'sti belgisi)",
+        "Politeliya",
+        "Mastoptoz",
+        "Ateliya",
+        "Retromammar belgi",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Ko'krak saratoni qaysi mushakning chuqur fassiyasiga o'sib kirib, mushak qisqarishi va ko'krak bezining yuqoriga siljishiga olib kelishi mumkin?",
+      a: [
+        "Kichik ko'krak mushagi",
+        "Oldingi arrasimon mushak",
+        "Katta ko'krak mushagi",
+        "Subklavius",
+        "Keng orqa mushak",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Butun ko'krak bezi, katta va kichik ko'krak mushaklari, qo'ltiq osti limfa tugunlari, qo'ltiq fassiyasi va ko'krak devorining bir qismini olib tashlashni o'z ichiga olgan operatsiya qaysi?",
+      a: [
+        "Oddiy mastektomiya",
+        "Lumpektomiya",
+        "Modifikatsiyalangan radikal mastektomiya",
+        "Radikal mastektomiya",
+        "Qisman mastektomiya",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Ko'krak bezini qo'ltiq osti limfa tugunlari bilan birga olib tashlash nima deb ataladi?",
+      a: [
+        "Lumpektomiya",
+        "Oddiy mastektomiya",
+        "Modifikatsiyalangan radikal mastektomiya",
+        "Radikal mastektomiya",
+        "Segmentar mastektomiya",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Ko'krak saratonida faqat paypaslanadigan o'sma (tugun)ni olib tashlash operatsiyasi qaysi?",
+      a: [
+        "Radikal mastektomiya",
+        "Lumpektomiya",
+        "Modifikatsiyalangan radikal mastektomiya",
+        "Total mastektomiya",
+        "Aksillyar dissektsiya",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Radikal mastektomiya paytida qaysi nervlar shikastlanishi mumkin?",
+      a: [
+        "Median va ulnar nervlar",
+        "Aksillyar va muskulokutan nervlar",
+        "Uzun torakal va torakodorsal nervlar",
+        "Radial va median nervlar",
+        "Suprаskapulyar va aksillyar nervlar",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Radikal mastektomiya paytida qaysi nervlar shikastlanishi mumkin?",
+      a: [
+        "Uzun torakal va torakodorsal nervlar",
+        "Median va ulnar nervlar",
+        "Muskulokutan va radial nervlar",
+        "Aksillyar va suprаskapulyar nervlar",
+        "Frenik va vagus nervlari",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Ko'krak bezining lateral kvadrantlari asosan limfani qaysi tugunlarga oqizadi?",
+      a: [
+        "Parasternal tugunlar",
+        "Apikal tugunlar",
+        "Aksillyar (qo'ltiq osti) tugunlar",
+        "Subskapulyar tugunlar",
+        "Servikal tugunlar",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Ko'krak bezining medial kvadrantlari asosan limfani qaysi tugunlarga oqizadi?",
+      a: [
+        "Aksillyar tugunlar",
+        "Parasternal tugunlar",
+        "Markaziy tugunlar",
+        "Brakial tugunlar",
+        "Subskapulyar tugunlar",
+      ],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezidan chiqadigan limfaning taxminan necha foizi asosan qo'ltiq osti limfa tugunlariga oqadi?",
+      a: ["25%", "40%", "50%", "75%", "90%"],
+      correct: 3,
+    },
+  ],
+
+  axillaAndBreast: [
+    {
+      q: "A 45-year-old woman is being examined as a candidate for cosmetic breast surgery. The surgeon notes that both of her breasts sag considerably. Which structure(s) has most likely become stretched to result in this condition?",
+      a: [
+        "Scarpa's fascia",
+        "Pectoralis major muscle",
+        "Pectoralis minor muscle",
+        "Suspensory (Cooper's) ligaments",
+        "Serratus anterior muscle",
+      ],
+      correct: 3,
+      explanation:
+        "The suspensory ligaments of the breast, also known as Cooper's ligaments, are fibrous bands that run from the dermis of the skin to the deep layer of superficial fascia and are primary supports for the breasts against gravity. Ptosis of the breast is usually due to the stretching of these ligaments.",
+    },
+    {
+      q: "A 27-year-old man is diagnosed with metastatic malignant melanoma of the skin over the xiphoid process. Which lymph nodes receive most of the lymph from this area and are therefore most likely to be involved in metastasis of the tumor?",
+      a: [
+        "Deep inguinal",
+        "Vertical group of superficial inguinal",
+        "Horizontal group of superficial inguinal",
+        "Axillary",
+        "Deep and superficial inguinal",
+      ],
+      correct: 3,
+      explanation:
+        "Lymph from the skin of the anterior chest wall primarily drains to the axillary lymph nodes.",
+    },
+    {
+      q: "A 49-year-old woman who had suffered a myocardial infarction must undergo a bypass graft procedure using the internal thoracic artery. Which vessels will most likely continue to supply blood to the anterior part of the upper intercostal spaces?",
+      a: [
+        "Musculophrenic",
+        "Superior epigastric",
+        "Posterior intercostal",
+        "Lateral thoracic",
+        "Thoracodorsal",
+      ],
+      correct: 2,
+      explanation:
+        "The anterior intercostal arteries anastomose with the posterior intercostal arteries in the upper intercostal spaces, maintaining blood supply even if the internal thoracic artery is harvested.",
+    },
+    {
+      q: "A 55-year-old man is examined in a neighborhood clinic after receiving blunt trauma to his right axilla in a fall. He has difficulty elevating the right arm above the level of his shoulder. Physical examination shows that the inferior angle of his right scapula protrudes more than the lower part of the left scapula, worsening with resisted pushing. Which of the following neural structures has most likely been injured?",
+      a: [
+        "The posterior cord of the brachial plexus",
+        "The long thoracic nerve",
+        "The upper trunk of the brachial plexus",
+        "The site of origin of the middle and lower subscapular nerves",
+        "Spinal nerve ventral rami C7, C8, and T1",
+      ],
+      correct: 1,
+      explanation:
+        '"Winging" of the scapula occurs when the serratus anterior muscle, innervated by the long thoracic nerve, is paralyzed, allowing the medial border of the scapula to lift off the chest wall.',
+    },
+    {
+      q: "A 35-year-old woman has a hard breast nodule about 1 cm in diameter slightly above and lateral to the right areola. Dye injected around the tumor is traced through the lymphatic vessels to the first draining lymph nodes. Which of the following nodes will most likely first encounter the lymph from the tumor?",
+      a: [
+        "Anterior axillary (pectoral) nodes",
+        "Rotter's interpectoral nodes",
+        "Parasternal nodes along the internal thoracic artery and vein",
+        "Central axillary nodes",
+        "Apical or infraclavicular nodes",
+      ],
+      correct: 0,
+      explanation:
+        "The anterior axillary (pectoral) nodes are the first lymph nodes to receive most of the lymph from the breast parenchyma, areola, and nipple. From there, lymph flows through central, apical, and supraclavicular nodes in sequence.",
+    },
+    {
+      q: "A 47-year-old woman's right breast exhibits peau d'orange (skin resembling an orange peel). This condition is primarily a result of which of the following?",
+      a: [
+        "Shortening of the suspensory ligaments by cancer in the axillary tail (of Spence) of the breast",
+        "Blockage of cutaneous lymphatic vessels",
+        "Contraction of the retinacula cutis of the areola and nipple",
+        "Invasion of the pectoralis major by the cancer",
+        "Ipsilateral (same side) inversion of the periareolar skin from ductular cancer",
+      ],
+      correct: 1,
+      explanation:
+        "When cutaneous lymphatics of the breast are blocked by cancer, the skin becomes edematous except where hair follicles cause small indentations, giving an overall resemblance to orange peel.",
+    },
+    {
+      q: "A 29-year-old woman is examined after falling from her balcony. Radiographic examination reveals a broken clavicle with associated internal bleeding. Which of the following vessels is most likely to be injured in clavicular fractures?",
+      a: [
+        "Subclavian artery",
+        "Cephalic vein",
+        "Lateral thoracic artery",
+        "Subclavian vein",
+        "Internal thoracic artery",
+      ],
+      correct: 3,
+      explanation:
+        "The subclavian vein traverses between the clavicle and first rib and is the most superficial structure to be damaged following a fracture of the clavicle.",
+    },
+    {
+      q: "A 55-year-old male metallurgist had been diagnosed with carpal tunnel syndrome. An anesthetic injection into his axillary sheath was given instead of general anesthesia. From which of the following structures does the axillary sheath take origin?",
+      a: [
+        "Superficial fascia of the neck",
+        "Superficial cervical investing fascia",
+        "Buccopharyngeal fascia",
+        "Clavipectoral fascia",
+        "Prevertebral fascia",
+      ],
+      correct: 4,
+      explanation:
+        "The axillary sheath is a fascial continuation of the prevertebral layer of the deep cervical fascia extending into the axilla, enclosing the neurovascular bundle of the upper limb.",
+    },
+    {
+      q: "A mastectomy procedure on a 52-year-old woman involved excision of the tumor and removal of lymph nodes, including the pectoral, central axillary, and infraclavicular groups. Six months later, she complains of an unsightly deep hollow area inferior to the medial half of the clavicle, indicating muscle atrophy, with no obvious motor or sensory deficits. What was the most likely cause?",
+      a: [
+        "Part of the pectoralis major muscle was cut and removed in the mastectomy",
+        "The pectoralis minor muscle was removed entirely in the surgery",
+        "A branch of the lateral pectoral nerve was cut",
+        "The medial pectoral nerve was cut",
+        "The lateral cord of the brachial plexus was injured",
+      ],
+      correct: 2,
+      explanation:
+        "The first branch of the lateral pectoral nerve is typically the only source of motor supply to the clavicular head of the pectoralis major muscle. If injured during axillary node dissection, this part of the muscle atrophies, producing an infraclavicular cosmetic hollow.",
+    },
+    {
+      q: 'Several weeks after surgical dissection of her left axilla for removal of lymph nodes for staging and treatment of breast cancer, a 32-year-old woman has "winging" of her left scapula when pushing against resistance, and difficulty raising her left arm above her head. A nerve was injured during the procedure. What was the origin of this nerve?',
+      a: [
+        "The upper trunk of her brachial plexus",
+        "The posterior division of the middle trunk",
+        "Ventral rami of the brachial plexus",
+        "The posterior cord of the brachial plexus",
+        "The lateral cord of the brachial plexus",
+      ],
+      correct: 2,
+      explanation:
+        "The long thoracic nerve arises directly from the ventral rami of C5, C6, and C7 of the brachial plexus (not from the trunks or cords) and supplies the serratus anterior; injury during axillary dissection causes winging of the scapula and difficulty with overhead arm elevation.",
+    },
+    {
+      q: "A 45-year-old woman is bitten by a dog on the lateral side of her hand. Two days later she develops fever and swollen lymph nodes. Which of the following group of lymphatics will most likely be involved?",
+      a: ["Central", "Humeral", "Pectoral", "Subscapular", "Parasternal"],
+      correct: 1,
+      explanation:
+        "Lymph from the lateral side of the hand drains directly into humeral (epitrochlear/lateral) nodes, then to the central axillary nodes.",
+    },
+    {
+      q: "A 35-year-old male carpenter suffered a deep cut to the tip of his thumb, and later the entire thumb and thenar eminence became inflamed. Which group of lymph nodes is the first to receive drainage from this injury?",
+      a: [
+        "Posterior axillary",
+        "Subclavian",
+        "Lateral axillary",
+        "Anterior axillary",
+        "Central axillary",
+      ],
+      correct: 2,
+      explanation:
+        "With involvement of the thenar (lateral hand/thumb) region, lymph drains initially to the epitrochlear nodes and then to the lateral (humeral) axillary nodes.",
+    },
+    {
+      q: "A shoulder had been penetrated by a bolt from a crossbow, transecting the axillary artery just beyond the origin of the subscapular artery. A compress and clamp are placed on the bleeding artery. What collateral arterial pathway is available to bypass the site of injury?",
+      a: [
+        "Suprascapular with circumflex scapular artery",
+        "Dorsal scapular with thoracodorsal artery",
+        "Posterior circumflex humeral artery with deep brachial artery",
+        "Lateral thoracic with brachial artery",
+        "Supreme thoracic artery with thoracoacromial artery",
+      ],
+      correct: 0,
+      explanation:
+        "The suprascapular artery anastomoses with the circumflex scapular artery deep to the infraspinatus, providing a rich collateral pathway around an injury to the axillary artery distal to the origin of the subscapular artery.",
+    },
+  ],
+  qoltiqOstiVaSutBezi: [
+    {
+      q: "45 yoshli ayol kosmetik ko'krak jarrohligiga nomzod sifatida tekshirilmoqda. Jarroh ikkala ko'krak bezining sezilarli darajada osilib qolganini qayd etadi. Ushbu holatga olib kelish uchun qaysi tuzilma(lar) cho'zilgan bo'lishi eng ehtimoldan yiroq emas?",
+      a: [
+        "Skarpa fassiyasi",
+        "Katta ko'krak muskuli",
+        "Kichik ko'krak muskuli",
+        "Osilib turuvchi (Kuper) boylamlari",
+        "Old serrata muskuli (serratus anterior)",
+      ],
+      correct: 3,
+      explanation:
+        "Ko'krak bezining osilib turuvchi boylamlari, ya'ni Kuper boylamlari, teri dermasidan yuza fassiyaning chuqur qatlamigacha o'tuvchi tolali tasmalar bo'lib, ko'krak bezini tortishish kuchiga qarshi asosiy tayanch vazifasini bajaradi. Ko'krak ptozi odatda shu boylamlarning cho'zilishi natijasida yuzaga keladi.",
+    },
+    {
+      q: "22 yoshli erkakda ksifoid o'simta ustidagi teri metastatik malign melanomasi aniqlandi. Ushbu soha limfasining ko'p qismini qaysi limfa tugunlari qabul qiladi va shu sababli o'sma metastazida ko'proq ishtirok etadi?",
+      a: [
+        "Chuqur ingvinal",
+        "Yuza ingvinalning vertikal guruhi",
+        "Yuza ingvinalning gorizontal guruhi",
+        "Qo'ltiq osti (aksillyar)",
+        "Chuqur va yuza ingvinal",
+      ],
+      correct: 3,
+      explanation:
+        "Old ko'krak devori terisidan limfa asosan qo'ltiq osti (aksillyar) limfa tugunlariga oqib boradi.",
+    },
+    {
+      q: "49 yoshli ayolda miokard infarkti bo'lib, ichki ko'krak arteriyasidan foydalangan holda bypass-graft amaliyoti o'tkazilishi kerak. Yuqori qovurg'alararo bo'shliqlarning old qismini qaysi tomirlar qon bilan ta'minlashda davom etadi?",
+      a: [
+        "Muskulofrenik",
+        "Yuqori epigastral",
+        "Orqa qovurg'alararo",
+        "Lateral torakal",
+        "Torakodorsal",
+      ],
+      correct: 2,
+      explanation:
+        "Old qovurg'alararo arteriyalar yuqori qovurg'alararo bo'shliqlarda orqa qovurg'alararo arteriyalar bilan anastomoz hosil qiladi, shu sababli ichki ko'krak arteriyasi olib qo'yilsa ham qon ta'minoti saqlanib qoladi.",
+    },
+    {
+      q: "55 yoshli erkak yiqilish natijasida o'ng qo'ltiq ostiga qattiq zarba olgach klinikaga murojaat qildi. U o'ng qo'lini yelka darajasidan yuqoriga ko'tarishda qiynaladi. Fizikal tekshiruvda o'ng kurakning pastki burchagi chap kurakka nisbatan ko'proq chiqib turgani, qarshilikka qarshi turtganda yanada kuchayishi aniqlandi. Qaysi nerv tuzilmasi eng ehtimol shikastlangan?",
+      a: [
+        "Brachial pleksusning orqa kordi",
+        "Uzun ko'krak nervi",
+        "Brachial pleksusning yuqori magistrali",
+        "O'rta va pastki kurak osti nervlarining chiqish nuqtasi",
+        "C7, C8 va T1 umurtqa nervlarining ventral shoxlari",
+      ],
+      correct: 1,
+      explanation:
+        "Kurakning \"qanotsimon\" holati (winging) uzun ko'krak nervi tomonidan innervatsiya qilinuvchi serratus anterior muskuli falaj bo'lganda yuzaga keladi, bu kurakning medial chetini ko'krak devoridan ko'tarilishiga olib keladi.",
+    },
+    {
+      q: "35 yoshli ayolda o'ng areoladan biroz yuqorida va lateralda diametri taxminan 1 sm bo'lgan qattiq ko'krak tuguni bor. O'sma atrofiga bo'yoq yuborilib, limfa tomirlari orqali birinchi drenaj qiluvchi limfa tugunlarigacha kuzatiladi. Qaysi tugunlar o'smadan kelayotgan limfani birinchi bo'lib qabul qiladi?",
+      a: [
+        "Old aksillyar (pektoral) tugunlar",
+        "Rotter interpektoral tugunlari",
+        "Ichki ko'krak arteriyasi va venasi bo'ylab joylashgan parasternal tugunlar",
+        "Markaziy aksillyar tugunlar",
+        "Apikal yoki infraklavikulyar tugunlar",
+      ],
+      correct: 0,
+      explanation:
+        "Old aksillyar (pektoral) tugunlar ko'krak bezi parenximasi, areola va so'rg'ichdan kelayotgan limfaning aksariyat qismini birinchi bo'lib qabul qiluvchi limfa tugunlaridir. So'ngra limfa ketma-ket markaziy, apikal va supraklavikulyar tugunlar orqali oqib boradi.",
+    },
+    {
+      q: "47 yoshli ayolning o'ng ko'krak bezi terisi apelsin po'stlog'iga o'xshab qolgan (peau d'orange). Bu holat asosan nimaning natijasi?",
+      a: [
+        "Ko'krak bezining qo'ltiq osti dumi (Spence dumi)dagi saraton osilib turuvchi boylamlarni qisqartirishi",
+        "Teri osti limfa tomirlarining bekilib qolishi",
+        "Areola va so'rg'ich retinakula kutisining qisqarishi",
+        "Saraton katta ko'krak muskuliga o'sib kirishi",
+        "Duktulyar saratondan periareolyar terining bir tomonlama (o'sha tomonda) ichiga botishi",
+      ],
+      correct: 1,
+      explanation:
+        "Ko'krak bezining teri osti limfa tomirlari saraton tomonidan bekilib qolganda, teri shishib (edematoz) qoladi, faqat soch follikulalari joylashgan joylarda kichik chuqurchalar hosil bo'ladi va bu umumiy holda apelsin po'stlog'iga o'xshab ko'rinadi.",
+    },
+    {
+      q: "29 yoshli ayol balkondan yiqilgach tekshirilmoqda. Rentgenologik tekshiruv o'mrov suyagi (klyucha) sinishini va unga bog'liq ichki qon ketishni aniqladi. O'mrov suyagi sinishida qaysi tomir eng ko'p shikastlanishi ehtimoldan yiroq emas?",
+      a: [
+        "Qultiq osti arteriyasi (subklavian)",
+        "Sefalik vena",
+        "Lateral torakal arteriya",
+        "Qo'ltiq osti venasi (subklavian)",
+        "Ichki ko'krak arteriyasi",
+      ],
+      correct: 3,
+      explanation:
+        "Qo'ltiq osti (subklavian) venasi o'mrov suyagi va birinchi qovurg'a orasidan o'tadi va o'mrov suyagi sinishidan keyin eng yuza joylashgan, shu sababli eng ko'p shikastlanadigan tuzilma hisoblanadi.",
+    },
+    {
+      q: "55 yoshli metallurg erkakda karpal tunnel sindromi tashxisi qo'yilgan. Umumiy behushlik o'rniga uning aksillyar qinига behushlantiruvchi in'ektsiya qilindi. Aksillyar qin qaysi tuzilmadan boshlanadi?",
+      a: [
+        "Bo'yinning yuza fassiyasi",
+        "Bo'yin yuzaki investing fassiyasi",
+        "Bukkofaringeal fassiya",
+        "Klavipektoral fassiya",
+        "Pravertebral fassiya",
+      ],
+      correct: 4,
+      explanation:
+        "Aksillyar qin bo'yinning chuqur fassiyasining pravertebral qatlamining aksillaga davom etuvchi fassial cho'zilmasi bo'lib, yuqori qo'l neyrovaskulyar tutamini o'z ichiga oladi.",
+    },
+    {
+      q: "52 yoshli ayolda mastektomiya amaliyoti o'tkazilib, o'sma va pektoral, markaziy aksillyar hamda infraklavikulyar guruh limfa tugunlari olib tashlangan. Olti oydan so'ng u o'mrov suyagining medial yarmi ostida chuqur, ko'rimsiz botiqlik paydo bo'lganidan shikoyat qiladi — bu muskul atrofiyasini bildiradi, biroq aniq motor yoki sensor buzilish yo'q. Buning eng ehtimoliy sababi nima?",
+      a: [
+        "Katta ko'krak muskulining bir qismi mastektomiya vaqtida kesib olib tashlangan",
+        "Kichik ko'krak muskuli jarrohlik vaqtida to'liq olib tashlangan",
+        "Lateral pektoral nervning bir tarmog'i kesilgan",
+        "Medial pektoral nerv kesilgan",
+        "Brachial pleksusning lateral kordi shikastlangan",
+      ],
+      correct: 2,
+      explanation:
+        "Lateral pektoral nervning birinchi tarmog'i odatda katta ko'krak muskulining klavikulyar boshiga yagona motor ta'minot manbai hisoblanadi. Aksillyar limfa tugunlari olib tashlanishi vaqtida shikastlansa, bu muskul qismi atrofiyaga uchraydi va infraklavikulyar kosmetik botiqlik hosil bo'ladi.",
+    },
+    {
+      q: "32 yoshli ayolda ko'krak saratoni bosqichini aniqlash va davolash uchun chap qo'ltiq ostidagi limfa tugunlarini jarrohlik yo'li bilan olib tashlashdan bir necha hafta o'tgach, qarshilikka qarshi turtganda chap kurakning \"qanotsimon\" holati va sochini taraganda qo'lini boshidan yuqoriga ko'tarishda qiyinchilik paydo bo'ldi. Amaliyot vaqtida bir nerv shikastlangan. Bu nerv qayerdan boshlanadi?",
+      a: [
+        "Brachial pleksusning yuqori magistralidan",
+        "O'rta magistralning orqa bo'linmasidan",
+        "Brachial pleksusning ventral shoxlaridan",
+        "Brachial pleksusning orqa kordidan",
+        "Brachial pleksusning lateral kordidan",
+      ],
+      correct: 2,
+      explanation:
+        "Uzun ko'krak nervi to'g'ridan-to'g'ri brachial pleksusning C5, C6 va C7 ventral shoxlaridan boshlanadi (magistral yoki kordlardan emas) va serratus anterior muskulini innervatsiya qiladi; aksillyar dissektsiya vaqtida shikastlanishi kurakning qanotsimon holatiga va qo'lni boshdan yuqoriga ko'tarishda qiyinchilikka olib keladi.",
+    },
+    {
+      q: "45 yoshli ayolni it qo'lining lateral tomonidan tishlab oladi. Ikki kundan so'ng unda isitma va limfa tugunlari shishishi rivojlanadi. Qaysi limfatik guruh eng ehtimol jalb qilingan?",
+      a: [
+        "Markaziy",
+        "Gumeral (yelka)",
+        "Pektoral",
+        "Kurak osti (subskapulyar)",
+        "Parasternal",
+      ],
+      correct: 1,
+      explanation:
+        "Qo'lning lateral tomonidan limfa to'g'ridan-to'g'ri gumeral (epitroxlear/lateral) tugunlarga, so'ngra markaziy aksillyar tugunlarga oqib boradi.",
+    },
+    {
+      q: "35 yoshli duradgor erkakda bosh barmog'i uchiga chuqur kesik tushgan, keyinchalik butun bosh barmoq va tenar do'ngligi yallig'langan. Ushbu shikastlanishdan drenajni birinchi bo'lib qaysi limfa tugunlari guruhi qabul qiladi?",
+      a: [
+        "Orqa aksillyar",
+        "Subklavian",
+        "Lateral aksillyar",
+        "Old aksillyar",
+        "Markaziy aksillyar",
+      ],
+      correct: 2,
+      explanation:
+        "Tenar (qo'lning lateral/bosh barmoq) sohasi jalb qilinganda, limfa dastlab epitroxlear tugunlarga, so'ngra lateral (gumeral) aksillyar tugunlarga oqib boradi.",
+    },
+    {
+      q: "Yelka arbaletdan otilgan o'q bilan teshilib, o'q qo'ltiq osti arteriyasini kurak osti (subskapulyar) arteriyaning chiqish nuqtasidan biroz narida kesib o'tgan. Qonayotgan arteriyaga qisqich qo'yilgandan so'ng, shikastlanish joyini aylanib o'tish uchun qaysi kollateral arterial yo'l mavjud?",
+      a: [
+        "Suprascapular arteriya bilan sirkumfleks kurak arteriyasi",
+        "Dorsal kurak arteriyasi bilan torakodorsal arteriya",
+        "Yelka orqa aylanuvchi arteriyasi bilan chuqur yelka arteriyasi",
+        "Lateral torakal arteriya bilan yelka arteriyasi",
+        "Yuqori (supremum) torakal arteriya bilan torakoakromial arteriya",
+      ],
+      correct: 0,
+      explanation:
+        "Suprascapular arteriya infraspinatus muskuli ostida sirkumfleks kurak arteriyasi bilan anastomoz hosil qiladi, bu esa kurak osti arteriyasi chiqish nuqtasidan distal joyda qo'ltiq osti arteriyasi shikastlanganda boy kollateral yo'l ta'minlaydi.",
+    },
+  ],
 };
-
-// function shuffle(array) {
-//   return [...array].sort(() => Math.random() - 0.5);
-// }
-
-// function getRandomTest(questions, n = "all") {
-//   const shuffledQuestions =
-//     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
-
-//   return shuffledQuestions.map((q) => {
-//     const shuffledAnswers = shuffle(q.a);
-
-//     return {
-//       q: q.q,
-//       photo: q.photo || null,
-//       a: shuffledAnswers,
-//       correct: shuffledAnswers.indexOf(q.a[q.correct]),
-//     };
-//   });
-// }
-
-// window.getRandomTest = getRandomTest;
-
-// console.log("🔥 TESTS.JS getRandomTest:", typeof window.getRandomTest);
