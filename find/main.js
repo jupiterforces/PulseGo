@@ -521,6 +521,10 @@ async function saveProfile() {
   promoCard.classList.add("hidden");
   editProfileBtn.classList.remove("hidden");
   wizardCloseBtn.classList.add("hidden");
+  findShell.classList.remove("hidden");
+
+  // Load partners and subscribe to real-time updates
+  loadPartnersAndPreview();
   renderPartnerList();
 }
 
@@ -703,9 +707,6 @@ async function prefillAndHydrate(user) {
   byId("overallScore").value = score;
   setIdentityUI(fullName || "Foydalanuvchi");
 
-  // Load partner list from cache immediately (super fast, no Firestore wait)
-  loadPartnersAndPreview();
-
   // Sync user profile in background (non-blocking)
   try {
     const userSnap = await getDoc(doc(db, "user", user.uid));
@@ -730,11 +731,15 @@ async function prefillAndHydrate(user) {
       onboardingCard.classList.add("hidden");
       promoCard.classList.add("hidden");
       editProfileBtn.classList.remove("hidden");
+      findShell.classList.remove("hidden");
+      // Load partner list ONLY when user has profile
+      loadPartnersAndPreview();
     } else {
       myProfile = null;
       promoCard.classList.remove("hidden");
       onboardingCard.classList.add("hidden");
       editProfileBtn.classList.add("hidden");
+      findShell.classList.add("hidden");
       viewMode = "all";
       showAllBtn.classList.remove("btn-outline-secondary");
       showAllBtn.classList.add("btn-secondary");
