@@ -183,6 +183,8 @@ function renderMessages(messages) {
     messagesWrap.appendChild(messagesEmpty);
     messagesEmpty.classList.remove("hidden");
     wireSuggestionButtons();
+    // Scroll to top for empty state
+    messagesWrap.scrollTop = 0;
     return;
   }
 
@@ -218,7 +220,10 @@ function renderMessages(messages) {
     }
   });
 
-  messagesWrap.scrollTop = messagesWrap.scrollHeight;
+  // Scroll to bottom with delay to ensure DOM is updated
+  requestAnimationFrame(() => {
+    messagesWrap.scrollTop = messagesWrap.scrollHeight;
+  });
 }
 
 function hideActionSheet() {
@@ -496,6 +501,35 @@ function setupActions() {
       hideActionSheet();
     }
   });
+
+  // Mobile keyboard handling
+  if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+    let windowHeight = window.innerHeight;
+    let isKeyboardOpen = false;
+
+    window.addEventListener("resize", () => {
+      const newHeight = window.innerHeight;
+      const heightDifference = windowHeight - newHeight;
+
+      if (heightDifference > 150) {
+        // Keyboard opened
+        isKeyboardOpen = true;
+        requestAnimationFrame(() => {
+          messagesWrap.scrollTop = messagesWrap.scrollHeight;
+        });
+      } else if (heightDifference < -150) {
+        // Keyboard closed
+        isKeyboardOpen = false;
+      }
+      windowHeight = newHeight;
+    });
+
+    messageInput.addEventListener("focus", () => {
+      setTimeout(() => {
+        messagesWrap.scrollTop = messagesWrap.scrollHeight;
+      }, 300);
+    });
+  }
 }
 
 onAuthStateChanged(auth, async (user) => {
