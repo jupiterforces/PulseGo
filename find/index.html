@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Find Partner | Pulse Go</title>
+    <meta name="description" content="Pulse Go hamkor topish va chat bo‘limi.">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--tg-bg);
+            color: var(--tg-text);
+            overflow-x: hidden;
+            padding-bottom: 90px;
+        }
+
+        .page-wrap {
+            padding: 16px 0 20px;
+        }
+
+        .hero-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -.4px;
+            margin-bottom: 4px;
+        }
+
+        .hero-sub {
+            margin: 0;
+            color: var(--tg-muted);
+            font-size: 13px;
+        }
+
+        .settings-btn {
+            border-radius: 999px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .card-soft {
+            background: #fff;
+            border: 1px solid #e9eef5;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, .06);
+        }
+
+        .onboarding-card {
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .promo-card {
+            padding: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+            color: #fff;
+            border: none;
+        }
+
+        .promo-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin: 0 0 2px;
+        }
+
+        .promo-sub {
+            margin: 0;
+            font-size: 12px;
+            opacity: .84;
+        }
+
+        .onboarding-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .step-progress {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .step-dot {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #e2e8f0;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 800;
+            transition: .2s;
+        }
+
+        .step-dot.active {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 3px;
+            border-radius: 999px;
+            background: #e2e8f0;
+        }
+
+        .step-line.active {
+            background: #93c5fd;
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        .step-sub {
+            color: var(--tg-muted);
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .step-pane {
+            display: none;
+        }
+
+        .step-pane.active {
+            display: block;
+        }
+
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip-option {
+            border: 1px solid #dbe1ea;
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .chip-option.active {
+            background: #eff6ff;
+            border-color: #93c5fd;
+            color: #1d4ed8;
+        }
+
+        .wizard-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .wizard-actions .btn {
+            flex: 1;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .find-shell {
+            display: block;
+            min-height: 66vh;
+            overflow: hidden;
+        }
+
+        .find-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .partner-list-pane {
+            border-right: 1px solid #eef2f7;
+            min-height: 66vh;
+        }
+
+        .list-head {
+            padding: 14px;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .list-title {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .toggle-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .toggle-row .btn {
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+        }
+
+        .partner-list {
+            max-height: calc(66vh - 120px);
+            overflow-y: auto;
+        }
+
+        .chat-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1f5f9;
+            transition: background .18s;
+        }
+
+        .chat-user:hover {
+            background: #f8fafc;
+        }
+
+        .chat-user.active {
+            background: #eff6ff;
+        }
+
+        .avatar-dot {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .avatar-dot.verified::after {
+            content: '✓';
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            background: #16a34a;
+            color: #fff;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            border: 2px solid #fff;
+        }
+
+        .badge-verified {
+            font-size: 10px;
+            font-weight: 700;
+            background: #dcfce7;
+            color: #166534;
+            padding: 2px 5px;
+            border-radius: 4px;
+            margin-left: 4px;
+        }
+
+        .partner-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-xs {
+            padding: 4px 8px !important;
+            font-size: 11px !important;
+            min-width: 32px !important;
+            height: 32px !important;
+            border-radius: 6px !important;
+        }
+
+        .profile-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, .6);
+            display: flex;
+            align-items: flex-end;
+            z-index: 1500;
+            animation: slideIn .2s ease-out;
+        }
+
+        .profile-modal-content {
+            background: #fff;
+            border-radius: 20px 20px 0 0;
+            padding: 20px 16px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideUp .2s ease-out;
+        }
+
+        .profile-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .stat-box {
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #94a3b8;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1d4ed8;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .user-main {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .user-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--tg-text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-time {
+            font-size: 10px;
+            color: #94a3b8;
+            flex-shrink: 0;
+        }
+
+        .user-sub {
+            font-size: 12px;
+            color: var(--tg-muted);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .status-pill {
+            font-size: 10px;
+            font-weight: 800;
+            border-radius: 999px;
+            padding: 4px 7px;
+        }
+
+        .status-match {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-lock {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .new-badge {
+            min-width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            background: #2563eb;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 0 5px;
+        }
+
+        .sort-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sort-row select {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .filter-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, .6);
+            display: flex;
+            align-items: flex-end;
+            z-index: 1400;
+        }
+
+        .filter-modal-content {
+            background: #fff;
+            border-radius: 20px 20px 0 0;
+            padding: 20px 16px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .filter-section {
+            margin-bottom: 16px;
+        }
+
+        .filter-section label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .filter-section input,
+        .filter-section select {
+            width: 100%;
+            margin-bottom: 4px;
+        }
+
+        .chat-pane {
+            display: none;
+            flex-direction: column;
+            min-height: 66vh;
+        }
+
+        .chat-pane.active {
+            display: flex;
+        }
+
+        .chat-head {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eef2f7;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+        }
+
+        .back-btn {
+            border: none;
+            background: transparent;
+            color: #475569;
+            font-size: 18px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .chat-title {
+            font-size: 14px;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .chat-meta {
+            font-size: 11px;
+            color: var(--tg-muted);
+            margin: 0;
+        }
+
+        .chat-actions {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-actions .btn {
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .messages-wrap {
+            flex: 1;
+            padding: 14px;
+            overflow-y: auto;
+            background: linear-gradient(180deg, #f8fbff 0%, #f6f8fc 100%);
+        }
+
+        .msg-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .msg-row.me {
+            justify-content: flex-end;
+        }
+
+        .msg-bubble {
+            max-width: 80%;
+            border-radius: 14px;
+            padding: 9px 11px;
+            font-size: 13px;
+            line-height: 1.35;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, .06);
+            word-break: break-word;
+        }
+
+        .msg-row.me .msg-bubble {
+            background: #2563eb;
+            color: #fff;
+            border-bottom-right-radius: 6px;
+        }
+
+        .msg-row.other .msg-bubble {
+            background: #fff;
+            color: #0f172a;
+            border-bottom-left-radius: 6px;
+        }
+
+        .msg-time {
+            margin-top: 4px;
+            font-size: 10px;
+            opacity: .75;
+            text-align: right;
+        }
+
+        .chat-compose {
+            border-top: 1px solid #e2e8f0;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .compose-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .compose-row input {
+            border-radius: 999px;
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+
+        .compose-row .btn {
+            border-radius: 999px;
+            min-width: 44px;
+        }
+
+        .empty-box {
+            border: 1px dashed #cbd5e1;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            color: var(--tg-muted);
+            font-size: 13px;
+            margin: 14px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 991.98px) {
+            .find-grid.chat-open .partner-list-pane {
+                display: none;
+            }
+
+            .find-grid.chat-open .chat-pane {
+                display: flex;
+            }
+
+            .chat-pane {
+                display: none;
+                min-height: 70vh;
+            }
+
+            .partner-list {
+                max-height: calc(70vh - 120px);
+            }
+        }
+
+        @media (min-width: 992px) {
+            body {
+                padding-bottom: 24px;
+            }
+
+            .page-wrap {
+                padding-top: 24px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .find-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partner-list {
+                max-height: calc(72vh - 120px);
+            }
+
+            .back-btn {
+                display: none;
+            }
+        }
+
+        /* Professional Modal Styles */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.5);
+            z-index: 1999;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .professional-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.3);
+            max-width: 420px;
+            width: 90%;
+            z-index: 2000;
+            animation: slideInDown 0.3s ease-out;
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-actions .btn {
+            min-width: 100px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-head">
+            <div class="sidebar-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+            </div>
+            <div>
+                <div class="sidebar-brand">Pulse Go</div>
+            </div>
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-user" id="sidebarUser">
+            <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+            <div>
+                <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+                <div class="sidebar-user-sub">Pulse Go Member</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-section-label">Asosiy</div>
+            <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test
+                QBank</a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
+                Tayyorlanish</a>
+
+            <div class="sidebar-section-label">Hamkorlik</div>
+            <a href="/find/" class="sidebar-link active" onclick="closeSidebar()"><i class="bi bi-people-fill"></i> Find
+                Partner</a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i
+                    class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i>
+                Profil</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="https://t.me/broinibek" target="_blank" rel="noopener noreferrer" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
+                <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+            </a>
+        </div>
+    </aside>
+
+    <nav class="top-navbar">
+        <div class="container">
+            <button class="btn-hamburger" onclick="openSidebar()">
+                <i class="bi bi-list"></i>
+            </button>
+            <a href="/" class="nav-logo">
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse
+            </a>
+            <div class="d-flex align-items-center gap-2">
+                <button type="button" class="btn btn-outline-primary btn-sm settings-btn hidden" id="editProfileBtn">
+                    <i class="bi bi-sliders2 me-1"></i> Sozlamalar
+                </button>
+                <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="page-wrap">
+        <div class="container">
+            <!-- <div class="hero-head">
+                <div>
+                    <h1 class="hero-title mb-1">Find Partner</h1>
+                    <p class="hero-sub">O‘xshash maqsadli hamkor toping va faqat o‘zaro moslikda chatni boshlang.</p>
+                </div>
+            </div> -->
+
+            <section class="card-soft promo-card" id="promoCard">
+                <div>
+                    <p class="promo-title">Study Partner toping</p>
+                    <p class="promo-sub">3 bosqichda profil sozlang va mos partnerlar bilan chatni oching.</p>
+                </div>
+                <button type="button" class="btn btn-light btn-sm fw-bold" id="openOnboardingBtn">Boshlash</button>
+            </section>
+
+            <section class="card-soft onboarding-card hidden" id="onboardingCard">
+                <div class="onboarding-head">
+                    <div class="small text-muted fw-semibold">Partner sozlamalari</div>
+                    <button type="button" class="btn btn-sm btn-light hidden" id="wizardCloseBtn">Yopish</button>
+                </div>
+                <div class="step-progress">
+                    <span class="step-dot active" id="stepDot1">1</span>
+                    <span class="step-line" id="stepLine1"></span>
+                    <span class="step-dot" id="stepDot2">2</span>
+                    <span class="step-line" id="stepLine2"></span>
+                    <span class="step-dot" id="stepDot3">3</span>
+                </div>
+
+                <form id="wizardForm" novalidate>
+                    <section class="step-pane active" data-step="1">
+                        <h2 class="step-title">Siz haqingizda</h2>
+                        <p class="step-sub">Qisqa ma’lumot kiriting. Ism va overall score avtomatik to‘ldiriladi.</p>
+
+                        <div class="mb-2">
+                            <label class="form-label">Ism</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label">Guruh / Kurs</label>
+                            <input type="text" id="group" class="form-control" placeholder="Masalan: 3-kurs, 401-guruh">
+                        </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label class="form-label">Jins</label>
+                                <select id="gender" class="form-select" required>
+                                    <option value="">Tanlang</option>
+                                    <option value="male">Erkak</option>
+                                    <option value="female">Ayol</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Yosh</label>
+                                <input type="number" id="age" class="form-control" min="15" max="60" required>
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label class="form-label">GPA</label>
+                                <input type="number" id="gpa" class="form-control" min="0" max="5" step="0.01"
+                                    placeholder="0.00 - 5.00">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Overall Score (%)</label>
+                                <input type="number" id="overallScore" class="form-control" min="0" max="100" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label">Telegram username</label>
+                                <input type="text" id="telegram" class="form-control" placeholder="username">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Telefon</label>
+                                <input type="tel" id="phone" class="form-control" placeholder="+998...">
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="step-pane" data-step="2">
+                        <h2 class="step-title">Hamkor talablari</h2>
+                        <p class="step-sub">Qanday partner kerakligini belgilang.</p>
+
+                        <div class="mb-2">
+                            <label class="form-label">Hamkor jinsi</label>
+                            <select id="prefGender" class="form-select">
+                                <option value="any">Farqi yo‘q</option>
+                                <option value="male">Erkak</option>
+                                <option value="female">Ayol</option>
+                            </select>
+                        </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label class="form-label">Yosh min</label>
+                                <input type="number" id="prefAgeMin" class="form-control" min="15" max="60"
+                                    placeholder="18">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Yosh max</label>
+                                <input type="number" id="prefAgeMax" class="form-control" min="15" max="60"
+                                    placeholder="30">
+                            </div>
+                        </div>
+
+                        <div class="row g-2 mb-2">
+                            <div class="col-6">
+                                <label class="form-label">Score min (%)</label>
+                                <input type="number" id="prefScoreMin" class="form-control" min="0" max="100"
+                                    placeholder="60">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Score max (%)</label>
+                                <input type="number" id="prefScoreMax" class="form-control" min="0" max="100"
+                                    placeholder="100">
+                            </div>
+                        </div>
+
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" id="prefSameGroup">
+                            <label class="form-check-label" for="prefSameGroup">Bir xil guruh/kurs bo‘lsin</label>
+                        </div>
+                    </section>
+
+                    <section class="step-pane" data-step="3">
+                        <h2 class="step-title">Hamkorlik maqsadi</h2>
+                        <p class="step-sub">Asosiy maqsadni tanlang.</p>
+
+                        <div class="chip-group mb-2" id="purposeChips">
+                            <button type="button" class="chip-option active" data-purpose="imtihonlarga tayyorgarlik">ON
+                                ga tayyorgarlik</button>
+                            <button type="button" class="chip-option active"
+                                data-purpose="imtihonlarga tayyorgarlik">Imtihonlarga tayyorgarlik</button>
+                            <button type="button" class="chip-option"
+                                data-purpose="darslarni yaxshiroq tushunish">Darslarni yaxshiroq tushunish</button>
+                            <button type="button" class="chip-option" data-purpose="custom">Boshqa</button>
+                        </div>
+
+                        <div class="mb-2 hidden" id="customPurposeWrap">
+                            <label class="form-label">Custom maqsad</label>
+                            <input type="text" id="customPurpose" class="form-control"
+                                placeholder="Maqsadingizni yozing">
+                        </div>
+
+                        <div class="small text-muted">Saqlangandan keyin forma yashiriladi va ro'yxatdan chatga o'tasiz.
+                        </div>
+                    </section>
+
+                    <div class="wizard-actions">
+                        <button type="button" class="btn btn-light" id="wizardBackBtn">Orqaga</button>
+                        <button type="button" class="btn btn-primary" id="wizardNextBtn">Keyingi</button>
+                        <button type="submit" class="btn btn-success hidden" id="wizardSaveBtn">
+                            <i class="bi bi-check2-circle me-1"></i> Saqlash va davom etish
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="card-soft find-shell" id="findShell">
+                <div class="find-grid" id="findGrid">
+                    <aside class="partner-list-pane">
+                        <div class="list-head">
+                            <div class="list-title">Study Partners</div>
+                            <input type="search" id="searchInput" class="form-control form-control-sm"
+                                placeholder="Ism yoki guruh qidirish...">
+                            <div class="toggle-row">
+                                <button type="button" class="btn btn-primary" id="showMatchesBtn">Moslar</button>
+                                <button type="button" class="btn btn-outline-secondary" id="showAllBtn">Hammasi</button>
+                            </div>
+                        </div>
+                        <div class="partner-list" id="partnersList"></div>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Professional Alert/Confirm Modal -->
+    <div id="modalBackdrop" class="modal-backdrop" style="display:none;" onclick="closeModal()"></div>
+    <div id="modal" class="professional-modal" style="display:none;">
+        <div class="modal-body">
+            <h3 id="modalTitle" style="margin-bottom:16px;"></h3>
+            <p id="modalMessage" style="margin-bottom:20px;color:#64748b;"></p>
+            <div class="modal-actions" id="modalActions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" id="modalConfirmBtn" onclick="confirmModal()">OK</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/data.js"></script>
+    <script type="module" src="/auth-guard.js"></script>
+    <script type="module" src="./main.js"></script>
+
+    <script>
+        function openSidebar() {
+            document.getElementById('sidebar').classList.add('open');
+            document.getElementById('sidebarOverlay').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+
+</html>
