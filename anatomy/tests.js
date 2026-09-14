@@ -4631,32 +4631,6 @@ window.TEST_QUESTIONS = {
         "Lymph from the skin of the anterior chest wall primarily drains to the axillary lymph nodes.",
     },
     {
-      q: "A 49-year-old woman who had suffered a myocardial infarction must undergo a bypass graft procedure using the internal thoracic artery. Which vessels will most likely continue to supply blood to the anterior part of the upper intercostal spaces?",
-      a: [
-        "Musculophrenic",
-        "Superior epigastric",
-        "Posterior intercostal",
-        "Lateral thoracic",
-        "Thoracodorsal",
-      ],
-      correct: 2,
-      explanation:
-        "The anterior intercostal arteries anastomose with the posterior intercostal arteries in the upper intercostal spaces, maintaining blood supply even if the internal thoracic artery is harvested.",
-    },
-    {
-      q: "A 55-year-old man is examined in a neighborhood clinic after receiving blunt trauma to his right axilla in a fall. He has difficulty elevating the right arm above the level of his shoulder. Physical examination shows that the inferior angle of his right scapula protrudes more than the lower part of the left scapula, worsening with resisted pushing. Which of the following neural structures has most likely been injured?",
-      a: [
-        "The posterior cord of the brachial plexus",
-        "The long thoracic nerve",
-        "The upper trunk of the brachial plexus",
-        "The site of origin of the middle and lower subscapular nerves",
-        "Spinal nerve ventral rami C7, C8, and T1",
-      ],
-      correct: 1,
-      explanation:
-        '"Winging" of the scapula occurs when the serratus anterior muscle, innervated by the long thoracic nerve, is paralyzed, allowing the medial border of the scapula to lift off the chest wall.',
-    },
-    {
       q: "A 35-year-old woman has a hard breast nodule about 1 cm in diameter slightly above and lateral to the right areola. Dye injected around the tumor is traced through the lymphatic vessels to the first draining lymph nodes. Which of the following nodes will most likely first encounter the lymph from the tumor?",
       a: [
         "Anterior axillary (pectoral) nodes",
@@ -4682,32 +4656,7 @@ window.TEST_QUESTIONS = {
       explanation:
         "When cutaneous lymphatics of the breast are blocked by cancer, the skin becomes edematous except where hair follicles cause small indentations, giving an overall resemblance to orange peel.",
     },
-    {
-      q: "A 29-year-old woman is examined after falling from her balcony. Radiographic examination reveals a broken clavicle with associated internal bleeding. Which of the following vessels is most likely to be injured in clavicular fractures?",
-      a: [
-        "Subclavian artery",
-        "Cephalic vein",
-        "Lateral thoracic artery",
-        "Subclavian vein",
-        "Internal thoracic artery",
-      ],
-      correct: 3,
-      explanation:
-        "The subclavian vein traverses between the clavicle and first rib and is the most superficial structure to be damaged following a fracture of the clavicle.",
-    },
-    {
-      q: "A 55-year-old male metallurgist had been diagnosed with carpal tunnel syndrome. An anesthetic injection into his axillary sheath was given instead of general anesthesia. From which of the following structures does the axillary sheath take origin?",
-      a: [
-        "Superficial fascia of the neck",
-        "Superficial cervical investing fascia",
-        "Buccopharyngeal fascia",
-        "Clavipectoral fascia",
-        "Prevertebral fascia",
-      ],
-      correct: 4,
-      explanation:
-        "The axillary sheath is a fascial continuation of the prevertebral layer of the deep cervical fascia extending into the axilla, enclosing the neurovascular bundle of the upper limb.",
-    },
+
     {
       q: "A mastectomy procedure on a 52-year-old woman involved excision of the tumor and removal of lymph nodes, including the pectoral, central axillary, and infraclavicular groups. Six months later, she complains of an unsightly deep hollow area inferior to the medial half of the clavicle, indicating muscle atrophy, with no obvious motor or sensory deficits. What was the most likely cause?",
       a: [
@@ -4720,52 +4669,6 @@ window.TEST_QUESTIONS = {
       correct: 2,
       explanation:
         "The first branch of the lateral pectoral nerve is typically the only source of motor supply to the clavicular head of the pectoralis major muscle. If injured during axillary node dissection, this part of the muscle atrophies, producing an infraclavicular cosmetic hollow.",
-    },
-    {
-      q: 'Several weeks after surgical dissection of her left axilla for removal of lymph nodes for staging and treatment of breast cancer, a 32-year-old woman has "winging" of her left scapula when pushing against resistance, and difficulty raising her left arm above her head. A nerve was injured during the procedure. What was the origin of this nerve?',
-      a: [
-        "The upper trunk of her brachial plexus",
-        "The posterior division of the middle trunk",
-        "Ventral rami of the brachial plexus",
-        "The posterior cord of the brachial plexus",
-        "The lateral cord of the brachial plexus",
-      ],
-      correct: 2,
-      explanation:
-        "The long thoracic nerve arises directly from the ventral rami of C5, C6, and C7 of the brachial plexus (not from the trunks or cords) and supplies the serratus anterior; injury during axillary dissection causes winging of the scapula and difficulty with overhead arm elevation.",
-    },
-    {
-      q: "A 45-year-old woman is bitten by a dog on the lateral side of her hand. Two days later she develops fever and swollen lymph nodes. Which of the following group of lymphatics will most likely be involved?",
-      a: ["Central", "Humeral", "Pectoral", "Subscapular", "Parasternal"],
-      correct: 1,
-      explanation:
-        "Lymph from the lateral side of the hand drains directly into humeral (epitrochlear/lateral) nodes, then to the central axillary nodes.",
-    },
-    {
-      q: "A 35-year-old male carpenter suffered a deep cut to the tip of his thumb, and later the entire thumb and thenar eminence became inflamed. Which group of lymph nodes is the first to receive drainage from this injury?",
-      a: [
-        "Posterior axillary",
-        "Subclavian",
-        "Lateral axillary",
-        "Anterior axillary",
-        "Central axillary",
-      ],
-      correct: 2,
-      explanation:
-        "With involvement of the thenar (lateral hand/thumb) region, lymph drains initially to the epitrochlear nodes and then to the lateral (humeral) axillary nodes.",
-    },
-    {
-      q: "A shoulder had been penetrated by a bolt from a crossbow, transecting the axillary artery just beyond the origin of the subscapular artery. A compress and clamp are placed on the bleeding artery. What collateral arterial pathway is available to bypass the site of injury?",
-      a: [
-        "Suprascapular with circumflex scapular artery",
-        "Dorsal scapular with thoracodorsal artery",
-        "Posterior circumflex humeral artery with deep brachial artery",
-        "Lateral thoracic with brachial artery",
-        "Supreme thoracic artery with thoracoacromial artery",
-      ],
-      correct: 0,
-      explanation:
-        "The suprascapular artery anastomoses with the circumflex scapular artery deep to the infraspinatus, providing a rich collateral pathway around an injury to the axillary artery distal to the origin of the subscapular artery.",
     },
   ],
   qoltiqOstiVaSutBezi: [
@@ -4796,32 +4699,6 @@ window.TEST_QUESTIONS = {
         "Old ko'krak devori terisidan limfa asosan qo'ltiq osti (aksillyar) limfa tugunlariga oqib boradi.",
     },
     {
-      q: "49 yoshli ayolda miokard infarkti bo'lib, ichki ko'krak arteriyasidan foydalangan holda bypass-graft amaliyoti o'tkazilishi kerak. Yuqori qovurg'alararo bo'shliqlarning old qismini qaysi tomirlar qon bilan ta'minlashda davom etadi?",
-      a: [
-        "Muskulofrenik",
-        "Yuqori epigastral",
-        "Orqa qovurg'alararo",
-        "Lateral torakal",
-        "Torakodorsal",
-      ],
-      correct: 2,
-      explanation:
-        "Old qovurg'alararo arteriyalar yuqori qovurg'alararo bo'shliqlarda orqa qovurg'alararo arteriyalar bilan anastomoz hosil qiladi, shu sababli ichki ko'krak arteriyasi olib qo'yilsa ham qon ta'minoti saqlanib qoladi.",
-    },
-    {
-      q: "55 yoshli erkak yiqilish natijasida o'ng qo'ltiq ostiga qattiq zarba olgach klinikaga murojaat qildi. U o'ng qo'lini yelka darajasidan yuqoriga ko'tarishda qiynaladi. Fizikal tekshiruvda o'ng kurakning pastki burchagi chap kurakka nisbatan ko'proq chiqib turgani, qarshilikka qarshi turtganda yanada kuchayishi aniqlandi. Qaysi nerv tuzilmasi eng ehtimol shikastlangan?",
-      a: [
-        "Brachial pleksusning orqa kordi",
-        "Uzun ko'krak nervi",
-        "Brachial pleksusning yuqori magistrali",
-        "O'rta va pastki kurak osti nervlarining chiqish nuqtasi",
-        "C7, C8 va T1 umurtqa nervlarining ventral shoxlari",
-      ],
-      correct: 1,
-      explanation:
-        "Kurakning \"qanotsimon\" holati (winging) uzun ko'krak nervi tomonidan innervatsiya qilinuvchi serratus anterior muskuli falaj bo'lganda yuzaga keladi, bu kurakning medial chetini ko'krak devoridan ko'tarilishiga olib keladi.",
-    },
-    {
       q: "35 yoshli ayolda o'ng areoladan biroz yuqorida va lateralda diametri taxminan 1 sm bo'lgan qattiq ko'krak tuguni bor. O'sma atrofiga bo'yoq yuborilib, limfa tomirlari orqali birinchi drenaj qiluvchi limfa tugunlarigacha kuzatiladi. Qaysi tugunlar o'smadan kelayotgan limfani birinchi bo'lib qabul qiladi?",
       a: [
         "Old aksillyar (pektoral) tugunlar",
@@ -4848,32 +4725,6 @@ window.TEST_QUESTIONS = {
         "Ko'krak bezining teri osti limfa tomirlari saraton tomonidan bekilib qolganda, teri shishib (edematoz) qoladi, faqat soch follikulalari joylashgan joylarda kichik chuqurchalar hosil bo'ladi va bu umumiy holda apelsin po'stlog'iga o'xshab ko'rinadi.",
     },
     {
-      q: "29 yoshli ayol balkondan yiqilgach tekshirilmoqda. Rentgenologik tekshiruv o'mrov suyagi (klyucha) sinishini va unga bog'liq ichki qon ketishni aniqladi. O'mrov suyagi sinishida qaysi tomir eng ko'p shikastlanishi ehtimoldan yiroq emas?",
-      a: [
-        "Qultiq osti arteriyasi (subklavian)",
-        "Sefalik vena",
-        "Lateral torakal arteriya",
-        "Qo'ltiq osti venasi (subklavian)",
-        "Ichki ko'krak arteriyasi",
-      ],
-      correct: 3,
-      explanation:
-        "Qo'ltiq osti (subklavian) venasi o'mrov suyagi va birinchi qovurg'a orasidan o'tadi va o'mrov suyagi sinishidan keyin eng yuza joylashgan, shu sababli eng ko'p shikastlanadigan tuzilma hisoblanadi.",
-    },
-    {
-      q: "55 yoshli metallurg erkakda karpal tunnel sindromi tashxisi qo'yilgan. Umumiy behushlik o'rniga uning aksillyar qinига behushlantiruvchi in'ektsiya qilindi. Aksillyar qin qaysi tuzilmadan boshlanadi?",
-      a: [
-        "Bo'yinning yuza fassiyasi",
-        "Bo'yin yuzaki investing fassiyasi",
-        "Bukkofaringeal fassiya",
-        "Klavipektoral fassiya",
-        "Pravertebral fassiya",
-      ],
-      correct: 4,
-      explanation:
-        "Aksillyar qin bo'yinning chuqur fassiyasining pravertebral qatlamining aksillaga davom etuvchi fassial cho'zilmasi bo'lib, yuqori qo'l neyrovaskulyar tutamini o'z ichiga oladi.",
-    },
-    {
       q: "52 yoshli ayolda mastektomiya amaliyoti o'tkazilib, o'sma va pektoral, markaziy aksillyar hamda infraklavikulyar guruh limfa tugunlari olib tashlangan. Olti oydan so'ng u o'mrov suyagining medial yarmi ostida chuqur, ko'rimsiz botiqlik paydo bo'lganidan shikoyat qiladi — bu muskul atrofiyasini bildiradi, biroq aniq motor yoki sensor buzilish yo'q. Buning eng ehtimoliy sababi nima?",
       a: [
         "Katta ko'krak muskulining bir qismi mastektomiya vaqtida kesib olib tashlangan",
@@ -4885,58 +4736,6 @@ window.TEST_QUESTIONS = {
       correct: 2,
       explanation:
         "Lateral pektoral nervning birinchi tarmog'i odatda katta ko'krak muskulining klavikulyar boshiga yagona motor ta'minot manbai hisoblanadi. Aksillyar limfa tugunlari olib tashlanishi vaqtida shikastlansa, bu muskul qismi atrofiyaga uchraydi va infraklavikulyar kosmetik botiqlik hosil bo'ladi.",
-    },
-    {
-      q: "32 yoshli ayolda ko'krak saratoni bosqichini aniqlash va davolash uchun chap qo'ltiq ostidagi limfa tugunlarini jarrohlik yo'li bilan olib tashlashdan bir necha hafta o'tgach, qarshilikka qarshi turtganda chap kurakning \"qanotsimon\" holati va sochini taraganda qo'lini boshidan yuqoriga ko'tarishda qiyinchilik paydo bo'ldi. Amaliyot vaqtida bir nerv shikastlangan. Bu nerv qayerdan boshlanadi?",
-      a: [
-        "Brachial pleksusning yuqori magistralidan",
-        "O'rta magistralning orqa bo'linmasidan",
-        "Brachial pleksusning ventral shoxlaridan",
-        "Brachial pleksusning orqa kordidan",
-        "Brachial pleksusning lateral kordidan",
-      ],
-      correct: 2,
-      explanation:
-        "Uzun ko'krak nervi to'g'ridan-to'g'ri brachial pleksusning C5, C6 va C7 ventral shoxlaridan boshlanadi (magistral yoki kordlardan emas) va serratus anterior muskulini innervatsiya qiladi; aksillyar dissektsiya vaqtida shikastlanishi kurakning qanotsimon holatiga va qo'lni boshdan yuqoriga ko'tarishda qiyinchilikka olib keladi.",
-    },
-    {
-      q: "45 yoshli ayolni it qo'lining lateral tomonidan tishlab oladi. Ikki kundan so'ng unda isitma va limfa tugunlari shishishi rivojlanadi. Qaysi limfatik guruh eng ehtimol jalb qilingan?",
-      a: [
-        "Markaziy",
-        "Gumeral (yelka)",
-        "Pektoral",
-        "Kurak osti (subskapulyar)",
-        "Parasternal",
-      ],
-      correct: 1,
-      explanation:
-        "Qo'lning lateral tomonidan limfa to'g'ridan-to'g'ri gumeral (epitroxlear/lateral) tugunlarga, so'ngra markaziy aksillyar tugunlarga oqib boradi.",
-    },
-    {
-      q: "35 yoshli duradgor erkakda bosh barmog'i uchiga chuqur kesik tushgan, keyinchalik butun bosh barmoq va tenar do'ngligi yallig'langan. Ushbu shikastlanishdan drenajni birinchi bo'lib qaysi limfa tugunlari guruhi qabul qiladi?",
-      a: [
-        "Orqa aksillyar",
-        "Subklavian",
-        "Lateral aksillyar",
-        "Old aksillyar",
-        "Markaziy aksillyar",
-      ],
-      correct: 2,
-      explanation:
-        "Tenar (qo'lning lateral/bosh barmoq) sohasi jalb qilinganda, limfa dastlab epitroxlear tugunlarga, so'ngra lateral (gumeral) aksillyar tugunlarga oqib boradi.",
-    },
-    {
-      q: "Yelka arbaletdan otilgan o'q bilan teshilib, o'q qo'ltiq osti arteriyasini kurak osti (subskapulyar) arteriyaning chiqish nuqtasidan biroz narida kesib o'tgan. Qonayotgan arteriyaga qisqich qo'yilgandan so'ng, shikastlanish joyini aylanib o'tish uchun qaysi kollateral arterial yo'l mavjud?",
-      a: [
-        "Suprascapular arteriya bilan sirkumfleks kurak arteriyasi",
-        "Dorsal kurak arteriyasi bilan torakodorsal arteriya",
-        "Yelka orqa aylanuvchi arteriyasi bilan chuqur yelka arteriyasi",
-        "Lateral torakal arteriya bilan yelka arteriyasi",
-        "Yuqori (supremum) torakal arteriya bilan torakoakromial arteriya",
-      ],
-      correct: 0,
-      explanation:
-        "Suprascapular arteriya infraspinatus muskuli ostida sirkumfleks kurak arteriyasi bilan anastomoz hosil qiladi, bu esa kurak osti arteriyasi chiqish nuqtasidan distal joyda qo'ltiq osti arteriyasi shikastlanganda boy kollateral yo'l ta'minlaydi.",
     },
   ],
 };
