@@ -4738,4 +4738,312 @@ window.TEST_QUESTIONS = {
         "Lateral pektoral nervning birinchi tarmog'i odatda katta ko'krak muskulining klavikulyar boshiga yagona motor ta'minot manbai hisoblanadi. Aksillyar limfa tugunlari olib tashlanishi vaqtida shikastlansa, bu muskul qismi atrofiyaga uchraydi va infraklavikulyar kosmetik botiqlik hosil bo'ladi.",
     },
   ],
+
+  overall1: [
+    {
+      q: "Faqat RNKda bo’ladigan azot asosi qaysi?",
+      a: ["Uratsil", "Timin", "Sitozin", "Guanin", "Adenozin"],
+      correct: 0,
+    },
+    {
+      q: "MELAS qaysi organoid bilan bog’liq kasallik?",
+      a: ["Mitoxondriya", "Golji apparati", "Ribosoma", "Lizosoma", "Vakuola"],
+      correct: 0,
+    },
+    {
+      q: "Qaysi lipoprotein ortiqcha xolesterinni jigarga olib keladi?",
+      a: ["HDL", "LDL", "VLDL", "IDL", "xilomikron"],
+      correct: 0,
+    },
+    {
+      q: "Suyuqlik endotsitozi nima deb ataladi?",
+      a: [
+        "Oddiy diffuzuya",
+        "Yengillashgan diffuziya",
+        "Fagotsitoz",
+        "Pinotsitoz",
+        "Ikkilamchi aktiv transport",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Noto’g’ri shakllangan oqsillarni parchalovchi organellani ko’rsating",
+      a: [
+        "Endoplazmatik to’r",
+        "Golji apparati",
+        "Ribosoma",
+        "Proteosoma",
+        "Peroksisoma",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Simpatik nerv ta`sirini ko’rsating",
+      a: [
+        "Qorachiq kengayishi",
+        "So’lak ajralishi kuchayishi",
+        "Tomir kengayishi",
+        "Bronxlar torayishi",
+        "Ichak peristaltikasi kuchayishi",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Qaysi nerv ichki organlardan sensor impulslarni markaziy nervsistemasiga tashiydi?",
+      a: [
+        "Umumiy somatik afferent tolalar",
+        "Maxsus somatik efferent tolalar",
+        "Maxsus visseral afferent tolalar",
+        "Maxsus visseral efferent tolalar",
+        "Umumiy visseral afferent tolalar",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Qaysi organ vitamin D sintez qilish xususiyatiga ega?",
+      a: ["Teri", "O’pka", "Suyak", "Taloq", "Yurak"],
+      correct: 0,
+    },
+    {
+      q: "Qaysi transport turi energiya sarfisiz kechadi?",
+      a: [
+        "Pinotsitoz",
+        "Fagotsitoz",
+        "Ikkilamchi aktiv transport",
+        "Birlamchi aktiv transport",
+        "Yengillashgan diffuziya",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Zellweger sindromi qaysi organoid disfunksiyasi bilan bog’liq?",
+      a: [
+        "Mitoxondriya",
+        "Golji apparati",
+        "Ribosoma",
+        "Lizosoma",
+        "Peroksisoma",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Markaziy nerv sistemasida miyelinni qaysi hujayralar hosil qiladi?",
+      a: [
+        "Mikroglia",
+        "Oligodendrotsit",
+        "Shvann",
+        "Astrotsit",
+        "Ependimotsit",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Periferik nerv sistemasining tarkibiy qismi nimalardan iborat?",
+      a: [
+        "12 juft kranial, 31 juft spinal nervlar va gangliylar",
+        "Bosh va orqa miya",
+        "Simpatik va parasimpatik nervlar",
+        "Neyron va neyrogliya",
+        "orqa miya va undan chiquvchi 31 juft nerv",
+      ],
+      correct: 0,
+    },
+    {
+      q: "B va T-limfotsitlarning prekursorlari qayerda hosil bo’ladi?",
+      a: [
+        "Suyak ko’migida",
+        "Ayrisimon bezda",
+        "Taloqda",
+        "Jigarda",
+        "Limfa tugunlarida",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Qonda siydik siklota ko’payib ketganda kelib chiqadigan artrit turini ko’rsating",
+      a: [
+        "Osteoartrit",
+        "Podagra",
+        "Revmatoid artrit",
+        "Seronegativ artrit",
+        "Septik artrit",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Juda uzun zanjirli yog’ kislotalar alfa oksidlanishi qaysi organoidda kechadi?",
+      a: [
+        "Endoplazmatik to’r",
+        "Golji apparati",
+        "Ribosoma",
+        "Peroksisoma",
+        "Mitoxondriya",
+      ],
+      correct: 3,
+    },
+    {
+      q: "Karbonat angidrid hujayra membranasidan qaysi yo’l orqali o’tadi?",
+      a: [
+        "Oddiy diffuzuya",
+        "Yengillashgan diffuziya",
+        "Fagotsitoz",
+        "Birlamchi aktiv transport",
+        "Ikkilamchi aktiv transport",
+      ],
+      correct: 0,
+    },
+    {
+      q: "SGLT2 transporteri qaysi transportga misol bo’ladi?",
+      a: [
+        "Pinotsitoz",
+        "Fagotsitoz",
+        "Ikkilamchi aktiv transport",
+        "Birlamchi aktiv transport",
+        "Yengillashgan diffuziya",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Ikki qavat membrana bilan o’ralgan organoid-?",
+      a: [
+        "Endoplazmatik to’r",
+        "Golji apparati",
+        "Mitoxondriya",
+        "Lizosoma",
+        "Vakuola",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Suyak rezorbsiyasi buzilishi hisobiga suyakning abnormal zich bo’lib qolishi nima deb ataladi?",
+      a: [
+        "Osteoporoz",
+        "Osteopenia",
+        "Osteopetroz",
+        "Osteomalatsiya",
+        "Osteoartrit",
+      ],
+      correct: 2,
+    },
+    {
+      q: "Membranasiz organoidni ko’rsating",
+      a: [
+        "Endoplazmatik to’r",
+        "Golji apparati",
+        "Ribosoma",
+        "Lizosoma",
+        "Vakuola",
+      ],
+      correct: 2,
+    },
+  ],
+  overall2: [
+    {
+      q: "Harakat potensiali depolarizatsiya paytida qaysi ion hujayra membranasi orqali hujayraga o‘tib membrana potensialini musbat tomonga o‘zgartiradi?",
+      a: ["Na⁺", "K⁺", "Cl⁻", "Ca²⁺", "Mg²⁺"],
+      correct: 2,
+    },
+    {
+      q: "45 yoshli ayol kosmetik ko'krak jarrohligiga nomzod sifatida tekshirilmoqda. Jarroh ikkala ko'krak bezining sezilarli darajada osilib qolganini qayd etadi. Ushbu holatga olib kelish uchun qaysi tuzilma(lar) cho'zilgan bo'lishi eng ehtimoldan yiroq emas?",
+      a: [
+        "Skarpa fassiyasi",
+        "Katta ko'krak muskuli",
+        "Kichik ko'krak muskuli",
+        "Osilib turuvchi (Kuper) boylamlari",
+        "Old serrata muskuli (serratus anterior)",
+      ],
+      correct: 3,
+      explanation:
+        "Ko'krak bezining osilib turuvchi boylamlari, ya'ni Kuper boylamlari, teri dermasidan yuza fassiyaning chuqur qatlamigacha o'tuvchi tolali tasmalar bo'lib, ko'krak bezini tortishish kuchiga qarshi asosiy tayanch vazifasini bajaradi. Ko'krak ptozi odatda shu boylamlarning cho'zilishi natijasida yuzaga keladi.",
+    },
+    {
+      q: "35 yoshli ayolda o'ng areoladan biroz yuqorida va lateralda diametri taxminan 1 sm bo'lgan qattiq ko'krak tuguni bor. O'sma atrofiga bo'yoq yuborilib, limfa tomirlari orqali birinchi drenaj qiluvchi limfa tugunlarigacha kuzatiladi. Qaysi tugunlar o'smadan kelayotgan limfani birinchi bo'lib qabul qiladi?",
+      a: [
+        "Old aksillyar (pektoral) tugunlar",
+        "Rotter interpektoral tugunlari",
+        "Ichki ko'krak arteriyasi va venasi bo'ylab joylashgan parasternal tugunlar",
+        "Markaziy aksillyar tugunlar",
+        "Apikal yoki infraklavikulyar tugunlar",
+      ],
+      correct: 0,
+      explanation:
+        "Old aksillyar (pektoral) tugunlar ko'krak bezi parenximasi, areola va so'rg'ichdan kelayotgan limfaning aksariyat qismini birinchi bo'lib qabul qiluvchi limfa tugunlaridir. So'ngra limfa ketma-ket markaziy, apikal va supraklavikulyar tugunlar orqali oqib boradi.",
+    },
+    {
+      q: "Yog' kislotalari har qanday vaqtda ham muhim energiya manbayi bo'lmagan to'qima qaysi?",
+      a: ["Jigar", "Bosh miya", "Skelet muskuli", "Qizil qon hujayralari"],
+      correct: 3,
+      explanation:
+        "Yog' kislotalarining oksidlanishi mitoxondriyada kechadi. Qizil qon hujayralarida mitoxondriya yo'qligi sababli ular yog' kislotalaridan foydalana olmaydi. Bosh miya gematoensefalitik baryer orqali ko'pchilik yog' kislotalarni o'ziga transport qila olmaydi (almashinmaydigan yog' kislotalari bundan istisno), shu sababli miya ham yog' kislotalaridan energiya sifatida foydalana olmaydi, biroq o'zining yog' kislotalarini sintezlab, kerak bo'lsa oksidlashi mumkin. Qizil qon hujayralari esa mitoxondriyasi yo'qligi sababli yog' kislotalaridan umuman foydalana olmaydi.",
+    },
+    {
+      q: "Uzoq davom etgan ochlikda aminokislotalardan qondagi glyukoza miqdorini saqlab turishda foydalanadigan to'qima qaysi?",
+      a: ["Jigar", "Bosh miya", "Skelet muskuli", "Qizil qon hujayralari"],
+      correct: 0,
+      explanation:
+        "Jigar aminokislotalardan glyukoneogenez orqali glyukoza hosil qilib, qonga chiqaradi. Bundan tashqari glyukoneogenez uchun sut kislota (eritrotsitlarda glyukoza metabolizmida hosil bo'luvchi) va glitserol (triatsilglitserol erkin yog' kislotalariga va glitserolga parchalanishidan hosil bo'lgan) manba hisoblanadi. Na bosh miya, na skelet muskuli, na qizil qon hujayralari glyukozani qon aylanish tizimiga eksport qila olmaydi.",
+    },
+    {
+      q: "Muskul laktatini boshqa to'qimalar uchun energiya manbayiga aylantiradigan to'qima qaysi?",
+      a: ["Jigar", "Bosh miya", "Skelet muskuli", "Qizil qon hujayralari"],
+      correct: 0,
+      explanation:
+        "Jismoniy ish bajarayotgan muskul laktat hosil qiladi va u jigarda glyukoneogenez orqali glyukozaga aylanadi. Qondagi glyukoza qizil qon hujayralari va boshqa to'qimalarda oksidlanadi. Faqatgina jigar va buyrak (kam miqdorda) boshqa to'qimalar uchun qonga erkin glyukoza chiqaradi.",
+    },
+    {
+      q: "Sport ommaviy axborot vositalarida Nyu-York jamoasining 27 yoshli taniqli shortstopi bir nechta beysbol o'yinlarida ishtirok eta olmasligi haqida xabar berildi. U to'pni qo'lqopsiz ushlashga urinayotganda barmog'ining uchiga zarba olgan. Natijada paylardan biri uzilgan. Jamoa shifokorining ta'kidlashicha, beysbolchi o'ng qo'lining uzun barmog'idagi oxirgi bo'g'imni to'g'rilay olmayapti va barmoq jarrohlik amaliyotini talab qiladi. Beysbolchi qanday jarohat olgan?",
+
+      a: [
+        "Tirnoqsimon qo'l deformatsiyasi",
+        "Boutonnière deformatsiyasi",
+        "Oqqush bo'yni deformatsiyasi",
+        "Dyupyuytren kontrakturasi",
+        "Mallet finger",
+      ],
+
+      correct: 4,
+    },
+
+    {
+      q: "45 yoshli erkak chap qo'lining barmog'i eshik bilan qattiq qisilib jarohatlangandan so'ng ambulator klinikaga murojaat qiladi. O'rta barmog'idagi yuzaki kesilgan yara tikilgan, biroq barmoqda funksional buzilishlar kuzatilmoqda. Proksimal interfalangeal bo'g'im doimiy bukilgan holatda, distal interfalangeal bo'g'im esa giperekstenziya holatida turibdi. Eng ehtimoliy tashxis qaysi?",
+
+      a: [
+        "Mallet finger",
+        "Boutonnière deformatsiyasi",
+        "Dyupyuytren kontrakturasi",
+        "Oqqush bo'yni deformatsiyasi",
+        "Kumush sanchqi (silver fork) ko'rinishidagi bilak deformatsiyasi",
+      ],
+
+      correct: 1,
+    },
+
+    {
+      q: "24 yoshli ayol tibbiyot talabasi itining bosh barmog'i asosini tishlab olganidan so'ng jarohatlangan. Yara infeksiyalangan va infeksiya radial bursaga tarqalgan. Qaysi mushakning payi eng katta ehtimol bilan zararlanadi?",
+
+      a: [
+        "Flexor digitorum profundus",
+        "Flexor digitorum superficialis",
+        "Flexor pollicis longus",
+        "Flexor carpi radialis",
+        "Flexor pollicis brevis",
+      ],
+
+      correct: 2,
+    },
+
+    {
+      q: "12 yoshli bola o'tkir pichoq bilan o'ynayotganda bilagining kaft tomonidagi yuzasini kesib oldi. Jarohat ichida payning kesilgan uchlari bilakning aynan o'rta chizig'ida ko'rindi. Ko'pchilik odamlarda bu holatda qaysi pay joylashadi?",
+
+      a: [
+        "Palmaris longus",
+        "Flexor carpi radialis",
+        "Abductor pollicis longus",
+        "Flexor carpi ulnaris",
+        "Flexor pollicis longus",
+      ],
+
+      correct: 0,
+    },
+  ],
 };
