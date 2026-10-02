@@ -4231,7 +4231,7 @@ window.TEST_QUESTIONS = {
     },
 
     {
-      q: "Ko'krak uchi (sosok) odatda qaysi qovurg'alararo bo'shliqda joylashadi?",
+      q: "Ko'krak uchi odatda qaysi qovurg'alararo bo'shliqda joylashadi?",
       a: [
         "Birinchi qovurg'alararo bo'shliq",
         "Ikkinchi qovurg'alararo bo'shliq",
@@ -4491,7 +4491,7 @@ window.TEST_QUESTIONS = {
     {
       q: "Rivojlangan yallig'lanishli ko'krak saratonida teri osti limfa tomirlarining tiqilib qolishi natijasida yuzaga keladigan 'apelsin po'sti' ko'rinishi nima deb ataladi?",
       a: [
-        "Peau d'orange (apelsin po'sti belgisi)",
+        "Peau d'orange",
         "Politeliya",
         "Mastoptoz",
         "Ateliya",
@@ -4941,7 +4941,7 @@ window.TEST_QUESTIONS = {
     {
       q: "Harakat potensiali depolarizatsiya paytida qaysi ion hujayra membranasi orqali hujayraga o‘tib membrana potensialini musbat tomonga o‘zgartiradi?",
       a: ["Na⁺", "K⁺", "Cl⁻", "Ca²⁺", "Mg²⁺"],
-      correct: 2,
+      correct: 0,
     },
     {
       q: "45 yoshli ayol kosmetik ko'krak jarrohligiga nomzod sifatida tekshirilmoqda. Jarroh ikkala ko'krak bezining sezilarli darajada osilib qolganini qayd etadi. Ushbu holatga olib kelish uchun qaysi tuzilma(lar) cho'zilgan bo'lishi eng ehtimoldan yiroq emas?",
@@ -5043,6 +5043,74 @@ window.TEST_QUESTIONS = {
         "Flexor pollicis longus",
       ],
 
+      correct: 0,
+    },
+    {
+      q: "Barcha qo'ltiq osti tugun guruhlaridan limfa qabul qiluvchi, ko'krak bezidan ham limfa qabul qilishi mumkin bo'lgan va so'ngra subklaviya tomiriga quyiluvchi limfa tugunlari qaysi?",
+      a: [
+        "Markaziy tugunlar",
+        "Pektoral tugunlar",
+        "Brakial tugunlar",
+        "Apikal tugunlar",
+        "Subskapulyar tugunlar",
+      ],
+      correct: 3,
+    },
+
+    {
+      q: "Ko'krak bezi odatda qaysi qovurg'alar oralig'ida vertikal joylashadi?",
+      a: [
+        "Birinchi-to'rtinchi qovurg'alar",
+        "Ikkinchi-oltinchi qovurg'alar",
+        "Uchinchi-ettinchi qovurg'alar",
+        "To'rtinchi-sakkizinchi qovurg'alar",
+        "Beshinchi-to'qqizinchi qovurg'alar",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Ko'krak uchini o'rab turgan pigmentlangan teri halqasi nima deb ataladi?",
+      a: [
+        "Laktifer sinus",
+        "Areola",
+        "Mammar papilla",
+        "Retromammar bo'shliq",
+        "Aksillyar dum",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Bir juftdan ortiq ko'krak bezi bo'lish holati nima deb ataladi?",
+      a: ["Politeliya", "Amastiya", "Polimastiya", "Ateliya", "Ginekomastiya"],
+      correct: 2,
+    },
+
+    {
+      q: "Bir juftdan ortiq ko'krak uchi (sosok) bo'lish holati nima deb ataladi?",
+      a: ["Polimastiya", "Politeliya", "Ateliya", "Amastiya", "Mastit"],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak bezlarining yo'qligi nima deb ataladi?",
+      a: ["Ateliya", "Amastiya", "Polimastiya", "Politeliya", "Gipomastiya"],
+      correct: 1,
+    },
+
+    {
+      q: "Ko'krak uchlarining (sosoklarning) yo'qligi nima deb ataladi?",
+      a: ["Ateliya", "Amastiya", "Polimastiya", "Politeliya", "Mastoptoz"],
+      correct: 0,
+    },
+    {
+      q: "Rivojlangan yallig'lanishli ko'krak saratonida teri osti limfa tomirlarining tiqilib qolishi natijasida yuzaga keladigan 'apelsin po'sti' ko'rinishi nima deb ataladi?",
+      a: [
+        "Peau d'orange",
+        "Politeliya",
+        "Mastoptoz",
+        "Ateliya",
+        "Retromammar belgi",
+      ],
       correct: 0,
     },
   ],
