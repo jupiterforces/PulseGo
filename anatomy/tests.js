@@ -5114,4 +5114,139 @@ window.TEST_QUESTIONS = {
       correct: 0,
     },
   ],
+  anatcase1: [
+    {
+      q: "1 yoshli qizcha rejali tibbiy ko‘rik uchun klinikaga olib kelindi. Bolaning holati normal, biroq bel umurtqalari sohasining o‘rta chizig‘ida terining botiqligi va uning ustida bir tutam tuk o‘sishi kuzatiladi. Embrional rivojlanishning to‘liq amalga oshmasligi natijasida yuzaga keladigan bu nisbatan keng tarqalgan holat qaysi?",
+      a: [
+        "Meningomiyelotsele",
+        "Meningotsele",
+        "Spina bifida occulta",
+        "Kistoz umurtqa pog‘onasi nuqsoni",
+        "Rahishizis",
+      ],
+      correct: 2,
+      explanation:
+        "Spina bifida — bel umurtqalari sohasida umurtqa yoylarining to‘liq birikmasligi natijasida yuzaga keladigan rivojlanish nuqsoni. Spina bifida occulta ko‘pincha simptomsiz kechadi va bel sohasining o‘rta chizig‘ida teri belgilarining, jumladan, bir tutam tuk hamda kichik botiqlikning mavjudligi bilan namoyon bo‘ladi. Spina bifida cystica ning og‘irroq shakllari uch turga bo‘linadi: meningotsele — birikmagan umurtqa yoylari orqali miya pardalarining bo‘rtib chiqishi; meningomiyelotsele — miya pardalari bilan birga markaziy asab tizimi to‘qimalarining ham bo‘rtib chiqishi va ko‘pincha nevrologik buzilishlar bilan kechishi; raxishizis (miyeloshizis bilan kechuvchi spina bifida cystica) — nerv burmalarining birikmasligi natijasida yuzaga kelib, orqa miya yoki orqa miya nervlari hamda miya pardalarining ochiq holda bo‘rtib chiqishi bilan tavsiflanadi.",
+    },
+
+    {
+      q: "Yosh shifokor belining orqa qismida hasharot chaqishi bilan bog‘liq bo‘lishi mumkin bo‘lgan qichishishdan shikoyat qiladi. T4 umurtqasining o‘tkir o‘simtasidan biroz lateral tomonda, orqa terisida chivinning chaqishini sezish qaysi nerv tolalari orqali amalga oshiriladi?",
+      a: [
+        "Somatik afferent nerv tolalari",
+        "Somatik efferent nerv tolalari",
+        "Visseral afferent nerv tolalari",
+        "Visseral efferent nerv tolalari",
+        "Somatik efferent va visseral afferent nerv tolalari",
+      ],
+      correct: 0,
+      explanation:
+        "Somatik afferent nerv tolalari og‘riq, bosim, teginish, harorat va proprioseptiv sezgilarni markaziy asab tizimiga yetkazadi. Afferent tolalar faqat sezgi impulslarini olib boradi, efferent tolalar esa harakatga oid impulslarni uzatadi. Visseral innervatsiya vegetativ asab tizimi bilan bog‘liq. Visseral afferent tolalar odatda ichki a’zolardagi fiziologik o‘zgarishlar haqidagi axborotni uzatadi. Visseral efferent tolalar esa uch turdagi to‘qimaga vegetativ motor ta’sir ko‘rsatadi: silliq mushaklar, yurak mushagi va bez epiteliyi.",
+    },
+
+    {
+      q: "22 yoshli erkak futbolchi boshqa o‘yinchi bilan boshi bilan to‘qnashib ketganidan so‘ng o‘yinni tark etishga majbur bo‘ladi. U shifoxonaga yotqiziladi va radiologik tekshiruv natijasida atlantoaksial bo‘g‘imning biroz siljishi aniqlanadi. Natijada ushbu bo‘g‘imdagi harakat hajmi kamayadi. Boshning qaysi harakati eng ko‘p darajada buziladi?",
+      a: [
+        "Aylanish (rotatsiya)",
+        "Bukilish (fleksiya)",
+        "Uzoqlashtirish (abduksiya)",
+        "Yozilish (ekstenziya)",
+        "Yaqinlashtirish (adduksiya)",
+      ],
+      correct: 0,
+      explanation:
+        "Atlantoaksial bo‘g‘im sinovial bo‘g‘im bo‘lib, boshning aylanish harakatini ta’minlaydi. Shuning uchun ushbu bo‘g‘im shikastlanganda boshning rotatsiyasi eng ko‘p buziladi. Atlanto-oksipital bo‘g‘im esa asosan boshning bo‘yinga nisbatan bukilish va yozilish harakatlarida ishtirok etadi.",
+    },
+    {
+      q: "5 yoshli o‘g‘il bola yuqori orqa sohasidagi og‘riq tufayli shifoxonaga yotqizildi. Radiologik tekshiruvda C5 va C6 bo‘yin umurtqalarining g‘ayritabiiy birikishi hamda kurak suyagining odatdagidan yuqorida joylashgani aniqlandi. Eng ehtimoliy tashxis qaysi?",
+      a: [
+        "Lordoz",
+        "Kifoz",
+        "Skolioz",
+        "Spina bifida",
+        "Klippel–Feil sindromi",
+      ],
+      correct: 4,
+      explanation:
+        "Klippel–Feil sindromi — tug‘ma nuqson bo‘lib, bir yoki bir nechta bo‘yin umurtqalarining rivojlanishi kamayishi yoki keng ko‘lamda birikib ketishi bilan tavsiflanadi. Ko‘pincha bo‘yinning kalta va qattiq bo‘lishi hamda harakat hajmining cheklanishi bilan namoyon bo‘ladi. Giperlordoz — bel egriligining g‘ayritabiiy kuchayishi. Giperkifoz («bukrilik») — ko‘krak egriligining g‘ayritabiiy kuchayishi. Skolioz — umurtqa pog‘onasining yon tomonga egriligi. Spina bifida esa bel sohasidagi deformatsiyalar bilan namoyon bo‘lishi mumkin.",
+    },
+
+    {
+      q: "45 yoshli ayol 2 yildan beri belining chap pastki qismida o‘rtacha darajadagi og‘riq borligini, bu og‘riq chap pastki oyoq-qo‘liga tarqalishini aytadi. Gazlangan ichimliklar qutisini ko‘targanidan so‘ng og‘riq to‘satdan kuchayib, chidab bo‘lmas darajaga yetadi. U shoshilinch tibbiy yordam bo‘limiga yotqiziladi. Radiologik tekshiruvda L4 va L5 umurtqalari orasida umurtqalararo disk churrasi aniqlanadi. Disk churrasi natijasida qaysi nerv ildizi eng ehtimol bilan zararlangan?",
+      a: ["L1", "L2", "L3", "L4", "L5"],
+      correct: 4,
+      explanation:
+        "Bel sohasida L4 va L5 umurtqalari orasidagi disk churrasi odatda L5 spinal nerv ildizini zararlaydi. L4 spinal nerv ildizi L4 va L5 umurtqalari orasida joylashgan bo‘lsa-da, umurtqa kanalidan umurtqalararo diskdan yuqoriroqda chiqadi. L5 spinal nerv ildizi esa diskning bevosita orqa tomonida joylashadi va shu sababli disk churrasi ta’sirida zararlanishi mumkin.",
+    },
+  ],
+  anatcase2: [
+    {
+      q: "55 yoshli erkak yiqilish natijasida o‘ng qo‘ltiq osti sohasiga to‘mtoq jarohat olganidan so‘ng mahalliy poliklinikada tekshiruvdan o‘tkaziladi. U o‘ng qo‘lini yelka sathidan yuqoriga ko‘tarishda qiynaladi. Fizik tekshiruvda o‘ng kurak suyagining pastki burchagi chap kurak suyagining pastki burchagiga nisbatan ko‘proq tashqariga bo‘rtib chiqqani aniqlanadi. Bemor tekshiruvchining qo‘liga qarshilik ko‘rsatib itarganida, o‘ng kurak suyagi yanada ko‘proq bo‘rtib chiqadi. Quyidagi nerv tuzilmalaridan qaysi biri eng ehtimol bilan shikastlangan?",
+      a: [
+        "Yelka chigalining orqa tutami",
+        "Uzun ko‘krak nervi",
+        "Yelka chigalining yuqori poyasi",
+        "O‘rta va pastki kurak osti nervlarining boshlanish sohasi",
+        "C7, C8 va T1 spinal nervlarining oldingi shoxlari",
+      ],
+      correct: 1,
+      explanation:
+        "Bemorda kurak suyagining qanotsimon bo‘rtib chiqishi (qanotsimon kurak) kuzatilmoqda. Bu holatda bemor devorga yoki tekshiruvchining qo‘liga qarshilik bilan itarganida kurak suyagining medial cheti ko‘krak qafasi devoridan uzoqlashib, tashqariga bo‘rtib chiqadi. Oldingi tishsimon mushak (m. serratus anterior) kurak suyagining medial chetini ko‘krak qafasi devoriga yopishgan holda ushlab turadi va uzun ko‘krak nervi (nervus thoracicus longus) tomonidan innervatsiya qilinadi. Ushbu mushak qo‘lni gorizontal sathdan yuqoriga ko‘tarishda ham qatnashadi: kurak suyagini yuqoriga aylantirib, uning bo‘g‘im chuqurchasini yuqoriga yo‘naltiradi. Shu sababli uzun ko‘krak nervining shikastlanishi kurak suyagining qanotsimon bo‘rtishiga va qo‘lni yuqoriga ko‘tarish qiyinlashishiga olib keladi.",
+    },
+
+    {
+      q: "Chaqaloq o‘g‘il bola forseps yordamida tug‘dirilgandan so‘ng uning chap yuqori qo‘l-oyog‘i tanaga yaqinlashtirilgan (adduksiya), ichkariga aylantirilgan (ichki rotatsiya) va bilak bo‘g‘imida bukilgan holatda ekanligi kuzatiladi. Shu tomonda cho‘chish refleksi (Moro refleksi) aniqlanmaydi. Tug‘ruqning qiyin kechishi vaqtida yelka chigalining qaysi qismi eng ehtimol bilan shikastlangan?",
+      a: [
+        "Yelka chigalining lateral tutami",
+        "Yelka chigalining medial tutami",
+        "Pastki poyaning oldingi shoxlari",
+        "O‘rta poyaning oldingi shoxi",
+        "Yuqori poyaning oldingi shoxlari",
+      ],
+      correct: 4,
+      explanation:
+        "Ta’riflangan shikastlanish Erb–Dyushenn falaji yoki «ofitsiant qo‘li» (waiter’s tip hand) deb ham ataladi va qiyin tug‘ruqdan keyin chaqaloqlarda nisbatan ko‘p uchraydi. Odatda yelka chigalining yuqori poyasi shikastlanishi natijasida yuzaga keladi. Bunda qo‘lni uzoqlashtirish (abduksiya), bukish (fleksiya) va tashqariga aylantirish (lateral rotatsiya) harakatlari buziladi. Yelka chigalining yuqori poyasi C5–C6 spinal nervlarining oldingi shoxlaridan hosil bo‘ladi.",
+    },
+
+    {
+      q: "35 yoshli erkakning jimjilog‘i tirnog‘i ostida kichik, ammo og‘riqli o‘sma mavjud. O‘smani og‘riqsiz olib tashlash uchun quyidagi nervlardan qaysi birini anesteziya qilish kerak?",
+      a: [
+        "Yuzaki radial nerv",
+        "Median nervning umumiy palmar digital nervi",
+        "Ulnar nervning umumiy palmar digital nervi",
+        "Chuqur radial nerv",
+        "Median nervning qaytuvchi tarmog‘i",
+      ],
+      correct: 2,
+      explanation:
+        "Umumiy palmar digital nerv Ulnar nervning yuzaki tarmog‘idan chiqib, jimjiloq va nomsiz barmoqning medial tomonidagi terini innervatsiya qiladi. Radial nervning yuzaki tarmog‘i qo‘l panjasi orqa yuzasining lateral (radial) qismini hamda dastlabki ikki yarim barmoqning proksimal falangalar ustidagi orqa yuzasi terisini sezgi bilan ta’minlaydi. Median nervning umumiy palmar digital nervlari kaftning lateral qismining katta qismini, ikkinchi va uchinchi barmoqlarning orqa yuzasini hamda to‘rtinchi barmoqning lateral qismini innervatsiya qiladi. Chuqur radial nerv m. extensor carpi radialis brevis va m. supinator mushaklarни innervatsiya qilib, keyinchalik orqa suyaklararo nerv (n. interosseus posterior) sifatida davom etadi. Median nervning qaytuvchi tarmog‘i esa bosh barmoqни uzoqlashtiruvchi kalta mushak (m. abductor pollicis brevis), bosh barmoqни bukuvchi kalta mushak (m. flexor pollicis brevis) va bosh barmoqни qarama-qarshi qo‘yuvchi mushakни (m. opponens pollicis) innervatsiya qiladi.",
+    },
+
+    {
+      q: "32 yoshli ayol avtomobil halokatidan so‘ng shoshilinch tibbiy yordam bo‘limiga yotqizildi. Radiologik tekshiruvda yelka suyagining bir nechta sinishlari aniqlandi. Bilakni tirsak bo‘g‘imida bukish va tashqariga aylantirish (supinatsiya) harakatlari keskin zaiflashgan. Shuningdek, bilakning lateral yuzasida sezgi yo‘qolgan. Quyidagi nervlardan qaysi biri eng ehtimol bilan shikastlangan?",
+      a: [
+        "Radial nerv",
+        "Muskul-teri nervi",
+        "Median nerv",
+        "Yelka chigalining lateral tutami",
+        "Bilakning lateral teri nervi",
+      ],
+      correct: 1,
+      explanation:
+        "Muskul-teri nervi (n. musculocutaneus) yelkaning ikki boshli mushagi (m. biceps brachii) va yelka mushagini (m. brachialis) innervatsiya qiladi. Bu mushaklar bilakni tirsak bo‘g‘imida bukishda qatnashadi. Muskul-teri nervi davom etib, bilakning lateral teri nerviga (n. cutaneus antebrachii lateralis) aylanadi va anatomik holatda bilakning lateral yuzasi terisidan sezgi impulslarini olib keladi. Yelkaning ikki boshli mushagi supinatsiyani amalga oshiruvchi eng kuchli mushak hisoblanadi. Shu sababli muskul-teri nervi shikastlanganda bilakni bukish va supinatsiya zaiflashadi, bilakning lateral yuzasida sezgi yo‘qoladi. Radial nerv shikastlanganda yozish harakatlari zaiflashadi va o‘ziga xos «osilib qolgan bilak» (wrist drop) kuzatiladi. Median nerv shikastlanishi barmoqlarni yuzaki bukuvchi mushak (m. flexor digitorum superficialis) va bilakdagi boshqa bukuvchi mushaklar faoliyatini buzib, bosh barmoq do‘mbog‘ining (thenar eminence) yassilanishiga olib kelishi mumkin. Yelka chigalining lateral tutamidan muskul-teri nervi va lateral ko‘krak nervi chiqadi. Ko‘krak mushaklari falaji yoki zaifligi haqida ma’lumot yo‘q. Lateral tutam shikastlanishi bilakni bukish va supinatsiyani, shuningdek, yelkani tanaga yaqinlashtirish va ichkariga aylantirishni zaiflashtirishi mumkin. Bilakning lateral teri nervi esa muskul-teri nervining tarmog‘i bo‘lib, motor innervatsiyani ta’minlamaydi. Muskul-teri nervining alohida shikastlanishi kam uchraydi, biroq teshib kiruvchi jarohatlardan keyin yuz berishi mumkin.",
+    },
+
+    {
+      q: "24 yoshli erkak qo‘l kaftidagi jarohat bilan shifoxonaga yotqizildi. U bosh barmog‘ining uchini ko‘rsatkich barmog‘i uchiga tekkiza olmaydi, biroq barcha barmoqlari orasida qog‘oz varag‘ini qisib ushlab tura oladi. Qo‘l terisida sezgi yo‘qolishi kuzatilmaydi. Quyidagi nervlardan qaysi biri eng ehtimol bilan shikastlangan?",
+      a: [
+        "Ulnar nervning chuqur tarmog‘i",
+        "Oldingi suyaklararo nerv (n. interosseus anterior)",
+        "Median nerv",
+        "Median nervning qaytuvchi tarmog‘i",
+        "Radial nervning chuqur tarmog‘i",
+      ],
+      correct: 3,
+      explanation:
+        "Median nervning qaytuvchi tarmog‘i bosh barmoq do‘mbog‘i (thenar eminence) mushaklarini motor innervatsiya qiladi. Bu do‘mboq bosh barmoqni uzoqlashtiruvchi kalta mushak (m. abductor pollicis brevis), bosh barmoqni bukuvchi kalta mushak (m. flexor pollicis brevis) va bosh barmoqni qarama-qarshi qo‘yuvchi mushak (m. opponens pollicis) hisobiga hosil bo‘ladi. Agar m. opponens pollicis falajlansa, bosh barmoq uchini boshqa barmoqlar uchlariga qarama-qarshi qo‘yib tekkizish mumkin bo‘lmaydi, chunki birinchi kaft suyagini trapetsiyasimon suyak ustida harakatlantirib, bosh barmoq oppozitsiyasini ta’minlaydigan asosiy mushak shu hisoblanadi. Median nervning qaytuvchi tarmog‘i teriga sezgi tolalarini bermaydi, shuning uchun teri sezgisi saqlanib qoladi. Barmoqlar orasida qog‘ozni qisib ushlab turish barmoqlarni bir-biriga yaqinlashtirish (adduksiya) qobiliyatini tekshiradi. Bu harakatlar ulnar nervning chuqur tarmog‘i orqali boshqariladi va mazkur bemorda ushbu nerv shikastlanmagan.",
+    },
+  ],
 };
