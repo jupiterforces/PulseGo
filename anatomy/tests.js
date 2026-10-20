@@ -5249,4 +5249,930 @@ window.TEST_QUESTIONS = {
         "Median nervning qaytuvchi tarmog‘i bosh barmoq do‘mbog‘i (thenar eminence) mushaklarini motor innervatsiya qiladi. Bu do‘mboq bosh barmoqni uzoqlashtiruvchi kalta mushak (m. abductor pollicis brevis), bosh barmoqni bukuvchi kalta mushak (m. flexor pollicis brevis) va bosh barmoqni qarama-qarshi qo‘yuvchi mushak (m. opponens pollicis) hisobiga hosil bo‘ladi. Agar m. opponens pollicis falajlansa, bosh barmoq uchini boshqa barmoqlar uchlariga qarama-qarshi qo‘yib tekkizish mumkin bo‘lmaydi, chunki birinchi kaft suyagini trapetsiyasimon suyak ustida harakatlantirib, bosh barmoq oppozitsiyasini ta’minlaydigan asosiy mushak shu hisoblanadi. Median nervning qaytuvchi tarmog‘i teriga sezgi tolalarini bermaydi, shuning uchun teri sezgisi saqlanib qoladi. Barmoqlar orasida qog‘ozni qisib ushlab turish barmoqlarni bir-biriga yaqinlashtirish (adduksiya) qobiliyatini tekshiradi. Bu harakatlar ulnar nervning chuqur tarmog‘i orqali boshqariladi va mazkur bemorda ushbu nerv shikastlanmagan.",
     },
   ],
+  spinalcordandassociatedstructures: [
+    {
+      q: "64 yoshli erkak kasalxonaga yotqizildi. Uning qizilo'ngachga yaqin joylashgan sohada gerpes zoster virusi (\"zoster\") infeksiyasi tashxisi qo'yilgan: toshmalar tananing bir tomonida, C7 orqa miya nervi dermatomi bo'ylab joylashgan, kuchli og'riq bilan kechadi. Virus qaysi tuzilmada ko'payib, bemorning hozirgi holatini keltirib chiqargan bo'lishi mumkin?",
+      a: [
+        "Simpatik zanjir",
+        "C7 orqa miya nervining orqa ildiz tuguni (ganglioni)",
+        "C7 orqa miya segmentining lateral shoxi",
+        "C7 ning orqa birlamchi shoxchasining orqa teri tarmog'i",
+        "C7 orqa miya segmentining ventral (oldingi) shoxi",
+      ],
+      correct: 1,
+      explanation:
+        "Gerpes zoster – orqa miya nervlarining orqa ildiz tugunlarida yashirin holda saqlanadigan virusli kasallik. Virus faollashganda og'riqli teri toshmalari sifatida namoyon bo'ladi.\n\nKasallik faqat sezuvchi nerv tolalari bilan bog'liq va harakat tolalarini zararlamaydi. Javob variantlari ichida faqat sezuvchi innervatsiyaga mas'ul bo'lgan tuzilma – orqa ildiz tuguni.",
+    },
+    {
+      q: "3 yoshli o'g'il bola kuchli bosh og'rig'i, yuqori isitma, holsizlik va chalkashlik bilan shoshilinch yordam bo'limiga olib kelindi. Radiologik va fizikal tekshiruvlar meningit tashxisini tasdiqladi. Tashxisni aniqlash uchun lyumbal punksiya buyurildi. Lyumbal punksiya uchun eng mos umurtqa sathi qaysi?",
+      a: ["T12 – L1", "L1 – L2", "L2 – L3", "L4 – L5", "L5 – S1"],
+      correct: 3,
+      explanation:
+        "Lyumbal punksiya orqa miya suyuqligini (CSF) bel sisternasidan (orqa miyadan pastdagi subaraxnoidal bo'shliq) L4–L5 oralig'ida, ba'zan L3–L4 oralig'ida olish yo'li bilan bajariladi.\n\nBuning sababi: orqa miya odatda L1–L2 sathida tugaydi, qattiq parda xaltasi (dural xalta) esa S2 sathida tugaydi. Shuning uchun punksiya aynan shu oraliqda eng xavfsiz hisoblanadi va orqa miyani jarohatlash xavfi minimal bo'ladi.\n\n(Esda tuting: bolalarda orqa miya pastroqda – kaudalroq tugaydi.)",
+    },
+    {
+      q: "Yosh rezident orqasida qichishish sezdi, bu hasharot (chivin) chaqishidan bo'lsa kerak. Chivin chaqishi T4 umurtqa o'simtasining yonida, orqada joylashgan. Bu sezgini qaysi nerv tolalari olib o'tadi?",
+      a: [
+        "Somatik afferent",
+        "Somatik efferent",
+        "Visseral afferent",
+        "Visseral efferent",
+        "Somatik efferent va visseral afferent",
+      ],
+      correct: 0,
+      explanation:
+        "Somatik afferent tolalar og'riq, bosim, teginish, harorat va proprioseptiv sezgilarni markaziy nerv tizimiga (MNS) olib boradi.\n\nAfferent tolalar faqat sezuvchi impulslarni, efferent tolalar esa harakat axborotini o'tkazadi.\n\nVisseral innervatsiya vegetativ nerv tizimiga tegishli. Visseral afferentlar ichki a'zolardagi fiziologik o'zgarishlar haqidagi ma'lumotni olib boradi, visseral efferentlar esa vegetativ harakat funksiyasini uch xil to'qimaga – silliq mushaklarga, yurak mushagiga va bez epiteliyiga yetkazadi.",
+    },
+    {
+      q: "15 yoshli qizda meningit gumon qilindi. Bel sohasida spinal punksiya (lyumbal punksiya) orqali orqa miya suyuqligi namunasini olish uchun igna uchi quyidagi joylardan qaysi birida bo'lishi kerak?",
+      a: [
+        "Epidural bo'shliqda",
+        "Oldingi va orqa bo'ylama bog'lamlar orasida",
+        "Sariq bog'lam (ligamentum flavum) yuzasida",
+        "Araxnoid parda va qattiq parda (dura mater) orasida",
+        "Subaraxnoidal bo'shliqda",
+      ],
+      correct: 4,
+      explanation:
+        "Orqa miya suyuqligi (CSF) subaraxnoidal bo'shliqda joylashgan va bosh miya qorinchalari bilan tutashgan (CSF qorinchalardan subaraxnoidal bo'shliqqa oqadi).\n\nEpidural bo'shliq qattiq parda va suyak usti pardasi (periost) orasida joylashgan bo'lib, yog' to'qimasi va ichki umurtqa venoz chigali (Batson chigali) dan iborat.\n\nSubdural bo'shliq araxnoid va qattiq parda orasida joylashgan, u faqat potensial bo'shliq bo'lib, orqa miya suyuqligini saqlamaydi.\n\nOldingi va orqa bo'ylama bog'lamlar umurtqa tanalari bo'ylab o'tadi.",
+    },
+    {
+      q: "Spinal anesteziyada igna ko'pincha L4 va L5 umurtqalarining o'tkir o'simtalari orasiga kiritiladi, bu orqa miya jarohatlanmasligini ta'minlaydi. Bu sath xavfsiz, chunki kattalarda orqa miya odatda quyidagi umurtqalar orasidagi disk sathida tugaydi:",
+      a: ["T11 va T12", "T12 va L1", "L1 va L2", "L2 va L3", "L3 va L4"],
+      correct: 2,
+      explanation:
+        "Bu miya konusi (conus medullaris) joylashgan sath – orqa miyaning pastki uchidagi uchli konussimon chiqiqdir. Kattalarda miya konusi L1 va L2 sathida joylashgan, yangi tug'ilgan chaqaloqlarda esa ko'pincha L3 sathida bo'ladi.\n\nDumli ot (cauda equina) va oxirgi ip (filum terminale) miya konusidan pastga cho'ziladi.",
+    },
+    {
+      q: "28 yoshli homilador ayol tug'ruq bo'limiga tug'ish uchun yotqizildi. Tug'ruqning oxirgi bosqichlarida dumg'aza yorig'i (hiatus sacralis) orqali kaudal anesteziya o'tkaziladi. Anestetik dumg'aza kanalidagi quyidagi bo'shliqlardan qaysi biriga yuboriladi?",
+      a: [
+        "Umurtqa kanali",
+        "Umurtqa venoz chigali",
+        "Epidural bo'shliq",
+        "Subaraxnoidal bo'shliq",
+        "Subdural bo'shliq",
+      ],
+      correct: 2,
+      explanation:
+        "Umurtqa kanali umurtqalar bo'ylab o'tuvchi uzunasiga kanal bo'lib, parda, orqa miya va unga bog'liq bog'lamlarni saqlaydi. Ichki umurtqa venoz chigali – umurtqa kanali bo'ylab cho'zilgan, asosan klapansiz venalar to'ri. Bu ikkala variant ham aniq bir bo'shliqni ifodalamaydi.\n\nSpinal epidural bo'shliq qattiq pardaning sirtqi tomonida joylashgan, C1 dan dumg'azagacha cho'zilgan yog'ga boy bo'shliqdir.\n\nSubaraxnoidal bo'shliq – haqiqiy bo'shliq bo'lib, CSF ni saqlaydi, MNS ichida joylashgan va S2 sathigacha cho'ziladi.\n\nSubdural bo'shliq – qattiq parda va araxnoid orasidagi potensial bo'shliq. Odatda bu ikki qavat subaraxnoidal bo'shliqdagi CSF bosimi tufayli yopishgan holda bo'ladi.",
+    },
+    {
+      q: "47 yoshli ayol avtohalokatdan keyin kuchli bosh og'rig'i va orqa og'rig'idan shikoyat qiladi. Radiologik tekshiruvda ichki umurtqa venoz chigalidan (Batson chigali) qon ketishi va katta gematoma aniqlandi. Qon qaysi bo'shliqda to'plangan bo'lishi ehtimoli katta?",
+      a: [
+        "Subaraxnoidal bo'shliq",
+        "Subdural bo'shliq",
+        "Markaziy kanal",
+        "Epidural bo'shliq",
+        "Bel sisternasi",
+      ],
+      correct: 3,
+      explanation:
+        "Ichki umurtqa chigali (Batson chigali) spinal epidural bo'shliqda qattiq pardani o'rab turadi, shuning uchun qon ketishi aynan shu bo'shliqda gematoma hosil qiladi.\n\nCSF ni saqlovchi subaraxnoidal bo'shliq yumshoq va araxnoid pardalar orasida joylashgan. Subaraxnoidal qon quyilishi ko'pincha bosh miya anevrizmasi yorilishidan kelib chiqadi.\n\nSubdural gematoma ko'pincha bosh miya venasi yuqori sagittal venoz sinusga quyilish joyida uzilishidan kelib chiqadi.\n\nMarkaziy kanal orqa miyaning kulrang moddasi ichida joylashgan. Bel sisternasi – miya konusi bilan subaraxnoidal bo'shliqning kaudal uchi oralig'idagi kengaygan subaraxnoidal bo'shliq.",
+    },
+    {
+      q: "42 yoshli erkak orqasiga urildi, natijada ichki umurtqa venoz chigali (Batson chigali) yorildi. Radiologik tekshiruvda orqa miyani siqayotgan gematoma aniqlandi. Ortiqcha qonni aspiratsiya qilayotgan shifokor ignani quyidagi tuzilmalardan qaysi birini teshishdan oldin to'xtatishi kerak?",
+      a: [
+        "Orqa miya",
+        "Yumshoq parda (pia mater)",
+        "Araxnoid parda",
+        "Qattiq parda (dura mater)",
+        "Sariq bog'lam (ligamentum flavum)",
+      ],
+      correct: 3,
+      explanation:
+        "Ichki umurtqa chigali (Batson chigali) qattiq pardadan tashqarida, epidural bo'shliqda joylashgan. Ortiqcha qonni olish uchun shifokor ignani sariq bog'lam orqali o'tkazib, qon to'planadigan epidural bo'shliqqa yetkazishi kerak.\n\nOrqa miya, yumshoq va araxnoid pardalar epidural bo'shliqdan chuqurroqda joylashgan.",
+    },
+    {
+      q: "24 yoshli ayolda kuchli bosh og'rig'i, fotofobiya va orqa qotishi (tutilishi) kuzatilmoqda. Fizikal tekshiruvda meningitning ijobiy belgilari aniqlandi. Davolovchi shifokor orqa miya suyuqligida (CSF) patogen bor-yo'qligini aniqlash uchun lyumbal punksiya qilishga qaror qildi. Igna bel sisternasiga yetib borguncha teshadigan oxirgi tuzilma qaysi?",
+      a: [
+        "Araxnoid parda",
+        "Qattiq parda (dura mater)",
+        "Yumshoq parda (pia mater)",
+        "Sariq bog'lam (ligamentum flavum)",
+        "Orqa bo'ylama bog'lam",
+      ],
+      correct: 0,
+      explanation:
+        "Lyumbal punksiyada igna sariq bog'lamni, qattiq pardani va nihoyat araxnoid pardani teshib, CSF joylashgan subaraxnoidal bo'shliqqa yetib boradi.\n\nBel sisternasi – miya konusidan pastda subaraxnoidal bo'shliqning davomidir.\n\nYumshoq parda orqa miya yuzasiga yopishgan, orqa bo'ylama bog'lam esa umurtqa tanalarining orqa yuzasiga birikkan.",
+    },
+    {
+      q: "19 yoshli bemor shoshilinch yordam bo'limiga 3 kundan beri davom etayotgan yuqori isitma, kuchli bosh og'rig'i, ko'ngil aynishi va ensa mushaklarining qotishi bilan murojaat qildi. Davolovchi shifokor meningitga shubha qilib, lyumbal punksiya yordamida CSF namunasini oldi. CSF quyidagi bo'shliqlardan qaysi biridan olingan?",
+      a: [
+        "Epidural bo'shliq",
+        "Subdural bo'shliq",
+        "Subaraxnoidal bo'shliq",
+        "Traxeya oldi (pretraxeal) bo'shliq",
+        "Orqa miyaning markaziy kanali",
+      ],
+      correct: 2,
+      explanation:
+        "CSF ni saqlovchi subaraxnoidal bo'shliq yumshoq va araxnoid pardalar orasida joylashgan. Epidural, subdural va pretraxeal bo'shliqlarning birortasida ham CSF bo'lmaydi.\n\nOrqa miya moddasi ichida joylashgan markaziy kanalda CSF bor bo'lsa-da, bu bo'shliqdan suyuqlik olish orqa miyaning jarohatlanishiga olib keladi. CSF subaraxnoidal bo'shliqda aylanib yuradi va faqat shu joydan olinishi mumkin.\n\nSubdural bo'shliq – qattiq parda va araxnoid orasidagi potensial bo'shliq. Epidural bo'shliqda epidural yog' va Batson venoz chigali bor, u epidural anesteziya uchun anestetik yuboriladigan joydir. Pretraxeal bo'shliqda CSF yo'q.",
+    },
+    {
+      q: "38 yoshli erkak avtohalokatdan keyin shoshilinch yordam bo'limiga yotqizildi. Fizikal tekshiruvda orqada bir nechta yirtilgan jarohatlar aniqlandi. Orqa terisining jarohatlari yoki tirnash holatlaridan kelib chiqqan og'riq markaziy nerv tizimiga quyidagilardan qaysi biri orqali o'tkaziladi?",
+      a: [
+        "Orqa birlamchi shoxchalar (dorsal primary rami)",
+        "Birlashtiruvchi shoxchalar (rami communicantes)",
+        "Oldingi birlamchi shoxchalar (ventral primary rami)",
+        "Oldingi (ventral) ildizlar",
+        "Qovurg'alararo nervlar",
+      ],
+      correct: 0,
+      explanation:
+        "Umumiy somatik afferent tolalar orqa terisidan orqa birlamchi shoxchalar orqali o'tkaziladi.\n\nBirlashtiruvchi shoxchalar vegetativ nerv tizimining umumiy visseral efferent (simpatik) va umumiy visseral afferent tolalarini saqlaydi.\n\nOldingi birlamchi shoxchalar aralash orqa miya nervlarini orqadan tashqari tananing barcha boshqa qismlariga hamda kranial nervlar innervatsiya qiladigan bosh qismlariga olib boradi.\n\nOldingi ildizlar faqat efferent (harakat) tolalarini saqlaydi. Qovurg'alararo nervlar – T1–T11 ning oldingi shoxchalaridir. T12 ning oldingi shoxchasi – qovurg'a osti nervi (n. subcostalis).",
+    },
+    {
+      q: "66 yoshli ayolning umurtqasida o'sma borligi aniqlangan. U siydikni ushlab qolish (retensiya) va to'g'ri ichak inkontinensiyasidan shikoyat qila boshladi. Bu ikkala simptom ham miya konusi (conus medullaris) sindromining belgilaridir. O'sma ehtimol qaysi umurtqa sathida joylashgan?",
+      a: ["L3/L4", "L3", "L4", "T12 dan L2 gacha", "T11"],
+      correct: 3,
+      explanation:
+        "Miya konusi odatda L1–L2 umurtqa sathida joylashgan, shuning uchun shu sohani o'z ichiga olgan har qanday variant to'g'ri javobdir.\n\nL3–L4 lyumbal punksiya uchun keng qo'llaniladigan joy, lekin u miya konusining uchidan kaudalroqda joylashgan. L3 va L4 miya konusidan kaudalroqda, T11 esa miya konusidan yuqorida joylashgan.",
+    },
+    {
+      q: "32 yoshli ona tug'ruqdan bir necha kun o'tgach dumg'aza suyagi (koksiks) sohasidagi kuchli og'riqdan shikoyat qilmoqda. Dum suyagi jarohatlanganligini aniqlash uchun avval koksiks sohasiga mahalliy anestetik yuboriladi, so'ngra dinamik MRT o'tkaziladi. Fizikal tekshiruvda koksiks sohasini paypaslaganda og'riq aniqlanadi. Mahalliy anestetik quyidagi nerv yo'llaridan qaysi birini to'xtatish uchun ishlatiladi?",
+      a: [
+        "Visseral afferentlar",
+        "Somatik efferent",
+        "Somatik afferent",
+        "Simpatik preganglionar",
+        "Parasimpatik preganglionar",
+      ],
+      correct: 2,
+      explanation:
+        "Somatik afferent tolalar odatda tana devori va oyoq-qo'llardan joylashgan (lokalizatsiyalangan) og'riqni o'tkazadi.\n\nVisseral afferentlar vegetativ nerv tizimining sezuvchi axborotini olib o'tadi; bu tolalardan kelgan og'riq zerikarli va diffuz bo'ladi.\n\nSomatik efferent tolalar skelet mushaklariga harakat axborotini yetkazadi. Simpatik preganglionar tolalar visseral efferent tolalar bo'lib, sezuvchi axborotni saqlamaydi. Parasimpatik preganglionar tolalar ham visseral efferent bo'lib, sezuvchi axborotni saqlamaydi.",
+    },
+    {
+      q: "37 yoshli homilador ayolga vaginal tug'ruq vaqtida og'riqni kamaytirish uchun kaudal epidural blokada qilindi. Kaudal epidural blokada mahalliy anestetikni dumg'aza kanaliga yuborishni o'z ichiga oladi. Kaudal epidural blokada uchun quyidagi mo'ljallardan qaysi biri eng ko'p ishlatiladi?",
+      a: [
+        "Oldingi dumg'aza teshiklari",
+        "Orqa dumg'aza teshiklari",
+        "Dumg'aza yorig'ining shoxlari (cornua sacralia)",
+        "Umurtqalararo teshiklar",
+        "O'rta dumg'aza qirrasi",
+      ],
+      correct: 2,
+      explanation:
+        "Kaudal anesteziya oraliq (perineum) sezgisini olib o'tuvchi orqa miya nervlarini blokada qilish uchun ishlatiladi. Bu usul anesteziologlar tomonidan tug'ruq paytida og'riqni kamaytirish uchun keng qo'llaniladi.\n\nLokal anestetikni epidural bo'shliqqa yuborish dumg'aza shoxlari (cornua sacralia) orasida ochiladigan dumg'aza yorig'i orqali amalga oshiriladi.\n\nOldingi dumg'aza teshiklari dumg'azaning tos yuzasida joylashgan va orqa tomondan paypaslanmaydi. Orqa dumg'aza teshiklari va umurtqalararo teshiklar dumg'aza nervlari chiqadigan teshiklar bo'lib, paypaslanadigan mo'ljallar emas. O'rta dumg'aza qirrasi inyeksiya joyidan kranialroqda joylashgan.",
+    },
+    {
+      q: "34 yoshli homilador ayol tug'ruqxonada tug'ruq paytida kuchli og'riq sezmoqda. Akusher-ginekolog kaudal epidural blokada qilishga qaror qildi. Bunday anesteziyani o'tkazishda eng muhim suyak mo'ljallari qaysilar?",
+      a: [
+        "Quymich do'ngliklari (tuber ischiadicum)",
+        "Quymich o'tkir o'simtalari (spina ischiadica)",
+        "Yonbosh suyagining orqa yuqori o'tkir o'simtalari",
+        "Dumg'aza shoxlari (cornua sacralia)",
+        "Dum suyagi (koksiks)",
+      ],
+      correct: 3,
+      explanation:
+        "Dumg'aza shoxlari dumg'aza yorig'ining ikki yonida joylashgan bo'lib, shu yerdan dumg'aza kanaliga kirish mumkin. Bu anesteziyani o'tkazish uchun eng yaxshi mo'ljaldir.\n\nQuymich do'ngliklari ko'pincha uyat nervi (n. pudendus) blokadasi uchun mo'ljal sifatida ishlatiladi. Quymich o'tkir o'simtalari faqat vaginal usulda paypaslanadi.\n\nYonbosh suyagining orqa yuqori o'tkir o'simtalari paypaslanishi mumkin bo'lsa-da, dumg'aza kanali ichidagi epidural blokada uchun yetarlicha yaqin emas. Koksiks dumg'aza kanalining qismi emas.",
+    },
+    {
+      q: "Yangi tug'ilgan erkak chaqaloq klinikaga onasi tomonidan olib kelindi va tug'ma malformatsiya tashxisi qo'yildi. MRT tekshiruvlari kichik miya (cerebellum) va uzunchoq miya (medulla oblongata) ensa katta teshigi (foramen magnum) orqali pastga, umurtqa kanaliga cho'zilganini ko'rsatadi. Bu klinik holat qanday ataladi?",
+      a: [
+        "Meningotsele",
+        "Klippel–Feil sindromi",
+        "Chiari II malformatsiyasi",
+        "Gidrosefaliya",
+        "Bog'langan orqa miya sindromi (tethered cord)",
+      ],
+      correct: 2,
+      explanation:
+        "Chiari II malformatsiyasi uzunchoq miya va kichik miyaning ensa katta teshigiga churra (herniya) shaklida tushishi natijasida yuzaga keladi.\n\nMeningotsele – bosh suyagidagi kichik nuqson bo'lib, faqat miya pardalari churra hosil qiladi. Klippel–Feil sindromi bo'yin umurtqalari sonining g'ayritabiiy bo'lishi natijasida yuzaga keladi.\n\nGidrosefaliya CSF ning ortiqcha ishlab chiqarilishi, uning oqimi to'silishi yoki so'rilishining buzilishidan kelib chiqadi.\n\nBog'langan orqa miya sindromi – ko'pincha nerv naychasining nuqsonli yopilishidan kelib chiqadigan tug'ma anomaliya. Bu sindrom miya konusining past joylashuvi va oxirgi ipning (filum terminale) qalinlashuvi bilan xarakterlanadi.",
+    },
+    {
+      q: "23 yoshli kollej talabasi 50 fut (taxminan 15 m) balandlikdagi sharsharadan sakraganidan keyin shoshilinch yordam bo'limiga yotqizildi. Uning orqasining MRT tekshiruvida orqa miyaning chapga lateral siljishi aniqlandi. Bu siljishga sabab bo'lgan eng ehtimoliy uzilgan tuzilma quyidagilardan qaysi biri?",
+      a: [
+        "Orqa bo'ylama bog'lam",
+        "Miyacha chodiri (tentorium cerebelli)",
+        "Tishsimon bog'lamlar (denticulate ligaments)",
+        "Sariq bog'lam (ligamentum flavum)",
+        "Ensa bog'lami (ligamentum nuchae)",
+      ],
+      correct: 2,
+      explanation:
+        "Tishsimon bog'lamlar yumshoq pardaning lateral o'simtalari bo'lib, orqa miya nervlarining orqa va oldingi ildizlari orasidan qattiq pardaga birikadi. Bu bog'lamlar orqa miyani o'rta chiziq holatida ushlab turadi.\n\nOrqa bo'ylama bog'lam umurtqa kanali ichida umurtqalarning orqa yuzasini qo'llab-quvvatlaydi.\n\nMiyacha chodiri – bosh miya yarim sharlarining ensa bo'laklarini ushlab turuvchi va miyachani qoplovchi qattiq parda qavati.\n\nSariq bog'lam ikki qo'shni umurtqaning yoylarini bog'lab, tik holatni saqlashga yordam beradi. Ensa bog'lami C7 umurtqadan tashqi ensa do'ngigacha cho'zilgan ustki o'tkir o'simta bog'lamlarining qalinlashuvidir.",
+    },
+    {
+      q: "58 yoshli erkak qorin aorta anevrizmasi tuzatilgandan keyin reanimatsiya bo'limida siydik va najas chiqarishni ixtiyoriy nazorat qilishda juda zaif bo'lib qoldi. Bundan tashqari, fizikal tekshiruvda oyoqlarning keng tarqalgan falaji aniqlandi. Kasalxonaga yotqizilishidan oldin bu funksiyalar asosan normal edi. Bemorning muammolari uchun eng ehtimoliy sabab quyidagilardan qaysi biri?",
+      a: [
+        "Chap umurtqa arteriyasining jarohati",
+        "Katta radikulyar arteriya (Adamkevich arteriyasi) jarohati",
+        "Orqa spinal arteriyaning bog'lanishi (ligatsiyasi)",
+        "Orqa miya konus segmentining transeksiyasi (to'liq uzilishi)",
+        "Ko'krak simpatik zanjirining kesilishi",
+      ],
+      correct: 1,
+      explanation:
+        "(Katta radikulyar) Adamkevich arteriyasi oldingi va orqa spinal arteriyalarni qon bilan ta'minlash uchun muhim. Operatsiya vaqtida bu arteriyaning joylashuvini hisobga olish kerak, chunki uning shikastlanishi paraplegiyaga (jarohat sathida va undan pastda barcha sezgi va ixtiyoriy harakatning yo'qolishi) olib kelishi mumkin.\n\nChap umurtqa arteriyasi jarohati operatsiya joyidan yuqorida joylashganligi uchun ehtimoldan yiroq. Orqa spinal arteriyaning bog'lanishi uning umurtqa kanali ichida himoyalangan joylashuvi tufayli sodir bo'lmaydi.\n\nOrqa miya konusining transeksiyasi ham ehtimoldan yiroq, chunki bu tuzilma L1–L2 sathida va umurtqa kanali ichida himoyalangan. Ko'krak simpatik zanjirining kesilishi ham ehtimoldan yiroq, chunki simpatik uzilish oyoq-qo'llar falajiga olib kelmaydi.",
+    },
+    {
+      q: "55 yoshli ayol so'nggi bir oy davomida o'rta quloq infeksiyasi bilan og'riydi. Yaqinda unda o'ng tomonlama miyoz (qorachiqning torayishi), qisman ptoz, angidroz (terlamaslik) va konyunktiva qizarishi paydo bo'ldi. Quyidagi tuzilmalardan qaysi birining biopsiyasida bu kasallikdan zararlangan neyronlarning hujayra tanalari ko'rinadi?",
+      a: [
+        "Orqa miyaning oldingi kulrang shoxi",
+        "Orqa miyaning lateral kulrang shoxi",
+        "Orqa miyaning orqa kulrang shoxi",
+        "Orqa miya tugunlari (spinal gangliyalar)",
+        "Orqa miya oq moddasining lateral ustuni",
+      ],
+      correct: 1,
+      explanation:
+        "Gorner sindromi boshqa belgilar qatori qorachiqning torayishi, ko'z olmasining cho'kishi, qovoqning qisman tushishi (ptoz) va yuz terisining qurishi bilan xarakterlanadi. U simpatik vegetativ yo'llardagi muammolar, masalan lateral shoxning shikastlanishidan kelib chiqadi.\n\nGorner sindromi hujayra tanalari orqa miyaning lateral kulrang shoxida joylashgan simpatik nervlarning uzilishi natijasida yuzaga keladi.\n\nOldingi kulrang shoxda somatik efferent tolalarning hujayra tanalari bor. Orqa kulrang shox esa hujayra tanalari spinal tugunda joylashgan sezuvchi tolalarning aksonlari uchun joy hisoblanadi. Orqa miyaning oq moddasida hujayra tanalari yo'q.",
+    },
+    {
+      q: "62 yoshli erkak og'ir avtohalokatdan keyin shoshilinch yordam bo'limiga yotqizildi, natijada bo'yin \"qamchi\" jarohati (whiplash) olgan. MRT tekshiruvida bo'yin sohasida bir nechta ingichka (yupqa) umurtqa sinishlari aniqlandi, ular xuddi shu sathlardagi orqa birlamchi shoxchalarni qisib turibdi. Jarohatdan 2 oy o'tgach bemor yaxshi tiklandi, ammo bir mushak funksiyasida hamon biroz zaiflik saqlanib qolmoqda. Quyidagi mushaklardan qaysi biri eng ehtimoliy zararlangan?",
+      a: [
+        "Katta romb mushak (m. rhomboideus major)",
+        "Kurak ko'taruvchi mushak (m. levator scapulae)",
+        "Kichik romb mushak (m. rhomboideus minor)",
+        "Boshning yarim o'tkir o'simtali mushagi (m. semispinalis capitis)",
+        "Eng keng orqa mushak (m. latissimus dorsi)",
+      ],
+      correct: 3,
+      explanation:
+        "Variantlar ichida orqa shoxchalar tomonidan innervatsiya qilinadigan yagona mushak – boshning yarim o'tkir o'simtali mushagi (semispinalis capitis). Boshqa barcha mushaklar oldingi shoxchalar orqali innervatsiya qilinadi.\n\nKatta va kichik romb mushaklar dorsal scapular nervning (oldingi birlamchi shoxchalardan) innervatsiyasini oladi. Kurak ko'taruvchi mushak C4 va C5 shoxchalari hamda dorsal scapular nerv tarmoqlari orqali innervatsiya qilinadi. Eng keng orqa mushak (latissimus dorsi) esa thoracodorsal nerv tomonidan innervatsiya qilinadi.",
+    },
+    {
+      q: "65 yoshli ayol shifokoriga T9 dermatomi tarqalish zonasida orqasida bir guruh og'riqli pufakchalar (toshma) bilan murojaat qildi. U toshma paydo bo'lishidan bir necha kun oldin terisida kuchli kuyish hissini sezganini aytdi. Unga gerpes zoster (zoster) tashxisi qo'yildi. Og'riq sezgisiga mas'ul nerv hujayralarining tanalari qayerda joylashgan?",
+      a: [
+        "Orqa shox (dorsal horn)",
+        "Lateral shox",
+        "Orqa ildiz tugunlari (dorsal root ganglia)",
+        "Simpatik zanjir tugunlari",
+        "Oq birlashtiruvchi shoxchalar (rami communicantes albi)",
+      ],
+      correct: 2,
+      explanation:
+        "Somatik afferent tolalar odatda tana devori va oyoq-qo'llardan joylashgan og'riqni o'tkazadi, ularning hujayra tanalari orqa ildiz tugunlarida joylashgan.\n\nOrqa shox orqa miyaning barcha sathlarida mavjud bo'lib, kelayotgan somatosensor axborotni qabul qiluvchi va qayta ishlovchi sezuvchi yadrolardan tashkil topgan. Lateral shox ichki a'zolar va tos a'zolarini innervatsiya qiluvchi vegetativ neyronlardan iborat. Simpatik zanjir tugunlari simpatik axborotni tanaga yetkazadi.\n\nOq birlamchi birlashtiruvchi shoxchalar preganglionar simpatik tolalarni olib o'tadi va ular tarkibidagi tolalar mielinlangani uchun oq deb ataladi.",
+    },
+    {
+      q: "60 yoshli erkak bir necha kundan beri chap pastki ko'krak qafasi va orqasida o'tkir og'riqlar sezmoqda. Qalqonsimon (xifoid) o'simta sathida, to'sh suyagining chap chetida qizil pufakchali toshma paydo bo'ldi. Gerpes zoster uchun antiviral davolash tayinlandi. Quyidagi joylardan qaysi birida og'riq sezgisiga mas'ul nerv hujayralarining tanalari joylashgan?",
+      a: [
+        "T6 orqa miya segmentining ventral (oldingi) shoxi",
+        "T6 orqa miya segmentining lateral shoxi",
+        "T4 orqa miya nervining orqa ildiz tuguni",
+        "T6 orqa miya nervining orqa ildiz tuguni",
+        "T10 orqa miya nervining orqa ildiz tuguni",
+      ],
+      correct: 3,
+      explanation:
+        "Muayyan somit hujayralari terining dermisini aniq bir joyda hosil qiladi, shu somit bilan dastlab bog'liq bo'lgan somatik sezuvchi tolalar orqa miya nervining orqa qismiga kiradi.\n\nSomatik sezuvchi (afferent) tolalar odatda tana devori va oyoq-qo'llardan lokalizatsiyalangan og'riqni o'tkazadi, ularning hujayra tanalari orqa ildiz tugunlarida joylashgan.\n\nLateral shox ichki a'zolar va tos a'zolarini innervatsiya qiluvchi vegetativ neyronlardan iborat. Oldingi shoxda tana devori va oyoq-qo'llar mushaklarini ta'minlovchi harakat neyronlari bor.",
+    },
+    {
+      q: "Tug'ilgandan 3 kun o'tgan qiz chaqaloqda isitma paydo bo'ldi. U serjahl va ovqatlanmayapti. Noma'lum sababli isitmani tekshirish doirasida lyumbal punksiya o'tkaziladi. Bu punksiya orqa miyadan pastroqda o'tkazilishi kerak, orqa miya shu yoshdagi bemorda odatda qaysi umurtqa sathida tugaydi?",
+      a: ["L1", "S1", "L3", "S3", "L5"],
+      correct: 2,
+      explanation:
+        "Lyumbal punksiya odatda L4–L5 sathida o'tkaziladi. Orqa miya kattalarda L1–L2 sathida, yangi tug'ilgan chaqaloqlarda esa L2–L3 sathida tugaydi.",
+    },
+    {
+      q: "T8 umurtqa sathida orqa tikuvchi (erector spinae) mushakni qamrab olgan xo'ppozni jarrohlik yo'li bilan tozalash jarayonida bu mushak va teri innervatsiyasini ta'minlovchi nerv shoxchasi ixtiyorsiz kesib yuborildi. Bu shoxchada odatda uchraydigan nerv tolalarining hujayra tanalari qaysi anatomik joylarda joylashgan?",
+      a: [
+        "Oldingi shox va orqa shox",
+        "Oldingi shox, orqa shox va lateral shox",
+        "Oldingi shox, orqa ildiz tuguni va lateral shox",
+        "Oldingi shox, orqa ildiz tuguni va simpatik paravertebral tugun",
+        "Oldingi shox, orqa shox va orqa ildiz tuguni",
+      ],
+      correct: 3,
+      explanation:
+        "Orqa tikuvchi mushakni orqa birlamchi shoxchalar innervatsiya qiladi, ular harakat, sezuvchi va vegetativ tolalarni olib o'tadi.\n\nHarakat qismining hujayra tanalari oldingi shoxda, sezuvchi tolalarning hujayra tanalari esa orqa ildiz tugunlarida joylashgan. Simpatik tolalarning hujayra tanalari paravertebral tugunlarda (simpatik zanjir) joylashgan.",
+    },
+    {
+      q: "Orqa miya o'smasini olib tashlash uchun 7 yoshli o'g'ilga jarrohlik amaliyoti o'tkazilmoqda. Orqa miya operatsiyasi paytida oldingi ildizchalarni orqa ildizchalardan ajratish uchun qaysi tuzilma mo'ljal sifatida ishlatiladi?",
+      a: [
+        "Tishsimon bog'lam (lig. denticulatum)",
+        "Oxirgi ip (filum terminale)",
+        "Miya konusi (conus medullaris)",
+        "Orqa bo'ylama bog'lam",
+        "Sariq bog'lamlar (ligamenta flava)",
+      ],
+      correct: 0,
+      explanation:
+        "Tishsimon bog'lam – orqa miyaning har ikki yonida uzunasiga o'tuvchi, uni qattiq parda bilan bog'lovchi yumshoq parda plastinkasi. Medial tomonda tishsimon bog'lam oldingi va orqa ildizchalarning chiqish joyi orasida yotadi va ularni bir-biridan farqlash uchun mo'ljal bo'lib xizmat qiladi.\n\nMiya konusi – orqa miyaning terminal uchi, oxirgi ip esa yumshoq pardaning davomi bo'lib, miya konusini dural xaltaga bog'laydi. Orqa bo'ylama bog'lam umurtqa tanalarining orqasida joylashgan, sariq bog'lamlar esa qo'shni umurtqa yoylarini bog'laydi.",
+    },
+    {
+      q: "Katta qorin aorta anevrizmasi bo'lgan 62 yoshli erkak tibbiy ko'rikdan o'tish uchun shifokorga keldi. Qorinning pastki qismini paypaslaganda sezilarli pulsatsiya aniqlandi, ultratovush tekshiruvida katta qorin aorta anevrizmasi tasdiqlandi. Operatsiya vaqtida aorta vaqtincha qisib qo'yiladi. Agar qon bosimi xavfli darajada pasayib ketsa, quyidagi arterial anastomozlardan qaysi biri orqa miya ishemiyasining oldini oladi?",
+      a: [
+        "Umurtqa, qovurg'alararo, yuza epigastral, bel va o'rta dumg'aza arteriyalaridan segmentar arteriyalar",
+        "Umurtqa, qovurg'alararo, bel, oldingi va orqa spinal hamda lateral dumg'aza arteriyalaridan segmentar arteriyalar",
+        "Oldingi va orqa spinal arteriyalar",
+        "Umurtqa, bel, qovurg'alararo, lateral dumg'aza arteriyalarining radikulyar arteriyalari va Adamkevich arteriyasi",
+        "Umurtqa va qovurg'alararo arteriyalardan segmentar arteriyalar",
+      ],
+      correct: 1,
+      explanation:
+        "Oldingi va orqa spinal arteriyalar bo'yin sathidan pastda orqa miyaga yetarli qon ta'minotini bermaydi, shuning uchun uning yo'li bo'ylab ko'plab manbalardan segmentar ravishda qo'shimcha qon oladi.\n\nBu tomirlarning eng kattasi odatda Adamkevich arteriyasi deb ataladi va u pastki ko'krak yoki yuqori bel sohasida boshlanadi.",
+    },
+    {
+      q: "2 oylik chaqaloq meningit simptomlari bilan shoshilinch yordam bo'limiga yotqizildi. Tashxisni tasdiqlash uchun CSF ni tekshirish maqsadida lyumbal punksiya o'tkaziladi. Igna bel sisternasiga (dural xalta) kiritiladi. Bu bemorda miya konusi odatda qaysi umurtqa sathida joylashgan bo'ladi?",
+      a: ["L3", "L4", "L5", "S1", "S2"],
+      correct: 0,
+      explanation:
+        "Rivojlanish davomida orqa miya umurtqa kanalini to'liq to'ldiradi. Umurtqa ustuni va orqa miyaning turlicha o'sishi tufayli chaqaloqda miya konusi L3 sathida tugaydi. Keyinchalik u asta-sekin kattalar sathi bo'lgan L1/L2 holatiga ko'tariladi.\n\nS2 – dural xalta odatda tugaydigan sath.",
+    },
+    {
+      q: "22 yoshli homilador ayolga tug'ruq oldidan epidural anesteziya o'tkazildi. Tug'ruqdan keyin unda orqa og'rig'i va o'ng oyoqda zaiflik paydo bo'ldi. Tekshiruvda epidural bo'shliqda gematoma aniqlandi, u L2–L3 sathida chiqadigan nervni siqmoqda. Gematomaga sabab bo'lgan tomir quyidagilardan qaysi biri?",
+      a: [
+        "Ichki umurtqa chigali",
+        "Katta radikulyar arteriya (Adamkevich arteriyasi)",
+        "Oldingi spinal arteriya",
+        "Orqa spinal arteriya",
+        "Tashqi umurtqa chigali",
+      ],
+      correct: 0,
+      explanation:
+        "Epidural anesteziya epidural bo'shliqda o'tkaziladi, u yog' va ichki umurtqa (Batson) chigalini saqlaydi. Bu sohadagi gematoma orqa miya nervlarini va ehtimol orqa miyani ham siqib, kuchli og'riq va nevrologik defitsitlarga olib kelishi mumkin.\n\nAdamkevich arteriyasi – spinal segmentar arteriyalarning eng kattasi bo'lib, odatda T10 atrofida joylashgan, bu L2–L3 dan ancha yuqori. Oldingi va orqa spinal arteriyalar orqa miyaning oldingi o'rta yorig'i va orqa lateral egatchasida joylashgan, epidural bo'shliqda emas.\n\nTashqi umurtqa chigali umurtqa kanalidan tashqarida joylashgan, uning gematomasi bu bemordagi simptomlarni keltirib chiqarmaydi.",
+    },
+    {
+      q: "Epidural anestetikni L3 va L4 umurtqalar o'tkir o'simtalariga bevosita lateral tomondan homilador ayolga yuborayotgan anesteziolog epidural bo'shliqqa kirish uchun igna bilan oxirgi navbatda qaysi bog'lamni teshadi?",
+      a: [
+        "Sariq bog'lam (ligamentum flavum)",
+        "Oldingi bo'ylama bog'lam",
+        "Orqa bo'ylama bog'lam",
+        "O'tkir o'simtalararo bog'lam",
+        "Ko'ndalang o'simtalararo bog'lam",
+      ],
+      correct: 0,
+      explanation:
+        "Epidural protsedura vaqtida teshiladigan tuzilmalar tartibi: teri, teri osti kletchatkasi, mushak, ustki o'tkir o'simta bog'lami, o'tkir o'simtalararo bog'lam va sariq bog'lam (sariq bog'lamda ko'pincha o'rta chiziqda tirqish bo'ladi).\n\nOldingi bo'ylama bog'lam umurtqa tanasining oldida joylashgan va bu yondashuv bilan unga yetib bo'lmaydi. Orqa bo'ylama bog'lam umurtqa tanasining orqasida joylashgan va bu protsedura bilan unga ham yetib bo'lmaydi. Ko'ndalang o'simtalararo bog'lamlar juda lateralda joylashgan va bu texnika bilan teshilmasligi mumkin.",
+    },
+    {
+      q: "38 yoshli erkak so'nggi 5 kun davomida bel og'rig'i bilan shoshilinch yordam bo'limiga murojaat qildi. Tekshiruvda L5 umurtqa ustida og'riqli nuqta va shu sathda aniq \"zinapoya\" (step-off) nuqsoni aniqlandi. Oyoq-qo'llarda biroz zaiflik bor edi. MRT L5 umurtqa tanasining oldinga siljishi va umurtqa kanalining torayishini ko'rsatdi. Bu patologiya ehtimol quyidagilardan qaysi biri bilan bog'liq bo'ladi?",
+      a: [
+        "Orqa miyaning siqilishi va ikki tomonlama oyoq zaifligi",
+        "Orqa miyaning siqilishi va bir tomonlama oyoq zaifligi",
+        "L5 orqa miya nervi ildizlarining siqilishi va bir tomonlama oyoq zaifligi",
+        "Ot dumining siqilishi va ikki tomonlama oyoq zaifligi",
+        "Ot dumining siqilishi va faqat bel og'rig'i",
+      ],
+      correct: 3,
+      explanation:
+        "Orqa miya L1/L2 umurtqalar orasidagi sathda tugaydi, lekin orqa miya nervlari bu sathdan pastda dumli ot (cauda equina) sifatida davom etadi.\n\nShuning uchun L5 sathida kanalning torayishi barcha nervlarga ta'sir qilib, ikki tomonlama oyoq zaifligiga olib keladi.",
+    },
+    {
+      q: "Tuzilma (somit) hosilalarini tanlab yo'q qiladigan dori vositasi embriogenez davrida quyidagi tuzilmalardan qaysi birining yetarli rivojlanmasligiga olib kelishi mumkin? Dori sklerotomlarni tanlab yo'q qiladi.",
+      a: [
+        "Umurtqalararo diskning yadro pulposusi (nucleus pulposus)",
+        "Umurtqa tanalari",
+        "Orqa ildiz tuguni",
+        "Orqa miya",
+        "Umurtqalararo diskning fibroz halqasi (anulus fibrosus)",
+      ],
+      correct: 1,
+      explanation:
+        "Sklerotomlar somitlarning suyakka aylanadigan hosilalari bo'lib, ular yo'q qilinsa, umurtqalar rivojlanmay qoladi.\n\nYadro pulposus (nucleus pulposus) xorda (notoxorda) qoldig'idir. Orqa ildiz tuguni embrional rivojlanish davomida ko'chib yuruvchi nerv tepasi (neyral greben) hujayralaridan hosil bo'ladi. Nerv naychasi orqa miyaning o'tmishdoshidir, fibroz halqa (anulus fibrosus) esa somitning sklerotom komponentidan rivojlanadi.",
+    },
+    {
+      q: "Subaraxnoidal bo'shliq tugaydigan o'rta chiziqdagi joyni paypaslash maqsadida ortoped-jarroh o'qish jarayonida rezident-klinitsistdan yonbosh suyaklari qirralarining eng yuqori nuqtalarini tutashtiruvchi gorizontal chiziqni teriga chizishni so'radi. So'ngra jarroh rezident-klinitsistdan subaraxnoidal bo'shliq pastki tomondan tugaydigan o'rta chiziq sohasini paypaslashni so'radi. Quyidagilardan qaysi biri rezident paypaslagan teri sohasini eng to'g'ri ifodalaydi?",
+      a: [
+        "Gorizontal chiziqdan uchta o'tkir o'simta yuqorida",
+        "Gorizontal chiziqdan ikkita o'tkir o'simta pastda",
+        "Gorizontal chiziqdan uchta o'tkir o'simta pastda",
+        "Gorizontal chiziqdan ikkita o'tkir o'simta yuqorida",
+        "Gorizontal chiziq ikkiga bo'lgan o'tkir o'simta",
+      ],
+      correct: 2,
+      explanation:
+        "Yonbosh suyaklari qirralarining eng yuqori nuqtalarini tutashtiruvchi gorizontal chiziq odatda L4 umurtqaning o'tkir o'simtasini yoki L4–L5 oralig'ini kesib o'tadi (Tuffier chizig'i).\n\nSubaraxnoidal bo'shliqni ifodalovchi bel sisternasi S2 o'tkir o'simtasiga mos keladigan sathda tugaydi. Yonbosh qirralari chizig'idan uchta o'tkir o'simta pastroqda S2 o'tkir o'simtasi joylashgan.\n\nChiziqdan ikki va uch o'tkir o'simta yuqorida L2 va L1 sathlari bo'lib, bu orqa miya va shunga ko'ra yumshoq parda tugaydigan taxminiy joyga mos keladi.",
+    },
+    {
+      q: "68 yoshli erkakning o'rta orqa sohasidagi o'tkir og'riq sababli o'tkazilgan ko'krak umurtqa pog'onasi MRT tekshiruvida orqa miyaning oldingi o'rta yorig'idan (fissura mediana anterior) T3 umurtqa sathida katta o'sma o'sib chiqqani aniqlandi. O'sma tomonidan siqilgan arteriya yuqorida quyidagi arteriyalardan qaysi birining bevosita tarmoqlaridan hosil bo'lgan?",
+      a: [
+        "Ko'tariluvchi bo'yin arteriyasi",
+        "Segmentar medullyar arteriya",
+        "Umurtqa arteriyasi",
+        "Segmentar spinal arteriya",
+        "Orqa spinal arteriya",
+      ],
+      correct: 2,
+      explanation:
+        "Oldingi spinal arteriya oldingi o'rta yorig'ida yotadi va o'sma tomonidan siqilishi ehtimoli yuqori. Bu arteriya yuqori qismida to'g'ridan-to'g'ri umurtqa arteriyalaridan boshlanuvchi ikki tarmoqning qo'shilishidan hosil bo'ladi.\n\nKo'tariluvchi bo'yin arteriyasi umurtqa kanali ichida topilmaydi va orqa miyaning qon ta'minotiga hissa qo'shmaydi. Segmentar spinal arteriyalar orqa miya nervlariga ergashadi va orqa hamda oldingi ildizlar bo'ylab orqa miyaning lateral qismini ta'minlovchi segmentar medullyar tomirlarni beradi.\n\nIkkita orqa spinal arteriya orqa yuzadagi posterolateral egatchada joylashgan va faqat kichik tarmoqlar orqali o'z sohasini ta'minlaydi.",
+    },
+  ],
+  spinalcordandassociatedstructureseng: [
+    {
+      q: "A 64-year-old man arrived at the clinic with a painful rash and skin eruptions that are localized entirely on one side of his body, closely following the dermatome level of the spinal nerve C7. The patient was diagnosed with a herpes zoster virus infection known as “shingles.” In what structure has the virus most likely proliferated to cause the patient’s current condition?",
+      a: [
+        "The sympathetic chain",
+        "The dorsal root ganglion of the C7 spinal nerve",
+        "The lateral horn of the C7 spinal cord segment",
+        "The posterior cutaneous branch of the dorsal primary ramus of C7",
+        "The ventral horn of the C7 spinal cord segment",
+      ],
+      correct: 1,
+      explanation:
+        "Herpes zoster is a viral disease that remains latent in the dorsal root ganglia of the sensory nerves and when the virus becomes active presents as a painful skin lesion.\n\nIt is associated only with sensory nerve fibers and has no motor involvement. The only answer choice that is solely responsible for sensory innervation is the dorsal root ganglion.",
+    },
+    {
+      q: "A 3-year-old boy is brought by his mother to the emergency department with severe headache, high fever, malaise, and confusion. Radiologic and physical examinations reveal that the patient suffers from meningitis. A lumbar puncture is ordered to confirm the diagnosis. Which vertebral level is the most appropriate location for the lumbar puncture?",
+      a: ["T12 to L1", "L1 to L2", "L2 to L3", "L4 to L5", "L5 to S1"],
+      correct: 3,
+      explanation:
+        "A lumbar puncture is performed by taking a sample of CSF from the lumbar cistern (the subarachnoid space below the spinal cord) between vertebrae L4 and L5 or sometimes between L3 and L4.\n\nIt is done in this region because the spinal cord typically ends at the level of L1 to L2 and the dural sac ends at the level of S2. Therefore, it is the safest place to do the procedure because it lies between these areas and the risk of injuring the spinal cord is minimized.\n\n(Remember in children the cord ends more caudally.)",
+    },
+    {
+      q: "A young resident complains of an itch on his back that appears to be caused by an insect bite. Which nerve fibers carry the sensation of a mosquito bite on the back, just lateral to the spinous process of the T4 vertebra?",
+      a: [
+        "Somatic afferent",
+        "Somatic efferent",
+        "Visceral afferent",
+        "Visceral efferent",
+        "Somatic efferent and visceral afferent",
+      ],
+      correct: 0,
+      explanation:
+        "Somatic afferents are responsible for conveying pain, pressure, touch, temperature, and proprioception to the CNS. Afferent fibers carry only sensory stimuli, whereas efferent fibers convey motor information.\n\nVisceral innervation is associated with the autonomic nervous system. Visceral afferents generally carry information regarding the physiologic changes of the internal viscera whereas visceral efferents deliver autonomic motor function to three types of tissue: smooth muscle, cardiac muscle, and glandular epithelium.",
+    },
+    {
+      q: "A 15-year-old woman was suspected of having meningitis. To obtain a sample of cerebrospinal fluid by spinal tap in the lumbar region (lumbar puncture), the tip of the needle must be placed in which of the following locations?",
+      a: [
+        "In the epidural space",
+        "Between anterior and posterior longitudinal ligaments",
+        "Superficial to the ligamentum flavum",
+        "Between arachnoid mater and dura mater",
+        "In the subarachnoid space",
+      ],
+      correct: 4,
+      explanation:
+        "CSF is found within the subarachnoid space and is continuous with the ventricles of the brain (CSF flows from the ventricles to the subarachnoid space).\n\nThe epidural space, positioned between the dura mater and periosteum, contains fat and the internal vertebral venous plexus (of Batson).\n\nThe subdural space, between the arachnoid mater and dura mater, exists only as a potential space and does not contain cerebrospinal fluid. The anterior and posterior longitudinal ligaments traverse the length of the vertebral bodies.",
+    },
+    {
+      q: "In spinal anesthesia, the needle is often inserted between the spinous processes of the L4 and L5 vertebrae to ensure that the spinal cord is not injured. This level is safe because in the adult the spinal cord usually terminates at the disc between which of the following vertebral levels?",
+      a: ["T11 and T12", "T12 and L1", "L1 and L2", "L2 and L3", "L3 and L4"],
+      correct: 2,
+      explanation:
+        "This is the location of the conus medullaris, a tapered conical projection of the spinal cord at its inferior termination. Although the conus medullaris rests at the level of L1 and L2 in adults, it is often situated at L3 in newborns.\n\nThe cauda equina and filum terminale extend beyond the conus medullaris.",
+    },
+    {
+      q: "A 28-year-old pregnant woman is admitted to the obstetrics department for delivery. In the final stages of labor, a caudal anesthetic is administered via the sacral hiatus. Into which of the following spaces in the sacral canal is the anesthetic placed?",
+      a: [
+        "Vertebral canal",
+        "Vertebral venous plexus",
+        "Epidural space",
+        "Subarachnoid space",
+        "Subdural space",
+      ],
+      correct: 2,
+      explanation:
+        "The vertebral canal is the longitudinal canal that extends through the vertebrae, containing the meninges, spinal cord, and associated ligaments. The internal vertebral venous plexus is the mostly valveless network of veins extending longitudinally along the vertebral canal. Neither of these answer choices describes a specific space.\n\nThe spinal epidural space is found superficially to the dura mater. It is a fat-filled space extending from C1 to the sacrum.\n\nThe subarachnoid space is a true space containing CSF. It is found within the CNS and extends to the level of S2.\n\nThe subdural space is a potential space between the dura and the arachnoid mater. Normally, these two layers are fused due to the pressure of CSF in the subarachnoid space.",
+    },
+    {
+      q: "Following a car crash, a 47-year-old woman complains of severe headache and back pain. Radiologic examination reveals bleeding of the internal vertebral venous plexus (of Batson), resulting in a large hematoma. In what space has the blood most likely accumulated?",
+      a: [
+        "Subarachnoid space",
+        "Subdural space",
+        "Central canal",
+        "Epidural space",
+        "Lumbar cistern",
+      ],
+      correct: 3,
+      explanation:
+        "The internal vertebral plexus (of Batson) surrounds the dura mater in the spinal epidural space; hence the bleeding would cause the hematoma in that space.\n\nThe subarachnoid space, containing the CSF, is located between pia and arachnoid mater. A subarachnoid hemorrhage would most likely result from a ruptured intercerebral aneurysm.\n\nA subdural hematoma would result most likely from a venous bleed from a torn cerebral vein as it enters the superior sagittal venous sinus within the skull.\n\nThe central canal is located within the gray matter of the spinal cord. The lumbar cistern is an enlargement of the subarachnoid space between the conus medullaris of the spinal cord and the caudal end of the subarachnoid space.",
+    },
+    {
+      q: "A 42-year-old man is struck in the back, rupturing the internal vertebral venous plexus (of Batson). Radiologic studies reveal a hematoma causing compression of the spinal cord. When aspirating the excess blood, the physician performing the procedure should stop the needle just before puncturing which of the following structures?",
+      a: [
+        "Spinal cord",
+        "Pia mater",
+        "Arachnoid mater",
+        "Dura mater",
+        "Ligamentum flavum",
+      ],
+      correct: 3,
+      explanation:
+        "The internal vertebral plexus (of Batson) lies external to the dura mater in the epidural space. To aspirate excess blood, the physician must pass the needle through the ligamentum flavum to reach the epidural space wherein the blood would accumulate.\n\nThe spinal cord, pia mater, and arachnoid mater are located deep to the epidural space.",
+    },
+    {
+      q: "A 24-year-old woman presents with severe headache, photophobia, and stiffness of her back. Physical examination reveals positive signs for meningitis. The attending physician decides to perform a lumbar puncture to determine if a pathogen is in the cerebrospinal fluid (CSF). What is the last structure the needle will penetrate before reaching the lumbar cistern?",
+      a: [
+        "Arachnoid mater",
+        "Dura mater",
+        "Pia mater",
+        "Ligamentum flavum",
+        "Posterior longitudinal ligament",
+      ],
+      correct: 0,
+      explanation:
+        "When a lumbar puncture is performed, the needle must penetrate the ligamentum flavum, the dura mater, and finally the arachnoid mater to reach the subarachnoid space where the CSF is located.\n\nThe lumbar cistern is a continuation of the subarachnoid space below the conus medullaris. The pia mater is adherent to the spinal cord, and the posterior longitudinal ligament is attached to the posterior aspect of the vertebral bodies.",
+    },
+    {
+      q: "A 19-year-old presents at the emergency department with high fever, severe headache, nausea, and stiff neck that have persisted for 3 days. The attending physician suspects meningitis and obtains a sample of CSF using a lumbar puncture. From which of the following spaces was the CSF collected?",
+      a: [
+        "Epidural space",
+        "Subdural space",
+        "Subarachnoid space",
+        "Pretracheal space",
+        "Central canal of the spinal cord",
+      ],
+      correct: 2,
+      explanation:
+        "The subarachnoid space, containing the CSF, is located between the pia and the arachnoid mater. Neither the epidural space, the subdural space, nor the pretracheal space contains CSF.\n\nAlthough the central canal, contained within the substance of the spinal cord, does contain CSF, extraction of CSF from this space would result in spinal cord injury. CSF circulates within the subarachnoid space and can be aspirated only from that location.\n\nThe subdural space is only a potential space between the dura and arachnoid mater. The epidural space contains the epidural fat and Batson’s venous plexus and is the site to inject an anesthetic for epidural anesthesia. CSF is not located in the pretracheal space.",
+    },
+    {
+      q: "A 38-year-old man is admitted to the emergency department after a car collision. During physical examination several lacerations to the back are discovered. Pain from lacerations or irritations of the skin of the back is conveyed to the central nervous system by which of the following?",
+      a: [
+        "Dorsal primary rami",
+        "Communicating rami",
+        "Ventral primary rami",
+        "Ventral roots",
+        "Intercostal nerves",
+      ],
+      correct: 0,
+      explanation:
+        "General somatic afferent fibers are conveyed from the skin of the back via the dorsal primary rami.\n\nCommunicating rami contain general visceral efferent (sympathetic) fibers and general visceral afferent fibers of the autonomic nervous system. Ventral primary rami convey mixed spinal nerves to/from all other parts of the body excluding the back, and parts of the head innervated by cranial nerves.\n\nThe ventral roots contain only efferent (motor) fibers. Intercostal nerves are the ventral rami of T1 to T11. The ventral ramus of T12 is the subcostal nerve.",
+    },
+    {
+      q: "A 66-year-old woman had been diagnosed with a tumor on her spine. She has started to retain urine and is experiencing rectal incontinence. Both of these symptoms are signs of conus medullaris syndrome. At which of the following vertebral levels is the tumor probably located?",
+      a: ["L3/L4", "L3", "L4", "T12 to L2", "T11"],
+      correct: 3,
+      explanation:
+        "The conus medullaris is usually located at the L1 to L2 vertebral level; therefore, any choice that contains that region is the correct answer.\n\nL3 to L4 is a common location to perform lumbar puncture, but it is caudal to the apex of the conus medullaris. L3 and L4 are caudal to the conus medullaris. T11 is superior to the conus medullaris.",
+    },
+    {
+      q: "A 32-year-old mother complains of serious pain in the coccygeal area some days after giving birth. To determine whether the coccyx is involved, a local anesthetic is first injected in the region of the coccyx and then dynamic MRI studies are performed. Physical examination reveals pain with palpation to the region of the coccyx. The local anesthetic is used to interrupt which of the following nerve pathways?",
+      a: [
+        "Visceral afferents",
+        "Somatic efferent",
+        "Somatic afferent",
+        "Sympathetic preganglionic",
+        "Parasympathetic preganglionic",
+      ],
+      correct: 2,
+      explanation:
+        "Somatic afferent fibers convey localized pain, typically from the body wall and limbs.\n\nVisceral afferents convey autonomic nervous system sensory information. Pain from these fibers will present as dull and diffuse.\n\nSomatic efferent fibers convey motor information to skeletal muscle. Sympathetic preganglionic fibers are visceral efferent fibers and do not contain sensory information. Parasympathetic preganglionic fibers are also visceral efferents and do not contain sensory information.",
+    },
+    {
+      q: "A 37-year-old pregnant woman is given a caudal epidural block to alleviate pain during vaginal delivery. Caudal epidural blocks involve injection of local anesthetic into the sacral canal. Which of the following landmarks is most commonly used for the caudal epidural block?",
+      a: [
+        "Anterior sacral foramina",
+        "Posterior sacral foramina",
+        "Cornua of the sacral hiatus",
+        "Intervertebral foramina",
+        "Median sacral crest",
+      ],
+      correct: 2,
+      explanation:
+        "Caudal anesthesia is used to block the spinal nerves that carry sensation from the perineum. This procedure is commonly used by anesthesiologists to relieve pain during labor and childbirth. Administration of local anesthetic to the epidural space is via the sacral hiatus, which opens between the sacral cornua.\n\nThe anterior sacral foramina are located on the pelvic surface of the sacrum and are not palpable from a dorsal approach. The posterior sacral foramina and intervertebral foramina are the openings through which sacral nerves exit and are not palpable landmarks.\n\nThe median sacral crest is cranial to the injection site.",
+    },
+    {
+      q: "A 34-year-old pregnant woman in the maternity ward was experiencing considerable pain during labor. Her obstetrician decided to perform a caudal epidural block. What are the most important bony landmarks used for the administration of such anesthesia?",
+      a: [
+        "Ischial tuberosities",
+        "Ischial spines",
+        "Posterior superior iliac spines",
+        "Sacral cornua",
+        "Coccyx",
+      ],
+      correct: 3,
+      explanation:
+        "The sacral cornua lie on either side of the sacral hiatus, from which one can gain access to the sacral canal. This is the best landmark for administration of anesthesia.\n\nThe ischial tuberosities are more commonly used as landmarks for a pudendal nerve block. The ischial spines are only palpated intravaginally.\n\nThe posterior superior iliac spines, though palpable, are not proximal enough for an epidural block within the sacral canal. The coccyx is not part of the sacral canal.",
+    },
+    {
+      q: "A male newborn infant is brought to the clinic by his mother and diagnosed with a congenital malformation. MRI studies reveal that the cerebellum and medulla oblongata are protruding inferiorly through the foramen magnum into the vertebral canal. What is this clinical condition called?",
+      a: [
+        "Meningocele",
+        "Klippel-Feil syndrome",
+        "Chiari II malformation",
+        "Hydrocephalus",
+        "Tethered cord syndrome",
+      ],
+      correct: 2,
+      explanation:
+        "Chiari II malformation results from herniation of the medulla and cerebellum into the foramen magnum.\n\nMeningocele is a small defect in the cranium in which only the meninges herniate. Klippel-Feil syndrome results from an abnormal number of cervical vertebral bodies.\n\nHydrocephalus results from an overproduction of cerebrospinal fluid, obstruction of its flow, or interference with CSF absorption.\n\nTethered cord syndrome is a congenital anomaly often caused by a defective closure of the neural tube. This syndrome is characterized by a low conus medullaris and a thickened filum terminale.",
+    },
+    {
+      q: "A 23-year-old college student is admitted to the emergency department after jumping from a 50-foot high waterfall. The MRI of his back reveals a lateral shift of the spinal cord to the left. Which of the following structures has most likely been torn to cause the deviation?",
+      a: [
+        "Posterior longitudinal ligament",
+        "Tentorium cerebelli",
+        "Denticulate ligaments",
+        "Ligamentum flavum",
+        "Nuchal ligament",
+      ],
+      correct: 2,
+      explanation:
+        "The denticulate ligaments are lateral extensions of pia mater that attach to the dura mater between the dorsal and ventral roots of the spinal nerves. These ligaments function to keep the spinal cord in the midline position.\n\nThe posterior longitudinal ligament supports the posterior aspect of the vertebrae within the vertebral canal. The tentorium cerebelli is a layer of dura mater that supports the occipital lobes of the cerebral hemispheres and covers the cerebellum.\n\nThe ligamentum flavum helps maintain upright posture by connecting the laminae of two adjacent vertebrae. The nuchal ligament is a thickening of the supraspinous ligaments extending from the C7 vertebra to the external occipital protuberance.",
+    },
+    {
+      q: "A 58-year-old man in the intensive care ward exhibited little voluntary control of urinary or fecal activity following repair of an abdominal aortic aneurysm. In addition, physical examination revealed widespread paralysis of his lower limbs. These functions were essentially normal prior to admission to the hospital. The most likely cause of this patient’s problems is which of the following?",
+      a: [
+        "Injury to the left vertebral artery",
+        "Injury of the great radicular artery (of Adamkiewicz)",
+        "Ligation of the posterior spinal artery",
+        "Transection of the conal segment of the spinal cord",
+        "Division of the thoracic sympathetic chain",
+      ],
+      correct: 1,
+      explanation:
+        "The (great radicular) artery of Adamkiewicz is important for blood supply to anterior and posterior spinal arteries. The location of this artery should be noted during surgery because damage to it can result in dire consequences, including paraplegia (loss of all sensation and voluntary movement inferior and at the level of the injury).\n\nInjury to the left vertebral artery would not be likely due its superior location to the surgical site. Ligation of the posterior spinal artery would not occur because of its protected location inside the vertebral canal.\n\nTransection of the conus medullaris of the spinal cord would not occur as this structure is located at L1, L2 levels and is, again, protected inside the vertebral canal. Division of the thoracic sympathetic chain would not be likely as the symptoms described include limb paralysis, which would not be a consequence of sympathetic disruption.",
+    },
+    {
+      q: "A 55-year-old woman has suffered from a middle ear infection for the past month. She recently developed right-sided miosis, partial ptosis, anhydrosis, and redness of the conjunctiva. Biopsy examination of which of the following structures would show the cell bodies of neurons affected by this disease?",
+      a: [
+        "Anterior gray horn of the spinal cord",
+        "Lateral gray horn of the spinal cord",
+        "Posterior gray horn of the spinal cord",
+        "Spinal ganglia",
+        "Lateral column of spinal cord white matter",
+      ],
+      correct: 1,
+      explanation:
+        "Horner’s syndrome is characterized by, among other things, constricted pupils, sunken eyes, partially drooping eyelid (ptosis), and dryness of the skin on the face. It is caused by problems in sympathetic autonomic pathways such as damage to the lateral horn.\n\nHorner’s syndrome is a result of disruption to the sympathetic nerves whose cell bodies are located in the lateral gray horn of the spinal cord.\n\nThe anterior gray horn has cell bodies for somatic efferent fibers whereas the posterior gray serves as a location for the axons of sensory fibers whose cell bodies are located in the spinal ganglion. There are no cell bodies located in the white matter of the spinal cord.",
+    },
+    {
+      q: "A 62-year-old man is admitted to the emergency department after a severe car crash resulting in a whiplash injury. MRI examination reveals several hairline vertebral fractures in the cervical region impinging the dorsal primary rami of the same levels. Two months after the injury the patient recovered well, however, there is still some weakness in the function of a muscle. Which of the following muscles is most likely affected?",
+      a: [
+        "Rhomboid major",
+        "Levator scapulae",
+        "Rhomboid minor",
+        "Semispinalis capitis",
+        "Latissimus dorsi",
+      ],
+      correct: 3,
+      explanation:
+        "Semispinalis capitis is the only muscle among the choices that is supplied by the dorsal rami. All of the other muscles are supplied by the ventral rami.\n\nThe rhomboid major and minor are innervated by the ventral primary rami of the dorsal scapular nerve. The levator scapulae is innervated by branches of C4 and C5, as well as from branches of dorsal scapular nerve. The latissimus dorsi is innervated by thoracodorsal nerve.",
+    },
+    {
+      q: "A 65-year-old woman who has been otherwise well presents to her physician with complaints of a group of painful blisters over her back in the distribution of the T9 dermatome. She noticed that a few days prior to the eruption of the blisters she experienced an intense burning sensation over her skin. She was diagnosed with herpes zoster (shingles). Where are the neural cell bodies located that are responsible for the pain sensation?",
+      a: [
+        "Dorsal horn",
+        "Lateral horn",
+        "Dorsal root ganglia",
+        "Sympathetic chain ganglia",
+        "White rami communicans",
+      ],
+      correct: 2,
+      explanation:
+        "Somatic afferent fibers convey localized pain, typically from the body wall and limbs and the cell bodies are found in the dorsal root ganglia.\n\nThe dorsal horn is found at all spinal cord levels and is comprised of sensory nuclei that receive and process incoming somatosensory information. The lateral horn comprises autonomic neurons innervating visceral and pelvic organs. The sympathetic chain ganglia deliver the sympathetic information to the body.\n\nWhite rami communicans carry preganglionic sympathetic fibers and are called white because the fibers it contains are myelinated.",
+    },
+    {
+      q: "A 60-year-old man has been feeling sharp pains over his left lower chest and back for several days. A rash of red erupted vesicles is seen at the left border of the sternum just at the level of the xiphoid process. Antiviral treatment is given for herpes zoster. Which of the following locations will contain the neural cell bodies responsible for the painful sensation?",
+      a: [
+        "Ventral horn of T6 spinal cord segment",
+        "Lateral horn of T6 spinal cord segment",
+        "Dorsal root ganglion of T4 spinal nerve",
+        "Dorsal root ganglion of T6 spinal nerve",
+        "Dorsal root ganglion of T10 spinal nerve",
+      ],
+      correct: 3,
+      explanation:
+        "Cells from a specific somite develop into the dermis of the skin in a precise location, somatic sensory fibers originally associated with that somite enter the posterior region of the spinal nerve.\n\nThe somatic sensory (afferent) fibers convey localized pain, typically from the body wall and limbs and the cell bodies are found in the dorsal root ganglia.\n\nThe lateral horn comprises autonomic neurons innervating visceral and pelvic organs. The anterior horn contains motor neurons that supply muscles of the body wall and the limbs.",
+    },
+    {
+      q: "A 3-day-old girl develops a fever. She is irritable and not feeding. As part of the workup for fever of unknown origin, a lumbar puncture is performed. This puncture must be done below the spinal cord which usually ends at which vertebral level in a patient of this age?",
+      a: ["L1", "S1", "L3", "S3", "L5"],
+      correct: 2,
+      explanation:
+        "Lumbar puncture is generally performed at the level of L4, L5.\n\nThe spinal cord ends at the level of L1/L2 in adults and at the level of L2/L3 in newborns.",
+    },
+    {
+      q: "During a surgical procedure to debride an abscess involving the erector spinae muscle at vertebral level T8, the nerve branch supplying the skin and this muscle is unavoidably severed. What are the anatomical locations of the cell bodies of the nerve fibers normally found in this branch?",
+      a: [
+        "Ventral horn and dorsal horn",
+        "Ventral horn, dorsal horn, and lateral horn",
+        "Ventral horn, dorsal root ganglion, and lateral horn",
+        "Ventral horn, dorsal root ganglion, and sympathetic paravertebral ganglion",
+        "Ventral horn, dorsal horn, and dorsal root ganglion",
+      ],
+      correct: 3,
+      explanation:
+        "The erector spinae muscle is supplied by the dorsal rami, which carry motor, sensory, and autonomic fibers.\n\nThe cell bodies of the motor part are found in the anterior horn, while the cell bodies of the sensory fibers are found in the dorsal root ganglia. The cell bodies of the sympathetic fibers are found in the paravertebral ganglia.",
+    },
+    {
+      q: "A 7-year-old boy is undergoing a surgery to remove a tumor from his spinal cord. During surgery of the spinal cord, which of the following structures is used as a landmark to identify anterior rootlets from posterior rootlets?",
+      a: [
+        "Denticulate ligament",
+        "Filum terminale",
+        "Conus medullaris",
+        "Posterior longitudinal ligament",
+        "Ligamenta flava",
+      ],
+      correct: 0,
+      explanation:
+        "The denticulate ligament is a sheet of pia mater running longitudinally on either side of the spinal cord, connecting it to the dura mater. Medially, the denticulate ligament lies between the origin of the anterior and posterior rootlets serving as a landmark to differentiate between them.\n\nThe conus medullaris is the terminal end of the spinal cord and the filum terminale is an extension of the pia mater that connects the conus medullaris to the dural sac.\n\nThe posterior longitudinal ligament lies posterior to the vertebral bodies, while the ligamentum flavum connects the lamina of adjacent vertebrae.",
+    },
+    {
+      q: "A 62-year-old man visits his physician for his annual medical check-up. During physical examination it is noted that the patient has noticeable pulsations on palpation of the lower abdomen. Ultrasound examination reveals a large abdominal aortic aneurysm. The patient is operated on and during the repair his aorta is temporarily clamped. Which of the following arterial anastomoses will most likely prevent ischemia of the spinal cord if the blood pressure drops dangerously low?",
+      a: [
+        "Segmental arteries from the vertebral, intercostals, superficial epigastric, lumbar, and medial sacral arteries",
+        "Segmental arteries from the vertebral, intercostal, lumbar, spinal anterior, and posterior and lateral sacral arteries",
+        "Anterior and posterior spinal arteries",
+        "Radicular arteries of the vertebral, lumbar, intercostal, lateral sacral arteries, and artery of Adamkiewicz",
+        "Segmental arteries from vertebral and intercostals",
+      ],
+      correct: 1,
+      explanation:
+        "The anterior and posterior spinal arteries do not provide sufficient blood supply to the spinal cord below cervical levels and will receive additional supply segmentally along its course from multiple sources.\n\nThe largest of these vessels are usually termed the artery of Adamkiewicz and arises at the lower thoracic or upper lumbar region.",
+    },
+    {
+      q: "A 2-month-old infant is admitted to the emergency department with symptoms of meningitis. A lumbar puncture is performed in order to examine the CSF to confirm the diagnosis. The needle is inserted into the lumbar cistern (dural sac). At which vertebral level will the conus medullaris typically be found in this patient?",
+      a: ["L3", "L4", "L5", "S1", "S2"],
+      correct: 0,
+      explanation:
+        "During development the spinal cord fills the vertebral canal entirely. Due to differential growth of the vertebral column and the spinal cord, the cord ends at L3 in an infant. It gradually changes its position to the level of L1/L2, which is the adult level.\n\nS2 is the level at which the dural sac normally terminates.",
+    },
+    {
+      q: "A 22-year-old pregnant woman underwent epidural anesthesia in anticipation of labor. After delivery she developed back pain and right lower extremity weakness. Imaging revealed a hematoma in the epidural space resulting in compression of the nerve that exits at the level of L2 to L3. Which of the following vessels is most likely responsible for the hematoma?",
+      a: [
+        "Internal vertebral plexus",
+        "Great radicular artery (of Adamkiewicz)",
+        "Anterior spinal artery",
+        "Posterior spinal artery",
+        "External vertebral plexus",
+      ],
+      correct: 0,
+      explanation:
+        "An epidural anesthetic procedure is performed in the epidural space which contains fat and the internal vertebral (Batson’s) plexus. A hematoma in this region would cause compression on the spinal nerves and possibly the cord resulting in severe pain and deficits.\n\nThe great anterior medullary artery of Adamkiewicz is the largest of the spinal segmental arteries and is usually located at around T10, much higher than L2 to L3. The anterior and posterior spinal arteries are located in the anterior median and posterolateral fissures of the spinal cord, respectively, and are not located in the epidural space.\n\nThe external vertebral plexus is located external to the vertebral canal and a hematoma of this plexus will not produce the symptoms of this patient.",
+    },
+    {
+      q: "An anesthesiologist administers epidural anesthetic immediately lateral to the spinous processes of vertebrae L3 and L4 of a pregnant woman in labor. During this procedure, what would be the last ligament perforated by the needle in order to access the epidural space?",
+      a: [
+        "Ligamentum flavum",
+        "Anterior longitudinal ligament",
+        "Posterior longitudinal ligament",
+        "Interspinous ligament",
+        "Intertransverse ligament",
+      ],
+      correct: 0,
+      explanation:
+        "The order of structures pierced during an epidural procedure is skin, subcutaneous tissue, muscle, supraspinous ligament, interspinous ligament, and ligamentum flavum (there is often a midline gap in the ligamentum flavum).\n\nThe anterior longitudinal ligament is anterior to the vertebral body and cannot be reached by this approach. The posterior longitudinal ligament is posterior to the vertebral body and can also not be reached by this procedure. The intertransverse ligaments are too lateral and may not be perforated by this technique.",
+    },
+    {
+      q: "A 38-year-old man presents to the emergency department with complaints of lower back pain during the past 5 days. Examination revealed tenderness of the spine over the L5 vertebra with an obvious “step-off” defect at that level. There was some weakness of the limbs. An MRI examination revealed an anterior displacement of the L5 vertebral body and narrowing of the vertebral canal. This pathology will most likely be associated with which of the following?",
+      a: [
+        "Compression of the spinal cord and bilateral lower limb weakness",
+        "Compression of the spinal cord and unilateral lower limb weakness",
+        "Compression of the spinal nerve roots and L5 with unilateral lower limb weakness",
+        "Compression of the cauda equina and bilateral lower limb weakness",
+        "Compression of the cauda equina and low back pain only",
+      ],
+      correct: 3,
+      explanation:
+        "The spinal cord ends at the level between the L1/L2 vertebra but the spinal nerves continue as the cauda equina below this level.\n\nAs a result, narrowing of the canal at the level of L5 will impact on all of the nerves resulting in bilateral lower limb weakness.",
+    },
+    {
+      q: "A drug that preferentially destroys sclerotomes during embryogenesis would most likely result in underdevelopment of which of the following structures?",
+      a: [
+        "Nucleus pulposus of intervertebral disc",
+        "Vertebral bodies",
+        "Dorsal root ganglion",
+        "Spinal cord",
+        "Anulus fibrosus of intervertebral disc",
+      ],
+      correct: 1,
+      explanation:
+        "Sclerotomes are the derivatives of somites that develop into bone and if eliminated will result in underdevelopment of the vertebrae.\n\nThe nucleus pulposus is a remnant of the notochord. The dorsal root ganglion is formed by neural crest cells that migrate during development. The neural tube is the precursor for the spinal cord and the anulus fibrosus develops from the sclerotome component of the somite.",
+    },
+    {
+      q: "An orthopedic surgeon was teaching two residents during a workshop. For the purpose of learning, one resident acted as the patient and the other as the clinician. The surgeon asked the resident-clinician to use a marker and draw a horizontal line connecting the highest points of the iliac crests on the skin of the resident-patient. The surgeon then asked the resident-clinician to palpate the midline area on the skin where the subarachnoid space terminates inferiorly. Which of the following most likely represents the area on the skin where the resident-physician palpated?",
+      a: [
+        "Three spinous processes superior to the horizontal line",
+        "Two spinous processes inferior to the horizontal line",
+        "Three spinous processes inferior to the horizontal line",
+        "Two spinous processes superior to the horizontal line",
+        "The spinous process bisected by the horizontal line",
+      ],
+      correct: 2,
+      explanation:
+        "A horizontal line that connects the highest points of the iliac crests typically bisects the spinous process of the L4 vertebra or L4-L5 interspace (Tuffier’s line).\n\nThe lumbar cistern, which represents the subarachnoid space, terminates at the level corresponding to the S2 spinous process. Three spinous processes inferiorly from the drawn line between the iliac crests would correspond to S2 spinous processes.\n\nTwo and three spinous processes above the drawn line would be at the vertebral level L2 and L1, respectively, which would correspond to the approximate location where the spinal cord ends and therefore the pia mater.",
+    },
+    {
+      q: "An MRI scan of the thoracic spine of a 68-year-old man with acute midback pain revealed a large tumor arising from the anterior median fissure of the spinal cord at the level of the T3 vertebra. The artery compressed by the tumor is most likely formed superiorly by direct branches from which of the following arteries?",
+      a: [
+        "Ascending cervical",
+        "Segmental medullary",
+        "Vertebral",
+        "Segmental spinal",
+        "Posterior spinal",
+      ],
+      correct: 2,
+      explanation:
+        "The anterior spinal artery lies in the anterior median fissure and would likely be compressed by the tumor. This artery is formed superiorly by the union of two branches that directly arise from the vertebral arteries.\n\nAscending cervical artery is not found within the vertebral canal and does not contribute to the blood supply of the spinal cord.\n\nThe segmental spinal arteries follow the spinal nerves and provide the segmental medullary vessels which run along the dorsal and ventral roots to supply the lateral aspect of the spinal cord. There are two posterior spinal arteries, each are located in the posterolateral sulcus on the posterior aspect and have only small branches to the direct area.",
+    },
+  ],
+  anatcase12: [
+    {
+      q: "3 yoshli o'g'il bola kuchli bosh og'rig'i, yuqori isitma, holsizlik va chalkashlik bilan shoshilinch yordam bo'limiga olib kelindi. Radiologik va fizikal tekshiruvlar meningit tashxisini tasdiqladi. Tashxisni aniqlash uchun lyumbal punksiya buyurildi. Lyumbal punksiya uchun eng mos umurtqa sathi qaysi?",
+      a: ["T12 – L1", "L1 – L2", "L2 – L3", "L4 – L5", "L5 – S1"],
+      correct: 3,
+      explanation:
+        "Lyumbal punksiya orqa miya suyuqligini (CSF) bel sisternasidan (orqa miyadan pastdagi subaraxnoidal bo'shliq) L4–L5 oralig'ida, ba'zan L3–L4 oralig'ida olish yo'li bilan bajariladi.\n\nBuning sababi: orqa miya odatda L1–L2 sathida tugaydi, qattiq parda xaltasi (dural xalta) esa S2 sathida tugaydi. Shuning uchun punksiya aynan shu oraliqda eng xavfsiz hisoblanadi va orqa miyani jarohatlash xavfi minimal bo'ladi.\n\n(Esda tuting: bolalarda orqa miya pastroqda – kaudalroq tugaydi.)",
+    },
+    {
+      q: "66 yoshli ayolning umurtqasida o'sma borligi aniqlangan. U siydikni ushlab qolish (retensiya) va to'g'ri ichak inkontinensiyasidan shikoyat qila boshladi. Bu ikkala simptom ham miya konusi (conus medullaris) sindromining belgilaridir. O'sma ehtimol qaysi umurtqa sathida joylashgan?",
+      a: ["L3/L4", "L3", "L4", "T12 dan L2 gacha", "T11"],
+      correct: 3,
+      explanation:
+        "Miya konusi odatda L1–L2 umurtqa sathida joylashgan, shuning uchun shu sohani o'z ichiga olgan har qanday variant to'g'ri javobdir.\n\nL3–L4 lyumbal punksiya uchun keng qo'llaniladigan joy, lekin u miya konusining uchidan kaudalroqda joylashgan. L3 va L4 miya konusidan kaudalroqda, T11 esa miya konusidan yuqorida joylashgan.",
+    },
+    {
+      q: "2 oylik chaqaloq meningit simptomlari bilan shoshilinch yordam bo'limiga yotqizildi. Tashxisni tasdiqlash uchun CSF ni tekshirish maqsadida lyumbal punksiya o'tkaziladi. Igna bel sisternasiga (dural xalta) kiritiladi. Bu bemorda miya konusi odatda qaysi umurtqa sathida joylashgan bo'ladi?",
+      a: ["L3", "L4", "L5", "S1", "S2"],
+      correct: 0,
+      explanation:
+        "Rivojlanish davomida orqa miya umurtqa kanalini to'liq to'ldiradi. Umurtqa ustuni va orqa miyaning turlicha o'sishi tufayli chaqaloqda miya konusi L3 sathida tugaydi. Keyinchalik u asta-sekin kattalar sathi bo'lgan L1/L2 holatiga ko'tariladi.\n\nS2 – dural xalta odatda tugaydigan sath.",
+    },
+    {
+      q: "Orqa miya o'smasini olib tashlash uchun 7 yoshli o'g'ilga jarrohlik amaliyoti o'tkazilmoqda. Orqa miya operatsiyasi paytida oldingi ildizchalarni orqa ildizchalardan ajratish uchun qaysi tuzilma mo'ljal sifatida ishlatiladi?",
+      a: [
+        "Tishsimon bog'lam (lig. denticulatum)",
+        "Terminal ip (filum terminale)",
+        "Miya konusi (conus medullaris)",
+        "Ot dumi (cauda equina)",
+        "Sariq bog'lamlar (ligamenta flava)",
+      ],
+      correct: 0,
+      explanation:
+        "Tishsimon bog'lam – orqa miyaning har ikki yonida uzunasiga o'tuvchi, uni qattiq parda bilan bog'lovchi yumshoq parda plastinkasi. Medial tomonda tishsimon bog'lam oldingi va orqa ildizchalarning chiqish joyi orasida yotadi va ularни bir-biridan farqlash uchun mo'ljal bo'lib xizmat qiladi.\n\nMiya konusi – orqa miyaning terminal uchi, oxirgi ip esa yumshoq pardaning davomi bo'lib, miya konusini dural xaltaga bog'laydi. Orqa bo'ylama bog'lam umurtqa tanalarining orqasida joylashgan, sariq bog'lamlar esa qo'shни umurtqa yoylarни bog'laydi.",
+    },
+    {
+      q: "38 yoshli erkak so'nggi 5 kun davomida bel og'rig'i bilan shoshilinch yordam bo'limiga murojaat qildi. Tekshiruvda L5 umurtqa ustida og'riqli nuqta va shu sathda aniq \"zinapoya\" (step-off) nuqsoni aniqlandi. Oyoq-qo'llarda biroz zaiflik bor edi. MRT L5 umurtqa tanasining oldinga siljishi va umurtqa kanalining torayishini ko'rsatdi. Bu patologiya ehtimol quyidagilardan qaysi biri bilan bog'liq bo'ladi?",
+      a: [
+        "Orqa miyaning siqilishi va ikki tomonlama oyoq zaifligi",
+        "Orqa miyaning siqilishi va bir tomonlama oyoq zaifligi",
+        "L5 orqa miya nervi ildizlarining siqilishi va bir tomonlama oyoq zaifligi",
+        "Ot dumining siqilishi va ikki tomonlama oyoq zaifligi",
+        "Ot dumining siqilishi va faqat bel og'rig'i",
+      ],
+      correct: 3,
+      explanation:
+        "Orqa miya L1/L2 umurtqalar orasidagi sathda tugaydi, lekin orqa miya nervlari bu sathdan pastda dumli ot (cauda equina) sifatida davom etadi.\n\nShuning uchun L5 sathida kanalning torayishi barcha nervlarga ta'sir qilib, ikki tomonlama oyoq zaifligiga olib keladi.",
+    },
+    {
+      q: "Yangi tug'ilgan erkak chaqaloq klinikaga onasi tomonidan olib kelindi va tug'ma malformatsiya tashxisi qo'yildi. MRT tekshiruvlari kichik miya (cerebellum) va uzunchoq miya (medulla oblongata) ensa katta teshigi (foramen magnum) orqali pastga, umurtqa kanaliga cho'zilganini ko'rsatadi. Bu klinik holat qanday ataladi?",
+      a: [
+        "Meningotsele",
+        "Klippel–Feil sindromi",
+        "Chiari II malformatsiyasi",
+        "Gidrosefaliya",
+        "Bog'langan orqa miya sindromi (tethered cord)",
+      ],
+      correct: 2,
+      explanation:
+        "Chiari II malformatsiyasi uzunchoq miya va kichik miyaning ensa katta teshigiga churra (herniya) shaklida tushishi natijasida yuzaga keladi.\n\nMeningotsele – bosh suyagidagi kichik nuqson bo'lib, faqat miya pardalari churra hosil qiladi. Klippel–Feil sindromi bo'yin umurtqalari sonining g'ayritabiiy bo'lishi natijasida yuzaga keladi.\n\nGidrosefaliya CSF ning ortiqcha ishlab chiqarilishi, uning oqimi to'silishi yoki so'rilishining buzilishidan kelib chiqadi.\n\nBog'langan orqa miya sindromi – ko'pincha nerv naychasining nuqsonli yopilishidan kelib chiqadigan tug'ma anomaliya. Bu sindrom miya konusining past joylashuvi va oxirgi ipning (filum terminale) qalinlashuvi bilan xarakterlanadi.",
+    },
+  ],
+  anatcase12eng: [
+    {
+      q: "A 2-month-old infant is admitted to the emergency department with symptoms of meningitis. A lumbar puncture is performed in order to examine the CSF to confirm the diagnosis. The needle is inserted into the lumbar cistern (dural sac). At which vertebral level will the conus medullaris typically be found in this patient?",
+      a: ["L3", "L4", "L5", "S1", "S2"],
+      correct: 0,
+      explanation:
+        "During development the spinal cord fills the vertebral canal entirely. Due to differential growth of the vertebral column and the spinal cord, the cord ends at L3 in an infant. It gradually changes its position to the level of L1/L2, which is the adult level.\n\nS2 is the level at which the dural sac normally terminates.",
+    },
+    {
+      q: "A 7-year-old boy is undergoing a surgery to remove a tumor from his spinal cord. During surgery of the spinal cord, which of the following structures is used as a landmark to identify anterior rootlets from posterior rootlets?",
+      a: [
+        "Denticulate ligament",
+        "Filum terminale",
+        "Conus medullaris",
+        "Posterior longitudinal ligament",
+        "Ligamenta flava",
+      ],
+      correct: 0,
+      explanation:
+        "The denticulate ligament is a sheet of pia mater running longitudinally on either side of the spinal cord, connecting it to the dura mater. Medially, the denticulate ligament lies between the origin of the anterior and posterior rootlets serving as a landmark to differentiate between them.\n\nThe conus medullaris is the terminal end of the spinal cord and the filum terminale is an extension of the pia mater that connects the conus medullaris to the dural sac.\n\nThe posterior longitudinal ligament lies posterior to the vertebral bodies, while the ligamentum flavum connects the lamina of adjacent vertebrae.",
+    },
+    {
+      q: "A 3-day-old girl develops a fever. She is irritable and not feeding. As part of the workup for fever of unknown origin, a lumbar puncture is performed. This puncture must be done below the spinal cord which usually ends at which vertebral level in a patient of this age?",
+      a: ["L1", "S1", "L3", "S3", "L5"],
+      correct: 2,
+      explanation:
+        "Lumbar puncture is generally performed at the level of L4, L5.\n\nThe spinal cord ends at the level of L1/L2 in adults and at the level of L2/L3 in newborns.",
+    },
+    {
+      q: "A male newborn infant is brought to the clinic by his mother and diagnosed with a congenital malformation. MRI studies reveal that the cerebellum and medulla oblongata are protruding inferiorly through the foramen magnum into the vertebral canal. What is this clinical condition called?",
+      a: [
+        "Meningocele",
+        "Klippel-Feil syndrome",
+        "Chiari II malformation",
+        "Hydrocephalus",
+        "Tethered cord syndrome",
+      ],
+      correct: 2,
+      explanation:
+        "Chiari II malformation results from herniation of the medulla and cerebellum into the foramen magnum.\n\nMeningocele is a small defect in the cranium in which only the meninges herniate. Klippel-Feil syndrome results from an abnormal number of cervical vertebral bodies.\n\nHydrocephalus results from an overproduction of cerebrospinal fluid, obstruction of its flow, or interference with CSF absorption.\n\nTethered cord syndrome is a congenital anomaly often caused by a defective closure of the neural tube. This syndrome is characterized by a low conus medullaris and a thickened filum terminale.",
+    },
+    {
+      q: "A 66-year-old woman had been diagnosed with a tumor on her spine. She has started to retain urine and is experiencing rectal incontinence. Both of these symptoms are signs of conus medullaris syndrome. At which of the following vertebral levels is the tumor probably located?",
+      a: ["L3/L4", "L3", "L4", "T12 to L2", "T11"],
+      correct: 3,
+      explanation:
+        "The conus medullaris is usually located at the L1 to L2 vertebral level; therefore, any choice that contains that region is the correct answer.\n\nL3 to L4 is a common location to perform lumbar puncture, but it is caudal to the apex of the conus medullaris. L3 and L4 are caudal to the conus medullaris. T11 is superior to the conus medullaris.",
+    },
+    {
+      q: "A 38-year-old man presents to the emergency department with complaints of lower back pain during the past 5 days. Examination revealed tenderness of the spine over the L5 vertebra with an obvious “step-off” defect at that level. There was some weakness of the limbs. An MRI examination revealed an anterior displacement of the L5 vertebral body and narrowing of the vertebral canal. This pathology will most likely be associated with which of the following?",
+      a: [
+        "Compression of the spinal cord and bilateral lower limb weakness",
+        "Compression of the spinal cord and unilateral lower limb weakness",
+        "Compression of the spinal nerve roots and L5 with unilateral lower limb weakness",
+        "Compression of the cauda equina and bilateral lower limb weakness",
+        "Compression of the cauda equina and low back pain only",
+      ],
+      correct: 3,
+      explanation:
+        "The spinal cord ends at the level between the L1/L2 vertebra but the spinal nerves continue as the cauda equina below this level.\n\nAs a result, narrowing of the canal at the level of L5 will impact on all of the nerves resulting in bilateral lower limb weakness.",
+    },
+  ],
 };

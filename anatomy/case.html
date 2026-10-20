@@ -647,16 +647,22 @@
         window.tests = {
             anatcase1: getRandomTest(TEST_QUESTIONS.anatcase1),
             anatcase2: getRandomTest(TEST_QUESTIONS.anatcase2),
+            anatcase12: getRandomTest(TEST_QUESTIONS.anatcase12),
+            anatcase12eng: getRandomTest(TEST_QUESTIONS.anatcase12eng),
         };
 
         window.testTitleMap = {
-            anatcase1: "Anatomiya Case 1",
-            anatcase2: "Anatomiya Case 2",
+            anatcase1: "orqaa",
+            anatcase2: "Yelka chigali",
+            anatcase12: "Orqa miyya",
+            anatcase12eng: "Spinal cord",
         };
 
         const ALL_CARDS = [
             { testName: "anatcase1", title: testTitleMap.anatcase1 },
             { testName: "anatcase2", title: testTitleMap.anatcase2 },
+            { testName: "anatcase12", title: testTitleMap.anatcase12 },
+            { testName: "anatcase12eng", title: testTitleMap.anatcase12eng },
         ];
 
         const PAGE_IDS = ALL_CARDS.map((c) => c.testName);
