@@ -6175,4 +6175,195 @@ window.TEST_QUESTIONS = {
         "The spinal cord ends at the level between the L1/L2 vertebra but the spinal nerves continue as the cauda equina below this level.\n\nAs a result, narrowing of the canal at the level of L5 will impact on all of the nerves resulting in bilateral lower limb weakness.",
     },
   ],
+  overall6: [
+    {
+      q: "Quyida berilgan moddalardan disaxaridni toping ?",
+      a: ["Selluloza", "Laktoza", "Fruktoza", "Galaktoza", "Glikogen"],
+      correct: 1,
+    },
+    {
+      q: "Ekstrasellular yuzada uchrovchi fosfolipidni belgilang.",
+      a: [
+        "Fosfatidilserin",
+        "Fosfatidilinozitol",
+        "Diatsilglitserol",
+        "Xolesterin",
+        "Sfingomiyelin",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Yengillashgan diffuziyaning oddiy diffuziyadan farqi nima?",
+      a: [
+        "Kichik molekulali moddalar harakatlanadi",
+        "Kanallar va transport oqsillari qatnashadi",
+        "Asosan Steroid gormonlar tashiladi",
+        "Retseptor funksiyasiga ega",
+        "Yadro bilan bog’liq holda ishlaydi",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Quyidagi hujayralarning qaysi birida nisbatan ko’p miqdorda mitoxondriya bo’ladi?",
+      a: [
+        "Gepatotsit",
+        "Teri hujayrasi",
+        "Eritrotsit",
+        "Soch follikulalari",
+        "Muskul hujayrasi",
+      ],
+      correct: 4,
+    },
+    {
+      q: "Ko’p xollarda ilon zahari qaysi retseptorlarni bloklaydi?",
+      a: [
+        "Adrenergik retseptorlar",
+        "Asetilxolin retseptorlari",
+        "Enzimatik retseptorlar",
+        "Barcha ekstrasellular retseptorlar",
+        "Intrasellular retseptorlar",
+      ],
+      correct: 1,
+    },
+    {
+      q: "Gs retseptorlarini zararlovchi toksin?",
+      a: [
+        "Botulotoksin",
+        "Ilon zahari",
+        "Xolera ekzotoksini",
+        "Tetanus toksini",
+        "Shiga toksini",
+      ],
+      correct: 2,
+    },
+    {
+      q: "PIP2 parchalanishi natijasida qanday tuzilmalar xosil bo’ladi?",
+      a: [
+        "IP3 va sAMF",
+        "DAG va PLC",
+        "PKC va DAG",
+        "sGMP va Adenilat siklaza",
+        "IP3 va DAG",
+      ],
+      correct: 4,
+    },
+    {
+      q: "G2 fazada qanday jarayon amalga oshiriladi?",
+      a: [
+        "Hujayra ko’proq o'sib kattalashadi",
+        "DNK ning to'liq nusxasini sintez qilinadi",
+        "Organellalarining nusxalarini hosil qilinadi, birinchi bosqich hisoblanadi",
+        "Bu fazadan so’ng Sintez davri boshlanadi",
+        "Sitokinez jarayoni tarkibiga kiradi",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Hujayradagi E6 proteini qaysi jarayonni bloklab turadi?",
+      a: ["Spermatogenez", "Mitoz", "Meyoz", "Apoptoz", "Interfaza"],
+      correct: 3,
+    },
+    {
+      q: "Aneuploidiya quyidagi qaysi kasalliklarga sabab bo’lishi mumkin?",
+      a: [
+        "Qandli diabet",
+        "Kasallikka sabab bo’lmaydi",
+        "Klaynfelter sindromi",
+        "Zellveger sindromi",
+        "Daun sindromi va qandli diabet",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Hid bilish va ta’m bilish sezgi impulslarni qaysi tolalar tashiydi?",
+      a: [
+        "Maxsus visseral afferent tolalar",
+        "Maxsus visseral efferent tolalar",
+        "Umumiy somatik afferent tolalar",
+        "Umumiy somatik efferent tolalar",
+        "Umumiy visseral afferent tolalar",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Odontoid o`sig`i qaysi umurtqa uchun xos?",
+      a: ["C2", "C1", "C7", "L5", "S1"],
+      correct: 0,
+    },
+    {
+      q: "Umurtqa bo’g’imlarida osteoartrit natijasida yuzaga keladigan degenerativ o’zgarish nima deb ataladi?",
+      a: ["Spondiloz", "Kifoz", "Spondilolistez", "Raxit", "Lordoz"],
+      correct: 0,
+    },
+    {
+      q: "Ma’lum bir orqa miya segmentidan chiquvchi nerv innervatsiya qiladigan suyak maydoni nima?",
+      a: ["Dermatom", "Miotom", "Sklerotom", "Kollateral", "Somit"],
+      correct: 2,
+    },
+    {
+      q: "Qattiq jismlar endotsitozi nima deb ataladi?",
+      a: [
+        "Oddiy diffuziya",
+        "Yengillashgan diffuziya",
+        "Fagotsitoz",
+        "Pinotsitoz",
+        "Ikkilamchi aktiv transport",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Promontoriy qaysi umurtqada joylashgan?",
+      a: ["S1", "C1", "C7", "L5", "S3"],
+      correct: 0,
+    },
+
+    {
+      q: "Spina bifida homiladorlik davrida qaysi vitamin yetishmovchiligidan kelib chiqadi?",
+      a: [
+        "Folat kislota",
+        "B6 vitamin",
+        "B1 vitamin",
+        "B12 vitamin",
+        "A vitamin",
+      ],
+      correct: 0,
+    },
+    {
+      q: "Bir umurtqaning boshqa umurtqa ustida oldinga siljib ketishi nima deb ataladi?",
+      a: [
+        "Osteomalyatsiya",
+        "Spondilit",
+        "Spondilolistez",
+        "Raxit",
+        "Spondiloz",
+      ],
+      correct: 2,
+    },
+
+    {
+      q: "Mushak, mushak tutami, mushak tolasini qoplab turuvchi pardalar nima deb atalishi to’g’ri ketma-ketligini toping.",
+      a: [
+        "Epimizium, perimizium, endomizium",
+        "Perimizium, epimizium, endomizium",
+        "Endomizium, perimizium, epimizium",
+        "Epimizium, endomizium, perimizium",
+        "Perimizium, endomizium, epimizium",
+      ],
+      correct: 0,
+    },
+
+    {
+      q: "Disk churasida annulus fibrosus orqali qaysi tuzilma bo’rtib tashqariga chiqadi?",
+      a: [
+        "Nucleus pulposus",
+        "Pia mater",
+        "Dura mater",
+        "Periost",
+        "Sensor nerv",
+      ],
+      correct: 0,
+    },
+  ],
 };

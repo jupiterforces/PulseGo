@@ -177,6 +177,17 @@
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
+                                    <div class="test-card" onclick="startTest('overall6')">
+                                        <div class="test-icon bg-success-subtle text-success">
+                                            <i class="bi bi-journal-medical fs-3"></i>
+                                        </div>
+                                        <div class="test-title fw-semibold">1-kurs (6 weeks)</div>
+                                        <div class="question-footer">
+                                            20 ta savol
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
                                     <div class="test-card" onclick=showProModal()>
                                         <div class="test-icon bg-success-subtle text-success">
                                             <i class="bi bi-journal-medical fs-3"></i>
@@ -194,7 +205,7 @@
                                         </div>
                                         <div class="test-title fw-semibold">Grant uchun (1-kurs)</div>
                                         <div class="question-footer">
-                                            200 ta savol
+                                            300 ta savol
                                         </div>
                                     </div>
                                 </div>
@@ -244,10 +255,12 @@
 
         window.tests = {
             overall1: getRandomTest(TEST_QUESTIONS.overall1, 20),
+            overall6: getRandomTest(TEST_QUESTIONS.overall6, 20),
         };
 
         window.testTitleMap = {
             overall1: "1-kurs (3 weeks)",
+            overall6: "1-kurs (6 weeks)",
         };
 
         console.log("🔥 TESTS:", window.tests);
