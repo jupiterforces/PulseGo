@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseGo — Mening sessiyalarim</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --pg-teal: #1b3a3a;
+      --pg-teal-2: #254848;
+      --pg-bg: #f4f6f8;
+      --pg-green: #16a34a;
+      --pg-red: #dc2626;
+      --pg-amber: #ca8a04;
+      --pg-blue: #2563eb;
+    }
+
+    body {
+      background: var(--pg-bg);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .pg-topbar {
+      background: var(--pg-teal);
+      color: #e8f0f0;
+      padding: .85rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .22);
+    }
+
+    .pg-topbar h5 {
+      margin: 0;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+
+    .pg-topbar .btn {
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: .85rem;
+    }
+
+    .pg-stat {
+      background: #fff;
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, .06);
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      height: 100%;
+    }
+
+    .pg-stat .ic {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .pg-stat .num {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .pg-stat .lbl {
+      font-size: .75rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    .session-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .07);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .session-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, .12);
+    }
+
+    .session-card.is-paused {
+      border: 2px solid #fcd34d;
+    }
+
+    .status-badge {
+      padding: .3rem .75rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .status-completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-stopped {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .status-running {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .status-paused {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .mode-badge {
+      padding: .28rem .65rem;
+      border-radius: 8px;
+      font-size: .7rem;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .mode-exam {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .pct {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .pct-high {
+      background: var(--pg-green);
+    }
+
+    .pct-mid {
+      background: var(--pg-amber);
+    }
+
+    .pct-low {
+      background: var(--pg-red);
+    }
+
+    .mini-stat {
+      text-align: center;
+      padding: .55rem .3rem;
+      border-radius: 12px;
+    }
+
+    .mini-stat b {
+      display: block;
+      font-size: 1.05rem;
+    }
+
+    .mini-stat span {
+      font-size: .68rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: .25rem .7rem;
+      font-size: .74rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .detail-area {
+      border-top: 1px dashed #e2e8f0;
+      background: #fbfcfd;
+    }
+
+    .resume-strip {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border-top: 1px solid #fde68a;
+    }
+
+    .progress-slim {
+      height: 6px;
+      border-radius: 99px;
+      background: #e2e8f0;
+      overflow: hidden;
+    }
+
+    .progress-slim>div {
+      height: 100%;
+      background: #f59e0b;
+    }
+
+    .nav-dot {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      border: none;
+      font-size: .78rem;
+      font-weight: 700;
+      color: #fff;
+      cursor: default;
+    }
+
+    .nav-dot.nav-correct {
+      background: var(--pg-green);
+    }
+
+    .nav-dot.nav-wrong {
+      background: var(--pg-red);
+    }
+
+    .nav-dot.nav-unsolved {
+      background: #cbd5e1;
+      color: #334155;
+    }
+
+    .nav-dot.nav-flag {
+      outline: 2px solid #fbbf24;
+      outline-offset: 2px;
+    }
+
+    .mistake-item {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+    }
+
+    .mistake-item.fixed {
+      opacity: .8;
+      border-color: #bbf7d0;
+    }
+
+    .ans-ok {
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: .45rem .7rem;
+      font-size: .85rem;
+    }
+
+    .ans-bad {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: .45rem .7rem;
+      font-size: .85rem;
+    }
+
+    .ans-neutral {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: .45rem .7rem;
+      font-size: .85rem;
+    }
+
+    .note-item {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: .6rem .8rem;
+      font-size: .85rem;
+    }
+
+    .toolbar .form-control,
+    .toolbar .form-select {
+      border-radius: 12px;
+      font-size: .88rem;
+    }
+
+    .btn-pg {
+      background: var(--pg-teal);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    .btn-pg:hover {
+      background: var(--pg-teal-2);
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="pg-topbar d-flex align-items-center justify-content-between gap-2">
+    <div class="d-flex align-items-center gap-2">
+      <a href="javascript:history.back()" class="btn btn-sm btn-outline-light"><i class="bi bi-arrow-left"></i></a>
+      <h5><i class="bi bi-collection me-1"></i>Mening sessiyalarim</h5>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-sm btn-outline-light" onclick="exportAll()"><i class="bi bi-download"></i> <span
+          class="d-none d-sm-inline">Export</span></button>
+      <button class="btn btn-sm btn-danger" onclick="clearAll()"><i class="bi bi-trash3"></i> <span
+          class="d-none d-sm-inline">Tozalash</span></button>
+    </div>
+  </div>
+
+  <div class="container py-4" style="max-width:860px;">
+
+    <!-- OVERVIEW -->
+    <div class="row g-3 mb-4" id="overview">
+      <div class="col-6 col-md-3">
+        <div class="pg-stat">
+          <div class="ic bg-primary-subtle text-primary"><i class="bi bi-clipboard-data"></i></div>
+          <div>
+            <div class="num" id="ov-runs">0</div>
+            <div class="lbl">Jami runlar</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="pg-stat">
+          <div class="ic bg-success-subtle text-success"><i class="bi bi-bullseye"></i></div>
+          <div>
+            <div class="num" id="ov-avg">0%</div>
+            <div class="lbl">O'rtacha aniqlik</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="pg-stat">
+          <div class="ic bg-danger-subtle text-danger"><i class="bi bi-x-octagon"></i></div>
+          <div>
+            <div class="num" id="ov-mistakes">0</div>
+            <div class="lbl">Ochiq xatolar</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="pg-stat">
+          <div class="ic bg-warning-subtle text-warning-emphasis"><i class="bi bi-flag"></i></div>
+          <div>
+            <div class="num" id="ov-flags">0</div>
+            <div class="lbl">Flaglar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="toolbar card border-0 rounded-4 shadow-sm p-3 mb-4">
+      <div class="row g-2">
+        <div class="col-12 col-md-5">
+          <input type="text" id="f-search" class="form-control" placeholder="🔍 Test nomi bo'yicha qidirish..."
+            oninput="render()">
+        </div>
+        <div class="col-6 col-md-3">
+          <select id="f-status" class="form-select" onchange="render()">
+            <option value="">Barcha holatlar</option>
+            <option value="paused">Pauzada</option>
+            <option value="completed">Yakunlangan</option>
+            <option value="stopped">To'xtatilgan</option>
+            <option value="running">Jarayonda</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select id="f-mode" class="form-select" onchange="render()">
+            <option value="">Mode</option>
+            <option value="exam">Exam</option>
+            <option value="study">Study</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-2">
+          <select id="f-sort" class="form-select" onchange="render()">
+            <option value="new">Yangi first</option>
+            <option value="old">Eski first</option>
+            <option value="pct">% bo'yicha</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div id="session-list" class="d-flex flex-column gap-3"></div>
+
+    <div id="empty-state" class="text-center py-5 d-none">
+      <div class="display-1 text-muted"><i class="bi bi-inbox"></i></div>
+      <h5 class="text-muted mt-3">Hozircha sessiyalar yo'q</h5>
+      <p class="text-muted small">Test ishlab boshlaganingizda ular shu yerda paydo bo'ladi.</p>
+    </div>
+
+  </div>
+
+  <script>
+    /* =========================================================
+       GLOBAL SESSION LEDGER — viewer
+       Sessions : localStorage["pulsego_sessions_v1"]
+       Mistakes : localStorage["pulsego_data_v1"].mistakes   (open mistakes only)
+       Flags    : localStorage["pulsego_flagged_v1"]
+       ========================================================= */
+    const KEY = "pulsego_sessions_v1";
+    const DATA_KEY = "pulsego_data_v1";
+    const FLAGS_KEY = "pulsego_flagged_v1";
+    /* page that loads testcases.js — used only if a session has no saved pagePath */
+    const DEFAULT_TEST_PAGE = "/1sem/index.html"; // ← change if needed
+
+    const STATUS_LABEL = { completed: "Yakunlangan", stopped: "To'xtatilgan", running: "Jarayonda", paused: "Pauzada" };
+    const LETTERS = ["A", "B", "C", "D", "E", "F"];
+
+    function readSessions() { try { const r = localStorage.getItem(KEY); const p = r ? JSON.parse(r) : []; return Array.isArray(p) ? p : []; } catch (e) { return []; } }
+    function writeSessions(l) { localStorage.setItem(KEY, JSON.stringify(l)); }
+
+    /* same hash as testcases.js / globalqbank.js */
+    function qh(s) {
+      s = String(s || "").trim().replace(/\s+/g, " ").toLowerCase();
+      let h = 5381;
+      for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+      return "q" + h.toString(36);
+    }
+    function openMistakeHashes() {
+      const set = new Set();
+      try {
+        const d = JSON.parse(localStorage.getItem(DATA_KEY) || "{}");
+        (d.mistakes || []).forEach(m => set.add(m.qHash || qh(m.q || m)));
+      } catch (e) { }
+      return set;
+    }
+    function globalFlagCount() {
+      try { return Object.keys(JSON.parse(localStorage.getItem(FLAGS_KEY) || "{}")).length; } catch (e) { return 0; }
+    }
+
+    function esc(s) { return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+    function fmtDate(iso) {
+      if (!iso) return "—";
+      const d = new Date(iso);
+      return d.toLocaleDateString("uz-UZ", { day: "2-digit", month: "short", year: "numeric" }) + " · " +
+        d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
+    }
+    function fmtDur(s) {
+      if (s == null || s < 0) return "—";
+      return Math.floor(s / 60) + " min";
+    }
+    function resumeUrl(s) {
+      return (s.pagePath || DEFAULT_TEST_PAGE) + "?resume=" + encodeURIComponent(s.id) + "&mode=" + (s.mode || "study");
+    }
+    function canResume(s) {
+      return s.status === "paused" && Array.isArray(s.questions) && s.questions.length > 0;
+    }
+
+    /* ---------- filters + render ---------- */
+    function getFiltered() {
+      const q = (document.getElementById("f-search").value || "").toLowerCase().trim();
+      const st = document.getElementById("f-status").value;
+      const md = document.getElementById("f-mode").value;
+      const sort = document.getElementById("f-sort").value;
+      let list = readSessions().filter(s => {
+        if (q && !(s.testName || "").toLowerCase().includes(q)) return false;
+        if (st && s.status !== st) return false;
+        if (md && s.mode !== md) return false;
+        return true;
+      });
+      if (sort === "new") list.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+      else if (sort === "old") list.sort((a, b) => new Date(a.updatedAt) - new Date(b.updatedAt));
+      else if (sort === "pct") list.sort((a, b) => (b.stats?.percent ?? 0) - (a.stats?.percent ?? 0));
+      // paused sessions always on top
+      list = [...list.filter(s => s.status === "paused"), ...list.filter(s => s.status !== "paused")];
+      return list;
+    }
+
+    function render() {
+      const list = getFiltered();
+      const box = document.getElementById("session-list");
+      document.getElementById("empty-state").classList.toggle("d-none", list.length > 0);
+
+      const all = readSessions();
+      const openMistakes = openMistakeHashes();
+      const done = all.filter(s => s.status === "completed" || s.status === "stopped");
+      const avg = done.length ? Math.round(done.reduce((a, s) => a + (s.stats?.percent || 0), 0) / done.length) : 0;
+      document.getElementById("ov-runs").textContent = all.length;
+      document.getElementById("ov-avg").textContent = avg + "%";
+      document.getElementById("ov-mistakes").textContent = openMistakes.size;
+      document.getElementById("ov-flags").textContent = globalFlagCount();
+
+      box.innerHTML = list.map(s => {
+        const st = s.stats || {};
+        const pct = st.percent ?? 0;
+        const pctCls = pct >= 80 ? "pct-high" : pct >= 50 ? "pct-mid" : "pct-low";
+        const flags = s.flagged || [];
+        const notes = Object.keys(s.notes || {}).filter(i => String(s.notes[i] || "").trim());
+        const mistakes = s.mistakes || [];
+        const qres = s.questionResults || {};
+        const paused = s.status === "paused";
+        const solved = st.solved ?? Object.keys(qres).length;
+        const progressPct = s.total ? Math.round((solved / s.total) * 100) : 0;
+
+        const dots = Array.from({ length: Math.min(s.total || 0, 200) }, (_, i) => {
+          const r = qres[i];
+          const cls = !r ? "nav-unsolved" : r.status === "correct" ? "nav-correct" : "nav-wrong";
+          const fl = flags.includes(i) ? " nav-flag" : "";
+          const sel = r ? ` title="Q${i + 1}: tanlangan ${LETTERS[r.selected] ?? "—"}"` : ` title="Q${i + 1}: yechilmagan"`;
+          return `<button class="nav-dot ${cls}${fl}"${sel}>${i + 1}</button>`;
+        }).join("");
+
+        const mistakeCards = mistakes.map((m, idx) => {
+          const fixed = !openMistakes.has(m.qHash || qh(m.q));
+          return `
+      <div class="mistake-item p-3 ${fixed ? "fixed" : ""}">
+        <div class="d-flex justify-content-between gap-2 mb-2">
+          <div class="fw-bold small">${idx + 1}. ${esc(m.q)}</div>
+          ${fixed ? `<span class="badge bg-success align-self-start flex-shrink-0"><i class="bi bi-check2"></i> Tuzatilgan</span>` : ""}
+        </div>
+        ${m.photo ? `<img src="${esc(m.photo)}" class="img-fluid rounded mb-2" style="max-height:180px">` : ""}
+        ${(m.a || []).map((a, ai) => {
+            const ok = ai === m.correct, bad = ai === m.selected && !ok;
+            const cls = ok ? "ans-ok" : bad ? "ans-bad" : "ans-neutral";
+            const badge = ok ? ` <span class="badge bg-success">To'g'ri</span>` : bad ? ` <span class="badge bg-danger">Siz tanlagan</span>` : "";
+            return `<div class="${cls} mb-1 d-flex justify-content-between"><span>${LETTERS[ai]}. ${esc(a)}</span>${badge}</div>`;
+          }).join("")}
+        ${m.explanation ? `<div class="small text-secondary mt-2 border-top pt-2"><i class="bi bi-lightbulb"></i> ${esc(m.explanation)}</div>` : ""}
+      </div>`;
+        }).join("");
+
+        const noteCards = notes.map(i => `
+      <div class="note-item mb-2">
+        <b>Savol ${+i + 1}:</b> ${esc(s.notes[i])}
+      </div>`).join("");
+
+        const resumeStrip = paused ? `
+      <div class="resume-strip p-3">
+        <div class="d-flex justify-content-between small fw-semibold mb-1">
+          <span><i class="bi bi-pause-circle-fill text-warning"></i> Pauzaga qo'yilgan · savol ${(s.currentIndex || 0) + 1} / ${s.total}</span>
+          <span>${solved} / ${s.total} yechilgan</span>
+        </div>
+        <div class="progress-slim mb-3"><div style="width:${progressPct}%"></div></div>
+        ${canResume(s)
+            ? `<a href="${resumeUrl(s)}" class="btn btn-dark w-100 rounded-3 fw-bold"><i class="bi bi-play-fill"></i> Testni davom ettirish</a>`
+            : `<div class="small text-danger">Bu sessiyani davom ettirib bo'lmaydi (savollar saqlanmagan).</div>`}
+      </div>` : "";
+
+        return `
+    <div class="session-card ${paused ? "is-paused" : ""}" id="card-${s.id}">
+      <div class="p-3 p-md-3">
+        <div class="d-flex gap-3 align-items-center">
+          <div class="pct ${pctCls}">${pct}<small style="font-size:.6rem">%</small></div>
+          <div class="flex-grow-1 min-w-0">
+            <div class="d-flex flex-wrap gap-1 mb-1">
+              <span class="status-badge status-${s.status}">${STATUS_LABEL[s.status] || s.status}</span>
+              <span class="mode-badge ${s.mode === "exam" ? "mode-exam" : ""}">${s.mode === "exam" ? "⏱ Exam" : "📖 Study"}</span>
+              ${flags.length ? `<span class="chip"><i class="bi bi-flag-fill text-warning"></i>${flags.length}</span>` : ""}
+              ${notes.length ? `<span class="chip"><i class="bi bi-journal-text text-primary"></i>${notes.length}</span>` : ""}
+              ${mistakes.length ? `<span class="chip"><i class="bi bi-x-octagon text-danger"></i>${mistakes.length}</span>` : ""}
+            </div>
+            <div class="fw-bold text-truncate">${esc(s.testName)}</div>
+            <div class="small text-muted">${fmtDate(s.updatedAt)}${s.mode === "exam" ? " · ⏱ qolgan: " + fmtDur(s.timeLeft) : ""}</div>
+          </div>
+          <div class="text-end flex-shrink-0">
+            <div class="row g-1" style="min-width:150px">
+              <div class="col-4"><div class="mini-stat bg-success-subtle"><b class="text-success">${st.correct ?? 0}</b><span>To'g'ri</span></div></div>
+              <div class="col-4"><div class="mini-stat bg-danger-subtle"><b class="text-danger">${st.wrong ?? 0}</b><span>Xato</span></div></div>
+              <div class="col-4"><div class="mini-stat bg-light"><b>${st.unsolved ?? 0}</b><span>Qolgan</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      ${resumeStrip}
+
+      <div class="detail-area p-3 d-none" id="detail-${s.id}">
+        <div class="d-flex gap-2 mb-3 flex-wrap">
+          <button class="btn btn-sm btn-pg" onclick="exportOne(${s.id})"><i class="bi bi-download"></i> JSON</button>
+          <button class="btn btn-sm btn-outline-danger ms-auto" onclick="delSession(${s.id})"><i class="bi bi-trash3"></i> O'chirish</button>
+        </div>
+
+        <div class="fw-bold small mb-2"><i class="bi bi-grid-3x3-gap"></i> Savollar (${s.total || 0})</div>
+        <div class="d-flex flex-wrap gap-1 mb-3">${dots || '<span class="text-muted small">—</span>'}</div>
+        <div class="small text-muted mb-3">Yashil = to'g'ri · Qizil = xato · Kulrang = yechilmagan · Sariq = flag</div>
+
+        ${noteCards ? `<div class="fw-bold small mb-2"><i class="bi bi-journal-text"></i> Izohlar</div>${noteCards}` : ""}
+        ${mistakeCards ? `<div class="fw-bold small my-2"><i class="bi bi-x-octagon"></i> Xatolar (${mistakes.length})</div>
+        <div class="d-flex flex-column gap-2">${mistakeCards}</div>` : ""}
+        ${!noteCards && !mistakeCards ? '<div class="text-muted small">Qo\'shimcha ma\'lumot yo\'q — xato va izohlar yo\'q.</div>' : ""}
+      </div>
+
+      <button class="btn btn-sm btn-link w-100 text-decoration-none border-top" style="border-radius:0" onclick="toggleDetail(${s.id})">
+        <i class="bi bi-chevron-down" id="chev-${s.id}"></i> Batafsil
+      </button>
+    </div>`;
+      }).join("");
+    }
+
+    function toggleDetail(id) {
+      const d = document.getElementById("detail-" + id);
+      const c = document.getElementById("chev-" + id);
+      d.classList.toggle("d-none");
+      c.classList.toggle("bi-chevron-down");
+      c.classList.toggle("bi-chevron-up");
+    }
+
+    /* ---------- actions ---------- */
+    function delSession(id) {
+      if (!confirm("Bu sessiyani o'chirasizmi?")) return;
+      writeSessions(readSessions().filter(s => s.id !== id));
+      render();
+    }
+    function clearAll() {
+      if (!confirm("BARCHA sessiyalar o'chiriladi. Ishonchingiz komilmi?")) return;
+      localStorage.removeItem(KEY);
+      render();
+    }
+    function download(name, obj) {
+      const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function exportOne(id) {
+      const s = readSessions().find(x => x.id === id);
+      if (s) download(`pulsego-session-${s.testName}-${s.id}.json`, s);
+    }
+    function exportAll() {
+      download(`pulsego-sessions-${new Date().toISOString().slice(0, 10)}.json`, readSessions());
+    }
+
+    /* live refresh when any global store changes (other tab / test page) */
+    window.addEventListener("storage", e => { if ([KEY, DATA_KEY, FLAGS_KEY].includes(e.key)) render(); });
+    window.addEventListener("pageshow", render);
+
+    render();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PulseGo — Question Bank</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #1e2a3a;
+      --card: #38424f;
+      --field: #4a5563;
+      --line: #4b5767;
+      --text: #f1f5f9;
+      --muted: #9aa7b8;
+      --blue: #1d4ed8;
+      --blue-2: #3b82f6;
+      --amber: #f59e0b;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #16202d;
+      border-bottom: 1px solid #263243;
+      padding: .75rem 1rem;
+      padding-top: calc(.75rem + env(safe-area-inset-top, 0px));
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .topbar h1 {
+      font-size: 1.05rem;
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem;
+    }
+
+    .h {
+      font-size: .95rem;
+      font-weight: 800;
+      margin: 1.5rem 0 .7rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+
+    #resumeBox:empty {
+      display: none;
+    }
+
+    .resume {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      background: rgba(245, 158, 11, .12);
+      border: 1px solid rgba(245, 158, 11, .5);
+      border-radius: var(--radius);
+      padding: .7rem .9rem;
+      margin-bottom: .6rem;
+    }
+
+    .resume i.big {
+      font-size: 1.6rem;
+      color: var(--amber);
+    }
+
+    .resume .t {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .resume .t b {
+      display: block;
+      font-size: .88rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .resume .t span {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .btn-resume {
+      background: var(--amber);
+      color: #1a1203;
+      font-weight: 800;
+      text-decoration: none;
+      padding: .5rem .9rem;
+      border-radius: 10px;
+      font-size: .85rem;
+      white-space: nowrap;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-weight: 800;
+      font-size: .95rem;
+      margin-bottom: .7rem;
+    }
+
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .45rem 0;
+      cursor: pointer;
+      font-size: .95rem;
+    }
+
+    .switch-row small {
+      display: block;
+      color: var(--muted);
+      font-size: .74rem;
+    }
+
+    .switch {
+      position: relative;
+      width: 46px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch .sl {
+      position: absolute;
+      inset: 0;
+      background: #e5e7eb;
+      border-radius: 99px;
+      transition: .2s;
+    }
+
+    .switch .sl::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: .2s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+    }
+
+    .switch input:checked+.sl {
+      background: #2563eb;
+    }
+
+    .switch input:checked+.sl::before {
+      transform: translateX(20px);
+    }
+
+    .field {
+      width: 100%;
+      background: var(--field);
+      border: 1px solid transparent;
+      color: var(--text);
+      border-radius: 10px;
+      padding: .8rem 1rem;
+      font-size: .95rem;
+      outline: none;
+    }
+
+    .field::placeholder {
+      color: #aab5c4;
+    }
+
+    .field:focus {
+      border-color: var(--blue-2);
+    }
+
+    .modes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+    }
+
+    .mode {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      padding: .85rem 1rem;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: .15s;
+      min-width: 0;
+    }
+
+    .mode:hover {
+      background: rgba(255, 255, 255, .04);
+    }
+
+    .mode input {
+      display: none;
+    }
+
+    .mode .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 2px solid #7b8798;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .mode .lbl {
+      flex: 1;
+      font-size: .9rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mode .n {
+      background: #556072;
+      border-radius: 99px;
+      padding: .12rem .55rem;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    .mode.on {
+      border-color: var(--blue-2);
+      background: rgba(37, 99, 235, .18);
+    }
+
+    .mode.on .dot {
+      border-color: var(--blue-2);
+    }
+
+    .mode.on .dot::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: 50%;
+      background: var(--blue-2);
+    }
+
+    .mode.zero:not(.on) {
+      opacity: .55;
+    }
+
+    .panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .panel {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .panel-head {
+      background: var(--blue);
+      padding: .9rem 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .panel-head b {
+      font-size: 1rem;
+    }
+
+    .chk {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      cursor: pointer;
+      font-size: .9rem;
+      user-select: none;
+    }
+
+    .chk input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #aab5c4;
+      border-radius: 4px;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      margin: 0;
+    }
+
+    .chk input:checked,
+    .chk input:indeterminate {
+      background: var(--blue-2);
+      border-color: var(--blue-2);
+    }
+
+    .chk input:checked::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0;
+      width: 5px;
+      height: 10px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .chk input:indeterminate::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 6px;
+      width: 10px;
+      height: 2px;
+      background: #fff;
+    }
+
+    .chk input:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+    }
+
+    .search {
+      padding: .6rem .8rem 0;
+    }
+
+    .search .field {
+      padding: .6rem .9rem;
+      font-size: .88rem;
+    }
+
+    .list {
+      overflow-y: auto;
+      max-height: 360px;
+      padding: .5rem .5rem .6rem;
+      overscroll-behavior: contain;
+    }
+
+    .list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .list::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 99px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .8rem .7rem;
+      border-radius: 10px;
+    }
+
+    .item:hover {
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .item .chk {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item .chk .tx {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .item.off {
+      opacity: .45;
+    }
+
+    .badge {
+      background: #556072;
+      border-radius: 99px;
+      padding: .12rem .6rem;
+      font-size: .75rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge.sk {
+      color: transparent;
+      width: 38px;
+      background: linear-gradient(90deg, #4c586a 25%, #607086 50%, #4c586a 75%);
+      background-size: 200% 100%;
+      animation: sk 1.1s infinite;
+    }
+
+    @keyframes sk {
+      to {
+        background-position: -200% 0;
+      }
+    }
+
+    .group {
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: .8rem .7rem .2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .group .chk {
+      font-size: .74rem;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .empty {
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .count-row {
+      display: flex;
+      gap: .6rem;
+      align-items: stretch;
+      flex-wrap: wrap;
+    }
+
+    .count-row .field {
+      flex: 1 1 140px;
+      font-weight: 800;
+      font-size: 1.05rem;
+    }
+
+    .preset {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-height: 46px;
+    }
+
+    .preset:hover {
+      background: rgba(255, 255, 255, .06);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: .8rem;
+      margin-top: .5rem;
+    }
+
+    .startbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      background: #16202d;
+      border-top: 1px solid #263243;
+      padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .startbar .in {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+    }
+
+    .sum {
+      flex: 1;
+      min-width: 0;
+      line-height: 1.25;
+    }
+
+    .sum b {
+      font-size: .92rem;
+      display: block;
+    }
+
+    .sum span {
+      font-size: .78rem;
+      color: var(--muted);
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      color: var(--blue-2);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: .82rem;
+      padding: .4rem;
+    }
+
+    .btn-start {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: .98rem;
+      padding: .85rem 1.6rem;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .btn-start:hover:not(:disabled) {
+      background: #1d4ed8;
+    }
+
+    .btn-start:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 900px) {
+      .modes {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+
+      .grid-2,
+      .panels {
+        grid-template-columns: 1fr;
+      }
+
+      .list {
+        max-height: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 1rem .75rem;
+      }
+
+      .modes {
+        gap: .5rem;
+      }
+
+      .mode {
+        padding: .75rem .7rem;
+        gap: .5rem;
+      }
+
+      .mode .lbl {
+        font-size: .82rem;
+      }
+
+      .startbar .in {
+        flex-wrap: wrap;
+      }
+
+      .sum {
+        flex-basis: 100%;
+      }
+
+      .btn-start {
+        flex: 1;
+        justify-content: center;
+      }
+
+      .link-btn {
+        order: 3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <a class="icon-btn" href="javascript:history.back()" aria-label="Orqaga"><i class="bi bi-arrow-left"></i></a>
+    <h1><i class="bi bi-bank"></i> Question Bank</h1>
+  </div>
+
+  <div class="wrap">
+
+    <div id="resumeBox"></div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Test rejimi:</div>
+        <label class="switch-row">
+          <span>O'rganish rejimi <small>Izohlar ko'rsatiladi, vaqt cheklovi yo'q</small></span>
+          <span class="switch"><input type="checkbox" id="swStudy" checked><span class="sl"></span></span>
+        </label>
+        <label class="switch-row">
+          <span>Vaqt bilan <small>Imtihon rejimi, taymer ishlaydi</small></span>
+          <span class="switch"><input type="checkbox" id="swTimed"><span class="sl"></span></span>
+        </label>
+      </div>
+      <div class="card">
+        <div class="card-title">Test nomi — ixtiyoriy:</div>
+        <input class="field" id="testName" maxlength="60" placeholder="Nomsiz" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="h">Savollar rejimi:</div>
+    <div class="modes" id="modes"></div>
+
+    <div class="panels">
+      <div class="panel">
+        <div class="panel-head">
+          <b>Fanlar</b>
+          <label class="chk"><input type="checkbox" id="allSubjects"> Hammasini tanlash</label>
+        </div>
+        <div class="list" id="subjectList"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <b>Mavzular</b>
+          <label class="chk"><input type="checkbox" id="allTopics"> Hammasini tanlash</label>
+        </div>
+        <div class="search"><input class="field" id="topicSearch" placeholder="🔍 Mavzu qidirish…" autocomplete="off">
+        </div>
+        <div class="list" id="topicList"></div>
+      </div>
+    </div>
+
+    <div class="h">Maksimal savollar soni:</div>
+    <div class="count-row">
+      <input type="number" class="field" id="numInput" min="1" value="20" inputmode="numeric">
+      <button class="preset" data-n="10">10</button>
+      <button class="preset" data-n="20">20</button>
+      <button class="preset" data-n="max">Maks</button>
+    </div>
+    <div class="hint" id="numHint"></div>
+  </div>
+
+  <div class="startbar">
+    <div class="in">
+      <div class="sum">
+        <b id="sum1">Mavzu tanlanmagan</b>
+        <span id="sum2"></span>
+      </div>
+      <button class="link-btn" id="clearBtn">Tozalash</button>
+      <button class="btn-start" id="startBtn" disabled><i class="bi bi-play-fill"></i> <span
+          id="startLbl">Boshlash</span></button>
+    </div>
+  </div>
+
+  <script src="globalqbank.js"></script>
+  <script>
+    /* ⚠️ HTML page that loads testcases.js (NOT the .js file) */
+    const TEST_PAGE = "./index.html"; // ← change to your real test HTML path
+    const MAXQ = QBank.config.MAX_QUESTIONS;
+    const SESSIONS_KEY = QBank.config.SESSIONS_KEY;
+    const SESSION_MODE_KEY = "pulsego_session_mode_v1";
+
+    const MODES = [
+      { id: "all", label: "Barchasi" },
+      { id: "unused", label: "Ishlatilmagan" },
+      { id: "mistakes", label: "Noto'g'ri" },
+      { id: "flagged", label: "Belgilangan" },
+      { id: "skipped", label: "O'tkazilgan" },
+      { id: "correct", label: "To'g'ri" },
+    ];
+
+    const SUBJECTS = Object.entries(GLOBAL_QBANK).map(([id, s]) => ({
+      id, title: s.title,
+      topics: Object.entries(s.topics || {}).map(([tid, t]) => ({ key: id + "::" + tid, sid: id, tid, title: t.title, hint: t.count })),
+    }));
+    const ALL_KEYS = SUBJECTS.flatMap((s) => s.topics.map((t) => t.key));
+
+    const state = { topics: new Set(), mode: "all", count: MAXQ, search: "" };
+    const loaded = {};
+    let modeCounts = {};
+    const $ = (id) => document.getElementById(id);
+    const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    function renderModes() {
+      $("modes").innerHTML = MODES.map((m) => `
+        <label class="mode" data-mode="${m.id}">
+          <input type="radio" name="qmode" value="${m.id}">
+          <span class="dot"></span><span class="lbl">${m.label}</span><span class="n" id="mc-${m.id}">0</span>
+        </label>`).join("");
+    }
+
+    function renderSubjects() {
+      $("subjectList").innerHTML = SUBJECTS.map((s) => `
+        <div class="item ${s.topics.length ? "" : "off"}">
+          <label class="chk"><input type="checkbox" data-sid="${s.id}" ${s.topics.length ? "" : "disabled"}>
+            <span class="tx">${esc(s.title)}</span></label>
+          <span class="badge ${s.topics.length ? "sk" : ""}" id="sc-${s.id}">${s.topics.length ? "0" : "0"}</span>
+        </div>`).join("") || `<div class="empty">Fanlar yo'q</div>`;
+    }
+
+    function badgeFor(t) {
+      const n = loaded[t.key] ? loaded[t.key].length : null;
+      if (n != null) return `<span class="badge" id="tc-${t.key}">${n}</span>`;
+      if (t.hint != null) return `<span class="badge" id="tc-${t.key}">${t.hint}</span>`;
+      return `<span class="badge sk" id="tc-${t.key}">0</span>`;
+    }
+
+    function renderTopics() {
+      const q = state.search.trim().toLowerCase();
+      let html = "";
+      SUBJECTS.forEach((s) => {
+        const vis = s.topics.filter((t) => !q || t.title.toLowerCase().includes(q) || s.title.toLowerCase().includes(q));
+        if (!vis.length) return;
+        html += `<div class="group"><span>${esc(s.title)}</span>
+          <label class="chk"><input type="checkbox" data-gsid="${s.id}"> hammasi</label></div>`;
+        html += vis.map((t) => `
+          <div class="item">
+            <label class="chk"><input type="checkbox" data-key="${t.key}"><span class="tx">${esc(t.title)}</span></label>
+            ${badgeFor(t)}
+          </div>`).join("");
+      });
+      $("topicList").innerHTML = html || `<div class="empty">${ALL_KEYS.length ? "Hech narsa topilmadi" : "Mavzular hali qo'shilmagan"}</div>`;
+      syncChecks();
+    }
+
+    function subjectKeys(sid) { return SUBJECTS.find((s) => s.id === sid)?.topics.map((t) => t.key) || []; }
+    function setKeys(keys, on) { keys.forEach((k) => (on ? state.topics.add(k) : state.topics.delete(k))); }
+    function triState(el, keys) {
+      const n = keys.filter((k) => state.topics.has(k)).length;
+      el.checked = keys.length > 0 && n === keys.length;
+      el.indeterminate = n > 0 && n < keys.length;
+    }
+
+    function syncChecks() {
+      document.querySelectorAll("[data-sid]").forEach((el) => triState(el, subjectKeys(el.dataset.sid)));
+      document.querySelectorAll("[data-gsid]").forEach((el) => triState(el, subjectKeys(el.dataset.gsid)));
+      document.querySelectorAll("[data-key]").forEach((el) => { el.checked = state.topics.has(el.dataset.key); });
+      triState($("allSubjects"), ALL_KEYS);
+      triState($("allTopics"), ALL_KEYS);
+      updatePool();
+    }
+
+    document.addEventListener("change", (e) => {
+      const el = e.target;
+      if (el.dataset.sid) setKeys(subjectKeys(el.dataset.sid), el.checked);
+      else if (el.dataset.gsid) setKeys(subjectKeys(el.dataset.gsid), el.checked);
+      else if (el.dataset.key) setKeys([el.dataset.key], el.checked);
+      else if (el.id === "allSubjects" || el.id === "allTopics") setKeys(ALL_KEYS, el.checked);
+      else if (el.name === "qmode") { state.mode = el.value; updatePool(); return; }
+      else return;
+      syncChecks();
+    });
+
+    function poolQuestions() {
+      const keys = state.topics.size ? [...state.topics] : ALL_KEYS;
+      const seen = new Set(), out = [];
+      keys.forEach((k) => (loaded[k] || []).forEach((q) => {
+        const h = QBank.qh(q);
+        if (!seen.has(h)) { seen.add(h); out.push(q); }
+      }));
+      return out;
+    }
+
+    function updatePool() {
+      modeCounts = QBank.filterCounts(poolQuestions());
+      MODES.forEach((m) => {
+        $("mc-" + m.id).textContent = modeCounts[m.id] ?? 0;
+        const lab = document.querySelector(`.mode[data-mode="${m.id}"]`);
+        lab.classList.toggle("on", state.mode === m.id);
+        lab.classList.toggle("zero", !(modeCounts[m.id] > 0));
+        lab.querySelector("input").checked = state.mode === m.id;
+      });
+      updateCount();
+    }
+
+    const pool = () => modeCounts[state.mode] || 0;
+    const maxAllowed = () => Math.max(1, Math.min(MAXQ, pool()));
+
+    function updateCount(typing) {
+      state.count = Math.max(1, Math.min(state.count, maxAllowed()));
+      if (!typing) $("numInput").value = state.count;
+      $("numInput").max = maxAllowed();
+      $("numHint").textContent = pool() === 0 ? "Bu rejimda savol yo'q"
+        : `${pool()} ta savol mavjud · bir testda eng ko'pi bilan ${MAXQ} ta`;
+
+      const n = state.topics.size;
+      const ready = n > 0 && pool() > 0;
+      $("sum1").textContent = n ? `${n} ta mavzu tanlandi` : "Mavzu tanlanmagan";
+      $("sum2").textContent = n ? `${pool()} ta savol mavjud · ${state.count} ta olinadi` : "Fan yoki mavzularni belgilang";
+      $("startLbl").textContent = ready ? `Boshlash (${state.count})` : "Boshlash";
+      $("startBtn").disabled = !ready;
+      $("clearBtn").style.visibility = n ? "visible" : "hidden";
+    }
+
+    $("numInput").addEventListener("input", () => {
+      const v = Number($("numInput").value);
+      if (v > 0) { state.count = v; updateCount(true); }
+    });
+    $("numInput").addEventListener("blur", () => updateCount(false));
+    document.querySelectorAll(".preset").forEach((b) => b.addEventListener("click", () => {
+      state.count = b.dataset.n === "max" ? maxAllowed() : Number(b.dataset.n);
+      updateCount(false);
+    }));
+    $("topicSearch").addEventListener("input", (e) => { state.search = e.target.value; renderTopics(); });
+    $("clearBtn").addEventListener("click", () => { state.topics.clear(); syncChecks(); });
+
+    /* study / timed — mutually exclusive, one always on */
+    const swStudy = $("swStudy"), swTimed = $("swTimed");
+    swStudy.addEventListener("change", () => { swTimed.checked = !swStudy.checked; if (!swStudy.checked && !swTimed.checked) swStudy.checked = true; });
+    swTimed.addEventListener("change", () => { swStudy.checked = !swTimed.checked; if (!swStudy.checked && !swTimed.checked) swStudy.checked = true; });
+
+    async function loadAll() {
+      for (const s of SUBJECTS) {
+        for (const t of s.topics) {
+          const qs = (await QBank.loadTopic(s.id, t.tid)) || [];
+          loaded[t.key] = qs;
+          const b = $("tc-" + t.key);
+          if (b) { b.className = "badge"; b.textContent = qs.length; }
+          updateSubjectBadge(s);
+          updatePool();
+        }
+      }
+    }
+    function updateSubjectBadge(s) {
+      const b = $("sc-" + s.id);
+      if (!b || !s.topics.every((t) => loaded[t.key])) return;
+      b.className = "badge";
+      b.textContent = s.topics.reduce((a, t) => a + loaded[t.key].length, 0);
+    }
+
+    function buildItems() {
+      const items = [];
+      SUBJECTS.forEach((s) => {
+        const keys = s.topics.map((t) => t.key);
+        const sel = keys.filter((k) => state.topics.has(k));
+        if (!sel.length) return;
+        if (sel.length === keys.length) items.push({ subjectId: s.id, topicId: null });
+        else sel.forEach((k) => items.push({ subjectId: s.id, topicId: k.split("::")[1] }));
+      });
+      return items;
+    }
+
+    $("startBtn").addEventListener("click", () => {
+      const items = buildItems();
+      if (!items.length) return;
+      const timed = swTimed.checked;
+      const name = $("testName").value.trim();
+      sessionStorage.setItem(QBank.config.PENDING_KEY, JSON.stringify({
+        items, mode: state.mode, count: Math.max(1, Math.min(MAXQ, state.count)), name: name || null,
+        returnTo: location.pathname + location.search,
+      }));
+      try { localStorage.setItem(SESSION_MODE_KEY, timed ? "exam" : "study"); } catch { }
+      window.location.href = TEST_PAGE + (TEST_PAGE.includes("?") ? "&" : "?") + "qbank=1&mode=" + (timed ? "exam" : "study");
+    });
+
+    function renderResume() {
+      let list = [];
+      try { list = JSON.parse(localStorage.getItem(SESSIONS_KEY) || "[]"); } catch { }
+      const paused = (Array.isArray(list) ? list : [])
+        .filter((s) => s.status === "paused" && Array.isArray(s.questions) && s.questions.length)
+        .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+        .slice(0, 3);
+      $("resumeBox").innerHTML = paused.map((s) => {
+        const done = Object.keys(s.questionResults || {}).length;
+        const url = (s.pagePath || TEST_PAGE) + "?resume=" + encodeURIComponent(s.id) + "&mode=" + (s.mode || "study");
+        return `<div class="resume"><i class="bi bi-pause-circle-fill big"></i>
+          <div class="t"><b>Pauzadagi test · ${esc(s.testName)}</b><span>${done} / ${s.total} yechilgan · savol ${(s.currentIndex || 0) + 1}</span></div>
+          <a class="btn-resume" href="${url}">Davom etish</a></div>`;
+      }).join("");
+    }
+
+    renderModes();
+    renderSubjects();
+    renderTopics();
+    renderResume();
+    updatePool();
+    loadAll();
+    window.addEventListener("pageshow", () => { renderResume(); updatePool(); });
+  </script>
+</body>
+
+</html>
