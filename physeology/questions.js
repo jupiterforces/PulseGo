@@ -4222,3 +4222,12 @@ window.TEST_QUESTIONS = {
     },
   ],
 };
+// If you already have window.tests = { vertebra: [...], overall1: [...], ... }
+if (window.QBank && window.TEST_QUESTIONS) {
+  Object.keys(window.TEST_QUESTIONS).forEach((key) => {
+    // subjectId must match GLOBAL_QBANK — adjust if needed
+    if (Array.isArray(window.TEST_QUESTIONS[key])) {
+      QBank.register("physiology", key, window.TEST_QUESTIONS[key]);
+    }
+  });
+}
