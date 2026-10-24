@@ -3851,3 +3851,13 @@ the most likely diagnosis?`,
     },
   ],
 };
+
+// If you already have window.tests = { vertebra: [...], overall1: [...], ... }
+if (window.QBank && window.TEST_QUESTIONS) {
+  Object.keys(window.TEST_QUESTIONS).forEach((key) => {
+    // subjectId must match GLOBAL_QBANK — adjust if needed
+    if (Array.isArray(window.TEST_QUESTIONS[key])) {
+      QBank.register("embryology", key, window.TEST_QUESTIONS[key]);
+    }
+  });
+}
