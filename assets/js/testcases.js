@@ -4,6 +4,17 @@
 
 import { db } from "../../firebase.js";
 import { doc, getDoc } from "../../firebase.js";
+import {
+  initTestStartModal,
+  showTestStartModal,
+  getAutoStartMode,
+  getLastAttemptData,
+  getAttemptCount,
+} from "./testStartModal1.js";
+import {
+  initTestNotesDisplay,
+  displayTestNotesInfo,
+} from "./testNotesDisplay1.js";
 
 // Arrayni aralashtirish
 function shuffle(array) {
@@ -29,6 +40,276 @@ function pickExplanationImg(q) {
     null
   );
 }
+
+function pulseQHash(qOrText) {
+  const s = String(typeof qOrText === "string" ? qOrText : qOrText?.q || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+  return "q" + h.toString(36);
+}
+
+function isSameMistake(a, b) {
+  if (!a || !b) return false;
+  if (a.qHash && b.qHash) return a.qHash === b.qHash;
+  return (
+    pulseQHash(a.q || a) === pulseQHash(b.q || b) &&
+    (a.testName || "") === (b.testName || "")
+  );
+}
+
+function persistSessionMistakesToStore(sessionMistakes, testName) {
+  if (!Array.isArray(sessionMistakes) || !sessionMistakes.length) return;
+  try {
+    const appData = getStoredAppData();
+    appData.mistakes = Array.isArray(appData.mistakes) ? appData.mistakes : [];
+    const baseName = testName || currentTestName || "unknown";
+    const now = new Date().toISOString();
+
+    sessionMistakes.forEach((m, i) => {
+      const qHash = m.qHash || pulseQHash(m.q || m);
+      const stored = Object.assign({}, m, {
+        id: m.id || Date.now() + i,
+        qHash,
+        testName: m.testName || baseName,
+        date: m.date || now,
+        prepSessionId:
+          m.prepSessionId || window.__prepContext?.sessionId || null,
+        prepSessionName:
+          m.prepSessionName || window.__prepContext?.sessionName || null,
+        prepSubjectId:
+          m.prepSubjectId || window.__prepContext?.subjectId || null,
+      });
+      if (!appData.mistakes.some((ex) => isSameMistake(ex, stored))) {
+        appData.mistakes.push(stored);
+      }
+    });
+    saveStoredAppData(appData);
+  } catch (e) {
+    console.error("persistSessionMistakesToStore failed:", e);
+  }
+}
+
+function resolveMistakeByQuestion(qText) {
+  if (!qText) return false;
+  const hash = pulseQHash(qText);
+  try {
+    const raw = localStorage.getItem("pulsego_data_v1");
+    const data = raw ? JSON.parse(raw) : {};
+    data.mistakes = data.mistakes || [];
+    data.resolvedMistakes = data.resolvedMistakes || [];
+
+    const idx = data.mistakes.findIndex(
+      (m) => (m.qHash && m.qHash === hash) || pulseQHash(m.q || m) === hash,
+    );
+    if (idx === -1) return false;
+
+    const removed = data.mistakes.splice(idx, 1)[0];
+    removed.resolvedAt = new Date().toISOString();
+    removed.qHash = removed.qHash || hash;
+    data.resolvedMistakes.push(removed);
+
+    try {
+      if (removed.prepSessionId && removed.prepSubjectId) {
+        data.preparationSessions = data.preparationSessions || [];
+        const sess = data.preparationSessions.find(
+          (s) => s.id === removed.prepSessionId,
+        );
+        const ss = sess?.subjectStats?.[removed.prepSubjectId];
+        if (ss && typeof ss.mistakesCount === "number") {
+          ss.mistakesCount = Math.max(0, ss.mistakesCount - 1);
+        }
+      }
+    } catch (er) {}
+
+    localStorage.setItem("pulsego_data_v1", JSON.stringify(data));
+    return true;
+  } catch (e) {
+    console.error("resolveMistakeByQuestion failed:", e);
+    return false;
+  }
+}
+
+// ================== GLOBAL FLAGS / NOTES (hash-based, shared by all tests) ==================
+const GLOBAL_FLAGS_KEY = "pulsego_flagged_v1";
+const GLOBAL_NOTES_KEY = "pulsego_notes_v1";
+
+function readJsonKey(k) {
+  try {
+    const o = JSON.parse(localStorage.getItem(k) || "{}");
+    return o && typeof o === "object" && !Array.isArray(o) ? o : {};
+  } catch (e) {
+    return {};
+  }
+}
+function writeJsonKey(k, o) {
+  try {
+    localStorage.setItem(k, JSON.stringify(o));
+  } catch (e) {
+    console.error("writeJsonKey failed", k, e);
+  }
+}
+function setGlobalFlag(hash, on) {
+  const o = readJsonKey(GLOBAL_FLAGS_KEY);
+  if (on) o[hash] = Date.now();
+  else delete o[hash];
+  writeJsonKey(GLOBAL_FLAGS_KEY, o);
+}
+function setGlobalNote(hash, text) {
+  const o = readJsonKey(GLOBAL_NOTES_KEY);
+  const t = String(text || "").trim();
+  if (t) o[hash] = t;
+  else delete o[hash];
+  writeJsonKey(GLOBAL_NOTES_KEY, o);
+}
+/** Re-apply saved flags/notes to the questions of the test that is starting */
+function hydrateGlobalMarks() {
+  const flags = readJsonKey(GLOBAL_FLAGS_KEY);
+  const notes = readJsonKey(GLOBAL_NOTES_KEY);
+  (currentTest || []).forEach((q, i) => {
+    const h = pulseQHash(q?.q);
+    if (flags[h]) examFlaggedQuestions.add(i);
+    if (notes[h] && !String(examNotes[i] || "").trim()) examNotes[i] = notes[h];
+  });
+}
+
+// ================== GLOBAL SESSION LEDGER ==================
+// ONE key. ONE source of truth for every test run:
+// name, result, stopped/continued status, flags, notes, mistakes, drafts.
+const GLOBAL_SESSIONS_KEY = "pulsego_sessions_v1";
+let sessionStartTime = null; // set in startTest()
+
+function readGlobalSessions() {
+  try {
+    const raw = localStorage.getItem(GLOBAL_SESSIONS_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (e) {
+    console.error("readGlobalSessions failed:", e);
+    return [];
+  }
+}
+
+function writeGlobalSessions(list) {
+  try {
+    localStorage.setItem(GLOBAL_SESSIONS_KEY, JSON.stringify(list));
+    return true;
+  } catch (e) {
+    // quota safety: keep newest 10
+    try {
+      const trimmed = list.slice(-10);
+      localStorage.setItem(GLOBAL_SESSIONS_KEY, JSON.stringify(trimmed));
+      return true;
+    } catch (e2) {
+      console.error("writeGlobalSessions hard fail:", e2);
+      return false;
+    }
+  }
+}
+
+/** Snapshot everything about the CURRENT run into one object */
+function buildGlobalSessionSnapshot(status = "running") {
+  const qHashes = (currentTest || []).map((q) => pulseQHash(q?.q));
+
+  return {
+    id: sessionStartTime ? sessionStartTime.getTime() : Date.now(),
+    testName: currentTestName || "unknown",
+    mode: getExamSessionMode(), // "study" | "exam"
+    status, // "running" | "completed" | "stopped"
+    total: currentTest.length,
+    currentIndex,
+    score,
+    stats: getSessionResultStats(), // {total, solved, correct, wrong, unsolved, percent, partial}
+    // per-question map: index -> {status:'correct'|'wrong', selected}
+    questionResults: { ...examQuestionResults },
+    // flagged question indexes
+    flagged: Array.from(examFlaggedQuestions || []),
+    // hashes aligned by index — QBank flagged filter uses these
+    qHashes,
+    // notes per question index
+    notes: { ...examNotes },
+    // drafts (selected but not checked)
+    draftSelections: { ...examDraftSelections },
+    // full mistakes with answers + explanations (this is what other screens want)
+    mistakes: (mistakes || []).map((m) => ({
+      q: m.q,
+      qHash: m.qHash || pulseQHash(m.q),
+      photo: m.photo || null,
+      img: m.img || null,
+      a: m.a || [],
+      correct: m.correct,
+      selected: m.selected,
+      explanation: m.explanation || null,
+      testName: m.testName || currentTestName || "unknown",
+    })),
+    // so the other screen knows WHICH questions were skipped
+    unsolvedIndexes: collectUnsolvedQuestions().map((u) => u.index),
+    timeLeft,
+    totalTestTime,
+    prepContext: window.__prepContext || null,
+    startedAt: sessionStartTime ? sessionStartTime.toISOString() : null,
+    updatedAt: new Date().toISOString(),
+  };
+}
+
+function syncGlobalSession(status = "running") {
+  if (!currentTestName || !Array.isArray(currentTest) || !currentTest.length)
+    return null;
+  // after pause / stop / finish nothing may flip the session back to "running"
+  if (examSessionEnded && status === "running") return null;
+  try {
+    const snap = buildGlobalSessionSnapshot(status);
+    snap.pagePath = window.location.pathname;
+    snap.returnTo = qbankReturnUrl || null; // where "Davom etish" should go
+    if (status === "paused") {
+      // full questions so the run can be restored exactly (same order, same shuffled answers)
+      snap.questions = JSON.parse(JSON.stringify(currentTest));
+    }
+    const list = readGlobalSessions();
+    const i = list.findIndex((s) => s.id === snap.id);
+    if (i !== -1) list[i] = snap;
+    else list.push(snap);
+    const trimmed = list.length > 50 ? list.slice(-50) : list;
+    writeGlobalSessions(trimmed);
+    return snap;
+  } catch (e) {
+    console.error("syncGlobalSession failed:", e);
+    return null;
+  }
+}
+
+// ---------- Public API for ANY screen ----------
+window.PulseSessions = {
+  /** all sessions, newest last */
+  list() {
+    return readGlobalSessions();
+  },
+  /** latest session for a test name */
+  latest(testName = null) {
+    const list = readGlobalSessions();
+    const filtered = testName
+      ? list.filter((s) => s.testName === testName)
+      : list;
+    return filtered[filtered.length - 1] || null;
+  },
+  get(id) {
+    return readGlobalSessions().find((s) => s.id === id) || null;
+  },
+  byTest(testName) {
+    return readGlobalSessions().filter((s) => s.testName === testName);
+  },
+  /** only flagged/notes-bearing sessions — great for a review screen */
+  flagged() {
+    return readGlobalSessions().filter(
+      (s) => (s.flagged || []).length || Object.keys(s.notes || {}).length,
+    );
+  },
+  clear() {
+    localStorage.removeItem(GLOBAL_SESSIONS_KEY);
+  },
+};
 
 /** Keep relative paths for nested pages like /chemistry/cases.html */
 function resolveMediaUrl(src) {
@@ -90,51 +371,278 @@ window.reattachMediaFromBank = reattachMediaFromBank;
 // ========== PROGRESS (localStorage) ==========
 const PROGRESS_KEY = "pulsego_test_progress_v1";
 
+function readProgressStore() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+      if (parsed.testName && parsed.currentIndex !== undefined) {
+        const legacyKey = normalizeTestKey(parsed.testName);
+        return { [legacyKey]: parsed };
+      }
+      return parsed;
+    }
+    return {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function estimateJsonBytes(obj) {
+  try {
+    return new Blob([JSON.stringify(obj)]).size;
+  } catch (e) {
+    return JSON.stringify(obj || {}).length;
+  }
+}
+
+/** Drop oldest progress entries until under budget; keep `keepKey` if set */
+function pruneProgressStore(store, keepKey = null, maxEntries = 8) {
+  const next = store && typeof store === "object" ? { ...store } : {};
+  const keys = Object.keys(next);
+  if (keys.length <= maxEntries && keepKey && next[keepKey]) {
+    // still may be too large per-entry; handled by caller
+  }
+  keys
+    .map((k) => ({
+      k,
+      t: Date.parse(next[k]?.updatedAt || 0) || 0,
+    }))
+    .sort((a, b) => a.t - b.t)
+    .forEach((row, idx, arr) => {
+      if (arr.length - idx > maxEntries && row.k !== keepKey) {
+        delete next[row.k];
+      }
+    });
+  // If still many, force keep only keepKey + newest few
+  const left = Object.keys(next);
+  if (left.length > maxEntries) {
+    left
+      .map((k) => ({ k, t: Date.parse(next[k]?.updatedAt || 0) || 0 }))
+      .sort((a, b) => b.t - a.t)
+      .slice(maxEntries)
+      .forEach(({ k }) => {
+        if (k !== keepKey) delete next[k];
+      });
+  }
+  return next;
+}
+
+function writeProgressStore(store) {
+  const payload = store || {};
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(payload));
+    return true;
+  } catch (e) {
+    console.warn("⚠️ writeProgressStore quota issue, pruning…", e?.name || e);
+    try {
+      // 1) prune other tests
+      let pruned = pruneProgressStore(payload, null, 5);
+      localStorage.setItem(PROGRESS_KEY, JSON.stringify(pruned));
+      return true;
+    } catch (e2) {
+      try {
+        // 2) keep only newest 2 entries
+        let pruned = pruneProgressStore(payload, null, 2);
+        localStorage.setItem(PROGRESS_KEY, JSON.stringify(pruned));
+        return true;
+      } catch (e3) {
+        try {
+          // 3) clear progress store entirely as last resort
+          localStorage.removeItem(PROGRESS_KEY);
+          localStorage.setItem(PROGRESS_KEY, JSON.stringify({}));
+          console.error(
+            "❌ writeProgressStore: cleared progress store after quota",
+          );
+        } catch (e4) {
+          console.error("❌ writeProgressStore failed hard:", e4);
+        }
+        return false;
+      }
+    }
+  }
+}
+
+function normalizeTestKey(name) {
+  return String(name || "")
+    .trim()
+    .toLowerCase();
+}
+
+function resolveTestKey(requestedName, testsObj = null) {
+  const normalizedRequested = normalizeTestKey(requestedName);
+  const allTests = testsObj && typeof testsObj === "object" ? testsObj : {};
+  const exactKey = Object.keys(allTests).find(
+    (key) => normalizeTestKey(key) === normalizedRequested,
+  );
+  return exactKey || String(requestedName || "").trim();
+}
+
+/** Slim mistakes for progress only (full mistakes still in memory + results) */
+function slimMistakesForProgress(list) {
+  if (!Array.isArray(list)) return [];
+  return list.map((m) => ({
+    q: typeof m?.q === "string" ? m.q.slice(0, 400) : m?.q || "",
+    correct: m?.correct,
+    selected: m?.selected,
+    testName: m?.testName || null,
+    // omit photo/img/a/explanation from progress — huge & not needed to resume UI
+  }));
+}
+
+/** Cap note text length per question in progress */
+function slimExamNotes(notes) {
+  if (!notes || typeof notes !== "object") return {};
+  const out = {};
+  Object.keys(notes).forEach((k) => {
+    const v = notes[k];
+    if (typeof v === "string") out[k] = v.slice(0, 2000);
+    else if (v != null) out[k] = v;
+  });
+  return out;
+}
+
 function saveTestProgress() {
   try {
+    if (examSessionEnded) {
+      console.log("⏭ skip saveTestProgress: session ended");
+      return;
+    }
+    if (
+      !currentTestName ||
+      !Array.isArray(currentTest) ||
+      currentTest.length === 0
+    ) {
+      return;
+    }
+    const canonicalTestName = normalizeTestKey(currentTestName);
+    console.log(
+      `💾 Saving progress for test: "${currentTestName}" → "${canonicalTestName}"`,
+    );
     const data = {
-      testName: currentTestName,
+      testName: canonicalTestName,
+      testNameRaw: currentTestName,
+      hasStarted: true,
       currentIndex,
       score,
-      mistakes: mistakes.slice(),
+      // slim — full mistake objects blow localStorage quota
+      mistakes: slimMistakesForProgress(mistakes),
       total: currentTest.length,
       timeLeft,
       totalTestTime,
-      // Full exam state so resume restores navigator lock / colors
       examQuestionResults: examQuestionResults || {},
+      examDraftSelections: examDraftSelections || {},
       examFlagged: Array.from(examFlaggedQuestions || []),
-      examNotes: examNotes || {},
+      examNotes: slimExamNotes(examNotes),
       updatedAt: new Date().toISOString(),
     };
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(data));
+    syncGlobalSession("running"); // live mirror — other screen sees state in real time
+    console.log(`📊 Progress data:`, {
+      testName: data.testName,
+      currentIndex: data.currentIndex,
+      total: data.total,
+      score: data.score,
+      approxBytes: estimateJsonBytes(data),
+    });
+    let store = readProgressStore();
+    // Prefer keeping current test; prune others if store already large
+    if (estimateJsonBytes(store) > 1_500_000) {
+      store = pruneProgressStore(store, canonicalTestName, 4);
+    }
+    store[canonicalTestName] = data;
+    const ok = writeProgressStore(store);
+    if (!ok) {
+      // Last attempt: write only this test
+      writeProgressStore({ [canonicalTestName]: data });
+    }
+    console.log(
+      ok ? `✅ Progress saved to localStorage` : `⚠️ Progress save degraded`,
+    );
   } catch (e) {
-    console.error("Progress saqlanmadi", e);
+    console.error("❌ Progress save failed:", e);
   }
 }
 
 function loadTestProgress(testName) {
   try {
-    const raw = localStorage.getItem(PROGRESS_KEY);
-    if (!raw) return null;
-    const data = JSON.parse(raw);
-    if (data.testName !== testName) return null;
+    const store = readProgressStore();
+    if (!store || Object.keys(store).length === 0) {
+      console.log("ℹ️  loadTestProgress: No saved progress in localStorage");
+      return null;
+    }
+    const normalizedRequested = normalizeTestKey(testName);
+    let data = store[normalizedRequested];
+    if (!data) {
+      const matchedKey = Object.keys(store).find(
+        (key) => normalizeTestKey(key) === normalizedRequested,
+      );
+      data = matchedKey ? store[matchedKey] : null;
+    }
+    if (!data) {
+      console.log("ℹ️  loadTestProgress: No saved progress for this test");
+      return null;
+    }
+    console.log("loadTestProgress: Found saved progress:", {
+      savedTestName: data.testName,
+      requestedTestName: testName,
+      normalizedSaved: normalizeTestKey(data.testName),
+      normalizedRequested,
+      currentIndex: data.currentIndex,
+      total: data.total,
+      score: data.score,
+    });
+
+    if (normalizeTestKey(data.testName) !== normalizedRequested) {
+      console.log("❌ loadTestProgress: Test name mismatch!");
+      return null;
+    }
+
     if (data.updatedAt) {
       const age = Date.now() - new Date(data.updatedAt).getTime();
       if (age > 24 * 60 * 60 * 1000) {
-        localStorage.removeItem(PROGRESS_KEY);
+        console.log("⏰ loadTestProgress: Progress too old (24h+), clearing");
+        const nextStore = readProgressStore();
+        delete nextStore[normalizedRequested];
+        writeProgressStore(nextStore);
         return null;
       }
     }
+    console.log("✅ loadTestProgress: Returning valid progress");
     return data;
   } catch (e) {
+    console.error("❌ loadTestProgress error:", e);
     return null;
   }
 }
 
 function clearTestProgress() {
   try {
-    localStorage.removeItem(PROGRESS_KEY);
+    const key = normalizeTestKey(currentTestName);
+    if (!key) {
+      localStorage.removeItem(PROGRESS_KEY);
+      return;
+    }
+    const store = readProgressStore();
+    delete store[key];
+    writeProgressStore(store);
   } catch (e) {}
+}
+
+function saveProgressOnPageLeave(reason = "unknown") {
+  try {
+    if (examSessionEnded) return;
+    if (
+      !currentTestName ||
+      !Array.isArray(currentTest) ||
+      currentTest.length === 0
+    )
+      return;
+    console.log(`💾 Auto-save on page leave (${reason})`);
+    saveTestProgress();
+  } catch (e) {
+    console.warn("Auto-save on leave failed:", e);
+  }
 }
 
 const SESSION_MODE_KEY = "pulsego_session_mode_v1";
@@ -537,25 +1045,38 @@ function recordPrepSessionResult(sessionId, subjectId, result) {
   const subjectStat = session.subjectStats[subjectId] || {
     testsTaken: 0,
     totalQuestions: 0,
+    solvedQuestions: 0,
     correctAnswers: 0,
     wrongAnswers: 0,
+    unsolvedQuestions: 0,
     mistakesCount: 0,
     accuracy: 0,
   };
 
   const total = result.total || 0;
   const correct = result.correct || 0;
-  const wrong = total - correct;
+  const wrong =
+    result.wrong != null
+      ? result.wrong
+      : Array.isArray(result.mistakes)
+        ? result.mistakes.length
+        : 0;
+  const solved = result.solved != null ? result.solved : correct + wrong;
+  const unsolved =
+    result.unsolved != null ? result.unsolved : Math.max(0, total - solved);
   const mistakesCount = (result.mistakes || []).length;
 
   subjectStat.testsTaken += 1;
   subjectStat.totalQuestions += total;
+  subjectStat.solvedQuestions = (subjectStat.solvedQuestions || 0) + solved;
   subjectStat.correctAnswers += correct;
   subjectStat.wrongAnswers += wrong;
+  subjectStat.unsolvedQuestions =
+    (subjectStat.unsolvedQuestions || 0) + unsolved;
   subjectStat.mistakesCount += mistakesCount;
-  subjectStat.accuracy = subjectStat.totalQuestions
+  subjectStat.accuracy = subjectStat.solvedQuestions
     ? Math.round(
-        (subjectStat.correctAnswers / subjectStat.totalQuestions) * 100,
+        (subjectStat.correctAnswers / subjectStat.solvedQuestions) * 100,
       )
     : 0;
   subjectStat.updatedAt = session.lastActivityAt;
@@ -566,17 +1087,20 @@ function recordPrepSessionResult(sessionId, subjectId, result) {
     solvedQuestions: 0,
     correctAnswers: 0,
     wrongAnswers: 0,
+    unsolvedQuestions: 0,
     accuracy: 0,
     updatedAt: null,
   };
 
   session.stats.totalQuestions += total;
-  session.stats.solvedQuestions += total;
+  session.stats.solvedQuestions += solved;
   session.stats.correctAnswers += correct;
   session.stats.wrongAnswers += wrong;
-  session.stats.accuracy = session.stats.totalQuestions
+  session.stats.unsolvedQuestions =
+    (session.stats.unsolvedQuestions || 0) + unsolved;
+  session.stats.accuracy = session.stats.solvedQuestions
     ? Math.round(
-        (session.stats.correctAnswers / session.stats.totalQuestions) * 100,
+        (session.stats.correctAnswers / session.stats.solvedQuestions) * 100,
       )
     : 0;
   session.stats.updatedAt = session.lastActivityAt;
@@ -588,48 +1112,18 @@ function recordPrepSessionResult(sessionId, subjectId, result) {
     testName: result.testName || "unknown",
     total,
     correct,
-    percent: total === 0 ? 0 : Math.round((correct / total) * 100),
+    wrong,
+    solved,
+    unsolved,
+    percent: solved === 0 ? 0 : Math.round((correct / solved) * 100),
     mistakesCount,
     date: session.lastActivityAt,
+    partial: unsolved > 0,
     prep: true,
   });
 
   savePrepSessionData(session);
-
-  try {
-    const appData = getStoredAppData();
-    appData.mistakes = appData.mistakes || [];
-    const baseName = result.testName || "unknown";
-
-    (result.mistakes || []).forEach((m, i) => {
-      const stored = Object.assign(
-        {
-          id: Date.now() + i,
-          testName: baseName,
-          date: session.lastActivityAt,
-          prepSessionId: session.id,
-          prepSessionName: session.examType || session.id,
-          prepSubjectId: subjectId,
-        },
-        m,
-      );
-
-      const isSame = (a, b) =>
-        a.q === b.q &&
-        a.correct === b.correct &&
-        a.selected === b.selected &&
-        (a.testName || "") === (b.testName || "") &&
-        (a.prepSessionId || null) === (b.prepSessionId || null);
-
-      if (!appData.mistakes.some((existing) => isSame(existing, stored))) {
-        appData.mistakes.push(stored);
-      }
-    });
-
-    saveStoredAppData(appData);
-  } catch (e) {
-    console.error("Failed to persist prep mistakes", e);
-  }
+  persistSessionMistakesToStore(result.mistakes || [], result.testName);
 }
 
 function getPrepContext() {
@@ -1185,6 +1679,7 @@ function startXatolarReview(testName = null) {
   score = 0;
   mistakes = [];
   isReviewingStoredMistakes = true;
+  examSessionEnded = false;
 
   const selection = document.getElementById("test-selection");
   const screen = document.getElementById("test-screen");
@@ -1230,6 +1725,7 @@ function buildTestSummary() {
     overview: {
       totalRuns: 0,
       totalQuestions: 0,
+      totalSolved: 0,
       totalCorrect: 0,
       overallPercent: 0,
     },
@@ -1241,10 +1737,16 @@ function buildTestSummary() {
       last: null,
       attempts: 0,
       totalCorrect: 0,
+      totalSolved: 0,
       totalQuestions: 0,
     };
+    const solved =
+      entry.solved != null
+        ? entry.solved
+        : (entry.correct || 0) + (entry.wrong || 0);
     existing.attempts += 1;
     existing.totalCorrect += entry.correct || 0;
+    existing.totalSolved += solved;
     existing.totalQuestions += entry.total || 0;
     if (!existing.last || new Date(entry.date) > new Date(existing.last.date)) {
       existing.last = entry;
@@ -1252,12 +1754,15 @@ function buildTestSummary() {
     summary.byTest[name] = existing;
     summary.overview.totalRuns += 1;
     summary.overview.totalQuestions += entry.total || 0;
+    summary.overview.totalSolved = (summary.overview.totalSolved || 0) + solved;
     summary.overview.totalCorrect += entry.correct || 0;
   });
 
-  const total = summary.overview.totalQuestions;
+  const solvedAll = summary.overview.totalSolved || 0;
   summary.overview.overallPercent =
-    total === 0 ? 0 : Math.round((summary.overview.totalCorrect / total) * 100);
+    solvedAll === 0
+      ? 0
+      : Math.round((summary.overview.totalCorrect / solvedAll) * 100);
   return summary;
 }
 
@@ -1273,6 +1778,7 @@ function buildPrepSessionSummary(sessionId, subjectId = null) {
     overview: {
       totalRuns: 0,
       totalQuestions: 0,
+      totalSolved: 0,
       totalCorrect: 0,
       overallPercent: 0,
     },
@@ -1284,10 +1790,16 @@ function buildPrepSessionSummary(sessionId, subjectId = null) {
       last: null,
       attempts: 0,
       totalCorrect: 0,
+      totalSolved: 0,
       totalQuestions: 0,
     };
+    const solved =
+      entry.solved != null
+        ? entry.solved
+        : (entry.correct || 0) + (entry.wrong || 0);
     existing.attempts += 1;
     existing.totalCorrect += entry.correct || 0;
+    existing.totalSolved += solved;
     existing.totalQuestions += entry.total || 0;
     if (!existing.last || new Date(entry.date) > new Date(existing.last.date)) {
       existing.last = entry;
@@ -1295,12 +1807,15 @@ function buildPrepSessionSummary(sessionId, subjectId = null) {
     summary.byTest[name] = existing;
     summary.overview.totalRuns += 1;
     summary.overview.totalQuestions += entry.total || 0;
+    summary.overview.totalSolved = (summary.overview.totalSolved || 0) + solved;
     summary.overview.totalCorrect += entry.correct || 0;
   });
 
-  const total = summary.overview.totalQuestions;
+  const solvedAll = summary.overview.totalSolved || 0;
   summary.overview.overallPercent =
-    total === 0 ? 0 : Math.round((summary.overview.totalCorrect / total) * 100);
+    solvedAll === 0
+      ? 0
+      : Math.round((summary.overview.totalCorrect / solvedAll) * 100);
   return summary;
 }
 
@@ -1401,14 +1916,16 @@ function renderTestStats() {
       const last = testResult.last;
       const attemptLabel =
         testResult.attempts > 1 ? `${testResult.attempts} ta` : "1 ta";
-      const average = testResult.totalQuestions
-        ? Math.round(
-            (testResult.totalCorrect / testResult.totalQuestions) * 100,
-          )
+      const average = testResult.totalSolved
+        ? Math.round((testResult.totalCorrect / testResult.totalSolved) * 100)
         : 0;
+      const lastSolved =
+        last.solved != null
+          ? last.solved
+          : (last.correct || 0) + (last.wrong || 0);
 
       statEl.innerHTML = `
-        <div><strong>So'nggi:</strong> ${last.correct} / ${last.total} (${last.percent}%)</div>
+        <div><strong>So'nggi:</strong> ${last.correct} / ${lastSolved} (${last.percent}%) · bank ${last.total}</div>
         <div class="text-muted">Umumiy: ${attemptLabel}, o'rtacha ${average}%</div>`;
 
       card.classList.remove("card-success", "card-warning", "card-danger");
@@ -1499,12 +2016,17 @@ let examHighlightMode = false;
 let examFlaggedQuestions = new Set();
 /** @type {Record<number, {status: 'correct'|'wrong', selected: number}>} */
 let examQuestionResults = {};
+let examDraftSelections = {};
 let examNotes = {};
 let examFontScale = 1;
 let examSelectionRange = null;
 
 let currentXatolarGroupName = null;
 let mistakes = [];
+/** true after result popup — blocks auto-save from rewriting cleared progress */
+let examSessionEnded = false;
+/** set only for QBank runs: page to return to after finish / pause */
+let qbankReturnUrl = null;
 
 function loadDataScript(callback) {
   if (window.Data) {
@@ -2223,8 +2745,7 @@ function createExamBottomBar() {
   document.getElementById("exam-tool-flag").onclick = () => toggleExamFlag();
   document.getElementById("exam-tool-notes").onclick = () => openExamNotes();
   document.getElementById("exam-tool-nav").onclick = () => openExamNavigator();
-  document.getElementById("exam-tool-pause").onclick = () =>
-    toggleExamTimerPause();
+  document.getElementById("exam-tool-pause").onclick = () => pauseTest();
   document.getElementById("exam-tool-settings").onclick = () =>
     openExamSettings();
   document.getElementById("exam-tool-stop").onclick = () => stopTest();
@@ -2277,11 +2798,19 @@ function updateExamBottomBar() {
 }
 
 function toggleExamFlag() {
-  if (examFlaggedQuestions.has(currentIndex))
+  const q = currentTest[currentIndex];
+  let on;
+  if (examFlaggedQuestions.has(currentIndex)) {
     examFlaggedQuestions.delete(currentIndex);
-  else examFlaggedQuestions.add(currentIndex);
+    on = false;
+  } else {
+    examFlaggedQuestions.add(currentIndex);
+    on = true;
+  }
+  if (q) setGlobalFlag(pulseQHash(q.q), on);
   updateExamBottomBar();
   updateExamFlagBadge();
+  saveTestProgress(); // mirrors into the session ledger
 }
 
 function updateExamFlagBadge() {
@@ -2458,10 +2987,8 @@ function openExamSettings() {
       openExamLabHelper();
     };
     document.getElementById("examSettingsPause").onclick = () => {
-      toggleExamTimerPause();
-      document.getElementById("examSettingsPause").textContent = examTimerPaused
-        ? "Davom"
-        : "Pause";
+      bootstrap.Modal.getInstance(modal)?.hide();
+      pauseTest();
     };
   }
   applyExamFontScale();
@@ -2497,9 +3024,12 @@ function openExamNotes() {
     document.getElementById("examNotesSave").onclick = () => {
       const val = document.getElementById("examNotesInput")?.value || "";
       examNotes[currentIndex] = val;
+      const cq = currentTest[currentIndex];
+      if (cq) setGlobalNote(pulseQHash(cq.q), val);
       bootstrap.Modal.getInstance(modal)?.hide();
       updateExamBottomBar();
       updateExamNoteDisplay();
+      saveTestProgress();
     };
   }
   document.getElementById("examNotesInput").value =
@@ -3001,6 +3531,13 @@ function handleExamSelectionAction(act) {
       sel.addRange(examSelectionRange);
     } catch (e) {}
 
+    if (
+      typeof window.persistExamHighlightsFromDom === "function" &&
+      currentTestName
+    ) {
+      window.persistExamHighlightsFromDom(currentTestName, currentIndex);
+    }
+
     const ok = applyExamHighlight(examSelectionRange);
     if (!ok) console.warn("Highlight could not apply");
     window.getSelection()?.removeAllRanges();
@@ -3125,6 +3662,8 @@ function previousQuestion() {
   showQuestion(true);
 }
 
+hydrateGlobalMarks();
+
 function showQuestion(isNavigatingBack = false) {
   if (currentIndex >= currentTest.length) {
     clearInterval(timer);
@@ -3142,6 +3681,11 @@ function showQuestion(isNavigatingBack = false) {
 
   showExamHeader();
   updateExamHeader();
+
+  // Display test notes and flags if available
+  if (typeof displayTestNotesInfo === "function") {
+    displayTestNotesInfo(currentTestName);
+  }
 
   const container = document.getElementById("question-container");
   if (!container) return;
@@ -3183,6 +3727,29 @@ function showQuestion(isNavigatingBack = false) {
     answerButtons.appendChild(btn);
   });
 
+  if (!locked && !answerChecked) {
+    const draftSelected = examDraftSelections[currentIndex];
+    const buttons = document.querySelectorAll("#answer-buttons .mcq-option");
+    if (
+      typeof draftSelected === "number" &&
+      draftSelected >= 0 &&
+      buttons[draftSelected]
+    ) {
+      selectedAnswerIndex = draftSelected;
+      buttons.forEach((btn, idx) => {
+        btn.classList.toggle("active", idx === draftSelected);
+      });
+      const checkBtn = document.getElementById("check-answer-btn");
+      if (checkBtn) {
+        checkBtn.disabled = false;
+        checkBtn.classList.add("ready");
+      }
+      console.log(
+        `📝 Restored draft selection for Q${currentIndex + 1}: ${draftSelected}`,
+      );
+    }
+  }
+
   // Restore result if already solved this session
   if (locked || (isNavigatingBack && answerChecked)) {
     const result = examQuestionResults[currentIndex];
@@ -3192,6 +3759,39 @@ function showQuestion(isNavigatingBack = false) {
     });
     const correctIndex = q.correct;
     const selectedIndex = result?.selected ?? selectedAnswerIndex;
+
+    console.log(
+      `🔒 Showing answered question ${currentIndex + 1}: correct=${correctIndex}, selected=${selectedIndex}`,
+    );
+
+    if (typeof correctIndex === "number" && buttons[correctIndex]) {
+      buttons[correctIndex].classList.add("correct");
+      console.log(`🟩 Highlighted correct answer at index ${correctIndex}`);
+    }
+    if (
+      typeof selectedIndex === "number" &&
+      selectedIndex !== correctIndex &&
+      buttons[selectedIndex]
+    ) {
+      buttons[selectedIndex].classList.add("wrong");
+      console.log(`🟥 Highlighted wrong answer at index ${selectedIndex}`);
+    }
+    answerChecked = true;
+    selectedAnswerIndex = selectedIndex;
+  } else if (examQuestionResults[currentIndex]) {
+    // Already answered but not locked yet - should lock it now
+    const result = examQuestionResults[currentIndex];
+    const buttons = document.querySelectorAll("#answer-buttons .mcq-option");
+    buttons.forEach((btn) => {
+      btn.disabled = true;
+    });
+    const correctIndex = q.correct;
+    const selectedIndex = result?.selected ?? selectedAnswerIndex;
+
+    console.log(
+      `🔒 Re-displaying answered question ${currentIndex + 1} (was answered but not locked)`,
+    );
+
     if (typeof correctIndex === "number" && buttons[correctIndex]) {
       buttons[correctIndex].classList.add("correct");
     }
@@ -3219,6 +3819,7 @@ function selectAnswer(selectedIndex) {
   if (!buttons[selectedIndex]) return;
 
   selectedAnswerIndex = selectedIndex;
+  examDraftSelections[currentIndex] = selectedIndex;
 
   buttons.forEach((btn, index) => {
     btn.classList.toggle("active", index === selectedIndex);
@@ -3228,6 +3829,55 @@ function selectAnswer(selectedIndex) {
   if (checkBtn) {
     checkBtn.disabled = false;
     checkBtn.classList.add("ready");
+  }
+
+  saveTestProgress();
+}
+
+/** Single place that records an answered question */
+function applyAnswerResult(q, selectedIndex) {
+  const correctIndex = q.correct;
+  const qHash = pulseQHash(q.q);
+
+  // "used" in QBank = actually answered (not merely shown)
+  if (window.QBank?.markSeen) QBank.markSeen([q]);
+
+  if (selectedIndex !== correctIndex) {
+    const entry = {
+      q: q.q,
+      qHash,
+      photo: q.photo,
+      img: q.img || null,
+      a: q.a,
+      correct: correctIndex,
+      selected: selectedIndex,
+      explanation: q.explanation || null,
+      testName: currentTestName || "unknown",
+      prepSessionId: window.__prepContext?.sessionId || null,
+      prepSessionName: window.__prepContext?.sessionName || null,
+      prepSubjectId: window.__prepContext?.subjectId || null,
+    };
+    if (!(mistakes || []).some((m) => (m.qHash || pulseQHash(m.q)) === qHash)) {
+      mistakes.push(entry);
+    }
+    // written to the global store NOW, deduped by qHash (never twice)
+    persistSessionMistakesToStore([entry], currentTestName);
+    examQuestionResults[currentIndex] = {
+      status: "wrong",
+      selected: selectedIndex,
+    };
+  } else {
+    score++;
+    examQuestionResults[currentIndex] = {
+      status: "correct",
+      selected: selectedIndex,
+    };
+    // corrected → removed from the global mistakes store
+    if (isReviewingStoredMistakes && q?.id) resolveStoredMistakeById(q.id);
+    resolveMistakeByQuestion(q.q);
+    mistakes = (mistakes || []).filter(
+      (m) => (m.qHash || pulseQHash(m.q)) !== qHash,
+    );
   }
 }
 
@@ -3244,50 +3894,17 @@ function checkCurrentAnswer() {
     btn.disabled = true;
     btn.classList.remove("active");
   });
-
-  if (buttons[correctIndex]) {
-    buttons[correctIndex].classList.add("correct");
-  }
-
-  if (selectedIndex !== correctIndex && buttons[selectedIndex]) {
+  if (buttons[correctIndex]) buttons[correctIndex].classList.add("correct");
+  if (selectedIndex !== correctIndex && buttons[selectedIndex])
     buttons[selectedIndex].classList.add("wrong");
 
-    mistakes.push({
-      q: q.q,
-      photo: q.photo,
-      img: q.img || null,
-      a: q.a,
-      correct: correctIndex,
-      selected: selectedIndex,
-      explanation: q.explanation || null,
-      testName: currentTestName || "unknown",
-      prepSessionId: window.__prepContext?.sessionId || null,
-      prepSessionName: window.__prepContext?.sessionName || null,
-      prepSubjectId: window.__prepContext?.subjectId || null,
-    });
-  }
+  applyAnswerResult(q, selectedIndex);
 
-  if (selectedIndex === correctIndex) {
-    score++;
-    examQuestionResults[currentIndex] = {
-      status: "correct",
-      selected: selectedIndex,
-    };
-    if (isReviewingStoredMistakes && q?.id) {
-      resolveStoredMistakeById(q.id);
-    }
-  } else {
-    examQuestionResults[currentIndex] = {
-      status: "wrong",
-      selected: selectedIndex,
-    };
-  }
-
+  delete examDraftSelections[currentIndex];
   saveTestProgress();
   renderCaseControls();
   updateExamHeader();
 }
-
 function renderCaseControls() {
   const controls = document.getElementById("case-controls");
   if (!controls) return;
@@ -3347,53 +3964,21 @@ function renderCaseControls() {
 
 function finishCaseByTime() {
   if (currentIndex >= currentTest.length) return;
+  if (answerChecked || examQuestionResults[currentIndex]) return;
 
-  if (!answerChecked) {
-    const q = currentTest[currentIndex];
-    const correctIndex = q.correct;
-    const selectedIndex =
-      typeof selectedAnswerIndex === "number" ? selectedAnswerIndex : -1;
-    const buttons = document.querySelectorAll("#answer-buttons .mcq-option");
+  const q = currentTest[currentIndex];
+  const selectedIndex =
+    typeof selectedAnswerIndex === "number" ? selectedAnswerIndex : -1;
 
-    buttons.forEach((btn) => {
-      btn.disabled = true;
-      btn.classList.remove("active");
-    });
-
-    if (buttons[correctIndex]) {
-      buttons[correctIndex].classList.add("correct");
-    }
-
-    if (selectedIndex !== correctIndex) {
-      mistakes.push({
-        q: q.q,
-        photo: q.photo,
-        img: q.img || null,
-        a: q.a,
-        correct: correctIndex,
-        selected: selectedIndex,
-        explanation: q.explanation || null,
-        testName: currentTestName || "unknown",
-        prepSessionId: window.__prepContext?.sessionId || null,
-        prepSessionName: window.__prepContext?.sessionName || null,
-        prepSubjectId: window.__prepContext?.subjectId || null,
-      });
-      examQuestionResults[currentIndex] = {
-        status: "wrong",
-        selected: selectedIndex,
-      };
-    } else {
-      score++;
-      examQuestionResults[currentIndex] = {
-        status: "correct",
-        selected: selectedIndex,
-      };
-    }
-
-    answerChecked = true;
+  // nothing chosen → stays UNSOLVED (not counted as solved/wrong)
+  if (selectedIndex < 0) {
     saveTestProgress();
-    renderCaseControls();
+    return;
   }
+  applyAnswerResult(q, selectedIndex);
+  answerChecked = true;
+  saveTestProgress();
+  renderCaseControls();
 }
 
 function handleImageOpen(e) {
@@ -3570,23 +4155,14 @@ function getSessionResultStats() {
   let correct = 0;
   let wrong = 0;
   const map = examQuestionResults || {};
-  const keys = Object.keys(map);
-  if (keys.length) {
-    keys.forEach((key) => {
-      const r = map[key];
-      if (!r) return;
-      if (r.status === "correct") correct++;
-      else wrong++;
-    });
-  } else {
-    // Fallback: live score + mistakes from this session
-    correct = typeof score === "number" ? score : 0;
-    wrong = Array.isArray(mistakes) ? mistakes.length : 0;
-  }
-  // If map under-counts vs score (edge cases), trust the higher consistent pair
-  if (typeof score === "number" && score > correct) correct = score;
-  if (Array.isArray(mistakes) && mistakes.length > wrong)
-    wrong = mistakes.length;
+
+  // ONLY trust per-question results — never invent solves from total/score
+  Object.keys(map).forEach((key) => {
+    const r = map[key];
+    if (!r || !r.status) return;
+    if (r.status === "correct") correct++;
+    else if (r.status === "wrong") wrong++;
+  });
 
   const solved = correct + wrong;
   const unsolved = Math.max(0, total - solved);
@@ -3598,7 +4174,7 @@ function getSessionResultStats() {
     wrong,
     unsolved,
     percent,
-    partial: unsolved > 0,
+    partial: unsolved > 0 || solved < total,
   };
 }
 
@@ -3695,6 +4271,195 @@ window.stopTest = stopTest;
 window.getUnsolvedSessions = getUnsolvedSessions;
 window.getSessionResultStats = getSessionResultStats;
 
+function pauseTest() {
+  if (!currentTest.length || examSessionEnded) return;
+
+  const stats = getSessionResultStats();
+  let modal = document.getElementById("examPauseModal");
+  if (!modal) {
+    modal = document.createElement("div");
+    modal.id = "examPauseModal";
+    modal.className = "modal fade";
+    modal.tabIndex = -1;
+    modal.innerHTML = `
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4">
+          <div class="modal-header border-0 pb-0">
+            <h5 class="modal-title fw-bold"><i class="bi bi-pause-circle-fill text-warning me-1"></i> Testni pauzaga qo'yish</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <p class="mb-2" id="examPauseInfo"></p>
+            <p class="small text-muted mb-0">Jarayon saqlanadi. Istalgan vaqtda "Mening sessiyalarim" yoki Question Bank sahifasidan davom ettirishingiz mumkin.</p>
+          </div>
+          <div class="modal-footer border-0">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Testni davom ettirish</button>
+            <button type="button" class="btn btn-dark" id="examPauseConfirm"><i class="bi bi-pause-fill"></i> Pauza va chiqish</button>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(modal);
+    document.getElementById("examPauseConfirm").onclick = () => {
+      bootstrap.Modal.getInstance(modal)?.hide();
+      performPause();
+    };
+  }
+  document.getElementById("examPauseInfo").textContent =
+    `${stats.solved}/${stats.total} yechilgan · ${stats.correct} to'g'ri · ${stats.wrong} xato · ${stats.unsolved} qolgan`;
+  bootstrap.Modal.getOrCreateInstance(modal).show();
+}
+
+function performPause() {
+  clearInterval(timer);
+  hideExamSelectionToolbar(true);
+
+  // keep a selected-but-not-checked option
+  if (
+    typeof selectedAnswerIndex === "number" &&
+    !answerChecked &&
+    !examQuestionResults[currentIndex]
+  ) {
+    examDraftSelections[currentIndex] = selectedAnswerIndex;
+  }
+
+  syncGlobalSession("paused"); // full snapshot incl. questions
+  examSessionEnded = true; // blocks auto-save from overwriting the paused state
+  clearTestProgress();
+
+  const prep = getPrepContext();
+  hideExamHeader();
+
+  if (qbankReturnUrl) {
+    const back = qbankReturnUrl;
+    qbankReturnUrl = null;
+    window.location.href = back;
+    return;
+  }
+  document.getElementById("test-screen")?.classList.add("d-none");
+
+  if (window.PULSE_SESSIONS_URL) {
+    window.location.href = window.PULSE_SESSIONS_URL;
+    return;
+  }
+  if (prep) {
+    window.location.href = `/preparation/prep.html?id=${prep.sessionId}`;
+    return;
+  }
+
+  document.getElementById("test-selection")?.classList.remove("d-none");
+  isReviewingStoredMistakes = false;
+  currentTest = [];
+  currentTestName = "";
+  currentIndex = 0;
+  score = 0;
+  selectedAnswerIndex = null;
+  answerChecked = false;
+  examQuestionResults = {};
+  examDraftSelections = {};
+  examFlaggedQuestions = new Set();
+  examNotes = {};
+  mistakes = [];
+  renderTestStats();
+}
+window.pauseTest = pauseTest;
+
+/* ============================================================
+   PROFESSIONAL RESULT POPUP
+============================================================ */
+
+function ensureResultStyles() {
+  if (document.getElementById("pulse-result-style")) return;
+  const st = document.createElement("style");
+  st.id = "pulse-result-style";
+  st.textContent = `
+    #pulseResultModal .modal-dialog { max-width: 440px; }
+    #pulseResultModal .pr-card {
+      border: none; border-radius: 24px; overflow: hidden;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, .35);
+    }
+    .pr-head {
+      background: linear-gradient(135deg, #1b3a3a 0%, #254848 100%);
+      color: #e8f0f0; padding: 1.1rem 1.25rem 4.8rem; text-align: left;
+    }
+    .pr-brand { font-size: .66rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; opacity: .65; }
+    .pr-chip { display: inline-flex; align-items: center; gap: .35rem; font-size: .72rem; font-weight: 700;
+      padding: .28rem .7rem; border-radius: 999px; margin-top: .6rem; }
+    .pr-chip.ok { background: #dcfce7; color: #166534; }
+    .pr-chip.part { background: #ffedd5; color: #9a3412; }
+    .pr-name { font-size: 1.15rem; font-weight: 800; margin-top: .55rem; line-height: 1.25; word-break: break-word; color: #fff; }
+    .pr-meta { display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .76rem; opacity: .8; margin-top: .45rem; }
+    .pr-meta i { margin-right: .25rem; }
+
+    .pr-body { background: #fff; padding: 0 1.25rem 1rem; text-align: center; }
+    .pr-ring { position: relative; z-index: 2; width: 164px; height: 164px; margin: -4.2rem auto .6rem;
+      background: #fff; border-radius: 50%; box-shadow: 0 10px 28px rgba(15, 23, 42, .16); }
+    .pr-ring svg { display: block; width: 100%; height: 100%; transform: rotate(-90deg); }
+    .pr-ring .trk { fill: none; stroke: #eef2f6; stroke-width: 10; }
+    .pr-ring .fg { fill: none; stroke-width: 10; stroke-linecap: round; }
+    .pr-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; font-weight: 800; color: #0f172a; letter-spacing: -.5px; line-height: 1; }
+    .pr-pct small { font-size: 1rem; font-weight: 700; margin-left: 2px; color: #64748b; }
+
+    .pr-grade { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin-top: .2rem; }
+    .pr-sub { font-size: .85rem; color: #64748b; margin: .25rem auto 1rem; max-width: 330px; line-height: 1.45; }
+
+    .pr-bar { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: #e2e8f0; margin-bottom: 1rem; }
+    .pr-bar > span { display: block; height: 100%; width: 0; transition: width 1.2s cubic-bezier(.2,.8,.2,1); }
+    .pr-bar .b-ok { background: #16a34a; } .pr-bar .b-bad { background: #dc2626; }
+
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; text-align: left; }
+    .pr-tile { border-radius: 14px; padding: .7rem .85rem; border: 1px solid; }
+    .pr-tile .l { font-size: .72rem; font-weight: 700; display: flex; align-items: center; gap: .35rem; }
+    .pr-tile .v { font-size: 1.3rem; font-weight: 800; margin-top: .1rem; }
+    .pr-tile .v small { font-size: .8rem; font-weight: 700; opacity: .7; }
+    .pr-tile.t-ok { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; } .pr-tile.t-ok .v { color: #14532d; }
+    .pr-tile.t-bad { background: #fef2f2; border-color: #fecaca; color: #b91c1c; } .pr-tile.t-bad .v { color: #7f1d1d; }
+    .pr-tile.t-info { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; } .pr-tile.t-info .v { color: #1e3a8a; }
+    .pr-tile.t-none { background: #f8fafc; border-color: #e2e8f0; color: #475569; } .pr-tile.t-none .v { color: #0f172a; }
+
+    .pr-note { display: flex; gap: .55rem; text-align: left; font-size: .8rem; line-height: 1.4;
+      border-radius: 12px; padding: .65rem .8rem; margin-top: .6rem; }
+    .pr-note i { margin-top: .1rem; }
+    .pr-note.n-blue { background: #eff6ff; color: #1e40af; } .pr-note.n-amber { background: #fffbeb; color: #92400e; }
+
+    .pr-foot { background: #fff; padding: .6rem 1.25rem 1.25rem; display: flex; flex-direction: column; gap: .55rem; }
+    .pr-btn { appearance: none; border: 1.5px solid transparent; border-radius: 14px; padding: .8rem 1rem;
+      font-weight: 700; font-size: .92rem; cursor: pointer; display: inline-flex; align-items: center;
+      justify-content: center; gap: .45rem; transition: .15s; font-family: inherit; text-decoration: none; }
+    .pr-btn.primary { background: #1b3a3a; color: #fff; box-shadow: 0 6px 16px rgba(27, 58, 58, .28); }
+    .pr-btn.primary:hover { background: #254848; }
+    .pr-btn.warn { background: #fff7ed; color: #9a3412; border-color: #fed7aa; }
+    .pr-btn.warn:hover { background: #ffedd5; }
+    .pr-btn.ghost { background: #fff; color: #334155; border-color: #e2e8f0; }
+    .pr-btn.ghost:hover { background: #f8fafc; }
+    .pr-row { display: flex; gap: .55rem; } .pr-row .pr-btn { flex: 1; padding: .65rem .5rem; font-size: .84rem; }
+
+    @media (max-width: 480px) {
+      #pulseResultModal .modal-dialog { margin: .6rem; }
+      .pr-ring { width: 144px; height: 144px; margin-top: -3.8rem; }
+      .pr-pct { font-size: 2.1rem; }
+      .pr-head { padding-bottom: 4.3rem; }
+    }`;
+  document.head.appendChild(st);
+}
+
+function prettyTestName(n) {
+  const map = typeof testTitleMap !== "undefined" ? testTitleMap : {};
+  if (map[n]) return map[n];
+  if (String(n).startsWith("qbank:")) return "QBank · " + String(n).slice(6);
+  if (n === "xatolar") return "Xatolar tahlili";
+  if (n === "weak-path") return "Zaif yo'l";
+  return n || "Test";
+}
+
+function escHtml(s) {
+  return String(s ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
 function showResultPopup(options = {}) {
   clearInterval(timer);
   hideExamHeader();
@@ -3702,8 +4467,8 @@ function showResultPopup(options = {}) {
 
   const stats = getSessionResultStats();
   const unsolvedItems = collectUnsolvedQuestions();
+  const isPartial = !!(stats.partial || options.partial);
 
-  // Save unsolved for later practice
   if (unsolvedItems.length) {
     saveUnsolvedQuestions(unsolvedItems, {
       testName: currentTestName || "unknown",
@@ -3711,36 +4476,9 @@ function showResultPopup(options = {}) {
     });
   }
 
-  const modalEl = document.getElementById("resultModal");
-  if (!modalEl) {
-    alert(
-      `Natija: ${stats.percent}% · Yechilgan ${stats.solved}/${stats.total} · To'g'ri ${stats.correct} · Xato ${stats.wrong} · Yechilmagan ${stats.unsolved}`,
-    );
-    return;
-  }
-
-  // Professional copy in modal
-  const titleEl =
-    modalEl.querySelector(".tg-ultra-title") ||
-    modalEl.querySelector(".modal-title");
-  if (titleEl) {
-    titleEl.textContent = stats.partial
-      ? stats.solved === 0
-        ? "Test to'xtatildi"
-        : "Qisman natija"
-      : stats.percent >= 80
-        ? "Ajoyib natija! 🎉"
-        : stats.percent >= 50
-          ? "Yaxshi urinish 👍"
-          : "Davom eting — o'sasiz 💪";
-  }
-
-  const modal = new bootstrap.Modal(modalEl, {
-    backdrop: "static",
-    keyboard: false,
-  });
-
+  // ---- persist (unchanged logic) ----
   try {
+    persistSessionMistakesToStore(mistakes || [], currentTestName);
     saveTestResult({
       testName: currentTestName || "unknown",
       total: stats.total,
@@ -3750,15 +4488,17 @@ function showResultPopup(options = {}) {
       unsolved: stats.unsolved,
       percent: stats.percent,
       mistakes: mistakes ? mistakes.slice() : [],
-      partial: !!stats.partial || !!options.partial,
+      partial: isPartial,
     });
-
     const prepContext = getPrepContext();
     if (prepContext) {
       recordPrepSessionResult(prepContext.sessionId, prepContext.subjectId, {
         testName: currentTestName || "unknown",
         total: stats.total,
         correct: stats.correct,
+        wrong: stats.wrong,
+        solved: stats.solved,
+        unsolved: stats.unsolved,
         mistakes: mistakes ? mistakes.slice() : [],
         partial: !!stats.partial,
       });
@@ -3767,11 +4507,181 @@ function showResultPopup(options = {}) {
     console.error("Error saving test result:", e);
   }
 
+  examSessionEnded = true;
+  syncGlobalSession(isPartial ? "stopped" : "completed");
   clearTestProgress();
-
-  modal.show();
   renderTestStats();
-  startResultAnimation(stats);
+
+  // ---- build popup ----
+  ensureResultStyles();
+  document.getElementById("pulseResultModal")?.remove();
+
+  const pct = stats.percent || 0;
+  const ringColor = pct >= 80 ? "#16a34a" : pct >= 50 ? "#ca8a04" : "#dc2626";
+  const grade =
+    stats.solved === 0
+      ? "Test to'xtatildi"
+      : isPartial
+        ? "Qisman natija"
+        : pct >= 90
+          ? "Mukammal natija!"
+          : pct >= 80
+            ? "Ajoyib natija!"
+            : pct >= 60
+              ? "Yaxshi natija"
+              : pct >= 50
+                ? "Yomon emas"
+                : "Ko'proq mashq kerak";
+  const sub =
+    stats.solved === 0
+      ? "Hali birorta savol yechilmagan."
+      : isPartial
+        ? `${stats.total} ta savoldan ${stats.solved} tasi yechildi. Aniqlik yechilganlar ichida hisoblanadi.`
+        : pct >= 80
+          ? "Bilimingiz mustahkam — shu tempda davom eting."
+          : pct >= 50
+            ? "Xatolaringizni ko'rib chiqing — keyingi safar natija yanada yaxshi bo'ladi."
+            : "Xatolar ustida ishlang va qayta urinib ko'ring — o'sish albatta bo'ladi.";
+
+  const exam = getExamSessionMode() === "exam";
+  const usedSec = Math.max(0, (totalTestTime || 0) - (timeLeft || 0));
+  const dateStr = new Date().toLocaleDateString("uz-UZ", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+  const mCount = (mistakes || []).length;
+  const closeLabel = qbankReturnUrl ? "Question Bank'ga qaytish" : "Yopish";
+
+  const okW = stats.total ? (stats.correct / stats.total) * 100 : 0;
+  const badW = stats.total ? (stats.wrong / stats.total) * 100 : 0;
+  const C = 2 * Math.PI * 68;
+
+  const modalEl = document.createElement("div");
+  modalEl.className = "modal fade";
+  modalEl.id = "pulseResultModal";
+  modalEl.tabIndex = -1;
+  modalEl.setAttribute("aria-hidden", "true");
+  modalEl.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content pr-card">
+        <div class="pr-head">
+          <div class="pr-brand">Pulse Go</div>
+          <span class="pr-chip ${isPartial ? "part" : "ok"}">
+            <i class="bi ${isPartial ? "bi-pause-circle-fill" : "bi-check-circle-fill"}"></i>
+            ${isPartial ? "To'xtatilgan" : "Yakunlangan"}
+          </span>
+          <div class="pr-name">${escHtml(prettyTestName(currentTestName))}</div>
+          <div class="pr-meta">
+            <span><i class="bi ${exam ? "bi-stopwatch" : "bi-book"}"></i>${exam ? "Exam" : "Study"}</span>
+            <span><i class="bi bi-calendar3"></i>${dateStr}</span>
+            ${exam ? `<span><i class="bi bi-clock"></i>${formatTime(usedSec)}</span>` : ""}
+          </div>
+        </div>
+
+        <div class="pr-body">
+          <div class="pr-ring">
+            <svg viewBox="0 0 164 164">
+              <circle class="trk" cx="82" cy="82" r="68"></circle>
+              <circle class="fg" id="prRingFg" cx="82" cy="82" r="68" stroke="${ringColor}"
+                stroke-dasharray="${C}" stroke-dashoffset="${C}"></circle>
+            </svg>
+            <div class="pr-pct"><span id="prPct">0</span><small>%</small></div>
+          </div>
+
+          <div class="pr-grade">${grade}</div>
+          <div class="pr-sub">${sub}</div>
+
+          <div class="pr-bar"><span class="b-ok" data-w="${okW}"></span><span class="b-bad" data-w="${badW}"></span></div>
+
+          <div class="pr-grid">
+            <div class="pr-tile t-ok"><div class="l"><i class="bi bi-check-circle"></i>To'g'ri</div>
+              <div class="v" data-count="${stats.correct}">0</div></div>
+            <div class="pr-tile t-bad"><div class="l"><i class="bi bi-x-circle"></i>Xato</div>
+              <div class="v" data-count="${stats.wrong}">0</div></div>
+            <div class="pr-tile t-info"><div class="l"><i class="bi bi-list-check"></i>Yechilgan</div>
+              <div class="v"><span data-count="${stats.solved}">0</span> <small>/ ${stats.total}</small></div></div>
+            <div class="pr-tile t-none"><div class="l"><i class="bi bi-dash-circle"></i>Yechilmagan</div>
+              <div class="v" data-count="${stats.unsolved}">0</div></div>
+          </div>
+
+          ${
+            stats.unsolved > 0
+              ? `<div class="pr-note n-blue"><i class="bi bi-info-circle-fill"></i>
+            <span>Yechilmagan ${stats.unsolved} ta savol saqlandi — QBank'da "O'tkazilgan" rejimida qayta ishlashingiz mumkin.</span></div>`
+              : ""
+          }
+          ${
+            mCount > 0
+              ? `<div class="pr-note n-amber"><i class="bi bi-bookmark-star-fill"></i>
+            <span>${mCount} ta xato "Xatolar tahlili" bo'limiga saqlandi. To'g'ri javob bersangiz, u avtomatik o'chadi.</span></div>`
+              : ""
+          }
+        </div>
+
+        <div class="pr-foot">
+          <button type="button" class="pr-btn primary" id="prClose"><i class="bi bi-arrow-left-circle"></i>${closeLabel}</button>
+          ${mCount > 0 ? `<button type="button" class="pr-btn warn" id="prReview"><i class="bi bi-arrow-repeat"></i>Xatolarni qayta yechish (${mCount})</button>` : ""}
+          <div class="pr-row">
+            <button type="button" class="pr-btn ghost" id="prShare"><i class="bi bi-telegram"></i>Ulashish</button>
+            ${!isPartial && stats.solved > 0 ? `<button type="button" class="pr-btn ghost" id="prCert"><i class="bi bi-award"></i>Sertifikat</button>` : ""}
+            ${window.PULSE_SESSIONS_URL ? `<a class="pr-btn ghost" href="${window.PULSE_SESSIONS_URL}"><i class="bi bi-clock-history"></i>Sessiyalar</a>` : ""}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  document.body.appendChild(modalEl);
+
+  const modal = new bootstrap.Modal(modalEl, {
+    backdrop: "static",
+    keyboard: false,
+  });
+  const on = (id, fn) =>
+    modalEl.querySelector("#" + id)?.addEventListener("click", fn);
+  on("prClose", () => closeResult());
+  on("prReview", () => {
+    modal.hide();
+    setTimeout(reviewMistakes, 250);
+  });
+  on("prShare", () => shareResult());
+  on("prCert", () => generateCertificate());
+  modalEl.addEventListener("hidden.bs.modal", () => modalEl.remove());
+
+  let started = false;
+  const go = () => {
+    if (started) return;
+    started = true;
+    animateResultPopup(modalEl, pct, C);
+  };
+  modalEl.addEventListener("shown.bs.modal", go);
+  setTimeout(go, 500);
+  modal.show();
+}
+
+function animateResultPopup(root, targetPct, C) {
+  const ring = root.querySelector("#prRingFg");
+  const pctEl = root.querySelector("#prPct");
+  const counters = root.querySelectorAll("[data-count]");
+  requestAnimationFrame(() => {
+    root
+      .querySelectorAll(".pr-bar > span")
+      .forEach((s) => (s.style.width = s.dataset.w + "%"));
+  });
+  const dur = 1400;
+  let t0 = null;
+  function frame(ts) {
+    if (!t0) t0 = ts;
+    const p = Math.min((ts - t0) / dur, 1);
+    const e = 1 - Math.pow(1 - p, 3);
+    const cur = Math.round(e * targetPct);
+    if (ring) ring.style.strokeDashoffset = C - (cur / 100) * C;
+    if (pctEl) pctEl.textContent = cur;
+    counters.forEach(
+      (el) => (el.textContent = Math.round(e * Number(el.dataset.count))),
+    );
+    if (p < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
 }
 
 function startResultAnimation(stats) {
@@ -3893,15 +4803,24 @@ function startResultAnimation(stats) {
 }
 
 function closeResult() {
-  const modalEl = document.getElementById("resultModal");
-  const modal = bootstrap.Modal.getInstance(modalEl);
-  if (modal) modal.hide();
-
+  ["pulseResultModal", "resultModal"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) bootstrap.Modal.getInstance(el)?.hide();
+  });
   isReviewingStoredMistakes = false;
+  examSessionEnded = true;
+  clearTestProgress();
 
   const prepContext = getPrepContext();
   if (prepContext) {
     window.location.href = `/preparation/prep.html?id=${prepContext.sessionId}`;
+    return;
+  }
+
+  if (qbankReturnUrl) {
+    const back = qbankReturnUrl;
+    qbankReturnUrl = null;
+    window.location.href = back; // back to Question Bank
     return;
   }
 
@@ -3910,10 +4829,16 @@ function closeResult() {
   renderTestStats();
 
   currentTest = [];
+  currentTestName = "";
   currentIndex = 0;
   score = 0;
   selectedAnswerIndex = null;
   answerChecked = false;
+  examQuestionResults = {};
+  examDraftSelections = {};
+  examFlaggedQuestions = new Set();
+  examNotes = {};
+  mistakes = [];
   clearInterval(timer);
 
   hideExamHeader();
@@ -3933,9 +4858,9 @@ function shareResult() {
 ============================================================ */
 
 async function startTest(testName) {
-  console.log("START TEST");
   initPrepContext();
   isReviewingStoredMistakes = false;
+  examSessionEnded = false;
   // Mode from ?mode=exam|study (or saved preference)
   examSessionMode = resolveSessionMode();
   setExamSessionMode(examSessionMode, { updateUrl: true });
@@ -3946,7 +4871,12 @@ async function startTest(testName) {
   }
 
   const availableTests = window.tests || {};
-  const selectedTest = availableTests[testName];
+  const resolvedTestName = resolveTestKey(testName, availableTests);
+  const selectedTest = availableTests[resolvedTestName];
+  console.log("🔑 Test key resolve:", {
+    requested: testName,
+    resolved: resolvedTestName,
+  });
 
   if (
     selectedTest &&
@@ -3962,7 +4892,7 @@ async function startTest(testName) {
       if (!snapshot.exists()) return;
 
       const firestoreData = snapshot.data();
-      const firestoreTest = firestoreData?.[testName];
+      const firestoreTest = firestoreData?.[resolvedTestName];
       if (!firestoreTest) return;
 
       let convertedTest = null;
@@ -3989,15 +4919,16 @@ async function startTest(testName) {
   }
 
   // Re-copy img/photo from window.tests if mapping lost them
-  currentTest = reattachMediaFromBank(testName, currentTest);
+  currentTest = reattachMediaFromBank(resolvedTestName, currentTest);
 
-  currentTestName = testName;
+  currentTestName = resolvedTestName;
   currentIndex = 0;
   score = 0;
   mistakes = [];
   answerChecked = false;
   selectedAnswerIndex = null;
   examQuestionResults = {};
+  examDraftSelections = {};
   examFlaggedQuestions = new Set();
   examNotes = {};
   examFontScale = 1;
@@ -4005,46 +4936,127 @@ async function startTest(testName) {
 
   // UMUMIY TIMER: har bir savolga 3 daqiqa
   totalTestTime = Math.max(currentTest.length * 180, 60);
+  sessionStartTime = new Date();
+  syncGlobalSession("running"); // register the run immediately
   timeLeft = totalTestTime;
 
   // Progress dan davom ettirish
-  const saved = loadTestProgress(testName);
-  if (
-    saved &&
-    saved.currentIndex > 0 &&
-    saved.currentIndex < currentTest.length
-  ) {
-    const resume = confirm(
-      `Oldingi progress topildi (${saved.score}/${saved.total} to‘g‘ri, savol ${saved.currentIndex + 1}).\nDavom etasizmi?`,
-    );
-    if (resume) {
-      currentIndex = saved.currentIndex;
-      score = saved.score || 0;
-      mistakes = saved.mistakes || [];
-      timeLeft = saved.timeLeft > 0 ? saved.timeLeft : totalTestTime;
-      // Restore per-question status (lock + navigator colors)
-      examQuestionResults =
-        saved.examQuestionResults &&
-        typeof saved.examQuestionResults === "object"
-          ? saved.examQuestionResults
-          : {};
-      examFlaggedQuestions = new Set(
-        Array.isArray(saved.examFlagged) ? saved.examFlagged : [],
+  const saved = loadTestProgress(resolvedTestName);
+  const autoStartMode = getAutoStartMode(); // Check query params
+  let shouldContinue = false;
+  const savedAnsweredCount = saved
+    ? Object.keys(saved.examQuestionResults || {}).length
+    : 0;
+  const savedDraftCount = saved
+    ? Object.keys(saved.examDraftSelections || {}).length
+    : 0;
+  const hasSavedResumeData =
+    !!saved &&
+    ((saved.currentIndex || 0) > 0 ||
+      savedAnsweredCount > 0 ||
+      savedDraftCount > 0 ||
+      saved.hasStarted === true) &&
+    (saved.currentIndex || 0) < currentTest.length;
+
+  console.log("=== START TEST ===", {
+    testName,
+    resolvedTestName,
+    saved,
+    autoStartMode,
+    savedAnsweredCount,
+    savedDraftCount,
+    hasSavedResumeData,
+  });
+  console.log("📊 Test info: currentTest.length =", currentTest.length);
+
+  if (autoStartMode === null) {
+    // No query param - show modal and wait for user decision
+    if (hasSavedResumeData) {
+      console.log(
+        "✅ Progress found - saved.currentIndex=",
+        saved.currentIndex,
+        "total=",
+        currentTest.length,
       );
-      examNotes =
-        saved.examNotes && typeof saved.examNotes === "object"
-          ? saved.examNotes
-          : {};
-      // If landing on already-answered question, mark checked
-      if (examQuestionResults[currentIndex]) {
-        answerChecked = true;
-        selectedAnswerIndex =
-          examQuestionResults[currentIndex].selected ?? null;
-      }
+      console.log("🎯 Showing modal with continue option");
+      const modalResult = await showTestStartModal(
+        resolvedTestName,
+        currentTest.length,
+      );
+      console.log("👤 Modal result - action:", modalResult.action);
+      shouldContinue = modalResult.action === "continue";
     } else {
-      clearTestProgress();
+      // No previous progress, just show info modal
+      console.log("ℹ️  No progress found, showing start modal");
+      await showTestStartModal(resolvedTestName, currentTest.length);
+      shouldContinue = false;
     }
+  } else {
+    // Query param set - use it directly
+    shouldContinue = autoStartMode && hasSavedResumeData;
+    console.log("⚙️  Auto-start mode:", { autoStartMode, shouldContinue });
   }
+
+  // Apply the decision
+  if (shouldContinue && saved) {
+    // DAVOM ETISH - resume from last position
+    console.log(
+      "▶️  RESUMING from question",
+      saved.currentIndex + 1,
+      "of",
+      currentTest.length,
+    );
+    currentIndex = saved.currentIndex;
+    score = saved.score || 0;
+    mistakes = saved.mistakes || [];
+    timeLeft = saved.timeLeft > 0 ? saved.timeLeft : totalTestTime;
+    // Restore per-question status (lock + navigator colors)
+    examQuestionResults =
+      saved.examQuestionResults && typeof saved.examQuestionResults === "object"
+        ? { ...saved.examQuestionResults }
+        : {};
+    examDraftSelections =
+      saved.examDraftSelections && typeof saved.examDraftSelections === "object"
+        ? { ...saved.examDraftSelections }
+        : {};
+    examFlaggedQuestions = new Set(
+      Array.isArray(saved.examFlagged) ? saved.examFlagged : [],
+    );
+    examNotes =
+      saved.examNotes && typeof saved.examNotes === "object"
+        ? { ...saved.examNotes }
+        : {};
+    // If landing on already-answered question, mark checked
+    if (examQuestionResults[currentIndex]) {
+      answerChecked = true;
+      selectedAnswerIndex = examQuestionResults[currentIndex].selected ?? null;
+      console.log(
+        "🔒 Current question already answered - marking as checked, selected index:",
+        selectedAnswerIndex,
+      );
+    } else if (typeof examDraftSelections[currentIndex] === "number") {
+      answerChecked = false;
+      selectedAnswerIndex = examDraftSelections[currentIndex];
+      console.log(
+        "📝 Current question has draft selection - restoring selected index:",
+        selectedAnswerIndex,
+      );
+    }
+    console.log(
+      "📈 Restored state: score=",
+      score,
+      "mistakes=",
+      mistakes.length,
+      "answeredQuestions=",
+      Object.keys(examQuestionResults).length,
+    );
+  } else {
+    // YANGIDAN BOSHLASH - start fresh
+    console.log("🔄 FRESH START - clearing progress");
+    clearTestProgress();
+  }
+
+  hydrateGlobalMarks();
 
   const selection = document.getElementById("test-selection");
   const screen = document.getElementById("test-screen");
@@ -4064,9 +5076,136 @@ async function startTest(testName) {
 
   showQuestion();
   startCaseTimer();
+  saveTestProgress();
 }
 
 window.startTest = startTest;
+
+/** Continue a paused session from the ledger */
+async function resumePausedSession(id) {
+  const s = readGlobalSessions().find((x) => String(x.id) === String(id));
+  if (
+    !s ||
+    s.status !== "paused" ||
+    !Array.isArray(s.questions) ||
+    !s.questions.length
+  ) {
+    alert("Pauzadagi sessiya topilmadi.");
+    return false;
+  }
+
+  isReviewingStoredMistakes = false;
+  examSessionEnded = false;
+  examSessionMode = normalizeSessionMode(s.mode) || "study";
+  setExamSessionMode(examSessionMode, { updateUrl: false });
+
+  currentTest = s.questions;
+  currentTestName = s.testName || "unknown";
+  currentIndex = Math.min(
+    Math.max(s.currentIndex || 0, 0),
+    currentTest.length - 1,
+  );
+  score = s.score || 0;
+  mistakes = Array.isArray(s.mistakes) ? s.mistakes.slice() : [];
+  examQuestionResults = { ...(s.questionResults || {}) };
+  examDraftSelections = { ...(s.draftSelections || {}) };
+  examFlaggedQuestions = new Set(Array.isArray(s.flagged) ? s.flagged : []);
+  examNotes = { ...(s.notes || {}) };
+  examFontScale = 1;
+  document.documentElement.style.setProperty("--exam-font-scale", "1");
+
+  totalTestTime = s.totalTestTime || Math.max(currentTest.length * 180, 60);
+  timeLeft = s.timeLeft > 0 ? s.timeLeft : totalTestTime;
+  sessionStartTime = new Date(Number(s.id));
+  qbankReturnUrl = s.returnTo || null; // same id → same ledger entry gets updated
+  if (s.prepContext) window.__prepContext = s.prepContext;
+
+  const r = examQuestionResults[currentIndex];
+  answerChecked = !!r;
+  selectedAnswerIndex = r
+    ? (r.selected ?? null)
+    : typeof examDraftSelections[currentIndex] === "number"
+      ? examDraftSelections[currentIndex]
+      : null;
+
+  // so a page refresh doesn't resume again
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.delete("resume");
+    history.replaceState({}, "", u.toString());
+  } catch (e) {}
+
+  document.getElementById("test-selection")?.classList.add("d-none");
+  document.getElementById("test-screen")?.classList.remove("d-none");
+  document.getElementById("result")?.classList.add("d-none");
+
+  syncGlobalSession("running");
+  showQuestion();
+  startCaseTimer();
+  saveTestProgress();
+  return true;
+}
+window.resumePausedSession = resumePausedSession;
+
+/** Start a test built by QBank (sessionStorage pending selection) */
+async function startQBankTest() {
+  const key = window.QBank?.config?.PENDING_KEY || "pulsego_qbank_pending";
+  const raw = sessionStorage.getItem(key);
+  if (!raw || !window.QBank?.buildTest) return false;
+  sessionStorage.removeItem(key);
+
+  const sel = JSON.parse(raw);
+
+  qbankReturnUrl = sel.returnTo || null;
+  if (!qbankReturnUrl && document.referrer) {
+    try {
+      const r = new URL(document.referrer);
+      if (r.origin === location.origin) qbankReturnUrl = r.pathname + r.search;
+    } catch (e) {}
+  }
+
+  const built = await QBank.buildTest(sel);
+  if (!built.questions?.length) {
+    alert("Tanlangan filterda savol topilmadi.");
+    return false;
+  }
+
+  isReviewingStoredMistakes = false;
+  examSessionEnded = false;
+  examSessionMode = resolveSessionMode();
+  setExamSessionMode(examSessionMode, { updateUrl: true });
+
+  currentTest = getRandomTest(built.questions);
+  currentTestName = built.testName || "qbank";
+  currentIndex = 0;
+  score = 0;
+  mistakes = [];
+  answerChecked = false;
+  selectedAnswerIndex = null;
+  examQuestionResults = {};
+  examDraftSelections = {};
+  examFlaggedQuestions = new Set();
+  examNotes = {};
+  examFontScale = 1;
+  document.documentElement.style.setProperty("--exam-font-scale", "1");
+
+  totalTestTime = Math.max(currentTest.length * 180, 60);
+  sessionStartTime = new Date();
+  timeLeft = totalTestTime;
+  syncGlobalSession("running");
+  clearTestProgress();
+
+  document.getElementById("test-selection")?.classList.add("d-none");
+  document.getElementById("test-screen")?.classList.remove("d-none");
+  document.getElementById("result")?.classList.add("d-none");
+
+  showQuestion();
+  startCaseTimer();
+  saveTestProgress();
+  return true;
+}
+window.startQBankTest = startQBankTest;
+hydrateGlobalMarks();
 
 /**
  * Build a short path from weakest tests among given ids (or all known results).
@@ -4151,6 +5290,7 @@ function startWeakPath(testIds = null, maxQuestions = 15) {
   document.documentElement.style.setProperty("--exam-font-scale", "1");
   totalTestTime = Math.max(currentTest.length * 180, 60);
   timeLeft = totalTestTime;
+  examSessionEnded = false;
   clearTestProgress();
 
   document.getElementById("test-selection")?.classList.add("d-none");
@@ -4164,27 +5304,49 @@ function startWeakPath(testIds = null, maxQuestions = 15) {
 window.startWeakPath = startWeakPath;
 
 function reviewMistakes() {
-  if (mistakes.length === 0) {
-    alert("Congratulations! You had no mistakes");
+  if (!mistakes || !mistakes.length) {
+    alert("Xatolar yo'q — ajoyib natija!");
     return;
   }
+  const items = mistakes.map((m) => ({
+    q: m.q,
+    photo: m.photo || null,
+    img: m.img || null,
+    a: m.a || [],
+    correct: m.correct,
+    explanation: m.explanation || null,
+  }));
+  const base = currentTestName || "test";
 
-  currentTest = [...mistakes];
+  currentTest = items;
+  currentTestName = base.endsWith(" (xatolar)") ? base : base + " (xatolar)";
   currentIndex = 0;
   score = 0;
   mistakes = [];
-
-  const modalEl = document.getElementById("resultModal");
-  const modal = bootstrap.Modal.getInstance(modalEl);
-  if (modal) modal.hide();
-
-  document.getElementById("test-screen")?.classList.remove("d-none");
+  answerChecked = false;
+  selectedAnswerIndex = null;
+  examQuestionResults = {};
+  examDraftSelections = {};
+  examFlaggedQuestions = new Set();
+  examNotes = {};
+  isReviewingStoredMistakes = false;
+  examSessionEnded = false;
 
   totalTestTime = Math.max(currentTest.length * 180, 60);
   timeLeft = totalTestTime;
+  sessionStartTime = new Date();
+  hydrateGlobalMarks();
 
+  ["pulseResultModal", "resultModal"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) bootstrap.Modal.getInstance(el)?.hide();
+  });
+  document.getElementById("test-screen")?.classList.remove("d-none");
+
+  syncGlobalSession("running");
   showQuestion();
   startCaseTimer();
+  saveTestProgress();
 }
 
 // ============================================================
@@ -4209,11 +5371,32 @@ async function initAutoTest() {
     }
 
     const params = new URLSearchParams(window.location.search);
+    if (params.get("qbank") === "1") {
+      await startQBankTest();
+      return;
+    }
+
+    const resumeId = params.get("resume");
+    if (resumeId) {
+      await resumePausedSession(resumeId);
+      return;
+    }
+    // ... existing test / prepTest logic
     const testName = params.get("test");
     const prepTest = params.get("prepTest");
+    const isQBank = params.get("qbank") === "1";
 
-    if (testName && window.tests?.[testName]) startTest(testName);
-    else if (prepTest && window.tests?.[prepTest]) startTest(prepTest);
+    if (isQBank) {
+      // Ensure QBank is on the page (script tag or dynamic load)
+      if (!window.QBank) {
+        await loadScriptOnce("/1sem/globalqbank.js"); // ← your real path
+      }
+      await startQBankTest();
+    } else if (testName && window.tests?.[testName]) {
+      startTest(testName);
+    } else if (prepTest && window.tests?.[prepTest]) {
+      startTest(prepTest);
+    }
   });
 }
 
@@ -4266,7 +5449,44 @@ window.addEventListener("DOMContentLoaded", () => {
   );
   initTestStats();
   initPrepContext();
+  initTestStartModal(); // Initialize test start modal system
+  initTestNotesDisplay(); // Initialize test notes display system
   showPrepBanner();
+
+  // DEBUG: Make progress functions globally accessible
+  window.saveTestProgress = saveTestProgress;
+  window.loadTestProgress = loadTestProgress;
+  window.clearTestProgress = clearTestProgress;
+
+  // DEBUG: Make test state accessible for console diagnostics
+  Object.defineProperty(window, "DEBUG_testState", {
+    get: () => ({
+      currentTestName,
+      currentIndex,
+      score,
+      total: currentTest?.length,
+      mistakesCount: mistakes.length,
+      questionsAnswered: Object.keys(examQuestionResults).length,
+    }),
+  });
+
+  console.log("✅ Debug functions available:");
+  console.log("   - window.DEBUG_testState (current test state)");
+  console.log("   - window.saveTestProgress() (manual save)");
+  console.log("   - window.loadTestProgress(testName) (load progress)");
+  console.log("   - window.clearTestProgress() (clear progress)");
+
+  window.addEventListener("beforeunload", () =>
+    saveProgressOnPageLeave("beforeunload"),
+  );
+  window.addEventListener("pagehide", () =>
+    saveProgressOnPageLeave("pagehide"),
+  );
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+      saveProgressOnPageLeave("visibilitychange:hidden");
+    }
+  });
 
   setTimeout(() => {
     const form = document.getElementById("feedbackForm");
