@@ -242,6 +242,7 @@ function buildGlobalSessionSnapshot(status = "running") {
       correct: m.correct,
       selected: m.selected,
       explanation: m.explanation || null,
+      uz: m.uz || null,
       testName: m.testName || currentTestName || "unknown",
     })),
     // so the other screen knows WHICH questions were skipped
@@ -320,23 +321,197 @@ function resolveMediaUrl(src) {
   return s.replace(/^\.\//, "");
 }
 
+/* ---------- media: string | array ---------- */
+function resolveMediaField(v) {
+  if (Array.isArray(v)) {
+    const list = v.map(resolveMediaUrl).filter(Boolean);
+    return list.length ? list : null;
+  }
+  return resolveMediaUrl(v);
+}
+function explImgList(v) {
+  if (!v) return [];
+  return (Array.isArray(v) ? v : [v]).map(resolveMediaUrl).filter(Boolean);
+}
+/** make paths root-relative so other pages (xatolar, sessions) can show them */
+function absMedia(src) {
+  if (!src || typeof src !== "string") return null;
+  if (/^(https?:|data:|blob:|\/)/i.test(src)) return src;
+  try {
+    return new URL(src, window.location.href).pathname;
+  } catch (e) {
+    return src;
+  }
+}
+function absMediaField(v) {
+  if (Array.isArray(v)) {
+    const l = v.map(absMedia).filter(Boolean);
+    return l.length ? l : null;
+  }
+  return absMedia(v);
+}
+
+/** explanation text + images: [[img:N]] tokens, leftovers appended */
+function renderExplanationHtml(explanation, imgField) {
+  const urls = explImgList(imgField);
+  const used = new Set();
+  const tag = (u) =>
+    `<div class="mcq-explanation-img"><img src="${u}" alt="Izoh rasmi" loading="lazy" class="mcq-responsive-img" onerror="console.warn('Explanation img failed:', this.src)"></div>`;
+  let html = String(explanation || "").replace(
+    /\s*\[\[img:(\d+)\]\]\s*/g,
+    (m, i) => {
+      const u = urls[Number(i)];
+      if (!u) return "";
+      used.add(Number(i));
+      return tag(u);
+    },
+  );
+  urls.forEach((u, i) => {
+    if (!used.has(i)) html += tag(u);
+  });
+  return html;
+}
+
+/* ---------- language (default: original English) ---------- */
+const PULSE_LANG_KEY = "pulsego_lang_v1"; // sessionStorage (per tab)
+function resolveLangInitial() {
+  try {
+    const s = (window.location.search || "").toLowerCase();
+    if (/(^|[?&])lang=en\b/.test(s)) return "en";
+    if (
+      /(^|[?&])lang=uz\b/.test(s) ||
+      /(^|[?&])uz(=1|=true)?(&|$)/.test(s) ||
+      s.includes("?uz") // supports  ...?test=block1?uz
+    )
+      return "uz";
+    return sessionStorage.getItem(PULSE_LANG_KEY) === "uz" ? "uz" : "en";
+  } catch (e) {
+    return "en";
+  }
+}
+let currentLang = resolveLangInitial();
+
+/** the question as it must be SHOWN right now (same indexes/correct as the original) */
+function localizedQ(q) {
+  const base = { q: q?.q, a: q?.a || [], explanation: q?.explanation || "" };
+  const t = q?.uz;
+  if (currentLang !== "uz" || !t || !t.q) return base;
+  return {
+    q: t.q,
+    a: Array.isArray(t.a) && t.a.length === base.a.length ? t.a : base.a,
+    explanation: t.explanation != null ? t.explanation : base.explanation,
+  };
+}
+
+function rerenderCurrentQuestion() {
+  if (!Array.isArray(currentTest) || !currentTest.length) return;
+  if (currentIndex >= currentTest.length) return;
+  const prev = examQuestionResults[currentIndex];
+  if (prev) {
+    answerChecked = true;
+    selectedAnswerIndex = prev.selected;
+    showQuestion(true);
+  } else {
+    showQuestion(false); // draft selection is restored from examDraftSelections
+  }
+}
+
+function setPulseLang(lang, opts = {}) {
+  currentLang = lang === "uz" ? "uz" : "en";
+  try {
+    sessionStorage.setItem(PULSE_LANG_KEY, currentLang);
+  } catch (e) {}
+  document.documentElement.lang = currentLang;
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.set("lang", currentLang);
+    history.replaceState({}, "", u.toString());
+  } catch (e) {}
+  ensureLangToggle();
+  if (opts.render !== false) rerenderCurrentQuestion();
+}
+window.setPulseLang = setPulseLang;
+
+function ensureLangStyles() {
+  if (document.getElementById("pulse-lang-style")) return;
+  const st = document.createElement("style");
+  st.id = "pulse-lang-style";
+  st.textContent = `
+    #exam-lang-toggle { display:inline-flex; align-items:center; border-radius:999px;
+      border:1px solid rgba(255,255,255,.18); overflow:hidden; flex-shrink:0; margin-left:.35rem; }
+    #exam-lang-toggle button { border:none; background:transparent; color:rgba(240,253,250,.7);
+      font-size:.68rem; font-weight:800; padding:.28rem .55rem; line-height:1; cursor:pointer; font-family:inherit; }
+    #exam-lang-toggle button.active { background:rgba(16,185,129,.4); color:#fff; }
+    #exam-lang-toggle button:hover:not(.active) { color:#fff; background:rgba(255,255,255,.08); }`;
+  document.head.appendChild(st);
+}
+
+/** UZ | EN switch next to the Study/Exam switch — shown only if the test has translations */
+function ensureLangToggle() {
+  const has = (currentTest || []).some((q) => q && q.uz && q.uz.q);
+  let wrap = document.getElementById("exam-lang-toggle");
+  if (!has) {
+    if (wrap) wrap.style.display = "none";
+    return;
+  }
+  if (!wrap) {
+    const anchor =
+      document.getElementById("exam-mode-toggle") ||
+      document.getElementById("timer");
+    if (!anchor || !anchor.parentNode) return;
+    ensureLangStyles();
+    wrap = document.createElement("div");
+    wrap.id = "exam-lang-toggle";
+    wrap.title = "Til / Language";
+    wrap.innerHTML = `
+      <button type="button" data-lang="en">EN</button>
+      <button type="button" data-lang="uz">UZ</button>`;
+    anchor.parentNode.insertBefore(wrap, anchor.nextSibling);
+    wrap.querySelectorAll("button").forEach((b) =>
+      b.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setPulseLang(b.getAttribute("data-lang"));
+      }),
+    );
+  }
+  wrap.style.display = "inline-flex";
+  wrap
+    .querySelectorAll("button")
+    .forEach((b) =>
+      b.classList.toggle("active", b.getAttribute("data-lang") === currentLang),
+    );
+}
+
 function getRandomTest(questions, n = "all") {
   const shuffledQuestions =
     n === "all" ? shuffle(questions) : shuffle(questions).slice(0, n);
 
   return shuffledQuestions.map((q) => {
-    const correctAnswer = q.a[q.correct];
-    const shuffledAnswers = shuffle(q.a);
+    const order = shuffle(q.a.map((_, i) => i)); // permutation of indexes
+    const shuffledAnswers = order.map((i) => q.a[i]);
     const photoRaw = pickQuestionPhoto(q);
     const imgRaw = pickExplanationImg(q);
+
+    let uz = null;
+    if (q.uz && q.uz.q) {
+      const ua =
+        Array.isArray(q.uz.a) && q.uz.a.length === q.a.length ? q.uz.a : null;
+      uz = {
+        q: q.uz.q,
+        a: ua ? order.map((i) => ua[i]) : null,
+        explanation: q.uz.explanation || null,
+      };
+    }
 
     return {
       q: q.q,
       photo: resolveMediaUrl(photoRaw),
-      img: resolveMediaUrl(imgRaw),
+      img: resolveMediaField(imgRaw), // string OR array
       a: shuffledAnswers,
-      correct: shuffledAnswers.indexOf(correctAnswer),
+      correct: order.indexOf(q.correct),
       explanation: q.explanation || null,
+      uz,
     };
   });
 }
@@ -354,11 +529,12 @@ function reattachMediaFromBank(testName, items) {
     const src = byQ.get(String(item.q || "").trim());
     if (!src) return item;
     const photo = item.photo || resolveMediaUrl(pickQuestionPhoto(src));
-    const img = item.img || resolveMediaUrl(pickExplanationImg(src));
+    const img = item.img || resolveMediaField(pickExplanationImg(src));
     return Object.assign({}, item, {
       photo: photo || null,
       img: img || null,
       explanation: item.explanation || src.explanation || null,
+      uz: item.uz || null,
     });
   });
 }
@@ -1548,9 +1724,9 @@ function openGroupMistakes(testName) {
                 q.explanation
                   ? `<div class="text-secondary">${q.explanation}</div>`
                   : ""
-              }${
-                q.img
-                  ? `<div class="mcq-explanation-img mt-3"><img src="${q.img}" alt="Izoh rasmi" class="mcq-responsive-img img-fluid rounded"></div>`
+              } ${
+                q.explanation || q.img
+                  ? `<div class="card border-0 bg-light"><div class="card-body"><div class="fw-semibold mb-2">Izoh</div><div class="text-secondary">${renderExplanationHtml(localizedQ(q).explanation, q.img)}</div></div></div>`
                   : ""
               }</div></div>`
             : ""
@@ -1637,8 +1813,8 @@ function viewMistake(testName, index) {
           <p class="mb-1"><strong>To‘g‘ri javob:</strong> ${getMistakeCorrectAnswer(q) || "-"}</p>
           <p><strong>Sizning javob:</strong> ${getMistakeUserAnswer(q) || "-"}</p>
           ${
-            q.explanation
-              ? `<div class="card border-0 bg-light mt-3"><div class="card-body"><div class="fw-semibold mb-2">Izoh</div><div class="text-secondary">${q.explanation}</div></div></div>`
+            q.explanation || q.img
+              ? `<div class="card border-0 bg-light mt-3"><div class="card-body"><div class="fw-semibold mb-2">Izoh</div><div class="text-secondary">${renderExplanationHtml(localizedQ(q).explanation, q.img)}</div></div></div>`
               : ""
           }
         </div>
@@ -1670,6 +1846,7 @@ function startXatolarReview(testName = null) {
     correct: m.correct,
     selected: m.selected,
     explanation: m.explanation || null,
+    uz: m.uz || null,
     id: m.id,
     testName: m.testName,
   }));
@@ -3638,6 +3815,7 @@ function updateExamHeader() {
   }
 
   ensureExamModeToggle();
+  ensureLangToggle();
   updateExamModeToggleUI();
 
   if (prevBtn) prevBtn.disabled = currentIndex <= 0;
@@ -3678,6 +3856,7 @@ function showQuestion(isNavigatingBack = false) {
   }
 
   const q = currentTest[currentIndex];
+  const lq = localizedQ(q);
 
   showExamHeader();
   updateExamHeader();
@@ -3696,7 +3875,7 @@ function showQuestion(isNavigatingBack = false) {
     : "";
 
   container.innerHTML = `
-    <div class="mcq-question">${q.q}</div>
+<div class="mcq-question">${lq.q}</div>
     ${photoHtml}
     <div id="answer-buttons" class="mcq-options"></div>
     <div id="case-controls" class="mcq-controls"></div>`;
@@ -3706,7 +3885,7 @@ function showQuestion(isNavigatingBack = false) {
 
   const locked = !!examQuestionResults[currentIndex];
 
-  q.a.forEach((ans, index) => {
+  lq.a.forEach((ans, index) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "mcq-option";
@@ -3846,12 +4025,13 @@ function applyAnswerResult(q, selectedIndex) {
     const entry = {
       q: q.q,
       qHash,
-      photo: q.photo,
-      img: q.img || null,
+      photo: absMedia(q.photo),
+      img: absMediaField(q.img),
       a: q.a,
       correct: correctIndex,
       selected: selectedIndex,
       explanation: q.explanation || null,
+      uz: q.uz || null,
       testName: currentTestName || "unknown",
       prepSessionId: window.__prepContext?.sessionId || null,
       prepSessionName: window.__prepContext?.sessionName || null,
@@ -3910,12 +4090,13 @@ function renderCaseControls() {
   if (!controls) return;
 
   const q = currentTest[currentIndex];
+  const lq = localizedQ(q);
   const explanationText =
-    typeof q?.explanation === "string" ? q.explanation.trim() : "";
-  const explanationImg =
-    resolveMediaUrl(q?.img) || resolveMediaUrl(pickExplanationImg(q));
+    typeof lq.explanation === "string" ? lq.explanation.trim() : "";
+  const imgField = q?.img || pickExplanationImg(q);
+  const hasImgs = explImgList(imgField).length > 0;
   const showExplanationBlock =
-    !isExamStrictMode() && (!!explanationText || !!explanationImg);
+    !isExamStrictMode() && (!!explanationText || hasImgs);
 
   if (!answerChecked) {
     controls.innerHTML = `
@@ -3933,11 +4114,8 @@ function renderCaseControls() {
   const feedbackClass = isCorrect ? "correct" : "wrong";
   const feedbackIcon = isCorrect ? "bi-emoji-smile" : "bi-emoji-neutral";
 
-  const explanationImgHtml = explanationImg
-    ? `<div class="mcq-explanation-img"><img src="${explanationImg}" alt="Izoh rasmi" loading="eager" class="mcq-responsive-img" onerror="console.warn('Explanation img failed:', this.src)"></div>`
-    : "";
-  const explanationBodyHtml = explanationText
-    ? `<div class="mcq-explanation-body">${q.explanation}</div>`
+  const explanationHtml = showExplanationBlock
+    ? renderExplanationHtml(lq.explanation, imgField)
     : "";
 
   controls.innerHTML = `
@@ -3952,8 +4130,7 @@ function renderCaseControls() {
       showExplanationBlock
         ? `<div class="mcq-explanation">
             <div class="mcq-explanation-title"><i class="bi bi-lightbulb"></i> Izoh</div>
-            ${explanationBodyHtml}
-            ${explanationImgHtml}
+            <div class="mcq-explanation-body">${explanationHtml}</div>
           </div>`
         : ""
     }`;
@@ -5262,6 +5439,7 @@ function startWeakPath(testIds = null, maxQuestions = 15) {
         a: q.a,
         correct: q.correct,
         explanation: q.explanation || null,
+        uz: q.uz || null,
         _fromTest: item.name,
       });
     });
@@ -5315,6 +5493,7 @@ function reviewMistakes() {
     a: m.a || [],
     correct: m.correct,
     explanation: m.explanation || null,
+    uz: m.uz || null,
   }));
   const base = currentTestName || "test";
 
@@ -5382,8 +5561,9 @@ async function initAutoTest() {
       return;
     }
     // ... existing test / prepTest logic
-    const testName = params.get("test");
-    const prepTest = params.get("prepTest");
+    // "block1?uz" (second ?) is tolerated: the language flag is stripped from the name
+    const testName = (params.get("test") || "").split("?")[0] || null;
+    const prepTest = (params.get("prepTest") || "").split("?")[0] || null;
     const isQBank = params.get("qbank") === "1";
 
     if (isQBank) {
