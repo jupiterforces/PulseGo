@@ -4740,7 +4740,7 @@ function showResultPopup(options = {}) {
   modalEl.tabIndex = -1;
   modalEl.setAttribute("aria-hidden", "true");
   modalEl.innerHTML = `
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content pr-card">
         <div class="pr-head">
           <div class="pr-brand">Pulse Go</div>
