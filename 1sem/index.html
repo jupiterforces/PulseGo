@@ -4,47 +4,512 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- SEO Meta -->
-    <meta name="description" content="Just see">
-
-    <meta name="keywords"
-        content="Pulse Medical, tibbiy testlar, anatomiya test, medical platform, tibbiyot, online test">
-
+    <meta name="description" content="Anatomy">
     <meta name="author" content="Pulse Medical">
+    <title>Semester</title>
 
-    <!-- Open Graph (Telegram / Facebook) -->
-    <meta property="og:title" content="Pulse Medical">
-    <meta property="og:description" content="Just see">
-    <meta property="og:image" content="Pulse.jpg">
-    <meta property="og:type" content="website">
-
-    <title>Anatomiya</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/casestyles.css">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/styles/styles.css">
+    <style>
+        :root {
+            --pg-bg: #f4f6f8;
+            --pg-card: #ffffff;
+            --pg-text: #0f172a;
+            --pg-muted: #64748b;
+            --pg-line: #e8edf2;
+            --pg-blue: #2563eb;
+            --pg-green: #16a34a;
+            --pg-amber: #d97706;
+            --pg-red: #dc2626;
+            --pg-radius: 14px;
+            --pg-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+        }
 
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--pg-bg);
+            font-family: Inter, system-ui, -apple-system, sans-serif;
+            color: var(--pg-text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .pg-page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 1rem 1rem 5.5rem;
+        }
+
+        /* Header */
+        .pg-hero {
+            margin-bottom: 1.15rem;
+        }
+
+        .pg-hero-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .pg-hero h1 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 0 0 0.2rem;
+            line-height: 1.25;
+        }
+
+        .pg-hero p {
+            margin: 0;
+            font-size: 0.82rem;
+            color: var(--pg-muted);
+            font-weight: 500;
+        }
+
+        .pg-chip {
+            flex-shrink: 0;
+            background: #eff6ff;
+            color: var(--pg-blue);
+            border: 1px solid #dbeafe;
+            border-radius: 999px;
+            padding: 0.35rem 0.75rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        /* Minimal primary stats */
+        .pg-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .pg-stat {
+            background: var(--pg-card);
+            border: 1px solid var(--pg-line);
+            border-radius: var(--pg-radius);
+            padding: 1rem 0.75rem;
+            text-align: center;
+            box-shadow: var(--pg-shadow);
+        }
+
+        .pg-stat b {
+            display: block;
+            font-size: 1.45rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+        }
+
+        .pg-stat span {
+            display: block;
+            margin-top: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--pg-muted);
+        }
+
+        .pg-stat.green b {
+            color: var(--pg-green);
+        }
+
+        .pg-stat.blue b {
+            color: var(--pg-blue);
+        }
+
+        /* Collapsed details */
+        .pg-details {
+            margin-bottom: 1rem;
+            background: var(--pg-card);
+            border: 1px solid var(--pg-line);
+            border-radius: var(--pg-radius);
+            box-shadow: var(--pg-shadow);
+            overflow: hidden;
+        }
+
+        .pg-details-toggle {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 0.7rem 1rem;
+            border: none;
+            background: transparent;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 650;
+            color: var(--pg-muted);
+            cursor: pointer;
+        }
+
+        .pg-details-toggle:hover {
+            color: var(--pg-text);
+        }
+
+        .pg-details-toggle i {
+            transition: transform 0.2s ease;
+            font-size: 0.85rem;
+        }
+
+        .pg-details.open .pg-details-toggle i {
+            transform: rotate(180deg);
+        }
+
+        .pg-details-body {
+            display: none;
+            padding: 0 0.85rem 0.85rem;
+            border-top: 1px solid var(--pg-line);
+        }
+
+        .pg-details.open .pg-details-body {
+            display: block;
+        }
+
+        .pg-stats-mini {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            padding-top: 0.75rem;
+        }
+
+        .pg-mini {
+            background: #f8fafc;
+            border: 1px solid var(--pg-line);
+            border-radius: 10px;
+            padding: 0.55rem 0.3rem;
+            text-align: center;
+        }
+
+        .pg-mini b {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 800;
+        }
+
+        .pg-mini span {
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: var(--pg-muted);
+        }
+
+        .pg-details-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 0.75rem;
+        }
+
+        .pg-details-actions .btn {
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 650;
+            padding: 0.35rem 0.75rem;
+        }
+
+        /* Resume */
+        .pg-resume {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: var(--pg-radius);
+            padding: 0.85rem 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .pg-resume.show {
+            display: flex;
+        }
+
+        .pg-resume-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .pg-resume-body strong {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        .pg-resume-body small {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .pg-resume .btn {
+            flex-shrink: 0;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.9rem;
+        }
+
+        /* Toolbar */
+        .pg-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 0.85rem;
+        }
+
+        .pg-toolbar .btn {
+            border-radius: 999px;
+            font-weight: 650;
+            font-size: 0.78rem;
+            padding: 0.45rem 0.85rem;
+        }
+
+        .pg-search {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .pg-search i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--pg-muted);
+            font-size: 0.95rem;
+            pointer-events: none;
+        }
+
+        .pg-search input {
+            width: 100%;
+            border: 1px solid var(--pg-line);
+            background: var(--pg-card);
+            border-radius: 12px;
+            padding: 0.7rem 0.9rem 0.7rem 2.4rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--pg-text);
+            box-shadow: var(--pg-shadow);
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .pg-search input:focus {
+            border-color: #93c5fd;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .pg-section-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.65rem;
+        }
+
+        .pg-section-label h2 {
+            margin: 0;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--pg-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .pg-section-label small {
+            font-size: 0.72rem;
+            color: var(--pg-muted);
+            font-weight: 600;
+        }
+
+        /* Test list — clean rows (different from old card grid) */
+        .pg-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pg-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--pg-card);
+            border: 1px solid var(--pg-line);
+            border-radius: var(--pg-radius);
+            padding: 0.9rem 1rem;
+            cursor: pointer;
+            box-shadow: var(--pg-shadow);
+            transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+            text-align: left;
+            width: 100%;
+            font-family: inherit;
+            color: inherit;
+        }
+
+        .pg-item:hover {
+            border-color: #bfdbfe;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+            transform: translateY(-1px);
+        }
+
+        .pg-item:active {
+            transform: scale(0.99);
+        }
+
+        .pg-item-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            color: var(--pg-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .pg-item.status-ok .pg-item-num {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .pg-item.status-mid .pg-item-num {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .pg-item.status-low .pg-item-num {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .pg-item-body {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .pg-item-title {
+            font-size: 0.9rem;
+            font-weight: 650;
+            line-height: 1.35;
+            margin: 0 0 0.2rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .pg-item-meta {
+            font-size: 0.72rem;
+            color: var(--pg-muted);
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem 0.75rem;
+        }
+
+        .pg-item-meta .dot {
+            opacity: 0.4;
+        }
+
+        .pg-item-right {
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        .pg-item-pct {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--pg-muted);
+        }
+
+        .pg-item-pct.has {
+            color: var(--pg-text);
+        }
+
+        .pg-item-pct.ok {
+            color: var(--pg-green);
+        }
+
+        .pg-item-pct.mid {
+            color: var(--pg-amber);
+        }
+
+        .pg-item-pct.low {
+            color: var(--pg-red);
+        }
+
+        .pg-item-right small {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--pg-muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .pg-item-arrow {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-left: 4px;
+            flex-shrink: 0;
+        }
+
+        .pg-empty {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--pg-muted);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .pg-page {
+                padding: 1.5rem 1.25rem 3rem;
+            }
+
+            .pg-hero h1 {
+                font-size: 1.55rem;
+            }
+
+            .pg-item {
+                padding: 1rem 1.15rem;
+            }
+
+            .pg-item-title {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .pg-stats-mini {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pg-item-right small {
+                display: none;
+            }
+        }
+    </style>
 </head>
-<!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QX686G4TT9"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-QX686G4TT9');
 </script>
 
-
 <body class="bg-light">
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
             <div class="sidebar-logo">
@@ -58,7 +523,6 @@
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
-
         <div class="sidebar-user" id="sidebarUser">
             <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
             <div>
@@ -66,54 +530,37 @@
                 <div class="sidebar-user-sub">Pulse Go Member</div>
             </div>
         </div>
-
         <nav class="sidebar-nav">
             <div class="sidebar-section-label">Asosiy</div>
-            <a href="/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-house-fill"></i> Asosiy
-            </a>
-            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-journals"></i> Tayyorlanish
-            </a>
-            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-grid-3x3-gap-fill"></i> Test QBank
-            </a>
-
+            <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
+                Tayyorlanish</a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test
+                QBank</a>
             <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-book-half"></i> Online Darslar
-            </a>
-            <a href="/books/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-collection-fill"></i> Kitoblar
-            </a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-body-text"></i> Anatomiya
-            </a>
-            <a href="/cellbiology/" class="sidebar-link active" onclick="closeSidebar()">
-                <i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi
-            </a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-flask-fill"></i> Kimyo
-            </a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-egg-fill"></i> Embriologiya
-            </a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat
-            </a>
-
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online
+                Darslar</a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
+                Kitoblar</a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i>
+                Anatomiya</a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i>
+                Hujayra
+                biologiyasi</a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i>
+                Kimyo</a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
+                Embriologiya</a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i>
+                Klinik
+                holat</a>
             <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-person-fill"></i> Mening profilim
-            </a>
-            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili
-            </a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()">
-                <i class="bi bi-chat-heart-fill"></i> Fikr bildirish
-            </a>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
+                profilim</a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i>
+                Fikr
+                bildirish</a>
         </nav>
-
         <div class="sidebar-footer">
             <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
                 style="background:#f0fdf4;color:#16a34a">
@@ -124,12 +571,9 @@
 
     <nav class="top-navbar">
         <div class="container">
-            <button class="btn-hamburger" onclick="openSidebar()">
-                <i class="bi bi-list"></i>
-            </button>
+            <button class="btn-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
             <a href="/" class="nav-logo">
-                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
-                Pulse Go
+                <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
             </a>
             <a href="/tests/" class="btn btn-light btn-sm rounded-pill">
                 <i class="bi bi-arrow-left"></i> Orqaga
@@ -138,36 +582,36 @@
         </div>
     </nav>
 
-    <!-- TEST SELECTION -->
+    <section id="test-selection">
+        <div class="pg-page">
 
-    <section id="test-selection" class="py-3 bg-light">
-        <div class="container">
-            <div class="accordion border-0 mb-3 shadow-sm" id="anatomyAccordion">
-
-                <div class="accordion-item border-0">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button fw-semibold py-2" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#anatomyTests" aria-expanded="true">
-
-                            <i class="bi bi-heart-pulse me-2 text-danger"></i> Hujayra biologiyasi
-                        </button>
-                    </h2>
-
-                    <div id="anatomyTests" class="accordion-collapse collapse show">
-                        <div class="accordion-body pt-3">
-
-                            <div class="row g-3" id="anatomy-test-cards"></div>
-
-                        </div>
+            <header class="pg-hero">
+                <div class="pg-hero-top">
+                    <div>
+                        <h1>Clinic Cases</h1>
                     </div>
-
+                    <div class="pg-chip">Anatomy</div>
                 </div>
+            </header>
+
+            <div class="pg-search">
+                <i class="bi bi-search"></i>
+                <input type="search" id="testSearch" placeholder="Test qidirish..." autocomplete="off">
             </div>
 
+            <div class="pg-section-label">
+                <h2>Testlar</h2>
+                <small id="listCount">0 ta</small>
+            </div>
+
+            <div class="pg-list" id="anatomy-test-cards"></div>
+            <div class="pg-empty" id="listEmpty">Hech narsa topilmadi</div>
+
         </div>
+
         <nav class="bottom-nav d-lg-none">
             <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
-            <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill active"></i><span>QBank</span></a>
+            <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
             <a href="/preparation/" class="bn-item">
                 <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
                 <span>Tayyorlanish</span>
@@ -175,44 +619,429 @@
             <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
             <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
         </nav>
-
     </section>
+
     <div id="common-modals"></div>
 
-    <script src="./globalqbank.js"></script>
+    <script src="/assets/js/test-utilsmultiple.js"></script>
 
-    <script src="/assets/js/test-utils.js"></script>
     <script src="./tests.js"></script>
-    <script src="/physeology/questions.js"></script>
-
 
     <script type="module" src="/assets/js/testcases.js"></script>
 
-
     <script>
-        window.tests = {
-            overall1: getRandomTest(TEST_QUESTIONS.overall1),
-            suyaklar: getRandomTest(TEST_QUESTIONS.suyaklar),
-            vertebra: getRandomTest(TEST_QUESTIONS.vertebra),
+        const LS_RESULTS = "pulsego_test_results_v1";
+        const LS_DATA = "pulsego_data_v1";
+        const LS_UNSOLVED = "pulsego_unsolved_v1";
+        const LS_PROGRESS = "pulsego_test_progress_v1";
+
+        function openSidebar() {
+            document.getElementById("sidebar")?.classList.add("open");
+            document.getElementById("sidebarOverlay")?.classList.add("show");
+            document.body.style.overflow = "hidden";
+        }
+        function closeSidebar() {
+            document.getElementById("sidebar")?.classList.remove("open");
+            document.getElementById("sidebarOverlay")?.classList.remove("show");
+            document.body.style.overflow = "";
+        }
+
+        // Bridge: copy TEST_QUESTIONS → window.tests (RAW, no shuffle)
+        function bridgeTests() {
+            const bank = window.TEST_QUESTIONS || {};
+            window.tests = window.tests || {};
+            Object.keys(bank).forEach((key) => {
+                if (Array.isArray(bank[key])) {
+                    window.tests[key] = bank[key];
+                }
+            });
+        }
+
+        // Titles only here
+        const PAGE_CARDS = [
+            { testName: "anatcase12", title: "Orqa miyya" },
+            { testName: "anatcase1", title: "Orqa" },
+            { testName: "vertebra", title: "Vertebrae" },
+            { testName: "spinalcord", title: "Spinal Cord" },
+            { testName: "thoracicwall", title: "thoracicwall" },
+            { testName: "mediastinum", title: "mediastinum" },
+            { testName: "heart", title: "heart" },
+            { testName: "GI", title: "Gastrointestinal System" },
+        ];
+
+        function getPageCards() {
+            bridgeTests(); // always refresh from TEST_QUESTIONS
+            return PAGE_CARDS.filter((c) => Array.isArray(window.tests?.[c.testName]));
+        }
+
+        // title map for resume / pretty names
+        window.testTitleMap = window.testTitleMap || {};
+        PAGE_CARDS.forEach((c) => {
+            window.testTitleMap[c.testName] = c.title;
+        });
+
+        function readJSON(key, fallback) {
+            try {
+                const raw = localStorage.getItem(key);
+                if (!raw) return fallback;
+                return JSON.parse(raw);
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        function isPageTest(name) {
+            if (!name) return false;
+            const n = String(name).toLowerCase();
+            return PAGE_CARDS.some(
+                (c) => n === c.testName.toLowerCase() || n.includes(c.testName.toLowerCase())
+            );
+        }
+
+        function normalizeEntry(e) {
+            if (!e || typeof e !== "object") return null;
+            const testName = String(e.testName || e.name || e.id || e.test || "unknown");
+            const correct = Number(e.correct ?? e.correctAnswers ?? e.score ?? 0) || 0;
+            const total = Number(e.total ?? e.totalQuestions ?? 0) || 0;
+            let wrong = e.wrong != null ? Number(e.wrong) : null;
+            if (wrong == null && e.mistakesCount != null) wrong = Number(e.mistakesCount) || 0;
+            if (wrong == null && Array.isArray(e.mistakes)) wrong = e.mistakes.length;
+            if (wrong == null && total >= correct) wrong = Math.max(0, total - correct);
+            if (wrong == null) wrong = 0;
+            let solved = e.solved != null ? Number(e.solved) : correct + wrong;
+            if (!solved && total) solved = Math.min(total, correct + wrong);
+            if (solved < correct) solved = correct;
+            let percent = e.percent != null ? Number(e.percent) : null;
+            if (percent == null) {
+                percent =
+                    solved > 0
+                        ? Math.round((correct / solved) * 100)
+                        : total > 0
+                            ? Math.round((correct / total) * 100)
+                            : 0;
+            }
+            return {
+                testName,
+                correct,
+                wrong,
+                solved,
+                total,
+                percent,
+                date: e.date || e.createdAt || e.updatedAt || null,
+                partial: !!e.partial,
+                source: e._source || "unknown",
+            };
+        }
+
+        function entryFromProgress(p) {
+            if (!p || !isPageTest(p.testName || p.testNameRaw)) return null;
+            const correct = Number(p.score) || 0;
+            const wrong = Array.isArray(p.mistakes) ? p.mistakes.length : 0;
+            return normalizeEntry({
+                testName: p.testNameRaw || p.testName,
+                correct,
+                wrong,
+                solved: correct + wrong,
+                total: Number(p.total) || 0,
+                partial: true,
+                date: p.updatedAt,
+                _source: "progress",
+            });
+        }
+
+        function getAllResultEntries() {
+            const out = [];
+            const push = (item, source) => {
+                if (!item) return;
+                if (source) item = Object.assign({}, item, { _source: source });
+                const n = normalizeEntry(item);
+                if (n && isPageTest(n.testName)) out.push(n);
+            };
+            const pushList = (list, source) => {
+                if (!Array.isArray(list)) return;
+                list.forEach((x) => push(x, source));
+            };
+
+            try {
+                if (typeof getUnifiedTestResults === "function") {
+                    pushList(getUnifiedTestResults(), "unified");
+                } else if (window.getUnifiedTestResults) {
+                    pushList(window.getUnifiedTestResults(), "unified");
+                }
+            } catch (e) { }
+
+            try {
+                const obj = readJSON(LS_RESULTS, null);
+                if (obj) {
+                    if (Array.isArray(obj.tests)) pushList(obj.tests, "results_v1");
+                    else if (Array.isArray(obj)) pushList(obj, "results_v1");
+                }
+            } catch (e) { }
+
+            try {
+                const data = readJSON(LS_DATA, {});
+                pushList(data.results, "data.results");
+                pushList(data.testResults, "data.testResults");
+            } catch (e) { }
+
+            // progress (support multi-key store)
+            try {
+                const store = readJSON(LS_PROGRESS, {});
+                if (store && typeof store === "object") {
+                    if (store.testName) {
+                        const n = entryFromProgress(store);
+                        if (n) out.push(n);
+                    } else {
+                        Object.values(store).forEach((p) => {
+                            const n = entryFromProgress(p);
+                            if (n) out.push(n);
+                        });
+                    }
+                }
+            } catch (e) { }
+
+            const seen = new Set();
+            return out.filter((e) => {
+                const k = `${e.testName}|${e.date}|${e.correct}|${e.solved}|${e.source}`;
+                if (seen.has(k)) return false;
+                seen.add(k);
+                return true;
+            });
+        }
+
+        function buildPageStats() {
+            const cards = getPageCards();
+            const pageIds = cards.map((c) => c.testName);
+            const entries = getAllResultEntries();
+            const byTest = {};
+            let runs = 0,
+                correctSum = 0,
+                wrongSum = 0,
+                solvedSum = 0;
+
+            entries.forEach((e) => {
+                let key = e.testName;
+                const found = pageIds.find(
+                    (id) =>
+                        key.toLowerCase() === id.toLowerCase() ||
+                        key.toLowerCase().includes(id.toLowerCase())
+                );
+                if (found) key = found;
+
+                runs++;
+                correctSum += e.correct;
+                wrongSum += e.wrong;
+                solvedSum += e.solved;
+
+                if (!byTest[key]) {
+                    byTest[key] = {
+                        attempts: 0,
+                        totalCorrect: 0,
+                        totalWrong: 0,
+                        totalSolved: 0,
+                        totalQuestions: 0,
+                        last: null,
+                    };
+                }
+                const t = byTest[key];
+                t.attempts++;
+                t.totalCorrect += e.correct;
+                t.totalWrong += e.wrong;
+                t.totalSolved += e.solved;
+                t.totalQuestions += e.total;
+                if (
+                    !t.last ||
+                    (e.date && t.last.date && new Date(e.date) > new Date(t.last.date)) ||
+                    !t.last.date
+                ) {
+                    t.last = Object.assign({}, e, { testName: key });
+                }
+            });
+
+            const takenTests = pageIds.filter((id) => byTest[id]?.last).length;
+            const accuracy =
+                solvedSum > 0 ? Math.round((correctSum / solvedSum) * 100) : 0;
+
+            let catalogQuestions = 0;
+            cards.forEach((c) => {
+                const t = window.tests?.[c.testName];
+                if (Array.isArray(t)) catalogQuestions += t.length;
+            });
+
+            let weakest = null;
+            Object.keys(byTest).forEach((name) => {
+                const last = byTest[name].last;
+                if (!last) return;
+                if (!weakest || (last.percent ?? 0) < (weakest.percent ?? 0)) {
+                    weakest = { testName: name, percent: last.percent ?? 0 };
+                }
+            });
+
+            const nextTodo = cards.find((c) => !byTest[c.testName]?.last) || null;
+
+            return {
+                cards,
+                pageIds,
+                catalogQuestions,
+                takenTests,
+                totalCards: cards.length,
+                runs,
+                correctSum,
+                wrongSum,
+                solvedSum,
+                accuracy,
+                byTest,
+                weakest,
+                nextTodo,
+            };
+        }
+
+        function qCount(name) {
+            const t = window.tests?.[name] || window.TEST_QUESTIONS?.[name];
+            return Array.isArray(t) ? t.length : null;
+        }
+
+        function startTestSafe(name) {
+            if (!name) return;
+
+            // already ready
+            if (typeof window.startTest === "function") {
+                bridgeTests(); // ensure window.tests is up to date
+                window.startTest(name);
+                return;
+            }
+
+            // wait for the module (max ~5s)
+            console.log("Waiting for startTest…", name);
+            let tries = 0;
+            const t = setInterval(() => {
+                tries++;
+                if (typeof window.startTest === "function") {
+                    clearInterval(t);
+                    bridgeTests();
+                    window.startTest(name);
+                    return;
+                }
+                if (tries > 50) {
+                    clearInterval(t);
+                    console.error("startTest still not ready. Check testcases.js load/errors.");
+                    alert("Test engine yuklanmadi. Sahifani yangilang (refresh).");
+                }
+            }, 100);
+        }
+        function renderCards() {
+            const list = document.getElementById("anatomy-test-cards");
+            if (!list) return;
+
+            const s = buildPageStats();
+            const cards = s.cards;
+
+            if (!cards.length) {
+                list.innerHTML = "";
+                document.getElementById("listCount").textContent = "0 ta";
+                document.getElementById("listEmpty").style.display = "block";
+                console.warn("No tests found. TEST_QUESTIONS keys:", Object.keys(window.TEST_QUESTIONS || {}));
+                return;
+            }
+
+            document.getElementById("listEmpty").style.display = "none";
+
+            list.innerHTML = cards
+                .map((c, i) => {
+                    const st = s.byTest[c.testName];
+                    const n = qCount(c.testName);
+                    const last = st?.last;
+                    let pct = null;
+                    let status = "";
+                    let pctClass = "";
+                    if (last) {
+                        pct = st.totalSolved
+                            ? Math.round((st.totalCorrect / st.totalSolved) * 100)
+                            : last.percent || 0;
+                        if (pct >= 80) {
+                            status = "status-ok";
+                            pctClass = "ok";
+                        } else if (pct >= 56) {
+                            status = "status-mid";
+                            pctClass = "mid";
+                        } else {
+                            status = "status-low";
+                            pctClass = "low";
+                        }
+                    }
+
+                    const metaParts = [];
+                    if (n != null) metaParts.push(`${n} savol`);
+                    if (st?.attempts) metaParts.push(`${st.attempts} urinish`);
+                    if (!last) metaParts.push("Hali ishlanmagan");
+
+                    return `
+        <button type="button" class="pg-item ${status}"
+          data-test-name="${c.testName}"
+          data-title="${String(c.title).replace(/"/g, "&quot;")}">
+          <div class="pg-item-num">${i + 1}</div>
+          <div class="pg-item-body">
+            <div class="pg-item-title">${c.title}</div>
+            <div class="pg-item-meta">${metaParts.join(' <span class="dot">·</span> ')}</div>
+          </div>
+          <div class="pg-item-right">
+            <div class="pg-item-pct ${last ? "has " + pctClass : ""}">${last ? pct + "%" : "—"}</div>
+            <small>${last ? `${last.correct}/${last.solved || last.total}` : "Boshlash"}</small>
+          </div>
+          <i class="bi bi-chevron-right pg-item-arrow"></i>
+        </button>`;
+                })
+                .join("");
+
+            document.getElementById("listCount").textContent = `${cards.length} ta`;
+
+            list.querySelectorAll(".pg-item").forEach((btn) => {
+                btn.onclick = () => startTestSafe(btn.dataset.testName);
+            });
+        }
+
+        function filterCardsByQuery(q) {
+            const query = (q || "").trim().toLowerCase();
+            let visible = 0;
+            document.querySelectorAll("#anatomy-test-cards .pg-item").forEach((item) => {
+                const title = (item.dataset.title || "").toLowerCase();
+                const name = (item.dataset.testName || "").toLowerCase();
+                const show = !query || title.includes(query) || name.includes(query);
+                item.style.display = show ? "" : "none";
+                if (show) visible++;
+            });
+            const empty = document.getElementById("listEmpty");
+            if (empty) empty.style.display = visible ? "none" : "block";
+            document.getElementById("listCount").textContent = `${visible} ta`;
+        }
+
+        function refreshPageData() {
+            renderCards();
+            filterCardsByQuery(document.getElementById("testSearch")?.value || "");
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            refreshPageData();
+            setTimeout(refreshPageData, 400);
+            setTimeout(refreshPageData, 1200);
+
+            document.getElementById("testSearch")?.addEventListener("input", (e) => {
+                filterCardsByQuery(e.target.value);
+            });
+        });
+
+        window.addEventListener("focus", refreshPageData);
+        window.addEventListener("pulse:result-saved", refreshPageData);
+
+        window.__pulsePageStats = function () {
+            console.log("TEST_QUESTIONS keys:", Object.keys(window.TEST_QUESTIONS || {}));
+            console.log("window.tests keys:", Object.keys(window.tests || {}));
+            console.table(getAllResultEntries());
+            return buildPageStats();
         };
-
-
-        window.testTitleMap = {
-            overall1: "Hi",
-            suyaklar: "Suyaklar",
-            vertebra: "Umurtqa pog'onasi",
-        };
-
-
-        renderTestCards("#anatomy-test-cards", [
-            { testName: "overall1", title: testTitleMap.overall1 },
-            { testName: "suyaklar", title: testTitleMap.suyaklar },
-            { testName: "vertebra", title: testTitleMap.vertebra },
-        ]);
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </body>
 
 </html>

@@ -78,6 +78,21 @@ window.GLOBAL_QBANK = {
         source: "/embriology/embryology_renal/embryology_renal.js",
         count: null,
       },
+      EMBRYOLOGY_PREG: {
+        title: "Pregnancy",
+        source: "/embriology/embryology_preg/embryology_preg.js",
+        count: null,
+      },
+      EMBRYOLOGY_PULM: {
+        title: "Pulmonary System",
+        source: "/embriology/embryology_pulm/embryology_pulm.js",
+        count: null,
+      },
+      EMBRYOLOGY_RHEUM: {
+        title: "Rheumatology",
+        source: "/embriology/embryology_rheum/embryology_rheum.js",
+        count: null,
+      },
       // heart:      { title: "Heart",       source: "/anatomy/js/heart.js",        count: 120 },
     },
   },
