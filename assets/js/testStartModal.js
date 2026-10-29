@@ -394,7 +394,7 @@ export async function showTestStartModal(testName, questionCount) {
     const proStatusHtml = `
       <div class="test-modal-pro mt-2">
         <i class="bi bi-${isPro ? "gem" : "lock"}"></i>
-        ${isPro ? "Pro - Barcha testlar mavjud" : "Bepul - Ba'zi testlar cheklangan"}
+        ${isPro ? "Pro - Barcha testlar mavjud" : "Version: 0.1.0"}
       </div>
     `;
 
