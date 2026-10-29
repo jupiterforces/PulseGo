@@ -359,8 +359,6 @@ export async function showTestStartModal(testName, questionCount) {
       ? `
       <div class="test-modal-last-attempt">
         <div class="last-attempt-row">
-          <span class="label">Oxirgi urinish:</span>
-          <span class="value">${lastAttempt.score}/${lastAttempt.total} to'g'ri</span>
         </div>
         <div class="last-attempt-row">
           <span class="label">Qo'yilgan savoldan:</span>
@@ -368,7 +366,7 @@ export async function showTestStartModal(testName, questionCount) {
         </div>
       </div>
       `
-      : '<div class="text-muted small">Oldingi urinish yo\'q</div>';
+      : '<div class="text-muted small"></div>';
 
     // Handle notes safely
     let notesHtml = "";
@@ -390,7 +388,7 @@ export async function showTestStartModal(testName, questionCount) {
     const proStatusHtml = `
       <div class="test-modal-pro mt-2">
         <i class="bi bi-${isPro ? "gem" : "lock"}"></i>
-        ${isPro ? "Pro - Barcha testlar mavjud" : "Bepul - Ba'zi testlar cheklangan"}
+        ${isPro ? "Pro - Barcha testlar mavjud" : "Bepul"}
       </div>
     `;
 
@@ -399,7 +397,6 @@ export async function showTestStartModal(testName, questionCount) {
   <div class="modal-content test-modal-content">
     <div class="modal-header test-modal-header">
       <div>
-        <h5 class="modal-title test-modal-title">${testName}</h5>
         <small class="text-muted">${questionCount} savol</small>
       </div>
       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -407,10 +404,6 @@ export async function showTestStartModal(testName, questionCount) {
     
     <div class="modal-body test-modal-body">
       <div class="test-modal-stats">
-        <div class="stat-item">
-          <span class="stat-label">Urinishlar:</span>
-          <span class="stat-value">${attemptCount}</span>
-        </div>
         <div class="stat-item">
           <span class="stat-label">Savollar:</span>
           <span class="stat-value">${questionCount}</span>
