@@ -4095,6 +4095,2197 @@ window.TEST_QUESTIONS = {
         "The pulmonic valve is auscultated at the left parasternal area in the second intercostal space, whereas the aortic valve is best heard at the right parasternal area in the second intercostal space.\nThe mitral (bicuspid) valve is auscultated at the apex of the heart, which is typically the fourth or fifth intercostal space at the midclavicular line, to the right of the sternum.\nThe tricuspid valve is auscultated at the fourth intercostal space right parasternal border.\n\n\n\n**BRS says:**\n\nThe **pulmonary valve** is most audible over the **left second intercostal space** just lateral to the sternum.\n\n(Chapter 3, Thorax — Heart: Valves)",
     },
   ],
+
+  VERTEBRAL_COLUMN: [
+    {
+      q: 'A 55-year-old man with severe coughing is admitted to the hospital. Radiologic examination is consistent with tuberculosis of the right lung, with extension to the thoracic vertebral bodies of T6 and T7, producing a "gibbus deformity." Which of the following conditions is most likely also to be confirmed by radiologic examination?',
+      a: [
+        "Hyperlordosis",
+        "Hyperkyphosis",
+        "Scoliosis",
+        "Spina bifida",
+        "Osteoarthritis",
+      ],
+      correct: 1,
+      explanation:
+        '<b>Hyperkyphosis</b> is characterized by a "<b>hunchback</b>" due to an <b>abnormal increase in curvature of the thoracic region</b> of the vertebral column.\n\n<b>Hyperlordosis</b>, or "<b>swayback</b>," is an <b>increase in lumbar curvature</b> of the spine.\n\n<b>Scoliosis</b> is a <b>lateral curvature</b> of the spine with <b>rotation of the vertebrae</b>.\n\n<b>Spina bifida</b> is a neural tube defect characterized by <b>failure of closure of the vertebral arch</b>.\n\nBRS says:\n\nThe <b>primary curvatures</b> are located in the <b>thoracic and sacral</b> regions and develop during <b>embryonic and fetal</b> periods, whereas the <b>secondary curvatures</b> are located in the <b>cervical and lumbar</b> regions and develop <b>after birth</b> and during infancy.\n\nAbnormal curvatures of the vertebral column include (a) <b>kyphosis</b> (hunchback or humpback), an <b>abnormally increased thoracic curvature</b> resulting from <b>osteoporosis</b>; (b) <b>lordosis</b> (swayback or saddle back), an <b>abnormally increased lumbar curvature</b> resulting from <b>trunk muscular weakness or osteomalacia</b>; and (c) <b>scoliosis</b>, a condition of <b>lateral deviation</b> resulting from <b>unequal growth of the vertebral column</b>, pathologic erosion of vertebral bodies, or asymmetric paralysis or weakness of vertebral muscles.\n\n<b>Pott disease</b> (tuberculous spondylitis) is tuberculosis of the spine that results from softening and collapse of the vertebrae, often causing <b>thoracic kyphosis</b>.',
+      uz: {
+        q: '55 yoshli erkak kuchli yo‘tal bilan kasalxonaga yotqizildi. Rentgenologik tekshiruv o‘ng o‘pka tuberculosis kasalligini, uning T6 va T7 ko‘krak umurtqalari tanachalariga o‘tganini va "gibbus deformatsiyasi" hosil bo‘lganini ko‘rsatdi. Quyidagi holatlardan qaysi biri ham rentgenologik tekshiruvda tasdiqlanishi ehtimoli yuqori?',
+        a: [
+          "Giperlordoz",
+          "Giperkifoz",
+          "Skolioz",
+          "Spina bifida",
+          "Osteoartrit",
+        ],
+        explanation:
+          '<b>Giperkifoz</b> umurtqa pog‘onasining <b>ko‘krak qismi egriligining patologik ortishi</b> natijasida "<b>bukri</b>" ko‘rinishi bilan xarakterlanadi.\n\n<b>Giperlordoz</b> yoki "<b>egarsimon bel</b>" <b>bel qismi egriligining ortishi</b> hisoblanadi.\n\n<b>Skolioz</b> umurtqa pog‘onasining <b>lateral tomonga og‘ishi</b> va <b>umurtqalarning rotatsiyasi</b> bilan xarakterlanadi.\n\n<b>Spina bifida</b> nerv nayi nuqsoni bo‘lib, <b>umurtqa ravog‘ining yopilmasligi</b> bilan xarakterlanadi.\n\nBRS says:\n\n<b>Birlamchi egriliklar</b> <b>ko‘krak va dumg‘aza</b> sohalarida joylashgan. Ular <b>embrional va fetal</b> davrlarda rivojlanadi. <b>Ikkilamchi egriliklar</b> esa <b>bo‘yin va bel</b> sohalarida joylashgan. Ular <b>tug‘ilgandan keyin</b> va bolalik davrida rivojlanadi.\n\nUmurtqa pog‘onasining abnormal egriliklari. <b>Kifoz</b> (bukri odam) <b>osteoporoz</b> natijasida yuzaga keladigan <b>abnormal kuchaygan ko‘krak egriligi</b>. <b>Lordoz</b> (egarsimon bel) <b>gavda muskullari kuchsizligi yoki osteomalatsiya</b> natijasida yuzaga keladigan <b>abnormal kuchaygan bel egriligi</b>. <b>Skolioz</b> umurtqa pog‘onasining <b>notekis o‘sishi</b>, umurtqa tanalarining patologik yemirilishi, umurtqa muskullarining kuchsizligi yoki assimetrik paralichi natijasida yuzaga keladigan <b>lateral og‘ish holati</b>.\n\n<b>Pot kasalligi</b> (tuberkulozli spondilit) bu umurtqalarning yumshashi va ezilishini keltirib chiqaruvchi umurtqa pog‘onasi sili hisoblanadi. Bu, odatda, <b>ko‘krak kifozini</b> keltirib chiqaradi.',
+      },
+    },
+    {
+      q: "A 68-year-old man is admitted to the hospital due to severe back pain. Radiologic examination reveals severe osteoporosis of the vertebral column, with compression fractures to vertebrae L4 and L5. Which of the following parts of the vertebrae are most likely to be fractured in this patient?",
+      a: [
+        "Spinous process",
+        "Vertebral bodies",
+        "Transverse process",
+        "Superior articular process",
+        "Intervertebral disc",
+      ],
+      correct: 1,
+      explanation:
+        "Osteoporotic compression (crush) fractures primarily affect the <b>vertebral bodies</b>, which support the weight of the trunk and are weakened by loss of bone mass.\n\nBRS says:\n\nThe body is a short cylinder that <b>supports weight</b> and is separated and bound together by the intervertebral disks, forming cartilaginous joints.\n\nSigns of osteoporosis include vertebral compression, loss of body height, and development of kyphosis.",
+      uz: {
+        q: "68 yoshli erkak kuchli orqa og‘rig‘i bilan kasalxonaga yotqizildi. Rentgenologik tekshiruv umurtqa pog‘onasining og‘ir osteoporozini va L4 hamda L5 umurtqalarida siqilish sinishlarini aniqladi. Bemorda umurtqaning qaysi qismi eng ko‘p sinishi mumkin?",
+        a: [
+          "O‘tkir o‘siq",
+          "Umurtqa tanalari",
+          "Ko‘ndalang o‘siq",
+          "Yuqori bo‘g‘im o‘sig‘i",
+          "Umurtqalararo disk",
+        ],
+        explanation:
+          "Osteoporotik siqilish (ezilish) sinishlari asosan <b>umurtqa tanalariga</b> ta’sir qiladi, chunki ular tana vaznini ko‘taradi va suyak massasi kamayishi natijasida zaiflashadi.\n\nBRS says:\n\nTana qisqa silindr shaklda, <b>tayanch vazifasini</b> bajaradi. Umurtqalararo disk umurtqa tanalarini o‘zaro bog‘laydi va tog‘ayli bo‘g‘imlarni hosil qiladi.\n\nOsteoporoz belgilariga umurtqa ezilishi, bo‘yning kaltalanishi va kifoz shakllanishi kiradi.",
+      },
+    },
+    {
+      q: "A 45-year-old man is admitted to the hospital because of severe pain in the back and lower limb. Radiologic examination reveals spinal canal stenosis syndrome. Which of the following conditions is most likely to be confirmed by a magnetic resonance imaging (MRI) examination?",
+      a: [
+        "Hypertrophy of supraspinous ligament",
+        "Hypertrophy of interspinous ligament",
+        "Hypertrophy of ligamentum flavum",
+        "Hypertrophy of anterior longitudinal ligament",
+        "Hypertrophy of nuchal ligament",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>ligamentum flavum</b> connects the laminae of adjacent vertebrae and forms the posterior wall of the vertebral canal. Its hypertrophy narrows the vertebral canal and produces spinal stenosis.\n\nBRS says:\n\nLigamentum flavum connects the laminae of two adjacent vertebrae and functions to maintain the upright posture. Forms the posterior wall of the vertebral canal between the vertebrae and may be pierced during lumbar (spinal) puncture.",
+      uz: {
+        q: "45 yoshli erkak orqa va pastki oyoqdagi kuchli og‘riq bilan kasalxonaga yotqizildi. Rentgenologik tekshiruv umurtqa kanali stenoz sindromini aniqladi. MRT tekshiruvida quyidagi holatlardan qaysi biri eng ko‘p tasdiqlanishi mumkin?",
+        a: [
+          "Supraspinous boylam gipertrofiyasi",
+          "Interspinous boylam gipertrofiyasi",
+          "Ligamentum flavum gipertrofiyasi",
+          "Anterior longitudinal boylam gipertrofiyasi",
+          "Nuchal boylam gipertrofiyasi",
+        ],
+        explanation:
+          "<b>Ligamentum flavum</b> qo‘shni umurtqalar plastinkalarini bog‘laydi va umurtqa kanalining orqa devorini hosil qiladi. Uning gipertrofiyasi umurtqa kanalini toraytiradi va spinal stenozga olib keladi.\n\nBRS says:\n\nLigamentum flavum qo‘shni ikki umurtqa plastinkalarini bog‘laydi va tik holatni saqlash vazifasini bajaradi. Umurtqalar orasidagi umurtqa kanalining orqa devorini hosil qiladi va bel punksiyasi paytida teshilishi mumkin.",
+      },
+    },
+    {
+      q: "A 45-year-old woman states that she has experienced moderate pain for 2 years over her left lower back; pain that radiates to her left lower limb. She states that after lifting a case of soft drinks, the pain suddenly became intense. She was admitted to the emergency department. Radiologic examination revealed intervertebral disc herniation between vertebral levels L4 and L5. Which of the following nerves was most likely affected by the disc herniation?",
+      a: ["L1", "L2", "L3", "L4", "L5"],
+      correct: 4,
+      explanation:
+        "A posterolateral herniation of the intervertebral disc at L4–L5 compresses the <b>L5 spinal nerve root</b>. In the lumbar region the nerve roots exit below the named vertebra and the L5 root lies directly posterior to the L4–L5 disc.\n\nBRS says:\n\nA herniated (slipped) disk is a protrusion of the nucleus pulposus through the annulus fibrosus of the intervertebral disk into the intervertebral foramen or into the vertebral canal, compressing the spinal nerve root. It commonly occurs posterolaterally where the annulus fibrosus is not reinforced by the posterior longitudinal ligament and frequently affects the lumbar region. A posterolateral herniation of the disk at the level L4 to L5, for example, would be likely to damage fifth lumbar nerve roots, not fourth lumbar nerve roots.",
+      uz: {
+        q: "45 yoshli ayol 2 yildan beri chap pastki belda o‘rtacha og‘riq sezib kelgan; og‘riq chap pastki oyoqqa tarqalgan. Gazli ichimliklar qutisini ko‘targandan keyin og‘riq birdan kuchaydi. U shoshilinch yordam bo‘limiga yotqizildi. Rentgenologik tekshiruv L4 va L5 umurtqalararo disk churrasini aniqladi. Disk churrasi qaysi nervni eng ko‘p zararlagan?",
+        a: ["L1", "L2", "L3", "L4", "L5"],
+        explanation:
+          "L4–L5 darajasidagi orqa lateral disk churrasi <b>L5 orqa miya nerv ildizini</b> ezadi. Bel sohasida nerv ildizlari nomlangan umurtqadan pastga chiqadi va L5 ildiz L4–L5 diskning bevosita orqasida joylashadi.\n\nBRS says:\n\nDisk churrasi bu dildirоq yadro (nucleus pulposus) ni fibroz halqa (annulus fibrosus) orqali umurtqalararo teshikka yoki umurtqa kanaliga boʻrtib chiqishiga aytiladi. Natijada spinal nerv ildizlari eziladi. Bu koʻpincha fibroz halaqning orqa pastga yoʻnalgan boylam bilan mustahkamlanmagan qismida, orqa lateral tarafda yuzaga keladi, odatda bel sohasida uchraydi. Misol uchun, L4 va L5 umurtqalar sohasidagi disk orqa lateral tomondan churra boʻlsa, L5 nerv ildizini zararlashga moyil.",
+      },
+    },
+    {
+      q: "A 1-year-old girl is brought to the clinic for a routine checkup. The child appears normal except for a dimpling of the skin in the midline of the lumbar region with a tuft of hair growing over the dimple. What is this relatively common condition that results from incomplete embryologic development?",
+      a: [
+        "Meningomyelocele",
+        "Meningocele",
+        "Spina bifida occulta",
+        "Spina bifida cystica",
+        "Rachischisis",
+      ],
+      correct: 2,
+      explanation:
+        "<b>Spina bifida occulta</b> is failure of the vertebral arches to fuse, producing only a bony defect, often marked by a small tuft of hair over the affected skin. There is no protrusion of meninges or neural tissue.\n\nBRS says:\n\nSpina bifida is a developmental anomaly characterized by defective closure of the vertebral arch associated with maternal folic acid deficiency and is classified as follows: (a) <b>spina bifida occulta</b>—failure of the vertebral arch to fuse (bony defect only with a small tuft of hair over the affected area of skin), (b) <b>meningocele</b>—protrusion of the meninges through the unfused arch of the vertebra, (c) <b>meningomyelocele</b>—protrusion of the spinal cord and the meninges, and (d) <b>myeloschisis (rachischisis)</b>—a cleft spinal cord due to failure of neural folds to close.",
+      uz: {
+        q: "1 yoshli qizcha oddiy ko‘rik uchun klinikkaga olib kelindi. Bola normal ko‘rinadi, faqat bel sohasining o‘rta chizig‘ida terida chuqurcha va uning ustida bir tutam soch bor. Bu to‘liq rivojlanmagan embriologik rivojlanish natijasida yuzaga keladigan nisbatan keng tarqalgan holat nima?",
+        a: [
+          "Meningomiyelosele",
+          "Meningosele",
+          "Spina bifida occulta",
+          "Spina bifida cystica",
+          "Rahishizis",
+        ],
+        explanation:
+          "<b>Spina bifida occulta</b> umurtqa ravog‘ining birlashmasligi bilan xarakterlanadi; faqat suyak nuqsoni mavjud, odatda zararlangan teri ustida bir tutam soch bo‘ladi. Miya pardalari yoki nerv to‘qimasi bo‘rtib chiqmaydi.\n\nBRS says:\n\nSpina bifida rivojlanish nuqsoni bo‘lib, umurtqa kanalining yopilmasligi hisobiga kelib chiqadi. Homiladorlik davrida folat kislota yetishmovchiligi bilan bog‘liq. Uning turlari: (a) <b>Spina bifida occulta</b> – umurtqa ravoblari birlashmasligi (faqatgina suyakdagi nuqson, nuqson sohasidagi teri yuzasida bir tutam tuklar bo‘ladi), (b) <b>Meningosele</b> – umurtqa ravoblarining birlashmagan qismidan miya pardalarining bo‘rtib turishi, (c) <b>Meningomiyelosele</b> – orqa miya va miya pardalarining bo‘rtib turishi, (d) <b>Miyeloshizis</b> (rahishizis) – nerv nayi berkilishidagi nuqson tufayli yuzaga kelgan orqa miyadagi yoriq.",
+      },
+    },
+    {
+      q: "A 39-year-old man presents with severe neck pain after a whiplash injury, sustained when his car was struck from behind. Radiologic studies reveal trauma to the ligament lying on the anterior surface of the cervical vertebral bodies. Which ligament is most likely disrupted?",
+      a: [
+        "Anterior longitudinal ligament",
+        "Ligamentum flavum",
+        "Nuchal ligament",
+        "Posterior longitudinal ligament",
+        "Transverse cervical ligament",
+      ],
+      correct: 0,
+      explanation:
+        "The <b>anterior longitudinal ligament</b> runs along the anterior surface of the vertebral bodies and intervertebral discs from the skull to the sacrum. It is stretched and commonly torn in hyperextension (whiplash) injuries.\n\nBRS says:\n\nAnterior longitudinal ligament runs from the skull (occipital bone) to the sacrum on the anterior surface of the vertebral bodies and intervertebral disks. Limits extension of the vertebral column, supports the annulus fibrosus anteriorly, and resists gravitational pull.",
+      uz: {
+        q: "39 yoshli erkak mashinasi orqadan urilganida “qamchi zarbasi” jarohati olganidan keyin kuchli bo‘yin og‘rig‘i bilan murojaat qildi. Rentgenologik tekshiruv bo‘yin umurtqalari tanasining oldingi yuzasida joylashgan boylamning shikastlanishini ko‘rsatdi. Qaysi boylam eng ko‘p uzilgan?",
+        a: [
+          "Anterior longitudinal boylam",
+          "Ligamentum flavum",
+          "Nuchal boylam",
+          "Posterior longitudinal boylam",
+          "Transverse cervical boylam",
+        ],
+        explanation:
+          "<b>Anterior longitudinal boylam</b> umurtqa tanalari va umurtqalararo disklarning oldingi yuzasi bo‘ylab kalla suyagidan dumg‘azagacha o‘tadi. U giperekstenziya (“qamchi zarbasi”) jarohatlarida cho‘ziladi va ko‘pincha uziladi.\n\nBRS says:\n\nAnterior longitudinal boylam kalla suyagidan (ensa suyagi) dumg‘azagacha umurtqa tanalari va umurtqalararo disklarning oldingi yuzasida o‘tadi. Umurtqa pog‘onasining yozilishini cheklaydi, annulus fibrosusni oldindan qo‘llab-quvvatlaydi va tortishish kuchiga qarshi turadi.",
+      },
+    },
+    {
+      q: "A 65-year-old man complains of severe back pain and the inability to move his left lower limb. Radiologic studies demonstrate compression of nerve elements at the intervertebral foramen between vertebrae L5 and S1. Which structure is most likely responsible for this space-occupying lesion?",
+      a: [
+        "Anulus fibrosus",
+        "Nucleus pulposus",
+        "Posterior longitudinal ligament",
+        "Anterior longitudinal ligament",
+        "Ligamentum flavum",
+      ],
+      correct: 1,
+      explanation:
+        "Disc herniation is produced by protrusion of the <b>nucleus pulposus</b> through a tear in the annulus fibrosus, most often posterolaterally into the intervertebral foramen, compressing the exiting nerve root.\n\nBRS says:\n\nA herniated (slipped) disk is a protrusion of the nucleus pulposus through the annulus fibrosus of the intervertebral disk into the intervertebral foramen or into the vertebral canal, compressing the spinal nerve root. It commonly occurs posterolaterally where the annulus fibrosus is not reinforced by the posterior longitudinal ligament.",
+      uz: {
+        q: "65 yoshli erkak kuchli orqa og‘rig‘i va chap pastki oyoqni harakatlantira olmaslikdan shikoyat qildi. Rentgenologik tekshiruv L5 va S1 umurtqalar orasidagi umurtqalararo teshikda nerv elementlarining siqilishini ko‘rsatdi. Bu bo‘shliqni egallovchi jarayon uchun qaysi tuzilma eng ko‘p javobgar?",
+        a: [
+          "Annulus fibrosus",
+          "Nucleus pulposus",
+          "Posterior longitudinal boylam",
+          "Anterior longitudinal boylam",
+          "Ligamentum flavum",
+        ],
+        explanation:
+          "Disk churrasi <b>nucleus pulposus</b>ning annulus fibrosusdagi yoriq orqali bo‘rtib chiqishi natijasida yuzaga keladi; eng ko‘p orqa lateral tomonga umurtqalararo teshikka chiqib, chiqayotgan nerv ildizini ezadi.\n\nBRS says:\n\nDisk churrasi bu dildirоq yadro (nucleus pulposus) ni fibroz halaq (annulus fibrosus) orqali umurtqalararo teshikka yoki umurtqa kanaliga boʻrtib chiqishiga aytiladi. Natijada spinal nerv ildizlari eziladi. Bu koʻpincha fibroz halaqning orqa pastga yoʻnalgan boylam bilan mustahkamlanmagan qismida, orqa lateral tarafda yuzaga keladi.",
+      },
+    },
+    {
+      q: "A 53-year-old man is admitted to the emergency department due to severe back pain. MRI examination reveals anterior dislocation of the body of the L5 vertebra upon the sacrum. Which of the following is the most likely diagnosis?",
+      a: [
+        "Spondylolysis",
+        "Spondylolisthesis",
+        "Herniation of intervertebral disc",
+        "Lordosis",
+        "Scoliosis",
+      ],
+      correct: 1,
+      explanation:
+        "<b>Spondylolisthesis</b> is the forward displacement of one vertebra over another, most commonly of L5 over the sacrum, usually due to a developmental defect or fracture of the pars interarticularis.\n\nBRS says:\n\nSpondylolisthesis is a forward displacement of one vertebra over another, usually of the fifth lumbar over the body of the sacrum, or of the fourth lumbar over the fifth; it is usually due to a developmental defect or traumatic fracture of the pedicle, lamina, or facets (pars interarticularis).",
+      uz: {
+        q: "53 yoshli erkak kuchli orqa og‘rig‘i bilan shoshilinch yordam bo‘limiga yotqizildi. MRT tekshiruvi L5 umurtqa tanasining dumg‘aza suyagi ustida oldinga siljishini ko‘rsatdi. Quyidagi tashxislardan qaysi biri eng ehtimolli?",
+        a: [
+          "Spondiloliz",
+          "Spondilolistez",
+          "Umurtqalararo disk churrasi",
+          "Lordoz",
+          "Skolioz",
+        ],
+        explanation:
+          "<b>Spondilolistez</b> bir umurtqaning boshqa umurtqa ustida oldinga siljishi bo‘lib, eng ko‘p L5 ning dumg‘aza ustida kuzatiladi; odatda rivojlanish nuqsoni yoki pars interarticularis sinishi sababli yuzaga keladi.\n\nBRS says:\n\nSpondilolistez bir umurtqaning boshqa umurtqa ustida oldinga siljib joylashishi va bu holat, odatda, beshinchi bel umurtqasining dung‘aza umurtqasi ustida yoki to‘rtinchi bel umurtqasining beshinchi bel umurtqasi ustida kuzatiladi. Sabablari: rivojlanish nuqsoni yoki umurtqa oyoqchasi, plastinkasi va bo‘g‘im yuzasining travmatik sinishlari.",
+      },
+    },
+    {
+      q: "A 23-year-old woman is admitted to the hospital due to back pain. Radiologic examination reveals that she suffers from a clinical condition affecting her vertebral column. Her history reveals that she suffered from polio and has a muscular dystrophy. Which of the following conditions of the vertebral column will most likely be present in this patient?",
+      a: [
+        "Hyperlordosis",
+        "Hyperkyphosis",
+        "Scoliosis",
+        "Spina bifida",
+        "Osteoarthritis",
+      ],
+      correct: 2,
+      explanation:
+        "<b>Scoliosis</b> is a lateral curvature of the vertebral column that results from unequal growth, pathologic erosion of vertebral bodies, or asymmetric paralysis or weakness of the vertebral muscles (as occurs in polio and muscular dystrophy).\n\nBRS says:\n\nScoliosis is a condition of lateral deviation resulting from unequal growth of the vertebral column, pathologic erosion of vertebral bodies, or asymmetric paralysis or weakness of vertebral muscles.",
+      uz: {
+        q: "23 yoshli ayol orqa og‘rig‘i bilan kasalxonaga yotqizildi. Rentgenologik tekshiruv umurtqa pog‘onasiga ta’sir qiluvchi klinik holatni aniqladi. Anamnezida poliomiyelit va mushak distrofiyasi o‘tkazganligi ma’lum. Bemorda umurtqa pog‘onasining qaysi holati eng ko‘p kuzatilishi mumkin?",
+        a: [
+          "Giperlordoz",
+          "Giperkifoz",
+          "Skolioz",
+          "Spina bifida",
+          "Osteoartrit",
+        ],
+        explanation:
+          "<b>Skolioz</b> umurtqa pog‘onasining lateral og‘ishi bo‘lib, notekis o‘sish, umurtqa tanalarining patologik yemirilishi yoki umurtqa muskullarining assimetrik paralichi yoki kuchsizligi (poliomiyelit va mushak distrofiyasida kuzatiladi) natijasida yuzaga keladi.\n\nBRS says:\n\nSkolioz umurtqa pog‘onasining notekis o‘sishi, umurtqa tanalarining patologik yemirilishi, umurtqa muskullarining kuchsizligi yoki assimetrik paralichi natijasida yuzaga keladigan lateral og‘ish holati.",
+      },
+    },
+    {
+      q: "A 53-year-old man was in a head-on vehicle collision that resulted in compression of his spinal cord by the dens (odontoid process) of the axis, with resulting quadriplegia. Which of the following ligaments was most probably torn?",
+      a: [
+        "Anterior longitudinal ligament",
+        "Transverse ligament of the atlas",
+        "Ligamentum flavum",
+        "Supraspinous ligament",
+        "Nuchal ligament",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>transverse ligament of the atlas</b> holds the dens of the axis against the anterior arch of the atlas. Its rupture allows the dens to move posteriorly and compress the spinal cord.\n\nBRS says:\n\nThe dens (odontoid process) projects superiorly from the body of the axis and articulates with the anterior arch of the atlas... It is supported by the cruciform, apical, and alar ligaments and the tectorial membrane.\n\nFracture of the atlas... causing fracture of the lateral masses and rupture of the transverse ligament.",
+      uz: {
+        q: "53 yoshli erkak oldindan to‘qnashuvda jarohat oldi; aksisning dens (odontoid o‘siq) orqa miyani siqib, tetraplegiya rivojlandi. Qaysi boylam eng ko‘p uzilgan?",
+        a: [
+          "Anterior longitudinal boylam",
+          "Atlasning ko‘ndalang boylami",
+          "Ligamentum flavum",
+          "Supraspinous boylam",
+          "Nuchal boylam",
+        ],
+        explanation:
+          "<b>Atlasning ko‘ndalang boylami</b> aksis densini atlasning oldingi ravog‘iga bosib turadi. Uning uzilishi densning orqaga siljishiga va orqa miyani ezishiga imkon beradi.\n\nBRS says:\n\nDens (odontoid o‘siq) aksis tanasidan yuqoriga yo‘nalgan va atlasning oldingi ravog‘i bilan bo‘g‘im hosil qiladi... U xochsimon, apikal va qanotsimon boylamlar hamda tektorial membrana bilan mustahkamlangan.\n\nAtlas sinishi... lateral massalarning sinishi va ko‘ndalang boylam uzilishiga sabab bo‘ladi.",
+      },
+    },
+    {
+      q: "A 79-year-old man, a retired military veteran, presents to the outpatient clinic with an abnormal curvature of the vertebral column. He complains that it has become increasingly painful to walk around town. Upon physical examination, he has an abnormally increased convexity to his thoracic curvature resulting from osteoporosis. Which of the following is the most likely clinical condition of this patient's spine?",
+      a: [
+        "Scoliosis",
+        "Hyperkyphosis",
+        "Spinal stenosis",
+        "Lordosis",
+        "Herniated disc",
+      ],
+      correct: 1,
+      explanation:
+        "An abnormally increased convexity of the thoracic curvature due to osteoporosis is <b>hyperkyphosis</b> (hunchback).\n\nBRS says:\n\nKyphosis (hunchback or humpback), an abnormally increased thoracic curvature resulting from osteoporosis.",
+      uz: {
+        q: "79 yoshli nafaqadagi harbiy veteran ambulatoriya klinikasiga umurtqa pog‘onasining anormal egriligi bilan murojaat qildi. U shahar bo‘ylab yurishda og‘riq kuchayganini aytdi. Fizik tekshiruvda osteoporoz tufayli ko‘krak egriligining anormal ortgan qavariqligi aniqlandi. Bemor umurtqasining eng ehtimolli klinik holati qaysi?",
+        a: [
+          "Skolioz",
+          "Giperkifoz",
+          "Spinal stenoz",
+          "Lordoz",
+          "Disk churrasi",
+        ],
+        explanation:
+          "Osteoporoz tufayli ko‘krak egriligining anormal ortgan qavariqligi <b>giperkifoz</b> (bukri) hisoblanadi.\n\nBRS says:\n\nKifoz (bukri odam) osteoporoz natijasida yuzaga keladigan abnormal kuchaygan ko‘krak egriligi.",
+      },
+    },
+    {
+      q: "A 62-year-old woman is admitted to the hospital because of her severe back pain. Radiologic examination reveals that the L4 vertebral body has slipped anteriorly, with fracture of the zygapophysial joint. What is the proper name of this condition?",
+      a: [
+        "Spondylolysis and spondylolisthesis",
+        "Spondylolisthesis",
+        "Crush vertebral fracture",
+        "Intervertebral disc herniation",
+        "Klippel-Feil syndrome",
+      ],
+      correct: 0,
+      explanation:
+        "Anterior slippage of a vertebral body (usually L4 or L5) together with fracture of the pars interarticularis / zygapophysial joint is called <b>spondylolysis with spondylolisthesis</b>.\n\nBRS says:\n\nSpondylolisthesis is a forward displacement of one vertebra over another... usually due to a developmental defect or traumatic fracture of the pedicle, lamina, or facets (pars interarticularis).",
+      uz: {
+        q: "62 yoshli ayol kuchli orqa og‘rig‘i bilan kasalxonaga yotqizildi. Rentgenologik tekshiruv L4 umurtqa tanasining oldinga siljishi va zygapofizeal bo‘g‘im sinishini ko‘rsatdi. Bu holatning to‘g‘ri nomi nima?",
+        a: [
+          "Spondiloliz va spondilolistez",
+          "Spondilolistez",
+          "Umurtqa tanasi ezilish sinishi",
+          "Umurtqalararo disk churrasi",
+          "Klippel-Feil sindromi",
+        ],
+        explanation:
+          "Umurtqa tanasining (odatda L4 yoki L5) oldinga siljishi va pars interarticularis / zygapofizeal bo‘g‘im sinishi bilan birgalikda <b>spondiloliz va spondilolistez</b> deb ataladi.\n\nBRS says:\n\nSpondilolistez bir umurtqaning boshqa umurtqa ustida oldinga siljib joylashishi... odatda rivojlanish nuqsoni yoki umurtqa oyoqchasi, plastinkasi va bo‘g‘im yuzasining travmatik sinishlari sababli yuzaga keladi.",
+      },
+    },
+  ],
+
+  SPINAL_CORD: [
+    // ========== SOFT TISSUES OF THE BACK (pp. 30–33) ==========
+    {
+      q: "A 35-year-old man is admitted to the emergency department after a severe car crash. Radiologic examination reveals a complete transection of the spinal accessory nerve on the left side. Which of the following muscles is most likely paralyzed?",
+      a: [
+        "Trapezius",
+        "Latissimus dorsi",
+        "Rhomboid major",
+        "Serratus posterior superior",
+        "Levator scapulae",
+      ],
+      correct: 0,
+      explanation:
+        "The <b>spinal accessory nerve (CN XI)</b> provides motor innervation to the <b>trapezius</b> and sternocleidomastoid muscles. Transection results in paralysis or weakness of the trapezius, with difficulty elevating, retracting and rotating the scapula.\n\nBRS says:\n\nAccessory nerve (n. accessorius) consists of a cranial part that joins the vagus nerve and a spinal part that supplies the sternocleidomastoid and trapezius muscles.\n\nTrapezius is innervated by the spinal accessory nerve and adducts, rotates, elevates and depresses the scapula.",
+      uz: {
+        q: "35 yoshli erkak og‘ir avtohalokatdan keyin shoshilinch yordam bo‘limiga yotqizildi. Rentgenologik tekshiruv chap tomonda qo‘shimcha nervning to‘liq uzilishini aniqladi. Quyidagi muskullardan qaysi biri eng ko‘p falaj bo‘lishi mumkin?",
+        a: [
+          "Trapetsiyasimon",
+          "Orqaning keng muskuli",
+          "Katta rombsimon",
+          "Orqa yuqori tishsimon",
+          "Kurakni ko‘taruvchi",
+        ],
+        explanation:
+          "<b>Qo‘shimcha nerv (CN XI)</b> <b>trapetsiyasimon</b> va to‘sh-o‘mrov-so‘rg‘ichsimon muskullarni motor innervatsiya qiladi. Bu nervning uzilishi trapetsiyasimon muskulning falajiga olib keladi, natijada kurakni ko‘tarish, orqaga tortish va aylantirish qiyinlashadi.\n\nBRS says:\n\nQo‘shimcha nerv (n.accessorius) adashgan nervga qo‘shiluvchi kranial qism hamda to‘sh-o‘mrov-so‘rg‘ichsimon muskuli va trapetsiyasimon muskulni nerv tolalari bilan ta’minlaydigan spinal qismlardan iborat.\n\nTrapetsiyasimon muskul qo‘shimcha nerv bilan innervatsiyalanadi va kurakni adduksiya qiladi, aylantiradi, ko‘taradi va tushiradi.",
+      },
+    },
+    {
+      q: "A 25-year-old man is admitted to the emergency department after a stab wound to the upper back near the medial border of the scapula. Examination reveals paralysis of the rhomboid major and minor muscles. Which of the following nerves is most likely injured?",
+      a: [
+        "Spinal accessory nerve",
+        "Dorsal scapular nerve",
+        "Thoracodorsal nerve",
+        "Long thoracic nerve",
+        "Suprascapular nerve",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>dorsal scapular nerve (C5)</b> supplies the rhomboid major, rhomboid minor and levator scapulae. Injury causes paralysis of the rhomboids with difficulty adducting (retracting) the scapula.\n\nBRS says:\n\nDorsal scapular nerve (C5) arises from the ventral primary ramus of the fifth cervical nerve and runs along the deep branch of the transverse cervical artery. It supplies the rhomboid major and minor and the levator scapulae muscles.",
+      uz: {
+        q: "25 yoshli erkak kurak suyagining medial chegarasi yaqinida yuqori orqaga pichoq jarohati bilan shoshilinch yordam bo‘limiga yotqizildi. Tekshiruv katta va kichik rombsimon muskullarning falajini aniqladi. Quyidagi nervlardan qaysi biri eng ko‘p shikastlangan?",
+        a: [
+          "Qo‘shimcha nerv",
+          "Orqa kurak nervi",
+          "Ko‘krak-orqa nervi",
+          "Uzun ko‘krak nervi",
+          "Kurak usti nervi",
+        ],
+        explanation:
+          "<b>Orqa kurak nervi (C5)</b> katta rombsimon, kichik rombsimon va kurakni ko‘taruvchi muskullarni ta’minlaydi. Bu nervning shikastlanishi rombsimon muskullarning falajiga olib keladi, natijada kurakni adduksiya (orqaga tortish) qilish qiyinlashadi.\n\nBRS says:\n\nOrqa kurak nervi (C5) beshinchi orqa miya bo‘yin nervining oldingi birlamchi shoxidan ajralib chiqib, bo‘yin ko‘ndalang arteriyasi chuqur tarmog‘i bo‘ylab yo‘naladi. Bu nerv katta va kichik rombsimon muskul hamda kurakni ko‘taruvchi muskulni nervlar bilan ta’minlaydi.",
+      },
+    },
+    {
+      q: "A 42-year-old woman is admitted to the hospital after a mastectomy in which the thoracodorsal nerve was inadvertently cut. Which of the following muscles is most likely weakened or paralyzed?",
+      a: [
+        "Trapezius",
+        "Latissimus dorsi",
+        "Rhomboid major",
+        "Serratus anterior",
+        "Levator scapulae",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>thoracodorsal nerve (C6–C8)</b> supplies the <b>latissimus dorsi</b>. Injury (common during axillary dissection or mastectomy) causes weakness of adduction, extension and medial rotation of the arm.\n\nBRS says:\n\nLatissimus dorsi is innervated by the thoracodorsal nerve and adducts, extends and medially rotates the arm.",
+      uz: {
+        q: "42 yoshli ayol mastektomiya amaliyoti paytida ko‘krak-orqa nervi tasodifan kesilganidan keyin kasalxonaga yotqizildi. Quyidagi muskullardan qaysi biri eng ko‘p kuchsizlangan yoki falaj bo‘lishi mumkin?",
+        a: [
+          "Trapetsiyasimon",
+          "Orqaning keng muskuli",
+          "Katta rombsimon",
+          "Oldingi tishsimon",
+          "Kurakni ko‘taruvchi",
+        ],
+        explanation:
+          "<b>Ko‘krak-orqa nervi (C6–C8)</b> <b>orqaning keng muskuli</b>ni ta’minlaydi. Bu nervning shikastlanishi (aksillar limfa tugunlari disseksiyasi yoki mastektomiya paytida tez-tez uchraydi) qo‘lning adduksiyasi, yozilishi va medial rotatsiyasining kuchsizligiga olib keladi.\n\nBRS says:\n\nOrqaning keng muskuli ko‘krak-orqa nervi bilan innervatsiyalanadi va qo‘lni adduksiya qiladi, yozadi va medial tomonga aylantiradi.",
+      },
+    },
+    {
+      q: "A 55-year-old man is examined in the clinic. The physician places a stethoscope on the back in the triangle of auscultation to listen to lung sounds. Which of the following structures forms the medial border of this triangle?",
+      a: [
+        "Latissimus dorsi",
+        "Trapezius",
+        "Rhomboid major",
+        "Scapula",
+        "Erector spinae",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>triangle of auscultation</b> is bounded superiorly by the trapezius, inferiorly by the latissimus dorsi and laterally by the medial border of the scapula. Its floor is the rhomboid major. This is where breath sounds are heard most clearly.\n\nBRS says:\n\nTriangle of auscultation is bounded by the upper border of the latissimus dorsi, the lateral border of the trapezius and the medial border of the scapula. Its floor is formed by the rhomboid major. This is the site where breath sounds are heard most clearly with a stethoscope.",
+      uz: {
+        q: "55 yoshli erkak klinikada tekshirildi. Shifokor o‘pka tovushlarini eshitish uchun stetoskopni orqadagi auskultatsiya uchburchagiga qo‘ydi. Quyidagi tuzilmalardan qaysi biri bu uchburchakning medial chegarasini hosil qiladi?",
+        a: [
+          "Orqaning keng muskuli",
+          "Trapetsiyasimon",
+          "Katta rombsimon",
+          "Kurak suyagi",
+          "Umurtqani rostlovchi",
+        ],
+        explanation:
+          "<b>Auskultatsiya uchburchagi</b> yuqoridan trapetsiyasimon, pastdan orqaning keng muskuli va lateral tomondan kurak suyagining medial chegarasi bilan chegaralanadi. Uning tubini katta rombsimon muskul hosil qiladi. Bu joyda stetoskop yordamida nafas tovushlari eng aniq eshitiladi.\n\nBRS says:\n\nAuskultatsiya uchburchagi orqaning keng muskuli yuqori chegarasini, trapetsiyasimon muskul lateral chegarasini va kurak suyagi medial chegarasini hosil qiladi. Tubini katta rombsimon muskul hosil qiladi. Bu soha nafas tovushlari stetoskop yordamida eng aniq eshitiladigan joy hisoblanadi.",
+      },
+    },
+    {
+      q: "A 28-year-old woman presents with a lumbar hernia. Physical examination reveals a defect in the lumbar triangle (of Petit). Which of the following structures forms the floor of this triangle?",
+      a: [
+        "Latissimus dorsi",
+        "External oblique",
+        "Internal oblique",
+        "Trapezius",
+        "Erector spinae",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>lumbar triangle (of Petit)</b> is bounded by the iliac crest inferiorly, latissimus dorsi medially and the posterior free border of the external oblique laterally. Its floor is the <b>internal oblique</b>. This is a potential site for lumbar hernia.\n\nBRS says:\n\nLumbar triangle (of Petit) is bounded by the iliac crest, latissimus dorsi and posterior free border of the external oblique muscle. Its floor is formed by the internal oblique muscle. This is a potential site for a lumbar hernia.",
+      uz: {
+        q: "28 yoshli ayol bel churrasi bilan murojaat qildi. Fizik tekshiruv bel uchburchagida (Petit uchburchagi) nuqsonni aniqladi. Quyidagi tuzilmalardan qaysi biri bu uchburchakning tubini hosil qiladi?",
+        a: [
+          "Orqaning keng muskuli",
+          "Tashqi qiyshiq",
+          "Ichki qiyshiq",
+          "Trapetsiyasimon",
+          "Umurtqani rostlovchi",
+        ],
+        explanation:
+          "<b>Bel uchburchagi (Petit uchburchagi)</b> pastidan yonbosh suyagi qirrasi, medialdan orqaning keng muskuli va lateraldan tashqi qiyshiq muskulning orqa erkin chegarasi bilan chegaralanadi. Uning tubini <b>ichki qiyshiq</b> muskul hosil qiladi. Bu sohada qorin churrasi chiqishi mumkin.\n\nBRS says:\n\nBel uchburchagi (Petit uchburchagi) yonbosh suyagi qirrasi, orqaning keng muskuli va qorinning tashqi qiyshiq muskuli orqa erkin chegarasidan tashkil topgan. Tubini qorinning ichki qiyshiq muskuli hosil qiladi. Bu sohada qorin churrasi chiqishi mumkin.",
+      },
+    },
+    {
+      q: "A 45-year-old man is admitted to the hospital after a fall. MRI reveals injury to the muscles of the suboccipital triangle. Which of the following nerves is most likely affected?",
+      a: [
+        "Greater occipital nerve (C2)",
+        "Lesser occipital nerve (C2)",
+        "Suboccipital nerve (C1)",
+        "Third occipital nerve (C3)",
+        "Spinal accessory nerve",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>suboccipital nerve (dorsal ramus of C1)</b> supplies the four muscles of the suboccipital triangle (rectus capitis posterior major and minor, obliquus capitis superior and inferior). It has no cutaneous distribution.\n\nBRS says:\n\nSuboccipital nerve is the dorsal ramus of C1 and supplies the muscles of the suboccipital triangle. The greater occipital nerve (C2) is sensory to the skin of the occipital region and emerges between the obliquus capitis inferior and semispinalis capitis.",
+      uz: {
+        q: "45 yoshli erkak yiqilishdan keyin kasalxonaga yotqizildi. MRT ensa osti uchburchagi muskullarining shikastlanishini ko‘rsatdi. Quyidagi nervlardan qaysi biri eng ko‘p ta’sirlangan?",
+        a: [
+          "Katta ensa nervi (C2)",
+          "Kichik ensa nervi (C2)",
+          "Ensa osti nervi (C1)",
+          "Uchinchi ensa nervi (C3)",
+          "Qo‘shimcha nerv",
+        ],
+        explanation:
+          "<b>Ensa osti nervi (C1 orqa shoxi)</b> ensa osti uchburchagining to‘rtta muskulini (boshning orqa katta va kichik to‘g‘ri, yuqori va pastki qiyshiq) ta’minlaydi. Uning teri tarqalishi yo‘q.\n\nBRS says:\n\nEnsa osti nervi C1 ning orqa shoxidan iborat va ensa osti uchburchagi muskullarini ta’minlaydi. Katta ensa nervi (C2) ensa sohasi terisini sezuvchi nerv bo‘lib, boshning pastki qiyshiq va yarim qirrali muskullari orasidan chiqadi.",
+      },
+    },
+    {
+      q: "A 17-year-old boy is brought to the emergency department after a gunshot wound that entered the suboccipital triangle and injured the suboccipital nerve and vertebral artery. Which of the following muscles is least likely to be affected by injury to the suboccipital nerve?",
+      a: [
+        "Rectus capitis posterior major",
+        "Semispinalis capitis",
+        "Obliquus capitis superior",
+        "Obliquus capitis inferior",
+        "Rectus capitis posterior minor",
+      ],
+      correct: 1,
+      explanation:
+        "The suboccipital nerve (C1) supplies only the four muscles of the suboccipital triangle. The <b>semispinalis capitis</b> is innervated mainly by the greater occipital nerve (C2) and other dorsal rami, not primarily by the suboccipital nerve.\n\nBRS says:\n\nThe suboccipital triangle is bounded by the rectus capitis posterior major, obliquus capitis superior and obliquus capitis inferior. The suboccipital nerve (C1) supplies these muscles. The greater occipital nerve (C2) emerges between the obliquus capitis inferior and semispinalis capitis and supplies the skin of the occipital region and may supply the semispinalis capitis.",
+      uz: {
+        q: "17 yoshli bola ensa osti uchburchagiga kirib, ensa osti nervi va umurtqa arteriyasini shikastlagan o‘q jarohati bilan shoshilinch yordam bo‘limiga olib kelindi. Quyidagi muskullardan qaysi biriga ensa osti nervining shikastlanishi eng kam ta’sir qiladi?",
+        a: [
+          "Boshning orqa katta to‘g‘ri muskuli",
+          "Boshning yarim qirrali muskuli",
+          "Boshning yuqori qiyshiq muskuli",
+          "Boshning pastki qiyshiq muskuli",
+          "Boshning orqa kichik to‘g‘ri muskuli",
+        ],
+        explanation:
+          "Ensa osti nervi (C1) faqat ensa osti uchburchagining to‘rtta muskulini ta’minlaydi. <b>Boshning yarim qirrali muskuli</b> asosan katta ensa nervi (C2) va boshqa orqa shoxlar bilan innervatsiyalanadi, ensa osti nervi bilan emas.\n\nBRS says:\n\nEnsa osti uchburchagi boshning orqa katta to‘g‘ri, yuqori qiyshiq va pastki qiyshiq muskullari bilan chegaralanadi. Ensa osti nervi (C1) bu muskullarni ta’minlaydi. Katta ensa nervi (C2) pastki qiyshiq va yarim qirrali muskullar orasidan chiqadi va ensa sohasi terisini innervatsiya qiladi, shuningdek yarim qirrali muskulni ham innervatsiya qilishi mumkin.",
+      },
+    },
+    {
+      q: "A 34-year-old woman is admitted after a skiing accident in which several dorsal primary rami of spinal nerves were injured. Which of the following muscles is most likely affected by injury to the dorsal primary rami?",
+      a: [
+        "Latissimus dorsi",
+        "Trapezius",
+        "Rhomboid major",
+        "Iliocostalis",
+        "Serratus posterior superior",
+      ],
+      correct: 3,
+      explanation:
+        "The deep (intrinsic) muscles of the back, including the <b>erector spinae group (iliocostalis, longissimus, spinalis)</b>, are innervated by the dorsal primary rami of spinal nerves. Superficial muscles (trapezius, latissimus dorsi, rhomboids) are innervated by ventral rami or cranial nerves.\n\nBRS says:\n\nDeep or intrinsic muscles of the back are innervated by the dorsal primary rami of the spinal nerves. The intermediate layer (sacrospinalis or erector spinae group) consists of the iliocostalis, longissimus and spinalis muscles.",
+      uz: {
+        q: "34 yoshli ayol chang‘i sporti mashg‘ulotlari vaqtida bir nechta orqa miya nervlarining orqa birlamchi shoxlarini zararlagan jarohatlar bilan kasalxonaga olib kelindi. Quyidagi muskullardan qaysi biriga orqa birlamchi shoxlarning shikastlanishi eng ko‘p ta’sir qilishi mumkin?",
+        a: [
+          "Orqaning keng muskuli",
+          "Trapetsiyasimon",
+          "Katta rombsimon",
+          "Yonbosh-qovurg‘a muskuli",
+          "Orqa yuqori tishsimon",
+        ],
+        explanation:
+          "Orqaning chuqur (ichki) muskullari, jumladan <b>umurtqani rostlovchi guruh (iliocostalis, longissimus, spinalis)</b>, orqa miya nervlarining orqa birlamchi shoxlari bilan innervatsiyalanadi. Yuzaki muskullar (trapetsiyasimon, orqaning keng, rombsimon) oldingi shoxlar yoki kranial nervlar bilan innervatsiyalanadi.\n\nBRS says:\n\nOrqaning chuqur yoki ichki muskullari orqa miya nervlarining orqa birlamchi shoxlari bilan innervatsiyalanadi. O‘rta qavat (sacrospinal yoki erector spinae guruh) iliocostalis, longissimus va spinalis muskullaridan iborat.",
+      },
+    },
+    {
+      q: "A 24-year-old patient suffered a lower back strain while lifting a heavy object. The lesion is located between the trapezius and latissimus dorsi. Which of the following structures is most likely located in this region and may be affected?",
+      a: [
+        "Triangle of auscultation",
+        "Lumbar triangle of Petit",
+        "Suboccipital triangle",
+        "Superior lumbar triangle",
+        "Inferior lumbar triangle",
+      ],
+      correct: 0,
+      explanation:
+        "The space between the trapezius and latissimus dorsi (with the medial border of the scapula) forms the <b>triangle of auscultation</b>. The floor is the rhomboid major.\n\nBRS says:\n\nTriangle of auscultation is bounded by the upper border of the latissimus dorsi, the lateral border of the trapezius and the medial border of the scapula. Its floor is formed by the rhomboid major.",
+      uz: {
+        q: "24 yoshli bemor og‘ir narsa ko‘targanda pastki belning zo‘riqishi bilan shikastlandi. Jarohat trapetsiyasimon va orqaning keng muskuli orasida joylashgan. Quyidagi tuzilmalardan qaysi biri bu sohada joylashgan va ta’sirlanishi mumkin?",
+        a: [
+          "Auskultatsiya uchburchagi",
+          "Petit bel uchburchagi",
+          "Ensa osti uchburchagi",
+          "Yuqori bel uchburchagi",
+          "Pastki bel uchburchagi",
+        ],
+        explanation:
+          "Trapetsiyasimon va orqaning keng muskuli orasidagi (kurak medial chegarasi bilan) bo‘shliq <b>auskultatsiya uchburchagi</b>ni hosil qiladi. Uning tubi katta rombsimon muskuldır.\n\nBRS says:\n\nAuskultatsiya uchburchagi orqaning keng muskuli yuqori chegarasini, trapetsiyasimon muskul lateral chegarasini va kurak suyagi medial chegarasini hosil qiladi. Tubini katta rombsimon muskul hosil qiladi.",
+      },
+    },
+    {
+      q: "A 48-year-old man underwent suboccipital surgery in which the surgeon made a midline incision through the nuchal ligament. Which of the following muscles is most likely detached or retracted during this approach to reach the posterior arch of the atlas?",
+      a: [
+        "Trapezius and semispinalis capitis",
+        "Latissimus dorsi and rhomboid major",
+        "Erector spinae and multifidus",
+        "Splenius capitis and levator scapulae",
+        "Serratus posterior superior and inferior",
+      ],
+      correct: 0,
+      explanation:
+        "A midline suboccipital approach requires detachment or retraction of the <b>trapezius</b> and the underlying <b>semispinalis capitis</b> (and often splenius) to expose the posterior arch of the atlas and the suboccipital triangle.\n\nBRS says:\n\nThe trapezius and the deeper semispinalis capitis and splenius muscles form the superficial and intermediate layers overlying the suboccipital region. The nuchal ligament is the upward continuation of the supraspinous ligament.",
+      uz: {
+        q: "48 yoshli erkak ensa osti jarrohligi o‘tkazdi; jarroh nuchal boylam orqali o‘rta chiziqli kesma qildi. Atlasning orqa yoyiga yetish uchun quyidagi muskullardan qaysi biri eng ko‘p ajratiladi yoki tortib olinadi?",
+        a: [
+          "Trapetsiyasimon va boshning yarim qirrali muskuli",
+          "Orqaning keng muskuli va katta rombsimon",
+          "Umurtqani rostlovchi va multifidus",
+          "Boshning tasmasimon muskuli va kurakni ko‘taruvchi",
+          "Orqa yuqori va pastki tishsimon",
+        ],
+        explanation:
+          "O‘rta chiziqli ensa osti yondashuvi atlasning orqa yoyi va ensa osti uchburchagini ochish uchun <b>trapetsiyasimon</b> va uning ostidagi <b>boshning yarim qirrali</b> (va ko‘pincha tasmasimon) muskullarini ajratish yoki tortib olishni talab qiladi.\n\nBRS says:\n\nTrapetsiyasimon va uning ostidagi boshning yarim qirrali va tasmasimon muskullar ensa osti sohasini qoplovchi yuzaki va o‘rta qavatlarni hosil qiladi. Nuchal boylam o‘tkir o‘siq usti boylamining yuqoriga davomi hisoblanadi.",
+      },
+    },
+
+    // ========== SPINAL CORD & ASSOCIATED STRUCTURES (pp. 34–38) ==========
+    {
+      q: "A 3-year-old boy is brought to the clinic for a lumbar puncture. The physician inserts the needle in the midline between the spinous processes of L3 and L4. Why is this level considered safe in a child?",
+      a: [
+        "The spinal cord ends at the L1 vertebral level in children",
+        "The spinal cord ends at the L3 vertebral level in newborns and rises to L1–L2 in adults",
+        "The cauda equina begins at T12",
+        "The conus medullaris is located at S1",
+        "The filum terminale ends at L2",
+      ],
+      correct: 1,
+      explanation:
+        "In the adult the <b>conus medullaris</b> usually terminates at the lower border of L1 (or the L1–L2 disc). In the newborn the spinal cord ends at approximately L3 and gradually ascends. Therefore lumbar puncture is performed safely below L3 in children and between L3–L4 or L4–L5 in adults.\n\nBRS says:\n\nThe spinal cord ends at the level of the lower border of the first lumbar vertebra (or the intervertebral disc between L1 and L2) in the adult, whereas it ends at the level of the third lumbar vertebra in the newborn. The filum terminale is a prolongation of the pia mater from the conus medullaris to the dorsum of the coccyx.",
+      uz: {
+        q: "3 yoshli bola bel punksiyasi uchun klinikaga olib kelindi. Shifokor ignani L3 va L4 o‘tkir o‘siqlari orasidagi o‘rta chiziqqa kiritdi. Bolada bu daraja nima uchun xavfsiz hisoblanadi?",
+        a: [
+          "Bolalarda orqa miya L1 umurtqa darajasida tugaydi",
+          "Orqa miya yangi tug‘ilgan chaqaloqlarda L3 darajasida tugaydi va kattalarda L1–L2 ga ko‘tariladi",
+          "Cauda equina T12 dan boshlanadi",
+          "Conus medullaris S1 da joylashgan",
+          "Filum terminale L2 da tugaydi",
+        ],
+        explanation:
+          "Kattalarda <b>conus medullaris</b> odatda L1 pastki chegara (yoki L1–L2 umurtqalararo disk) darajasida tugaydi. Yangi tug‘ilgan chaqaloqlarda orqa miya taxminan L3 darajasida tugaydi va asta-sekin yuqoriga ko‘tariladi. Shuning uchun bel punksiyasi bolalarda L3 dan pastga, kattalarda L3–L4 yoki L4–L5 orasida xavfsiz bajariladi.\n\nBRS says:\n\nOrqa miya tugash qismi konus shaklda (conus medullaris) bo‘lib, L2 umurtqa yoki L1 va L2 umurtqalar orasidagi umurtqalararo diskka to‘g‘ri keladi. Fetal rivojlanish davrida umurtqa pog‘onasiga nisbatan sekin o‘sadi, shuning uchun tugash qismi yuqoriga ko‘tariladi va kattalarda L2 umurtqada, yangi tug‘ilgan chaqaloqlarda esa L3 sohasida tugaydi.",
+      },
+    },
+    {
+      q: "A 28-year-old pregnant woman is admitted to the delivery room. A caudal epidural anesthetic is administered. Through which of the following openings is the anesthetic most likely injected?",
+      a: [
+        "Intervertebral foramen",
+        "Sacral hiatus",
+        "Vertebral canal",
+        "Posterior sacral foramen",
+        "Anterior sacral foramen",
+      ],
+      correct: 1,
+      explanation:
+        "Caudal (sacral) epidural anesthesia is performed by injecting anesthetic through the <b>sacral hiatus</b> into the epidural space of the sacral canal. This blocks the sacral spinal nerves that form the lower part of the cauda equina.\n\nBRS says:\n\nCaudal anesthesia is used to block the spinal nerves in the lumbar and sacral regions. The anesthetic agent is injected into the epidural space through the sacral hiatus.",
+      uz: {
+        q: "28 yoshli homilador ayol tug‘ruq xonasiga yotqizildi. Kauda epidural anesteziya qo‘llanildi. Anestezik modda quyidagi teshiklardan qaysi biri orqali eng ko‘p yuboriladi?",
+        a: [
+          "Umurtqalararo teshik",
+          "Dumg‘aza yorig‘i",
+          "Umurtqa kanali",
+          "Orqa dumg‘aza teshigi",
+          "Oldingi dumg‘aza teshigi",
+        ],
+        explanation:
+          "Kauda (dumg‘aza) epidural anesteziya anestezik moddani <b>dumg‘aza yorig‘i</b> orqali dumg‘aza kanalining epidural bo‘shlig‘iga yuborish orqali amalga oshiriladi. Bu cauda equina ning pastki qismini hosil qiluvchi dumg‘aza orqa miya nervlarini bloklaydi.\n\nBRS says:\n\nKaudal anesteziya bel va dumg‘aza sohalaridagi orqa miya nervlarini bloklash uchun qo‘llaniladi. Anestezik modda dumg‘aza yorig‘i orqali epidural bo‘shliqqa yuboriladi.",
+      },
+    },
+    {
+      q: "A 22-year-old woman is admitted to the emergency department with signs of meningitis. A lumbar puncture is performed to obtain cerebrospinal fluid. Which of the following spaces is the needle most likely to enter to sample the CSF?",
+      a: [
+        "Epidural space",
+        "Subdural space",
+        "Subarachnoid space",
+        "Central canal",
+        "Subpial space",
+      ],
+      correct: 2,
+      explanation:
+        "Cerebrospinal fluid is located in the <b>subarachnoid space</b> between the arachnoid and pia mater. During lumbar puncture the needle traverses skin, fascia, supraspinous and interspinous ligaments, ligamentum flavum, epidural space, dura and arachnoid to reach the subarachnoid space.\n\nBRS says:\n\nThe subarachnoid space is a wide space between the arachnoid and pia mater and is filled with cerebrospinal fluid (CSF). It is enlarged in the lower lumbar region, forming the lumbar cistern, which contains the cauda equina and filum terminale and is the site of lumbar puncture.",
+      uz: {
+        q: "22 yoshli ayol meningit belgilari bilan shoshilinch yordam bo‘limiga yotqizildi. Serebrospinal suyuqlik olish uchun bel punksiyasi bajarildi. Ign a quyidagi bo‘shliqlardan qaysi biriga kirib, CSS ni olishi mumkin?",
+        a: [
+          "Epidural bo‘shliq",
+          "Subdural bo‘shliq",
+          "Subaraknoid bo‘shliq",
+          "Markaziy kanal",
+          "Subpial bo‘shliq",
+        ],
+        explanation:
+          "Serebrospinal suyuqlik araknoid va yumshoq parda orasidagi <b>subaraknoid bo‘shliq</b>da joylashgan. Bel punksiyasi paytida igna teri, fatsiya, o‘tkir o‘siq usti va orasi boylamlari, ligamentum flavum, epidural bo‘shliq, qattiq parda va araknoiddan o‘tib subaraknoid bo‘shliqqa yetadi.\n\nBRS says:\n\nSubaraknoid bo‘shliq araknoid va yumshoq parda orasidagi keng bo‘shliq bo‘lib, serebrospinal suyuqlik (SSS) bilan to‘lgan. U pastki bel sohasida kengayib, lumbar sisternani hosil qiladi; bu yerda cauda equina va filum terminale joylashgan va bel punksiyasi o‘tkaziladigan joy hisoblanadi.",
+      },
+    },
+    {
+      q: "A 55-year-old man is diagnosed with tethered cord syndrome. MRI reveals an abnormally low-lying conus medullaris attached to a thickened and shortened filum terminale. Which of the following structures is the filum terminale a prolongation of?",
+      a: [
+        "Dura mater",
+        "Arachnoid mater",
+        "Pia mater",
+        "Ligamentum flavum",
+        "Posterior longitudinal ligament",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>filum terminale</b> is a slender filament of <b>pia mater</b> that extends from the apex of the conus medullaris to the dorsum of the coccyx. It anchors the spinal cord inferiorly. In tethered cord syndrome the filum is abnormally short and thick.\n\nBRS says:\n\nThe filum terminale is a prolongation of the pia mater from the conus medullaris to the dorsum of the coccyx. Tethered cord syndrome is a congenital anomaly resulting from defective closure of the neural tube. It is characterized by an abnormally low conus medullaris tethered by a short, thickened filum terminale and results in progressive neurologic defects in the legs and feet and scoliosis.",
+      uz: {
+        q: "55 yoshli erkakda bog‘langan arqon sindromi tashxisi qo‘yildi. MRT anormal past joylashgan conus medullarisning qalinlashgan va qisqargan filum terminalega birikkanligini ko‘rsatdi. Filum terminale quyidagi tuzilmalardan qaysi birining davomi hisoblanadi?",
+        a: [
+          "Qattiq parda",
+          "Araknoid parda",
+          "Yumshoq parda",
+          "Ligamentum flavum",
+          "Orqa bo‘ylama boylam",
+        ],
+        explanation:
+          "<b>Filum terminale</b> <b>yumshoq parda</b>ning nozik ipi bo‘lib, conus medullaris uchidan dumg‘aza suyagining orqa yuzasiga cho‘ziladi. U orqa miyani pastga mahkamlaydi. Bog‘langan arqon sindromida filum anormal qisqa va qalin bo‘lib, miyani bog‘lab qo‘yadi va progressiv nevrologik nuqsonlarga olib keladi.\n\nBRS says:\n\nBog‘langan arqon sindromi nerv nayining nuqsonli berkilishi natijasida yuzaga keladigan tug‘ma anomaliya hisoblanadi. Bu holat abnormal past joylashgan, qisqa, qalinlashgan terminal ip (filum terminale) bilan bog‘langan miya konusi (conus medullaris) bilan xarakterlanadi va qo‘l, oyoqdagi progressiv nevrologik nuqsonlar va skoliozga olib keladi.",
+      },
+    },
+    {
+      q: "A male newborn infant is brought to the clinic by his mother and diagnosed with a congenital malformation. MRI studies reveal that the cerebellum and medulla oblongata are protruding inferiorly through the foramen magnum into the vertebral canal. What is this clinical condition called?",
+      a: [
+        "Meningocele",
+        "Klippel-Feil syndrome",
+        "Chiari II malformation",
+        "Hydrocephalus",
+        "Tethered cord syndrome",
+      ],
+      correct: 2,
+      explanation:
+        "<b>Chiari II (Arnold-Chiari) malformation</b> is a congenital anomaly in which the cerebellum and medulla oblongata herniate downward through the foramen magnum into the vertebral canal.\n\nBRS says:\n\nArnold-Chiari (Chiari) malformation is a congenital cerebellomedullary malformation in which the cerebellum and medulla oblongata protrude down through the foramen magnum into the vertebral canal.",
+      uz: {
+        q: "Erkak yangi tug‘ilgan chaqaloq onasi tomonidan klinikaga olib kelindi va tug‘ma nuqson tashxisi qo‘yildi. MRT miyacha va uzunchoq miyaning katta teshik orqali pastga umurtqa kanaliga bo‘rtib chiqqanligini ko‘rsatdi. Bu klinik holat qanday ataladi?",
+        a: [
+          "Meningosele",
+          "Klippel-Feil sindromi",
+          "Chiari II deformatsiyasi",
+          "Gidrotsefaliya",
+          "Bog‘langan arqon sindromi",
+        ],
+        explanation:
+          "<b>Chiari II (Arnold-Chiari) deformatsiyasi</b> tug‘ma anomaliya bo‘lib, unda miyacha va uzunchoq miya katta teshik orqali pastga umurtqa kanaliga bo‘rtib chiqadi.\n\nBRS says:\n\nArnold-Kiari (Chiari) deformatsiyasi bu tug‘ma miyacha-uzunchoq miya nuqsoni bo‘lib, bunda miyacha va uzunchoq miya katta teshik orqali umurtqa kanaliga bo‘rtib chiqadi.",
+      },
+    },
+    {
+      q: "A 15-year-old woman was suspected of having meningitis. To obtain a sample of cerebrospinal fluid the tip of the needle must be placed in which of the following spaces?",
+      a: [
+        "Epidural space",
+        "Subdural space",
+        "Subarachnoid space",
+        "Central canal of the spinal cord",
+        "Between the pia mater and the spinal cord",
+      ],
+      correct: 2,
+      explanation:
+        "CSF is contained within the <b>subarachnoid space</b>. The needle must penetrate the dura and arachnoid to enter this space.\n\nBRS says:\n\nThe subarachnoid space is a wide space between the arachnoid and pia mater and is filled with cerebrospinal fluid (CSF). It is the site of lumbar puncture.",
+      uz: {
+        q: "15 yoshli ayolda meningit shubha qilindi. Serebrospinal suyuqlik namunasi olish uchun ignaning uchi quyidagi bo‘shliqlardan qaysi biriga joylashtirilishi kerak?",
+        a: [
+          "Epidural bo‘shliq",
+          "Subdural bo‘shliq",
+          "Subaraknoid bo‘shliq",
+          "Orqa miya markaziy kanali",
+          "Yumshoq parda va orqa miya orasida",
+        ],
+        explanation:
+          "SSS <b>subaraknoid bo‘shliq</b>da joylashgan. Igna qattiq parda va araknoidni teshib o‘tib bu bo‘shliqqa kirishi kerak.\n\nBRS says:\n\nSubaraknoid bo‘shliq araknoid va yumshoq parda orasidagi keng bo‘shliq bo‘lib, serebrospinal suyuqlik (SSS) bilan to‘lgan. U bel punksiyasi o‘tkaziladigan joy hisoblanadi.",
+      },
+    },
+    {
+      q: "A 38-year-old woman has been in labor for 14 hours and has agreed to have an epidural anesthetic. Which of the following structures is the last to be pierced by the needle before it reaches the epidural space?",
+      a: [
+        "Supraspinous ligament",
+        "Interspinous ligament",
+        "Ligamentum flavum",
+        "Dura mater",
+        "Arachnoid mater",
+      ],
+      correct: 2,
+      explanation:
+        "In an epidural procedure the order of structures pierced is skin → subcutaneous tissue → muscle → supraspinous ligament → interspinous ligament → <b>ligamentum flavum</b> (last before entering the epidural space). The dura and arachnoid are not pierced.\n\nBRS says:\n\nLigamentum flavum connects the laminae of two adjacent vertebrae and forms the posterior wall of the vertebral canal between the vertebrae and may be pierced during lumbar (spinal) puncture. The epidural space contains fat and the internal vertebral venous plexus.",
+      uz: {
+        q: "38 yoshli ayol 14 soatlik tug‘ruq og‘riqlaridan keyin epidural anesteziyaga rozi bo‘ldi. Epidural bo‘shliqqa yetishdan oldin igna tomonidan oxirgi teshib o‘tiladigan tuzilma qaysi?",
+        a: [
+          "O‘tkir o‘siq usti boylami",
+          "O‘tkir o‘siq orasi boylami",
+          "Ligamentum flavum",
+          "Qattiq parda",
+          "Araknoid parda",
+        ],
+        explanation:
+          "Epidural muolajada teshib o‘tiladigan tuzilmalar tartibi: teri → teri osti to‘qimasi → muskul → o‘tkir o‘siq usti boylami → o‘tkir o‘siq orasi boylami → <b>ligamentum flavum</b> (epidural bo‘shliqqa kirishdan oldingi oxirgi). Qattiq parda va araknoid teshib o‘tilmaydi.\n\nBRS says:\n\nLigamentum flavum qo‘shni ikki umurtqa plastinkalarini bog‘laydi va umurtqalar orasidagi umurtqa kanalining orqa devorini hosil qiladi va bel punksiyasi paytida teshilishi mumkin. Epidural bo‘shliq yog‘ va ichki umurtqa venoz chigali (Batson) ni o‘z ichiga oladi.",
+      },
+    },
+    {
+      q: "A young resident complains of an itch on his back that appears to be caused by an insect bite. The itch is located just lateral to the spinous process of the T4 vertebra. Which of the following nerves is most likely responsible for the sensation at this site?",
+      a: [
+        "Dorsal primary ramus of T4",
+        "Ventral primary ramus of T4",
+        "Lateral cutaneous branch of T4",
+        "Medial cutaneous branch of the posterior intercostal nerve",
+        "Spinal accessory nerve",
+      ],
+      correct: 0,
+      explanation:
+        "Cutaneous sensation in the back, just lateral to the spinous processes, is supplied by the <b>dorsal primary rami</b> of the spinal nerves. The ventral rami supply the anterolateral trunk and limbs.\n\nBRS says:\n\nThe dorsal primary rami of the spinal nerves supply the deep muscles of the back and the skin of the back. The ventral primary rami form the cervical, brachial, lumbar and sacral plexuses and supply the anterolateral body wall and the limbs.",
+      uz: {
+        q: "Yosh ordinator orqasida hasharot chaqishi tufayli paydo bo‘lgan qichishishdan shikoyat qildi. Qichishish T4 umurtqaning o‘tkir o‘sig‘idan lateralda joylashgan. Quyidagi nervlardan qaysi biri bu sohadagi sezuvchanlik uchun eng ko‘p javobgar?",
+        a: [
+          "T4 ning orqa birlamchi shoxi",
+          "T4 ning oldingi birlamchi shoxi",
+          "T4 ning lateral teri tarmog‘i",
+          "Orqa qovurg‘alararo nervning medial teri tarmog‘i",
+          "Qo‘shimcha nerv",
+        ],
+        explanation:
+          "Orqa sohada, o‘tkir o‘siqlardan lateralda joylashgan teri sezuvchanligi orqa miya nervlarining <b>orqa birlamchi shoxlari</b> tomonidan ta’minlanadi. Oldingi shoxlar oldingi-lateral tanani va oyoq-qo‘llarni ta’minlaydi.\n\nBRS says:\n\nOrqa miya nervlarining orqa birlamchi shoxlari orqaning chuqur muskullarini va orqa terisini ta’minlaydi. Oldingi birlamchi shoxlar bo‘yin, yelka, bel va dumg‘aza chigallarini hosil qiladi va oldingi-lateral tana devori hamda oyoq-qo‘llarni ta’minlaydi.",
+      },
+    },
+    {
+      q: "A 64-year-old man arrived at the clinic with a painful skin eruption in a band-like distribution on the right side of his chest corresponding to the T4 dermatome. He is diagnosed with herpes zoster (shingles). Where are the cell bodies of the sensory neurons responsible for this pain located?",
+      a: [
+        "Dorsal root ganglion of T4",
+        "Ventral horn of the T4 spinal cord segment",
+        "Lateral horn of the T4 spinal cord segment",
+        "Sympathetic chain ganglia",
+        "Dorsal horn of the T4 spinal cord segment",
+      ],
+      correct: 0,
+      explanation:
+        "Herpes zoster reactivates in the sensory neurons whose cell bodies lie in the <b>dorsal root ganglion</b>. The virus then travels along the sensory axons to the corresponding dermatome, producing the characteristic painful vesicular rash.\n\nBRS says:\n\nThe dorsal root ganglion contains the cell bodies of the sensory neurons. A dermatome is the area of skin supplied by a single spinal nerve and its dorsal root ganglion.",
+      uz: {
+        q: "64 yoshli erkak klinikaga o‘ng ko‘kragida T4 dermatomiga mos keladigan lenta shaklidagi og‘riqli teri toshmasi bilan keldi. Unga herpes zoster (shingles) tashxisi qo‘yildi. Bu og‘riq uchun javobgar sezuvchi neyronlarning hujayra tanalari qayerda joylashgan?",
+        a: [
+          "T4 ning orqa ildiz ganglisi",
+          "T4 orqa miya segmentining oldingi shoxi",
+          "T4 orqa miya segmentining lateral shoxi",
+          "Simpatik zanjir ganglilari",
+          "T4 orqa miya segmentining orqa shoxi",
+        ],
+        explanation:
+          "Herpes zoster sezuvchi neyronlarda faollashadi; ularning hujayra tanalari <b>orqa ildiz ganglisi</b>da joylashgan. Virus keyin sezuvchi aksonlar bo‘ylab tegishli dermatomga o‘tib, xarakterli og‘riqli pufakchali toshma hosil qiladi.\n\nBRS says:\n\nOrqa ildiz ganglisi sezuvchi neyronlarning hujayra tanalarini o‘z ichiga oladi. Dermatom bitta orqa miya nervi va uning orqa ildiz ganglisi tomonidan ta’minlanadigan teri sohasi hisoblanadi.",
+      },
+    },
+    {
+      q: "A 35-year-old man is admitted to the hospital after a severe car crash. Radiologic examination reveals an injury of the spinal cord. The physician wants to perform a lumbar puncture at a safe level. Which of the following is the most appropriate landmark for locating the L4 vertebral spine?",
+      a: [
+        "Lowest points of the costal margins",
+        "Highest points of the iliac crests",
+        "Posterior superior iliac spines",
+        "Spinous process of T12",
+        "Inferior angle of the scapula",
+      ],
+      correct: 1,
+      explanation:
+        "A horizontal line joining the <b>highest points of the iliac crests</b> (Tuffier’s line / intercristal line) crosses the spine of L4 (or the L4–L5 interspace). This is the classic landmark used to locate a safe level for lumbar puncture.\n\nBRS says:\n\nA line drawn between the highest points of the iliac crests (supracristal plane) passes through the spine of the fourth lumbar vertebra and is used as a landmark for locating the proper site for lumbar puncture.",
+      uz: {
+        q: "35 yoshli erkak og‘ir avtohalokatdan keyin kasalxonaga yotqizildi. Rentgenologik tekshiruv orqa miya shikastlanishini aniqladi. Shifokor xavfsiz darajada bel punksiyasi o‘tkazmoqchi. L4 umurtqa o‘tkir o‘sig‘ini topish uchun eng mos belgi qaysi?",
+        a: [
+          "Qovurg‘a chetlarining eng past nuqtalari",
+          "Yonbosh suyak qirralarining eng yuqori nuqtalari",
+          "Orqa yuqori yonbosh suyak do‘ngligi",
+          "T12 ning o‘tkir o‘sig‘i",
+          "Kurakning pastki burchagi",
+        ],
+        explanation:
+          "Yonbosh suyak qirralarining eng yuqori nuqtalarini bog‘lovchi gorizontal chiziq (Tuffier chizig‘i / interkristal chiziq) L4 o‘tkir o‘sig‘ini (yoki L4–L5 oralig‘ini) kesib o‘tadi. Bu bel punksiyasi uchun xavfsiz darajani topishda klassik belgi hisoblanadi.\n\nBRS says:\n\nYonbosh suyak qirralarining eng yuqori nuqtalarini bog‘lovchi chiziq (suprakristal tekislik) to‘rtinchi bel umurtqasining o‘tkir o‘sig‘idan o‘tadi va bel punksiyasi uchun to‘g‘ri joyni topishda belgi sifatida ishlatiladi.",
+      },
+    },
+    {
+      q: "A 7-year-old girl who is somewhat obese is brought to the clinic. The physician wants to perform a lumbar puncture. Which of the following is the most reliable external landmark for identifying the correct interspace?",
+      a: [
+        "Spinous process of L2",
+        "Highest points of the iliac crests",
+        "Posterior superior iliac spines",
+        "Tip of the coccyx",
+        "Inferior angle of the scapulae",
+      ],
+      correct: 1,
+      explanation:
+        "Even in obese patients the <b>highest points of the iliac crests</b> remain the most reliable external landmark for identifying the L4 spinous process or L4–L5 interspace for lumbar puncture.\n\nBRS says:\n\nA line drawn between the highest points of the iliac crests (supracristal plane) passes through the spine of the fourth lumbar vertebra and is used as a landmark for locating the proper site for lumbar puncture.",
+      uz: {
+        q: "7 yoshli biroz semiz qizcha klinikaga olib kelindi. Shifokor bel punksiyasi o‘tkazmoqchi. To‘g‘ri oraliqni aniqlash uchun eng ishonchli tashqi belgi qaysi?",
+        a: [
+          "L2 ning o‘tkir o‘sig‘i",
+          "Yonbosh suyak qirralarining eng yuqori nuqtalari",
+          "Orqa yuqori yonbosh suyak do‘ngligi",
+          "Dumg‘aza uchi",
+          "Kuraklarning pastki burchagi",
+        ],
+        explanation:
+          "Hatto semiz bemorlarda ham <b>yonbosh suyak qirralarining eng yuqori nuqtalari</b> L4 o‘tkir o‘sig‘i yoki L4–L5 oralig‘ini aniqlash uchun eng ishonchli tashqi belgi bo‘lib qoladi.\n\nBRS says:\n\nYonbosh suyak qirralarining eng yuqori nuqtalarini bog‘lovchi chiziq (suprakristal tekislik) to‘rtinchi bel umurtqasining o‘tkir o‘sig‘idan o‘tadi va bel punksiyasi uchun to‘g‘ri joyni topishda belgi sifatida ishlatiladi.",
+      },
+    },
+  ],
+  THORACIC_WALL: [
+    {
+      q: "A 55-year-old man is admitted to the emergency department after a motor vehicle accident. A chest radiograph reveals fractures of ribs 5 to 8 on the left side. Which of the following structures is most likely to be injured as a result of these fractures?",
+      a: ["Left lung lower lobe", "Spleen", "Liver", "Left kidney", "Stomach"],
+      correct: 1,
+      explanation:
+        "Fractures of the lower ribs on the left side (especially ribs 9–11, but also 5–8 if displaced) can injure the underlying <b>spleen</b>. The spleen lies against the 9th–11th ribs in the left upper quadrant.\n\nBRS says:\n\nThe ribs protect the thoracic and upper abdominal viscera. Fracture of the lower ribs may injure the spleen (left) or liver (right).",
+      uz: {
+        q: "55 yoshli erkak avtohalokatdan keyin shoshilinch yordam bo‘limiga yotqizildi. Ko‘krak rentgenogrammasi chap tomonda 5–8-qovurg‘alar sinishini ko‘rsatdi. Bu sinishlar natijasida quyidagi tuzilmalardan qaysi biri eng ko‘p shikastlanishi mumkin?",
+        a: [
+          "Chap o‘pka pastki bo‘lagi",
+          "Taloq",
+          "Jigar",
+          "Chap buyrak",
+          "Oshqozon",
+        ],
+        explanation:
+          "Chap tomonda pastki qovurg‘alar (ayniqsa 9–11, lekin 5–8 ham siljigan bo‘lsa) sinishi ostidagi <b>taloq</b>ni jarohatlashi mumkin. Taloq chap yuqori kvadrantda 9–11-qovurg‘alarga yondosh joylashgan.\n\nBRS says:\n\nQovurg‘alar ko‘krak va yuqori qorin a’zolarini himoya qiladi. Pastki qovurg‘alar sinishi taloq (chap) yoki jigar (o‘ng) ni jarohatlashi mumkin.",
+      },
+    },
+    {
+      q: "A 45-year-old woman is examined in the clinic. The physician notes that the sternal angle (angle of Louis) is a useful landmark. Which of the following statements regarding the sternal angle is correct?",
+      a: [
+        "It marks the level of the second costal cartilage",
+        "It marks the level of the first costal cartilage",
+        "It marks the level of the xiphisternal joint",
+        "It marks the lower border of the heart",
+        "It marks the level of the 10th thoracic vertebra",
+      ],
+      correct: 0,
+      explanation:
+        "The <b>sternal angle (angle of Louis)</b> is the junction of the manubrium and body of the sternum. It marks the level of the <b>second costal cartilage</b>, the beginning and end of the aortic arch, the bifurcation of the trachea, the upper border of the heart, and the T4/T5 intervertebral disc.\n\nBRS says:\n\nSternal angle (angle of Louis) is the junction of the manubrium and body of the sternum. It is located at the level of the second costal cartilage, the beginning and end of the aortic arch, the bifurcation of the trachea, the upper border of the heart, and a horizontal plane that passes through the intervertebral disc between T4 and T5.",
+      uz: {
+        q: "45 yoshli ayol klinikada tekshirildi. Shifokor to‘sh burchagi (Luis burchagi) foydali belgi ekanligini ta’kidladi. To‘sh burchagi haqida quyidagi bayonotlardan qaysi biri to‘g‘ri?",
+        a: [
+          "U ikkinchi qovurg‘a tog‘ayi darajasini belgilaydi",
+          "U birinchi qovurg‘a tog‘ayi darajasini belgilaydi",
+          "U xifisternal bo‘g‘im darajasini belgilaydi",
+          "U yurakning pastki chegarasini belgilaydi",
+          "U 10-ko‘krak umurtqasi darajasini belgilaydi",
+        ],
+        explanation:
+          "<b>To‘sh burchagi (Luis burchagi)</b> to‘sh sopi va tanasining qo‘shilish joyi. U <b>ikkinchi qovurg‘a tog‘ayi</b> darajasini, aorta yoyining boshlanishi va tugashi, traxeya bifurkatsiyasi, yurakning yuqori chegarasi va T4/T5 umurtqalararo diskni belgilaydi.\n\nBRS says:\n\nTo‘sh burchagi (Luis burchagi) to‘sh suyagi sopi va tanasining qo‘shilgan qismi. Uning joylashuvi: to‘sh suyagi ikkinchi qovurg‘a bilan birlashadi; aorta yoyi shu joyda boshlanadi va tugaydi; traxeya karinada o‘ng va chap bronxlarga bo‘linadi; yuqori mediastinning pastki chegarasi; ko‘ndalang tekislik to‘rtinchi va beshinchi qovurg‘alar oralig‘ida intervertebral diskdan o‘tishi mumkin.",
+      },
+    },
+    {
+      q: "A 47-year-old woman presents with a hard mass in the upper outer quadrant of her right breast. A biopsy confirms carcinoma. To which of the following groups of lymph nodes does lymph from this region of the breast most commonly drain first?",
+      a: [
+        "Parasternal (internal thoracic) nodes",
+        "Axillary (pectoral / anterior) nodes",
+        "Infraclavicular nodes",
+        "Supraclavicular nodes",
+        "Posterior intercostal nodes",
+      ],
+      correct: 1,
+      explanation:
+        "Approximately 75% of lymphatic drainage from the breast, especially from the upper outer quadrant, goes first to the <b>axillary (pectoral/anterior) lymph nodes</b>. The remaining drainage goes to the parasternal (internal thoracic) nodes and other routes.\n\nBRS says:\n\nLymphatic drainage of the breast: Most lymph (about 75%) drains to the axillary nodes (especially the pectoral/anterior group). The remaining lymph drains to the parasternal (internal thoracic) nodes, and a small amount drains to the posterior intercostal nodes.",
+      uz: {
+        q: "47 yoshli ayol o‘ng sut bezining yuqori tashqi kvadrantida qattiq massa bilan murojaat qildi. Biopsiya karsinomani tasdiqladi. Sut bezining bu sohasidan limfa eng ko‘p qaysi limfa tugunlari guruhiga birinchi bo‘lib quyiladi?",
+        a: [
+          "Parasternal (ichki ko‘krak) tugunlari",
+          "Aksillar (ko‘krak / oldingi) tugunlari",
+          "Infraklavikulyar tugunlar",
+          "Supraklavikulyar tugunlar",
+          "Orqa qovurg‘alararo tugunlar",
+        ],
+        explanation:
+          "Sut bezidan limfaning taxminan 75 foizi, ayniqsa yuqori tashqi kvadrantdan, birinchi navbatda <b>aksillar (ko‘krak/oldingi) limfa tugunlari</b>ga quyiladi. Qolgan qismi parasternal (ichki ko‘krak) tugunlariga va boshqa yo‘llarga o‘tadi.\n\nBRS says:\n\nSut bezining limfa drenaji: limfaning ko‘p qismi (taxminan 75%) aksillar tugunlarga (ayniqsa ko‘krak/oldingi guruhga) quyiladi. Qolgan limfa parasternal (ichki ko‘krak) tugunlarga, oz qismi esa orqa qovurg‘alararo tugunlarga quyiladi.",
+      },
+    },
+    {
+      q: "A 35-year-old woman is undergoing a mastectomy. The surgeon is careful to preserve the long thoracic nerve. Injury to this nerve would most likely result in paralysis of which of the following muscles?",
+      a: [
+        "Pectoralis major",
+        "Pectoralis minor",
+        "Serratus anterior",
+        "Latissimus dorsi",
+        "Subscapularis",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>long thoracic nerve (C5–C7)</b> supplies the <b>serratus anterior</b>. Injury causes winged scapula (inability to protract the scapula against the thoracic wall).\n\nBRS says:\n\nLong thoracic nerve (C5–C7) arises from the roots of the brachial plexus and supplies the serratus anterior muscle. Injury results in a winged scapula.",
+      uz: {
+        q: "35 yoshli ayol mastektomiya o‘tkazmoqda. Jarroh uzun ko‘krak nervini saqlab qolishga harakat qilmoqda. Bu nervning shikastlanishi quyidagi muskullardan qaysi birining falajiga olib kelishi mumkin?",
+        a: [
+          "Katta ko‘krak muskuli",
+          "Kichik ko‘krak muskuli",
+          "Oldingi tishsimon",
+          "Orqaning keng muskuli",
+          "Kurak osti",
+        ],
+        explanation:
+          "<b>Uzun ko‘krak nervi (C5–C7)</b> <b>oldingi tishsimon</b> muskulni ta’minlaydi. Uning shikastlanishi qanotsimon kurak (kurakni ko‘krak devoriga bosib turishning imkonsizligi) ga olib keladi.\n\nBRS says:\n\nUzun ko‘krak nervi (C5–C7) yelka chigalining ildizlaridan chiqadi va oldingi tishsimon muskulni ta’minlaydi. Shikastlanishi qanotsimon kurakka olib keladi.",
+      },
+    },
+    {
+      q: "A 30-year-old man is admitted to the emergency department with a stab wound in the right intercostal space. The physician inserts a chest tube to drain a pleural effusion. To avoid injury to the intercostal vessels and nerve, the tube should be inserted:",
+      a: [
+        "Just superior to the upper border of the rib",
+        "Just inferior to the lower border of the rib",
+        "In the middle of the intercostal space",
+        "Through the costal cartilage",
+        "At the level of the sternal angle",
+      ],
+      correct: 0,
+      explanation:
+        "The intercostal vein, artery and nerve run in the costal groove along the <b>inferior border of the rib</b>. Therefore a chest tube or needle should be inserted <b>just superior to the upper border of the rib</b> (i.e., in the lower part of the intercostal space) to avoid them.\n\nBRS says:\n\nThe intercostal nerves and vessels run in the costal groove along the inferior border of the rib. Instruments should be inserted just superior to the upper border of the rib to avoid injury to these structures.",
+      uz: {
+        q: "30 yoshli erkak o‘ng qovurg‘alararo bo‘shliqqa pichoq jarohati bilan shoshilinch yordam bo‘limiga yotqizildi. Shifokor plevra suyuqligini chiqarish uchun ko‘krak nayini kiritadi. Qovurg‘alararo tomirlar va nervni jarohatlashdan saqlanish uchun nay quyidagicha kiritilishi kerak:",
+        a: [
+          "Qovurg‘aning yuqori chetidan biroz yuqoriroq",
+          "Qovurg‘aning pastki chetidan biroz pastroq",
+          "Qovurg‘alararo bo‘shliqning o‘rtasidan",
+          "Qovurg‘a tog‘ayi orqali",
+          "To‘sh burchagi darajasida",
+        ],
+        explanation:
+          "Qovurg‘alararo vena, arteriya va nerv qovurg‘aning <b>pastki chetidagi</b> qovurg‘a egatida o‘tadi. Shuning uchun ko‘krak nayi yoki igna <b>qovurg‘aning yuqori chetidan biroz yuqoriroq</b> (ya’ni qovurg‘alararo bo‘shliqning pastki qismidan) kiritilishi kerak.\n\nBRS says:\n\nQovurg‘alararo nervlar va tomirlar qovurg‘aning pastki chetidagi qovurg‘a egatida o‘tadi. Bu tuzilmalarni jarohatlashdan saqlanish uchun asboblar qovurg‘aning yuqori chetidan biroz yuqoriroq kiritilishi kerak.",
+      },
+    },
+    {
+      q: "A 42-year-old woman is admitted to the hospital after a fall. Radiologic examination reveals a fracture of the xiphoid process. Which of the following structures is most closely related to the xiphoid process?",
+      a: [
+        "Upper border of the heart",
+        "Central tendon of the diaphragm",
+        "Bifurcation of the trachea",
+        "Beginning of the aortic arch",
+        "Second costal cartilage",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>xiphoid process</b> marks the level of the central tendon of the diaphragm, the inferior border of the heart, and the upper surface of the liver. It lies at the level of the T9–T10 vertebrae.\n\nBRS says:\n\nThe xiphoid process is a thin, elongated piece of cartilage that becomes ossified in the adult. It marks the inferior border of the heart, the central tendon of the diaphragm, and the upper surface of the liver.",
+      uz: {
+        q: "42 yoshli ayol yiqilishdan keyin kasalxonaga yotqizildi. Rentgenologik tekshiruv xanjarsimon o‘simtaning sinishini aniqladi. Quyidagi tuzilmalardan qaysi biri xanjarsimon o‘simtaga eng yaqin bog‘liq?",
+        a: [
+          "Yurakning yuqori chegarasi",
+          "Diafragmaning markaziy payi",
+          "Traxeya bifurkatsiyasi",
+          "Aorta yoyining boshlanishi",
+          "Ikkinchi qovurg‘a tog‘ayi",
+        ],
+        explanation:
+          "<b>Xanjarsimon o‘simta</b> diafragmaning markaziy payi, yurakning pastki chegarasi va jigarning yuqori yuzasi darajasini belgilaydi. U T9–T10 umurtqalar darajasida joylashgan.\n\nBRS says:\n\nXanjarsimon o‘simta yassi tog‘ay bo‘lib, o‘rta yoshlarda to‘sh suyagi tanasi bilan qo‘shilib ketadi. U yurakning pastki chegarasi, diafragmaning markaziy payi va jigarning yuqori yuzasini qoplaydi.",
+      },
+    },
+    {
+      q: "A 28-year-old woman is 8 months pregnant and complains of difficulty breathing. Which of the following changes in the thoracic cage most likely contributes to her respiratory difficulty?",
+      a: [
+        "Decreased anteroposterior diameter of the thorax",
+        "Elevation of the diaphragm by the enlarging uterus",
+        "Increased length of the thoracic cavity",
+        "Paralysis of the intercostal muscles",
+        "Fusion of the costal cartilages",
+      ],
+      correct: 1,
+      explanation:
+        "In late pregnancy the enlarging uterus elevates the <b>diaphragm</b>, reducing the vertical dimension of the thoracic cavity and making breathing more difficult (especially in the supine position).\n\nBRS says:\n\nThe diaphragm is the principal muscle of inspiration. During pregnancy the enlarged uterus elevates the diaphragm and reduces the vertical dimension of the thorax, which may cause respiratory difficulty.",
+      uz: {
+        q: "28 yoshli ayol 8 oylik homilador va nafas olishda qiyinchilikdan shikoyat qilmoqda. Ko‘krak qafasidagi quyidagi o‘zgarishlardan qaysi biri uning nafas olish qiyinligiga eng ko‘p hissa qo‘shadi?",
+        a: [
+          "Ko‘krak qafasining old-orqa diametrining kamayishi",
+          "Kattalashgan bachadon tomonidan diafragmaning ko‘tarilishi",
+          "Ko‘krak bo‘shlig‘ining uzunligining ortishi",
+          "Qovurg‘alararo muskullarning falaji",
+          "Qovurg‘a tog‘aylarining qo‘shilib ketishi",
+        ],
+        explanation:
+          "Homiladorlikning oxirgi oylarida kattalashgan bachadon <b>diafragmani</b> ko‘tarib, ko‘krak bo‘shlig‘ining vertikal o‘lchamini kamaytiradi va nafas olishni qiyinlashtiradi (ayniqsa yotgan holatda).\n\nBRS says:\n\nDiafragma nafas olishning asosiy muskuli hisoblanadi. Homiladorlik davrida kattalashgan bachadon diafragmani ko‘taradi va ko‘krak qafasining vertikal o‘lchamini kamaytiradi, bu nafas olish qiyinligiga olib kelishi mumkin.",
+      },
+    },
+    {
+      q: "A 60-year-old man is admitted to the emergency department with a penetrating injury to the right side of the neck. Examination reveals paralysis of the right hemidiaphragm. Which of the following nerves is most likely injured?",
+      a: [
+        "Right vagus nerve",
+        "Right phrenic nerve",
+        "Right sympathetic trunk",
+        "Right recurrent laryngeal nerve",
+        "Right long thoracic nerve",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>phrenic nerve (C3–C5)</b> is the sole motor supply to the diaphragm. Injury to one phrenic nerve causes paralysis of the corresponding hemidiaphragm, which rises paradoxically during inspiration.\n\nBRS says:\n\nThe phrenic nerve (C3–C5) provides the sole motor innervation to the diaphragm and also carries sensory fibers from the central part of the diaphragm, the mediastinal pleura and the pericardium.",
+      uz: {
+        q: "60 yoshli erkak bo‘yinning o‘ng tomoniga kiruvchi jarohat bilan shoshilinch yordam bo‘limiga yotqizildi. Tekshiruv o‘ng gemidiafragmaning falajini aniqladi. Quyidagi nervlardan qaysi biri eng ko‘p shikastlangan?",
+        a: [
+          "O‘ng adashgan nerv",
+          "O‘ng diafragma nervi",
+          "O‘ng simpatik ustun",
+          "O‘ng qaytuvchi hiqildoq nervi",
+          "O‘ng uzun ko‘krak nervi",
+        ],
+        explanation:
+          "<b>Diafragma nervi (C3–C5)</b> diafragmaning yagona motor innervatsiyasini ta’minlaydi. Bir diafragma nervining shikastlanishi tegishli gemidiafragmaning falajiga olib keladi; u nafas olish paytida paradoksal ko‘tariladi.\n\nBRS says:\n\nDiafragma nervi (C3–C5) diafragmaning yagona motor innervatsiyasini ta’minlaydi va shuningdek diafragmaning markaziy qismi, mediastinal plevra va perikarddan sezuvchi tolalarni olib yuradi.",
+      },
+    },
+    {
+      q: "A 25-year-old man is admitted to the hospital after a fall from a height. Radiologic examination reveals a fracture of the first rib. Which of the following structures is most closely related to the first rib and may be injured?",
+      a: [
+        "Subclavian vein and artery",
+        "Brachial plexus trunks",
+        "Both A and B",
+        "Internal thoracic artery only",
+        "Phrenic nerve only",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>first rib</b> is closely related to the subclavian vessels and the lower trunks of the brachial plexus as they cross over it. Fracture of the first rib can injure these structures.\n\nBRS says:\n\nThe first rib is the highest, strongest, and most curved of all the ribs. The subclavian vessels and the brachial plexus cross over the first rib.",
+      uz: {
+        q: "25 yoshli erkak balandlikdan yiqilib tushgandan keyin kasalxonaga yotqizildi. Rentgenologik tekshiruv birinchi qovurg‘aning sinishini aniqladi. Quyidagi tuzilmalardan qaysi biri birinchi qovurg‘aga eng yaqin bog‘liq va shikastlanishi mumkin?",
+        a: [
+          "O‘mrov osti vena va arteriya",
+          "Yelka chigali ustunlari",
+          "A va B ning ikkalasi ham",
+          "Faqat ichki ko‘krak arteriyasi",
+          "Faqat diafragma nervi",
+        ],
+        explanation:
+          "<b>Birinchi qovurg‘a</b> o‘mrov osti tomirlari va yelka chigalining pastki ustunlari bilan chambarchas bog‘liq, chunki ular uning ustidan o‘tadi. Birinchi qovurg‘a sinishi bu tuzilmalarni jarohatlashi mumkin.\n\nBRS says:\n\nBirinchi qovurg‘a barcha qovurg‘alarning eng yuqori, eng mustahkam va eng egri hisoblanadi. O‘mrov osti tomirlari va yelka chigali birinchi qovurg‘a ustidan o‘tadi.",
+      },
+    },
+    {
+      q: "A 50-year-old man undergoes a median sternotomy for cardiac surgery. The surgeon divides the sternum in the midline. Which of the following structures lies immediately posterior to the manubrium of the sternum in the superior mediastinum?",
+      a: [
+        "Thymus (or its remnant)",
+        "Heart",
+        "Descending aorta",
+        "Esophagus",
+        "Thoracic duct",
+      ],
+      correct: 0,
+      explanation:
+        "In the superior mediastinum the <b>thymus</b> (or its remnant/fatty replacement in adults) lies immediately posterior to the manubrium of the sternum. It is the most anterior structure in the superior mediastinum.\n\nBRS says:\n\nThe thymus is a primary lymphoid organ located in the superior mediastinum, immediately posterior to the manubrium of the sternum. It is relatively large in the child and involutes after puberty.",
+      uz: {
+        q: "50 yoshli erkak yurak jarrohligi uchun median sternotomiya o‘tkazmoqda. Jarroh to‘sh suyagini o‘rta chiziq bo‘ylab bo‘ladi. Yuqori mediastinda to‘sh sopining bevosita orqasida qaysi tuzilma joylashgan?",
+        a: [
+          "Ayrisimon bez (yoki uning qoldig‘i)",
+          "Yurak",
+          "Tushuvchi aorta",
+          "Qizilo‘ngach",
+          "Ko‘krak limfa yo‘li",
+        ],
+        explanation:
+          "Yuqori mediastinda <b>ayrisimon bez</b> (yoki kattalarda uning qoldig‘i/yog‘li o‘rnini bosuvchi to‘qima) to‘sh sopining bevosita orqasida joylashgan. U yuqori mediastindagi eng oldingi tuzilma hisoblanadi.\n\nBRS says:\n\nAyrisimon bez yuqori mediastinda, to‘sh sopining bevosita orqasida joylashgan birlamchi limfoid a’zo. Bolalikda nisbatan katta bo‘lib, balog‘atga yetgandan keyin atrofiyaga uchraydi.",
+      },
+    },
+    {
+      q: "A 55-year-old woman is admitted to the hospital with a diagnosis of breast cancer. Lymphatic drainage from the medial portion of the breast is most likely to reach which of the following nodes first?",
+      a: [
+        "Axillary nodes",
+        "Parasternal (internal thoracic) nodes",
+        "Inguinal nodes",
+        "Posterior intercostal nodes",
+        "Cervical nodes",
+      ],
+      correct: 1,
+      explanation:
+        "Lymph from the medial portion of the breast drains primarily to the <b>parasternal (internal thoracic) lymph nodes</b> along the internal thoracic vessels. Lateral portions drain mainly to the axillary nodes.\n\nBRS says:\n\nLymph from the medial part of the breast drains to the parasternal (internal thoracic) nodes. Lymph from the lateral part drains mainly to the axillary nodes.",
+      uz: {
+        q: "55 yoshli ayol sut bezi saratoni tashxisi bilan kasalxonaga yotqizildi. Sut bezining medial qismidan limfa drenaji eng ko‘p qaysi tugunlarga birinchi bo‘lib yetadi?",
+        a: [
+          "Aksillar tugunlar",
+          "Parasternal (ichki ko‘krak) tugunlari",
+          "Chov tugunlari",
+          "Orqa qovurg‘alararo tugunlar",
+          "Bo‘yin tugunlari",
+        ],
+        explanation:
+          "Sut bezining medial qismidan limfa asosan ichki ko‘krak tomirlari bo‘ylab joylashgan <b>parasternal (ichki ko‘krak) limfa tugunlari</b>ga quyiladi. Lateral qismlardan asosan aksillar tugunlarga quyiladi.\n\nBRS says:\n\nSut bezining medial qismidan limfa parasternal (ichki ko‘krak) tugunlarga quyiladi. Lateral qismdan limfa asosan aksillar tugunlarga quyiladi.",
+      },
+    },
+    {
+      q: "A 40-year-old man is admitted after a stab wound just above the right clavicle. Examination reveals difficulty breathing and elevation of the right hemidiaphragm on chest radiograph. Which of the following nerves is most likely injured?",
+      a: [
+        "Right vagus nerve",
+        "Right phrenic nerve",
+        "Right recurrent laryngeal nerve",
+        "Right sympathetic trunk",
+        "Right long thoracic nerve",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>phrenic nerve</b> descends on the surface of the anterior scalene muscle and can be injured by penetrating trauma in the neck above the clavicle. Injury causes paralysis and paradoxical elevation of the hemidiaphragm.\n\nBRS says:\n\nThe phrenic nerve (C3–C5) descends on the anterior surface of the anterior scalene muscle and provides the sole motor innervation to the diaphragm.",
+      uz: {
+        q: "40 yoshli erkak o‘ng o‘mrov suyagidan biroz yuqoridagi pichoq jarohatidan keyin yotqizildi. Tekshiruv nafas olishda qiyinchilik va ko‘krak rentgenogrammasida o‘ng gemidiafragmaning ko‘tarilishini aniqladi. Quyidagi nervlardan qaysi biri eng ko‘p shikastlangan?",
+        a: [
+          "O‘ng adashgan nerv",
+          "O‘ng diafragma nervi",
+          "O‘ng qaytuvchi hiqildoq nervi",
+          "O‘ng simpatik ustun",
+          "O‘ng uzun ko‘krak nervi",
+        ],
+        explanation:
+          "<b>Diafragma nervi</b> oldingi zinapoyasimon muskul yuzasida pastga tushadi va o‘mrov suyagidan yuqoridagi bo‘yindagi kiruvchi jarohatlar bilan shikastlanishi mumkin. Shikastlanish gemidiafragmaning falaji va paradoksal ko‘tarilishiga olib keladi.\n\nBRS says:\n\nDiafragma nervi (C3–C5) oldingi zinapoyasimon muskulning oldingi yuzasida pastga tushadi va diafragmaning yagona motor innervatsiyasini ta’minlaydi.",
+      },
+    },
+    {
+      q: "A 32-year-old woman is admitted to the hospital with a tumor in the superior mediastinum. Which of the following structures is most likely to be compressed by an enlarged thymus in an adult?",
+      a: [
+        "Trachea and brachiocephalic veins",
+        "Descending aorta",
+        "Esophagus only",
+        "Thoracic duct only",
+        "Heart",
+      ],
+      correct: 0,
+      explanation:
+        "An enlarged thymus (or thymic tumor) in the superior mediastinum lies immediately posterior to the manubrium and can compress the <b>trachea and the brachiocephalic veins</b> (and superior vena cava).\n\nBRS says:\n\nThe thymus is located in the superior mediastinum, immediately posterior to the manubrium. Enlargement or tumors of the thymus may compress the trachea and the great veins.",
+      uz: {
+        q: "32 yoshli ayol yuqori mediastindagi o‘sma bilan kasalxonaga yotqizildi. Kattalashgan ayrisimon bez kattalarda quyidagi tuzilmalardan qaysi birini eng ko‘p siqishi mumkin?",
+        a: [
+          "Traxeya va yelka-bosh venalari",
+          "Tushuvchi aorta",
+          "Faqat qizilo‘ngach",
+          "Faqat ko‘krak limfa yo‘li",
+          "Yurak",
+        ],
+        explanation:
+          "Yuqori mediastinda kattalashgan ayrisimon bez (yoki ayrisimon bez o‘smasi) to‘sh sopining bevosita orqasida joylashgan va <b>traxeya hamda yelka-bosh venalarini</b> (va yuqori kovak venani) siqishi mumkin.\n\nBRS says:\n\nAyrisimon bez yuqori mediastinda, to‘sh sopining bevosita orqasida joylashgan. Ayrisimon bezning kattalashishi yoki o‘smalari traxeya va yirik venalarni siqishi mumkin.",
+      },
+    },
+    {
+      q: "A 70-year-old man is admitted to the emergency department after a fall. Radiologic examination reveals a fracture of the body of the sternum. Which of the following joints is most likely to be affected by this fracture?",
+      a: [
+        "Sternoclavicular joint",
+        "Manubriosternal joint (sternal angle)",
+        "Xiphisternal joint",
+        "Costochondral joints of ribs 1–2",
+        "Costovertebral joints",
+      ],
+      correct: 1,
+      explanation:
+        "The body of the sternum articulates with the manubrium at the <b>manubriosternal joint (sternal angle)</b> and with the xiphoid process at the xiphisternal joint. A fracture of the sternal body most commonly involves or affects the manubriosternal joint.\n\nBRS says:\n\nThe manubriosternal joint is a secondary cartilaginous joint (symphysis) that forms the sternal angle. The xiphisternal joint is also a secondary cartilaginous joint.",
+      uz: {
+        q: "70 yoshli erkak yiqilishdan keyin shoshilinch yordam bo‘limiga yotqizildi. Rentgenologik tekshiruv to‘sh suyagi tanasining sinishini aniqladi. Quyidagi bo‘g‘imlardan qaysi biri bu sinishdan eng ko‘p ta’sirlanishi mumkin?",
+        a: [
+          "To‘sh-o‘mrov bo‘g‘imi",
+          "Manubriosternal bo‘g‘im (to‘sh burchagi)",
+          "Xifisternal bo‘g‘im",
+          "1–2-qovurg‘alarning qovurg‘a-tog‘ay bo‘g‘imlari",
+          "Qovurg‘a-umurtqa bo‘g‘imlari",
+        ],
+        explanation:
+          "To‘sh suyagi tanasi sop bilan <b>manubriosternal bo‘g‘im (to‘sh burchagi)</b>da, xanjarsimon o‘simta bilan esa xifisternal bo‘g‘imda bo‘g‘im hosil qiladi. To‘sh tanasining sinishi eng ko‘p manubriosternal bo‘g‘imga ta’sir qiladi.\n\nBRS says:\n\nManubriosternal bo‘g‘im ikkilamchi tog‘ayli bo‘g‘im (simfiz) bo‘lib, to‘sh burchagini hosil qiladi. Xifisternal bo‘g‘im ham ikkilamchi tog‘ayli bo‘g‘im hisoblanadi.",
+      },
+    },
+  ],
+  MEDIASTINUM_PLEURA_LUNGS: [
+    // ========== I. MEDIASTINUM ==========
+    {
+      q: "A 55-year-old man is admitted to the hospital with a mediastinal mass. The mass is located in the superior mediastinum immediately posterior to the manubrium. Which of the following structures is most likely compressed by this mass?",
+      a: [
+        "Thymus remnant and brachiocephalic veins",
+        "Heart",
+        "Descending thoracic aorta",
+        "Esophagus only",
+        "Thoracic duct only",
+      ],
+      correct: 0,
+      explanation:
+        "The superior mediastinum lies above the plane of the sternal angle (T4/T5). Its most anterior structure is the <b>thymus</b> (or its remnant), followed by the great veins (brachiocephalic veins, SVC). A mass here commonly compresses these structures.\n\nBRS says:\n\nThe superior mediastinum is bounded inferiorly by a plane passing through the sternal angle and the intervertebral disc between T4 and T5. It contains the thymus, great vessels (brachiocephalic veins, SVC, aortic arch and its branches), trachea, esophagus, vagus and phrenic nerves, and thoracic duct.",
+      uz: {
+        q: "55 yoshli erkak mediastinal o‘sma bilan kasalxonaga yotqizildi. O‘sma yuqori mediastinda to‘sh sopining bevosita orqasida joylashgan. Quyidagi tuzilmalardan qaysi biri bu o‘sma tomonidan eng ko‘p siqilishi mumkin?",
+        a: [
+          "Ayrisimon bez qoldig‘i va yelka-bosh venalari",
+          "Yurak",
+          "Tushuvchi ko‘krak aortasi",
+          "Faqat qizilo‘ngach",
+          "Faqat ko‘krak limfa yo‘li",
+        ],
+        explanation:
+          "Yuqori mediastin to‘sh burchagi (T4/T5) tekisligidan yuqorida joylashgan. Uning eng oldingi tuzilmasi <b>ayrisimon bez</b> (yoki uning qoldig‘i), keyin yirik venalar (yelka-bosh venalari, yuqori kovak vena). Bu yerdagi o‘sma ko‘pincha shu tuzilmalarni siqadi.\n\nBRS says:\n\nYuqori mediastin pastki tomondan to‘sh burchagi va T4–T5 umurtqalararo disk orqali o‘tuvchi tekislik bilan chegaralanadi. Unda ayrisimon bez, yirik tomirlar (yelka-bosh venalari, yuqori kovak vena, aorta yoyi va uning tarmoqlari), traxeya, qizilo‘ngach, adashgan va diafragma nervlari, ko‘krak limfa yo‘li joylashadi.",
+      },
+    },
+    {
+      q: "A 40-year-old man is diagnosed with a tumor in the posterior mediastinum. Which of the following structures is most likely located in the posterior mediastinum?",
+      a: [
+        "Thymus",
+        "Heart",
+        "Descending thoracic aorta and esophagus",
+        "Ascending aorta",
+        "Brachiocephalic veins",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>posterior mediastinum</b> contains the descending thoracic aorta, esophagus, thoracic duct, azygos and hemiazygos veins, sympathetic trunks, and vagus nerves.\n\nBRS says:\n\nThe posterior mediastinum lies posterior to the pericardium and contains the descending aorta, esophagus, thoracic duct, azygos system of veins, sympathetic trunks and splanchnic nerves, and the vagus nerves.",
+      uz: {
+        q: "40 yoshli erkakda orqa mediastin o‘smasi tashxisi qo‘yildi. Quyidagi tuzilmalardan qaysi biri orqa mediastinda eng ko‘p joylashgan?",
+        a: [
+          "Ayrisimon bez",
+          "Yurak",
+          "Tushuvchi ko‘krak aortasi va qizilo‘ngach",
+          "Ko‘tariluvchi aorta",
+          "Yelka-bosh venalari",
+        ],
+        explanation:
+          "<b>Orqa mediastin</b>da tushuvchi ko‘krak aortasi, qizilo‘ngach, ko‘krak limfa yo‘li, azigos va hemiazigos venalar, simpatik ustunlar va adashgan nervlar joylashgan.\n\nBRS says:\n\nOrqa mediastin perikardning orqasida joylashgan va tushuvchi aorta, qizilo‘ngach, ko‘krak limfa yo‘li, azigos venalar sistemasi, simpatik ustunlar va ichak nervlari, adashgan nervlarni o‘z ichiga oladi.",
+      },
+    },
+
+    // ========== II. TRACHEA AND BRONCHI ==========
+    {
+      q: "A 3-year-old boy is admitted after aspirating a peanut. Radiologic examination shows the foreign body in the airway. In which of the following locations is the foreign body most likely to be found?",
+      a: [
+        "Left main bronchus",
+        "Right main bronchus",
+        "Trachea above the carina",
+        "Left upper lobe bronchus",
+        "Right upper lobe bronchus only",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>right main (primary) bronchus</b> is shorter, wider and more vertical than the left. Therefore aspirated foreign bodies more commonly enter the right main bronchus (or its lower lobe branch).\n\nBRS says:\n\nThe right main bronchus is shorter, wider and more vertical than the left main bronchus; therefore, foreign bodies that enter the trachea are more likely to pass into the right main bronchus or the lower lobe bronchus.",
+      uz: {
+        q: "3 yoshli bola yeryong‘oq aspiratsiya qilgandan keyin yotqizildi. Rentgenologik tekshiruv begona jismning nafas yo‘lida ekanligini ko‘rsatdi. Begona jism quyidagi joylardan qaysi birida eng ko‘p topilishi mumkin?",
+        a: [
+          "Chap bosh bronx",
+          "O‘ng bosh bronx",
+          "Karinadan yuqoridagi traxeya",
+          "Chap yuqori bo‘lak bronxi",
+          "Faqat o‘ng yuqori bo‘lak bronxi",
+        ],
+        explanation:
+          "<b>O‘ng bosh (birlamchi) bronx</b> chapga nisbatan qisqaroq, kengroq va vertikalroq. Shuning uchun aspiratsiya qilingan begona jismlar ko‘proq o‘ng bosh bronxga (yoki uning pastki bo‘lak tarmog‘iga) tushadi.\n\nBRS says:\n\nO‘ng bosh bronx chap bosh bronxga nisbatan qisqaroq, kengroq va vertikalroq bo‘ladi; shuning uchun traxeya orqali kiradigan begona jismlar ko‘proq bu bronxda yoki pastki bo‘lak bronxida joylashadi.",
+      },
+    },
+    {
+      q: "A 65-year-old man with a long history of smoking is diagnosed with lung cancer. Bronchoscopy reveals that the carina is distorted and widened. At which vertebral level does the trachea normally bifurcate?",
+      a: ["T2", "T4/T5 (sternal angle)", "T7", "T10", "C7"],
+      correct: 1,
+      explanation:
+        "The trachea bifurcates at the <b>carina</b>, which lies at the level of the <b>sternal angle (T4/T5)</b>. Distortion and widening of the carina is a classic sign of advanced bronchial carcinoma involving the tracheobronchial lymph nodes.\n\nBRS says:\n\nThe trachea bifurcates into the right and left main bronchi at the level of the sternal angle (angle of Louis), which corresponds to the intervertebral disc between T4 and T5. The carina is a ridge of cartilage at the bifurcation and is one of the most sensitive areas of the tracheobronchial tree for the cough reflex.",
+      uz: {
+        q: "65 yoshli uzoq vaqt chekuvchi erkakda o‘pka saratoni tashxisi qo‘yildi. Bronxoskopiya karinaning deformatsiyalangan va kengayganligini ko‘rsatdi. Traxeya odatda qaysi umurtqa darajasida bifurkatsiya qiladi?",
+        a: ["T2", "T4/T5 (to‘sh burchagi)", "T7", "T10", "C7"],
+        explanation:
+          "Traxeya <b>karina</b>da bifurkatsiya qiladi; u <b>to‘sh burchagi (T4/T5)</b> darajasida joylashgan. Karinaning deformatsiyasi va kengayishi traxeobronxial limfa tugunlarini qamrab olgan rivojlangan bronxial karsinomaning klassik belgisidir.\n\nBRS says:\n\nTraxeya to‘sh burchagi (Luis burchagi) darajasida o‘ng va chap bosh bronxlarga bo‘linadi; bu T4 va T5 orasidagi umurtqalararo diskka to‘g‘ri keladi. Karina bifurkatsiya joyidagi tog‘ay tizma bo‘lib, yo‘tal refleksi uchun traxeobronxial daraxtning eng sezgir joylaridan biridir.",
+      },
+    },
+
+    // ========== III. PLEURAE AND PLEURAL CAVITIES ==========
+    {
+      q: "A 45-year-old man is admitted with a large right-sided pleural effusion. A thoracentesis is planned. Through which intercostal space along the midaxillary line is the needle most safely inserted to drain the fluid from the costodiaphragmatic recess?",
+      a: [
+        "6th intercostal space",
+        "8th or 9th intercostal space",
+        "4th intercostal space",
+        "2nd intercostal space",
+        "11th intercostal space",
+      ],
+      correct: 1,
+      explanation:
+        "To drain fluid from the <b>costodiaphragmatic recess</b> the needle is inserted in the midaxillary line in the <b>8th or 9th intercostal space</b> (above the lower rib to avoid the intercostal vessels and nerve).\n\nBRS says:\n\nThe costodiaphragmatic recess is the lowest part of the pleural cavity and is the site where fluid accumulates. Thoracentesis is performed in the midaxillary line in the 8th or 9th intercostal space.",
+      uz: {
+        q: "45 yoshli erkak katta o‘ng tomonlama plevra suyuqligi bilan yotqizildi. Torakosentez rejalashtirilmoqda. Kostodiafragmal cho‘ntakdan suyuqlikni chiqarish uchun o‘rta aksillar chiziq bo‘ylab qaysi qovurg‘alararo bo‘shliqdan igna eng xavfsiz kiritiladi?",
+        a: [
+          "6-qovurg‘alararo bo‘shliq",
+          "8- yoki 9-qovurg‘alararo bo‘shliq",
+          "4-qovurg‘alararo bo‘shliq",
+          "2-qovurg‘alararo bo‘shliq",
+          "11-qovurg‘alararo bo‘shliq",
+        ],
+        explanation:
+          "<b>Kostodiafragmal cho‘ntak</b>dan suyuqlikni chiqarish uchun igna o‘rta aksillar chiziqda <b>8- yoki 9-qovurg‘alararo bo‘shliq</b>dan (qovurg‘alararo tomirlar va nervni saqlash uchun pastki qovurg‘adan yuqoriroq) kiritiladi.\n\nBRS says:\n\nKostodiafragmal cho‘ntak plevra bo‘shlig‘ining eng pastki qismi bo‘lib, suyuqlik to‘planadigan joy. Torakosentez o‘rta aksillar chiziqda 8- yoki 9-qovurg‘alararo bo‘shliqda bajariladi.",
+      },
+    },
+    {
+      q: "A 28-year-old man is admitted after a stab wound to the chest. Radiologic examination reveals a pneumothorax with collapse of the right lung. Which of the following layers of pleura must have been violated for air to enter the pleural cavity?",
+      a: [
+        "Visceral pleura only",
+        "Parietal pleura",
+        "Endothoracic fascia only",
+        "Mediastinal pleura only",
+        "Diaphragmatic pleura only",
+      ],
+      correct: 1,
+      explanation:
+        "Air enters the pleural cavity only when the <b>parietal pleura</b> (or both parietal and visceral) is breached, creating a communication with the atmosphere or lung tissue (pneumothorax).\n\nBRS says:\n\nThe parietal pleura lines the thoracic wall, diaphragm and mediastinum. Injury to the parietal pleura allows air to enter the pleural cavity, producing a pneumothorax and collapse of the lung.",
+      uz: {
+        q: "28 yoshli erkak ko‘krakka pichoq jarohatidan keyin yotqizildi. Rentgenologik tekshiruv o‘ng o‘pkaning kollapsi bilan pnevmotoraksni aniqladi. Havo plevra bo‘shlig‘iga kirishi uchun plevraning qaysi qatlami buzilgan bo‘lishi kerak?",
+        a: [
+          "Faqat visseral plevra",
+          "Parietal plevra",
+          "Faqat endotorakal fatsiya",
+          "Faqat mediastinal plevra",
+          "Faqat diafragmal plevra",
+        ],
+        explanation:
+          "Havo plevra bo‘shlig‘iga faqat <b>parietal plevra</b> (yoki parietal va visseral ikkalasi) buzilganda kiradi; bu atmosfera yoki o‘pka to‘qimasi bilan aloqa hosil qiladi (pnevmotoraks).\n\nBRS says:\n\nParietal plevra ko‘krak devori, diafragma va mediastinni qoplaydi. Parietal plevraning jarohatlanishi havo plevra bo‘shlig‘iga kirib, pnevmotoraks va o‘pka kollapsiga olib keladi.",
+      },
+    },
+
+    // ========== IV. LUNGS ==========
+    {
+      q: "A 50-year-old man undergoes a right upper lobectomy. The surgeon notes that the right upper lobe bronchus crosses superior to the pulmonary artery. What is the correct name for this bronchus?",
+      a: [
+        "Hyparterial bronchus",
+        "Eparterial bronchus",
+        "Intermediate bronchus",
+        "Lobar bronchus of the left lung",
+        "Segmental bronchus only",
+      ],
+      correct: 1,
+      explanation:
+        "The right upper lobe (secondary) bronchus is called the <b>eparterial bronchus</b> because it passes superior to the pulmonary artery. All other bronchi are hyparterial.\n\nBRS says:\n\nThe right upper lobe (secondary) bronchus is called the eparterial bronchus because it passes above the pulmonary artery. All other bronchi are hyparterial.",
+      uz: {
+        q: "50 yoshli erkak o‘ng yuqori bo‘lakektomiya o‘tkazmoqda. Jarroh o‘ng yuqori bo‘lak bronxining o‘pka arteriyasidan yuqorida o‘tishini qayd etdi. Bu bronxning to‘g‘ri nomi nima?",
+        a: [
+          "Gipoarterial bronx",
+          "Epiarterial bronx",
+          "Oraliq bronx",
+          "Chap o‘pkaning bo‘lak bronxi",
+          "Faqat segmentar bronx",
+        ],
+        explanation:
+          "O‘ng yuqori bo‘lak (ikkilamchi) bronx <b>epiarterial bronx</b> deb ataladi, chunki u o‘pka arteriyasidan yuqorida o‘tadi. Boshqa barcha bronxlar gipoarterialdir.\n\nBRS says:\n\nO‘ng yuqori bo‘lak (ikkilamchi) bronx o‘pka arteriyasi ustidan o‘tganligi uchun epiarterial (arteriya ustidagi) bronx deb ataladi. Qolganlarining hammasi gipoarterial bronxlardir.",
+      },
+    },
+    {
+      q: "A 60-year-old woman is diagnosed with lung cancer confined to one bronchopulmonary segment. The surgeon plans a segmentectomy. Which of the following statements regarding a bronchopulmonary segment is correct?",
+      a: [
+        "It is supplied by a tertiary (segmental) bronchus and a segmental branch of the pulmonary artery",
+        "It is drained by intersegmental pulmonary veins that form surgical boundaries",
+        "Both A and B are correct",
+        "It has no clinical surgical importance",
+        "It is supplied only by bronchial arteries",
+      ],
+      correct: 2,
+      explanation:
+        "A <b>bronchopulmonary segment</b> is the anatomic, functional and surgical unit of the lung. It is supplied by a tertiary (segmental) bronchus and a segmental branch of the pulmonary artery, and drained by intersegmental veins that form the surgical planes.\n\nBRS says:\n\nA bronchopulmonary segment is the anatomic, functional and surgical unit of the lung. It consists of a segmental (tertiary) bronchus, a segmental branch of the pulmonary artery, and a portion of lung tissue, and is drained by intersegmental veins. These intersegmental veins form surgical boundaries that allow removal of a segment without serious damage to adjacent tissue or major vessels.",
+      uz: {
+        q: "60 yoshli ayolda bitta bronxopulmonar segment bilan cheklangan o‘pka saratoni tashxisi qo‘yildi. Jarroh segmentektomiya rejalashtirmoqda. Bronxopulmonar segment haqida quyidagi bayonotlardan qaysi biri to‘g‘ri?",
+        a: [
+          "U uchlamchi (segmentar) bronx va o‘pka arteriyasining segmentar tarmog‘i bilan ta’minlanadi",
+          "U jarrohlik chegaralarini hosil qiluvchi segmentlararo o‘pka venalari tomonidan drenajlanadi",
+          "A va B ning ikkalasi ham to‘g‘ri",
+          "Uning klinik jarrohlik ahamiyati yo‘q",
+          "U faqat bronxial arteriyalar bilan ta’minlanadi",
+        ],
+        explanation:
+          "<b>Bronxopulmonar segment</b> o‘pkaning anatomik, funksional va jarrohlik birligidir. U uchlamchi (segmentar) bronx va o‘pka arteriyasining segmentar tarmog‘i bilan ta’minlanadi va segmentlararo venalar tomonidan drenajlanadi; bu venalar jarrohlik tekisliklarini hosil qiladi.\n\nBRS says:\n\nBronxopulmonar segment o‘pkaning anatomik, funksional va jarrohlik birligi (bo‘linmasi)dir. U segmental (uchlamchi) bronx, o‘pka arteriyasining segmentar tarmog‘i va o‘pka to‘qimasi qismidan iborat bo‘lib, segmentlararo venalar tomonidan drenajlanadi. Bu segmentlararo venalar jarrohlik chegaralarini hosil qiladi.",
+      },
+    },
+    {
+      q: "A 35-year-old woman has a tumor located in the right lung. Which of the following statements about the right lung is correct?",
+      a: [
+        "It has two lobes and one fissure",
+        "It has three lobes and two fissures (oblique and horizontal)",
+        "It has the cardiac notch",
+        "Its main bronchus is longer and more horizontal than the left",
+        "It has eight bronchopulmonary segments",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>right lung</b> has three lobes (upper, middle, lower) separated by the oblique and horizontal fissures. The left lung has two lobes and only an oblique fissure (plus the cardiac notch and lingula).\n\nBRS says:\n\nThe right lung has three lobes (superior, middle and inferior) separated by the oblique and horizontal fissures. The left lung has two lobes (superior and inferior) separated by the oblique fissure.",
+      uz: {
+        q: "35 yoshli ayolda o‘ng o‘pkada o‘sma bor. O‘ng o‘pka haqida quyidagi bayonotlardan qaysi biri to‘g‘ri?",
+        a: [
+          "Unda ikkita bo‘lak va bitta yoriq bor",
+          "Unda uchta bo‘lak va ikkita yoriq (qiyshiq va gorizontal) bor",
+          "Unda yurak o‘ymasi bor",
+          "Uning bosh bronxi chapnikidan uzunroq va gorizontalroq",
+          "Unda sakkizta bronxopulmonar segment bor",
+        ],
+        explanation:
+          "<b>O‘ng o‘pka</b>da uchta bo‘lak (yuqori, o‘rta, pastki) bor; ular qiyshiq va gorizontal yoriqlar bilan ajralgan. Chap o‘pkada ikkita bo‘lak va faqat qiyshiq yoriq (hamda yurak o‘ymasi va lingula) bor.\n\nBRS says:\n\nO‘ng o‘pkada uchta bo‘lak (yuqori, o‘rta va pastki) bor; ular qiyshiq va gorizontal yoriqlar bilan ajralgan. Chap o‘pkada ikkita bo‘lak (yuqori va pastki) bor; ular qiyshiq yoriq bilan ajralgan.",
+      },
+    },
+
+    // ========== V. RESPIRATION ==========
+    {
+      q: "A 25-year-old man is examined during quiet inspiration. Which of the following muscles is the primary muscle of inspiration?",
+      a: [
+        "External intercostal muscles",
+        "Diaphragm",
+        "Internal intercostal muscles",
+        "Sternocleidomastoid",
+        "Scalene muscles",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>diaphragm</b> is the principal muscle of inspiration. Its contraction increases the vertical diameter of the thorax. The external intercostals assist by increasing the anteroposterior and transverse diameters.\n\nBRS says:\n\nThe diaphragm is the principal muscle of inspiration. Contraction of the diaphragm increases the vertical diameter of the thoracic cavity. The external intercostal muscles raise the ribs and increase the anteroposterior and transverse diameters.",
+      uz: {
+        q: "25 yoshli erkak tinch nafas olish paytida tekshirildi. Quyidagi muskullardan qaysi biri nafas olishning asosiy muskuli hisoblanadi?",
+        a: [
+          "Tashqi qovurg‘alararo muskullar",
+          "Diafragma",
+          "Ichki qovurg‘alararo muskullar",
+          "To‘sh-o‘mrov-so‘rg‘ichsimon",
+          "Zinapoyasimon muskullar",
+        ],
+        explanation:
+          "<b>Diafragma</b> nafas olishning asosiy muskuli hisoblanadi. Uning qisqarishi ko‘krak qafasining vertikal diametrini oshiradi. Tashqi qovurg‘alararo muskullar old-orqa va ko‘ndalang diametrlarni oshirish orqali yordam beradi.\n\nBRS says:\n\nDiafragma nafas olishning asosiy muskuli hisoblanadi. Diafragmaning qisqarishi ko‘krak bo‘shlig‘ining vertikal diametrini oshiradi. Tashqi qovurg‘alararo muskullar qovurg‘alarni ko‘taradi va old-orqa hamda ko‘ndalang diametrlarni oshiradi.",
+      },
+    },
+
+    // ========== VI–VII. LYMPHATICS & BLOOD VESSELS OF THE LUNG ==========
+    {
+      q: "A 62-year-old man with lung cancer has involvement of the tracheobronchial (carinal) lymph nodes. Which of the following statements about lymphatic drainage of the lungs is correct?",
+      a: [
+        "Lymph from both lungs drains exclusively to the right lymphatic duct",
+        "The tracheobronchial nodes lie at the bifurcation of the trachea and receive lymph from the bronchopulmonary nodes",
+        "There are no lymph nodes at the hilum of the lung",
+        "All pulmonary lymph drains directly into the thoracic duct",
+        "Superficial and deep lymphatic plexuses do not communicate",
+      ],
+      correct: 1,
+      explanation:
+        "Lymph from the lungs drains via superficial and deep plexuses to the bronchopulmonary (hilar) nodes, then to the <b>tracheobronchial (carinal) nodes</b> at the tracheal bifurcation, and finally to the bronchomediastinal trunks.\n\nBRS says:\n\nLymph from the lungs drains to the bronchopulmonary (hilar) nodes, then to the tracheobronchial nodes at the tracheal bifurcation (carina), and then to the bronchomediastinal lymph trunks.",
+      uz: {
+        q: "62 yoshli o‘pka saratonli erkakda traxeobronxial (karinal) limfa tugunlari zararlangan. O‘pka limfa drenaji haqida quyidagi bayonotlardan qaysi biri to‘g‘ri?",
+        a: [
+          "Ikkala o‘pkadan limfa faqat o‘ng limfa yo‘liga quyiladi",
+          "Traxeobronxial tugunlar traxeya bifurkatsiyasida joylashgan va bronxopulmonar tugunlardan limfa oladi",
+          "O‘pka darvozasida limfa tugunlari yo‘q",
+          "Barcha o‘pka limfasi to‘g‘ridan-to‘g‘ri ko‘krak limfa yo‘liga quyiladi",
+          "Yuzaki va chuqur limfa chigallari o‘zaro aloqada emas",
+        ],
+        explanation:
+          "O‘pkadan limfa yuzaki va chuqur chigallar orqali bronxopulmonar (hilar) tugunlarga, keyin traxeya bifurkatsiyasidagi <b>traxeobronxial (karinal) tugunlarga</b>, nihoyat bronxomediastinal ustunlarga quyiladi.\n\nBRS says:\n\nO‘pkadan limfa bronxopulmonar (hilar) tugunlarga, keyin traxeya bifurkatsiyasidagi (karina) traxeobronxial tugunlarga, so‘ng bronxomediastinal limfa ustunlariga quyiladi.",
+      },
+    },
+    {
+      q: "A 55-year-old man undergoes a left pneumonectomy. The surgeon ligates the structures of the lung root. Which of the following is the correct relationship of the pulmonary artery to the main bronchus at the hilum of the left lung?",
+      a: [
+        "Pulmonary artery is anterior to the bronchus",
+        "Pulmonary artery is superior to the bronchus",
+        "Pulmonary artery is inferior to the bronchus",
+        "Pulmonary artery is posterior to the bronchus",
+        "Pulmonary veins are superior to the artery",
+      ],
+      correct: 1,
+      explanation:
+        "At the hilum of the <b>left lung</b> the pulmonary artery is the most superior structure; the main bronchus is intermediate and the pulmonary veins are most anterior and inferior. (On the right the artery is anterior to the bronchus – eparterial bronchus relationship.)\n\nBRS says:\n\nAt the root of the left lung the pulmonary artery is the most superior structure. On the right the upper lobe bronchus is eparterial (above the artery).",
+      uz: {
+        q: "55 yoshli erkak chap pnevmonektomiya o‘tkazmoqda. Jarroh o‘pka ildizi tuzilmalarini bog‘lamoqda. Chap o‘pka darvozasida o‘pka arteriyasining bosh bronxga nisbatan to‘g‘ri joylashuvi qanday?",
+        a: [
+          "O‘pka arteriyasi bronxdan oldinda",
+          "O‘pka arteriyasi bronxdan yuqorida",
+          "O‘pka arteriyasi bronxdan pastda",
+          "O‘pka arteriyasi bronxdan orqada",
+          "O‘pka venalari arteriyadan yuqorida",
+        ],
+        explanation:
+          "<b>Chap o‘pka</b> darvozasida o‘pka arteriyasi eng yuqori tuzilma; bosh bronx o‘rtada, o‘pka venalari eng oldinda va pastda joylashgan. (O‘ng tomonda arteriya bronxdan oldinda – epiarterial bronx munosabati.)\n\nBRS says:\n\nChap o‘pka ildizida o‘pka arteriyasi eng yuqori tuzilma. O‘ng tomonda yuqori bo‘lak bronxi epiarterial (arteriyadan yuqorida).",
+      },
+    },
+
+    // ========== VIII. NERVE SUPPLY TO THE LUNG ==========
+    {
+      q: "A 48-year-old man has a tumor at the hilum of the right lung that compresses the nerve lying anterior to the lung root. Which of the following nerves is most likely compressed?",
+      a: [
+        "Right vagus nerve",
+        "Right phrenic nerve",
+        "Right recurrent laryngeal nerve",
+        "Right sympathetic trunk",
+        "Right long thoracic nerve",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>phrenic nerve</b> descends anterior to the lung root (hilum), while the <b>vagus nerve</b> descends posterior to the lung root. Compression of the phrenic nerve at the hilum causes hemidiaphragm paralysis.\n\nBRS says:\n\nThe phrenic nerve passes anterior to the root of the lung, whereas the vagus nerve passes posterior to the root of the lung. The phrenic nerve supplies the diaphragm; the vagus provides parasympathetic innervation to the lungs.",
+      uz: {
+        q: "48 yoshli erkakda o‘ng o‘pka darvozasidagi o‘sma o‘pka ildizidan oldinda yotgan nervni siqmoqda. Quyidagi nervlardan qaysi biri eng ko‘p siqilgan?",
+        a: [
+          "O‘ng adashgan nerv",
+          "O‘ng diafragma nervi",
+          "O‘ng qaytuvchi hiqildoq nervi",
+          "O‘ng simpatik ustun",
+          "O‘ng uzun ko‘krak nervi",
+        ],
+        explanation:
+          "<b>Diafragma nervi</b> o‘pka ildizidan (darvozadan) oldinda pastga tushadi, <b>adashgan nerv</b> esa o‘pka ildizidan orqada pastga tushadi. Darvozada diafragma nervining siqilishi gemidiafragma falajiga olib keladi.\n\nBRS says:\n\nDiafragma nervi o‘pka ildizidan oldinda o‘tadi, adashgan nerv esa o‘pka ildizidan orqada o‘tadi. Diafragma nervi diafragmani ta’minlaydi; adashgan nerv o‘pkaga parasimpatik innervatsiya beradi.",
+      },
+    },
+    {
+      q: "A 50-year-old man with a Pancoast tumor (apex of the lung) develops Horner syndrome on the left side. Which of the following structures is most likely invaded by the tumor?",
+      a: [
+        "Left phrenic nerve",
+        "Left cervical sympathetic trunk / stellate ganglion",
+        "Left vagus nerve",
+        "Left recurrent laryngeal nerve only",
+        "Left long thoracic nerve",
+      ],
+      correct: 1,
+      explanation:
+        "A <b>Pancoast tumor</b> at the lung apex can invade the cervical sympathetic trunk (stellate ganglion), producing <b>Horner syndrome</b> (ptosis, miosis, anhidrosis) on the affected side.\n\nBRS says:\n\nA Pancoast tumor (tumor of the apex of the lung) may involve the cervical sympathetic trunk or stellate ganglion and produce Horner syndrome (ptosis, miosis, anhidrosis).",
+      uz: {
+        q: "50 yoshli erkakda Pancoast o‘smasi (o‘pka uchi) chap tomonda Horner sindromini rivojlantirdi. Quyidagi tuzilmalardan qaysi biri o‘sma tomonidan eng ko‘p bosib olingan?",
+        a: [
+          "Chap diafragma nervi",
+          "Chap bo‘yin simpatik ustuni / yulduzsimon gangliy",
+          "Chap adashgan nerv",
+          "Faqat chap qaytuvchi hiqildoq nervi",
+          "Chap uzun ko‘krak nervi",
+        ],
+        explanation:
+          "O‘pka uchidagi <b>Pancoast o‘smasi</b> bo‘yin simpatik ustunini (yulduzsimon gangliy) bosib olib, zararlangan tomonda <b>Horner sindromi</b> (ptoz, mioz, angidroz) ni keltirib chiqarishi mumkin.\n\nBRS says:\n\nPancoast o‘smasi (o‘pka uchining o‘smasi) bo‘yin simpatik ustuni yoki yulduzsimon gangliyni qamrab olib, Horner sindromini (ptoz, mioz, angidroz) keltirib chiqarishi mumkin.",
+      },
+    },
+    {
+      q: "A 45-year-old woman has a tumor that compresses the left recurrent laryngeal nerve as it passes under the aortic arch. Which of the following symptoms is most likely?",
+      a: [
+        "Paralysis of the left hemidiaphragm",
+        "Hoarseness due to paralysis of the left vocal cord",
+        "Winged scapula",
+        "Loss of sensation over the left nipple",
+        "Horner syndrome",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>left recurrent laryngeal nerve</b> hooks under the aortic arch (ligamentum arteriosum) and supplies all intrinsic muscles of the larynx except the cricothyroid. Compression causes left vocal-cord paralysis and hoarseness.\n\nBRS says:\n\nThe left recurrent laryngeal nerve hooks around the aortic arch distal to the ligamentum arteriosum and ascends in the groove between the trachea and esophagus. It supplies the intrinsic muscles of the larynx (except cricothyroid). Injury causes hoarseness.",
+      uz: {
+        q: "45 yoshli ayolda aorta yoyi ostidan o‘tuvchi chap qaytuvchi hiqildoq nervini siquvchi o‘sma bor. Quyidagi alomatlardan qaysi biri eng ehtimolli?",
+        a: [
+          "Chap gemidiafragmaning falaji",
+          "Chap ovoz boylamining falaji tufayli xirillash",
+          "Qanotsimon kurak",
+          "Chap so‘rg‘ich ustidagi sezuvchanlik yo‘qolishi",
+          "Horner sindromi",
+        ],
+        explanation:
+          "<b>Chap qaytuvchi hiqildoq nervi</b> aorta yoyi (arterial boylam) ostidan aylanib o‘tadi va kriko-tireoiddan tashqari hiqildoqning barcha ichki muskullarini ta’minlaydi. Siqilish chap ovoz boylamining falaji va xirillashga olib keladi.\n\nBRS says:\n\nChap qaytuvchi hiqildoq nervi arterial boylamdan distalda aorta yoyini aylanib o‘tadi va traxeya bilan qizilo‘ngach orasidagi egatda yuqoriga ko‘tariladi. U kriko-tireoiddan tashqari hiqildoqning ichki muskullarini ta’minlaydi. Shikastlanishi xirillashga olib keladi.",
+      },
+    },
+  ],
+
+  PERICARDIUM_HEART: [
+    // ========== I. PERICARDIUM ==========
+    {
+      q: "A 45-year-old man is admitted after a stab wound to the left chest. He develops muffled heart sounds, distended neck veins and hypotension. Which of the following conditions is most likely present?",
+      a: [
+        "Pneumothorax",
+        "Cardiac tamponade",
+        "Myocardial infarction",
+        "Aortic dissection",
+        "Pulmonary embolism",
+      ],
+      correct: 1,
+      explanation:
+        "<b>Cardiac tamponade</b> is acute compression of the heart caused by rapid accumulation of fluid or blood in the pericardial cavity. Classic signs are muffled heart sounds, elevated venous pressure (distended neck veins) and hypotension (Beck’s triad).\n\nBRS says:\n\nCardiac tamponade is acute compression of the heart caused by a rapid accumulation of fluid or blood in the pericardial cavity from trauma or pericardial effusion. It results in decreased venous return, reduced diastolic filling, decreased cardiac output, increased heart rate, increased venous pressure with neck-vein distension, hepatomegaly and peripheral edema. It is treated by pericardiocentesis.",
+      uz: {
+        q: "45 yoshli erkak chap ko‘krakka pichoq jarohatidan keyin yotqizildi. Unda bo‘g‘iq yurak tovushlari, kengaygan bo‘yin venalari va gipotoniya rivojlandi. Quyidagi holatlardan qaysi biri eng ehtimolli?",
+        a: [
+          "Pnevmotoraks",
+          "Yurak tamponadasi",
+          "Miokard infarkti",
+          "Aorta disseksiyasi",
+          "O‘pka emboliyasi",
+        ],
+        explanation:
+          "<b>Yurak tamponadasi</b> perikard bo‘shlig‘ida suyuqlik yoki qonning tez to‘planishi natijasida yurakning o‘tkir siqilishidir. Klassik belgilar: bo‘g‘iq yurak tovushlari, yuqori venoz bosim (kengaygan bo‘yin venalari) va gipotoniya (Bek triadası).\n\nBRS says:\n\nYurak tamponadasi – yurakka jarohatlardan yoki perikardial effuziyadan perikard bo‘shlig‘ida suyuqlik yoki qonning tez to‘planishi natijasida yurakning o‘tkir siqilishi. U yurakka venoz qaytishning qiyinlashuviga olib keladi, natijada diastolik hajmning pasayishi, yurak urishi tezligining oshishi bilan yurakdan haydalgan qon miqdorining pasayishi, bo‘yin venalari kengayishi bilan venoz bosimning oshishi, jigar kengayishi va periferik shish paydo bo‘ladi. Uni perikardiosentez bilan davolash mumkin.",
+      },
+    },
+    {
+      q: "A 50-year-old man requires pericardiocentesis for cardiac tamponade. Through which intercostal space is the needle most commonly inserted?",
+      a: [
+        "Left 2nd intercostal space at the midclavicular line",
+        "Left 5th intercostal space just lateral to the sternum",
+        "Right 4th intercostal space",
+        "Left 8th intercostal space in the midaxillary line",
+        "Suprasternal notch",
+      ],
+      correct: 1,
+      explanation:
+        "Pericardiocentesis is performed by inserting a needle into the pericardial cavity through the <b>left 5th intercostal space just lateral to the sternum</b> (or the xiphocostal angle). This approach avoids the pleura and lung.\n\nBRS says:\n\nPericardiocentesis is the surgical puncture of the pericardial cavity to relieve pressure from accumulated fluid. The needle is inserted into the pericardial cavity through the fifth intercostal space just lateral to the sternum, where it avoids the pleura and lung.",
+      uz: {
+        q: "50 yoshli erkakda yurak tamponadasi uchun perikardiosentez kerak. Igna eng ko‘p qaysi qovurg‘alararo bo‘shliqdan kiritiladi?",
+        a: [
+          "Chap 2-qovurg‘alararo bo‘shliq o‘rta o‘mrov chizig‘ida",
+          "Chap 5-qovurg‘alararo bo‘shliq to‘sh suyagidan biroz lateralda",
+          "O‘ng 4-qovurg‘alararo bo‘shliq",
+          "Chap 8-qovurg‘alararo bo‘shliq o‘rta aksillar chiziqda",
+          "To‘sh usti o‘ymasi",
+        ],
+        explanation:
+          "Perikardiosentez ignani perikard bo‘shlig‘iga <b>chap 5-qovurg‘alararo bo‘shliqdan to‘sh suyagidan biroz lateralda</b> (yoki xifokostal burchakdan) kiritish orqali bajariladi. Bu yondashuv plevra va o‘pkani chetlab o‘tadi.\n\nBRS says:\n\nPerikardiosentez – yurakdagi to‘plangan suyuqlik bosimini bartaraf etish uchun perikardial bo‘shliqni jarrohlik yo‘li bilan teshilishidir. To‘sh suyagi yaqinida beshinchi qovurg‘alararo bo‘shliq orqali perikard bo‘shlig‘iga igna kiritiladi. Bu qismda igna plevra va o‘pkani chetlab o‘tadi.",
+      },
+    },
+    {
+      q: "During cardiac surgery a surgeon places a ligature around the ascending aorta and pulmonary trunk by passing a finger through a pericardial sinus. Which sinus is being used?",
+      a: [
+        "Oblique pericardial sinus",
+        "Transverse pericardial sinus",
+        "Coronary sinus",
+        "Sinus venarum",
+        "Costomediastinal recess",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>transverse pericardial sinus</b> lies behind the ascending aorta and pulmonary trunk and in front of the SVC. It allows the surgeon to pass a ligature around these great arteries to stop blood flow during surgery.\n\nBRS says:\n\nThe transverse sinus is a subdivision of the pericardial sac that lies behind the ascending aorta and pulmonary trunk, in front of the SVC, and above the left atrium and pulmonary veins. It is of great importance to the cardiac surgeon because a finger can be passed through the sinus to place a ligature around the aorta and pulmonary trunk to stop blood flow.",
+      uz: {
+        q: "Yurak jarrohligi paytida jarroh barmog‘ini perikard sinusidan o‘tkazib, ko‘tariluvchi aorta va o‘pka magistrali atrofiga ligatura qo‘ymoqda. Qaysi sinus ishlatilmoqda?",
+        a: [
+          "Qiyshiq perikard sinusi",
+          "Ko‘ndalang perikard sinusi",
+          "Koronar sinus",
+          "Venoz sinus",
+          "Kostomediastinal cho‘ntak",
+        ],
+        explanation:
+          "<b>Ko‘ndalang perikard sinusi</b> ko‘tariluvchi aorta va o‘pka magistralining orqasida, yuqori kovak vena oldida joylashgan. U jarrohga bu yirik arteriyalar atrofiga ligatura qo‘yib, operatsiya paytida qon oqimini to‘xtatish imkonini beradi.\n\nBRS says:\n\nKo‘ndalang sinus perikardial qopning bo‘linmasi bo‘lib, ko‘tarilgan aorta va o‘pka magistralining orqasida, yuqori kovak vena oldida va chap atrium va o‘pka venalaridan yuqorida joylashgan. Bu kardiojarroh uchun katta ahamiyatga ega, chunki jarroh barmoqni o‘tkazib arteriyalar orasidagi sinus orqali ligatura qo‘yadi.",
+      },
+    },
+
+    // ========== II. HEART ==========
+    {
+      q: "A 60-year-old man has a myocardial infarction involving the interventricular septum and the apex of the heart. Which coronary artery is most likely occluded?",
+      a: [
+        "Right coronary artery",
+        "Left anterior descending (anterior interventricular) artery",
+        "Circumflex artery",
+        "Posterior interventricular artery",
+        "Left marginal artery",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>left anterior descending (anterior interventricular) artery</b> supplies the anterior two-thirds of the interventricular septum, the anterior walls of both ventricles and the apex of the heart. Occlusion produces an anterior septal infarct.\n\nBRS says:\n\nThe anterior interventricular (left anterior descending) artery supplies the anterior two-thirds of the interventricular septum, the anterior walls of the right and left ventricles, and the apex of the heart.",
+      uz: {
+        q: "60 yoshli erkakda qorinchalararo to‘siq va yurak cho‘qqisini qamrab olgan miokard infarkti bor. Qaysi koronar arteriya eng ko‘p tiqilgan?",
+        a: [
+          "O‘ng koronar arteriya",
+          "Chap oldingi tushuvchi (oldingi qorinchalararo) arteriya",
+          "Aylanma arteriya",
+          "Orqa qorinchalararo arteriya",
+          "Chap chekka arteriya",
+        ],
+        explanation:
+          "<b>Chap oldingi tushuvchi (oldingi qorinchalararo) arteriya</b> qorinchalararo to‘siqning oldingi uchdan ikki qismini, ikkala qorinchaning oldingi devorlarini va yurak cho‘qqisini ta’minlaydi. Tiqilishi oldingi septal infarktga olib keladi.\n\nBRS says:\n\nOldingi qorinchalararo (chap oldingi tushuvchi) arteriya qorinchalararo to‘siqning oldingi uchdan ikki qismini, o‘ng va chap qorinchalarning oldingi devorlarini va yurak cho‘qqisini ta’minlaydi.",
+      },
+    },
+    {
+      q: "A 55-year-old man has occlusion of the right coronary artery near its origin. Which of the following structures is most likely to have reduced blood supply?",
+      a: [
+        "SA node and AV node (in most people)",
+        "Anterior two-thirds of the interventricular septum",
+        "Left atrium only",
+        "Apex of the heart only",
+        "Anterior wall of the left ventricle",
+      ],
+      correct: 0,
+      explanation:
+        "In most people the <b>right coronary artery</b> supplies the SA node (via the SA nodal artery) and the AV node (via the AV nodal artery). Occlusion near the origin can therefore affect the conduction system.\n\nBRS says:\n\nThe right coronary artery supplies the SA node (in about 60% of people) and the AV node (in about 80% of people). It also supplies the right atrium, right ventricle, and the posterior one-third of the interventricular septum (in right-dominant hearts).",
+      uz: {
+        q: "55 yoshli erkakda o‘ng koronar arteriya boshlanishiga yaqin joyda tiqilgan. Quyidagi tuzilmalardan qaysi birining qon ta’minoti eng ko‘p kamayishi mumkin?",
+        a: [
+          "SA tugun va AV tugun (ko‘pchilik odamlarda)",
+          "Qorinchalararo to‘siqning oldingi uchdan ikki qismi",
+          "Faqat chap bo‘lmacha",
+          "Faqat yurak cho‘qqisi",
+          "Chap qorinchaning oldingi devori",
+        ],
+        explanation:
+          "Ko‘pchilik odamlarda <b>o‘ng koronar arteriya</b> SA tugunni (SA tugun arteriyasi orqali) va AV tugunni (AV tugun arteriyasi orqali) ta’minlaydi. Boshlanishiga yaqin tiqilish o‘tkazuvchanlik sistemasiga ta’sir qilishi mumkin.\n\nBRS says:\n\nO‘ng koronar arteriya SA tugunni (odamlarning taxminan 60%ida) va AV tugunni (taxminan 80%ida) ta’minlaydi. Shuningdek, o‘ng bo‘lmacha, o‘ng qorincha va qorinchalararo to‘siqning orqa uchdan bir qismini (o‘ng dominant yuraklarda) ta’minlaydi.",
+      },
+    },
+    {
+      q: "A 40-year-old woman has a heart murmur due to failure of a valve to close properly. The valve between the left atrium and left ventricle is which of the following?",
+      a: [
+        "Tricuspid valve",
+        "Mitral (bicuspid) valve",
+        "Aortic valve",
+        "Pulmonary valve",
+        "Thebesian valve",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>mitral (bicuspid) valve</b> lies between the left atrium and left ventricle. It has two cusps and prevents backflow into the left atrium during ventricular systole.\n\nBRS says:\n\nThe mitral (bicuspid, left AV) valve lies between the left atrium and left ventricle and has two cusps (anterior and posterior). The tricuspid valve lies between the right atrium and right ventricle and has three cusps.",
+      uz: {
+        q: "40 yoshli ayolda klapanning to‘g‘ri yopilmasligi tufayli yurak shovqini bor. Chap bo‘lmacha va chap qorincha orasidagi klapan qaysi?",
+        a: [
+          "Uch tavaqali klapan",
+          "Mitral (ikki tavaqali) klapan",
+          "Aorta klapani",
+          "O‘pka klapani",
+          "Tebеziy klapani",
+        ],
+        explanation:
+          "<b>Mitral (ikki tavaqali) klapan</b> chap bo‘lmacha va chap qorincha orasida joylashgan. Unda ikkita tavaqa bor va qorincha sistolasi paytida chap bo‘lmachaga qonning qaytishini oldini oladi.\n\nBRS says:\n\nMitral (ikki tavaqali, chap AV) klapan chap bo‘lmacha va chap qorincha orasida joylashgan va ikkita tavaqaga (oldingi va orqa) ega. Uch tavaqali klapan o‘ng bo‘lmacha va o‘ng qorincha orasida joylashgan va uchta tavaqaga ega.",
+      },
+    },
+    {
+      q: "A medical student is studying a heart specimen and identifies a muscular band that extends from the interventricular septum to the base of the anterior papillary muscle in the right ventricle. What is this structure?",
+      a: [
+        "Crista terminalis",
+        "Septomarginal trabecula (moderator band)",
+        "Chordae tendineae",
+        "Fossa ovalis",
+        "Conus arteriosus",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>septomarginal trabecula (moderator band)</b> is a muscular band in the right ventricle that extends from the interventricular septum to the base of the anterior papillary muscle. It carries the right bundle branch of the conduction system.\n\nBRS says:\n\nThe septomarginal trabecula (moderator band) is a muscular band that extends from the interventricular septum to the base of the anterior papillary muscle in the right ventricle and carries the right bundle branch of the AV bundle.",
+      uz: {
+        q: "Tibbiyot talabasi yurak preparatini o‘rganayotib, o‘ng qorinchada qorinchalararo to‘siqdan oldingi papillyar muskul asosiga cho‘zilgan mushak tolasini aniqladi. Bu tuzilma nima?",
+        a: [
+          "Crista terminalis",
+          "Septomarginal trabekula (moderator tola)",
+          "Chordae tendineae",
+          "Fossa ovalis",
+          "Conus arteriosus",
+        ],
+        explanation:
+          "<b>Septomarginal trabekula (moderator tola)</b> o‘ng qorinchadagi mushak tolasi bo‘lib, qorinchalararo to‘siqdan oldingi papillyar muskul asosiga cho‘ziladi. U o‘tkazuvchanlik sistemasining o‘ng oyog‘ini olib yuradi.\n\nBRS says:\n\nSeptomarginal trabekula (moderator tola) o‘ng qorinchada qorinchalararo to‘siqdan oldingi papillyar muskul asosiga cho‘zilgan mushak tolasi bo‘lib, AV bog‘lamining o‘ng oyog‘ini olib yuradi.",
+      },
+    },
+    {
+      q: "A 70-year-old man has an atrial septal defect diagnosed late in life. The defect is located at the site of the fossa ovalis. This defect results from incomplete closure of which embryonic structure?",
+      a: [
+        "Ductus arteriosus",
+        "Foramen ovale / septum primum and septum secundum",
+        "Truncus arteriosus",
+        "Sinus venosus",
+        "Bulbus cordis",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>fossa ovalis</b> is the remnant of the foramen ovale. An atrial septal defect (ASD) at this site results from incomplete fusion of the septum primum and septum secundum.\n\nBRS says:\n\nThe fossa ovalis is an oval depression in the interatrial septum and is the remnant of the foramen ovale, which allowed blood to pass from the right atrium to the left atrium in the fetus. Incomplete closure results in an atrial septal defect.",
+      uz: {
+        q: "70 yoshli erkakda kech yoshda bo‘lmachalararo to‘siq nuqsoni tashxisi qo‘yildi. Nuqson fossa ovalis joyida joylashgan. Bu nuqson qaysi embrional tuzilmaning to‘liq yopilmasligidan kelib chiqadi?",
+        a: [
+          "Arterial yo‘l",
+          "Oval teshik / birlamchi va ikkilamchi to‘siq",
+          "Arterial truncus",
+          "Venoz sinus",
+          "Bulbus cordis",
+        ],
+        explanation:
+          "<b>Fossa ovalis</b> oval teshikning qoldig‘idir. Bu joydagi bo‘lmachalararo to‘siq nuqsoni (ASD) birlamchi va ikkilamchi to‘siqlarning to‘liq qo‘shilmasligidan kelib chiqadi.\n\nBRS says:\n\nFossa ovalis bo‘lmachalararo to‘siqdagi oval chuqurlik bo‘lib, embrionda bo‘lmachalarni bog‘lovchi oval teshik qoldig‘i hisoblanadi. To‘liq yopilmaslik bo‘lmachalararo to‘siq nuqsoniga olib keladi.",
+      },
+    },
+
+    // ========== III. GREAT VESSELS ==========
+    {
+      q: "A 55-year-old man has an aneurysm of the aortic arch that compresses the left recurrent laryngeal nerve. Which of the following symptoms is most likely?",
+      a: [
+        "Paralysis of the left hemidiaphragm",
+        "Hoarseness",
+        "Winged scapula",
+        "Horner syndrome",
+        "Loss of sensation over the left nipple",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>left recurrent laryngeal nerve</b> hooks under the aortic arch distal to the ligamentum arteriosum. Compression by an aortic-arch aneurysm causes left vocal-cord paralysis and <b>hoarseness</b>.\n\nBRS says:\n\nThe left recurrent laryngeal nerve hooks around the aortic arch distal to the ligamentum arteriosum and ascends in the tracheoesophageal groove. Injury or compression causes hoarseness due to paralysis of the left vocal cord.",
+      uz: {
+        q: "55 yoshli erkakda aorta yoyi anevrizmasi chap qaytuvchi hiqildoq nervini siqmoqda. Quyidagi alomatlardan qaysi biri eng ehtimolli?",
+        a: [
+          "Chap gemidiafragmaning falaji",
+          "Xirillash",
+          "Qanotsimon kurak",
+          "Horner sindromi",
+          "Chap so‘rg‘ich ustidagi sezuvchanlik yo‘qolishi",
+        ],
+        explanation:
+          "<b>Chap qaytuvchi hiqildoq nervi</b> arterial boylamdan distalda aorta yoyi ostidan aylanib o‘tadi. Aorta yoyi anevrizmasi tomonidan siqilishi chap ovoz boylamining falaji va <b>xirillash</b>ga olib keladi.\n\nBRS says:\n\nChap qaytuvchi hiqildoq nervi arterial boylamdan distalda aorta yoyini aylanib o‘tadi va traxeya-qizilo‘ngach egatida yuqoriga ko‘tariladi. Shikastlanish yoki siqilish chap ovoz boylamining falaji tufayli xirillashga olib keladi.",
+      },
+    },
+
+    // ========== IV–VII. DEVELOPMENT & FETAL CIRCULATION ==========
+    {
+      q: "A newborn infant is cyanotic and has a continuous machine-like murmur. The condition is due to failure of closure of a fetal vessel that connects the pulmonary trunk to the aorta. What is this vessel called after birth when it closes normally?",
+      a: [
+        "Ligamentum venosum",
+        "Ligamentum arteriosum",
+        "Fossa ovalis",
+        "Median umbilical ligament",
+        "Round ligament of the liver",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>ductus arteriosus</b> connects the pulmonary trunk to the aorta in the fetus. After birth it closes and becomes the <b>ligamentum arteriosum</b>. Persistent (patent) ductus arteriosus produces a continuous machine-like murmur and cyanosis if large.\n\nBRS says:\n\nThe ductus arteriosus is a fetal vessel that connects the left pulmonary artery to the aorta, bypassing the lungs. After birth it closes and becomes the ligamentum arteriosum. Patent ductus arteriosus is a common congenital anomaly.",
+      uz: {
+        q: "Yangi tug‘ilgan chaqaloq sianotik va uzluksiz mashina shovqiniga ega. Holat o‘pka magistralini aortaga bog‘lovchi homila tomirining yopilmasligidan kelib chiqadi. Bu tomir tug‘ilgandan keyin normal yopilganda qanday ataladi?",
+        a: [
+          "Venoz boylam",
+          "Arterial boylam",
+          "Fossa ovalis",
+          "O‘rta kindik boylami",
+          "Jigar dumaloq boylami",
+        ],
+        explanation:
+          "<b>Arterial yo‘l (ductus arteriosus)</b> homilada o‘pka magistralini aortaga bog‘laydi. Tug‘ilgandan keyin u yopilib <b>arterial boylam (ligamentum arteriosum)</b>ga aylanadi. Ochiq (patent) arterial yo‘l uzluksiz mashina shovqini va (katta bo‘lsa) sianoz keltirib chiqaradi.\n\nBRS says:\n\nArterial yo‘l homila tomiri bo‘lib, chap o‘pka arteriyasini aortaga bog‘lab, o‘pkalarni chetlab o‘tadi. Tug‘ilgandan keyin u yopilib arterial boylamga aylanadi. Ochiq arterial yo‘l keng tarqalgan tug‘ma anomaliyadir.",
+      },
+    },
+    {
+      q: "A newborn is diagnosed with transposition of the great arteries. This anomaly results from which of the following developmental errors?",
+      a: [
+        "Incomplete partitioning of the atrioventricular canal",
+        "Failure of the aorticopulmonary septum to spiral",
+        "Incomplete formation of the interventricular septum",
+        "Persistent truncus arteriosus",
+        "Abnormal absorption of the sinus venosus",
+      ],
+      correct: 1,
+      explanation:
+        "<b>Transposition of the great arteries</b> occurs when the aorticopulmonary (spiral) septum fails to spiral as it divides the truncus arteriosus, so that the aorta arises from the right ventricle and the pulmonary trunk from the left ventricle.\n\nBRS says:\n\nTransposition of the great vessels results from failure of the aorticopulmonary septum to spiral as it divides the truncus arteriosus. Consequently the aorta arises from the right ventricle and the pulmonary trunk from the left ventricle.",
+      uz: {
+        q: "Yangi tug‘ilgan chaqaloqda yirik arteriyalar o‘rin almashtirishı tashxisi qo‘yildi. Bu anomaliya qaysi rivojlanish xatosidan kelib chiqadi?",
+        a: [
+          "Atrioventrikulyar kanalning to‘liq bo‘linmasligi",
+          "Aortopulmonar to‘siqning spiral shaklda o‘tmasligi",
+          "Qorinchalararo to‘siqning to‘liq shakllanmasligi",
+          "Saqlanib qolgan arterial truncus",
+          "Venoz sinusning anormal so‘rilishi",
+        ],
+        explanation:
+          "<b>Yirik arteriyalar o‘rin almashtirishı</b> aortopulmonar (spiral) to‘siq truncus arteriosusni bo‘lishda spiral shaklda o‘tmaganda yuzaga keladi; natijada aorta o‘ng qorinchadan, o‘pka magistrali esa chap qorinchadan chiqadi.\n\nBRS says:\n\nYirik tomirlar o‘rin almashtirishı aortopulmonar to‘siqning truncus arteriosusni bo‘lishda spiral shaklda o‘tmasligidan kelib chiqadi. Natijada aorta o‘ng qorinchadan, o‘pka magistrali esa chap qorinchadan chiqadi.",
+      },
+    },
+    {
+      q: "A newborn with cyanosis is diagnosed with tetralogy of Fallot. Which of the following is a component of this condition?",
+      a: [
+        "Atrial septal defect only",
+        "Pulmonary stenosis, right ventricular hypertrophy, overriding aorta, and ventricular septal defect",
+        "Transposition of the great arteries",
+        "Patent ductus arteriosus only",
+        "Isolated ventricular septal defect",
+      ],
+      correct: 1,
+      explanation:
+        "<b>Tetralogy of Fallot</b> consists of four components: (1) pulmonary stenosis, (2) right ventricular hypertrophy, (3) overriding aorta, and (4) ventricular septal defect. It is the most common cyanotic congenital heart defect.\n\nBRS says:\n\nTetralogy of Fallot consists of pulmonary stenosis, right ventricular hypertrophy, overriding aorta, and ventricular septal defect. It is the most common cyanotic congenital heart disease.",
+      uz: {
+        q: "Sianozli yangi tug‘ilgan chaqaloqda Fallot tetradasi tashxisi qo‘yildi. Quyidagilardan qaysi biri bu holatning tarkibiy qismi hisoblanadi?",
+        a: [
+          "Faqat bo‘lmachalararo to‘siq nuqsoni",
+          "O‘pka stenozı, o‘ng qorincha gipertrofiyasi, o‘tuvchi aorta va qorinchalararo to‘siq nuqsoni",
+          "Yirik arteriyalar o‘rin almashtirishı",
+          "Faqat ochiq arterial yo‘l",
+          "Izolyatsiyalangan qorinchalararo to‘siq nuqsoni",
+        ],
+        explanation:
+          "<b>Fallot tetradasi</b> to‘rtta tarkibiy qismdan iborat: (1) o‘pka stenozı, (2) o‘ng qorincha gipertrofiyasi, (3) o‘tuvchi aorta va (4) qorinchalararo to‘siq nuqsoni. U eng keng tarqalgan sianotik tug‘ma yurak nuqsonidir.\n\nBRS says:\n\nFallot tetradasi o‘pka stenozı, o‘ng qorincha gipertrofiyasi, o‘tuvchi aorta va qorinchalararo to‘siq nuqsonidan iborat. U eng keng tarqalgan sianotik tug‘ma yurak kasalligidir.",
+      },
+    },
+    {
+      q: "In fetal circulation, oxygenated blood from the placenta enters the fetus through which vessel?",
+      a: [
+        "Umbilical arteries",
+        "Umbilical vein",
+        "Ductus venosus",
+        "Ductus arteriosus",
+        "Foramen ovale",
+      ],
+      correct: 1,
+      explanation:
+        "Oxygenated blood from the placenta returns to the fetus via the <b>umbilical vein</b>. Most of this blood bypasses the liver through the ductus venosus and reaches the IVC, then the right atrium, and crosses through the foramen ovale to the left atrium.\n\nBRS says:\n\nOxygenated blood from the placenta enters the fetus through the umbilical vein. Most of this blood bypasses the liver via the ductus venosus and enters the IVC. From the right atrium it passes through the foramen ovale into the left atrium.",
+      uz: {
+        q: "Homila qon aylanishida platsentadan kislorodli qon qaysi tomir orqali homilaga kiradi?",
+        a: [
+          "Kindik arteriyalari",
+          "Kindik venasi",
+          "Venoz yo‘l",
+          "Arterial yo‘l",
+          "Oval teshik",
+        ],
+        explanation:
+          "Platsentadan kislorodli qon <b>kindik venasi</b> orqali homilaga qaytadi. Bu qonning ko‘p qismi venoz yo‘l orqali jigarni chetlab o‘tib, pastki kovak venaga, keyin o‘ng bo‘lmachaga yetadi va oval teshik orqali chap bo‘lmachaga o‘tadi.\n\nBRS says:\n\nPlatsentadan kislorodli qon kindik venasi orqali homilaga kiradi. Bu qonning ko‘p qismi venoz yo‘l orqali jigarni chetlab o‘tib, pastki kovak venaga kiradi. O‘ng bo‘lmachadan oval teshik orqali chap bo‘lmachaga o‘tadi.",
+      },
+    },
+    {
+      q: "After birth, the umbilical vein becomes which of the following structures?",
+      a: [
+        "Ligamentum arteriosum",
+        "Ligamentum teres (round ligament) of the liver",
+        "Median umbilical ligament",
+        "Medial umbilical ligaments",
+        "Fossa ovalis",
+      ],
+      correct: 1,
+      explanation:
+        "After birth the <b>umbilical vein</b> obliterates and becomes the <b>ligamentum teres (round ligament) of the liver</b>. The ductus venosus becomes the ligamentum venosum; the umbilical arteries become the medial umbilical ligaments; the ductus arteriosus becomes the ligamentum arteriosum.\n\nBRS says:\n\nAfter birth the umbilical vein becomes the ligamentum teres (round ligament) of the liver; the ductus venosus becomes the ligamentum venosum; the umbilical arteries become the medial umbilical ligaments; and the ductus arteriosus becomes the ligamentum arteriosum.",
+      uz: {
+        q: "Tug‘ilgandan keyin kindik venasi quyidagi tuzilmalardan qaysi biriga aylanadi?",
+        a: [
+          "Arterial boylam",
+          "Jigar dumaloq boylami (ligamentum teres)",
+          "O‘rta kindik boylami",
+          "Medial kindik boylamlari",
+          "Fossa ovalis",
+        ],
+        explanation:
+          "Tug‘ilgandan keyin <b>kindik venasi</b> obliteratsiya bo‘lib <b>jigar dumaloq boylami (ligamentum teres)</b>ga aylanadi. Venoz yo‘l venoz boylamga; kindik arteriyalari medial kindik boylamlariga; arterial yo‘l arterial boylamga aylanadi.\n\nBRS says:\n\nTug‘ilgandan keyin kindik venasi jigar dumaloq boylamiga (ligamentum teres); venoz yo‘l venoz boylamga; kindik arteriyalari medial kindik boylamlariga; arterial yo‘l arterial boylamga aylanadi.",
+      },
+    },
+    {
+      q: "A 3-day-old infant has a continuous machine-like murmur and mild cyanosis. Echocardiography shows a patent ductus arteriosus. In fetal life this vessel allowed blood to bypass which organ?",
+      a: ["Liver", "Lungs", "Kidneys", "Brain", "Placenta"],
+      correct: 1,
+      explanation:
+        "The <b>ductus arteriosus</b> shunts blood from the pulmonary trunk to the aorta, thereby bypassing the non-functioning <b>lungs</b> in the fetus.\n\nBRS says:\n\nThe ductus arteriosus is a fetal vessel that connects the pulmonary trunk (left pulmonary artery) to the aorta, allowing most of the right ventricular output to bypass the lungs.",
+      uz: {
+        q: "3 kunlik chaqaloqda uzluksiz mashina shovqini va engil sianoz bor. Exokardiografiya ochiq arterial yo‘lni ko‘rsatdi. Homila hayotida bu tomir qaysi a’zoni chetlab o‘tishga imkon bergan?",
+        a: ["Jigar", "O‘pkalar", "Buyraklar", "Miya", "Platsenta"],
+        explanation:
+          "<b>Arterial yo‘l</b> qonni o‘pka magistralidan aortaga o‘tkazib, homilada ishlamayotgan <b>o‘pkalarni</b> chetlab o‘tadi.\n\nBRS says:\n\nArterial yo‘l homila tomiri bo‘lib, o‘pka magistralini (chap o‘pka arteriyasini) aortaga bog‘lab, o‘ng qorincha chiqishining ko‘p qismini o‘pkalarni chetlab o‘tishga imkon beradi.",
+      },
+    },
+  ],
+
+  POSTERIOR_MEDIASTINUM: [
+    // ========== I. ESOPHAGUS ==========
+    {
+      q: "A 55-year-old man with a long history of alcohol abuse is admitted with hematemesis. Endoscopy reveals bleeding esophageal varices. These varices are formed by anastomoses between which of the following veins?",
+      a: [
+        "Left gastric (portal) and azygos (systemic) veins",
+        "Superior mesenteric and inferior vena cava",
+        "Splenic and left renal veins",
+        "Inferior mesenteric and superior rectal veins",
+        "Hepatic and azygos veins",
+      ],
+      correct: 0,
+      explanation:
+        "Esophageal varices result from portal hypertension. The <b>left gastric vein</b> (portal system) anastomoses with the <b>esophageal tributaries of the azygos system</b> (systemic). When portal pressure rises, these anastomoses dilate and may bleed.\n\nBRS says:\n\nEsophageal varices are dilated veins in the lower esophagus that result from portal hypertension. They are formed by anastomoses between the left gastric vein (portal) and the esophageal tributaries of the azygos system (systemic).",
+      uz: {
+        q: "55 yoshli uzoq vaqt alkogol iste’mol qilgan erkak qusishda qon chiqishi bilan yotqizildi. Endoskopiya qonayotgan qizilo‘ngach varikozlarini aniqladi. Bu varikozlar quyidagi venalar orasidagi anastomozlardan hosil bo‘ladi?",
+        a: [
+          "Chap oshqozon (portal) va azigos (tizimli) venalar",
+          "Yuqori mesenterik va pastki kovak vena",
+          "Taloq va chap buyrak venalari",
+          "Pastki mesenterik va yuqori to‘g‘ri ichak venalari",
+          "Jigar va azigos venalar",
+        ],
+        explanation:
+          "Qizilo‘ngach varikozlari portal gipertenziya natijasida yuzaga keladi. <b>Chap oshqozon venasi</b> (portal sistema) <b>azigos sistemasining qizilo‘ngach tarmoqlari</b> (tizimli) bilan anastomoz hosil qiladi. Portal bosim ko‘tarilganda bu anastomozlar kengayadi va qonashi mumkin.\n\nBRS says:\n\nQizilo‘ngach varikozlari portal gipertenziya natijasida pastki qizilo‘ngachdagi kengaygan venalardir. Ular chap oshqozon venasi (portal) va azigos sistemasining qizilo‘ngach tarmoqlari (tizimli) orasidagi anastomozlardan hosil bo‘ladi.",
+      },
+    },
+    {
+      q: "A 60-year-old man has difficulty swallowing (dysphagia). Imaging shows constriction of the esophagus at the level where it is crossed by the left main bronchus and the aortic arch. At which vertebral level does this constriction normally occur?",
+      a: ["C6", "T4/T5", "T8", "T10", "T12"],
+      correct: 1,
+      explanation:
+        "The esophagus has three anatomic constrictions. The middle one is at the level where it is crossed by the <b>aortic arch and left main bronchus</b> (approximately T4/T5, the sternal-angle level).\n\nBRS says:\n\nThe esophagus has three constrictions: (1) at its beginning (C6, cricoid cartilage), (2) where it is crossed by the aortic arch and left main bronchus (T4/T5), and (3) where it pierces the diaphragm (T10).",
+      uz: {
+        q: "60 yoshli erkakda yutish qiyinligi (disfagiya) bor. Tasvirlash qizilo‘ngachning chap bosh bronx va aorta yoyi kesib o‘tadigan joyda torayishini ko‘rsatdi. Bu torayish odatda qaysi umurtqa darajasida bo‘ladi?",
+        a: ["C6", "T4/T5", "T8", "T10", "T12"],
+        explanation:
+          "Qizilo‘ngachda uchta anatomik torayish bor. O‘rtadagisi <b>aorta yoyi va chap bosh bronx</b> kesib o‘tadigan joyda (taxminan T4/T5, to‘sh burchagi darajasi) joylashgan.\n\nBRS says:\n\nQizilo‘ngachda uchta torayish bor: (1) boshlanishida (C6, xalqum tog‘ayi), (2) aorta yoyi va chap bosh bronx kesib o‘tadigan joyda (T4/T5), (3) diafragmani teshib o‘tadigan joyda (T10).",
+      },
+    },
+    {
+      q: "A 45-year-old man undergoes esophageal surgery. The surgeon notes that the esophagus pierces the diaphragm at which vertebral level?",
+      a: ["T8", "T10", "T12", "L1", "T6"],
+      correct: 1,
+      explanation:
+        "The esophagus pierces the diaphragm at the <b>esophageal hiatus</b> at the level of <b>T10</b>. (The IVC pierces at T8; the aorta at T12.)\n\nBRS says:\n\nThe esophagus passes through the esophageal hiatus of the diaphragm at the level of T10. The IVC passes through the central tendon at T8; the aorta passes through the aortic hiatus at T12.",
+      uz: {
+        q: "45 yoshli erkak qizilo‘ngach jarrohligi o‘tkazmoqda. Jarroh qizilo‘ngachning diafragmani qaysi umurtqa darajasida teshib o‘tishini qayd etdi?",
+        a: ["T8", "T10", "T12", "L1", "T6"],
+        explanation:
+          "Qizilo‘ngach diafragmani <b>qizilo‘ngach teshigi</b> orqali <b>T10</b> darajasida teshib o‘tadi. (Pastki kovak vena T8 da; aorta T12 da.)\n\nBRS says:\n\nQizilo‘ngach diafragmaning qizilo‘ngach teshigidan T10 darajasida o‘tadi. Pastki kovak vena markaziy paydan T8 da; aorta aorta teshigidan T12 da o‘tadi.",
+      },
+    },
+
+    // ========== II. BLOOD VESSELS AND LYMPHATIC VESSELS ==========
+    {
+      q: "A 50-year-old man is admitted after a motor-vehicle accident. A left-sided chest tube is inserted and milky fluid is drained. Which of the following structures is most likely injured?",
+      a: [
+        "Thoracic duct",
+        "Azygos vein",
+        "Hemiazygos vein",
+        "Esophagus",
+        "Descending aorta",
+      ],
+      correct: 0,
+      explanation:
+        "Injury to the <b>thoracic duct</b> produces a chylothorax (milky lymphatic fluid in the pleural cavity). The thoracic duct ascends on the right side of the vertebral column, crosses to the left at approximately T5, and empties into the left venous angle.\n\nBRS says:\n\nThe thoracic duct begins in the abdomen at the cisterna chyli, ascends through the aortic hiatus, crosses from right to left at about the T5 level, and empties into the junction of the left internal jugular and subclavian veins. Injury causes chylothorax.",
+      uz: {
+        q: "50 yoshli erkak avtohalokatdan keyin yotqizildi. Chap tomonga ko‘krak nayi kiritildi va sutli suyuqlik chiqarildi. Quyidagi tuzilmalardan qaysi biri eng ko‘p shikastlangan?",
+        a: [
+          "Ko‘krak limfa yo‘li",
+          "Azigos vena",
+          "Hemiazigos vena",
+          "Qizilo‘ngach",
+          "Tushuvchi aorta",
+        ],
+        explanation:
+          "<b>Ko‘krak limfa yo‘li</b>ning shikastlanishi xilotoraksga (plevra bo‘shlig‘ida sutli limfa suyuqligi) olib keladi. Ko‘krak limfa yo‘li umurtqa pog‘onasining o‘ng tomonida ko‘tariladi, taxminan T5 da chapga o‘tadi va chap venoz burchakka quyiladi.\n\nBRS says:\n\nKo‘krak limfa yo‘li qorin bo‘shlig‘ida sisterna xilidan boshlanadi, aorta teshigidan o‘tadi, taxminan T5 darajasida o‘ngdan chapga o‘tadi va chap ichki bo‘yinturuq va o‘mrov osti venalarining tutashgan joyiga quyiladi. Shikastlanishi xilotoraksga olib keladi.",
+      },
+    },
+    {
+      q: "A 35-year-old woman has a tumor in the posterior mediastinum that compresses the azygos vein. Into which vessel does the azygos vein normally drain?",
+      a: [
+        "Superior vena cava",
+        "Inferior vena cava",
+        "Left brachiocephalic vein",
+        "Coronary sinus",
+        "Right atrium directly",
+      ],
+      correct: 0,
+      explanation:
+        "The <b>azygos vein</b> ascends on the right side of the vertebral column and arches over the root of the right lung to empty into the <b>superior vena cava</b>.\n\nBRS says:\n\nThe azygos vein ascends on the right side of the vertebral column, receives the right posterior intercostal veins, the hemiazygos and accessory hemiazygos veins, and arches over the root of the right lung to enter the superior vena cava.",
+      uz: {
+        q: "35 yoshli ayolda orqa mediastindagi o‘sma azigos venani siqmoqda. Azigos vena odatda qaysi tomirga quyiladi?",
+        a: [
+          "Yuqori kovak vena",
+          "Pastki kovak vena",
+          "Chap yelka-bosh vena",
+          "Koronar sinus",
+          "To‘g‘ridan-to‘g‘ri o‘ng bo‘lmacha",
+        ],
+        explanation:
+          "<b>Azigos vena</b> umurtqa pog‘onasining o‘ng tomonida ko‘tariladi va o‘ng o‘pka ildizi ustidan aylanib <b>yuqori kovak vena</b>ga quyiladi.\n\nBRS says:\n\nAzigos vena umurtqa pog‘onasining o‘ng tomonida ko‘tariladi, o‘ng orqa qovurg‘alararo venalarni, hemiazigos va qo‘shimcha hemiazigos venalarni qabul qiladi va o‘ng o‘pka ildizi ustidan aylanib yuqori kovak venaga kiradi.",
+      },
+    },
+    {
+      q: "A 25-year-old man is diagnosed with coarctation of the aorta just distal to the ligamentum arteriosum. Which of the following findings is most likely on physical examination and imaging?",
+      a: [
+        "Higher blood pressure in the upper limbs than in the lower limbs and rib notching",
+        "Higher blood pressure in the lower limbs than in the upper limbs",
+        "Equal blood pressure in all four limbs",
+        "Absence of femoral pulses only",
+        "Cyanosis of the upper body only",
+      ],
+      correct: 0,
+      explanation:
+        "In postductal <b>coarctation of the aorta</b> blood pressure is higher in the upper limbs than in the lower limbs. Collateral circulation develops via intercostal arteries, producing characteristic <b>rib notching</b> on radiographs.\n\nBRS says:\n\nCoarctation of the aorta is a congenital narrowing of the aorta, usually distal to the ligamentum arteriosum. It produces higher blood pressure in the upper limbs than in the lower limbs and rib notching due to enlarged intercostal collateral arteries.",
+      uz: {
+        q: "25 yoshli erkakda arterial boylamdan distalda aorta koarktatsiyasi tashxisi qo‘yildi. Fizik tekshiruv va tasvirlashda quyidagi topilmalardan qaysi biri eng ehtimolli?",
+        a: [
+          "Yuqori oyoq-qo‘llarda pastki oyoq-qo‘llarga nisbatan yuqori qon bosimi va qovurg‘a o‘yilishi",
+          "Pastki oyoq-qo‘llarda yuqori oyoq-qo‘llarga nisbatan yuqori qon bosimi",
+          "Barcha to‘rt oyoq-qo‘lda bir xil qon bosimi",
+          "Faqat son arteriyasi pulsining yo‘qligi",
+          "Faqat tananing yuqori qismida sianoz",
+        ],
+        explanation:
+          "Postduktal <b>aorta koarktatsiyasi</b>da yuqori oyoq-qo‘llarda pastki oyoq-qo‘llarga nisbatan qon bosimi yuqori bo‘ladi. Kollateral qon aylanishi qovurg‘alararo arteriyalar orqali rivojlanib, rentgenogrammalarda xarakterli <b>qovurg‘a o‘yilishi</b>ni keltirib chiqaradi.\n\nBRS says:\n\nAorta koarktatsiyasi aortaning tug‘ma torayishi bo‘lib, odatda arterial boylamdan distalda bo‘ladi. U yuqori oyoq-qo‘llarda pastki oyoq-qo‘llarga nisbatan yuqori qon bosimini va kattalashgan qovurg‘alararo kollateral arteriyalar tufayli qovurg‘a o‘yilishini keltirib chiqaradi.",
+      },
+    },
+    {
+      q: "A 40-year-old woman has a mass in the posterior mediastinum. Which of the following structures is normally found in the posterior mediastinum?",
+      a: [
+        "Thymus",
+        "Heart",
+        "Thoracic duct, descending aorta, azygos vein, esophagus",
+        "Ascending aorta",
+        "Brachiocephalic veins",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>posterior mediastinum</b> contains the descending (thoracic) aorta, esophagus, thoracic duct, azygos and hemiazygos veins, sympathetic trunks, and vagus nerves.\n\nBRS says:\n\nThe posterior mediastinum lies posterior to the pericardium and contains the descending aorta, esophagus, thoracic duct, azygos system of veins, sympathetic trunks and splanchnic nerves, and the vagus nerves.",
+      uz: {
+        q: "40 yoshli ayolda orqa mediastinda massa bor. Quyidagi tuzilmalardan qaysi biri odatda orqa mediastinda joylashgan?",
+        a: [
+          "Ayrisimon bez",
+          "Yurak",
+          "Ko‘krak limfa yo‘li, tushuvchi aorta, azigos vena, qizilo‘ngach",
+          "Ko‘tariluvchi aorta",
+          "Yelka-bosh venalari",
+        ],
+        explanation:
+          "<b>Orqa mediastin</b>da tushuvchi (ko‘krak) aortasi, qizilo‘ngach, ko‘krak limfa yo‘li, azigos va hemiazigos venalar, simpatik ustunlar va adashgan nervlar joylashgan.\n\nBRS says:\n\nOrqa mediastin perikardning orqasida joylashgan va tushuvchi aorta, qizilo‘ngach, ko‘krak limfa yo‘li, azigos venalar sistemasi, simpatik ustunlar va ichak nervlari, adashgan nervlarni o‘z ichiga oladi.",
+      },
+    },
+
+    // ========== III. AUTONOMIC NERVOUS SYSTEM IN THE THORAX ==========
+    {
+      q: "A 30-year-old man undergoes a sympathectomy for hyperhidrosis. The surgeon removes the sympathetic chain ganglia from T2 to T4. Which of the following statements about the thoracic sympathetic system is correct?",
+      a: [
+        "Preganglionic cell bodies are located in the lateral horn of the spinal cord from T1 to L2",
+        "Preganglionic fibers enter the sympathetic chain via gray rami communicantes",
+        "Postganglionic fibers leave the chain via white rami communicantes",
+        "There are no splanchnic nerves in the thorax",
+        "The sympathetic system is purely parasympathetic in the thorax",
+      ],
+      correct: 0,
+      explanation:
+        "Sympathetic preganglionic cell bodies lie in the <b>lateral horn (intermediolateral cell column) of the spinal cord from T1 to L2</b>. Preganglionic fibers leave the spinal nerve via white rami communicantes to enter the sympathetic chain; postganglionic fibers return via gray rami.\n\nBRS says:\n\nThe sympathetic system has preganglionic cell bodies in the lateral horn of the spinal cord from T1 to L2. Preganglionic fibers pass through white rami communicantes to enter the sympathetic chain. Postganglionic fibers leave via gray rami communicantes to join the spinal nerves.",
+      uz: {
+        q: "30 yoshli erkak giperhidro z uchun simpatektomiya o‘tkazmoqda. Jarroh T2 dan T4 gacha simpatik zanjir gangliylarini olib tashladi. Ko‘krak simpatik sistemasi haqida quyidagi bayonotlardan qaysi biri to‘g‘ri?",
+        a: [
+          "Preganglionar hujayra tanalari T1 dan L2 gacha orqa miya lateral shoxida joylashgan",
+          "Preganglionar tolalar kulrang bog‘lovchi shoxlar orqali simpatik zanjirga kiradi",
+          "Postganglionar tolalar oq bog‘lovchi shoxlar orqali zanjirdan chiqadi",
+          "Ko‘krakda splanxnik nervlar yo‘q",
+          "Ko‘krakda simpatik sistema faqat parasimpatikdir",
+        ],
+        explanation:
+          "Simpatik preganglionar hujayra tanalari <b>T1 dan L2 gacha orqa miyaning lateral shoxida (intermediolateral hujayra ustuni)</b> joylashgan. Preganglionar tolalar oq bog‘lovchi shoxlar orqali simpatik zanjirga kiradi; postganglionar tolalar kulrang bog‘lovchi shoxlar orqali qaytadi.\n\nBRS says:\n\nSimpatik sistemaning preganglionar hujayra tanalari T1 dan L2 gacha orqa miyaning lateral shoxida joylashgan. Preganglionar tolalar oq bog‘lovchi shoxlardan o‘tib simpatik zanjirga kiradi. Postganglionar tolalar kulrang bog‘lovchi shoxlar orqali orqa miya nervlariga qo‘shiladi.",
+      },
+    },
+    {
+      q: "A 55-year-old man has a tumor that invades the greater splanchnic nerves. Which of the following is the correct origin and course of the greater splanchnic nerves?",
+      a: [
+        "Preganglionic fibers from T5–T9 that pierce the diaphragm and synapse in the celiac ganglion",
+        "Postganglionic fibers from T1–T4 that supply the heart",
+        "Parasympathetic fibers from the vagus nerve",
+        "Somatic fibers from the intercostal nerves",
+        "Fibers that synapse in the sympathetic chain and then go to the skin",
+      ],
+      correct: 0,
+      explanation:
+        "The <b>greater splanchnic nerves</b> arise from the sympathetic chain (T5–T9), pierce the crus of the diaphragm, and synapse in the <b>celiac ganglion</b>. They carry preganglionic sympathetic fibers to the abdominal viscera.\n\nBRS says:\n\nThe greater splanchnic nerves arise from the 5th to 9th thoracic sympathetic ganglia, pierce the crus of the diaphragm, and synapse in the celiac ganglion. They contain preganglionic sympathetic fibers.",
+      uz: {
+        q: "55 yoshli erkakda katta splanxnik nervlarni bosib olgan o‘sma bor. Katta splanxnik nervlarning to‘g‘ri kelib chiqishi va yo‘li qanday?",
+        a: [
+          "T5–T9 dan preganglionar tolalar bo‘lib, diafragmani teshib o‘tib, seliak gangliyda sinaps hosil qiladi",
+          "T1–T4 dan postganglionar tolalar bo‘lib, yurakni ta’minlaydi",
+          "Adashgan nervdan parasimpatik tolalar",
+          "Qovurg‘alararo nervlardan somatik tolalar",
+          "Simpatik zanjirda sinaps hosil qilib, keyin teriga boradigan tolalar",
+        ],
+        explanation:
+          "<b>Katta splanxnik nervlar</b> simpatik zanjirdan (T5–T9) chiqadi, diafragma oyoqchasini teshib o‘tadi va <b>seliak gangliy</b>da sinaps hosil qiladi. Ular qorin a’zolariga preganglionar simpatik tolalarni olib boradi.\n\nBRS says:\n\nKatta splanxnik nervlar 5–9-ko‘krak simpatik gangliylaridan chiqadi, diafragma oyoqchasini teshib o‘tadi va seliak gangliyda sinaps hosil qiladi. Ular preganglionar simpatik tolalarni o‘z ichiga oladi.",
+      },
+    },
+    {
+      q: "A 48-year-old man has a tumor at the hilum of the left lung that compresses the nerve lying posterior to the lung root. Which nerve is most likely compressed?",
+      a: [
+        "Left phrenic nerve",
+        "Left vagus nerve",
+        "Left recurrent laryngeal nerve only",
+        "Left sympathetic trunk",
+        "Left long thoracic nerve",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>vagus nerve</b> descends <b>posterior</b> to the root of the lung, while the phrenic nerve descends anterior to the root. Compression of the vagus at the hilum can affect parasympathetic supply to the lungs and heart.\n\nBRS says:\n\nThe vagus nerve passes posterior to the root of the lung, whereas the phrenic nerve passes anterior to the root of the lung. The vagus provides parasympathetic innervation to the thoracic viscera.",
+      uz: {
+        q: "48 yoshli erkakda chap o‘pka darvozasidagi o‘sma o‘pka ildizidan orqada yotgan nervni siqmoqda. Qaysi nerv eng ko‘p siqilgan?",
+        a: [
+          "Chap diafragma nervi",
+          "Chap adashgan nerv",
+          "Faqat chap qaytuvchi hiqildoq nervi",
+          "Chap simpatik ustun",
+          "Chap uzun ko‘krak nervi",
+        ],
+        explanation:
+          "<b>Adashgan nerv</b> o‘pka ildizidan <b>orqada</b> pastga tushadi, diafragma nervi esa ildizdan oldinda pastga tushadi. Darvozada adashgan nervning siqilishi o‘pka va yurakning parasimpatik ta’minotiga ta’sir qilishi mumkin.\n\nBRS says:\n\nAdashgan nerv o‘pka ildizidan orqada o‘tadi, diafragma nervi esa o‘pka ildizidan oldinda o‘tadi. Adashgan nerv ko‘krak a’zolariga parasimpatik innervatsiya beradi.",
+      },
+    },
+    {
+      q: "A 60-year-old man has an aneurysm of the aortic arch that compresses a nerve. Which of the following nerves is most likely compressed and what symptom results?",
+      a: [
+        "Left phrenic nerve → paralysis of left hemidiaphragm",
+        "Left recurrent laryngeal nerve → hoarseness",
+        "Left vagus nerve → increased heart rate only",
+        "Left sympathetic trunk → Horner syndrome only",
+        "Right recurrent laryngeal nerve → hoarseness",
+      ],
+      correct: 1,
+      explanation:
+        "The <b>left recurrent laryngeal nerve</b> hooks under the aortic arch (distal to the ligamentum arteriosum). An aortic-arch aneurysm commonly compresses this nerve, causing left vocal-cord paralysis and <b>hoarseness</b>.\n\nBRS says:\n\nThe left recurrent laryngeal nerve hooks around the aortic arch distal to the ligamentum arteriosum. Compression by an aortic aneurysm causes hoarseness due to paralysis of the left vocal cord.",
+      uz: {
+        q: "60 yoshli erkakda aorta yoyi anevrizmasi nervni siqmoqda. Quyidagi nervlardan qaysi biri eng ko‘p siqiladi va qanday alomat yuzaga keladi?",
+        a: [
+          "Chap diafragma nervi → chap gemidiafragma falaji",
+          "Chap qaytuvchi hiqildoq nervi → xirillash",
+          "Chap adashgan nerv → faqat yurak urishining tezlashishi",
+          "Chap simpatik ustun → faqat Horner sindromi",
+          "O‘ng qaytuvchi hiqildoq nervi → xirillash",
+        ],
+        explanation:
+          "<b>Chap qaytuvchi hiqildoq nervi</b> aorta yoyi ostidan (arterial boylamdan distalda) aylanib o‘tadi. Aorta yoyi anevrizmasi ko‘pincha bu nervni siqib, chap ovoz boylamining falaji va <b>xirillash</b>ga olib keladi.\n\nBRS says:\n\nChap qaytuvchi hiqildoq nervi arterial boylamdan distalda aorta yoyini aylanib o‘tadi. Aorta anevrizmasi tomonidan siqilishi chap ovoz boylamining falaji tufayli xirillashga olib keladi.",
+      },
+    },
+    {
+      q: "A 28-year-old man is undergoing a surgical procedure in the posterior mediastinum. The surgeon identifies the thoracic duct. At approximately which vertebral level does the thoracic duct cross from the right side to the left side of the vertebral column?",
+      a: ["T1", "T5", "T8", "T10", "T12"],
+      correct: 1,
+      explanation:
+        "The thoracic duct begins on the right side of the vertebral column, ascends through the aortic hiatus, and <b>crosses to the left at approximately the T4–T5 level</b> before continuing upward to the left venous angle.\n\nBRS says:\n\nThe thoracic duct ascends on the right side of the vertebral column, crosses to the left at about the level of T5 (or T4–T6), and empties into the junction of the left internal jugular and subclavian veins.",
+      uz: {
+        q: "28 yoshli erkak orqa mediastinda jarrohlik amaliyoti o‘tkazmoqda. Jarroh ko‘krak limfa yo‘lini aniqladi. Ko‘krak limfa yo‘li taxminan qaysi umurtqa darajasida umurtqa pog‘onasining o‘ng tomonidan chap tomoniga o‘tadi?",
+        a: ["T1", "T5", "T8", "T10", "T12"],
+        explanation:
+          "Ko‘krak limfa yo‘li umurtqa pog‘onasining o‘ng tomonida boshlanadi, aorta teshigidan o‘tadi va <b>taxminan T4–T5 darajasida chapga o‘tadi</b>, keyin chap venoz burchakka ko‘tariladi.\n\nBRS says:\n\nKo‘krak limfa yo‘li umurtqa pog‘onasining o‘ng tomonida ko‘tariladi, taxminan T5 (yoki T4–T6) darajasida chapga o‘tadi va chap ichki bo‘yinturuq va o‘mrov osti venalarining tutashgan joyiga quyiladi.",
+      },
+    },
+  ],
 };
 
 // If you already have window.tests = { vertebra: [...], overall1: [...], ... }
