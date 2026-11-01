@@ -103,7 +103,7 @@ window.GLOBAL_QBANK = {
       },
       EMBRYOLOGY_FEMALE: {
         title: "EMBRYOLOGY_FEMALE",
-        source: "/embriology/embryology_fEMALE/embryology_fEMALE.js",
+        source: "/embriology/embryology_female/embryology_female.js",
         count: null,
       },
       EMBRYOLOGY_MALE: {
