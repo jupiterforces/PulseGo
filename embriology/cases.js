@@ -1189,289 +1189,522 @@ Which of the following might be affected in the newborn?`,
       correct: 4,
     },
   ],
-  nervousUw: [
+  head_and_neck: [
     {
-      q: `A newborn boy is being evaluated in the nursery. The patient was born at term via spontaneous vaginal delivery. A cystic lesion is noted overlying the lumbosacral spine region. The remainder of the physical examination is unremarkable. Ultrasound imaging confirms a neural tube defect. The mother had no prenatal care, and further discussion reveals that she took a medication known to be teratogenic during pregnancy. Exposure to the medication most likely occurred during which of the following weeks of embryonic development?`,
+      q: "A 10-month-old male child presents with a lateral cleft lip affecting the left side. There are no abnormalities of the baby’s palate. Which of the following developmental defects accounts for this occurrence?",
       a: [
-        "The week prior to fertilization",
-        "Week 1",
-        "Week 4",
-        "Week 16",
-        "Week 32",
-      ],
-      correct: 2,
-    },
-    {
-      q: `A 35-year-old woman, gravida 2 para 1, comes to the office for prenatal evaluation. The patient says she had been using condoms for birth control and unintentionally became pregnant. She has rheumatoid arthritis treated with methotrexate. This patient's unborn child is at the greatest risk for which of the following congenital defects?`,
-      a: [
-        "Branchial arch anomalies",
-        "Neural tube defects",
-        "Renal dysplasia",
-        "Sacral agenesis",
-        "Skeletal lesions",
-        "Thyroid hypoplasia",
+        "Failure of the left maxillary prominence to unite with the left lateral nasal prominence",
+        "Failure of the left maxillary prominence to unite with the left medial nasal prominence",
+        "Failure of the primary palate to fuse with the secondary palate",
+        "Failure of the right and left medial nasal prominences to fuse",
+        "Failure of the right and left lateral palatine processes to fuse",
       ],
       correct: 1,
+      explanation:
+        "<b>Correct answer: B. Failure of the left maxillary prominence to unite with the left medial nasal prominence.</b>\n\nFusion of the maxillary and medial nasal prominences forms the lateral portion of the upper lip. Failure of this fusion results in a <b>unilateral cleft lip</b>, which is the most common congenital facial anomaly.\n\n<b>Other options:</b>\n\n(A) Failure of the maxillary prominence to unite with the lateral nasal prominence results in an <b>oblique facial cleft</b>.\n\n(C) Failure of the primary palate to fuse with the secondary palate results in an <b>anterior palatal cleft</b>.\n\n(D) Failure of the right and left medial nasal prominences to fuse leads to a <b>midline cleft lip and anterior cleft palate</b>.\n\n(E) Failure of the right and left lateral palatine processes to fuse leads to a <b>posterior palatal cleft</b>.\n\n<b>Educational objective:</b>\n\nFusion of the maxillary prominence with the medial nasal prominence is essential for normal upper lip development. Failure of this fusion causes a unilateral cleft lip.",
+      uz: {
+        q: "10 oylik o‘g‘il bola yuqori labining chap tomonidagi lateral yoriq (cleft lip) bilan murojaat qildi. Bolaning tanglayida hech qanday anomaliya aniqlanmadi. Quyidagi rivojlanish nuqsonlaridan qaysi biri ushbu holatga sabab bo‘ladi?",
+        a: [
+          "Chap yuqori jag‘ o‘simtasining chap lateral burun o‘simtasi bilan birikmasligi",
+          "Chap yuqori jag‘ o‘simtasining chap medial burun o‘simtasi bilan birikmasligi",
+          "Birlamchi tanglayning ikkilamchi tanglay bilan qo‘shilmasligi",
+          "O‘ng va chap medial burun o‘simtalarining o‘zaro birikmasligi",
+          "O‘ng va chap lateral tanglay plastinkalarining o‘zaro birikmasligi",
+        ],
+        explanation:
+          "<b>To‘g‘ri javob: B. Chap yuqori jag‘ o‘simtasining chap medial burun o‘simtasi bilan birikmasligi.</b>\n\nYuqori jag‘ o‘simtasi (maxillary prominence) va medial burun o‘simtasining (medial nasal prominence) qo‘shilishi yuqori labning lateral qismini hosil qiladi. Ushbu birikishning buzilishi <b>bir tomonlama lab yorig‘i (unilateral cleft lip)</b>ga olib keladi. Bu eng ko‘p uchraydigan tug‘ma yuz anomaliyasidir.\n\n<b>Boshqa variantlar:</b>\n\n(A) Yuqori jag‘ o‘simtasining lateral burun o‘simtasi bilan birikmasligi <b>qiyshiq yuz yorig‘i (oblique facial cleft)</b>ga olib keladi.\n\n(C) Birlamchi tanglayning ikkilamchi tanglay bilan birikmasligi <b>oldingi tanglay yorig‘i (anterior palatal cleft)</b>ni yuzaga keltiradi.\n\n(D) O‘ng va chap medial burun o‘simtalarining birikmasligi <b>o‘rta chiziqdagi lab yorig‘i va oldingi tanglay yorig‘i</b>ga olib keladi.\n\n(E) O‘ng va chap lateral tanglay plastinkalarining birikmasligi <b>orqa tanglay yorig‘i (posterior palatal cleft)</b>ga olib keladi.\n\n<b>O‘quv maqsadi:</b>\n\nYuqori labning normal rivojlanishi uchun yuqori jag‘ o‘simtasi medial burun o‘simtasi bilan birikishi zarur. Ushbu birikishning buzilishi bir tomonlama lab yorig‘iga sabab bo‘ladi.",
+      },
+    },
+
+    {
+      q: "A 12-year-old boy presents with a palpable left-sided asymptomatic neck mass. Physical examination revealed a soft, mobile, and nontender mass located in the left anteroinferior part of the neck. His serum ionic calcium and thyroid and parathyroid hormone levels were normal. An ultrasound revealed a cystic structure contiguous with the lower pole of the left lateral thyroid lobe. Fine needle aspiration revealed crystal-clear fluid from the cyst.\n\nWhich of the following is the most probable diagnosis for him?",
+      a: [
+        "Infected branchial cleft cyst",
+        "Thyroid toxic adenoma",
+        "Thyroglossal duct cyst",
+        "Parathyroid gland cyst",
+        "Parathyroid carcinoma",
+      ],
+      correct: 3,
+      explanation:
+        "<b>Correct answer: D. Parathyroid gland cyst.</b>\n\nThe patient presents with classical features of a <b>benign parathyroid cyst</b>. The crystal-clear fluid obtained from the cyst by fine needle aspiration is highly suggestive of this diagnosis.\n\n<b>Other options:</b>\n\n(A) Infected branchial cleft cysts usually appear as <b>tender, inflammatory masses</b> located at the anterior border of the sternocleidomastoid muscle. Aspirated fluid commonly appears as pus.\n\n(B) A solitary, autonomously functioning thyroid nodule is called a <b>toxic adenoma</b>. Laboratory studies usually reveal suppressed TSH and elevated serum T3 levels. Clinical manifestations include weight loss, weakness, shortness of breath, palpitations, tachycardia, and heat intolerance.\n\n(C) <b>Thyroglossal duct cysts</b> arise from remnants of the thyroglossal duct and present as midline neck masses. A pathognomonic physical examination finding is vertical movement of the mass during swallowing and tongue protrusion, demonstrating its close relationship to the hyoid bone.\n\n(E) Most patients with <b>parathyroid carcinoma</b> are symptomatic and have moderate to severe hypercalcemia. Parathyroid hormone levels are generally five times the normal level.\n\n<b>Educational objective:</b>\n\nA benign parathyroid cyst typically presents as a painless, mobile neck mass. Crystal-clear fluid obtained during fine needle aspiration strongly suggests a parathyroid cyst.",
+      uz: {
+        q: "12 yoshli bola bo‘yinning chap tomonida paypaslanadigan, simptomsiz massa bilan murojaat qildi. Fizikal tekshiruvda bo‘yinning chap anteroinferior qismida joylashgan, yumshoq, harakatchan va og‘riqsiz massa aniqlandi. Qon zardobidagi ionlashgan kalsiy, qalqonsimon bez gormonlari va paratireoid gormon (PTH) darajalari normal edi. UTT tekshiruvida chap qalqonsimon bez bo‘lagining pastki qutbi bilan tutashgan kistoz tuzilma aniqlandi. Ingichka ignali aspiratsiya natijasida kistadan kristalldek tiniq suyuqlik olindi.\n\nUshbu bemorda eng ehtimoliy tashxis qaysi?",
+        a: [
+          "Infeksiyalangan jabra yorig‘i kistasi (branchial cleft cyst)",
+          "Qalqonsimon bezning toksik adenomasi",
+          "Qalqonsimon-til yo‘li kistasi (thyroglossal duct cyst)",
+          "Paratireoid bez kistasi",
+          "Paratireoid bez karsinomasi",
+        ],
+        explanation:
+          "<b>To‘g‘ri javob: D. Paratireoid bez kistasi.</b>\n\nBemorda <b>yaxshi sifatli paratireoid bez kistasi</b>ga xos klassik belgilar kuzatilmoqda. Ingichka ignali aspiratsiya orqali kistadan olingan kristalldek tiniq suyuqlik ushbu tashxisni kuchli darajada tasdiqlaydi.\n\n<b>Boshqa variantlar:</b>\n\n(A) Infeksiyalangan jabra yorig‘i kistalari odatda to‘sh-o‘mrov-so‘rg‘ichsimon mushakning (sternocleidomastoid muscle) oldingi chetida joylashgan, <b>og‘riqli va yallig‘langan massalar</b> ko‘rinishida namoyon bo‘ladi. Aspiratsiya qilingan suyuqlik odatda yiringli bo‘ladi.\n\n(B) Mustaqil ravishda faoliyat yurituvchi yakka qalqonsimon bez tuguni <b>toksik adenoma</b> deb ataladi. Laborator tekshiruvlarda odatda TSH pasayishi va qon zardobida T3 miqdorining oshishi aniqlanadi. Klinik belgilariga vazn yo‘qotish, holsizlik, nafas qisishi, yurak urishini sezish (palpitatsiya), taxikardiya va issiqqa toqatsizlik kiradi.\n\n(C) <b>Qalqonsimon-til yo‘li kistalari (thyroglossal duct cysts)</b> embrional qalqonsimon-til yo‘lining qoldiqlaridan rivojlanadi va bo‘yinning o‘rta chizig‘ida joylashgan massa sifatida namoyon bo‘ladi. Fizikal tekshiruvdagi patognomonik belgi — yutish va tilni chiqarish vaqtida massaning vertikal harakatlanishidir. Bu uning tilosti suyagi (hyoid bone) bilan yaqin anatomik bog‘liqligini ko‘rsatadi.\n\n(E) <b>Paratireoid bez karsinomasi</b> bilan kasallangan bemorlarning aksariyatida klinik belgilar kuzatiladi va o‘rtacha yoki og‘ir darajadagi giperkalsemiya rivojlanadi. Paratireoid gormon (PTH) darajasi odatda me’yoriy ko‘rsatkichdan besh baravar yuqori bo‘ladi.\n\n<b>O‘quv maqsadi:</b>\n\nYaxshi sifatli paratireoid bez kistasi odatda og‘riqsiz, harakatchan bo‘yin massasi sifatida namoyon bo‘ladi. Ingichka ignali aspiratsiyada kristalldek tiniq suyuqlik olinishi paratireoid bez kistasi tashxisini kuchli darajada ko‘rsatadi.",
+      },
+    },
+
+    {
+      q: "A 12-year-old boy presents with a palpable left-sided asymptomatic neck mass. Physical examination revealed a soft, mobile, and nontender mass located in the left anteroinferior part of the neck. His serum ionic calcium and thyroid and parathyroid hormone levels were normal. An ultrasound revealed a cystic structure contiguous with the lower pole of the left lateral thyroid lobe. Fine needle aspiration revealed crystal-clear fluid from the cyst.\n\nWhich of the following structures gives rise to the pathological organ in the patient?",
+      a: [
+        "First pharyngeal pouch",
+        "Second pharyngeal pouch",
+        "Third pharyngeal pouch",
+        "Fourth pharyngeal pouch",
+        "Sixth pharyngeal pouch",
+      ],
+      correct: 2,
+      explanation:
+        "<b>Correct answer: C. Third pharyngeal pouch.</b>\n\nUltrasound findings suggest that the cyst affects the <b>left inferior parathyroid gland</b>. The inferior parathyroid glands and the thymus develop from the <b>third pharyngeal pouch</b>.\n\n<b>Other options:</b>\n\n(A) Derivatives of the <b>first pharyngeal pouch</b> include the middle ear cavity and the auditory (pharyngotympanic) tube.\n\n(B) Derivatives of the <b>second pharyngeal pouch</b> include the tonsillar fossa and tonsillar crypts.\n\n(D) Derivatives of the <b>fourth pharyngeal pouch</b> include the superior parathyroid glands and the parafollicular (C) cells of the thyroid gland.\n\n(E) The <b>sixth pharyngeal pouch</b> does not develop in humans.\n\n<b>Educational objective:</b>\n\nThe third pharyngeal pouch gives rise to the inferior parathyroid glands and thymus, whereas the fourth pharyngeal pouch gives rise to the superior parathyroid glands and thyroid parafollicular (C) cells.",
+      uz: {
+        q: "12 yoshli bola bo‘yinning chap tomonida paypaslanadigan, simptomsiz massa bilan murojaat qildi. Fizikal tekshiruvda bo‘yinning chap anteroinferior qismida joylashgan, yumshoq, harakatchan va og‘riqsiz massa aniqlandi. Qon zardobidagi ionlashgan kalsiy, qalqonsimon bez gormonlari va paratireoid gormon (PTH) darajalari normal edi. UTT tekshiruvida chap qalqonsimon bez bo‘lagining pastki qutbi bilan tutashgan kistoz tuzilma aniqlandi. Ingichka ignali aspiratsiya natijasida kistadan kristalldek tiniq suyuqlik olindi.\n\nBemordagi patologik organni quyidagi tuzilmalardan qaysi biri hosil qiladi?",
+        a: [
+          "Birinchi jabra cho‘ntagi (first pharyngeal pouch)",
+          "Ikkinchi jabra cho‘ntagi (second pharyngeal pouch)",
+          "Uchinchi jabra cho‘ntagi (third pharyngeal pouch)",
+          "To‘rtinchi jabra cho‘ntagi (fourth pharyngeal pouch)",
+          "Oltinchi jabra cho‘ntagi (sixth pharyngeal pouch)",
+        ],
+        explanation:
+          "<b>To‘g‘ri javob: C. Uchinchi jabra cho‘ntagi (third pharyngeal pouch).</b>\n\nUTT tekshiruvi natijalari kista <b>chap pastki paratireoid bezga</b> tegishli ekanligini ko‘rsatadi. Pastki paratireoid bezlar va ayrisimon bez (thymus) <b>uchinchi jabra cho‘ntagidan</b> rivojlanadi.\n\n<b>Boshqa variantlar:</b>\n\n(A) <b>Birinchi jabra cho‘ntagining</b> hosilalariga o‘rta quloq bo‘shlig‘i va eshituv (halqum-nog‘ora) nayi kiradi.\n\n(B) <b>Ikkinchi jabra cho‘ntagining</b> hosilalariga tanglay murtagi chuqurchasi (tonsillar fossa) va murtak kriptalari kiradi.\n\n(D) <b>To‘rtinchi jabra cho‘ntagining</b> hosilalariga yuqori paratireoid bezlar va qalqonsimon bezning parafollikulyar (C) hujayralari kiradi.\n\n(E) <b>Oltinchi jabra cho‘ntagi</b> odamlarda rivojlanmaydi.\n\n<b>O‘quv maqsadi:</b>\n\nUchinchi jabra cho‘ntagi pastki paratireoid bezlar va ayrisimon bezni hosil qiladi. To‘rtinchi jabra cho‘ntagi esa yuqori paratireoid bezlar va qalqonsimon bezning parafollikulyar (C) hujayralarini hosil qiladi.",
+      },
     },
     {
-      q: `A newborn is taken to the neonatal intensive care unit after delivery due to respiratory distress. Physical examination shows an underdeveloped mandible and hypoplastic zygomatic bones. Genetic testing confirms abnormal development of the first and second pharyngeal arches. Which of the following structures is also likely abnormal in this patient?`,
+      q: "A 15-day-old infant presents with dyspnea, stridor, and intercostal retractions. He was born postterm by a difficult forceps delivery. During a flexible laryngeal endoscopic examination, the right vocal cord was found to be paralyzed and in the paramedian line. Stretching of a specific nerve during forceps application was suggested to be the underlying cause.\n\nWhich of the following muscle groups, most likely, might suffer due to this iatrogenic injury?",
+      a: [
+        "Those derived from the 1st pharyngeal arch",
+        "Those derived from the 2nd pharyngeal arch",
+        "Those derived from the 3rd pharyngeal arch",
+        "Those derived from the 4th pharyngeal arch",
+        "Those derived from the 6th pharyngeal arch",
+      ],
+      correct: 4,
+      explanation:
+        "Congenital vocal cord paralysis is the <b>second most common cause of congenital stridor</b> and frequently results from birth trauma.\n\nThe infant most likely has <b>right recurrent laryngeal nerve palsy</b>. The recurrent laryngeal nerve supplies the muscles derived from the <b>6th pharyngeal arch</b>.\n\n<b>Other options:</b>\n\n(A) Muscles of the <b>1st pharyngeal arch</b> are supplied by the trigeminal nerve (CN V).\n\n(B) Muscles of the <b>2nd pharyngeal arch</b> are supplied by the facial nerve (CN VII).\n\n(C) Muscles of the <b>3rd pharyngeal arch</b> are supplied by the glossopharyngeal nerve (CN IX).\n\n(D) Muscles of the <b>4th pharyngeal arch</b> are supplied by the external laryngeal nerve, a branch of the superior laryngeal nerve. It innervates the cricothyroid muscle. Damage to this nerve during childbirth is uncommon and causes hoarseness due to uneven tension of the vocal cords. Laryngoscopic findings are usually subtle and nonspecific.\n\n<b>Educational objective:</b>\n\nThe recurrent laryngeal nerve supplies muscles derived from the 6th pharyngeal arch, whereas the external laryngeal nerve supplies the cricothyroid muscle derived from the 4th pharyngeal arch.",
+      uz: {
+        q: "15 kunlik chaqaloq hansirash (dyspnea), stridor va qovurg‘alararo mushaklarning tortilishi bilan murojaat qildi. U muddatidan o‘tib tug‘ilgan va tug‘ruq vaqtida qisqich (forceps) yordamida qiyin tug‘ruq amalga oshirilgan. Moslashuvchan laringeal endoskopik tekshiruvda o‘ng ovoz boylamining falajlanganligi va paramedian holatda joylashganligi aniqlandi. Bunga tug‘ruq vaqtida qisqich qo‘llanilishi natijasida ma’lum bir nervning cho‘zilishi sabab bo‘lgan deb taxmin qilindi.\n\nUshbu iatrogen shikastlanish natijasida quyidagi mushak guruhlaridan qaysi biri zararlanishi ehtimoli yuqori?",
+        a: [
+          "1-jabra yoyidan rivojlanadigan mushaklar",
+          "2-jabra yoyidan rivojlanadigan mushaklar",
+          "3-jabra yoyidan rivojlanadigan mushaklar",
+          "4-jabra yoyidan rivojlanadigan mushaklar",
+          "6-jabra yoyidan rivojlanadigan mushaklar",
+        ],
+        explanation:
+          "Tug‘ma ovoz boylami falaji <b>tug‘ma stridorning ikkinchi eng ko‘p uchraydigan sababidir</b> va ko‘pincha tug‘ruq jarohati natijasida yuzaga keladi.\n\nChaqaloqda, ehtimol, <b>o‘ng qaytuvchi hiqildoq nervi (recurrent laryngeal nerve) falaji</b> mavjud. Qaytuvchi hiqildoq nervi <b>6-jabra yoyidan</b> rivojlanadigan mushaklarni innervatsiya qiladi.\n\n<b>Boshqa variantlar:</b>\n\n(A) <b>1-jabra yoyi</b> mushaklari uch shoxli nerv (CN V) tomonidan innervatsiya qilinadi.\n\n(B) <b>2-jabra yoyi</b> mushaklari yuz nervi (CN VII) tomonidan innervatsiya qilinadi.\n\n(C) <b>3-jabra yoyi</b> mushaklari til-halqum nervi (CN IX) tomonidan innervatsiya qilinadi.\n\n(D) <b>4-jabra yoyi</b> mushaklari yuqori hiqildoq nervining tashqi shoxi (external laryngeal nerve) tomonidan innervatsiya qilinadi. Ushbu nerv uzuksimon-qalqonsimon mushakni (cricothyroid muscle) innervatsiya qiladi. Tug‘ruq vaqtida bu nervning shikastlanishi kam uchraydi va ovoz boylamlaridagi taranglikning notekisligi sababli ovoz bo‘g‘ilishiga olib keladi. Laringoskopik tekshiruvdagi belgilar odatda noaniq va o‘ziga xos bo‘lmaydi.\n\n<b>O‘quv maqsadi:</b>\n\nQaytuvchi hiqildoq nervi 6-jabra yoyidan rivojlanadigan mushaklarni, tashqi hiqildoq nervi esa 4-jabra yoyidan rivojlanadigan uzuksimon-qalqonsimon mushakni innervatsiya qiladi.",
+      },
+    },
+
+    {
+      q: "A 15-day-old infant presents with dyspnea, stridor, and intercostal retractions. He was born postterm by a difficult forceps delivery. During a flexible laryngeal endoscopic examination, the right vocal cord was found to be paralyzed and in the paramedian line. Stretching of a specific nerve during forceps application was suggested to be the underlying cause.\n\nWhich of the following could be an associated finding in the infant?",
+      a: [
+        "Paralysis of the sternothyroid muscle",
+        "Paralysis of the cricothyroid muscle",
+        "Paralysis of the thyrohyoid muscle",
+        "Anesthesia of the laryngeal inlet",
+        "Anesthesia of the laryngotracheal junction",
+      ],
+      correct: 4,
+      explanation:
+        "The infant most likely has <b>recurrent laryngeal nerve palsy</b> due to birth trauma.\n\nThe recurrent laryngeal nerve provides sensory fibers to the larynx <b>below the vocal cords</b> and the upper trachea. Therefore, injury to this nerve causes <b>anesthesia of the laryngotracheal junction</b>.\n\n<b>Other options:</b>\n\n(A) The <b>sternothyroid muscle</b> is supplied by the ansa cervicalis of the cervical plexus, which receives fibers from the ventral rami of C1–C3 spinal nerves.\n\n(B) The <b>cricothyroid muscle</b> is supplied by the external laryngeal branch of the superior laryngeal nerve.\n\n(C) The <b>thyrohyoid muscle</b> is supplied by a branch from the anterior ramus of the C1 spinal nerve.\n\n(D) Sensation to the <b>laryngeal inlet</b> is provided by the internal laryngeal branch of the superior laryngeal nerve, not the recurrent laryngeal nerve.\n\n<b>Educational objective:</b>\n\nThe recurrent laryngeal nerve provides sensory innervation to the larynx below the vocal cords and the upper trachea. The internal laryngeal nerve provides sensation above the vocal cords, including the laryngeal inlet.",
+      uz: {
+        q: "15 kunlik chaqaloq hansirash (dyspnea), stridor va qovurg‘alararo mushaklarning tortilishi bilan murojaat qildi. U muddatidan o‘tib tug‘ilgan va tug‘ruq vaqtida qisqich (forceps) yordamida qiyin tug‘ruq amalga oshirilgan. Moslashuvchan laringeal endoskopik tekshiruvda o‘ng ovoz boylamining falajlanganligi va paramedian holatda joylashganligi aniqlandi. Bunga tug‘ruq vaqtida qisqich qo‘llanilishi natijasida ma’lum bir nervning cho‘zilishi sabab bo‘lgan deb taxmin qilindi.\n\nChaqaloqda quyidagi qo‘shimcha belgilardan qaysi biri kuzatilishi mumkin?",
+        a: [
+          "To‘sh-qalqonsimon mushakning (sternothyroid muscle) falaji",
+          "Uzuksimon-qalqonsimon mushakning (cricothyroid muscle) falaji",
+          "Qalqonsimon-tilosti mushagining (thyrohyoid muscle) falaji",
+          "Hiqildoq kirish qismining anesteziyasi",
+          "Hiqildoq-traxeya tutashgan qismining anesteziyasi",
+        ],
+        explanation:
+          "Chaqaloqda tug‘ruq jarohati natijasida, ehtimol, <b>qaytuvchi hiqildoq nervi (recurrent laryngeal nerve) falaji</b> mavjud.\n\nQaytuvchi hiqildoq nervi hiqildoqning <b>ovoz boylamlaridan pastki qismini</b> va traxeyaning yuqori qismini sezuvchi tolalar bilan ta’minlaydi. Shuning uchun ushbu nervning shikastlanishi <b>hiqildoq-traxeya tutashgan qismining anesteziyasi</b>ga olib keladi.\n\n<b>Boshqa variantlar:</b>\n\n(A) <b>To‘sh-qalqonsimon mushak (sternothyroid muscle)</b> bo‘yin chigali tarkibidagi bo‘yin halqasi (ansa cervicalis) tomonidan innervatsiya qilinadi. Ushbu halqa C1–C3 orqa miya nervlarining oldingi shoxlaridan tolalar oladi.\n\n(B) <b>Uzuksimon-qalqonsimon mushak (cricothyroid muscle)</b> yuqori hiqildoq nervining tashqi shoxi (external laryngeal nerve) tomonidan innervatsiya qilinadi.\n\n(C) <b>Qalqonsimon-tilosti mushagi (thyrohyoid muscle)</b> C1 orqa miya nervining oldingi shoxidan chiquvchi shox orqali innervatsiya qilinadi.\n\n(D) <b>Hiqildoq kirish qismining</b> sezuvchanligi yuqori hiqildoq nervining ichki shoxi (internal laryngeal nerve) tomonidan ta’minlanadi, qaytuvchi hiqildoq nervi tomonidan emas.\n\n<b>O‘quv maqsadi:</b>\n\nQaytuvchi hiqildoq nervi ovoz boylamlaridan pastdagi hiqildoq qismi va traxeyaning yuqori qismini sezuvchi tolalar bilan ta’minlaydi. Ichki hiqildoq nervi esa ovoz boylamlaridan yuqoridagi sohalarni, jumladan hiqildoq kirish qismini sezuvchi tolalar bilan ta’minlaydi.",
+      },
+    },
+
+    {
+      q: "An 18-year-old man was involved in a motor vehicle crash. A high resolution CT scan of the cranial base detected a fracture rim encroaching on the left jugular foramen.\n\nWhich of the following might be a likely consequence in him?",
+      a: [
+        "Anesthesia of the tip of the tongue",
+        "Absent taste sensation from the filiform papillae",
+        "Absent taste sensation from the entire tongue",
+        "Anesthesia of the pharyngeal part of the tongue",
+        "Inability to protrude the tongue",
+      ],
+      correct: 3,
+      explanation:
+        "Cranial nerves <b>IX (glossopharyngeal), X (vagus), and XI (accessory)</b> exit the skull through the jugular foramen.\n\nThe <b>pharyngeal part (posterior third) of the tongue</b> develops from the ventral part of the hypobranchial eminence, which is derived from the <b>3rd pharyngeal arch</b>. This part of the tongue receives both general sensory and taste innervation from the glossopharyngeal nerve (CN IX), which may be damaged by a jugular foramen fracture. Therefore, the patient may experience anesthesia of the posterior third of the tongue.\n\n<b>Other options:</b>\n\n(A) The mucosa of the <b>oral part (anterior two-thirds) of the tongue</b> develops from the lateral lingual swellings, which arise from mesenchymal proliferation in the 1st pharyngeal arches. General sensory innervation is provided by the lingual branch of the mandibular division of the trigeminal nerve (CN V3). This nerve exits the skull through the foramen ovale, not the jugular foramen.\n\n(B) <b>Filiform papillae</b> cover the entire dorsal surface of the tongue but do not contain taste buds.\n\n(C) Taste sensation from the anterior two-thirds of the tongue is carried by the chorda tympani branch of the facial nerve (CN VII), which exits through the petrotympanic fissure. Taste sensation from the posterior third is carried by CN IX. Therefore, a jugular foramen injury does not cause loss of taste from the entire tongue.\n\n(E) Tongue protrusion is performed by skeletal muscles, primarily the <b>genioglossus</b>, which is supplied by the hypoglossal nerve (CN XII). This nerve exits the skull through the hypoglossal canal, not the jugular foramen.\n\n<b>Educational objective:</b>\n\nThe glossopharyngeal nerve (CN IX) supplies general sensation and taste to the posterior third of the tongue. It exits the skull through the jugular foramen.",
+      uz: {
+        q: "18 yoshli yigit avtohalokatga uchradi. Bosh suyagi asosining yuqori aniqlikdagi KT tekshiruvida chap bo‘yinturuq teshigiga (jugular foramen) kirib boruvchi sinish aniqlangan.\n\nUshbu bemorda quyidagi oqibatlardan qaysi biri kuzatilishi mumkin?",
+        a: [
+          "Til uchining anesteziyasi",
+          "Ipsimon so‘rg‘ichlardan ta’m sezishning yo‘qolishi",
+          "Butun tildan ta’m sezishning yo‘qolishi",
+          "Tilning halqum qismida anesteziya",
+          "Tilni tashqariga chiqara olmaslik",
+        ],
+        explanation:
+          "<b>IX (til-halqum), X (adashgan) va XI (qo‘shimcha) bosh miya nervlari</b> kalla suyagidan bo‘yinturuq teshigi (jugular foramen) orqali chiqadi.\n\nTilning <b>halqum qismi (orqa uchdan bir qismi)</b> gipobranxial bo‘rtmaning ventral qismidan rivojlanadi. Ushbu tuzilma <b>3-jabra yoyidan</b> hosil bo‘ladi. Tilning bu qismi umumiy sezuvchanlik va ta’m sezish jihatidan til-halqum nervi (CN IX) tomonidan innervatsiya qilinadi. Bo‘yinturuq teshigi sinishi natijasida ushbu nerv shikastlanishi mumkin. Natijada bemorda tilning orqa uchdan bir qismida anesteziya kuzatilishi mumkin.\n\n<b>Boshqa variantlar:</b>\n\n(A) Tilning <b>og‘iz qismi (oldingi uchdan ikki qismi)</b> shilliq qavati 1-jabra yoylaridan rivojlanadigan lateral til bo‘rtmalaridan (lateral lingual swellings) hosil bo‘ladi. Uning umumiy sezuvchanligi uch shoxli nervning pastki jag‘ shoxi (CN V3) tarkibidagi til nervi (lingual nerve) tomonidan ta’minlanadi. Ushbu nerv kalla suyagidan oval teshik (foramen ovale) orqali chiqadi, bo‘yinturuq teshigi orqali emas.\n\n(B) <b>Ipsimon so‘rg‘ichlar (filiform papillae)</b> tilning butun ustki yuzasini qoplaydi, ammo ularda ta’m bilish kurtaklari mavjud emas.\n\n(C) Tilning oldingi uchdan ikki qismidan ta’m sezish yuz nervining (CN VII) nog‘ora tori (chorda tympani) shoxi orqali uzatiladi. Ushbu nerv kalla suyagidan tosh-nog‘ora yorig‘i (petrotympanic fissure) orqali chiqadi. Tilning orqa uchdan bir qismidan ta’m sezish esa CN IX orqali uzatiladi. Shuning uchun bo‘yinturuq teshigining shikastlanishi butun tildan ta’m sezishning yo‘qolishiga olib kelmaydi.\n\n(E) Tilni tashqariga chiqarish skelet mushaklari, asosan, <b>engensimon til mushagi (genioglossus)</b> faoliyati orqali amalga oshadi. Ushbu mushak tilosti nervi (CN XII) tomonidan innervatsiya qilinadi. Bu nerv kalla suyagidan tilosti nervi kanali (hypoglossal canal) orqali chiqadi, bo‘yinturuq teshigi orqali emas.\n\n<b>O‘quv maqsadi:</b>\n\nTil-halqum nervi (CN IX) tilning orqa uchdan bir qismining umumiy sezuvchanligi va ta’m sezishini ta’minlaydi. Ushbu nerv kalla suyagidan bo‘yinturuq teshigi (jugular foramen) orqali chiqadi.",
+      },
+    },
+
+    {
+      q: "An 18-year-old man was involved in a motor vehicle crash. A high resolution CT scan of the cranial base detected a fracture rim encroaching on the left jugular foramen.\n\nDerivatives from which of the following pharyngeal arches might be affected in him?",
+      a: [
+        "1st and 3rd",
+        "1st, 2nd, and 3rd",
+        "3rd and 4th",
+        "4th and 6th",
+        "3rd, 4th, and 6th",
+      ],
+      correct: 4,
+      explanation:
+        "Cranial nerves <b>IX (glossopharyngeal), X (vagus), and XI (accessory)</b> exit the cranium through the jugular foramen and may be affected by this fracture.\n\nThe glossopharyngeal nerve (CN IX) supplies the <b>3rd pharyngeal arch</b>.\n\nThe vagus nerve (CN X) supplies:\n- <b>4th pharyngeal arch</b> → via the superior laryngeal nerve, including its external branch.\n- <b>6th pharyngeal arch</b> → via the recurrent laryngeal nerve.\n\nTherefore, derivatives of the <b>3rd, 4th, and 6th pharyngeal arches</b> may be affected.\n\nNerves supplying the 1st (CN V) and 2nd (CN VII) pharyngeal arches do not pass through the jugular foramen.\n\n<b>Educational objective:</b>\n\nThe glossopharyngeal nerve supplies the 3rd pharyngeal arch, while the vagus nerve supplies the 4th and 6th pharyngeal arches. Both nerves exit the skull through the jugular foramen.",
+      uz: {
+        q: "18 yoshli yigit avtohalokatga uchradi. Bosh suyagi asosining yuqori aniqlikdagi KT tekshiruvida chap bo‘yinturuq teshigiga (jugular foramen) kirib boruvchi sinish aniqlangan.\n\nUshbu bemorda quyidagi jabra yoylaridan qaysilarining hosilalari zararlanishi mumkin?",
+        a: [
+          "1- va 3-jabra yoylari",
+          "1-, 2- va 3-jabra yoylari",
+          "3- va 4-jabra yoylari",
+          "4- va 6-jabra yoylari",
+          "3-, 4- va 6-jabra yoylari",
+        ],
+        explanation:
+          "<b>IX (til-halqum), X (adashgan) va XI (qo‘shimcha) bosh miya nervlari</b> kalla suyagidan bo‘yinturuq teshigi (jugular foramen) orqali chiqadi va ushbu sinish natijasida shikastlanishi mumkin.\n\nTil-halqum nervi (CN IX) <b>3-jabra yoyini</b> innervatsiya qiladi.\n\nAdashgan nerv (CN X) quyidagilarni innervatsiya qiladi:\n- <b>4-jabra yoyi</b> → yuqori hiqildoq nervi, jumladan uning tashqi shoxi orqali.\n- <b>6-jabra yoyi</b> → qaytuvchi hiqildoq nervi orqali.\n\nShuning uchun <b>3-, 4- va 6-jabra yoylari</b> hosilalari zararlanishi mumkin.\n\n1-jabra yoyini (CN V) va 2-jabra yoyini (CN VII) innervatsiya qiluvchi nervlar bo‘yinturuq teshigidan o‘tmaydi.\n\n<b>O‘quv maqsadi:</b>\n\nTil-halqum nervi 3-jabra yoyini, adashgan nerv esa 4- va 6-jabra yoylarini innervatsiya qiladi. Ushbu ikkala nerv ham kalla suyagidan bo‘yinturuq teshigi (jugular foramen) orqali chiqadi.",
+      },
+    },
+    {
+      q: "A 30-year-old woman with an ongoing, long-term history of alcoholism becomes pregnant. The embryo suffers from a defective neural crest cell migration to the second pharyngeal arch during the critical period of development. Which of the following structures is most likely to be affected as a result of this condition?",
       a: [
         "Cricoid cartilage",
         "Glossopharyngeal nerve",
-        "Greater horn of hyoid",
-        "Stapes",
-        "Thyroid cartilage",
-        "Vagus nerve",
+        "Maxillary bones",
+        "Orbicularis oris muscle",
+        "Superior parathyroid gland",
       ],
       correct: 3,
+      explanation:
+        "Derivatives of the <b>2nd pharyngeal arch</b> include the muscles of facial expression (eg, <b>orbicularis oris</b>), which are supplied by the facial nerve (CN VII).\n\nDefective neural crest cell migration to the second pharyngeal arch can impair the development of these structures.\n\n<b>Other options:</b>\n\n(A) The <b>cricoid cartilage</b> is derived from the 6th pharyngeal arch.\n\n(B) The <b>glossopharyngeal nerve (CN IX)</b> is associated with the 3rd pharyngeal arch.\n\n(C) The <b>maxillary bones</b> are derived from the 1st pharyngeal arch.\n\n(E) The <b>superior parathyroid glands</b> develop from the 4th pharyngeal pouch.\n\n<b>Educational objective:</b>\n\nThe second pharyngeal arch gives rise to the muscles of facial expression, including the orbicularis oris, which are innervated by the facial nerve (CN VII).",
+      uz: {
+        q: "30 yoshli ayol uzoq yillardan beri davom etayotgan alkogolizm anamnezi bilan homilador bo‘ldi. Embrion rivojlanishning kritik davrida neyral krest hujayralarining 2-jabra yoyiga migratsiyasi buzildi. Ushbu holat natijasida quyidagi tuzilmalardan qaysi biri ko‘proq zararlanishi mumkin?",
+        a: [
+          "Uzuk tog‘ay (cricoid cartilage)",
+          "Til-halqum nervi (glossopharyngeal nerve)",
+          "Yuqori jag‘ suyaklari (maxillary bones)",
+          "Og‘izning aylana mushagi (orbicularis oris muscle)",
+          "Yuqori paratireoid bez",
+        ],
+        explanation:
+          "<b>2-jabra yoyining</b> hosilalariga mimika mushaklari, jumladan <b>og‘izning aylana mushagi (orbicularis oris)</b> kiradi. Ushbu mushaklar yuz nervi (CN VII) tomonidan innervatsiya qilinadi.\n\nNeyral krest hujayralarining 2-jabra yoyiga migratsiyasi buzilishi ushbu tuzilmalarning rivojlanishiga salbiy ta’sir ko‘rsatishi mumkin.\n\n<b>Boshqa variantlar:</b>\n\n(A) <b>Uzuk tog‘ay (cricoid cartilage)</b> 6-jabra yoyidan rivojlanadi.\n\n(B) <b>Til-halqum nervi (CN IX)</b> 3-jabra yoyi bilan bog‘liq.\n\n(C) <b>Yuqori jag‘ suyaklari (maxillary bones)</b> 1-jabra yoyidan rivojlanadi.\n\n(E) <b>Yuqori paratireoid bezlar</b> 4-jabra cho‘ntagidan rivojlanadi.\n\n<b>O‘quv maqsadi:</b>\n\n2-jabra yoyi mimika mushaklarini, jumladan og‘izning aylana mushagini hosil qiladi. Ushbu mushaklar yuz nervi (CN VII) tomonidan innervatsiya qilinadi.",
+      },
+    },
+
+    {
+      q: "A 45-year-old woman reports a painful swelling located below the left side of the angle of the mandible. The mass was just anterior and deep to the sternocleidomastoid muscle. On palpation it was soft in consistency, fluctuant, and painful. Serum ionic calcium and thyroid and parathyroid hormone levels were normal. A contrast-enhanced CT scan revealed a cystic and enhancing mass in the neck. Needle aspiration revealed pus-like material within a cystic cavity lined by epithelium. Her physician determined the pathology to be congenital in origin.\n\nWhich of the following is the most likely diagnosis?",
+      a: [
+        "Persistent thyroglossal duct",
+        "Parathyroid adenoma",
+        "Infected pharyngeal cyst",
+        "Thyroid toxic adenoma",
+        "Thymoma",
+      ],
+      correct: 2,
+      explanation:
+        "If a portion of the embryonic <b>branchial cleft</b> fails to involute completely, the remaining tissue becomes trapped and forms an <b>epithelium-lined cyst</b>.\n\nThese cysts most frequently present in late childhood or early adulthood, when they become infected, usually following an upper respiratory tract infection.\n\nAn infected branchial cleft cyst typically presents as a <b>tender, inflammatory mass along the anterior border of the sternocleidomastoid muscle</b>. Aspirated fluid commonly appears purulent (pus-like).\n\n<b>Other options:</b>\n\n(A) <b>Thyroglossal duct cysts</b> arise from remnants of the thyroglossal duct and present as midline neck masses. A pathognomonic physical examination finding is vertical movement of the mass during swallowing and tongue protrusion, demonstrating its close relationship to the hyoid bone.\n\n(B) <b>Parathyroid adenomas</b> commonly present with hypercalcemia, and aspiration typically reveals crystal-clear fluid.\n\n(D) A solitary, autonomously functioning thyroid nodule is called a <b>toxic adenoma</b>. Laboratory studies usually reveal suppressed TSH and elevated serum T3 levels. Symptoms include weight loss, weakness, shortness of breath, palpitations, tachycardia, and heat intolerance.\n\n(E) A <b>thymoma</b> usually presents as an anterior mediastinal mass, with or without local invasion. Its location is highly unlikely in this patient.\n\n<b>Educational objective:</b>\n\nBranchial cleft cysts result from incomplete obliteration of embryonic branchial clefts. When infected, they typically present as painful, inflammatory masses along the anterior border of the sternocleidomastoid muscle, often containing purulent fluid.",
+      uz: {
+        q: "45 yoshli ayol pastki jag‘ burchagining chap tomonidan pastda joylashgan og‘riqli shishdan shikoyat qildi. Massa to‘sh-o‘mrov-so‘rg‘ichsimon mushakning (sternocleidomastoid muscle) old tomonida va chuqurroq joylashgan edi. Palpatsiyada massa yumshoq, fluktuatsiyalanuvchi va og‘riqli ekanligi aniqlandi. Qon zardobidagi ionlashgan kalsiy, qalqonsimon bez gormonlari va paratireoid gormon darajalari normal edi. Kontrastli KT tekshiruvida bo‘yinda kistoz va kontrast modda to‘plovchi massa aniqlandi. Igna orqali aspiratsiya qilinganda epiteliy bilan qoplangan kista bo‘shlig‘idan yiringga o‘xshash modda olindi. Shifokor ushbu patologiyaning tug‘ma kelib chiqishga ega ekanligini aniqladi.\n\nEng ehtimoliy tashxis qaysi?",
+        a: [
+          "Saqlanib qolgan qalqonsimon-til yo‘li (persistent thyroglossal duct)",
+          "Paratireoid bez adenomasi",
+          "Infeksiyalangan jabra kistasi (infected pharyngeal cyst)",
+          "Qalqonsimon bez toksik adenomasi",
+          "Timoma",
+        ],
+        explanation:
+          "Agar embrional <b>jabra yorig‘ining (branchial cleft)</b> bir qismi to‘liq yo‘qolmasa, uning qoldiq to‘qimasi saqlanib qolib, <b>epiteliy bilan qoplangan kista</b>ni hosil qiladi.\n\nBunday kistalar ko‘pincha bolalikning kechki davrida yoki erta kattalik davrida namoyon bo‘ladi. Odatda yuqori nafas yo‘llari infeksiyasidan keyin infeksiyalanadi.\n\nInfeksiyalangan jabra yorig‘i kistasi odatda <b>to‘sh-o‘mrov-so‘rg‘ichsimon mushakning oldingi cheti bo‘ylab joylashgan og‘riqli, yallig‘langan massa</b> sifatida namoyon bo‘ladi. Aspiratsiya qilingan suyuqlik ko‘pincha yiringli bo‘ladi.\n\n<b>Boshqa variantlar:</b>\n\n(A) <b>Qalqonsimon-til yo‘li kistalari (thyroglossal duct cysts)</b> embrional qalqonsimon-til yo‘lining qoldiqlaridan rivojlanadi va bo‘yinning o‘rta chizig‘ida massa sifatida namoyon bo‘ladi. Fizikal tekshiruvdagi patognomonik belgi — yutish va tilni chiqarish vaqtida massaning vertikal harakatlanishidir. Bu uning tilosti suyagi (hyoid bone) bilan yaqin bog‘liqligini ko‘rsatadi.\n\n(B) <b>Paratireoid bez adenomasi</b> odatda giperkalsemiya bilan namoyon bo‘ladi. Aspiratsiya vaqtida ko‘pincha kristalldek tiniq suyuqlik olinadi.\n\n(D) Qalqonsimon bezning yakka, mustaqil faoliyat yurituvchi tuguni <b>toksik adenoma</b> deb ataladi. Laborator tekshiruvlarda odatda TSH pasayishi va qon zardobida T3 miqdorining oshishi aniqlanadi. Belgilariga vazn yo‘qotish, holsizlik, nafas qisishi, yurak urishini sezish (palpitatsiya), taxikardiya va issiqqa toqatsizlik kiradi.\n\n(E) <b>Timoma</b> odatda oldingi ko‘ks oralig‘ida (anterior mediastinum) joylashgan massa sifatida namoyon bo‘ladi; u mahalliy to‘qimalarga o‘sib kirishi ham, kirmasligi ham mumkin. Ushbu bemordagi massa joylashuvi timoma uchun juda noodatiy hisoblanadi.\n\n<b>O‘quv maqsadi:</b>\n\nJabra yorig‘i kistalari embrional jabra yoriqlarining to‘liq yo‘qolmasligi natijasida rivojlanadi. Infeksiyalanganda ular odatda to‘sh-o‘mrov-so‘rg‘ichsimon mushakning oldingi cheti bo‘ylab joylashgan og‘riqli, yallig‘langan massa sifatida namoyon bo‘ladi va tarkibida yiringli suyuqlik bo‘lishi mumkin.",
+      },
+    },
+
+    {
+      q: "A 45-year-old woman reports a painful swelling located below the left side of the angle of the mandible. The mass was just anterior and deep to the sternocleidomastoid muscle. On palpation it was soft in consistency, fluctuant, and painful. Serum ionic calcium and thyroid and parathyroid hormone levels were normal. A contrast-enhanced CT scan revealed a cystic and enhancing mass in the neck. Needle aspiration revealed pus-like material within a cystic cavity lined by epithelium. Her physician determined the pathology to be congenital in origin.\n\nWhich of the following lines the pathological structure in her?",
+      a: [
+        "Ectoderm",
+        "Endoderm",
+        "Ectoderm and endoderm",
+        "Mesoderm",
+        "Neural crest",
+      ],
+      correct: 0,
+      explanation:
+        "<b>Branchial cleft cysts</b> commonly arise from failure of obliteration of the <b>second branchial cleft</b> during embryonic development.\n\nThe second pharyngeal arch grows caudally and ultimately covers the third and fourth pharyngeal arches. The buried clefts become <b>ectoderm-lined cavities</b>, which normally involute around the 7th week of embryonic development.\n\nFailure of this normal involution results in a branchial cleft cyst lined by ectoderm-derived epithelium.\n\n<b>Other options:</b>\n\n(B, C) <b>Pharyngeal pouches</b> are lined by endoderm and form internal indentations between the pharyngeal arches. Therefore, endoderm is not responsible for lining branchial cleft cysts.\n\n(D) <b>Mesoderm</b> does not line pharyngeal clefts.\n\n(E) <b>Neural crest cells</b> contribute to various craniofacial structures but do not form the epithelial lining of pharyngeal clefts.\n\n<b>Educational objective:</b>\n\nPharyngeal clefts are derived from ectoderm, whereas pharyngeal pouches are derived from endoderm. Failure of the second pharyngeal cleft to involute normally can result in an ectoderm-lined branchial cleft cyst.",
+      uz: {
+        q: "45 yoshli ayol pastki jag‘ burchagining chap tomonidan pastda joylashgan og‘riqli shishdan shikoyat qildi. Massa to‘sh-o‘mrov-so‘rg‘ichsimon mushakning (sternocleidomastoid muscle) old tomonida va chuqurroq joylashgan edi. Palpatsiyada massa yumshoq, fluktuatsiyalanuvchi va og‘riqli ekanligi aniqlandi. Qon zardobidagi ionlashgan kalsiy, qalqonsimon bez gormonlari va paratireoid gormon darajalari normal edi. Kontrastli KT tekshiruvida bo‘yinda kistoz va kontrast modda to‘plovchi massa aniqlandi. Igna orqali aspiratsiya qilinganda epiteliy bilan qoplangan kista bo‘shlig‘idan yiringga o‘xshash modda olindi. Shifokor ushbu patologiyaning tug‘ma kelib chiqishga ega ekanligini aniqladi.\n\nUshbu bemordagi patologik tuzilmaning ichki qoplamini qaysi embrional qavat hosil qiladi?",
+        a: [
+          "Ektoderma",
+          "Endoderma",
+          "Ektoderma va endoderma",
+          "Mezoderma",
+          "Neyral krest",
+        ],
+        explanation:
+          "<b>Jabra yorig‘i kistalari (branchial cleft cysts)</b> ko‘pincha embrional rivojlanish davrida <b>ikkinchi jabra yorig‘ining</b> yo‘qolmay qolishi natijasida yuzaga keladi.\n\nIkkinchi jabra yoyi kaudal tomonga o‘sib, oxir-oqibat uchinchi va to‘rtinchi jabra yoylarini qoplaydi. Qoplanib qolgan jabra yoriqlari <b>ektoderma bilan qoplangan bo‘shliqlar</b>ga aylanadi. Normal rivojlanishda ular embrional rivojlanishning taxminan 7-haftasida yo‘qoladi.\n\nUshbu normal yo‘qolish jarayonining buzilishi ektodermadan rivojlangan epiteliy bilan qoplangan jabra yorig‘i kistasini hosil qiladi.\n\n<b>Boshqa variantlar:</b>\n\n(B, C) <b>Jabra cho‘ntaklari (pharyngeal pouches)</b> endoderma bilan qoplangan bo‘lib, jabra yoylari orasidagi ichki botmalarni hosil qiladi. Shuning uchun endoderma jabra yorig‘i kistasining ichki epitelial qoplamini hosil qilmaydi.\n\n(D) <b>Mezoderma</b> jabra yoriqlarining ichki qoplamini hosil qilmaydi.\n\n(E) <b>Neyral krest hujayralari</b> turli kraniofasial tuzilmalarning rivojlanishida ishtirok etadi, ammo jabra yoriqlarining epitelial qoplamini hosil qilmaydi.\n\n<b>O‘quv maqsadi:</b>\n\nJabra yoriqlari ektodermadan, jabra cho‘ntaklari esa endodermadan rivojlanadi. Ikkinchi jabra yorig‘ining normal yo‘qolmasligi ektoderma bilan qoplangan jabra yorig‘i kistasining rivojlanishiga olib kelishi mumkin.",
+      },
     },
     {
-      q: `A 35-year-old woman undergoes amniocentesis at 18 weeks gestation. Amniotic fluid analysis shows an increased level of acetylcholinesterase. This patient's amniocentesis results most likely suggest failure of which of the following processes?`,
+      q: "A 6-month-old infant is brought to the clinic for a 2-week history of noisy breathing that worsens in the supine position. The patient’s history was significant for delivery at 34 weeks secondary to premature rupture of the membranes. On examination, the patient had mild inspiratory stridor and did not appear to be in any distress. Which of the following is the most probable diagnosis for her?",
       a: [
-        "Epithelial cell apoptosis in the embryonic duodenum",
-        "Fusion of the edges of the neural plate",
-        "Involution of the thyroglossal duct",
-        "Meiotic disjunction of chromosome 21",
-        "Migration of neural crest cells",
-        "Obliteration of the processus vaginalis",
+        "Tracheomalacia",
+        "Laryngomalacia",
+        "Bronchiolitis",
+        "Bronchial asthma",
+        "Cystic fibrosis",
       ],
       correct: 1,
+      explanation:
+        "<b>Laryngomalacia</b> is the most probable diagnosis. It is defined as the collapse of supraglottic structures during inspiration and is the most common cause of inspiratory stridor in infants.\n\n<b>Why the other options are incorrect:</b>\n- <b>Tracheomalacia:</b> Involves flaccid tracheal cartilage and typically causes wheezing that does not improve with bronchodilator therapy. Oxygenation usually remains normal.\n- <b>Bronchiolitis, bronchial asthma, and cystic fibrosis:</b> Typically cause wheezing, which is a noisy expiration, rather than inspiratory stridor.",
+      uz: {
+        q: "6 oylik chaqaloq klinikaga 2 haftadan beri davom etayotgan, chalqancha yotganda kuchayadigan shovqinli nafas olish shikoyati bilan olib kelindi. Anamnezida homila pardalarining muddatidan oldin yorilishi sababli homiladorlikning 34-haftasida tug‘ilgani qayd etilgan. Tekshiruvda yengil inspirator stridor aniqlandi, ammo chaqaloqda nafas yetishmovchiligi belgilari yo‘q edi. Quyidagi tashxislardan qaysi biri eng ehtimoliy?",
+        a: [
+          "Traxeomalatsiya",
+          "Laringomalatsiya",
+          "Bronxiolit",
+          "Bronxial astma",
+          "Kistoz fibroz",
+        ],
+        explanation:
+          "<b>Laringomalatsiya</b> — inspiratsiya vaqtida hiqildoq usti tuzilmalarining (supraglottik strukturalarning) ichkariga kollapsga uchrashidir. U chaqaloqlarda inspirator stridorning eng ko‘p uchraydigan sababidir.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>Traxeomalatsiya:</b> Traxeya tog‘aylarining bo‘shashishi bilan bog‘liq bo‘lib, odatda bronxodilatatorlar bilan yaxshilanmaydigan xirillashga sabab bo‘ladi. Bunday chaqaloqlarda kislorodlanish odatda normal saqlanadi.\n- <b>Bronxiolit, bronxial astma va kistoz fibroz:</b> Odatda ekspirator xirillashni (wheezing) keltirib chiqaradi, inspirator stridorni emas.",
+      },
     },
     {
-      q: `A 4-day-old girl has a deep sacral pit with a hair tuft over the midline lumbosacral region. Spinal ultrasound reveals a low-lying conus medullaris at L5 with a thickened filum terminale. Failure of which of the following embryologic processes is most likely associated with this patient's findings?`,
+      q: "A 6-month-old infant is brought to the clinic for a 2-week history of noisy breathing that worsens in the supine position. The patient’s history was significant for delivery at 34 weeks secondary to premature rupture of the membranes. On examination, the patient had mild inspiratory stridor and did not appear to be in any distress. Which of the following structures might have suffered from defective development in her?",
       a: [
-        "Anterior neural tube closure",
-        "Myelencephalon division",
-        "Neural crest cell migration",
-        "Notochord separation from endoderm",
-        "Vertebral arch fusion",
+        "Pharyngeal arch 1",
+        "Pharyngeal arch 2",
+        "Pharyngeal arch 3",
+        "Pharyngeal arch 5",
+        "Pharyngeal arch 6",
       ],
       correct: 4,
+      explanation:
+        "<b>Laryngomalacia</b> results from malformed laryngeal cartilages due to defective neural crest cell migration within the <b>6th pharyngeal arch</b>.\n\n<b>Other pharyngeal arches:</b>\n- <b>1st arch:</b> Primarily contributes to facial bones.\n- <b>2nd arch:</b> Contributes to the stapes, lesser horn, and upper part of the body of the hyoid bone.\n- <b>3rd arch:</b> Contributes to the greater horn and lower part of the body of the hyoid bone.\n- <b>5th arch:</b> Does not develop in humans.",
+      uz: {
+        q: "6 oylik chaqaloq klinikaga 2 haftadan beri davom etayotgan, chalqancha yotganda kuchayadigan shovqinli nafas olish shikoyati bilan olib kelindi. Anamnezida homila pardalarining muddatidan oldin yorilishi sababli homiladorlikning 34-haftasida tug‘ilgani qayd etilgan. Tekshiruvda yengil inspirator stridor aniqlandi, ammo chaqaloqda nafas yetishmovchiligi belgilari yo‘q edi. Unda quyidagi tuzilmalardan qaysi birining rivojlanishi buzilgan bo‘lishi mumkin?",
+        a: [
+          "1-halqum yoyi",
+          "2-halqum yoyi",
+          "3-halqum yoyi",
+          "5-halqum yoyi",
+          "6-halqum yoyi",
+        ],
+        explanation:
+          "<b>Laringomalatsiya</b> 6-halqum yoyi sohasida nerv qirrasi hujayralari (neural crest cells) migratsiyasining buzilishi natijasida hiqildoq tog‘aylarining noto‘g‘ri rivojlanishi bilan bog‘liq.\n\n<b>Boshqa halqum yoylari:</b>\n- <b>1-yoy:</b> Asosan yuz suyaklarining shakllanishida qatnashadi.\n- <b>2-yoy:</b> Uzangi suyagi (stapes), tilosti suyagining kichik shoxi va tanasining yuqori qismini hosil qiladi.\n- <b>3-yoy:</b> Tilosti suyagining katta shoxi va tanasining pastki qismini hosil qiladi.\n- <b>5-yoy:</b> Odamlarda rivojlanmaydi.",
+      },
     },
     {
-      q: `A 28-year-old woman at 20 weeks gestation delivers a fetus with anencephaly. These findings are most likely due to an impairment in which of the following embryologic processes?`,
+      q: "A 26-year old soccer player sustained a head injury while contesting a ball in the air. He transiently lost his consciousness and remained dizzy for about an hour. A CT scan revealed a fracture line passing through the stylomastoid foramen. Which of the following might be found in him?",
       a: [
-        "Neural crest cell migration",
-        "Notochord formation",
-        "Prosencephalon division",
-        "Rostral neuropore closure",
-        "Vertebral column fusion",
-      ],
-      correct: 3,
-    },
-    {
-      q: `A 35-year-old pregnant woman has elevated alpha-fetoprotein. Ultrasound shows a complex cystic lesion overlying the lumbosacral spine, ventriculomegaly, and hindbrain herniation. These abnormalities are most likely due to failure of which of the following processes?`,
-      a: [
-        "Disappearance of the primitive streak",
-        "Formation of the cerebellar vermis",
-        "Neural crest cell migration",
-        "Neuronal migration within the cerebral cortex",
-        "Primary neurulation",
-      ],
-      correct: 4,
-    },
-    {
-      q: `A 22-year-old man has café-au-lait spots and multiple soft cutaneous neurofibromas. The predominant cells forming these tumors most likely originated from which of the following structures?`,
-      a: [
-        "Endoderm",
-        "Mesoderm",
-        "Neural crest",
-        "Neural tube",
-        "Notochord",
-        "Surface ectoderm",
-      ],
-      correct: 2,
-    },
-    {
-      q: `A stillborn neonate is missing a large portion of the scalp and skull with partial exposure of the brain. The mother has bipolar disorder. If used during pregnancy, which of the following substances most likely contributed to this neonate's abnormalities?`,
-      a: [
-        "ACE inhibitor",
-        "Alcohol",
-        "Heroin",
-        "Isotretinoin",
-        "Lithium",
-        "Valproate",
-      ],
-      correct: 5,
-    },
-    {
-      q: `A fetus has incomplete separation of the cerebral hemispheres with a single ventricle (holoprosencephaly). Which of the following is most closely associated with this fetal condition?`,
-      a: [
-        "Congenital rubella syndrome",
-        "Intrauterine Zika virus infection",
-        "Maternal lithium use",
-        "Trisomy 13",
-        "Trisomy 21",
-      ],
-      correct: 3,
-    },
-    {
-      q: `A 38-year-old woman has headaches, amenorrhea, and bitemporal hemianopia due to a pituitary adenoma. This patient's lesion most likely originates from which of the following embryologic layers?`,
-      a: [
-        "Endoderm",
-        "Mesoderm",
-        "Neural crest",
-        "Neural tube",
-        "Notochord",
-        "Surface ectoderm",
-      ],
-      correct: 5,
-    },
-    {
-      q: `A stillborn fetus has holoprosencephaly with fused cerebral hemispheres, absent forebrain fissure, and a single intracranial ventricle. These autopsy findings are most indicative of which of the following types of congenital anomalies?`,
-      a: [
-        "Agenesis",
-        "Association",
-        "Deformation",
-        "Dysplasia",
-        "Malformation",
+        "Paralysis of all muscles that develop from the 1st pharyngeal arch",
+        "Paralysis of all muscles that develop from the 2nd pharyngeal arch",
+        "Loss of taste sensation from the tip of the tongue",
+        "Loss of taste sensation from the vallate papillae",
+        "Loss of general sensation over a small part of the external acoustic meatus",
       ],
       correct: 4,
+      explanation:
+        "The <b>facial nerve (CN VII)</b> exits the skull through the stylomastoid foramen. As it exits, it gives off a sensory branch that supplies part of the external acoustic meatus and tympanic membrane. It then gives off motor branches to the muscles of facial expression.\n\n<b>Why the other options are incorrect:</b>\n- <b>1st pharyngeal arch muscles:</b> Supplied by the trigeminal nerve (CN V), so they are not paralyzed by a facial nerve injury.\n- <b>2nd pharyngeal arch muscles:</b> The stapedius is supplied by a facial nerve branch arising from its mastoid segment, proximal to the stylomastoid foramen. Therefore, it is not affected by a fracture at the foramen.\n- <b>Taste from the tip of the tongue:</b> Supplied by the chorda tympani branch of the facial nerve, which also arises from the mastoid segment proximal to the stylomastoid foramen. It remains unaffected.\n- <b>Taste from the vallate papillae:</b> Supplied by the glossopharyngeal nerve (CN IX), which exits the skull through the jugular foramen, not the stylomastoid foramen.",
+      uz: {
+        q: "26 yoshli futbolchi havodagi to‘p uchun kurashayotganda boshidan jarohat oldi. U qisqa muddatga hushini yo‘qotdi va taxminan bir soat davomida boshi aylanishidan shikoyat qildi. KT tekshiruvida sinish chizig‘i bigizsimon-so‘rg‘ichsimon teshikdan (stylomastoid foramen) o‘tishi aniqlandi. Unda quyidagi holatlardan qaysi biri kuzatilishi mumkin?",
+        a: [
+          "1-halqum yoyidan rivojlanadigan barcha mushaklarning falaji",
+          "2-halqum yoyidan rivojlanadigan barcha mushaklarning falaji",
+          "Til uchidan ta’m sezishning yo‘qolishi",
+          "Tilning aylana so‘rg‘ichlaridan (vallate papillae) ta’m sezishning yo‘qolishi",
+          "Tashqi eshituv yo‘lining kichik bir qismida umumiy sezuvchanlikning yo‘qolishi",
+        ],
+        explanation:
+          "<b>Yuz nervi (CN VII)</b> kalla suyagidan stylomastoid teshik orqali chiqadi. Teshikdan chiqqach, u tashqi eshituv yo‘li va nog‘ora pardasining bir qismini innervatsiya qiluvchi sezuvchi shox beradi. Keyin yuz mimikasi mushaklarini innervatsiya qiluvchi harakatlantiruvchi shoxlarga bo‘linadi.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>1-halqum yoyi mushaklari:</b> Uch shoxli nerv (CN V) tomonidan innervatsiya qilinadi. Shu sababli yuz nervi shikastlanganda ular falajlanmaydi.\n- <b>2-halqum yoyi mushaklari:</b> Uzangi mushagi (stapedius) yuz nervining stylomastoid teshigidan proksimalda, so‘rg‘ichsimon qismidan chiqadigan shoxi orqali innervatsiya qilinadi. Shuning uchun teshik sohasidagi sinish unga ta’sir qilmaydi.\n- <b>Til uchidan ta’m sezish:</b> Yuz nervining nog‘ora tori (chorda tympani) shoxi orqali ta’minlanadi. Bu shox ham stylomastoid teshigidan proksimalda chiqadi, shuning uchun saqlanib qoladi.\n- <b>Tilning aylana so‘rg‘ichlaridan ta’m sezish:</b> Til-halqum nervi (CN IX) tomonidan ta’minlanadi. Bu nerv kalla suyagidan stylomastoid teshik orqali emas, bo‘yinturuq teshigi (jugular foramen) orqali chiqadi.",
+      },
     },
-  ],
-  cardioUw: [
     {
-      q: `A 2–day–old boy is being evaluated in the nursery for irritability. He was born to a 22–year–old primigravida who received limited prenatal care. Delivery was uncomplicated, and Apgar scores were 7 and 8 at 1 and 5 minutes, respectively. Temperature is 36.7 ℃ (98 ℉), blood pressure is 70/30 mmHg, pulse is 148/min, and respirations are 68/min. On physical examination, the patient is cyanotic and irritable. Auscultation reveals a continuous, machinery–like murmur appreciated between the scapulae. Serum lactate level is elevated. Echocardiogram shows the origin of the aorta lying anterior and to the right of the pulmonary artery.
-
-Failure of which of the following processes during embryonic development is most likely responsible for this patient's findings on imaging?`,
-      a: ["Fusion", "Obliteration", "Proliferation", "Septation", "Spiraling"],
+      q: "A newborn presents with a mesenchymal defect affecting his medial nasal processes. Which of the following might be malformed in him?",
+      a: [
+        "Lower lip",
+        "Primary palate",
+        "Secondary palate",
+        "Bridge of the nose",
+        "Alae of the nose",
+      ],
+      correct: 1,
+      explanation:
+        "Structures formed from the <b>medial nasal prominences</b> include the crest and tip of the nose (columella), philtrum, lateral portions of the upper lip, primary palate, and upper incisors.\n\n<b>Why the other options are incorrect:</b>\n- <b>Lower lip:</b> Formed from the mandibular prominences.\n- <b>Secondary palate:</b> Formed by fusion of the right and left palatine processes, which arise from the maxillary prominences.\n- <b>Bridge of the nose:</b> Formed from the frontonasal prominence.\n- <b>Alae of the nose:</b> Formed from the lateral nasal prominences.",
+      uz: {
+        q: "Yangi tug‘ilgan chaqaloqda medial burun o‘simtalariga ta’sir qiluvchi mezenximal rivojlanish nuqsoni aniqlandi. Quyidagi tuzilmalardan qaysi biri unda noto‘g‘ri shakllangan bo‘lishi mumkin?",
+        a: [
+          "Pastki lab",
+          "Birlamchi tanglay",
+          "Ikkilamchi tanglay",
+          "Burun ko‘prigi",
+          "Burun qanotlari",
+        ],
+        explanation:
+          "<b>Medial burun o‘simtalari</b> burun qirrasi va uchini (columella), yuqori labning filtrumini va yon qismlarini, birlamchi tanglayni hamda yuqori kesuvchi tishlarni hosil qiladi.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>Pastki lab:</b> Pastki jag‘ o‘simtalaridan (mandibular prominences) rivojlanadi.\n- <b>Ikkilamchi tanglay:</b> Yuqori jag‘ o‘simtalaridan rivojlanadigan o‘ng va chap tanglay o‘simtalarining birikishidan hosil bo‘ladi.\n- <b>Burun ko‘prigi:</b> Peshona-burun o‘simtasidan (frontonasal prominence) rivojlanadi.\n- <b>Burun qanotlari:</b> Lateral burun o‘simtalaridan rivojlanadi.",
+      },
+    },
+    {
+      q: "A 25-year-old woman noticed an inability to perform certain yoga positions and was more easily fatigued and had decreased stamina for exercise. She soon developed diplopia and facial and proximal limb muscle weakness with difficulty lifting her arms above her head and difficulty climbing stairs. Her condition deteriorated with difficulty chewing, swallowing, and increasing weakness. Routine laboratory studies were unrevealing, with the exception of acetylcholine receptor antibodies. A chest CT scan showed a large anterior mediastinal heterogeneous mass with solid and cystic components and invasion of the pericardium. Which of the following is the most likely diagnosis?",
+      a: [
+        "Persistent thyroglossal duct",
+        "Parathyroid adenoma",
+        "Pharyngeal cyst",
+        "Thyroid toxic adenoma",
+        "Thymoma",
+      ],
       correct: 4,
+      explanation:
+        "The patient presents with classic features of <b>myasthenia gravis (MG)</b>, a neuromuscular junction disorder most commonly caused by antibodies against acetylcholine receptors.\n\n<b>Thymoma</b> is a tumor arising from the epithelial cells of the thymus. Approximately one-half of patients with cortical thymoma develop myasthenia gravis. When MG occurs together with thymoma, it is considered a <b>paraneoplastic disease</b> associated with the tumor.\n\n<b>Why the other options are incorrect:</b>\n- <b>Persistent thyroglossal duct:</b> May present as a midline neck mass but is not associated with MG.\n- <b>Parathyroid adenoma:</b> Commonly presents as a neck mass and may cause hyperparathyroidism, but is not associated with MG.\n- <b>Pharyngeal cyst:</b> May present as a neck mass but is not associated with MG.\n- <b>Thyroid toxic adenoma:</b> Causes excess thyroid hormone production, not the characteristic acetylcholine receptor antibody-associated weakness.",
+      uz: {
+        q: "25 yoshli ayol ayrim yoga holatlarini bajara olmay qolganini, tez charchashini va jismoniy mashqlar paytida chidamliligi pasayganini sezdi. Tez orada unda diplopiya (ikki ko‘rish), yuz va qo‘l-oyoqlarning proksimal mushaklarida kuchsizlik rivojlandi. U qo‘llarini boshidan yuqoriga ko‘tarishda va zinadan chiqishda qiynala boshladi. Keyinchalik holati yomonlashib, chaynash va yutish qiyinlashdi hamda mushaklar kuchsizligi kuchaydi. Odatdagi laborator tekshiruvlarda, atsetilxolin retseptorlariga qarshi antitanalar bundan mustasno, sezilarli o‘zgarish aniqlanmadi. Ko‘krak qafasi KT tekshiruvida oldingi ko‘ks oralig‘ida (anterior mediastinum) qattiq va kistoz qismlardan tashkil topgan, perikardga invaziya qilgan katta geterogen massa aniqlandi. Quyidagi tashxislardan qaysi biri eng ehtimoliy?",
+        a: [
+          "Saqlanib qolgan qalqonsimon-til yo‘li",
+          "Paratireoid adenoma",
+          "Halqum kistasi",
+          "Qalqonsimon bezning toksik adenomasi",
+          "Timoma",
+        ],
+        explanation:
+          "Bemorda <b>miasteniya gravis (MG)</b>ning klassik belgilari kuzatilmoqda. Bu nerv-mushak sinapsi kasalligi bo‘lib, ko‘pchilik hollarda atsetilxolin retseptorlariga qarshi antitanalar sababli rivojlanadi.\n\n<b>Timoma</b> — timusning epitelial hujayralaridan rivojlanadigan o‘sma. Kortikal timomasi bo‘lgan bemorlarning taxminan yarmida miasteniya gravis rivojlanadi. MG timoma bilan birga uchraganda, u o‘sma bilan bog‘liq <b>paraneoplastik kasallik</b> hisoblanadi.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>Saqlanib qolgan qalqonsimon-til yo‘li:</b> Bo‘yinning o‘rta chizig‘ida massa hosil qilishi mumkin, ammo MG bilan bog‘liq emas.\n- <b>Paratireoid adenoma:</b> Bo‘yinda massa hosil qilishi va giperparatireozga sabab bo‘lishi mumkin, ammo MG bilan bog‘liq emas.\n- <b>Halqum kistasi:</b> Bo‘yinda massa sifatida namoyon bo‘lishi mumkin, lekin MG bilan bog‘liq emas.\n- <b>Qalqonsimon bezning toksik adenomasi:</b> Qalqonsimon bez gormonlari ortiqcha ishlab chiqarilishiga sabab bo‘ladi, ammo atsetilxolin retseptorlariga qarshi antitanalar bilan bog‘liq mushak kuchsizligini keltirib chiqarmaydi.",
+      },
     },
     {
-      q: `A 37–year–old woman is brought to the emergency department after developing sudden–onset right arm weakness and difficulty speaking. She has no significant medical history but takes oral contraceptives. Examination shows decreased right upper extremity strength and expressive aphasia. Cardiac auscultation is normal. MRI of the brain reveals acute infarction in the left frontal lobe. Further evaluation to determine an etiology is performed. During echocardiogram, agitated normal saline is injected into a peripheral vein and bubbles are seen passing into the left side of the heart.
-
-Which of the following is the most likely cause of the observed finding in this patient?`,
+      q: "A 25-year-old woman noticed an inability to perform certain yoga positions and was more easily fatigued and had decreased stamina for exercise. She soon developed diplopia and facial and proximal limb muscle weakness with difficulty lifting her arms above her head and difficulty climbing stairs. Her condition deteriorated with difficulty chewing, swallowing, and increasing weakness. Routine laboratory studies were unrevealing, with the exception of acetylcholine receptor antibodies. A chest CT scan showed a large anterior mediastinal heterogeneous mass with solid and cystic components and invasion of the pericardium. Which of the following might be the embryological source for the pathological organ?",
       a: [
-        "Aplasia of the atrial septum secundum",
-        "Failure of the aorticopulmonary septum to develop",
-        "Incomplete closure of the interventricular foramen",
-        "Incomplete fusion of atrial septum primum and secundum",
-        "Persistent channel between aorta and pulmonary artery",
+        "First pharyngeal cleft",
+        "Second pharyngeal cleft",
+        "Third pharyngeal pouch",
+        "Fourth pharyngeal pouch",
+        "Endodermal invagination from the foramen cecum",
+      ],
+      correct: 2,
+      explanation:
+        "The <b>thymus and inferior parathyroid glands</b> develop from the <b>third pharyngeal pouch</b>.\n\n<b>Other embryological derivatives:</b>\n- <b>First pharyngeal cleft:</b> Forms the external auditory meatus.\n- <b>Second pharyngeal cleft:</b> Normally becomes obliterated.\n- <b>Fourth pharyngeal pouch:</b> Gives rise to the superior parathyroid glands.\n- <b>Endodermal invagination from the foramen cecum:</b> Gives rise to the thyroid gland.",
+      uz: {
+        q: "25 yoshli ayol ayrim yoga holatlarini bajara olmay qolganini, tez charchashini va jismoniy mashqlar paytida chidamliligi pasayganini sezdi. Tez orada unda diplopiya (ikki ko‘rish), yuz va qo‘l-oyoqlarning proksimal mushaklarida kuchsizlik rivojlandi. U qo‘llarini boshidan yuqoriga ko‘tarishda va zinadan chiqishda qiynala boshladi. Keyinchalik holati yomonlashib, chaynash va yutish qiyinlashdi hamda mushaklar kuchsizligi kuchaydi. Odatdagi laborator tekshiruvlarda, atsetilxolin retseptorlariga qarshi antitanalar bundan mustasno, sezilarli o‘zgarish aniqlanmadi. Ko‘krak qafasi KT tekshiruvida oldingi ko‘ks oralig‘ida (anterior mediastinum) qattiq va kistoz qismlardan tashkil topgan, perikardga invaziya qilgan katta geterogen massa aniqlandi. Ushbu patologik organning embriologik manbai qaysi tuzilma hisoblanadi?",
+        a: [
+          "1-halqum yorig‘i",
+          "2-halqum yorig‘i",
+          "3-halqum cho‘ntagi",
+          "4-halqum cho‘ntagi",
+          "Ko‘r teshikdan (foramen cecum) endodermaning ichkariga botib kirishi",
+        ],
+        explanation:
+          "<b>Timus va pastki paratireoid bezlar</b> <b>3-halqum cho‘ntagidan</b> rivojlanadi.\n\n<b>Boshqa embriologik hosilalar:</b>\n- <b>1-halqum yorig‘i:</b> Tashqi eshituv yo‘lini hosil qiladi.\n- <b>2-halqum yorig‘i:</b> Normal rivojlanish jarayonida obliteratsiyaga uchraydi, ya’ni yo‘qolib ketadi.\n- <b>4-halqum cho‘ntagi:</b> Yuqori paratireoid bezlarni hosil qiladi.\n- <b>Ko‘r teshikdan endodermaning ichkariga botib kirishi:</b> Qalqonsimon bezni hosil qiladi.",
+      },
+    },
+    {
+      q: "A 48-year-old man presents with a low and gruff voice for the past two months following an anterior cervical diskectomy. He reports that his voice has slowly improved over the last month but has then plateaued. A laryngoscopy, other than a vibratory phase asymmetry, revealed subtle non-specific changes. A laryngeal electromyography revealed no weakness for the posterior cricoarytenoid muscle. Which of the following could be an associated finding in the patient?",
+      a: [
+        "Paralysis of the sternothyroid muscle",
+        "Paralysis of the thyrohyoid muscle",
+        "Paralysis of the thyroarytenoid muscle",
+        "Anesthesia of the laryngeal inlet",
+        "Anesthesia of the laryngotracheal junction",
       ],
       correct: 3,
+      explanation:
+        "The patient most likely has an iatrogenic injury to the <b>superior laryngeal nerve (SLN)</b>. Diagnosing SLN palsy using laryngoscopy alone is difficult because the findings can be subtle and highly variable. Laryngeal electromyography is considered the gold standard because it can detect signs of denervation.\n\nThe SLN branches from the vagus nerve and divides into external and internal laryngeal branches:\n- <b>External laryngeal branch:</b> Innervates the cricothyroid muscle, which controls longitudinal tension of the vocal folds and voice pitch.\n- <b>Internal laryngeal branch:</b> Provides sensory innervation to the larynx above the vocal cords, including the laryngeal inlet.\n\n<b>Why the other options are incorrect:</b>\n- <b>Sternothyroid muscle:</b> Supplied by the ansa cervicalis, which receives fibers from the ventral rami of C1–C3 spinal nerves.\n- <b>Thyrohyoid muscle:</b> Supplied by a branch from the anterior ramus of the C1 spinal nerve.\n- <b>Thyroarytenoid muscle paralysis:</b> Results from recurrent laryngeal nerve injury.\n- <b>Anesthesia of the laryngotracheal junction:</b> Also results from recurrent laryngeal nerve injury.\n\nRecurrent laryngeal nerve injury is unlikely because the posterior cricoarytenoid muscle, which is supplied by this nerve, has preserved function.",
+      uz: {
+        q: "48 yoshli erkakda bo‘yinning oldingi qismidan diskektomiya operatsiyasidan keyin ikki oy davomida ovoz past va bo‘g‘iq bo‘lib qoldi. Uning aytishicha, oxirgi bir oy ichida ovozi asta-sekin yaxshilangan, ammo keyin yaxshilanish to‘xtab qolgan. Laringoskopiyada ovoz burmalarining tebranish fazalari assimetriyasidan tashqari, o‘ziga xos bo‘lmagan nozik o‘zgarishlar aniqlandi. Hiqildoq elektromiografiyasida orqa uzuksimon-cho‘michsimon mushakda (posterior cricoarytenoid) kuchsizlik aniqlanmadi. Bemorda quyidagi holatlardan qaysi biri kuzatilishi mumkin?",
+        a: [
+          "To‘sh-qalqonsimon mushakning falaji",
+          "Qalqonsimon-tilosti mushagining falaji",
+          "Qalqonsimon-cho‘michsimon mushakning falaji",
+          "Hiqildoq kirish qismining anesteziyasi",
+          "Hiqildoq-traxeya tutashgan qismining anesteziyasi",
+        ],
+        explanation:
+          "Bemorda, ehtimol, tibbiy muolaja natijasida yuzaga kelgan <b>yuqori hiqildoq nervi (superior laryngeal nerve, SLN)</b> shikastlanishi mavjud. Laringoskopiya yordamida SLN falajini aniqlash qiyin, chunki belgilar nozik va juda o‘zgaruvchan bo‘lishi mumkin. Hiqildoq elektromiografiyasi denervatsiya belgilarini aniqlay olgani sababli tashxis qo‘yishda oltin standart hisoblanadi.\n\nYuqori hiqildoq nervi adashgan nervdan (vagus nerve) chiqadi va tashqi hamda ichki hiqildoq shoxlariga bo‘linadi:\n- <b>Tashqi hiqildoq shoxi:</b> Uzuksimon-qalqonsimon mushakni (cricothyroid) innervatsiya qiladi. Bu mushak ovoz burmalarining bo‘ylama tarangligini va ovoz balandligini boshqaradi.\n- <b>Ichki hiqildoq shoxi:</b> Ovoz burmalaridan yuqorida joylashgan hiqildoq qismlariga, jumladan hiqildoq kirish qismiga sezuvchi innervatsiya beradi.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>To‘sh-qalqonsimon mushak:</b> Bo‘yin nerv halqasi (ansa cervicalis) tomonidan innervatsiya qilinadi. U C1–C3 spinal nervlarning oldingi shoxlaridan tolalar oladi.\n- <b>Qalqonsimon-tilosti mushagi:</b> C1 spinal nervining oldingi shoxidan chiquvchi shox orqali innervatsiya qilinadi.\n- <b>Qalqonsimon-cho‘michsimon mushak falaji:</b> Qaytuvchi hiqildoq nervi (recurrent laryngeal nerve) shikastlanganda yuzaga keladi.\n- <b>Hiqildoq-traxeya tutashgan qismining anesteziyasi:</b> Bu ham qaytuvchi hiqildoq nervi shikastlanishi natijasida yuzaga keladi.\n\nQaytuvchi hiqildoq nervi shikastlanishi ehtimoli past, chunki ushbu nerv tomonidan innervatsiya qilinadigan orqa uzuksimon-cho‘michsimon mushakning funksiyasi saqlangan.",
+      },
     },
     {
-      q: `Researchers conduct a study in an animal fetus with circulation similar to that of humans. The fetus is delivered close to term by cesarean delivery. Prior to placental separation and the initiation of pulmonary respiration, blood samples are simultaneously collected from several different fetal blood vessels. The blood oxygen saturations measured from each of the samples are 71%, 64%, 62%, 55%, and 43%.
-
-The sample with the greatest oxygen saturation was most likely obtained from which of the following blood vessels?`,
+      q: "The injured nerve supplies a specific pharyngeal arch during fetal development. Which of the following muscles arises from the same arch?",
       a: [
-        "Descending aorta",
-        "Ductus arteriosus",
-        "Inferior vena cava",
-        "Pulmonary trunk",
-        "Superior vena cava",
-        "Umbilical artery",
+        "Tensor tympani",
+        "Tensor veli palatini",
+        "Levator veli palatini",
+        "Transverse arytenoid",
+        "Stylopharyngeus",
       ],
       correct: 2,
+      explanation:
+        "The <b>superior laryngeal nerve</b> supplies the <b>4th pharyngeal arch</b>. Muscles derived from this arch include the cricothyroid, levator veli palatini, and pharyngeal constrictors.\n\n<b>Why the other options are incorrect:</b>\n- <b>Tensor tympani:</b> Derived from the 1st pharyngeal arch.\n- <b>Tensor veli palatini:</b> Derived from the 1st pharyngeal arch.\n- <b>Transverse arytenoid:</b> An intrinsic muscle of the larynx derived from the 6th pharyngeal arch.\n- <b>Stylopharyngeus:</b> Derived from the 3rd pharyngeal arch.",
+      uz: {
+        q: "Shikastlangan nerv homila rivojlanishi davrida ma’lum bir halqum yoyini innervatsiya qiladi. Quyidagi mushaklardan qaysi biri aynan shu halqum yoyidan rivojlanadi?",
+        a: [
+          "Nog‘ora pardasini taranglovchi mushak (tensor tympani)",
+          "Yumshoq tanglayni taranglovchi mushak (tensor veli palatini)",
+          "Yumshoq tanglayni ko‘taruvchi mushak (levator veli palatini)",
+          "Ko‘ndalang cho‘michsimon mushak (transverse arytenoid)",
+          "Bigizsimon-halqum mushagi (stylopharyngeus)",
+        ],
+        explanation:
+          "<b>Yuqori hiqildoq nervi (superior laryngeal nerve)</b> <b>4-halqum yoyini</b> innervatsiya qiladi. Ushbu yoydan uzuksimon-qalqonsimon mushak (cricothyroid), yumshoq tanglayni ko‘taruvchi mushak (levator veli palatini) va halqumning qisuvchi mushaklari (pharyngeal constrictors) rivojlanadi.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>Tensor tympani:</b> 1-halqum yoyidan rivojlanadi.\n- <b>Tensor veli palatini:</b> 1-halqum yoyidan rivojlanadi.\n- <b>Transverse arytenoid:</b> Hiqildoqning ichki mushagi bo‘lib, 6-halqum yoyidan rivojlanadi.\n- <b>Stylopharyngeus:</b> 3-halqum yoyidan rivojlanadi.",
+      },
     },
     {
-      q: `A 64–year–old man loses consciousness near the entrance to an emergency room. A physician rushes to the patient and palpates a strong pulse along the inner side of the left sternocleidomastoid muscle.
-
-The vessel palpated by the doctor is a derivative of which of the following aortic arches?`,
-      a: ["First", "Second", "Third", "Fourth", "Sixth"],
-      correct: 2,
-    },
-    {
-      q: `A 5–year–old boy is brought to the office by his parents for evaluation of cyanosis with minimal exertion. The boy has had occasional episodes of "turning blue" that first began during infancy and are now occurring more frequently. During the episodes, the boy assumes a squatting position as it makes him "feel better." The family recently immigrated to the United States; the boy has never had a medical checkup prior to this visit. Physical examination reveals a prominent right ventricular impulse and a harsh systolic murmur.
-
-Which of the following embryological events is the most likely mechanism that caused this patient's condition?`,
+      q: "A 9-year-old girl presents with the chief complaint of decayed teeth. An examination revealed downward slanting of eyes, depressed zygomatic arches, sunken cheekbones, and deviated nasal septum. Genetic testing revealed a mutation of the treacle (TCOF1) gene. What additional structure would most likely be involved in the girl?",
       a: [
-        "Anomalous pulmonary venous return",
-        "Aortic arch constriction",
-        "Deviation of the infundibular septum",
-        "Endocardial cushion defect",
-        "Linear development of the aorticopulmonary septum",
+        "Greater horn of the hyoid bone",
+        "Lesser horn of the hyoid bone",
+        "Mandible bone",
+        "Superior constrictor muscle of the pharynx",
+        "Thyroid cartilage",
       ],
       correct: 2,
+      explanation:
+        "The girl has <b>Treacher Collins syndrome (TCS)</b>, also known as mandibulofacial dysostosis. It is an autosomal dominant disorder of craniofacial development.\n\nMutation of the <b>TCOF1 gene</b> causes failure of neural crest cells to migrate into the 1st (primarily affected) and 2nd (less commonly affected) pharyngeal arches. This can affect the size and shape of the ears, eyelids, cheekbones, and jaws.\n\nThe <b>mandible</b> develops from the 1st pharyngeal arch. Mandibular hypoplasia is a common finding in Treacher Collins syndrome.\n\n<b>Why the other options are incorrect:</b>\n- <b>Greater horn of the hyoid bone:</b> Derived from the 3rd pharyngeal arch and is not commonly affected.\n- <b>Lesser horn of the hyoid bone:</b> Derived from the 2nd pharyngeal arch and is not commonly affected.\n- <b>Superior constrictor muscle of the pharynx:</b> Derived from the 4th pharyngeal arch and is not affected.\n- <b>Thyroid cartilage:</b> Derived from the 4th pharyngeal arch and is not affected.",
+      uz: {
+        q: "9 yoshli qizcha tishlarining chirishi shikoyati bilan murojaat qildi. Tekshiruvda ko‘z yoriqlarining pastga qiyaligi, yonoq yoylarining rivojlanmaganligi, yonoq suyaklarining ichkariga botganligi va burun to‘sig‘ining qiyshayganligi aniqlandi. Genetik tekshiruvda treacle (TCOF1) genida mutatsiya topildi. Quyidagi qo‘shimcha tuzilmalardan qaysi biri ushbu qizchada zararlangan bo‘lishi ehtimoli yuqori?",
+        a: [
+          "Tilosti suyagining katta shoxi",
+          "Tilosti suyagining kichik shoxi",
+          "Pastki jag‘ suyagi",
+          "Halqumning yuqori qisuvchi mushagi",
+          "Qalqonsimon tog‘ay",
+        ],
+        explanation:
+          "Qizchada <b>Treacher Collins sindromi (TCS)</b>, ya’ni mandibulofatsial disostoz mavjud. Bu kalla-yuz tuzilmalari rivojlanishining autosom-dominant irsiy kasalligidir.\n\n<b>TCOF1 genidagi mutatsiya</b> nerv qirrasi hujayralarining 1-halqum yoyiga (asosan zararlanadi) va 2-halqum yoyiga (kamroq zararlanadi) migratsiyasining buzilishiga olib keladi. Natijada quloqlar, qovoqlar, yonoq suyaklari va jag‘larning o‘lchami hamda shakli o‘zgarishi mumkin.\n\n<b>Pastki jag‘ suyagi</b> 1-halqum yoyidan rivojlanadi. Treacher Collins sindromida pastki jag‘ning gipoplaziyasi, ya’ni yetarlicha rivojlanmasligi, keng uchraydi.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>Tilosti suyagining katta shoxi:</b> 3-halqum yoyidan rivojlanadi va odatda bu sindromda zararlanmaydi.\n- <b>Tilosti suyagining kichik shoxi:</b> 2-halqum yoyidan rivojlanadi va odatda zararlanmaydi.\n- <b>Halqumning yuqori qisuvchi mushagi:</b> 4-halqum yoyidan rivojlanadi va zararlanmaydi.\n- <b>Qalqonsimon tog‘ay:</b> 4-halqum yoyidan rivojlanadi va zararlanmaydi.",
+      },
     },
     {
-      q: `A 1–hour–old girl is evaluated in the delivery room. The infant was born at term via spontaneous vaginal delivery following an uncomplicated pregnancy. The mother is gravida 2 para 2 and has no significant medical history. Apgar scores were 9 and 9 at 1 and 5 minutes, respectively. The patient has been skin–to–skin with her mother and breastfed once without difficulty. Physical examination shows a pink, alert infant. Cardiac auscultation reveals a normal S1 and S2 with no murmurs, and femoral pulses are normal.
-
-Which of the following hemodynamic changes most likely occurred during the fetal–to–neonatal transition at birth?`,
+      q: "A 9-year-old male child presents with deviation of the jaw to the left side on attempted protrusion. Electrodiagnostic studies reveal changes indicative of peripheral neuropathy. Which of the following muscles is most likely to be involved in the course of time?",
       a: [
-        "Decreased pulmonary vascular resistance and increased systemic vascular resistance",
-        "Decreased pulmonary vascular resistance and decreased systemic vascular resistance",
-        "Increased pulmonary vascular resistance and decreased systemic vascular resistance",
-        "Increased pulmonary vascular resistance and increased systemic vascular resistance",
-        "No change in pulmonary or systemic vascular resistance",
-      ],
-      correct: 0,
-    },
-    {
-      q: `A newborn is being evaluated in the nursery for cyanosis. The patient was born at 38 weeks gestation to a mother who had limited prenatal care. Oxygen saturation is decreased and does not improve with supplemental oxygen. Echocardiogram reveals a single common arterial trunk arising from the ventricles.
-
-A defect in which of the following events during embryonic development most likely resulted in these findings?`,
-      a: [
-        "Formation of the septum secundum",
-        "Fusion of vasculature to left cardiac atrium",
-        "Migration of cardiac neural crest cells",
-        "Partitioning by the muscular interventricular septum",
-        "Remodeling of cardiac muscular cords",
-      ],
-      correct: 2,
-    },
-  ],
-  placentaUw: [
-    {
-      q: "A 32–year–old woman comes to the office at 28 weeks gestation due to dyspnea. She has been feeling short of breath when she is supine but has no other symptoms. The patient has had no prenatal care during her pregnancy. She has a history of epilepsy that is well–controlled with medication. She lives with her husband and does not use tobacco, alcohol, or illicit drugs. Her immunizations are up to date, and she has no allergies. Physical examination shows a uterine size that is larger than expected for gestational age. Sonographic assessment shows markedly elevated amniotic fluid levels. Which of the following fetal anomalies would most likely account for this patient's polyhydramnios?",
-      a: [
-        "Anencephaly",
-        "Atrial septal defect",
-        "Posterior urethral valves",
-        "Pulmonary hypoplasia",
-        "Renal agenesis",
-        "Spina bifida occulta",
-      ],
-      correct: 0,
-    },
-    {
-      q: "A 34–year–old woman, gravida 0, comes to the office for evaluation of pregnancy. Menarche was at age 12, and her menstrual cycles are regular; they occur every 30 days with 5 days of menses. The patient and her husband have been trying to conceive for the past 6 months and plan intercourse during her fertile window according to an ovulation predictor kit. She has no medical conditions, takes no medications, and has no allergies. BMI is 23 kg/m2. Vital signs and physical examination are normal. If fertilization and implantation occurred in this cycle, when would the β-hCG level first be detectable in the serum?",
-      a: [
-        "1 day after fertilization",
-        "3 days after fertilization",
-        "8 days after fertilization",
-        "14 days after fertilization",
-        "On the day of fertilization",
+        "Orbicularis oris",
+        "Orbicularis oculi",
+        "Tensor veli palatini",
+        "Levator veli palatini",
+        "Stylopharyngeus",
       ],
       correct: 2,
-    },
-    {
-      q: "A 22–year–old woman at 14 weeks gestation comes to the physician for a prenatal visit. She reports feeling well with the exception of some mild fatigue. Her pregnancy has been uncomplicated to date. On physical examination, the patient's abdomen appears larger than would be expected at 14 weeks. An obstetrical ultrasound reveals twins, a male and a female. Which of the following describes the most likely type of twin placentation in this patient?",
-      a: [
-        "Dichorionic/diamniotic",
-        "Dichorionic/monoamniotic",
-        "Monochorionic/diamniotic",
-        "Monochorionic/monoamniotic",
-        "Monochorionic/monoamniotic conjoined",
-      ],
-      correct: 0,
-    },
-    {
-      q: "A 24–year–old woman comes to the clinic due to a missed menstrual period. She has had regular menstrual cycles every 28 days, and her last menstrual period began 7 weeks ago. Since then, she had sexual intercourse once 5 weeks ago. The patient has no chronic medical conditions. Urine pregnancy test is positive. Which of the following embryologic events is most likely occurring in the embryo at this time?",
-      a: [
-        "Blastocyst implantation",
-        "Gastrulation",
-        "Intestinal fixation to abdominal wall",
-        "Neural crest migration",
-        "Primitive alveoli formation",
-      ],
-      correct: 3,
-    },
-    {
-      q: "A 33–year–old woman, gravida 0, comes to the office for preconception counseling. Menarche was at age 12, and her menses recur every 30 days and last 5 days. She has no chronic medical conditions, takes no medications, and has no allergies. BMI is 23 kg/m2. Vital signs and physical examination are normal. If a normal pregnancy develops, which of the following processes most immediately precedes secretion of β-hCG into the maternal circulation?",
-      a: [
-        "Cytotrophoblast development",
-        "Morula development",
-        "Oocyte fertilization",
-        "Syncytiotrophoblast invasion",
-        "Zygote formation",
-      ],
-      correct: 3,
-    },
-    {
-      q: "A newborn boy is evaluated in the nursery. The patient was born at 38 weeks gestation via cesarean delivery due to breech presentation. The pregnancy was complicated by uterine fibroids. Head circumference, weight, and length are in the 75th to 90th percentiles. The neck is supple. Cardiopulmonary examination is unremarkable, and the abdomen is soft. The back appears unremarkable. Hip examination shows no signs of dislocation. There is excessive plantar flexion of both feet, with the forefeet pointing medially and the soles facing inward. There is full range of motion at the ankles; both feet can correct to the normal position. Muscle tone is normal and newborn reflexes are intact. The abnormal findings on this patient's physical examination most likely represent which of the following types of congenital anomalies?",
-      a: ["Deformation", "Disruption", "Dysplasia", "Malformation", "Sequence"],
-      correct: 0,
+      explanation:
+        "The child has paralysis of the <b>left lateral pterygoid muscle</b>, resulting from neuropathy affecting the mandibular division of the trigeminal nerve (CN V3).\n\nThe right and left lateral pterygoid muscles work together to produce symmetrical anterior movement of the mandible during mouth opening. With unilateral lateral pterygoid paralysis, the jaw deviates toward the paralyzed side.\n\nBecause the <b>trigeminal nerve (CN V)</b> supplies the 1st pharyngeal arch, muscles derived from this arch, including the <b>tensor veli palatini</b>, would eventually undergo degeneration.\n\n<b>Why the other options are incorrect:</b>\n- <b>Orbicularis oris:</b> Derived from the 2nd pharyngeal arch and supplied by the facial nerve (CN VII).\n- <b>Orbicularis oculi:</b> Derived from the 2nd pharyngeal arch and supplied by the facial nerve (CN VII).\n- <b>Levator veli palatini:</b> Derived from the 4th pharyngeal arch and supplied by the vagus nerve (CN X).\n- <b>Stylopharyngeus:</b> Derived from the 3rd pharyngeal arch and supplied by the glossopharyngeal nerve (CN IX).",
+      uz: {
+        q: "9 yoshli o‘g‘il bolada pastki jag‘ni oldinga chiqarishga uringanda jag‘ning chap tomonga og‘ishi kuzatildi. Elektrodiagnostik tekshiruvlarda periferik neyropatiyaga xos o‘zgarishlar aniqlandi. Vaqt o‘tishi bilan quyidagi mushaklardan qaysi biri zararlanishi ehtimoli yuqori?",
+        a: [
+          "Og‘izning aylana mushagi (orbicularis oris)",
+          "Ko‘zning aylana mushagi (orbicularis oculi)",
+          "Yumshoq tanglayni taranglovchi mushak (tensor veli palatini)",
+          "Yumshoq tanglayni ko‘taruvchi mushak (levator veli palatini)",
+          "Bigizsimon-halqum mushagi (stylopharyngeus)",
+        ],
+        explanation:
+          "Bolada, ehtimol, uch shoxli nervning pastki jag‘ shoxi (CN V3) neyropatiyasi natijasida <b>chap lateral qanotsimon mushak (lateral pterygoid)</b> falajlangan.\n\nO‘ng va chap lateral qanotsimon mushaklar birgalikda ishlaganda og‘iz ochilishi vaqtida pastki jag‘ni oldinga simmetrik harakatlantiradi. Bir tomonlama lateral qanotsimon mushak falajida pastki jag‘ falajlangan tomonga og‘adi.\n\n<b>Uch shoxli nerv (CN V)</b> 1-halqum yoyini innervatsiya qiladi. Shu sababli ushbu yoydan rivojlanadigan mushaklar, jumladan <b>tensor veli palatini</b>, vaqt o‘tishi bilan degeneratsiyaga uchrashi mumkin.\n\n<b>Nima uchun boshqa variantlar noto‘g‘ri:</b>\n- <b>Orbicularis oris:</b> 2-halqum yoyidan rivojlanadi va yuz nervi (CN VII) tomonidan innervatsiya qilinadi.\n- <b>Orbicularis oculi:</b> 2-halqum yoyidan rivojlanadi va yuz nervi (CN VII) tomonidan innervatsiya qilinadi.\n- <b>Levator veli palatini:</b> 4-halqum yoyidan rivojlanadi va adashgan nerv (CN X) tomonidan innervatsiya qilinadi.\n- <b>Stylopharyngeus:</b> 3-halqum yoyidan rivojlanadi va til-halqum nervi (CN IX) tomonidan innervatsiya qilinadi.",
+      },
     },
   ],
 };
+
+if (window.QBank && window.TEST_QUESTIONS) {
+  Object.keys(window.TEST_QUESTIONS).forEach((key) => {
+    // subjectId must match GLOBAL_QBANK — adjust if needed
+    if (Array.isArray(window.TEST_QUESTIONS[key])) {
+      QBank.register("embryology", key, window.TEST_QUESTIONS[key]);
+    }
+  });
+}
