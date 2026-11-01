@@ -1,0 +1,1346 @@
+[
+  {
+    "case": 1,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 6-year-old girl with chronic anemia requiring repeated blood transfusions is undergoing genetic testing. The patient's mother and older sibling have a history of mild anemia. Her peripheral blood smear shows hypochromic, microcytic red blood cells, and hemoglobin electrophoresis reveals a predominance of hemoglobins F and A2. Sequencing of the β-globin gene is performed using the patient's erythroblast DNA. A schematic representation of the gene and its transcribed RNA is shown in the image below.\n\nThe base sequence indicated by the bold red arrow is responsible for which of the following functions?",
+      "a": [
+        "Enhancement of transcription",
+        "Initiation of transcription",
+        "Initiation of translation",
+        "Repression of transcription",
+        "Termination of transcription"
+      ]
+    }
+  },
+  {
+    "case": 2,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A pharmaceutical researcher performs preclinical testing on a novel chemotherapeutic drug. When rat embryos are exposed to this drug during an early stage of organogenesis, they develop severe skeletal malformations. Further genetic analysis reveals that the drug causes mutations in numerous homeobox genes containing highly conserved 180 base pair DNA sequences.\n\nThe genes affected by this drug most likely code for which of the following proteins?",
+      "a": [
+        "Cell surface receptors",
+        "Cytoplasmic enzymes",
+        "DNA replication enzymes",
+        "Structural proteins",
+        "Transcription regulators",
+        "Transport proteins"
+      ]
+    }
+  },
+  {
+    "case": 3,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A pharmaceutical researcher is evaluating a nuclear enzyme inhibitor for the treatment of an inherited disorder. During an experiment, he extracts and purifies nuclear enzymes from skin cells of an affected patient. One of these enzymes is found to catalyze the methylation of cytosine residues in DNA using S-adenosyl-methionine (SAM) as the methyl donor.\n\nThis enzyme most likely plays a crucial role in which of the following genetic processes?",
+      "a": [
+        "Aneuploidy",
+        "Epistasis",
+        "Imprinting",
+        "Meiotic nondisjunction",
+        "Pleiotropy"
+      ]
+    }
+  },
+  {
+    "case": 4,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A researcher is studying the Fas receptor (FasR), a protein widely expressed on cell surfaces. The signaling cascade of programmed cell death is initiated when FasR binds to its ligand (FasL), which is expressed on cytotoxic T cells. In an experiment, cancer cells that escaped elimination by the immune system were found to contain soluble Fas proteins that did not promote apoptosis. The soluble Fas proteins were shorter and lacked the transmembrane domain. DNA analysis of these cells revealed no FAS gene mutations.\n\nWhich of the following is the most likely explanation for the formation of altered Fas proteins in these cancer cells?",
+      "a": [
+        "Alternative splicing",
+        "Defective polyadenylation",
+        "DNA methylation",
+        "Polycistronic mRNA",
+        "Protein ubiquitination"
+      ]
+    }
+  },
+  {
+    "case": 5,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 12-year-old boy is evaluated in the clinic due to excessive bleeding following a tooth extraction. The patient also develops large bruises after only minor injury but has had no major bleeding episodes in the past. His maternal uncle died from an intracranial hemorrhage. Laboratory testing reveals decreased coagulation factor VIII activity levels. A referral is made to a clinical geneticist, who suspects that the patient has a deletion mutation in the enhancer sequence of the factor VIII gene. This mutation has resulted in decreased transcription of factor VIII by RNA polymerase II.\n\nWhich of the following is the most accurate statement regarding the abnormal genetic sequence in this patient?",
+      "a": [
+        "It can be located upstream, downstream, or within introns of the gene",
+        "It can function within only a short distance of the gene",
+        "It directly binds RNA polymerase and general transcription factors",
+        "It does not require protein binding to affect transcription",
+        "It is required to initiate transcription"
+      ]
+    }
+  },
+  {
+    "case": 6,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A man and woman come to the clinic for preconception counseling. The woman and her parents are healthy, but she has 2 siblings with a rare autosomal recessive disease. The woman's genotype is unknown. The man is also healthy and has no family history of the disease. It is known that, among healthy individuals in the general population, the carrier frequency is 1 in 200.\n\nWhat is the probability of this couple conceiving a child with the disease?",
+      "a": [
+        "1/200",
+        "1/400",
+        "1/800",
+        "1/1,200",
+        "1/1,600"
+      ]
+    }
+  },
+  {
+    "case": 7,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 35-year-old woman, gravida 1 para 0, at 20 weeks gestation comes to the office for a routine prenatal visit and fetal anatomy ultrasound. The ultrasound reveals several abnormalities. An amniocentesis is performed and a fetal karyotype analysis is ordered; the results are shown in the image below:\n\nThis fetus is at greatest risk for developing which of the following conditions after birth?",
+      "a": [
+        "Acute lymphoblastic leukemia",
+        "Aplastic anemia",
+        "Chronic myelogenous leukemia",
+        "Germ cell tumor",
+        "Retinoblastoma",
+        "Rhabdomyosarcoma"
+      ]
+    }
+  },
+  {
+    "case": 8,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A researcher is studying the expression pattern of a particular gene. Messenger RNA is isolated from several tissues, subjected to electrophoresis, blotted, and probed with radiolabeled DNA containing sequences from exon 4 from that gene. An x-ray film is then placed over the blotting membrane, with the results of the autoradiogram shown below:\n\nWhich of the following best explains the autoradiogram findings in the different tissues?",
+      "a": [
+        "Alternate RNA splicing",
+        "DNA rearrangement",
+        "DNA mutation",
+        "Enhancer effect",
+        "Transcription factor effect"
+      ]
+    }
+  },
+  {
+    "case": 9,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 43-year-old man is evaluated for progressive neuropsychiatric symptoms. A year ago, he began feeling depressed and having hallucinations. Five months later, he developed intermittent paresthesias and progressively worsening choreiform movements, myoclonus, and ataxia. These symptoms have not improved despite multiple hospitalizations; an extensive workup has been unrevealing. The patient is a slaughterhouse worker with extensive exposure to bovine offal. As part of the evaluation for prion disease, a tissue sample lysate is processed via gel electrophoresis and transferred to filter paper. Antibodies to a specific prion protein are added to the filter. Next, a marked protein that combines with the antibody-protein complex is used to determine whether the test is positive.\n\nWhich of the following best describes this test?",
+      "a": [
+        "Microarray",
+        "Northern blot",
+        "Southern blot",
+        "Southwestern blot",
+        "Western blot"
+      ]
+    }
+  },
+  {
+    "case": 10,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 1-day-old boy is evaluated in the neonatal intensive care unit due to severe hypotonia, poor feeding, and respiratory distress. The patient was born to a 30-year-old woman via vaginal delivery; the pregnancy was complicated by polyhydramnios. The neonate's mother has a history of recurrent muscle cramps, mostly in her hands; her face is long and narrow and lacks expression. She is otherwise healthy. The patient's length, weight, and head circumference are at the 30th percentile. Examination shows profound hypotonia, truncal and appendicular weakness, and marked hyporeflexia. Flexion deformities and clubfoot are present bilaterally.\n\nAssuming that the patient and his mother have the same inheritable condition, which of the following mechanisms best explains their different phenotypic presentations?",
+      "a": [
+        "Genetic anticipation",
+        "Genetic heterogeneity",
+        "Germline mosaicism",
+        "Maternal imprinting",
+        "Single nucleotide polymorphism"
+      ]
+    }
+  },
+  {
+    "case": 11,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A healthy couple, who recently emigrated from Eastern Europe, brings their 3-year-old son to the office for evaluation of an eczematous rash. On examination, the child also shows signs of intellectual disability and gait abnormality and has a musty body odor.\n\nWhich of the following is the likelihood that this couple's next child will be affected with the same disease?",
+      "a": [
+        "Same as the general population",
+        "1/32",
+        "1/16",
+        "1/8",
+        "1/4",
+        "1/2"
+      ]
+    }
+  },
+  {
+    "case": 12,
+    "q": "",
+    "a": [],
+    "explanation": "",
+    "english": {
+      "q": "A 19-year-old woman is evaluated for new onset generalized tonic-clonic seizures. For the past several years, she has also been having erratic jerks of her arms and legs, and intermittent muscle weakness. The girl has multiple family members with similar symptoms. Neurological examination reveals decreased sensation in the lower extremities and a broad-based gait. Skeletal muscle biopsy shows ragged, red-appearing muscle fibers. Further analysis reveals that the patient's symptoms are due to a mutation affecting extranuclear DNA.\n\nWhich of the following pedigrees is most likely to represent this patient's family history? (The arrow points to the patient.)",
+      "a": []
+    }
+  },
+  {
+    "case": 13,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 23-year-old previously healthy man comes to the office after noticing a painless, hard mass in the left testis. Scrotal ultrasound shows a solid testicular mass, and CT scan of the abdomen and pelvis shows left paraaortic lymphadenopathy. Left orchidectomy is performed and postoperative histopathology reveals seminoma of the testis. External beam radiotherapy is administered to the paraaortic metastatic area. Several weeks later, the retroperitoneal nodes are observed to have markedly decreased in size.\n\nWhich of the following is the most likely effect of the therapy used on the metastatic cells in this patient?",
+      "a": [
+        "Demethylation of DNA",
+        "DNA cross-linking",
+        "Double-strand DNA breaks",
+        "Nucleotide mismatches",
+        "Pyrimidine dimers"
+      ]
+    }
+  },
+  {
+    "case": 14,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 25-year-old nulligravid woman comes with her husband to the clinic for preconception genetic counseling. She has oculocutaneous albinism due to a homozygous OCA2 gene mutation within the region of chromosome 15q12-q13. Examination shows pale hypopigmented skin with blonde hair. Eye examination shows faint brown irises. Her husband is 26 years old and has oculocutaneous albinism due to a biallelic TYR gene mutation at position 11q14.3. Examination of the husband shows complete absence of pigmentation in the skin, hair, and irises. The couple asks about their chance of having a child with oculocutaneous albinism and are told that the chance is 0%.\n\nWhich of the following is the best explanation for this?",
+      "a": [
+        "Allelic heterogeneity",
+        "Heteroplasmy",
+        "Incomplete penetrance",
+        "Linkage disequilibrium",
+        "Locus heterogeneity",
+        "Pleiotropy"
+      ]
+    }
+  },
+  {
+    "case": 15,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A research scientist purifies DNA polymerase III from an Escherichia coli extract. The isolated enzymes are then incubated in a mixture containing DNA templates, RNA primer oligonucleotides, and tagged deoxynucleotides. After analyzing the DNA molecules formed during incubation, the researcher concludes that the enzyme possesses 3′ to 5′ exonuclease activity.\n\nWhich of the following enzymatic actions was most likely observed during the experiment?",
+      "a": [
+        "Cleavage of DNA strands to remove supercoils",
+        "Excision of thymine dimers within DNA",
+        "Removal of mismatched base pairs during DNA synthesis",
+        "Removal of RNA primer nucleotides",
+        "Unwinding of double-stranded DNA"
+      ]
+    }
+  },
+  {
+    "case": 16,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "An infant born to a 34-year-old woman has a flat facial profile, prominent epicanthal folds, and a holosystolic murmur heard loudest at the left sternal border. Karyotype analysis is consistent with trisomy 21. Maternal and paternal karyotypes are normal. A restriction fragment length polymorphism (RFLP) analysis is conducted to determine the parental origin of the extra chromosome. DNA samples from the child, mother, and father are obtained and the DNA is fragmented with a restriction enzyme. The fragments are then sorted by size using the Southern blot technique. Labeling is done using a probe that binds to a specific DNA sequence close to the centromere of chromosome 21. RFLP analysis for the child, mother, and father is shown below.\n\nIn which of the following meiosis events did the nondisjunction most likely occur?",
+      "a": [
+        "Maternal meiosis I",
+        "Maternal meiosis II",
+        "Paternal meiosis I",
+        "Paternal meiosis II"
+      ]
+    }
+  },
+  {
+    "case": 17,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 65-year-old woman with chronic obstructive pulmonary disease and type II diabetes mellitus comes to the emergency department due to profound fevers and malaise. After initial evaluation, she is hospitalized for septicemia. Blood cultures plated on lactose-containing media grow rapidly dividing gram-negative bacteria. Replication of these microbial cells requires synthesis of two daughter strands of DNA using the parent strands as templates.\n\nWhich of the following processes will differ the most between the 2 daughter strands formed at each replication fork?",
+      "a": [
+        "Enzymatic function of DNA helicase",
+        "Interaction with single-stranded DNA-binding proteins",
+        "Joining of DNA fragments by ligase",
+        "Proofreading of the newly synthesized DNA",
+        "Relief of supercoils by topoisomerase"
+      ]
+    }
+  },
+  {
+    "case": 18,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 28-year-old man is evaluated for abnormal movements of the hands and face. The patient reports that he started experiencing involuntary grimacing a year ago, which has gradually worsened. He is taking a selective serotonin reuptake inhibitor for major depression but has not taken any antipsychotic medications. His 52-year-old father was diagnosed with an inherited movement disorder 2 months ago. Physical examination shows normal strength and normal deep tendon reflexes. No sensory deficits are noted.\n\nWhich of the following best explains the difference in disease presentation between this patient and his father?",
+      "a": [
+        "Anticipation",
+        "Genomic imprinting",
+        "Incomplete penetrance",
+        "Microdeletion",
+        "Mosaicism",
+        "Pleiotropy"
+      ]
+    }
+  },
+  {
+    "case": 19,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 5-year-old girl is brought to the office by her mother because she is concerned that her daughter \"sunburns too easily.\" The mother says the patient's skin becomes red and scaly with only minimal sun exposure. She first noticed the problem when her daughter was 7 months old during a trip to the beach. The mother has since avoided exposing her child to excess sunlight, but finds it difficult now that the patient has begun kindergarten. Physical examination shows thin and hyperpigmented skin. She also has a few nevi on her hands that have been enlarging rapidly.\n\nThis patient's disorder is most likely due to a primary defect involving which of the following processes?",
+      "a": [
+        "DNA mismatch repair",
+        "Nucleotide excision repair",
+        "Ras signal transduction",
+        "Regulation of apoptosis",
+        "Regulation of cell cycle",
+        "Repair of DNA crosslinks"
+      ]
+    }
+  },
+  {
+    "case": 20,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "An 18-year-old woman comes to the office for evaluation of graying hair. The patient has no other concerns and has otherwise been healthy. She reports that her mother had similar features at a young age and died of progressive pulmonary fibrosis. Examination shows diffuse gray hair. There are white patches on the surface of the tongue. Cardiopulmonary examination is unremarkable, and the abdomen is soft and nondistended. Skin examination shows areas of reticular hyperpigmentation on the neck and torso. The nails of the fingers and toes appear thin. Genetic testing reveals a loss-of- function mutation affecting the telomerase reverse transcriptase gene.\n\nWhich of the following cell types is most likely to be affected by this mutation?",
+      "a": [
+        "Cardiac myocytes",
+        "CNS neurons",
+        "Compact bone osteocytes",
+        "Hematopoietic stem cells",
+        "Secondary oocytes",
+        "Vascular endothelial cells"
+      ]
+    }
+  },
+  {
+    "case": 21,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A study is undertaken to map the HLA-DQ loci in a population with a high incidence of celiac sprue. High-resolution HLA typing of the DQA1 and DQB1 loci is performed using polymerase chain reaction sequencing. The frequency of the DQA1*0501-DQB1*0201 haplotype, strongly implicated in autoimmunity, is found to be 0.2. However, in the same population, the frequency of the DQA1*0501 allele is 0.3 and the frequency of the DQB1*0201 allele is 0.2.\n\nWhich of the following best explains the observed DQA1*0501-DQB1*0201 haplotype frequency in this population?",
+      "a": [
+        "Heteroplasmy",
+        "Increased penetrance",
+        "Linkage disequilibrium",
+        "Pleiotropy",
+        "Segregation"
+      ]
+    }
+  },
+  {
+    "case": 22,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A pharmaceutical researcher develops a novel antibacterial drug that works by inhibiting exonuclease activity during DNA replication. When actively dividing Escherichia coli is exposed to the drug, enzyme-mediated nucleotide removal in the 5' to 3' direction is impaired, leading to inhibition of bacterial growth.\n\nWhich of the following enzymes is the most likely target of this drug?",
+      "a": [
+        "DNA polymerase I",
+        "DNA polymerase III",
+        "Gyrase",
+        "Helicase",
+        "Ligase",
+        "Primase"
+      ]
+    }
+  },
+  {
+    "case": 23,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 12-year-old boy is brought to the clinic for evaluation of muscle weakness. The patient has a history of seizures, and he has recently had several stroke-like episodes that resulted in muscle weakness. Examination shows decreased strength in the upper and lower extremities on the left compared to the right. Laboratory evaluation shows increased serum lactate levels both after exercise and at rest. Further work-up confirms that the patient has a genetic condition that is transmitted exclusively through the maternal line. His older sister is affected by the same disorder, but she displays very few symptoms.\n\nWhich of the following is the most likely explanation for the variability in clinical presentation between this patient and his sister?",
+      "a": [
+        "Anticipation",
+        "Genetic heterogeneity",
+        "Genetic imprinting",
+        "Heteroplasmy",
+        "Pleiotropy"
+      ]
+    }
+  },
+  {
+    "case": 24,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 4-year-old boy is brought to the office for evaluation of fatigue and bone pain. Physical examination shows diffuse lymphadenopathy and purpura over his arms and legs. Laboratory analysis reveals anemia and thrombocytopenia, and a peripheral blood smear shows lymphoblasts. After further work-up, acute lymphoblastic leukemia is diagnosed, and the patient begins a chemotherapy regimen that includes doxorubicin. This agent intercalates between DNA base pairs and inhibits DNA replication, a process that normally occurs at replication forks and produces 2 distinct daughter strands.\n\nWhich of the following is unique to the daughter strand that is synthesized in the opposite direction of the growing replication fork?",
+      "a": [
+        "3′ → 5′ exonuclease activity of DNA polymerase",
+        "3′ → 5′ polymerase activity of DNA polymerase",
+        "5′ → 3′ exonuclease activity of DNA polymerase",
+        "RNA primer synthesis before DNA strand synthesis",
+        "Synthesis of multiple, short DNA fragments"
+      ]
+    }
+  },
+  {
+    "case": 25,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A young couple has undergone a successful in vitro fertilization procedure. The father has cystic fibrosis and the mother has a sister with cystic fibrosis. The father as well as the mother's sister are both known to have ΔF508 mutations, but the mother's carrier status is unknown. Before making the decision to conceive, the couple underwent extensive genetic counseling regarding the potential risks of having a child with cystic fibrosis. The family pedigree is diagrammed below with the unborn child marked by the red arrow.\n\nWhat is the probability that the unborn child will have cystic fibrosis?",
+      "a": [
+        "1/16",
+        "1/8",
+        "1/4",
+        "1/3",
+        "2/3",
+        "3/4"
+      ]
+    }
+  },
+  {
+    "case": 26,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 14-year-old boy experiences severe, prolonged bleeding following a tooth extraction. He also has a history of multiple episodes of painful joint swelling following minor trauma. His parents have no bleeding problems. Evaluation shows that the patient has an inherited disorder and that one of his parents is a genetic carrier. His older sister, who does not have this condition, is pregnant. She does not know the sex of her child. She asks about the risk that her child will be affected.\n\nWhich of the following is the best estimate that this child will have the disease?",
+      "a": [
+        "Near 0",
+        "1/2",
+        "1/4",
+        "1/8",
+        "1/16",
+        "1/32"
+      ]
+    }
+  },
+  {
+    "case": 27,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "An 18-year-old man comes to the urgent care clinic due to painful erythema affecting his extremities, trunk, and face. He is vacationing in Florida and spent 5 hours at a Gulf coast beach earlier in the day. The patient did not apply any sunscreen as it was cloudy. The physician explains that cloud cover does not afford a high degree of protection against the sun, especially with prolonged exposure in highly reflective environments like the beach. He is advised to wear protective clothing and apply sunscreen to prevent recurrence.\n\nWhich of the following is most likely to happen within the patient's skin cells as a result of his exposure?",
+      "a": [
+        "Covalent bond formation between adjacent purine bases",
+        "End-joining repair of double-stranded DNA breaks",
+        "Endonuclease nicking of the damaged DNA strand",
+        "Hypermethylation of residues in the undamaged DNA strand",
+        "Removal of deaminated bases by glycosylase"
+      ]
+    }
+  },
+  {
+    "case": 28,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A cell biologist is studying the role of ribonucleoproteins in normal cellular function. He prepares a cell extract using a specific cell type obtained from a 73-year-old man. Ribonucleoproteins are separated and purified from the cell extract for structural and functional analyses. These cells are found to express higher amounts of a particular protein in comparison to other cell types. This protein has reverse transcriptase activity that functions to add TTAGGG repeats to the 3' end of chromosomes.\n\nWhich of the following cell types was most likely studied in this experiment?",
+      "a": [
+        "Epidermal basal cells",
+        "Erythrocytes",
+        "Myocardial cells",
+        "Neurons",
+        "Pancreatic β cells"
+      ]
+    }
+  },
+  {
+    "case": 29,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 13-year-old boy is evaluated for a possible inherited genetic defect. He has growth retardation, microcephaly, sun-sensitive skin, and recurrent infections. The patient is the second-born child of 2 first cousins. His parents and siblings are healthy, but 2 of his maternal cousins have similar signs and symptoms. Genetic analysis of the patient reveals a defect in the BLM gene, which codes for a DNA helicase.\n\nWhich of the following is the most likely site of action of this enzyme in the DNA replication fork diagram shown below?",
+      "a": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    }
+  },
+  {
+    "case": 30,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 56-year-old man comes to the office due to difficulty swallowing for the past several months. He has the most trouble with solid foods and says, \"They seem to get stuck in my throat if I don't chew a lot.\" The patient has no chest pain or heartburn and has lost 4.5 kg (10 lb) in the last 3 months. He has been an avid hunter for many years and frequently cures the meat he eats with sodium nitrite. Physical examination is unremarkable. Endoscopy shows an ulcerated mass in the distal third of the esophagus, and biopsy samples are obtained from the mass and adjacent normal mucosa. Analysis of the samples shows accelerated cytosine deamination of chromosomal DNA in both normal and malignant epithelial cells.\n\nThis damage is most likely to be repaired through which of the following enzymatic sequences?",
+      "a": [
+        "Endonuclease, polymerase, glycosylase, lyase, ligase",
+        "Endonuclease, polymerase, lyase, glycosylase, ligase",
+        "Glycosylase, endonuclease, lyase, polymerase, ligase",
+        "Glycosylase, ligase, lyase, endonuclease, polymerase",
+        "Lyase, endonuclease, glycosylase, polymerase, ligase"
+      ]
+    }
+  },
+  {
+    "case": 31,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 25-year-old man experiences severe intolerance to certain medications. On 2 occasions, his reactions to various drugs have necessitated hospital admission. His family pedigree with respect to this condition is shown below, with the red arrow indicating his position within the family.\n\nAssuming that the genetic condition demonstrates complete penetrance and is rare in the general population, which of the following inheritance patterns is most likely?",
+      "a": [
+        "Autosomal dominant",
+        "Autosomal recessive",
+        "X-linked dominant",
+        "X-linked recessive",
+        "Mitochondrial"
+      ]
+    }
+  },
+  {
+    "case": 32,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 24-year-old woman comes to the office for evaluation of a skin lesion. Physical examination shows a 5-mm, brown, oval macule on her anterior thigh. Biopsy of the lesion shows normal- appearing nevus cells clustered in the epidermis, consistent with a benign acquired melanocytic nevus. During histologic analysis, the patient's epithelial cells are found to each contain a condensed body composed of heavily methylated DNA at the periphery of the nucleus.\n\nThis region of DNA is most likely associated with which of the following genetic findings?",
+      "a": [
+        "Extensive double-strand DNA break repair",
+        "Histone acetylation",
+        "Impaired mismatch repair",
+        "Low transcription activity",
+        "Reduced positive supercoiling"
+      ]
+    }
+  },
+  {
+    "case": 33,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 46-year-old woman is evaluated for a 2-month history of progressive abdominal distension, vague abdominal discomfort, and a bloating sensation. Physical examination shows moderate ascites. Laboratory evaluation reveals markedly elevated CA-125 and imaging studies show an ovarian mass. Molecular analysis of the malignant cells in ascitic fluid is performed, and these cells are found to have high telomerase activity.\n\nThis enzyme promotes cell growth and malignancy by directly causing which of the following actions?",
+      "a": [
+        "Enhancing tissue invasion and metastasis",
+        "Increasing transcription factor expression",
+        "Preventing chromosomal shortening",
+        "Promoting G1/S progression",
+        "Sustaining angiogenesis"
+      ]
+    }
+  },
+  {
+    "case": 34,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 3-year-old boy is being evaluated for recurrent respiratory infections. The patient's family immigrated to the United States 5 months after his birth. Since then, the boy has experienced multiple episodes of pneumonia and bronchitis, and has developed a persistent cough and failure to thrive. His older brother has no medical issues. A genetic test is performed and reveals a mutation in an exon of a gene that codes for a transmembrane chloride channel. The abnormal mRNA is isolated from cultured epithelial cells, and its complementary DNA is synthesized. Amplified cDNA samples from both the patient and his healthy sibling are analyzed using gel electrophoresis and compared to DNA fragments of known size to determine base pair length. The results are shown below.\n\nWhich of the following is most likely responsible for this patient's condition?",
+      "a": [
+        "Frameshift mutation",
+        "In-frame deletion",
+        "Missense mutation",
+        "Nonsense mutation",
+        "Silent mutation",
+        "Trinucleotide expansion"
+      ]
+    }
+  },
+  {
+    "case": 35,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A genetic researcher is comparing the DNA replication process of prokaryotic and eukaryotic cells. In an experiment, Escherichia coli and human cells are cultured in separate media containing tagged nucleotides and their rates of DNA replication are determined. Although the eukaryotic genome is significantly larger and more complex than that of the prokaryote, eukaryotic DNA replication still occurs in a timely manner.\n\nWhich of the following features of eukaryotic replication best explains this observation?",
+      "a": [
+        "Continuous synthesis of the lagging strand",
+        "Energy-independent DNA unwinding",
+        "Multiple origins of replication",
+        "No proofreading of daughter strands",
+        "No requirement for RNA primers"
+      ]
+    }
+  },
+  {
+    "case": 36,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "Pharmacologic researchers develop a novel alkylating chemotherapeutic agent against glioblastoma multiforme. They find that malignant cells with methylation of the promoter region for the O⁶- methylguanine-DNA methyltransferase (MGMT) gene are more susceptible to this drug than cells without methylation.\n\nWhich of the following is the most likely function of the protein encoded by the gene?",
+      "a": [
+        "Induction of apoptosis",
+        "Reducing major histocompatibility complex expression",
+        "Repairing DNA damage",
+        "Upregulation of telomerase"
+      ]
+    }
+  },
+  {
+    "case": 37,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 6-year-old boy is brought to the office due to a persistent facial ulcer for the past 2 months. His mother reports that the patient has extreme sensitivity to sunlight and has developed freckles on his face, neck, and limbs since infancy. On physical examination, the skin in sun-exposed areas is dry and rough with numerous freckles and erythematous macules. There is an ulcerated plaque on the left face; a biopsy reveals squamous cell carcinoma. Further testing leads to a diagnosis of xeroderma pigmentosum.\n\nA defect in which of the following enzymes is most likely causing this patient's condition?",
+      "a": [
+        "3' → 5' exonuclease",
+        "DNA ligase",
+        "Endonuclease",
+        "Helicase",
+        "Topoisomerase"
+      ]
+    }
+  },
+  {
+    "case": 38,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 5-year-old boy is being evaluated for progressive muscle weakness that has resulted in numerous recent falls. There is no family history of muscle disorders. Physical examination reveals bilateral calf enlargement. When the patient is asked to stand, he uses his hands and arms to help push himself to an upright position. Serum creatine kinase is 12,600 U/L (normal: 30-170 U/L). Molecular tests reveal a large muscle protein that is defective due to the loss of 508 amino acid residues. Genetic analysis reveals a single base substitution within exon 48 of the gene encoding this muscle protein.\n\nThis patient's gene mutation has most likely resulted in which of the following mRNA codon changes?",
+      "a": [
+        "CUU → AUU",
+        "UAA → UAG",
+        "UAC → CAC",
+        "UCA → UGA",
+        "UUU → UUC"
+      ]
+    }
+  },
+  {
+    "case": 39,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 1-hour-old girl born to a 40-year-old woman is brought to the nursery for evaluation. The pregnancy and delivery were uncomplicated. Physical examination shows mid-face hypoplasia with a flat nasal bridge, up-slanting palpebral fissures, a small mouth, and a single palmar crease bilaterally. Cardiac auscultation reveals a blowing holosystolic murmur heard best along the sternal border.\n\nWhich of the following abnormalities is most likely to be present in this patient?",
+      "a": [
+        "Aberrant genomic imprinting",
+        "Mosaicism",
+        "Partial deletion",
+        "Triplet expansion",
+        "Uniparental disomy"
+      ]
+    }
+  },
+  {
+    "case": 40,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 50-year-old previously healthy man is evaluated for progressive fatigue, weakness, and recurrent gingival bleeding. Laboratory studies reveal normocytic normochromic anemia, thrombocytopenia, and leukocytosis with circulating myeloblasts. Bone marrow biopsy establishes a diagnosis of acute myeloid leukemia. Induction chemotherapy followed by allogeneic hematopoietic cell transplantation (HCT) is planned. Molecular typing of human leukocyte antigen (HLA) -A, -B, -C, -DP, -DQ, and -DR is performed. The patient's biological sister, with whom he shares both parents, is eligible for stem cell donation and undergoes HLA typing.\n\nWhich of the following is the most likely probability that the sibling will be an identical HLA match with this patient?",
+      "a": [
+        "0",
+        "1/16",
+        "1/8",
+        "1/4",
+        "1/2"
+      ]
+    }
+  },
+  {
+    "case": 41,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A married couple comes to the office for routine prenatal counseling. The husband is 120 cm (3 ft 11 in) tall with disproportionately short upper and lower extremities, a large head, and a prominent forehead. He cannot provide a biological family history because he was adopted. His spouse is average height with no dysmorphic features, and her family history is insignificant. They inquire about the likelihood that their offspring will have short stature due to the same condition as the father.\n\nWhich of the following is the best response to their concerns?",
+      "a": [
+        "The condition is not hereditary",
+        "The probability depends on the child's biological sex",
+        "The probability depends on the mother's carrier status",
+        "The probability is about 25%",
+        "The probability is about 50%"
+      ]
+    }
+  },
+  {
+    "case": 42,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "Researchers studying molecular biology observe a eukaryotic cell via electron microscopy. During interphase of the cell cycle, they notice 10-nm thick chromatin fibers with a \"beads on a string\" appearance. These chromatin fibers are extracted and treated with an endonuclease, which preferentially cleaves the \"string\" portions of the chromatin. Further evaluation reveals that the \"beads\" are composed of DNA wrapped around a core of proteins.\n\nWhich of the following proteins is most likely found outside this core and promotes chromatin compaction?",
+      "a": [
+        "Histone H1",
+        "Histone H3",
+        "Histone H4",
+        "Small nuclear ribonucleoprotein",
+        "Type II topoisomerase",
+        "Ubiquitin"
+      ]
+    }
+  },
+  {
+    "case": 43,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 26-year-old woman comes to the office with her husband for genetic counseling. Both of them are healthy with no chronic medical conditions, but their firstborn son has had recurrent episodes of anemia, jaundice, and painful swelling of the hands and feet. Hemoglobin electrophoresis is performed on the son at alkaline pH to determine the predominant hemoglobin variants present in his red blood cells. The results are shown below.\n\nThe parents are considering having another child.\n\nWhat is the probability they will conceive a child who inherits ≥1 mutated alleles?",
+      "a": [
+        "Near 0%",
+        "25%",
+        "50%",
+        "75%",
+        "100%"
+      ]
+    }
+  },
+  {
+    "case": 44,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 10-year-old boy is brought to the emergency department for new swelling in his right leg. He has a history of lens dislocation and intellectual disability. Physical examination demonstrates moderate, pitting edema from his right calf to his right thigh and a normal left lower extremity. In addition, the patient has a caved-in appearing chest wall. He has no family members with similar conditions. Ultrasound reveals a deep venous thrombosis in his right femoral vein. Further genetic testing reveals a single missense mutation in the gene coding for cystathionine beta-synthase enzyme.\n\nWhich of the following is the most likely explanation for this patient's genetic defect affecting multiple tissues?",
+      "a": [
+        "Dominant negative mutation",
+        "Genetic linkage",
+        "Incomplete penetrance",
+        "Locus heterogeneity",
+        "Pleiotropy",
+        "Polyploidy",
+        "Segregation"
+      ]
+    }
+  },
+  {
+    "case": 45,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 26-year-old woman comes to the office for follow-up. The patient and her husband, who are both healthy, want to conceive a child. She asks about the risk for certain genetic conditions, including cystic fibrosis (CF). She is from a small city with a stable population, where the carrier frequency for CF among healthy individuals is 1/30. Her husband is from a nearby community, where the CF carrier frequency is 1/100 among healthy individuals.\n\nWhat is the probability that their future child will have the disease?",
+      "a": [
+        "1/900",
+        "1/1,000",
+        "1/3,000",
+        "1/6,000",
+        "1/12,000"
+      ]
+    }
+  },
+  {
+    "case": 46,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A patient is suspected of having an inherited disorder. Pedigree analysis shows the following pattern:\n\nThis patient most likely has which of the following conditions?",
+      "a": [
+        "Classic galactosemia",
+        "Hemophilia B",
+        "Huntington disease",
+        "Leber hereditary optic neuropathy",
+        "Rett syndrome"
+      ]
+    }
+  },
+  {
+    "case": 47,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 34-year-old woman comes to the office due to dysuria. The patient has a history of recurrent urinary tract infections. A urine sample is collected and sent for culture. Gram-negative bacteria isolated from the urine are found to form pink colonies on lactose-containing MacConkey agar. Several days later, bacterial isolates from a second urine sample are found to form white colonies when plated on the same type of medium. Genetic analysis shows that the more recent isolates have a single nucleotide deletion within the lac operon DNA sequence.\n\nThis genomic change is most consistent with which of the following?",
+      "a": [
+        "Conservative mutation",
+        "Frameshift mutation",
+        "Missense mutation",
+        "Nonsense mutation",
+        "Silent mutation"
+      ]
+    }
+  },
+  {
+    "case": 48,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "Molecular biologists are investigating the functional significance of non-coding RNA molecules. During an experiment, they isolate large complexes containing both protein and RNA from exocrine pancreatic cells. The complexes are found both freely floating in the cytoplasm and bound to the endoplasmic reticulum.\n\nThe RNA found within these complexes is primarily synthesized at which of the following intracellular sites?",
+      "a": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    }
+  },
+  {
+    "case": 49,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A genetic study performed on a 10-year-old boy reveals a single base substitution mutation involving a DNA segment that encodes a cellular protein, as shown in the image below.\n\nThis mutation is most likely to affect which of the following processes?",
+      "a": [
+        "DNA methylation",
+        "Polypeptide folding following translation",
+        "Posttranscriptional RNA splicing",
+        "RNA elongation",
+        "Transcription initiation",
+        "Translation initiation"
+      ]
+    }
+  },
+  {
+    "case": 50,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A series of experiments is being conducted to determine the structure and function of different types of bacterial RNA. Cultures of Staphylococcus aureus are exposed to chemicals that lyse the bacterial cells, and the RNA molecules are then extracted. A specific RNA consisting of 90 nucleotides is purified for further analysis. It is found to contain high amounts of chemically modified bases such as dihydrouridine, pseudouridine, and ribothymidine, and its secondary structure arises from base pairing within the chain.\n\nWhich of the following is the most likely composition of the 3'-end of this molecule?",
+      "a": [
+        "AUG",
+        "CCA",
+        "Methylguanosine triphosphate",
+        "Poly-A",
+        "TATA",
+        "UAG"
+      ]
+    }
+  },
+  {
+    "case": 51,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "Geneticists are studying a malfunctioning protein that causes impaired endothelial cell migration and angiogenesis. They have noticed that the amino acid sequence of the protein is truncated compared to normal controls. The mutated mRNA strand is isolated, and analysis shows a nonsense mutation located near the 3' end of the coding region. The 3' terminal coding sequence of the abnormal mRNA strand is shown below.\n\nWhich of the following tRNA anticodons is responsible for adding the last amino acid to the truncated polypeptide during protein translation?",
+      "a": [
+        "5'-AAC-3'",
+        "5'-AUC-3'",
+        "5'-CAA-3'",
+        "5'-GCU-3'",
+        "5'-UCG-3'"
+      ]
+    }
+  },
+  {
+    "case": 52,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A pharmaceutical corporation investigating new therapeutic agents for treatment of Burkitt lymphoma synthesizes a double-stranded RNA molecule that is 21 base pairs in length. The RNA molecule has a base pair sequence that is complementary to a region of mRNA encoding c- Myc. Introduction of the RNA molecule into tumor cells results in a significant reduction in cell growth. Western blot analysis of equivalent numbers of treated and untreated cells is shown below.\n\nWhich of the following processes was most likely directly interrupted in the cells exposed to the RNA molecule?",
+      "a": [
+        "DNA replication",
+        "DNA transcription",
+        "mRNA translation",
+        "Proteasome activity",
+        "Splicing"
+      ]
+    }
+  },
+  {
+    "case": 53,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A geneticist is performing an experiment to alter protein structures by incorporating modified amino acids into their polypeptide sequences. During the process, she incubates dermal fibroblasts in a medium containing fluorescently labeled lysine residues. After several hours, she finds that aminoacyl tRNA synthetase in the fibroblasts \"loads\" lysine residues onto tRNA molecules containing the anticodon UUU.\n\nThis residue most likely attaches to tRNA at which of the following sites in the image shown below?",
+      "a": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    }
+  },
+  {
+    "case": 54,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "In an experiment, erythrocyte precursor cells are incubated in a medium containing radiolabeled cysteine. These radiolabeled cysteine residues are attached to their appropriate tRNAs by the enzyme aminoacyl-tRNA synthetase. The bound cysteine residues are then chemically modified to form alanine. The end product of this reaction is a tRNA molecule that contains the cysteine anticodon but is mischarged with alanine.\n\nWhich of the following is most likely to occur to this alanine residue during polypeptide synthesis of alpha-hemoglobin?",
+      "a": [
+        "It will be incorporated into the polypeptide chain at a site requiring alanine",
+        "It will be incorporated into the polypeptide chain at a site requiring cysteine",
+        "It will be randomly incorporated into the polypeptide chain, halting chain elongation",
+        "It will be rapidly cleaved off tRNA by the enzyme glycosylase",
+        "It will never be incorporated into the polypeptide chain and will remain attached to tRNA"
+      ]
+    }
+  },
+  {
+    "case": 55,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "An 8-year-old boy of Ashkenazi Jewish ancestry is brought to the office after developing reduced sensitivity to pain, impaired tear formation, and orthostatic hypotension. Familial dysautonomia is suspected due to the patient's symptoms and heritage. This disorder is caused by loss of function of the IKAP protein, which is essential for development and survival of sensory and autonomic neurons. IKAP gene sequencing reveals a single nucleotide substitution that causes a guanine residue to be replaced by adenine at the highlighted position in the normal gene sequence shown below. Exon sequences are represented by capital letters and introns by lowercase letters.\n\nWhich of the following is the most likely effect of this mutation?",
+      "a": [
+        "Decreased mRNA export to the cytosol",
+        "Impaired ribosomal attachment to mRNA",
+        "Incorrect splicing of pre-mRNA",
+        "Increased degradation of mRNA by 5' exonucleases",
+        "Translation of the 3'-untranslated region of mRNA"
+      ]
+    }
+  },
+  {
+    "case": 56,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A pharmaceutical researcher develops a new drug that affects bacterial protein synthesis. In an experiment, Escherichia coli is exposed to the drug and serially cultured in media containing tagged nucleotides and amino acids. It is found that the drug inhibits molecules that recognize the highlighted codon in the bacterial mRNA fragment shown in the image below.\n\nWhich of the following molecules is the most likely target of this drug?",
+      "a": [
+        "Charged tRNA",
+        "Elongation factor 2",
+        "Releasing factor 1",
+        "snRNP",
+        "Transcription factor II D",
+        "Uncharged tRNA"
+      ]
+    }
+  },
+  {
+    "case": 57,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 32-year-old man is recovering from extensive burns. Fibroblasts near the site of injury actively synthesize precursor mRNA to be used as templates for protein synthesis. After transcription, extensive processing of the precursor RNA occurs to form the finalized mRNA sequence. The finalized mRNA then exits the nucleus and undergoes translation by ribosome complexes before being degraded.\n\nWhich of the following steps involving the processing and handling of mRNA occurs only within the cytoplasm of cells?",
+      "a": [
+        "5'-terminal guanosine triphosphate addition",
+        "Methylation of the 5'-terminal guanine",
+        "Multiple adenine nucleotide attachment to the 3'-end",
+        "Interaction with snRNP",
+        "Removal of intervening sequences",
+        "Interaction with P bodies"
+      ]
+    }
+  },
+  {
+    "case": 58,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "In an experiment, cultured fibroblasts are mechanically lysed, and the membrane lipids and cellular proteins are chemically removed to isolate nucleic acids. The cellular extract containing the purified nucleic acids is incubated along with short sequences of repeated deoxythymidine residues fixed to latex beads. The solution is washed several times to remove unbound molecules.\n\nWhich of the following types of nucleic acid is most likely to bind the strongest to the latex beads in this experiment?",
+      "a": [
+        "Aminoacyl-tRNA",
+        "Mature mRNA",
+        "Promoter regions of DNA",
+        "Ribosomal RNA",
+        "Splice sites of pre-mRNA",
+        "Telomere regions of chromosomes"
+      ]
+    }
+  },
+  {
+    "case": 59,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A 58-year-old man comes to the office with a persistent dry cough. He also has involuntarily lost 10 kg (22 lb) over the past 3 months. The patient drinks 2 or 3 beers daily and has a 40-pack-year smoking history. Physical examination shows dullness to percussion over the right lower lung base. CT scan of the chest reveals a right-sided pleural effusion and a mass in the lower lobe of the right lung. Microscopic examination of the mass demonstrates malignant cells with large nuclei that contain prominent, round, basophilic bodies, as shown in the image below:\n\nWhich of the following enzymes is most likely to function only within this basophilic region of the nucleus?",
+      "a": [
+        "Peptidyltransferase",
+        "RNA polymerase I",
+        "RNA polymerase II",
+        "Ubiquitin ligase"
+      ]
+    }
+  },
+  {
+    "case": 60,
+    "q": "",
+    "a": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "explanation": "",
+    "english": {
+      "q": "A researcher develops 2 functional mRNA sequences composed of CUC and CUU trinucleotide repeats, respectively. He subsequently incubates these mRNAs in a solution containing functional ribosomes and tRNAs charged with the appropriate amino acids. After several hours, it is found that both mRNA sequences produce polypeptide chains containing leucine repeats.\n\nThis observed finding is due to which of the following genetic principles?",
+      "a": [
+        "Ambiguity",
+        "No punctuation",
+        "Transition",
+        "Universality",
+        "Wobble"
+      ]
+    }
+  }
+]

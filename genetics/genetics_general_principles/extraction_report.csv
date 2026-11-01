@@ -1,0 +1,61 @@
+﻿case,pdf_page,options,correct,confidence,method,best_guess_if_unresolved,votes,question_images,explanation_images,review,flags
+1,7,5,B,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->B(7); main_explanation->B(3); educational_objective->B(5),1,2,YES,Possible super/subscript glitch in question text
+2,9,6,E,high,"label_elimination_all,main_explanation,text_elimination",,label_elimination_all->E(7); text_elimination->E(5); main_explanation->E(3),0,1,,
+3,10,5,C,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->C(7); text_elimination->C(5); main_explanation->C(3); educational_objective->C(5),0,0,,
+4,11,5,A,high,"educational_objective,first_sentences,label_elimination_all,main_explanation",,label_elimination_all->A(7); main_explanation->A(3); educational_objective->A(5); first_sentences->A(2),0,3,,
+5,15,5,,none,,,,0,2,YES,No algorithm produced an answer
+6,17,5,,low,main_explanation,A,main_explanation->A(3),0,1,YES,Low confidence - check the answer manually
+7,19,6,A,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->A(7); text_elimination->A(5); main_explanation->A(3); educational_objective->A(5),1,5,,
+8,24,5,A,high,"label_elimination_all,main_explanation",,label_elimination_all->A(7); main_explanation->A(3),1,1,,
+9,27,5,E,high,"first_sentences,label_elimination_all,main_explanation",,label_elimination_all->E(7); text_elimination->A(5); main_explanation->E(3); first_sentences->E(2),0,0,,
+10,28,5,A,high,"educational_objective,first_sentences,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->A(7); text_elimination->A(5); main_explanation->A(3); educational_objective->A(5); first_sentences->A(2),0,3,YES,Possible super/subscript glitch in question text
+11,31,6,E,high,"educational_objective,label_elimination_all",,label_elimination_all->E(7); educational_objective->E(5),0,3,,
+12,34,0,,none,,,,5,2,YES,No text answer options (options may be inside an image) | 5 question images - only the first is `photo` (others saved in photo_assets) | Answer not detected: <2 text options
+13,37,5,C,high,"first_sentences,label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3); first_sentences->C(2),0,1,,
+14,39,6,E,high,"educational_objective,first_sentences,label_elimination_all",,label_elimination_all->E(7); educational_objective->E(5); first_sentences->E(2),0,4,,
+15,43,5,,low,label_elimination_all,C,label_elimination_all->C(7); educational_objective->D(5),0,2,YES,Algorithms disagree | Low confidence - check the answer manually
+16,46,4,A,medium,label_elimination_all,,label_elimination_all->A(7),1,4,,
+17,49,5,C,medium,label_elimination_all,,label_elimination_all->C(7),0,1,,
+18,51,6,A,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->A(7); main_explanation->A(3); educational_objective->A(5),0,1,,
+19,53,6,B,high,"educational_objective,first_sentences,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->B(7); text_elimination->B(5); main_explanation->B(3); educational_objective->B(5); first_sentences->B(2),0,1,YES,Possible super/subscript glitch in question text
+20,55,6,D,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->D(7); text_elimination->D(5); main_explanation->D(3); educational_objective->D(5),0,3,,
+21,58,5,C,high,"educational_objective,first_sentences,label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3); educational_objective->C(5); first_sentences->C(2),0,1,,
+22,60,6,A,medium,label_elimination_all,,label_elimination_all->A(7),0,1,,
+23,62,5,D,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->D(7); text_elimination->D(5); main_explanation->D(3); educational_objective->D(5),0,3,,
+24,66,5,E,high,"label_elimination_all,text_elimination",,label_elimination_all->E(7); text_elimination->E(5),0,1,YES,Possible super/subscript glitch in question text
+25,68,6,E,medium,educational_objective,,educational_objective->E(5),1,1,,
+26,70,6,D,medium,educational_objective,,educational_objective->D(5),0,2,,
+27,73,5,C,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3); educational_objective->C(5),0,1,,
+28,75,5,A,medium,label_elimination_all,,label_elimination_all->A(7),0,1,,
+29,77,6,B,medium,label_elimination_all,,label_elimination_all->B(7); first_sentences->A(2),1,1,,
+30,79,5,,none,,,,0,1,YES,No algorithm produced an answer
+31,81,5,D,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->D(7); text_elimination->D(5); main_explanation->D(3); educational_objective->D(5),1,2,,
+32,84,5,D,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->D(7); main_explanation->D(3); educational_objective->D(5),0,4,YES,Possible super/subscript glitch in question text
+33,87,5,C,medium,label_elimination_all,,label_elimination_all->C(7),0,0,YES,Possible super/subscript glitch in question text
+34,89,6,A,high,"label_elimination_all,text_elimination",,label_elimination_all->A(7); text_elimination->A(5),1,1,YES,Possible super/subscript glitch in question text
+35,91,5,C,high,"educational_objective,label_elimination_all",,label_elimination_all->C(7); educational_objective->C(5),0,2,,
+36,94,4,C,high,"label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3),0,1,,
+37,96,5,C,high,"educational_objective,label_elimination_all,text_elimination",,label_elimination_all->C(7); text_elimination->C(5); educational_objective->C(5),0,1,YES,Possible super/subscript glitch in question text
+38,98,5,D,high,"label_elimination_all,text_elimination",,label_elimination_all->D(7); text_elimination->D(5); educational_objective->B(5),0,2,YES,Possible super/subscript glitch in question text
+39,100,5,B,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->B(7); text_elimination->B(5); main_explanation->B(3); educational_objective->B(5),0,3,YES,Possible super/subscript glitch in question text
+40,104,5,D,medium,educational_objective,,educational_objective->D(5),0,2,,
+41,107,5,E,high,"label_elimination_all,main_explanation,numeric_conclusion",,label_elimination_all->E(3.5); main_explanation->E(3); numeric_conclusion->E(4),0,5,YES,Option letters do not match the (Choice X) paragraphs - using text matching
+42,111,6,A,high,"educational_objective,label_elimination_all",,label_elimination_all->A(7); educational_objective->A(5),0,1,,
+43,113,5,D,medium,educational_objective,,educational_objective->D(5),1,2,,
+44,116,7,E,high,"educational_objective,first_sentences,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->E(7); text_elimination->E(5); main_explanation->E(3); educational_objective->E(5); first_sentences->E(2),0,1,,
+45,118,5,,low,numeric_conclusion,E,numeric_conclusion->E(4),0,1,YES,Low confidence - check the answer manually
+46,120,5,A,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->A(7); text_elimination->A(5); main_explanation->A(3); educational_objective->A(5),1,6,,
+47,126,5,B,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->B(7); main_explanation->B(3); educational_objective->B(5),0,2,,
+48,129,5,A,medium,"educational_objective,first_sentences,main_explanation",,label_elimination_all->B(7); main_explanation->A(3); educational_objective->A(5); first_sentences->A(2),1,1,,
+49,131,6,E,high,"educational_objective,label_elimination_all",,label_elimination_all->E(7); text_elimination->B(5); educational_objective->E(5),1,2,,
+50,133,6,B,high,"educational_objective,label_elimination_all",,label_elimination_all->B(7); educational_objective->B(5); first_sentences->D(2),0,1,,
+51,135,5,C,high,"label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3),1,1,,
+52,137,5,C,high,"label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3),1,1,,
+53,140,6,A,high,"first_sentences,label_elimination_all,main_explanation",,label_elimination_all->A(7); main_explanation->A(3); first_sentences->A(2),1,1,,
+54,144,5,B,medium,label_elimination_all,,label_elimination_all->B(7),0,0,,
+55,145,5,C,medium,label_elimination_all,,label_elimination_all->C(7),1,1,,
+56,148,6,C,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->C(7); main_explanation->C(3); educational_objective->C(5),1,0,,
+57,149,6,F,medium,label_elimination_all,,label_elimination_all->F(7),0,0,,
+58,150,6,B,high,"first_sentences,label_elimination_all",,label_elimination_all->B(7); first_sentences->B(2),0,1,,
+59,152,4,B,high,"educational_objective,label_elimination_all,main_explanation",,label_elimination_all->B(7); main_explanation->B(3); educational_objective->B(5),1,2,,
+60,155,5,E,high,"educational_objective,label_elimination_all,main_explanation,text_elimination",,label_elimination_all->E(7); text_elimination->E(5); main_explanation->E(3); educational_objective->E(5),0,1,,

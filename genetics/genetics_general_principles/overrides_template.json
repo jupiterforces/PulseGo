@@ -1,0 +1,138 @@
+{
+  "1": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "5": {
+    "note": "No algorithm produced an answer",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "6": {
+    "note": "Low confidence - check the answer manually",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "10": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "12": {
+    "note": "No text answer options (options may be inside an image) | 5 question images - only the first is `photo` (others saved in photo_assets) | Answer not detected: <2 text options",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "15": {
+    "note": "Algorithms disagree | Low confidence - check the answer manually",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "19": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "24": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "30": {
+    "note": "No algorithm produced an answer",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "32": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "33": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "34": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "37": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "38": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "39": {
+    "note": "Possible super/subscript glitch in question text",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "41": {
+    "note": "Option letters do not match the (Choice X) paragraphs - using text matching",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  },
+  "45": {
+    "note": "Low confidence - check the answer manually",
+    "correct": null,
+    "a": [],
+    "q": "",
+    "drop_photo": false,
+    "photo_from_img": null
+  }
+}
