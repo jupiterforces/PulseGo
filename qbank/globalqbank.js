@@ -13,12 +13,29 @@
        photo?: "img.png", img?: "exp.png", explanation?: "..." }
 ============================================================================ */
 
+// const { title } = require("node:process");
+
 /* ============================ 1) DATABASE ================================= */
 window.GLOBAL_QBANK = {
   anatomy: {
     title: "Anatomy",
     icon: "bi-person-standing",
     topics: {
+      neck_muscles: {
+        title: "Neck Muscles",
+        source: "/anatomy/cases/cases.js",
+        count: null,
+      },
+      neck_nerves_vessels: {
+        title: "Neck Nerves & Vessels",
+        source: "/anatomy/cases/cases.js",
+        count: null,
+      },
+      neck_deep_structures: {
+        title: "Neck Deep Structures",
+        source: "/anatomy/cases/cases.js",
+        count: null,
+      },
       vertebra: { title: "vertebra", source: "/1sem/tests.js", count: null },
       spinalcord: {
         title: "spinalcord",
@@ -64,6 +81,51 @@ window.GLOBAL_QBANK = {
         source: "/embriology/embryology_gi/embryology_gi.js",
         count: null,
       },
+      CV: {
+        title: "CV",
+        source: "/embriology/embryology_cv/embryology_cv.js",
+        count: null,
+      },
+      EMBRYOLOGY_DERM: {
+        title: "EMBRYOLOGY_DERM",
+        source: "/embriology/embryology_derm/embryology_derm.js",
+        count: null,
+      },
+      EMBRYOLOGY_ENDO: {
+        title: "EMBRYOLOGY_ENDO",
+        source: "/embriology/embryology_endo/embryology_endo.js",
+        count: null,
+      },
+      EMBRYOLOGY_ENT: {
+        title: "EMBRYOLOGY_ENT",
+        source: "/embriology/embryology_ent/embryology_ent.js",
+        count: null,
+      },
+      EMBRYOLOGY_FEMALE: {
+        title: "EMBRYOLOGY_FEMALE",
+        source: "/embriology/embryology_fEMALE/embryology_fEMALE.js",
+        count: null,
+      },
+      EMBRYOLOGY_MALE: {
+        title: "EMBRYOLOGY_MALE",
+        source: "/embriology/embryology_male/embryology_male.js",
+        count: null,
+      },
+      EMBRYOLOGY_MISC: {
+        title: "EMBRYOLOGY_MISC",
+        source: "/embriology/embryology_misc/embryology_misc.js",
+        count: null,
+      },
+      EMBRYOLOGY_NERV: {
+        title: "EMBRYOLOGY_NERV",
+        source: "/embriology/embryology_nerv/embryology_nerv.js",
+        count: null,
+      },
+      EMBRYOLOGY_RENAL: {
+        title: "EMBRYOLOGY_RENAL",
+        source: "/embriology/embryology_renal/embryology_renal.js",
+        count: null,
+      },
       u1: { title: "Unit 1", source: "/embriology/tests.js", count: null },
       u2: { title: "Unit 2", source: "/embriology/tests.js", count: null },
       u3: { title: "Unit 3", source: "/embriology/tests.js", count: null },
@@ -73,6 +135,11 @@ window.GLOBAL_QBANK = {
       u7: { title: "Unit 7", source: "/embriology/tests.js", count: null },
       u8: { title: "Unit 8", source: "/embriology/tests.js", count: null },
       u9: { title: "Unit 9", source: "/embriology/tests.js", count: null },
+      head_and_neck: {
+        title: "Head and Neck",
+        source: "/embriology/cases.js",
+        count: null,
+      },
       // heart:      { title: "Heart",       source: "/anatomy/js/heart.js",        count: 120 },
     },
   },
