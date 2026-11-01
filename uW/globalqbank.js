@@ -13,6 +13,8 @@
        photo?: "img.png", img?: "exp.png", explanation?: "..." }
 ============================================================================ */
 
+// const { count } = require("node:console");
+
 /* ============================ 1) DATABASE ================================= */
 window.GLOBAL_QBANK = {
   anatomy: {
@@ -94,6 +96,23 @@ window.GLOBAL_QBANK = {
         count: null,
       },
       // heart:      { title: "Heart",       source: "/anatomy/js/heart.js",        count: 120 },
+    },
+  },
+  genetics: {
+    title: "Genetics",
+    icon: "bi-dna",
+    topics: {
+      GENETICS_BIOCHEM: {
+        title: "Genetics: Biochemistry (General Principles)",
+        source: "/genetics/genetics_biochem_v2/genetics_biochem.js",
+        count: null,
+      },
+      genetics_general_principles: {
+        title: "Genetics: General Principles",
+        source:
+          "/genetics/genetics_general_principles/genetics_general_principles.js",
+        count: null,
+      },
     },
   },
   physiology: {
