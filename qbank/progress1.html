@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PulseGo Progress">
+  <meta name="author" content="Pulse Medical">
+  <title>Progress</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/casestyles.css">
+
+  <style>
+    :root {
+      --pg-bg: #f4f6f8;
+      --pg-card: #ffffff;
+      --pg-text: #0f172a;
+      --pg-muted: #64748b;
+      --pg-line: #e8edf2;
+      --pg-blue: #2563eb;
+      --pg-green: #16a34a;
+      --pg-amber: #d97706;
+      --pg-red: #dc2626;
+      --pg-teal: #1b3a3a;
+      --pg-radius: 14px;
+      --pg-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--pg-bg);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--pg-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pg-page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1rem 1rem 5.5rem;
+    }
+
+    /* Header */
+    .pg-hero {
+      margin-bottom: 1.15rem;
+    }
+
+    .pg-hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pg-hero h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.2rem;
+      line-height: 1.25;
+    }
+
+    .pg-hero p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    .pg-chip {
+      flex-shrink: 0;
+      background: #eff6ff;
+      color: var(--pg-blue);
+      border: 1px solid #dbeafe;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    /* Accuracy */
+    .pg-acc {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      padding: 1.15rem 1rem 1rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .pg-acc-pct {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .pg-acc-pct.ok {
+      color: var(--pg-green);
+    }
+
+    .pg-acc-pct.mid {
+      color: var(--pg-amber);
+    }
+
+    .pg-acc-pct.low {
+      color: var(--pg-red);
+    }
+
+    .pg-acc-pct.none {
+      color: var(--pg-muted);
+    }
+
+    .pg-acc-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+      margin-top: 0.3rem;
+    }
+
+    .pg-acc-bar {
+      height: 6px;
+      border-radius: 99px;
+      background: #e2e8f0;
+      overflow: hidden;
+      margin: 0.75rem auto 0;
+      max-width: 200px;
+    }
+
+    .pg-acc-bar>span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 99px;
+      transition: width 1.1s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .pg-acc-bar>span.ok {
+      background: var(--pg-green);
+    }
+
+    .pg-acc-bar>span.mid {
+      background: var(--pg-amber);
+    }
+
+    .pg-acc-bar>span.low {
+      background: var(--pg-red);
+    }
+
+    /* Activity sparkline — last 10 runs */
+    .pg-activity {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      padding: 0.85rem 1rem 0.75rem;
+      margin-bottom: 10px;
+    }
+
+    .pg-activity-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.55rem;
+    }
+
+    .pg-activity-head span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pg-activity-head small {
+      font-size: 0.68rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    .pg-spark {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+      height: 48px;
+    }
+
+    .pg-spark-bar {
+      flex: 1;
+      min-width: 0;
+      border-radius: 4px 4px 2px 2px;
+      height: 0;
+      transition: height 0.7s cubic-bezier(.2, .8, .2, 1);
+      position: relative;
+      cursor: default;
+    }
+
+    .pg-spark-bar.ok {
+      background: var(--pg-green);
+    }
+
+    .pg-spark-bar.mid {
+      background: var(--pg-amber);
+    }
+
+    .pg-spark-bar.low {
+      background: var(--pg-red);
+    }
+
+    .pg-spark-bar.empty {
+      background: #e2e8f0;
+      height: 4px !important;
+    }
+
+    .pg-spark-bar:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.25rem 0.45rem;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Stats */
+    .pg-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pg-stat {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      padding: 0.9rem 0.7rem;
+      text-align: center;
+      box-shadow: var(--pg-shadow);
+    }
+
+    .pg-stat b {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .pg-stat span {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+    }
+
+    .pg-stat.green b {
+      color: var(--pg-green);
+    }
+
+    .pg-stat.blue b {
+      color: var(--pg-blue);
+    }
+
+    .pg-stat.red b {
+      color: var(--pg-red);
+    }
+
+    /* Notes card */
+    .pg-notes-card {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pg-notes-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: var(--pg-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .pg-notes-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pg-notes-body strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .pg-notes-body small {
+      font-size: 0.75rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    .pg-notes-card .btn {
+      flex-shrink: 0;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.85rem;
+    }
+
+    .pg-section-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+
+    .pg-section-label h2 {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .pg-section-label small {
+      font-size: 0.72rem;
+      color: var(--pg-muted);
+      font-weight: 600;
+    }
+
+    .pg-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .pg-filters select,
+    .pg-filters input {
+      border: 1px solid var(--pg-line);
+      background: var(--pg-card);
+      border-radius: 10px;
+      padding: 0.45rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 550;
+      color: var(--pg-text);
+      outline: none;
+      font-family: inherit;
+    }
+
+    .pg-filters select:focus,
+    .pg-filters input:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    /* History */
+    .pg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pg-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      padding: 0.85rem 1rem;
+      box-shadow: var(--pg-shadow);
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+      cursor: pointer;
+      transition: border-color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+    }
+
+    .pg-item:hover {
+      border-color: #bfdbfe;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .pg-item:active {
+      transform: scale(0.99);
+    }
+
+    .pg-item-pct-ring {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .pg-item-pct-ring.ok {
+      background: var(--pg-green);
+    }
+
+    .pg-item-pct-ring.mid {
+      background: var(--pg-amber);
+    }
+
+    .pg-item-pct-ring.low {
+      background: var(--pg-red);
+    }
+
+    .pg-item-pct-ring.none {
+      background: #94a3b8;
+    }
+
+    .pg-item-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pg-item-title {
+      font-size: 0.88rem;
+      font-weight: 650;
+      line-height: 1.3;
+      margin: 0 0 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pg-item-meta {
+      font-size: 0.7rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.65rem;
+      align-items: center;
+    }
+
+    .pg-item-right {
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .pg-item-right b {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .pg-item-right small {
+      font-size: 0.65rem;
+      color: var(--pg-muted);
+      font-weight: 600;
+    }
+
+    .pg-item-arrow {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .status-pill.completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-pill.stopped {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .status-pill.paused {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-pill.running {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .pg-empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--pg-muted);
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* ========== MODALS — desktop + mobile ========== */
+    .pg-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .pg-modal-backdrop.show {
+      display: flex;
+    }
+
+    .pg-modal {
+      background: #fff;
+      width: 100%;
+      max-width: 520px;
+      max-height: min(88vh, 720px);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+      animation: modalIn 0.22s ease;
+      overflow: hidden;
+    }
+
+    @keyframes modalIn {
+      from {
+        transform: translateY(16px) scale(0.98);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .pg-modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 1rem 1.15rem 0.8rem;
+      border-bottom: 1px solid var(--pg-line);
+      flex-shrink: 0;
+    }
+
+    .pg-modal-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .pg-modal-head .sub {
+      font-size: 0.72rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    .pg-modal-body {
+      overflow-y: auto;
+      padding: 0.9rem 1.15rem 1.35rem;
+      flex: 1;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    .pg-modal-body::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Chrome/Safari */
+
+    /* Session detail */
+    .sd-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 0.85rem;
+    }
+
+    .sd-stat {
+      background: #f8fafc;
+      border: 1px solid var(--pg-line);
+      border-radius: 10px;
+      padding: 0.5rem 0.25rem;
+      text-align: center;
+    }
+
+    .sd-stat b {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .sd-stat span {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+    }
+
+    .sd-section {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 1rem 0 0.5rem;
+    }
+
+    .sd-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .sd-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      position: relative;
+    }
+
+    .sd-dot.ok {
+      background: var(--pg-green);
+    }
+
+    .sd-dot.bad {
+      background: var(--pg-red);
+    }
+
+    .sd-dot.skip {
+      background: #cbd5e1;
+      color: #334155;
+    }
+
+    .sd-dot.flag::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 0 1.5px #fff;
+    }
+
+    .sd-flag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .sd-flag-chip {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+      border-radius: 999px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 650;
+    }
+
+    .sd-mistake {
+      background: #fff;
+      border: 1px solid var(--pg-line);
+      border-radius: 12px;
+      padding: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .sd-mistake-q {
+      font-size: 0.9rem;
+      font-weight: 650;
+      line-height: 1.45;
+      margin-bottom: 0.6rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .sd-photo {
+      text-align: center;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .sd-photo img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .sd-ans {
+      border-radius: 8px;
+      padding: 0.45rem 0.7rem;
+      font-size: 0.84rem;
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--pg-line);
+      background: #f8fafc;
+    }
+
+    .sd-ans.ok {
+      background: #ecfdf5;
+      border-color: #bbf7d0;
+    }
+
+    .sd-ans.bad {
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .sd-expl {
+      margin-top: 0.65rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--pg-line);
+      font-size: 0.84rem;
+      color: #475569;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .sd-expl img {
+      display: block;
+      max-width: 100%;
+      max-height: 200px;
+      margin: 0.5rem auto;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .sd-note {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 10px;
+      padding: 0.65rem 0.8rem;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .sd-note b {
+      font-size: 0.7rem;
+      color: var(--pg-muted);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* Notes modal rows */
+    .note-row {
+      background: #f8fafc;
+      border: 1px solid var(--pg-line);
+      border-radius: 12px;
+      padding: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .note-row-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 0.35rem;
+    }
+
+    .note-row-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+    }
+
+    .note-row-text {
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .note-row-actions {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .note-row-actions button {
+      border: none;
+      background: transparent;
+      color: var(--pg-muted);
+      padding: 0.25rem 0.4rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .note-row-actions button:hover {
+      background: #e2e8f0;
+      color: var(--pg-text);
+    }
+
+    .note-row-actions button.del:hover {
+      background: #fee2e2;
+      color: var(--pg-red);
+    }
+
+    .note-add-box {
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .note-add-box textarea {
+      width: 100%;
+      border: 1px solid var(--pg-line);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 72px;
+      outline: none;
+    }
+
+    .note-add-box textarea:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .note-add-box .btn {
+      margin-top: 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+    }
+
+    .note-edit-area {
+      width: 100%;
+      border: 1px solid #93c5fd;
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 60px;
+      outline: none;
+    }
+
+    /* Mobile: bottom sheet style */
+    @media (max-width: 575px) {
+      .pg-modal-backdrop {
+        align-items: flex-end;
+        padding: 0;
+      }
+
+      .pg-modal {
+        max-width: 100%;
+        max-height: 92vh;
+        border-radius: 18px 18px 0 0;
+        animation: slideUp 0.25s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(40px);
+          opacity: 0;
+        }
+
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+    }
+
+    @media (min-width: 768px) {
+      .pg-page {
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      .pg-hero h1 {
+        font-size: 1.55rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .pg-acc-pct {
+        font-size: 2.15rem;
+      }
+
+      .pg-stat b {
+        font-size: 1.2rem;
+      }
+
+      .sd-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+      </div>
+      <div>
+        <div class="sidebar-brand">Pulse Go</div>
+        <div class="sidebar-tagline">siz uchun maxsus</div>
+      </div>
+      <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="sidebar-user" id="sidebarUser">
+      <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+        <div class="sidebar-user-sub">Pulse Go Member</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Asosiy</div>
+      <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i> Testlar</a>
+      <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> QBank</a>
+      <div class="sidebar-section-label">O'quv materiallari</div>
+      <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i> Kitoblar</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="https://t.me/broinibek" target="_blank" class="sidebar-link" style="background:#f0fdf4;color:#16a34a">
+        <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+      </a>
+    </div>
+  </aside>
+
+  <nav class="top-navbar">
+    <div class="container">
+      <button class="btn-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
+      <a href="/" class="nav-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
+      </a>
+      <a href="javascript:history.back()" class="btn btn-light btn-sm rounded-pill">
+        <i class="bi bi-arrow-left"></i> Orqaga
+      </a>
+      <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+    </div>
+  </nav>
+
+  <div class="pg-page">
+    <!-- Accuracy -->
+    <div class="pg-acc">
+      <div class="pg-acc-pct none" id="accPct">0</div>
+      <div class="pg-acc-label" id="accLabel">Hali natija yo'q</div>
+      <div class="pg-acc-bar"><span id="accBar"></span></div>
+    </div>
+
+    <!-- Activity sparkline (last 10) -->
+    <div class="pg-activity" id="activityCard">
+      <div class="pg-activity-head">
+        <span>So'nggi faoliyat</span>
+        <small id="activitySub">oxirgi 10 ta</small>
+      </div>
+      <div class="pg-spark" id="sparkRow"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="pg-stats">
+      <div class="pg-stat blue">
+        <b id="stRuns">0</b>
+        <span>Jami runlar</span>
+      </div>
+      <div class="pg-stat green">
+        <b id="stSolved">0</b>
+        <span>Yechilgan savollar</span>
+      </div>
+      <div class="pg-stat">
+        <b id="stCorrect">0</b>
+        <span>To'g'ri</span>
+      </div>
+      <div class="pg-stat red">
+        <b id="stMistakes">0</b>
+        <span>Ochiq xatolar</span>
+      </div>
+    </div>
+
+    <!-- Notes -->
+    <div class="pg-notes-card">
+      <div class="pg-notes-icon"><i class="bi bi-journal-text"></i></div>
+      <div class="pg-notes-body">
+        <strong id="notesCountLabel">0 ta izoh</strong>
+        <small>Barcha testlardan saqlangan eslatmalar</small>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm" onclick="openNotesModal()">Ko'rish</button>
+    </div>
+
+    <!-- History -->
+    <div class="pg-section-label">
+      <h2>Tarix</h2>
+      <small id="histCount">0 ta</small>
+    </div>
+
+    <div class="pg-filters">
+      <input type="search" id="fSearch" placeholder="Qidirish..." oninput="renderHistory()">
+      <select id="fStatus" onchange="renderHistory()">
+        <option value="">Barcha holat</option>
+        <option value="completed">Yakunlangan</option>
+        <option value="stopped">To'xtatilgan</option>
+        <option value="paused">Pauzada</option>
+      </select>
+      <select id="fSort" onchange="renderHistory()">
+        <option value="new">Yangi first</option>
+        <option value="old">Eski first</option>
+        <option value="pct">% bo'yicha</option>
+      </select>
+    </div>
+
+    <div class="pg-list" id="histList"></div>
+    <div class="pg-empty" id="histEmpty">Hali hech qanday test ishlanmagan</div>
+
+  </div>
+
+  <nav class="bottom-nav d-lg-none">
+    <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+    <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>Testlar</span></a>
+    <a href="/qbank/qbank.html" class="bn-item">
+      <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+      <span>QBank</span>
+    </a>
+    <a href="/qbank/progress.html" class="bn-item active"><i class="bi bi-bar-chart-fill"></i><span>Progress</span></a>
+    <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+  </nav>
+
+  <!-- Session detail modal -->
+  <div class="pg-modal-backdrop" id="sessionBackdrop" onclick="if(event.target===this)closeSessionModal()">
+    <div class="pg-modal" role="dialog" aria-modal="true">
+      <div class="pg-modal-head">
+        <div style="min-width:0">
+          <h3 id="sdTitle">—</h3>
+          <div class="sub" id="sdSub"></div>
+        </div>
+        <button type="button" class="btn btn-sm btn-light rounded-circle" onclick="closeSessionModal()"
+          style="width:34px;height:34px;padding:0;flex-shrink:0">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="pg-modal-body" id="sdBody"></div>
+    </div>
+  </div>
+
+  <!-- Notes modal -->
+  <div class="pg-modal-backdrop" id="notesBackdrop" onclick="if(event.target===this)closeNotesModal()">
+    <div class="pg-modal" role="dialog" aria-modal="true">
+      <div class="pg-modal-head">
+        <h3><i class="bi bi-journal-text me-1"></i> Izohlar</h3>
+        <button type="button" class="btn btn-sm btn-light rounded-circle" onclick="closeNotesModal()"
+          style="width:34px;height:34px;padding:0">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="pg-modal-body" id="notesBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const LS_SESSIONS = "pulsego_sessions_v1";
+    const LS_DATA = "pulsego_data_v1";
+    const LS_NOTES = "pulsego_notes_v1";
+    const LS_RESULTS = "pulsego_test_results_v1";
+
+    const TITLE_MAP = {
+      img2: "2-rasm", img3: "3-rasm", img4: "4-rasm", img5: "5-rasm", img6: "6-rasm",
+      xatolar: "Xatolar tahlili", "weak-path": "Zaif yo'l",
+    };
+
+    function prettyName(name) {
+      if (!name) return "Test";
+      const n = String(name);
+      if (window.testTitleMap && window.testTitleMap[n]) return window.testTitleMap[n];
+      if (TITLE_MAP[n]) return TITLE_MAP[n];
+      if (n.startsWith("qbank:")) return "QBank · " + n.slice(6);
+      const m = n.match(/^img(\d+)$/i);
+      if (m) return m[1] + "-rasm";
+      return n;
+    }
+
+    function readJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        return JSON.parse(raw);
+      } catch (e) { return fallback; }
+    }
+    function writeJSON(key, val) {
+      try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { }
+    }
+
+    function openSidebar() {
+      document.getElementById("sidebar")?.classList.add("open");
+      document.getElementById("sidebarOverlay")?.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar")?.classList.remove("open");
+      document.getElementById("sidebarOverlay")?.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function esc(s) {
+      return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return "—";
+      const d = new Date(iso);
+      if (isNaN(d)) return "—";
+      return d.toLocaleDateString("uz-UZ", { day: "2-digit", month: "short", year: "numeric" })
+        + " · " + d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function pctClass(p) {
+      if (p == null || isNaN(p)) return "none";
+      if (p >= 80) return "ok";
+      if (p >= 55) return "mid";
+      return "low";
+    }
+
+    const LETTERS = ["A", "B", "C", "D", "E", "F"];
+    const STATUS_LABEL = {
+      completed: "Yakunlangan", stopped: "To'xtatilgan",
+      paused: "Pauzada", running: "Jarayonda"
+    };
+
+    /* ---- explanation renderer (same idea as engine) ---- */
+    function explImgList(v) {
+      if (!v) return [];
+      return (Array.isArray(v) ? v : [v]).filter(Boolean);
+    }
+    function renderExplanation(explanation, imgField) {
+      const urls = explImgList(imgField);
+      const used = new Set();
+      const tag = (u) =>
+        `<div class="sd-photo"><img src="${esc(u)}" alt="Izoh rasmi" loading="lazy" onerror="this.style.display='none'"></div>`;
+      let html = esc(String(explanation || "")).replace(
+        /\s*\[\[img:(\d+)\]\]\s*/g,
+        (m, i) => {
+          const u = urls[Number(i)];
+          if (!u) return "";
+          used.add(Number(i));
+          return tag(u);
+        }
+      );
+      // preserve newlines
+      html = html.replace(/\n/g, "<br>");
+      urls.forEach((u, i) => {
+        if (!used.has(i)) html += tag(u);
+      });
+      return html;
+    }
+
+    /* ---- data ---- */
+    function getSessions() {
+      const p = readJSON(LS_SESSIONS, []);
+      return Array.isArray(p) ? p : [];
+    }
+    function getSessionById(id) {
+      return getSessions().find(s => String(s.id) === String(id)) || null;
+    }
+    function getOpenMistakes() {
+      const d = readJSON(LS_DATA, {});
+      return Array.isArray(d.mistakes) ? d.mistakes : [];
+    }
+    function getNotes() {
+      const o = readJSON(LS_NOTES, {});
+      return o && typeof o === "object" && !Array.isArray(o) ? o : {};
+    }
+    function getResults() {
+      const map = new Map();
+      const add = (list) => {
+        if (!Array.isArray(list)) return;
+        list.forEach(e => {
+          if (!e) return;
+          const key = `${e.testName}|${e.date}|${e.correct}|${e.total}|${e.solved}`;
+          if (!map.has(key)) map.set(key, e);
+        });
+      };
+      const r = readJSON(LS_RESULTS, {});
+      add(r.tests);
+      const d = readJSON(LS_DATA, {});
+      add(d.results);
+      add(d.testResults);
+      getSessions().forEach(s => {
+        if (!s.stats) return;
+        if (s.status !== "completed" && s.status !== "stopped") return;
+        add([{
+          testName: s.testName,
+          date: s.updatedAt || s.startedAt,
+          correct: s.stats.correct || 0,
+          wrong: s.stats.wrong || 0,
+          solved: s.stats.solved || 0,
+          total: s.stats.total || s.total || 0,
+          percent: s.stats.percent || 0
+        }]);
+      });
+      return Array.from(map.values());
+    }
+
+    function animateCount(el, target, duration) {
+      if (!el) return;
+      const end = Math.round(Number(target) || 0);
+      const t0 = performance.now();
+      const dur = duration || 900;
+      function frame(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(end * eased);
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    /* ---- Overview + sparkline ---- */
+    function renderOverview() {
+      const results = getResults();
+      const sessions = getSessions();
+      const mistakes = getOpenMistakes();
+      const notes = getNotes();
+
+      let correct = 0, solved = 0;
+      results.forEach(e => {
+        const s = e.solved != null ? e.solved : (e.correct || 0) + (e.wrong || 0);
+        correct += e.correct || 0;
+        solved += s;
+      });
+      if (!results.length) {
+        sessions.forEach(s => {
+          if (!s.stats) return;
+          correct += s.stats.correct || 0;
+          solved += s.stats.solved || 0;
+        });
+      }
+
+      const pct = solved > 0 ? Math.round((correct / solved) * 100) : 0;
+      const cls = solved > 0 ? pctClass(pct) : "none";
+      const runs = sessions.length || results.length;
+
+      const pctEl = document.getElementById("accPct");
+      const labelEl = document.getElementById("accLabel");
+      const barEl = document.getElementById("accBar");
+
+      pctEl.className = "pg-acc-pct " + cls;
+      animateCount(pctEl, pct, 1100);
+      setTimeout(() => {
+        pctEl.textContent = solved > 0 ? pct + "%" : "—";
+      }, 1150);
+
+      labelEl.textContent = solved > 0
+        ? `${correct} to'g'ri / ${solved} yechilgan`
+        : "Hali natija yo'q";
+
+      barEl.className = cls;
+      requestAnimationFrame(() => {
+        barEl.style.width = (solved > 0 ? pct : 0) + "%";
+      });
+
+      animateCount(document.getElementById("stRuns"), runs);
+      animateCount(document.getElementById("stSolved"), solved);
+      animateCount(document.getElementById("stCorrect"), correct);
+      animateCount(document.getElementById("stMistakes"), mistakes.length);
+
+      const nCount = Object.keys(notes).filter(k => String(notes[k] || "").trim()).length;
+      document.getElementById("notesCountLabel").textContent = nCount + " ta izoh";
+
+      renderSparkline();
+    }
+
+    function renderSparkline() {
+      const sessions = getSessions()
+        .filter(s => s.stats && (s.status === "completed" || s.status === "stopped"))
+        .sort((a, b) => new Date(a.updatedAt || a.startedAt || 0) - new Date(b.updatedAt || b.startedAt || 0));
+
+      // last 10, chronological left → right
+      const last = sessions.slice(-10);
+      const row = document.getElementById("sparkRow");
+      const sub = document.getElementById("activitySub");
+
+      if (!last.length) {
+        row.innerHTML = Array.from({ length: 10 }, () =>
+          `<div class="pg-spark-bar empty" data-tip="—"></div>`
+        ).join("");
+        sub.textContent = "ma'lumot yo'q";
+        return;
+      }
+
+      sub.textContent = `oxirgi ${last.length} ta`;
+
+      // pad left with empty if fewer than 10
+      const pads = Math.max(0, 10 - last.length);
+      let html = "";
+      for (let i = 0; i < pads; i++) {
+        html += `<div class="pg-spark-bar empty" data-tip="—"></div>`;
+      }
+
+      last.forEach((s, idx) => {
+        const p = s.stats?.percent ?? 0;
+        const cls = pctClass(p);
+        const h = Math.max(8, Math.round((p / 100) * 48));
+        const tip = `${prettyName(s.testName)} · ${p}%`;
+        html += `<div class="pg-spark-bar ${cls}" data-tip="${esc(tip)}" style="height:0" data-h="${h}"></div>`;
+      });
+
+      row.innerHTML = html;
+
+      // animate rise left → right with stagger
+      requestAnimationFrame(() => {
+        row.querySelectorAll(".pg-spark-bar[data-h]").forEach((bar, i) => {
+          setTimeout(() => {
+            bar.style.height = bar.dataset.h + "px";
+          }, i * 55);
+        });
+      });
+    }
+
+    /* ---- History ---- */
+    function getHistoryItems() {
+      const sessions = getSessions();
+      if (sessions.length) {
+        return sessions.map(s => ({
+          id: s.id,
+          testName: s.testName || "unknown",
+          title: prettyName(s.testName),
+          status: s.status || "completed",
+          mode: s.mode || "study",
+          percent: s.stats?.percent ?? 0,
+          correct: s.stats?.correct ?? 0,
+          wrong: s.stats?.wrong ?? 0,
+          solved: s.stats?.solved ?? 0,
+          total: s.stats?.total ?? s.total ?? 0,
+          date: s.updatedAt || s.startedAt,
+          flagged: (s.flagged || []).length,
+          notes: Object.keys(s.notes || {}).filter(i => String(s.notes[i] || "").trim()).length
+        }));
+      }
+      return getResults().map((e, i) => ({
+        id: e.id || ("r" + i),
+        testName: e.testName || "unknown",
+        title: prettyName(e.testName),
+        status: e.partial ? "stopped" : "completed",
+        mode: "study",
+        percent: e.percent ?? 0,
+        correct: e.correct || 0,
+        wrong: e.wrong || 0,
+        solved: e.solved || 0,
+        total: e.total || 0,
+        date: e.date,
+        flagged: 0,
+        notes: 0
+      }));
+    }
+
+    function renderHistory() {
+      const q = (document.getElementById("fSearch")?.value || "").toLowerCase().trim();
+      const st = document.getElementById("fStatus")?.value || "";
+      const sort = document.getElementById("fSort")?.value || "new";
+
+      let list = getHistoryItems().filter(item => {
+        if (q) {
+          const hay = (item.title + " " + item.testName).toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (st && item.status !== st) return false;
+        return true;
+      });
+
+      if (sort === "new") list.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+      else if (sort === "old") list.sort((a, b) => new Date(a.date || 0) - new Date(b.date || 0));
+      else if (sort === "pct") list.sort((a, b) => (b.percent || 0) - (a.percent || 0));
+
+      list = [...list.filter(x => x.status === "paused"), ...list.filter(x => x.status !== "paused")];
+
+      const box = document.getElementById("histList");
+      const empty = document.getElementById("histEmpty");
+      document.getElementById("histCount").textContent = list.length + " ta";
+      empty.style.display = list.length ? "none" : "block";
+
+      box.innerHTML = list.map(item => {
+        const cls = pctClass(item.percent);
+        return `
+          <button type="button" class="pg-item" onclick="openSessionModal('${esc(item.id)}')">
+            <div class="pg-item-pct-ring ${cls}">${item.percent}<small style="font-size:.5rem">%</small></div>
+            <div class="pg-item-body">
+              <div class="pg-item-title">${esc(item.title)}</div>
+              <div class="pg-item-meta">
+                <span class="status-pill ${item.status}">${STATUS_LABEL[item.status] || item.status}</span>
+                <span>${fmtDate(item.date)}</span>
+                ${item.mode === "exam" ? "<span>⏱ Exam</span>" : ""}
+                ${item.flagged ? `<span>🚩 ${item.flagged}</span>` : ""}
+                ${item.notes ? `<span>📝 ${item.notes}</span>` : ""}
+              </div>
+            </div>
+            <div class="pg-item-right">
+              <b>${item.correct}/${item.solved || item.total}</b>
+              <small>${item.wrong} xato</small>
+            </div>
+            <i class="bi bi-chevron-right pg-item-arrow"></i>
+          </button>`;
+      }).join("");
+    }
+
+    /* ---- Session detail ---- */
+    function openSessionModal(id) {
+      const s = getSessionById(id);
+      const titleEl = document.getElementById("sdTitle");
+      const subEl = document.getElementById("sdSub");
+      const body = document.getElementById("sdBody");
+
+      if (!s) {
+        titleEl.textContent = "Sessiya topilmadi";
+        subEl.textContent = "";
+        body.innerHTML = `<div class="text-muted text-center py-4">Batafsil ma'lumot saqlanmagan.</div>`;
+        document.getElementById("sessionBackdrop").classList.add("show");
+        document.body.style.overflow = "hidden";
+        return;
+      }
+
+      const st = s.stats || {};
+      const pct = st.percent ?? 0;
+      const qres = s.questionResults || {};
+      const flags = Array.isArray(s.flagged) ? s.flagged : [];
+      const notes = s.notes || {};
+      const mistakes = s.mistakes || [];
+      const total = s.total || st.total || 0;
+
+      titleEl.textContent = prettyName(s.testName);
+      subEl.textContent = `${STATUS_LABEL[s.status] || s.status} · ${fmtDate(s.updatedAt || s.startedAt)} · ${s.mode === "exam" ? "Exam" : "Study"}`;
+
+      // navigator
+      let dots = "";
+      for (let i = 0; i < Math.min(total, 200); i++) {
+        const r = qres[String(i)] || qres[i];
+        let cls = "skip";
+        if (r?.status === "correct") cls = "ok";
+        else if (r?.status === "wrong") cls = "bad";
+        // flagged may be number or string index
+        const isFlag = flags.some(f => Number(f) === i);
+        if (isFlag) cls += " flag";
+        dots += `<button type="button" class="sd-dot ${cls}" title="Q${i + 1}${isFlag ? " · flagged" : ""}">${i + 1}</button>`;
+      }
+
+      // flagged list (explicit)
+      const flagHtml = flags.length
+        ? `<div class="sd-section"><i class="bi bi-flag-fill text-warning"></i> Flaglangan (${flags.length})</div>
+           <div class="sd-flag-list">
+             ${flags.map(f => {
+          const idx = Number(f);
+          const r = qres[String(idx)] || qres[idx];
+          const stLabel = r?.status === "correct" ? "to'g'ri" : r?.status === "wrong" ? "xato" : "yechilmagan";
+          return `<span class="sd-flag-chip">Savol ${idx + 1} · ${stLabel}</span>`;
+        }).join("")}
+           </div>`
+        : "";
+
+      // notes
+      const noteKeys = Object.keys(notes).filter(i => String(notes[i] || "").trim());
+      const notesHtml = noteKeys.length
+        ? noteKeys.map(i => `
+            <div class="sd-note">
+              <b>Savol ${+i + 1}</b>
+              ${esc(notes[i]).replace(/\n/g, "<br>")}
+            </div>`).join("")
+        : "";
+
+      // mistakes — full Q / A / photo / explanation
+      const mistakesHtml = mistakes.length
+        ? mistakes.map((m, idx) => {
+          const answers = Array.isArray(m.a) ? m.a : [];
+          const photo = m.photo || null;
+          const expl = m.explanation || "";
+          const imgField = m.img || null;
+          return `
+              <div class="sd-mistake">
+                <div class="sd-mistake-q">${idx + 1}. ${esc(m.q || "—").replace(/\n/g, "<br>")}</div>
+                ${photo ? `<div class="sd-photo"><img src="${esc(photo)}" alt="Savol rasmi" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ""}
+                ${answers.map((a, ai) => {
+            const ok = ai === m.correct;
+            const bad = ai === m.selected && !ok;
+            const cls = ok ? "ok" : bad ? "bad" : "";
+            const badge = ok
+              ? `<span class="badge bg-success" style="font-size:.65rem">To'g'ri</span>`
+              : bad
+                ? `<span class="badge bg-danger" style="font-size:.65rem">Siz tanlagan</span>`
+                : "";
+            return `<div class="sd-ans ${cls}"><span>${LETTERS[ai] || ai}. ${esc(a)}</span>${badge}</div>`;
+          }).join("")}
+                ${(expl || imgField) ? `<div class="sd-expl"><i class="bi bi-lightbulb me-1"></i>${renderExplanation(expl, imgField)}</div>` : ""}
+              </div>`;
+        }).join("")
+        : "";
+
+      body.innerHTML = `
+        <div class="sd-stats">
+          <div class="sd-stat"><b class="text-success">${st.correct ?? 0}</b><span>To'g'ri</span></div>
+          <div class="sd-stat"><b class="text-danger">${st.wrong ?? 0}</b><span>Xato</span></div>
+          <div class="sd-stat"><b>${st.solved ?? 0}</b><span>Yechilgan</span></div>
+          <div class="sd-stat"><b>${st.unsolved ?? 0}</b><span>Qolgan</span></div>
+        </div>
+        <div class="text-center mb-2">
+          <span style="font-size:1.35rem;font-weight:800" class="${pctClass(pct) === "ok" ? "text-success" :
+          pctClass(pct) === "mid" ? "text-warning" : "text-danger"
+        }">${pct}%</span>
+          <span class="text-muted small ms-1">aniqlik</span>
+        </div>
+
+        ${total ? `
+          <div class="sd-section"><i class="bi bi-grid-3x3-gap"></i> Savollar (${total})</div>
+          <div class="sd-nav">${dots || '<span class="text-muted small">—</span>'}</div>
+          <div class="small text-muted mt-1 mb-0">Yashil = to'g'ri · Qizil = xato · Kulrang = yechilmagan · Sariq nuqta = flag</div>
+        ` : ""}
+
+        ${flagHtml}
+
+        ${noteKeys.length ? `
+          <div class="sd-section"><i class="bi bi-journal-text"></i> Izohlar (${noteKeys.length})</div>
+          ${notesHtml}
+        ` : ""}
+
+        ${mistakes.length ? `
+          <div class="sd-section"><i class="bi bi-x-octagon"></i> Xatolar (${mistakes.length})</div>
+          ${mistakesHtml}
+        ` : `
+          <div class="sd-section">Xatolar</div>
+          <div class="text-muted small">Bu sessiyada xato yo'q${st.wrong ? " (batafsil saqlanmagan)" : ""}.</div>
+        `}
+      `;
+
+      document.getElementById("sessionBackdrop").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSessionModal() {
+      document.getElementById("sessionBackdrop").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    /* ---- Notes modal ---- */
+    function openNotesModal() {
+      renderNotesModal();
+      document.getElementById("notesBackdrop").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeNotesModal() {
+      document.getElementById("notesBackdrop").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function renderNotesModal() {
+      const notes = getNotes();
+      const sessions = getSessions();
+      const entries = Object.entries(notes)
+        .filter(([, t]) => String(t || "").trim())
+        .map(([hash, text]) => {
+          let label = hash.slice(0, 12) + "…";
+          let date = null;
+          for (const s of sessions) {
+            const idx = (s.qHashes || []).indexOf(hash);
+            if (idx !== -1) {
+              label = `${prettyName(s.testName)} · Savol ${idx + 1}`;
+              date = s.updatedAt || s.startedAt;
+              break;
+            }
+          }
+          if (hash.startsWith("manual_")) label = "Qo'lda yozilgan";
+          return { hash, text, label, date };
+        })
+        .reverse();
+
+      const body = document.getElementById("notesBody");
+      body.innerHTML = `
+        <div class="note-add-box">
+          <textarea id="newNoteText" placeholder="Yangi izoh yozing..."></textarea>
+          <button type="button" class="btn btn-primary btn-sm" onclick="addNote()">
+            <i class="bi bi-plus-lg"></i> Qo'shish
+          </button>
+        </div>
+        ${entries.length === 0
+          ? `<div class="text-center text-muted py-4" style="font-size:.9rem">Izohlar yo'q.</div>`
+          : entries.map(n => `
+            <div class="note-row">
+              <div class="note-row-top">
+                <div class="note-row-label">${esc(n.label)}${n.date ? " · " + fmtDate(n.date) : ""}</div>
+                <div class="note-row-actions">
+                  <button type="button" title="Tahrirlash" onclick="editNote('${esc(n.hash)}')"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="del" title="O'chirish" onclick="deleteNote('${esc(n.hash)}')"><i class="bi bi-trash3"></i></button>
+                </div>
+              </div>
+              <div class="note-row-text" id="note-text-${esc(n.hash)}">${esc(n.text)}</div>
+            </div>`).join("")
+        }`;
+    }
+
+    function addNote() {
+      const ta = document.getElementById("newNoteText");
+      const text = (ta?.value || "").trim();
+      if (!text) { ta?.focus(); return; }
+      const notes = getNotes();
+      notes["manual_" + Date.now().toString(36)] = text;
+      writeJSON(LS_NOTES, notes);
+      ta.value = "";
+      renderNotesModal();
+      renderOverview();
+    }
+
+    function deleteNote(hash) {
+      if (!confirm("Izohni o'chirasizmi?")) return;
+      const notes = getNotes();
+      delete notes[hash];
+      writeJSON(LS_NOTES, notes);
+      renderNotesModal();
+      renderOverview();
+    }
+
+    function editNote(hash) {
+      const el = document.getElementById("note-text-" + hash);
+      if (!el || el.querySelector("textarea")) return;
+      const current = el.textContent;
+      el.innerHTML = `
+        <textarea class="note-edit-area" id="edit-area-${hash}">${esc(current)}</textarea>
+        <div class="d-flex gap-2 mt-2">
+          <button type="button" class="btn btn-sm btn-primary rounded-pill" onclick="saveEditNote('${esc(hash)}')">Saqlash</button>
+          <button type="button" class="btn btn-sm btn-light rounded-pill" onclick="renderNotesModal()">Bekor</button>
+        </div>`;
+      document.getElementById("edit-area-" + hash)?.focus();
+    }
+
+    function saveEditNote(hash) {
+      const ta = document.getElementById("edit-area-" + hash);
+      const text = (ta?.value || "").trim();
+      const notes = getNotes();
+      if (!text) delete notes[hash];
+      else notes[hash] = text;
+      writeJSON(LS_NOTES, notes);
+      renderNotesModal();
+      renderOverview();
+    }
+
+    function fullRender() {
+      renderOverview();
+      renderHistory();
+    }
+
+    document.addEventListener("DOMContentLoaded", fullRender);
+    window.addEventListener("focus", fullRender);
+    window.addEventListener("pageshow", fullRender);
+    window.addEventListener("storage", e => {
+      if ([LS_SESSIONS, LS_DATA, LS_NOTES, LS_RESULTS].includes(e.key)) fullRender();
+    });
+  </script>
+</body>
+
+</html>

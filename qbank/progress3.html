@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PulseGo Progress">
+  <meta name="author" content="Pulse Medical">
+  <title>PulseGo — Progress</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/casestyles.css">
+
+  <style>
+    :root {
+      --pg-bg: #f4f6f8;
+      --pg-card: #ffffff;
+      --pg-text: #0f172a;
+      --pg-muted: #64748b;
+      --pg-line: #e8edf2;
+      --pg-blue: #2563eb;
+      --pg-green: #16a34a;
+      --pg-amber: #d97706;
+      --pg-red: #dc2626;
+      --pg-teal: #1b3a3a;
+      --pg-radius: 14px;
+      --pg-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--pg-bg);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--pg-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .pg-page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 1rem 1rem 5.5rem;
+    }
+
+    /* Header */
+    .pg-hero {
+      margin-bottom: 1.15rem;
+    }
+
+    .pg-hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .pg-hero h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.2rem;
+      line-height: 1.25;
+    }
+
+    .pg-hero p {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    .pg-chip {
+      flex-shrink: 0;
+      background: #eff6ff;
+      color: var(--pg-blue);
+      border: 1px solid #dbeafe;
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    /* Accuracy hero */
+    .pg-acc {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .pg-acc-pct {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .pg-acc-pct.ok {
+      color: var(--pg-green);
+    }
+
+    .pg-acc-pct.mid {
+      color: var(--pg-amber);
+    }
+
+    .pg-acc-pct.low {
+      color: var(--pg-red);
+    }
+
+    .pg-acc-pct.none {
+      color: var(--pg-muted);
+    }
+
+    .pg-acc-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+      margin-top: 0.35rem;
+    }
+
+    .pg-acc-bar {
+      height: 6px;
+      border-radius: 99px;
+      background: #e2e8f0;
+      overflow: hidden;
+      margin: 0.85rem auto 0;
+      max-width: 200px;
+    }
+
+    .pg-acc-bar>span {
+      display: block;
+      height: 100%;
+      border-radius: 99px;
+      transition: width 0.6s ease;
+    }
+
+    .pg-acc-bar>span.ok {
+      background: var(--pg-green);
+    }
+
+    .pg-acc-bar>span.mid {
+      background: var(--pg-amber);
+    }
+
+    .pg-acc-bar>span.low {
+      background: var(--pg-red);
+    }
+
+    /* Stats grid */
+    .pg-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .pg-stat {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      padding: 0.9rem 0.7rem;
+      text-align: center;
+      box-shadow: var(--pg-shadow);
+    }
+
+    .pg-stat b {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .pg-stat span {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+    }
+
+    .pg-stat.green b {
+      color: var(--pg-green);
+    }
+
+    .pg-stat.blue b {
+      color: var(--pg-blue);
+    }
+
+    .pg-stat.amber b {
+      color: var(--pg-amber);
+    }
+
+    .pg-stat.red b {
+      color: var(--pg-red);
+    }
+
+    /* Notes card */
+    .pg-notes-card {
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      padding: 0.9rem 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pg-notes-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: #eff6ff;
+      color: var(--pg-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .pg-notes-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pg-notes-body strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .pg-notes-body small {
+      font-size: 0.75rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    .pg-notes-card .btn {
+      flex-shrink: 0;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      padding: 0.4rem 0.85rem;
+    }
+
+    /* Section */
+    .pg-section-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+
+    .pg-section-label h2 {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .pg-section-label small {
+      font-size: 0.72rem;
+      color: var(--pg-muted);
+      font-weight: 600;
+    }
+
+    /* Filters */
+    .pg-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 0.75rem;
+    }
+
+    .pg-filters select,
+    .pg-filters input {
+      border: 1px solid var(--pg-line);
+      background: var(--pg-card);
+      border-radius: 10px;
+      padding: 0.45rem 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 550;
+      color: var(--pg-text);
+      outline: none;
+      font-family: inherit;
+    }
+
+    .pg-filters select:focus,
+    .pg-filters input:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    /* History list */
+    .pg-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pg-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--pg-card);
+      border: 1px solid var(--pg-line);
+      border-radius: var(--pg-radius);
+      padding: 0.85rem 1rem;
+      box-shadow: var(--pg-shadow);
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+      cursor: default;
+    }
+
+    .pg-item-pct-ring {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.78rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .pg-item-pct-ring.ok {
+      background: var(--pg-green);
+    }
+
+    .pg-item-pct-ring.mid {
+      background: var(--pg-amber);
+    }
+
+    .pg-item-pct-ring.low {
+      background: var(--pg-red);
+    }
+
+    .pg-item-pct-ring.none {
+      background: #94a3b8;
+    }
+
+    .pg-item-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pg-item-title {
+      font-size: 0.88rem;
+      font-weight: 650;
+      line-height: 1.3;
+      margin: 0 0 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pg-item-meta {
+      font-size: 0.7rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.65rem;
+    }
+
+    .pg-item-right {
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .pg-item-right b {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .pg-item-right small {
+      font-size: 0.65rem;
+      color: var(--pg-muted);
+      font-weight: 600;
+    }
+
+    .status-pill {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 700;
+    }
+
+    .status-pill.completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .status-pill.stopped {
+      background: #ffedd5;
+      color: #9a3412;
+    }
+
+    .status-pill.paused {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status-pill.running {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .pg-empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--pg-muted);
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* Notes modal */
+    .notes-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      z-index: 2000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .notes-modal-backdrop.show {
+      display: flex;
+    }
+
+    .notes-modal {
+      background: #fff;
+      width: 100%;
+      max-width: 520px;
+      max-height: 88vh;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -8px 40px rgba(15, 23, 42, 0.18);
+      animation: slideUp 0.25s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .notes-modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.15rem 0.75rem;
+      border-bottom: 1px solid var(--pg-line);
+      flex-shrink: 0;
+    }
+
+    .notes-modal-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .notes-modal-body {
+      overflow-y: auto;
+      padding: 0.85rem 1.15rem 1.5rem;
+      flex: 1;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .note-row {
+      background: #f8fafc;
+      border: 1px solid var(--pg-line);
+      border-radius: 12px;
+      padding: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    .note-row-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 0.4rem;
+    }
+
+    .note-row-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+    }
+
+    .note-row-text {
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .note-row-actions {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .note-row-actions button {
+      border: none;
+      background: transparent;
+      color: var(--pg-muted);
+      padding: 0.25rem 0.4rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .note-row-actions button:hover {
+      background: #e2e8f0;
+      color: var(--pg-text);
+    }
+
+    .note-row-actions button.del:hover {
+      background: #fee2e2;
+      color: var(--pg-red);
+    }
+
+    .note-add-box {
+      border: 1.5px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .note-add-box textarea {
+      width: 100%;
+      border: 1px solid var(--pg-line);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 72px;
+      outline: none;
+    }
+
+    .note-add-box textarea:focus {
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    .note-add-box .btn {
+      margin-top: 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.9rem;
+    }
+
+    .note-edit-area {
+      width: 100%;
+      border: 1px solid #93c5fd;
+      border-radius: 8px;
+      padding: 0.5rem 0.65rem;
+      font-size: 0.88rem;
+      font-family: inherit;
+      resize: vertical;
+      min-height: 60px;
+      outline: none;
+    }
+
+    @media (min-width: 768px) {
+      .pg-page {
+        padding: 1.5rem 1.25rem 3rem;
+      }
+
+      .pg-hero h1 {
+        font-size: 1.55rem;
+      }
+
+      .notes-modal-backdrop {
+        align-items: center;
+      }
+
+      .notes-modal {
+        border-radius: 20px;
+        max-height: 80vh;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .pg-acc-pct {
+        font-size: 2.2rem;
+      }
+
+      .pg-stats {
+        gap: 6px;
+      }
+
+      .pg-stat b {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+      </div>
+      <div>
+        <div class="sidebar-brand">Pulse Go</div>
+        <div class="sidebar-tagline">siz uchun maxsus</div>
+      </div>
+      <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="sidebar-user" id="sidebarUser">
+      <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+        <div class="sidebar-user-sub">Pulse Go Member</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Asosiy</div>
+      <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i> Testlar</a>
+      <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> QBank</a>
+      <div class="sidebar-section-label">O'quv materiallari</div>
+      <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i> Kitoblar</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="https://t.me/broinibek" target="_blank" class="sidebar-link" style="background:#f0fdf4;color:#16a34a">
+        <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+      </a>
+    </div>
+  </aside>
+
+  <nav class="top-navbar">
+    <div class="container">
+      <button class="btn-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
+      <a href="/" class="nav-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
+      </a>
+      <a href="javascript:history.back()" class="btn btn-light btn-sm rounded-pill">
+        <i class="bi bi-arrow-left"></i> Orqaga
+      </a>
+      <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+    </div>
+  </nav>
+
+  <div class="pg-page">
+    <!-- Accuracy -->
+    <div class="pg-acc">
+      <div class="pg-acc-pct none" id="accPct">—</div>
+      <div class="pg-acc-label" id="accLabel">Hali natija yo'q</div>
+      <div class="pg-acc-bar"><span id="accBar" style="width:0%"></span></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="pg-stats">
+      <div class="pg-stat blue">
+        <b id="stRuns">0</b>
+        <span>Jami runlar</span>
+      </div>
+      <div class="pg-stat green">
+        <b id="stSolved">0</b>
+        <span>Yechilgan savollar</span>
+      </div>
+      <div class="pg-stat">
+        <b id="stCorrect">0</b>
+        <span>To'g'ri</span>
+      </div>
+      <div class="pg-stat red">
+        <b id="stMistakes">0</b>
+        <span>Ochiq xatolar</span>
+      </div>
+    </div>
+
+    <!-- Notes summary -->
+    <div class="pg-notes-card">
+      <div class="pg-notes-icon"><i class="bi bi-journal-text"></i></div>
+      <div class="pg-notes-body">
+        <strong id="notesCountLabel">0 ta izoh</strong>
+        <small>Barcha testlardan saqlangan eslatmalar</small>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm" onclick="openNotesModal()">
+        Ko'rish
+      </button>
+    </div>
+
+    <!-- History -->
+    <div class="pg-section-label">
+      <h2>Tarix</h2>
+      <small id="histCount">0 ta</small>
+    </div>
+
+    <div class="pg-filters">
+      <input type="search" id="fSearch" placeholder="Qidirish..." oninput="renderHistory()">
+      <select id="fStatus" onchange="renderHistory()">
+        <option value="">Barcha holat</option>
+        <option value="completed">Yakunlangan</option>
+        <option value="stopped">To'xtatilgan</option>
+        <option value="paused">Pauzada</option>
+      </select>
+      <select id="fSort" onchange="renderHistory()">
+        <option value="new">Yangi first</option>
+        <option value="old">Eski first</option>
+        <option value="pct">% bo'yicha</option>
+      </select>
+    </div>
+
+    <div class="pg-list" id="histList"></div>
+    <div class="pg-empty" id="histEmpty">Hali hech qanday test ishlanmagan</div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <nav class="bottom-nav d-lg-none">
+    <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+    <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>Testlar</span></a>
+    <a href="/qbank/qbank.html" class="bn-item">
+      <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+      <span>QBank</span>
+    </a>
+    <a href="/qbank/progress.html" class="bn-item active"><i class="bi bi-bar-chart-fill"></i><span>Progress</span></a>
+    <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+  </nav>
+
+  <!-- Notes modal -->
+  <div class="notes-modal-backdrop" id="notesBackdrop" onclick="if(event.target===this)closeNotesModal()">
+    <div class="notes-modal" role="dialog" aria-modal="true">
+      <div class="notes-modal-head">
+        <h3><i class="bi bi-journal-text me-1"></i> Izohlar</h3>
+        <button type="button" class="btn btn-sm btn-light rounded-circle" onclick="closeNotesModal()"
+          style="width:34px;height:34px;padding:0">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <div class="notes-modal-body" id="notesBody">
+        <!-- filled by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    /* =========================================================
+       Trusted keys (from test engine)
+       ========================================================= */
+    const LS_SESSIONS = "pulsego_sessions_v1";
+    const LS_DATA = "pulsego_data_v1";
+    const LS_NOTES = "pulsego_notes_v1";
+    const LS_FLAGS = "pulsego_flagged_v1";
+    const LS_RESULTS = "pulsego_test_results_v1";
+
+    function readJSON(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        if (!raw) return fallback;
+        return JSON.parse(raw);
+      } catch (e) { return fallback; }
+    }
+    function writeJSON(key, val) {
+      try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { console.error(e); }
+    }
+
+    function openSidebar() {
+      document.getElementById("sidebar")?.classList.add("open");
+      document.getElementById("sidebarOverlay")?.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar")?.classList.remove("open");
+      document.getElementById("sidebarOverlay")?.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function esc(s) {
+      return String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return "—";
+      const d = new Date(iso);
+      if (isNaN(d)) return "—";
+      return d.toLocaleDateString("uz-UZ", { day: "2-digit", month: "short", year: "numeric" })
+        + " · " + d.toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" });
+    }
+
+    function pctClass(p) {
+      if (p == null || isNaN(p)) return "none";
+      if (p >= 80) return "ok";
+      if (p >= 55) return "mid";
+      return "low";
+    }
+
+    /* ---------- Data readers ---------- */
+    function getSessions() {
+      const p = readJSON(LS_SESSIONS, []);
+      return Array.isArray(p) ? p : [];
+    }
+    function getOpenMistakes() {
+      const d = readJSON(LS_DATA, {});
+      return Array.isArray(d.mistakes) ? d.mistakes : [];
+    }
+    function getNotes() {
+      const o = readJSON(LS_NOTES, {});
+      return o && typeof o === "object" && !Array.isArray(o) ? o : {};
+    }
+    function getResults() {
+      const map = new Map();
+      const add = (list) => {
+        if (!Array.isArray(list)) return;
+        list.forEach(e => {
+          if (!e) return;
+          const key = `${e.testName}|${e.date}|${e.correct}|${e.total}|${e.solved}`;
+          if (!map.has(key)) map.set(key, e);
+        });
+      };
+      const r = readJSON(LS_RESULTS, {});
+      add(r.tests);
+      const d = readJSON(LS_DATA, {});
+      add(d.results);
+      add(d.testResults);
+      // also fold sessions
+      getSessions().forEach(s => {
+        if (!s.stats) return;
+        if (s.status !== "completed" && s.status !== "stopped") return;
+        add([{
+          testName: s.testName,
+          date: s.updatedAt || s.startedAt,
+          correct: s.stats.correct || 0,
+          wrong: s.stats.wrong || 0,
+          solved: s.stats.solved || 0,
+          total: s.stats.total || s.total || 0,
+          percent: s.stats.percent || 0
+        }]);
+      });
+      return Array.from(map.values());
+    }
+
+    /* ---------- Overview ---------- */
+    function renderOverview() {
+      const results = getResults();
+      const sessions = getSessions();
+      const mistakes = getOpenMistakes();
+      const notes = getNotes();
+
+      let correct = 0, solved = 0;
+      results.forEach(e => {
+        const s = e.solved != null ? e.solved : (e.correct || 0) + (e.wrong || 0);
+        correct += e.correct || 0;
+        solved += s;
+      });
+      // fallback from sessions if no results
+      if (!results.length) {
+        sessions.forEach(s => {
+          if (!s.stats) return;
+          correct += s.stats.correct || 0;
+          solved += s.stats.solved || 0;
+        });
+      }
+
+      const pct = solved > 0 ? Math.round((correct / solved) * 100) : null;
+      const cls = pctClass(pct);
+
+      const pctEl = document.getElementById("accPct");
+      const labelEl = document.getElementById("accLabel");
+      const barEl = document.getElementById("accBar");
+
+      pctEl.textContent = pct != null ? pct + "%" : "—";
+      pctEl.className = "pg-acc-pct " + cls;
+      labelEl.textContent = pct != null
+        ? `${correct} to'g'ri / ${solved} yechilgan`
+        : "Hali natija yo'q";
+      barEl.style.width = (pct || 0) + "%";
+      barEl.className = cls;
+
+      document.getElementById("stRuns").textContent = sessions.length || results.length;
+      document.getElementById("stSolved").textContent = solved;
+      document.getElementById("stCorrect").textContent = correct;
+      document.getElementById("stMistakes").textContent = mistakes.length;
+
+      const nCount = Object.keys(notes).filter(k => String(notes[k] || "").trim()).length;
+      document.getElementById("notesCountLabel").textContent = nCount + " ta izoh";
+    }
+
+    /* ---------- History ---------- */
+    function getHistoryItems() {
+      // Prefer sessions (richer), fall back to results
+      const sessions = getSessions();
+      if (sessions.length) {
+        return sessions.map(s => ({
+          id: s.id,
+          testName: s.testName || "unknown",
+          status: s.status || "completed",
+          mode: s.mode || "study",
+          percent: s.stats?.percent ?? 0,
+          correct: s.stats?.correct ?? 0,
+          wrong: s.stats?.wrong ?? 0,
+          solved: s.stats?.solved ?? 0,
+          total: s.stats?.total ?? s.total ?? 0,
+          date: s.updatedAt || s.startedAt,
+          flagged: (s.flagged || []).length,
+          notes: Object.keys(s.notes || {}).filter(i => String(s.notes[i] || "").trim()).length
+        }));
+      }
+      // fallback
+      return getResults().map((e, i) => ({
+        id: e.id || i,
+        testName: e.testName || "unknown",
+        status: e.partial ? "stopped" : "completed",
+        mode: "study",
+        percent: e.percent ?? 0,
+        correct: e.correct || 0,
+        wrong: e.wrong || 0,
+        solved: e.solved || 0,
+        total: e.total || 0,
+        date: e.date,
+        flagged: 0,
+        notes: 0
+      }));
+    }
+
+    function renderHistory() {
+      const q = (document.getElementById("fSearch")?.value || "").toLowerCase().trim();
+      const st = document.getElementById("fStatus")?.value || "";
+      const sort = document.getElementById("fSort")?.value || "new";
+
+      let list = getHistoryItems().filter(item => {
+        if (q && !(item.testName || "").toLowerCase().includes(q)) return false;
+        if (st && item.status !== st) return false;
+        return true;
+      });
+
+      if (sort === "new") list.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+      else if (sort === "old") list.sort((a, b) => new Date(a.date || 0) - new Date(b.date || 0));
+      else if (sort === "pct") list.sort((a, b) => (b.percent || 0) - (a.percent || 0));
+
+      // paused on top
+      list = [...list.filter(x => x.status === "paused"), ...list.filter(x => x.status !== "paused")];
+
+      const box = document.getElementById("histList");
+      const empty = document.getElementById("histEmpty");
+      document.getElementById("histCount").textContent = list.length + " ta";
+      empty.style.display = list.length ? "none" : "block";
+
+      const STATUS_LABEL = {
+        completed: "Yakunlangan",
+        stopped: "To'xtatilgan",
+        paused: "Pauzada",
+        running: "Jarayonda"
+      };
+
+      box.innerHTML = list.map(item => {
+        const cls = pctClass(item.percent);
+        return `
+          <div class="pg-item">
+            <div class="pg-item-pct-ring ${cls}">${item.percent}<small style="font-size:.5rem">%</small></div>
+            <div class="pg-item-body">
+              <div class="pg-item-title">${esc(item.testName)}</div>
+              <div class="pg-item-meta">
+                <span class="status-pill ${item.status}">${STATUS_LABEL[item.status] || item.status}</span>
+                <span>${fmtDate(item.date)}</span>
+                ${item.mode === "exam" ? "<span>⏱ Exam</span>" : ""}
+                ${item.flagged ? `<span>🚩 ${item.flagged}</span>` : ""}
+                ${item.notes ? `<span>📝 ${item.notes}</span>` : ""}
+              </div>
+            </div>
+            <div class="pg-item-right">
+              <b class="${cls === "ok" ? "text-success" : cls === "mid" ? "text-warning" : cls === "low" ? "text-danger" : ""}">${item.correct}/${item.solved || item.total}</b>
+              <small>${item.wrong} xato</small>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    /* ---------- Notes modal ---------- */
+    function openNotesModal() {
+      renderNotesModal();
+      document.getElementById("notesBackdrop").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeNotesModal() {
+      document.getElementById("notesBackdrop").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    function renderNotesModal() {
+      const notes = getNotes();
+      const sessions = getSessions();
+      const entries = Object.entries(notes)
+        .filter(([, t]) => String(t || "").trim())
+        .map(([hash, text]) => {
+          // try resolve label from sessions
+          let label = hash.slice(0, 12) + "…";
+          let date = null;
+          for (const s of sessions) {
+            const idx = (s.qHashes || []).indexOf(hash);
+            if (idx !== -1) {
+              label = `${s.testName} · Savol ${idx + 1}`;
+              date = s.updatedAt || s.startedAt;
+              break;
+            }
+          }
+          return { hash, text, label, date };
+        })
+        // newest-ish first (no timestamp on notes, so keep object order / reverse)
+        .reverse();
+
+      const body = document.getElementById("notesBody");
+      body.innerHTML = `
+        <div class="note-add-box">
+          <textarea id="newNoteText" placeholder="Yangi izoh yozing..."></textarea>
+          <button type="button" class="btn btn-primary btn-sm" onclick="addNote()">
+            <i class="bi bi-plus-lg"></i> Qo'shish
+          </button>
+        </div>
+        ${entries.length === 0
+          ? `<div class="text-center text-muted py-4" style="font-size:.9rem">Izohlar yo'q. Test paytida Notes tugmasidan qo'shing yoki shu yerda yozing.</div>`
+          : entries.map(n => `
+            <div class="note-row" data-hash="${esc(n.hash)}">
+              <div class="note-row-top">
+                <div class="note-row-label">${esc(n.label)}${n.date ? " · " + fmtDate(n.date) : ""}</div>
+                <div class="note-row-actions">
+                  <button type="button" title="Tahrirlash" onclick="editNote('${esc(n.hash)}')"><i class="bi bi-pencil"></i></button>
+                  <button type="button" class="del" title="O'chirish" onclick="deleteNote('${esc(n.hash)}')"><i class="bi bi-trash3"></i></button>
+                </div>
+              </div>
+              <div class="note-row-text" id="note-text-${esc(n.hash)}">${esc(n.text)}</div>
+            </div>`).join("")
+        }`;
+    }
+
+    function addNote() {
+      const ta = document.getElementById("newNoteText");
+      const text = (ta?.value || "").trim();
+      if (!text) { ta?.focus(); return; }
+      const notes = getNotes();
+      // free notes get a synthetic hash
+      const hash = "manual_" + Date.now().toString(36);
+      notes[hash] = text;
+      writeJSON(LS_NOTES, notes);
+      ta.value = "";
+      renderNotesModal();
+      renderOverview();
+    }
+
+    function deleteNote(hash) {
+      if (!confirm("Izohni o'chirasizmi?")) return;
+      const notes = getNotes();
+      delete notes[hash];
+      writeJSON(LS_NOTES, notes);
+      renderNotesModal();
+      renderOverview();
+    }
+
+    function editNote(hash) {
+      const el = document.getElementById("note-text-" + hash);
+      if (!el || el.querySelector("textarea")) return;
+      const current = el.textContent;
+      el.innerHTML = `
+        <textarea class="note-edit-area" id="edit-area-${hash}">${esc(current)}</textarea>
+        <div class="d-flex gap-2 mt-2">
+          <button type="button" class="btn btn-sm btn-primary rounded-pill" onclick="saveEditNote('${esc(hash)}')">Saqlash</button>
+          <button type="button" class="btn btn-sm btn-light rounded-pill" onclick="renderNotesModal()">Bekor</button>
+        </div>`;
+      document.getElementById("edit-area-" + hash)?.focus();
+    }
+
+    function saveEditNote(hash) {
+      const ta = document.getElementById("edit-area-" + hash);
+      const text = (ta?.value || "").trim();
+      const notes = getNotes();
+      if (!text) {
+        delete notes[hash];
+      } else {
+        notes[hash] = text;
+      }
+      writeJSON(LS_NOTES, notes);
+      renderNotesModal();
+      renderOverview();
+    }
+
+    /* ---------- Init ---------- */
+    function fullRender() {
+      renderOverview();
+      renderHistory();
+    }
+
+    document.addEventListener("DOMContentLoaded", fullRender);
+    window.addEventListener("focus", fullRender);
+    window.addEventListener("pageshow", fullRender);
+    window.addEventListener("storage", e => {
+      if ([LS_SESSIONS, LS_DATA, LS_NOTES, LS_RESULTS].includes(e.key)) fullRender();
+    });
+  </script>
+</body>
+
+</html>
