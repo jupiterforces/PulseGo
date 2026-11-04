@@ -3,7 +3,7 @@
 // ----------------------
 
 import { db } from "../../firebase.js";
-import { doc, getDoc } from "../../firebase.js";
+import { doc, getDoc, setDoc } from "../../firebase.js";
 import {
   initTestStartModal,
   showTestStartModal,
@@ -1058,6 +1058,128 @@ function saveTestResult(resultData) {
 
   return localOk ? entry : null;
 }
+
+/**
+ * ONE Firestore write per finished/stopped test.
+ * LocalStorage remains source of truth (sessions, results, flagged, notes, mistakes).
+ * Cloud gets a single summary doc: title, stats, time spent, marks counts.
+ */
+async function writeTestRunToFirestoreOnce(payload) {
+  try {
+    // Prefer Data API, then pulsego_data_v1, then pulsego_user_v1
+    let user = null;
+    try {
+      if (window.Data && typeof window.Data.getUser === "function") {
+        user = window.Data.getUser();
+      }
+    } catch (e) {}
+    if (!user || !user.uid) {
+      try {
+        const raw = localStorage.getItem("pulsego_data_v1");
+        user = raw ? JSON.parse(raw).user || null : null;
+      } catch (e) {}
+    }
+    if (!user || !user.uid) {
+      try {
+        const raw = localStorage.getItem("pulsego_user_v1");
+        const cached = raw ? JSON.parse(raw) : null;
+        if (cached && cached.uid) {
+          user = {
+            uid: cached.uid,
+            name:
+              cached.fullName ||
+              `${cached.firstName || ""} ${cached.lastName || ""}`.trim() ||
+              "User",
+            email: cached.email || "",
+            photoURL: cached.photoURL || "",
+          };
+        }
+      } catch (e) {}
+    }
+
+    if (!user || !user.uid) {
+      console.log("☁️ skip Firestore write: no user uid");
+      return null;
+    }
+
+    const isAuthUser = !!(user.email || user.photoURL);
+    const collectionName = isAuthUser ? "user" : "users";
+    const runId = String(
+      payload.id ||
+        (typeof sessionStartTime !== "undefined" && sessionStartTime
+          ? sessionStartTime.getTime()
+          : Date.now()),
+    );
+
+    const docPayload = {
+      id: runId,
+      testName: payload.testName || "unknown",
+      testTitle: payload.testTitle || payload.testName || "unknown",
+      mode: payload.mode || "study",
+      status: payload.status || "completed",
+      partial: !!payload.partial,
+      total: Number(payload.total) || 0,
+      solved: Number(payload.solved) || 0,
+      correct: Number(payload.correct) || 0,
+      wrong: Number(payload.wrong) || 0,
+      unsolved: Number(payload.unsolved) || 0,
+      percent: Number(payload.percent) || 0,
+      timeSpentSec: Number(payload.timeSpentSec) || 0,
+      totalTestTime: Number(payload.totalTestTime) || 0,
+      flaggedCount: Number(payload.flaggedCount) || 0,
+      notesCount: Number(payload.notesCount) || 0,
+      mistakesCount: Number(payload.mistakesCount) || 0,
+      prepSessionId: payload.prepSessionId || null,
+      prepSubjectId: payload.prepSubjectId || null,
+      pagePath:
+        payload.pagePath ||
+        (typeof location !== "undefined" ? location.pathname : null),
+      uid: user.uid,
+      userName: user.name || user.fullName || "",
+      userEmail: user.email || "",
+      startedAt: payload.startedAt || null,
+      finishedAt: payload.finishedAt || new Date().toISOString(),
+      syncedAt: new Date().toISOString(),
+    };
+
+    let setDocFn = typeof setDoc === "function" ? setDoc : null;
+    let docFn = typeof doc === "function" ? doc : null;
+    let dbRef = typeof db !== "undefined" ? db : null;
+
+    if (!setDocFn || !docFn || !dbRef) {
+      const mod = await import("../../firebase.js");
+      setDocFn = mod.setDoc;
+      docFn = mod.doc;
+      dbRef = mod.db;
+    }
+
+    if (!setDocFn || !docFn || !dbRef) {
+      console.error("☁️ Firestore setDoc/doc/db unavailable");
+      return null;
+    }
+
+    // Exactly ONE document write
+    const ref = docFn(dbRef, collectionName, user.uid, "runs", runId);
+    await setDocFn(ref, docPayload, { merge: true });
+    console.log(
+      `☁️ Firestore 1-write OK → ${collectionName}/${user.uid}/runs/${runId}`,
+    );
+
+    // Optional: notify Data layer so it can skip full multi-doc smartSync
+    try {
+      if (window.Data && typeof window.Data.markRunSynced === "function") {
+        window.Data.markRunSynced(runId, docPayload);
+      }
+    } catch (e) {}
+
+    return docPayload;
+  } catch (e) {
+    console.error("☁️ writeTestRunToFirestoreOnce failed:", e);
+    return null;
+  }
+}
+
+window.writeTestRunToFirestoreOnce = writeTestRunToFirestoreOnce;
 
 /** Unified results for pages/stats (local first, then Data) */
 function getUnifiedTestResults() {
@@ -2211,7 +2333,7 @@ function loadDataScript(callback) {
     return;
   }
   const script = document.createElement("script");
-  script.src = "../../assets/js/data.js";
+  script.src = "../../assets/js/data (1).js";
   script.onload = () => {
     if (callback) callback();
   };
@@ -4652,7 +4774,7 @@ function showResultPopup(options = {}) {
     });
   }
 
-  // ---- persist (unchanged logic) ----
+  // ---- persist: localStorage first, then ONE Firestore write ----
   try {
     persistSessionMistakesToStore(mistakes || [], currentTestName);
     saveTestResult({
@@ -4679,6 +4801,44 @@ function showResultPopup(options = {}) {
         partial: !!stats.partial,
       });
     }
+
+    // Single cloud write (title + user stats + time spent + mark counts)
+    const timeSpentSec = Math.max(0, (totalTestTime || 0) - (timeLeft || 0));
+    const notesObj = examNotes || {};
+    const notesCount = Object.keys(notesObj).filter((k) =>
+      String(notesObj[k] || "").trim(),
+    ).length;
+
+    writeTestRunToFirestoreOnce({
+      id: sessionStartTime ? sessionStartTime.getTime() : Date.now(),
+      testName: currentTestName || "unknown",
+      testTitle:
+        (typeof prettyTestName === "function"
+          ? prettyTestName(currentTestName)
+          : null) ||
+        currentTestName ||
+        "unknown",
+      mode: getExamSessionMode(),
+      status: isPartial ? "stopped" : "completed",
+      partial: isPartial,
+      total: stats.total,
+      solved: stats.solved,
+      correct: stats.correct,
+      wrong: stats.wrong,
+      unsolved: stats.unsolved,
+      percent: stats.percent,
+      timeSpentSec,
+      totalTestTime: totalTestTime || 0,
+      flaggedCount: (examFlaggedQuestions && examFlaggedQuestions.size) || 0,
+      notesCount,
+      mistakesCount: (mistakes || []).length,
+      prepSessionId:
+        prepContext?.sessionId || window.__prepContext?.sessionId || null,
+      prepSubjectId:
+        prepContext?.subjectId || window.__prepContext?.subjectId || null,
+      startedAt: sessionStartTime ? sessionStartTime.toISOString() : null,
+      finishedAt: new Date().toISOString(),
+    }).catch((err) => console.error("Firestore run write:", err));
   } catch (e) {
     console.error("Error saving test result:", e);
   }

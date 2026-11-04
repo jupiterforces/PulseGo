@@ -34,15 +34,12 @@
 
   function ensureUser() {
     return new Promise((resolve) => {
-      // ========================================
       // 1. Prefer authenticated user from pulsego_user_v1
-      // ========================================
       try {
         const cachedRaw = localStorage.getItem("pulsego_user_v1");
         if (cachedRaw) {
           const cached = JSON.parse(cachedRaw);
 
-          // If this cache has a real Firebase-looking user (has email or photoURL)
           if (
             cached.uid &&
             (cached.email || cached.photoURL || cached.firstName)
@@ -64,33 +61,27 @@
               createdAt: new Date().toISOString(),
             };
 
-            // Force overwrite the old anonymous user
             setUser(authUser);
 
-            // === NEW: Pull remote data if local is empty ===
             pullFromFirestoreIfEmpty().then(() => {
               resolve(authUser);
             });
 
-            return; // important: don't resolve immediately
+            return;
           }
         }
       } catch (e) {
         console.warn("Failed to read pulsego_user_v1", e);
       }
 
-      // ========================================
       // 2. Fallback to existing local anonymous user
-      // ========================================
       const user = getUser();
       if (user && user.name) {
         console.log("Using existing local user:", user.uid);
         return resolve(user);
       }
 
-      // ========================================
       // 3. Create new anonymous user (modal)
-      // ========================================
       const modal = document.getElementById("userModal");
       const form = document.getElementById("pg-form");
 
@@ -126,7 +117,6 @@
 
   document.addEventListener("DOMContentLoaded", async () => {
     const user = await Data.ensureUser();
-
     console.log(user);
   });
 
@@ -139,26 +129,55 @@
     );
   }
 
+  /**
+   * Local-only record. Does NOT trigger multi-doc smartSync anymore.
+   * Engine already writes one Firestore "runs/{id}" doc after each test stop.
+   */
   function recordTestResult({
     testName,
     total = 0,
     correct = 0,
+    solved = null,
+    wrong = null,
+    unsolved = null,
+    percent = null,
     mistakes = [],
+    partial = false,
   } = {}) {
     const d = load();
     d.tests = d.tests || [];
     d.mistakes = d.mistakes || [];
     d.resolvedMistakes = d.resolvedMistakes || [];
 
-    const percent = total === 0 ? 0 : Math.round((correct / total) * 100);
+    const solvedN =
+      solved != null ? solved : correct + (Array.isArray(mistakes) ? mistakes.length : wrong || 0);
+    const wrongN =
+      wrong != null
+        ? wrong
+        : Array.isArray(mistakes)
+          ? mistakes.length
+          : Math.max(0, solvedN - correct);
+    const unsolvedN =
+      unsolved != null ? unsolved : Math.max(0, total - solvedN);
+    const percentN =
+      percent != null
+        ? percent
+        : solvedN === 0
+          ? 0
+          : Math.round((correct / solvedN) * 100);
+
     const entry = {
       id: Date.now(),
       testName: testName || "unknown",
       total,
       correct,
-      percent,
+      solved: solvedN,
+      wrong: wrongN,
+      unsolved: unsolvedN,
+      percent: percentN,
       date: new Date().toISOString(),
-      mistakesCount: mistakes ? mistakes.length : 0,
+      mistakesCount: mistakes ? mistakes.length : wrongN || 0,
+      partial: !!partial,
       mistakes: [],
     };
 
@@ -170,9 +189,9 @@
         a: m.a || [],
         correct: m.correct,
         selected: m.selected,
+        qHash: m.qHash || null,
       }));
 
-      // Also store flattened mistakes list for quick review (with IDs)
       entry.mistakes.forEach((m) => {
         const stored = Object.assign(
           { id: m.id, testName: entry.testName, date: entry.date },
@@ -185,20 +204,36 @@
     }
 
     d.tests.push(entry);
-    // mark as dirty (needs sync)
+    // Keep local dirty flag for optional rare full backup — do NOT auto multi-write
     d.syncedToFirebase = false;
     save(d);
 
-    // === NEW: Force immediate sync for authenticated users ===
-    const isAuthUser = !!(d.user?.email || d.user?.photoURL);
-    if (isAuthUser && window.Data?.smartSync) {
-      // run in background so it doesn't slow down the UI
-      window.Data.smartSync().catch((err) => {
-        console.error("Background sync after test failed:", err);
-      });
-    }
-
+    // Prefer engine's single-write path if available; otherwise one-run write here
+    // (engine calls writeTestRunToFirestoreOnce itself — this is a fallback only)
     return entry;
+  }
+
+  /** Called by engine after successful 1-write so full sync can skip this run */
+  function markRunSynced(runId, payload) {
+    try {
+      const d = load();
+      d.lastRunSyncedId = String(runId);
+      d.lastRunSyncedAt = new Date().toISOString();
+      // Overview is local; do not fan-out writes
+      if (payload && typeof payload === "object") {
+        d.lastRunSummary = {
+          id: String(runId),
+          testName: payload.testName,
+          percent: payload.percent,
+          correct: payload.correct,
+          total: payload.total,
+          timeSpentSec: payload.timeSpentSec,
+        };
+      }
+      save(d);
+    } catch (e) {
+      console.warn("markRunSynced failed", e);
+    }
   }
 
   function getResults() {
@@ -233,7 +268,6 @@
     removed.resolvedAt = new Date().toISOString();
     d.resolvedMistakes.push(removed);
 
-    // find the original test entry and remove the mistake there too
     if (d.tests && d.tests.length) {
       const test = d.tests.find(
         (t) => t.id === removed.id || t.testName === removed.testName,
@@ -278,14 +312,12 @@
         t.mistakesCount = 0;
       });
     }
-    // mark as dirty
     d.syncedToFirebase = false;
     save(d);
   }
 
   function clearAll() {
     localStorage.removeItem(KEY);
-    // also clear sync state (use literal to avoid referencing outer var)
     try {
       localStorage.removeItem("pulsego_sync_v1");
     } catch (e) {}
@@ -305,7 +337,6 @@
 
   async function submitFeedback({ liked, advantages, disadvantages }) {
     const data = load();
-    // Allow anonymous submissions if no stored user
     const user = data.user || { uid: null, name: "Anonymous", about: "" };
 
     const mod = await import("../../firebase.js");
@@ -322,7 +353,6 @@
           },
         );
       } else {
-        // write to a top-level feedbacks collection for anonymous users
         const id = String(Date.now());
         await mod.setDoc(mod.doc(mod.db, "feedbacks", id), {
           liked,
@@ -333,13 +363,10 @@
         });
       }
     } catch (e) {
-      // rethrow so callers can handle / show errors
       throw e;
     }
 
-    // mark locally that feedback was submitted to avoid repeated prompts
     markFeedbackSubmitted();
-
     return true;
   }
 
@@ -348,6 +375,7 @@
     setUser,
     ensureUser,
     recordTestResult,
+    markRunSynced,
     getResults,
     getMistakes,
     getResolvedMistakes,
@@ -361,28 +389,19 @@
     markFeedbackSubmitted,
     submitFeedback,
 
-    // expose raw accessors for the sync layer
     _getRawData: load,
     _saveRawData: save,
   };
 })(window);
 
 /* =========================
-   🔥 FIRESTORE SYNC LAYER (non-module friendly)
-   Uses dynamic import() to load the module `../../firebase.js` so
-   this file can remain a plain script while still using ES module exports.
-   ========================= */
-
-/* =========================
    🔥 FIRESTORE SYNC LAYER
+   Per-test path = 1 write (runs/{id}) via engine.
+   Full multi-doc sync is OPT-IN / rare backup only.
 ========================= */
 
 const SYNC_KEY = "pulsego_sync_v1";
 
-/**
- * If the user is authenticated and local data is empty,
- * download their previous tests + mistakes from Firestore once.
- */
 async function pullFromFirestoreIfEmpty() {
   const data = window.Data._getRawData();
   if (!data || !data.user || !data.user.uid) return;
@@ -402,9 +421,8 @@ async function pullFromFirestoreIfEmpty() {
   console.log("🔽 Local data is empty → trying to pull from Firestore...");
 
   try {
-    const mod = await import("../../firebase.js"); // adjust path if needed
+    const mod = await import("../../firebase.js");
 
-    // Check that the needed functions exist
     if (
       typeof mod.collection !== "function" ||
       typeof mod.getDocs !== "function"
@@ -416,14 +434,40 @@ async function pullFromFirestoreIfEmpty() {
     const { db, collection, getDocs } = mod;
     const uid = data.user.uid;
 
-    // 1. Pull testResults
-    const testsSnap = await getDocs(collection(db, "user", uid, "testResults"));
-    const tests = [];
-    testsSnap.forEach((docSnap) => {
-      tests.push(docSnap.data());
-    });
+    // Prefer new runs collection; fall back to legacy testResults
+    let tests = [];
+    try {
+      const runsSnap = await getDocs(collection(db, "user", uid, "runs"));
+      runsSnap.forEach((docSnap) => {
+        const r = docSnap.data();
+        tests.push({
+          id: r.id || docSnap.id,
+          testName: r.testName,
+          total: r.total,
+          correct: r.correct,
+          solved: r.solved,
+          wrong: r.wrong,
+          unsolved: r.unsolved,
+          percent: r.percent,
+          date: r.finishedAt || r.syncedAt || r.startedAt,
+          mistakesCount: r.mistakesCount || 0,
+          partial: !!r.partial,
+          timeSpentSec: r.timeSpentSec,
+        });
+      });
+    } catch (e) {
+      console.warn("runs pull failed, trying testResults", e);
+    }
 
-    // 2. Pull mistakes
+    if (!tests.length) {
+      const testsSnap = await getDocs(
+        collection(db, "user", uid, "testResults"),
+      );
+      testsSnap.forEach((docSnap) => {
+        tests.push(docSnap.data());
+      });
+    }
+
     const mistakesSnap = await getDocs(collection(db, "user", uid, "mistakes"));
     const mistakes = [];
     mistakesSnap.forEach((docSnap) => {
@@ -435,14 +479,13 @@ async function pullFromFirestoreIfEmpty() {
       return;
     }
 
-    // 3. Save into localStorage
     data.tests = tests;
     data.mistakes = mistakes;
     data.syncedToFirebase = true;
     window.Data._saveRawData(data);
 
     console.log(
-      `✅ Successfully pulled ${tests.length} tests and ${mistakes.length} mistakes`,
+      `✅ Successfully pulled ${tests.length} runs/tests and ${mistakes.length} mistakes`,
     );
   } catch (err) {
     console.error("Failed to pull data from Firestore:", err);
@@ -465,6 +508,66 @@ function setSyncState(state) {
   }
 }
 
+/**
+ * ONE write: latest run summary only.
+ * Used as fallback if engine write is unavailable.
+ */
+async function writeLatestRunOnce(runPayload) {
+  const data = window.Data._getRawData();
+  if (!data || !data.user || !data.user.uid) return null;
+
+  const isAuthUser = !!(data.user.email || data.user.photoURL);
+  const collectionName = isAuthUser ? "user" : "users";
+  const uid = data.user.uid;
+  const runId = String(runPayload.id || Date.now());
+
+  try {
+    const mod = await import("../../firebase.js");
+    const { db, setDoc, doc } = mod;
+
+    const docPayload = {
+      id: runId,
+      testName: runPayload.testName || "unknown",
+      testTitle: runPayload.testTitle || runPayload.testName || "unknown",
+      mode: runPayload.mode || "study",
+      status: runPayload.status || "completed",
+      partial: !!runPayload.partial,
+      total: runPayload.total || 0,
+      solved: runPayload.solved || 0,
+      correct: runPayload.correct || 0,
+      wrong: runPayload.wrong || 0,
+      unsolved: runPayload.unsolved || 0,
+      percent: runPayload.percent || 0,
+      timeSpentSec: runPayload.timeSpentSec || 0,
+      totalTestTime: runPayload.totalTestTime || 0,
+      flaggedCount: runPayload.flaggedCount || 0,
+      notesCount: runPayload.notesCount || 0,
+      mistakesCount: runPayload.mistakesCount || 0,
+      uid,
+      userName: data.user.name || "",
+      userEmail: data.user.email || "",
+      startedAt: runPayload.startedAt || null,
+      finishedAt: runPayload.finishedAt || new Date().toISOString(),
+      syncedAt: new Date().toISOString(),
+    };
+
+    await setDoc(doc(db, collectionName, uid, "runs", runId), docPayload, {
+      merge: true,
+    });
+    console.log(`☁️ Data.writeLatestRunOnce → ${collectionName}/${uid}/runs/${runId}`);
+    markRunSynced(runId, docPayload);
+    return docPayload;
+  } catch (e) {
+    console.error("writeLatestRunOnce failed:", e);
+    return null;
+  }
+}
+
+/**
+ * Rare full backup (profile + all local tests + mistakes).
+ * NOT called after every test anymore — only via explicit smartSync
+ * when you really need a full mirror (e.g. account migration).
+ */
 async function syncToFirestore() {
   const data = window.Data._getRawData();
   if (!data || !data.user || !data.user.uid) {
@@ -475,14 +578,14 @@ async function syncToFirestore() {
   const isAuthUser = !!(data.user.email || data.user.photoURL);
   const collectionName = isAuthUser ? "user" : "users";
 
-  console.log(`🔄 Syncing to → ${collectionName}/${data.user.uid}`);
+  console.log(`🔄 Full backup sync → ${collectionName}/${data.user.uid}`);
 
   try {
-    const mod = await import("../../firebase.js"); // adjust path if needed
+    const mod = await import("../../firebase.js");
     const { db, setDoc, doc } = mod;
     const uid = data.user.uid;
 
-    // 1. Profile + overview
+    // 1. Profile + overview (1 write)
     const overview = window.Data.getOverview();
     await setDoc(
       doc(db, collectionName, uid),
@@ -498,8 +601,10 @@ async function syncToFirestore() {
       { merge: true },
     );
 
-    // 2. Test results
-    for (const test of data.tests || []) {
+    // 2. Prefer compact runs if present; else legacy testResults
+    // Cap fan-out: only newest 20 to stay within practical limits
+    const tests = (data.tests || []).slice(-20);
+    for (const test of tests) {
       const testRef = doc(
         db,
         collectionName,
@@ -514,8 +619,9 @@ async function syncToFirestore() {
       );
     }
 
-    // 3. Mistakes
-    for (const mistake of data.mistakes || []) {
+    // 3. Mistakes — newest 50 only
+    const mistakes = (data.mistakes || []).slice(-50);
+    for (const mistake of mistakes) {
       const mistakeRef = doc(
         db,
         collectionName,
@@ -538,14 +644,20 @@ async function syncToFirestore() {
       isAuthUser,
     });
 
-    console.log(`✅ Full sync completed → ${collectionName}/${uid}`);
+    console.log(`✅ Full backup completed → ${collectionName}/${uid}`);
   } catch (e) {
     console.error("Firestore sync failed:", e);
   }
 }
 
+/**
+ * smartSync: NO longer re-uploads every test/mistake after each run.
+ * - Auth users: only full backup if never synced at all (first time)
+ * - Anonymous: once per day max, and only profile+overview style if needed
+ * Day-to-day per-test cloud write = engine writeTestRunToFirestoreOnce (1 write)
+ */
 async function smartSync() {
-  console.log("SMART SYNC RUNNING");
+  console.log("SMART SYNC RUNNING (lightweight)");
 
   const data =
     window.Data && typeof window.Data._getRawData === "function"
@@ -561,55 +673,61 @@ async function smartSync() {
   if (!data || !data.user || !data.user.uid) return;
 
   const isAuthUser = !!(data.user.email || data.user.photoURL);
-
-  // ========================================
-  // AUTHENTICATED USERS → only sync when dirty
-  // ========================================
-  if (isAuthUser) {
-    if (data.syncedToFirebase === false) {
-      console.log("🔐 Auth user – data is dirty → syncing now");
-      await syncToFirestore();
-    } else {
-      console.log("🔐 Auth user – already synced, skipping");
-    }
-    return;
-  }
-
-  // ========================================
-  // ANONYMOUS USERS → once a day
-  // ========================================
   const state = getSyncState();
 
+  // First-ever sync for this device/user → one full backup
   if (!state.synced) {
-    console.log("Anonymous – never synced → syncing");
+    console.log("First sync ever → full backup once");
     await syncToFirestore();
     return;
   }
 
+  // Auth: skip routine multi-write (engine already did 1-write per test)
+  if (isAuthUser) {
+    console.log("🔐 Auth user – routine smartSync skipped (per-test 1-write handles cloud)");
+    return;
+  }
+
+  // Anonymous: at most once a day, and only if still dirty
   const last = state.lastSync;
   const diff = Date.now() - new Date(last || 0).getTime();
   const ONE_DAY = 24 * 60 * 60 * 1000;
 
-  if (diff > ONE_DAY) {
-    console.log("Anonymous – last sync > 1 day → syncing");
+  if (data.syncedToFirebase === false && diff > ONE_DAY) {
+    console.log("Anonymous – daily backup");
     await syncToFirestore();
+  } else {
+    console.log("Anonymous – smartSync skip");
   }
 }
 
-// Expose methods
+function markRunSynced(runId, payload) {
+  if (window.Data && typeof window.Data.markRunSynced === "function") {
+    // already on Data
+  }
+  try {
+    const d = window.Data._getRawData();
+    d.lastRunSyncedId = String(runId);
+    d.lastRunSyncedAt = new Date().toISOString();
+    if (payload) d.lastRunSummary = payload;
+    // Do not force full re-sync
+    window.Data._saveRawData(d);
+  } catch (e) {}
+}
+
 try {
   if (window.Data) {
     window.Data.syncToFirestore = syncToFirestore;
     window.Data.smartSync = smartSync;
-    window.Data.pullFromFirestoreIfEmpty = pullFromFirestoreIfEmpty; // ← add this
+    window.Data.pullFromFirestoreIfEmpty = pullFromFirestoreIfEmpty;
+    window.Data.writeLatestRunOnce = writeLatestRunOnce;
     window.Data.getSyncState = getSyncState;
     window.Data.setSyncState = setSyncState;
+    // ensure markRunSynced is the Data one
+    if (!window.Data.markRunSynced) {
+      window.Data.markRunSynced = markRunSynced;
+    }
   }
 } catch (e) {
   console.error("Failed to attach sync methods", e);
 }
-
-// ❌ REMOVED: No more automatic sync on every page load
-// window.addEventListener("DOMContentLoaded", () => {
-//   smartSync();
-// });
