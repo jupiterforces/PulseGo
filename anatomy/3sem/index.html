@@ -517,7 +517,7 @@
             </div>
             <div>
                 <div class="sidebar-brand">Pulse Go</div>
-                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+                <div class="sidebar-tagline">siz uchun maxsus</div>
             </div>
             <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
                 <i class="bi bi-x-lg"></i>
@@ -532,34 +532,13 @@
         </div>
         <nav class="sidebar-nav">
             <div class="sidebar-section-label">Asosiy</div>
-            <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
             <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
-                Tayyorlanish</a>
-            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test
+                Testlar</a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i>
                 QBank</a>
             <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online
-                Darslar</a>
             <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
                 Kitoblar</a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i>
-                Anatomiya</a>
-            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i>
-                Hujayra
-                biologiyasi</a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i>
-                Kimyo</a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
-                Embriologiya</a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i>
-                Klinik
-                holat</a>
-            <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
-                profilim</a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i>
-                Fikr
-                bildirish</a>
         </nav>
         <div class="sidebar-footer">
             <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
@@ -611,12 +590,13 @@
 
         <nav class="bottom-nav d-lg-none">
             <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
-            <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
-            <a href="/preparation/" class="bn-item">
+            <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>Testlar</span></a>
+            <a href="/qbank/qbank.html" class="bn-item">
                 <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
-                <span>Tayyorlanish</span>
+                <span>QBank</span>
             </a>
-            <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+            <a href="/qbank/progress.html" class="bn-item"><i
+                    class="bi  bi-bar-chart-line"></i><span>Progress</span></a>
             <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
         </nav>
     </section>
@@ -626,6 +606,7 @@
     <script src="/assets/js/test-utilsmultiple.js"></script>
 
     <script src="./tests.js"></script>
+    <script src="./neck.js"></script>
 
 
     <script type="module" src="/assets/js/testcases.js"></script>
@@ -665,6 +646,9 @@
             { testName: "img4", title: "4-rasm" },
             { testName: "img5", title: "5-rasm" },
             { testName: "img6", title: "6-rasm" },
+            { testName: "img7", title: "7-rasm" },
+            { testName: "img8", title: "8-rasm" },
+            { testName: "img9", title: "9-rasm" },
         ];
 
         function getPageCards() {
@@ -970,7 +954,7 @@
 
                     const metaParts = [];
                     if (n != null) metaParts.push(`${n} savol`);
-                    if (st?.attempts) metaParts.push(`${st.attempts} urinish`);
+                    // if (st?.attempts) metaParts.push(`${st.attempts} urinish`);
                     if (!last) metaParts.push("Hali ishlanmagan");
 
                     return `
