@@ -2333,7 +2333,7 @@ function loadDataScript(callback) {
     return;
   }
   const script = document.createElement("script");
-  script.src = "../../assets/js/data (1).js";
+  script.src = "../../assets/js/data.js";
   script.onload = () => {
     if (callback) callback();
   };
