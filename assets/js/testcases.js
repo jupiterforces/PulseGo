@@ -4670,8 +4670,8 @@ function ensureResultStyles() {
   const st = document.createElement("style");
   st.id = "pulse-result-style";
   st.textContent = `
-    #pulseResultModal .modal-dialog { max-width: 440px; }
-    #pulseResultModal .pr-card {
+    #resultModal .modal-dialog { max-width: 440px; }
+    #resultModal .pr-card {
       border: none; border-radius: 24px; overflow: hidden;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
       box-shadow: 0 24px 60px rgba(15, 23, 42, .35);
@@ -4734,7 +4734,7 @@ function ensureResultStyles() {
     .pr-row { display: flex; gap: .55rem; } .pr-row .pr-btn { flex: 1; padding: .65rem .5rem; font-size: .84rem; }
 
     @media (max-width: 480px) {
-      #pulseResultModal .modal-dialog { margin: .6rem; }
+      #resultModal .modal-dialog { margin: .6rem; }
       .pr-ring { width: 144px; height: 144px; margin-top: -3.8rem; }
       .pr-pct { font-size: 2.1rem; }
       .pr-head { padding-bottom: 4.3rem; }
@@ -4756,6 +4756,383 @@ function escHtml(s) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
+}
+
+function getResultHistoryForTest(testName, currentPercent) {
+  try {
+    const data = JSON.parse(localStorage.getItem("pulsego_data_v1") || "{}");
+
+    const normalize = (value) =>
+      String(value || "")
+        .trim()
+        .toLowerCase();
+
+    const key = normalize(testName);
+
+    const results = (Array.isArray(data.tests) ? data.tests : [])
+      .filter((item) => normalize(item.testName) === key)
+      .map((item) => ({
+        percent: Math.max(0, Math.min(100, Number(item.percent) || 0)),
+        date: item.date || null,
+        id: item.id,
+      }))
+      .sort((a, b) => {
+        const da = new Date(a.date || Number(a.id) || 0).getTime();
+        const db = new Date(b.date || Number(b.id) || 0).getTime();
+        return da - db;
+      });
+
+    // Identify the current attempt
+    const last = results[results.length - 1];
+
+    const lastTime = last
+      ? new Date(last.date || Number(last.id) || 0).getTime()
+      : 0;
+
+    const isCurrentAlreadySaved =
+      last &&
+      Number.isFinite(lastTime) &&
+      Math.abs(Date.now() - lastTime) < 120000 &&
+      Math.abs(last.percent - currentPercent) < 0.001;
+
+    if (isCurrentAlreadySaved) {
+      last.current = true;
+    } else {
+      results.push({
+        percent: currentPercent,
+        date: new Date().toISOString(),
+        current: true,
+      });
+    }
+
+    return results.slice(-10);
+  } catch (error) {
+    console.error("Result history error:", error);
+    return [{ percent: currentPercent, current: true }];
+  }
+}
+function getResultColor(percent) {
+  if (percent >= 80) return "#16a34a";
+  if (percent >= 50) return "#ca8a04";
+  return "#dc2626";
+}
+
+function buildResultTrendChart(history) {
+  const W = 560;
+  const H = 112;
+  const left = 8;
+  const right = 552;
+  const top = 12;
+  const bottom = 88;
+
+  const count = history.length;
+  const x = (i) =>
+    count === 1 ? W / 2 : left + (i / (count - 1)) * (right - left);
+
+  const y = (value) =>
+    bottom - (Math.max(0, Math.min(100, value)) / 100) * (bottom - top);
+
+  const points = history.map((item, i) => ({
+    x: x(i),
+    y: y(item.percent),
+    percent: item.percent,
+    current: !!item.current,
+  }));
+
+  const grid = [0, 50, 100]
+    .map((value) => {
+      const yy = y(value);
+      return `
+      <line x1="${left}" y1="${yy}" x2="${right}" y2="${yy}"
+        stroke="currentColor" opacity=".13"
+        stroke-dasharray="3 5"/>
+      <text x="0" y="${yy + 3}" font-size="9"
+        fill="currentColor" opacity=".5">${value}</text>
+    `;
+    })
+    .join("");
+
+  const lines = points
+    .slice(1)
+    .map((p, i) => {
+      const previous = points[i];
+      return `
+      <line x1="${previous.x}" y1="${previous.y}"
+        x2="${p.x}" y2="${p.y}"
+        stroke="${getResultColor(p.percent)}"
+        stroke-width="${p.current ? 3.5 : 2.2}"
+        stroke-linecap="round"/>
+    `;
+    })
+    .join("");
+
+  const dots = points
+    .map(
+      (p, i) => `
+    ${
+      p.current
+        ? `
+      <circle cx="${p.x}" cy="${p.y}" r="8"
+        fill="${getResultColor(p.percent)}" opacity=".17"/>
+    `
+        : ""
+    }
+    <circle cx="${p.x}" cy="${p.y}"
+      r="${p.current ? 4.5 : 3}"
+      fill="${getResultColor(p.percent)}"
+      stroke="${p.current ? "#ffffff" : "none"}"
+      stroke-width="2"/>
+  `,
+    )
+    .join("");
+
+  const current = points[points.length - 1];
+
+  return `
+    <div class="pr-chart-wrap">
+      <div class="pr-chart-label">
+        <span>Last ${count} attempts</span>
+        <strong style="color:${getResultColor(current.percent)}">
+          ${Math.round(current.percent)}% · Current
+        </strong>
+      </div>
+      <svg class="pr-trend" viewBox="0 0 ${W} ${H}"
+        preserveAspectRatio="none" role="img"
+        aria-label="Performance trend over the last ${count} attempts">
+        ${grid}
+        ${lines}
+        ${dots}
+      </svg>
+      <div class="pr-chart-axis">
+        <span>Oldest</span>
+        <span>Latest attempt</span>
+      </div>
+    </div>
+  `;
+}
+
+function ensureCompactResultStyles() {
+  if (document.getElementById("prCompactStyles")) return;
+
+  const style = document.createElement("style");
+  style.id = "prCompactStyles";
+
+  style.textContent = `
+    #resultModal {
+      --pr-green: #16a34a;
+      --pr-red: #dc2626;
+      --pr-yellow: #ca8a04;
+    }
+
+    #resultModal .modal-dialog {
+      width: calc(100% - 24px);
+      max-width: 660px;
+      margin: 12px auto;
+    }
+
+    #resultModal .pr-card {
+      max-height: calc(100dvh - 24px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(128,128,128,.15);
+      border-radius: 18px;
+    }
+
+    #resultModal .pr-head {
+      padding: 15px 22px 10px;
+      flex-shrink: 0;
+    }
+
+    #resultModal .pr-name {
+      font-size: clamp(17px, 3vw, 21px);
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    #resultModal .pr-body {
+      padding: 10px 22px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    #resultModal .pr-summary {
+      display: grid;
+      grid-template-columns: 116px 1fr;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+    }
+
+    #resultModal .pr-ring {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto;
+    }
+
+    #resultModal .pr-ring svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    #resultModal .pr-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    #resultModal .pr-metric {
+      min-width: 0;
+      padding: 9px 11px;
+      border: 1px solid rgba(128,128,128,.15);
+      border-radius: 11px;
+      background: var(--bs-tertiary-bg, #f8fafc);
+    }
+
+    #resultModal .pr-metric-label {
+      font-size: 11px;
+      color: var(--bs-secondary-color);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #resultModal .pr-metric-value {
+      font-size: 21px;
+      line-height: 1.3;
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #resultModal .pr-chart-wrap {
+      padding: 11px 13px 7px;
+      border: 1px solid rgba(128,128,128,.16);
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+
+    #resultModal .pr-chart-label,
+    #resultModal .pr-chart-axis {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+    }
+
+    #resultModal .pr-chart-label {
+      margin-bottom: 7px;
+      font-weight: 600;
+    }
+
+    #resultModal .pr-chart-axis {
+      color: var(--bs-secondary-color);
+    }
+
+    #resultModal .pr-trend {
+      width: 100%;
+      height: 92px;
+      display: block;
+      overflow: visible;
+    }
+
+    #resultModal .pr-foot {
+      flex-shrink: 0;
+      padding: 10px 22px 15px;
+    }
+
+    #resultModal .pr-foot .pr-btn {
+      min-height: 40px;
+    }
+
+    @media(max-width: 480px) {
+      #resultModal .modal-dialog {
+        width: calc(100% - 16px);
+        margin: 8px auto;
+      }
+
+      #resultModal .pr-card {
+        max-height: calc(100dvh - 16px);
+        border-radius: 14px;
+      }
+
+      #resultModal .pr-head {
+        padding: 11px 14px 7px;
+      }
+
+      #resultModal .pr-body {
+        padding: 7px 14px;
+      }
+
+      #resultModal .pr-summary {
+        grid-template-columns: 92px 1fr;
+        gap: 10px;
+      }
+
+      #resultModal .pr-ring {
+        width: 90px;
+        height: 90px;
+      }
+
+      #resultModal .pr-metric {
+        padding: 7px 8px;
+      }
+
+      #resultModal .pr-metric-value {
+        font-size: 18px;
+      }
+
+      #resultModal .pr-chart-wrap {
+        margin-top: 8px;
+        padding: 8px 9px 5px;
+      }
+
+      #resultModal .pr-trend {
+        height: 76px;
+      }
+
+      #resultModal .pr-foot {
+        padding: 8px 14px 11px;
+      }
+    }
+
+    @media(max-height: 650px) {
+      #resultModal .pr-head {
+        padding-top: 7px;
+        padding-bottom: 5px;
+      }
+
+      #resultModal .pr-body {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+
+      #resultModal .pr-ring {
+        width: 82px;
+        height: 82px;
+      }
+
+      #resultModal .pr-summary {
+        grid-template-columns: 86px 1fr;
+        margin-bottom: 5px;
+      }
+
+      #resultModal .pr-chart-wrap {
+        margin-top: 5px;
+      }
+
+      #resultModal .pr-trend {
+        height: 55px;
+      }
+
+      #resultModal .pr-foot {
+        padding-top: 5px;
+        padding-bottom: 7px;
+      }
+    }
+  `;
+
+  document.head.appendChild(style);
 }
 
 function showResultPopup(options = {}) {
@@ -4850,7 +5227,8 @@ function showResultPopup(options = {}) {
 
   // ---- build popup ----
   ensureResultStyles();
-  document.getElementById("pulseResultModal")?.remove();
+  ensureCompactResultStyles();
+  document.getElementById("resultModal")?.remove();
 
   const pct = stats.percent || 0;
   const ringColor = pct >= 80 ? "#16a34a" : pct >= 50 ? "#ca8a04" : "#dc2626";
@@ -4872,7 +5250,7 @@ function showResultPopup(options = {}) {
     stats.solved === 0
       ? "Hali birorta savol yechilmagan."
       : isPartial
-        ? `${stats.total} ta savoldan ${stats.solved} tasi yechildi. Aniqlik yechilganlar ichida hisoblanadi.`
+        ? `${stats.total} ta savoldan ${stats.solved}`
         : pct >= 80
           ? "Bilimingiz mustahkam — shu tempda davom eting."
           : pct >= 50
@@ -4893,79 +5271,165 @@ function showResultPopup(options = {}) {
   const badW = stats.total ? (stats.wrong / stats.total) * 100 : 0;
   const C = 2 * Math.PI * 68;
 
+  const history = getResultHistoryForTest(currentTestName, pct);
+
+  const trendHTML = buildResultTrendChart(history);
+
   const modalEl = document.createElement("div");
   modalEl.className = "modal fade";
-  modalEl.id = "pulseResultModal";
+  modalEl.id = "resultModal";
   modalEl.tabIndex = -1;
   modalEl.setAttribute("aria-hidden", "true");
-  modalEl.innerHTML = `
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content pr-card">
-        <div class="pr-head">
-          <div class="pr-brand">Pulse Go</div>
-          <span class="pr-chip ${isPartial ? "part" : "ok"}">
-            <i class="bi ${isPartial ? "bi-pause-circle-fill" : "bi-check-circle-fill"}"></i>
-            ${isPartial ? "To'xtatilgan" : "Yakunlangan"}
-          </span>
-          <div class="pr-name">${escHtml(prettyTestName(currentTestName))}</div>
-          <div class="pr-meta">
-            <span><i class="bi ${exam ? "bi-stopwatch" : "bi-book"}"></i>${exam ? "Exam" : "Study"}</span>
-            <span><i class="bi bi-calendar3"></i>${dateStr}</span>
-            ${exam ? `<span><i class="bi bi-clock"></i>${formatTime(usedSec)}</span>` : ""}
-          </div>
-        </div>
 
-        <div class="pr-body">
+  const testTitle =
+    (typeof prettyTestName === "function"
+      ? prettyTestName(currentTestName)
+      : null) ||
+    currentTestName ||
+    "Test natijasi";
+
+  modalEl.innerHTML = `
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content pr-card">
+
+      <div class="pr-head">
+        <div class="pr-name">${testTitle || "Test natijasi"}</div>
+      </div>
+
+      <div class="pr-body">
+
+        <div class="pr-summary">
+
           <div class="pr-ring">
             <svg viewBox="0 0 164 164">
               <circle class="trk" cx="82" cy="82" r="68"></circle>
-              <circle class="fg" id="prRingFg" cx="82" cy="82" r="68" stroke="${ringColor}"
-                stroke-dasharray="${C}" stroke-dashoffset="${C}"></circle>
+              <circle class="fg" id="prRingFg"
+                cx="82" cy="82" r="68"
+                stroke="${ringColor}"
+                stroke-dasharray="${C}"
+                stroke-dashoffset="${C}">
+              </circle>
             </svg>
-            <div class="pr-pct"><span id="prPct">0</span><small>%</small></div>
+            <div class="pr-pct">
+              <span id="prPct">0</span><small>%</small>
+            </div>
           </div>
 
-          <div class="pr-grade">${grade}</div>
-          <div class="pr-sub">${sub}</div>
+          <div class="pr-metrics">
 
-          <div class="pr-bar"><span class="b-ok" data-w="${okW}"></span><span class="b-bad" data-w="${badW}"></span></div>
+            <div class="pr-metric">
+              <div class="pr-metric-label">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                Correct
+              </div>
+              <div class="pr-metric-value text-success"
+                data-count="${stats.correct}">0</div>
+            </div>
 
-          <div class="pr-grid">
-            <div class="pr-tile t-ok"><div class="l"><i class="bi bi-check-circle"></i>To'g'ri</div>
-              <div class="v" data-count="${stats.correct}">0</div></div>
-            <div class="pr-tile t-bad"><div class="l"><i class="bi bi-x-circle"></i>Xato</div>
-              <div class="v" data-count="${stats.wrong}">0</div></div>
-            <div class="pr-tile t-info"><div class="l"><i class="bi bi-list-check"></i>Yechilgan</div>
-              <div class="v"><span data-count="${stats.solved}">0</span> <small>/ ${stats.total}</small></div></div>
-            <div class="pr-tile t-none"><div class="l"><i class="bi bi-dash-circle"></i>Yechilmagan</div>
-              <div class="v" data-count="${stats.unsolved}">0</div></div>
+            <div class="pr-metric">
+              <div class="pr-metric-label">
+                <i class="bi bi-x-circle-fill text-danger"></i>
+                Wrong
+              </div>
+              <div class="pr-metric-value text-danger"
+                data-count="${stats.wrong}">0</div>
+            </div>
+
+            <div class="pr-metric">
+              <div class="pr-metric-label">
+                <i class="bi bi-list-check"></i>
+                Solved
+              </div>
+              <div class="pr-metric-value">
+                <span data-count="${stats.solved}">0</span>
+                <small>/ ${stats.total}</small>
+              </div>
+            </div>
+
+            <div class="pr-metric">
+              <div class="pr-metric-label">
+                <i class="bi bi-dash-circle"></i>
+                Remaining
+              </div>
+              <div class="pr-metric-value"
+                data-count="${stats.unsolved}">0</div>
+            </div>
+
           </div>
-
-          ${
-            stats.unsolved > 0
-              ? `<div class="pr-note n-blue"><i class="bi bi-info-circle-fill"></i>
-            <span>Yechilmagan ${stats.unsolved} ta savol saqlandi — QBank'da "O'tkazilgan" rejimida qayta ishlashingiz mumkin.</span></div>`
-              : ""
-          }
-          ${
-            mCount > 0
-              ? `<div class="pr-note n-amber"><i class="bi bi-bookmark-star-fill"></i>
-            <span>${mCount} ta xato "Xatolar tahlili" bo'limiga saqlandi. To'g'ri javob bersangiz, u avtomatik o'chadi.</span></div>`
-              : ""
-          }
         </div>
 
-        <div class="pr-foot">
-          <button type="button" class="pr-btn primary" id="prClose"><i class="bi bi-arrow-left-circle"></i>${closeLabel}</button>
-          ${mCount > 0 ? `<button type="button" class="pr-btn warn" id="prReview"><i class="bi bi-arrow-repeat"></i>Xatolarni qayta yechish (${mCount})</button>` : ""}
-          <div class="pr-row">
-            <button type="button" class="pr-btn ghost" id="prShare"><i class="bi bi-telegram"></i>Ulashish</button>
-            ${!isPartial && stats.solved > 0 ? `<button type="button" class="pr-btn ghost" id="prCert"><i class="bi bi-award"></i>Sertifikat</button>` : ""}
-            ${window.PULSE_SESSIONS_URL ? `<a class="pr-btn ghost" href="${window.PULSE_SESSIONS_URL}"><i class="bi bi-clock-history"></i>Sessiyalar</a>` : ""}
-          </div>
+        <div class="pr-grade">${grade}</div>
+        <div class="pr-sub">${sub}</div>
+
+        ${trendHTML}
+
+        ${
+          stats.unsolved > 0
+            ? `<div class="pr-note n-blue">
+                <i class="bi bi-info-circle-fill"></i>
+                <span>${stats.unsolved} unanswered questions saved.</span>
+              </div>`
+            : ""
+        }
+
+        ${
+          mCount > 0
+            ? `<div class="pr-note n-amber">
+                <i class="bi bi-bookmark-star-fill"></i>
+                <span>${mCount} mistakes saved for review.</span>
+              </div>`
+            : ""
+        }
+
+      </div>
+
+      <div class="pr-foot">
+        <button type="button" class="pr-btn primary" id="prClose">
+          <i class="bi bi-arrow-left-circle"></i>${closeLabel}
+        </button>
+
+        ${
+          mCount > 0
+            ? `
+          <button type="button" class="pr-btn warn" id="prReview">
+            <i class="bi bi-arrow-repeat"></i>
+            Xatolarni qayta yechish (${mCount})
+          </button>
+        `
+            : ""
+        }
+
+        <div class="pr-row">
+          <button type="button" class="pr-btn ghost" id="prShare">
+            <i class="bi bi-telegram"></i>Ulashish
+          </button>
+
+          ${
+            !isPartial && stats.solved > 0
+              ? `
+            <button type="button" class="pr-btn ghost" id="prCert">
+              <i class="bi bi-award"></i>Sertifikat
+            </button>
+          `
+              : ""
+          }
+
+          ${
+            window.PULSE_SESSIONS_URL
+              ? `
+            <a class="pr-btn ghost" href="${window.PULSE_SESSIONS_URL}">
+              <i class="bi bi-clock-history"></i>Sessiyalar
+            </a>
+          `
+              : ""
+          }
         </div>
       </div>
-    </div>`;
+
+    </div>
+  </div>
+`;
+
   document.body.appendChild(modalEl);
 
   const modal = new bootstrap.Modal(modalEl, {

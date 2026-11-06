@@ -295,212 +295,604 @@ function escapeHtml(text) {
 /**
  * Show test start modal
  * Returns: { action: 'continue' | 'start', userChoice: boolean }
+
+*/
+
+/* =========================================
+   TEST MODAL — SHARED PROGRESS DATA
+========================================= */
+
+const MODAL_STORAGE = {
+  sessions: "pulsego_sessions_v1",
+  data: "pulsego_data_v1",
+  results: "pulsego_test_results_v1",
+  notes: "pulsego_notes_v1",
+};
+
+function readModalJSON(key, fallback = {}) {
+  try {
+    return JSON.parse(localStorage.getItem(key) || "null") ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function getPrettyTestTitle(testName) {
+  if (!testName) return "Test";
+
+  const name = String(testName).trim();
+
+  if (window.testTitleMap?.[name]) {
+    return window.testTitleMap[name];
+  }
+
+  const titleMap = {
+    img2: "2-rasm",
+    img3: "3-rasm",
+    img4: "4-rasm",
+    img5: "5-rasm",
+    img6: "6-rasm",
+    xatolar: "Xatolar tahlili",
+    "weak-path": "Zaif yo'l",
+  };
+
+  if (titleMap[name]) return titleMap[name];
+
+  if (/^img\d+$/i.test(name)) {
+    return name.match(/\d+/)[0] + "-rasm";
+  }
+
+  if (name.startsWith("qbank:")) {
+    return "QBank · " + name.slice(6);
+  }
+
+  return name;
+}
+
+function getModalRunKey(run) {
+  const timestamp = run.date ? new Date(run.date).getTime() : 0;
+
+  const minute = Number.isFinite(timestamp) ? Math.floor(timestamp / 60000) : 0;
+
+  return [
+    normalizeTestKey(run.testName),
+    minute,
+    run.correct || 0,
+    run.solved || 0,
+    run.total || 0,
+  ].join("|");
+}
+
+/**
+ * Collect test history from the same stores as Progress.
+ * Sessions take priority over duplicate legacy results.
  */
+function getTestHistory(testName) {
+  const requested = normalizeTestKey(testName);
+
+  if (!requested) return [];
+
+  const sessions = readModalJSON(MODAL_STORAGE.sessions, []);
+  const data = readModalJSON(MODAL_STORAGE.data, {});
+  const results = readModalJSON(MODAL_STORAGE.results, {});
+
+  const runs = [];
+  const seen = new Set();
+
+  // 1. Modern session records
+  if (Array.isArray(sessions)) {
+    sessions.forEach((session) => {
+      if (normalizeTestKey(session.testName) !== requested) return;
+
+      const stats = session.stats || {};
+      const solved = Number(stats.solved || 0);
+      const correct = Number(stats.correct || 0);
+      const total = Number(stats.total || session.total || 0);
+
+      // Ignore empty sessions
+      if (session.status === "running" && solved === 0 && correct === 0) return;
+
+      const date = session.updatedAt || session.startedAt;
+
+      const run = {
+        testName: session.testName,
+        date,
+        correct,
+        solved,
+        total,
+        wrong: Number(stats.wrong || 0),
+        percent: Number(
+          stats.percent ??
+            (solved > 0 ? Math.round((correct / solved) * 100) : 0),
+        ),
+        status: session.status || "completed",
+      };
+
+      const key = getModalRunKey(run);
+
+      seen.add(key);
+
+      // Account for small timestamp differences
+      const time = date ? new Date(date).getTime() : 0;
+
+      if (Number.isFinite(time) && time > 0) {
+        [-1, 1].forEach((offset) => {
+          seen.add(
+            getModalRunKey({
+              ...run,
+              date: new Date(time + offset * 60000).toISOString(),
+            }),
+          );
+        });
+      }
+
+      runs.push(run);
+    });
+  }
+
+  // 2. Legacy result records
+  const resultLists = [results.tests, data.results, data.testResults];
+
+  if (Array.isArray(data.preparationSessions)) {
+    data.preparationSessions.forEach((session) => {
+      resultLists.push(session.testResults, session.results);
+    });
+  }
+
+  resultLists.forEach((list) => {
+    if (!Array.isArray(list)) return;
+
+    list.forEach((item) => {
+      if (normalizeTestKey(item?.testName) !== requested) return;
+
+      const solved = Number(
+        item.solved ?? (item.correct || 0) + (item.wrong || 0),
+      );
+
+      const run = {
+        testName: item.testName,
+        date: item.date,
+        correct: Number(item.correct || 0),
+        solved,
+        total: Number(item.total || 0),
+        wrong: Number(item.wrong || 0),
+        percent: Number(
+          item.percent ??
+            (solved > 0 ? Math.round(((item.correct || 0) / solved) * 100) : 0),
+        ),
+        status: item.partial ? "stopped" : "completed",
+      };
+
+      const key = getModalRunKey(run);
+
+      if (seen.has(key)) return;
+
+      seen.add(key);
+      runs.push(run);
+    });
+  });
+
+  return runs.sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0));
+}
+
+/**
+ * Aggregate performance for this test only.
+ */
+function getTestOverallStats(testName) {
+  const runs = getTestHistory(testName);
+
+  const stats = runs.reduce(
+    (acc, run) => {
+      acc.correct += run.correct;
+      acc.solved += run.solved;
+      acc.wrong += run.wrong;
+      acc.total += run.total;
+      return acc;
+    },
+    {
+      correct: 0,
+      solved: 0,
+      wrong: 0,
+      total: 0,
+    },
+  );
+
+  return {
+    ...stats,
+    attempts: runs.length,
+    accuracy:
+      stats.solved > 0
+        ? Math.round((stats.correct / stats.solved) * 100)
+        : null,
+    lastFive: runs.slice(0, 5).reverse(),
+  };
+}
+
+function getModalAccuracyClass(percent) {
+  if (percent == null || !Number.isFinite(Number(percent))) {
+    return "none";
+  }
+
+  if (percent >= 80) return "good";
+  if (percent >= 50) return "medium";
+
+  return "poor";
+}
+
+function formatModalTime(seconds) {
+  const value = Math.max(0, Number(seconds) || 0);
+
+  const minutes = Math.floor(value / 60);
+  const remainingSeconds = value % 60;
+
+  return `${String(minutes).padStart(2, "0")}:${String(
+    remainingSeconds,
+  ).padStart(2, "0")}`;
+}
+
+/**
+ * Count notes and flags saved in session records.
+ */
+
+function getTestSavedDetails(testName, lastAttempt) {
+  const sessions = readModalJSON(MODAL_STORAGE.sessions, []);
+  const allNotes = readModalJSON(MODAL_STORAGE.notes, {});
+  const requested = normalizeTestKey(testName);
+
+  const matchingSessions = Array.isArray(sessions)
+    ? sessions.filter((s) => normalizeTestKey(s.testName) === requested)
+    : [];
+
+  // Notes belonging to this particular test
+  const noteHashes = new Set();
+
+  matchingSessions.forEach((session) => {
+    (session.qHashes || []).forEach((hash) => {
+      noteHashes.add(String(hash));
+    });
+  });
+
+  const globalNoteCount = [...noteHashes].filter((hash) =>
+    String(allNotes[hash] || "").trim(),
+  ).length;
+
+  // Include active, unsaved-session notes
+  const activeNoteCount = Object.keys(lastAttempt?.examNotes || {}).filter(
+    (key) => String(lastAttempt.examNotes[key] || "").trim(),
+  ).length;
+
+  const session = matchingSessions.sort(
+    (a, b) =>
+      new Date(b.updatedAt || b.startedAt || 0) -
+      new Date(a.updatedAt || a.startedAt || 0),
+  )[0];
+
+  const flags = new Set(
+    [...(session?.flagged || []), ...(lastAttempt?.examFlagged || [])].map(
+      String,
+    ),
+  );
+
+  return {
+    notesCount: Math.max(globalNoteCount, activeNoteCount),
+    flagsCount: flags.size,
+  };
+}
+
 export async function showTestStartModal(testName, questionCount) {
+  console.log("=== PULSEGO TEST START MODAL ===", testName);
+
+  const lastAttempt = getLastAttemptData(testName);
+  const history = getTestOverallStats(testName);
+  const saved = getTestSavedDetails(testName, lastAttempt);
+
+  const isPro = await getCurrentUserProStatus();
+
+  const title = getPrettyTestTitle(testName);
+  const accuracyClass = getModalAccuracyClass(history.accuracy);
+
+  // Clean up an old modal
+  const oldModal = document.getElementById("testStartModal");
+
+  if (oldModal) {
+    const oldInstance = bootstrap.Modal.getInstance(oldModal);
+    oldInstance?.dispose();
+    oldModal.remove();
+  }
+
+  const modal = document.createElement("div");
+
+  modal.id = "testStartModal";
+  modal.className = "modal fade";
+  modal.tabIndex = -1;
+  modal.setAttribute("aria-labelledby", "tmHeading");
+  modal.setAttribute("aria-hidden", "true");
+
+  const escape = (value) => escapeHtml(String(value ?? ""));
+
+  // Last five results: oldest on left, newest on right
+  const chartHTML = history.lastFive.length
+    ? history.lastFive
+        .map((run, index) => {
+          const pct = Math.max(0, Math.min(100, run.percent));
+          const cls = getModalAccuracyClass(pct);
+
+          return `
+          <div class="tm-chart-item">
+            <div class="tm-chart-value">${pct}%</div>
+            <div class="tm-bar-track">
+              <div
+                class="tm-bar ${cls}"
+                data-height="${pct}"
+                title="${escape(run.correct)} / ${escape(run.solved)} to'g'ri"
+              ></div>
+            </div>
+            <div class="tm-chart-label">#${index + 1}</div>
+          </div>
+        `;
+        })
+        .join("")
+    : `
+      <div class="tm-empty w-100">
+        Hali test natijalari mavjud emas.
+      </div>
+    `;
+
+  // Resume information
+  const resumeHTML = lastAttempt
+    ? `
+      <div class="tm-resume">
+        <strong>
+          <i class="bi bi-arrow-repeat me-1"></i>
+          Saqlangan test mavjud
+        </strong>
+        <small>
+          Keyingi savol: ${Math.min(
+            lastAttempt.currentIndex + 1,
+            lastAttempt.total,
+          )} / ${lastAttempt.total}
+        </small>
+        <small>
+          Vaqt: ${formatModalTime(lastAttempt.timeLeft)}
+          · To'g'ri: ${lastAttempt.score}
+        </small>
+      </div>
+    `
+    : "";
+
+  // Additional saved information
+  const savedHTML = `
+    <div class="tm-info">
+      <div class="tm-chip">
+        <i class="bi bi-journal-text me-1"></i>
+        ${saved.notesCount} ta izoh
+      </div>
+
+      <div class="tm-chip">
+        <i class="bi bi-flag me-1"></i>
+        ${saved.flagsCount} ta belgilangan
+      </div>
+
+      <div class="tm-chip">
+        <i class="bi bi-${isPro ? "gem" : "lock"} me-1"></i>
+        ${isPro ? "Pro" : "Free"}
+      </div>
+    </div>
+  `;
+
+  // Overall performance
+  const overallHTML = `
+    <div class="tm-section-label">
+      Umumiy natija · ${history.attempts} ta urinish
+    </div>
+
+    <div class="tm-overview">
+      <div class="tm-stat blue">
+        <strong>${history.attempts}</strong>
+        <span>Jami urinishlar</span>
+      </div>
+
+      <div class="tm-stat">
+        <strong>${history.solved}</strong>
+        <span>Yechilgan savollar</span>
+      </div>
+
+      <div class="tm-stat green">
+        <strong>${history.correct}</strong>
+        <span>To'g'ri javoblar</span>
+      </div>
+
+      <div class="tm-stat">
+        <strong>${history.wrong}</strong>
+        <span>Xato javoblar</span>
+      </div>
+    </div>
+
+    <div class="tm-accuracy">
+      <div class="tm-accuracy-value ${accuracyClass}">
+        ${history.accuracy == null ? "—" : history.accuracy + "%"}
+      </div>
+      <div class="text-muted small fw-semibold">
+        Ushbu test bo'yicha umumiy aniqlik
+      </div>
+    </div>
+  `;
+
+  modal.innerHTML = `
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <!-- HEADER -->
+        <div class="modal-header">
+          <div>
+            <h5 class="tm-title" id="tmHeading">
+              ${escape(title)}
+            </h5>
+
+            <div class="tm-subtitle">
+              <i class="bi bi-clipboard2-check me-1"></i>
+              ${Number(questionCount) || 0} ta savol
+              · PulseGo
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <!-- BODY -->
+        <div class="modal-body">
+
+          ${resumeHTML}
+
+          ${overallHTML}
+
+          <hr class="tm-divider">
+
+          <!-- LAST FIVE RESULTS -->
+          <div class="tm-section-label">
+            So'nggi 5 ta natija
+          </div>
+
+          <div class="tm-chart">
+            ${chartHTML}
+          </div>
+
+          <div class="tm-legend">
+            <span>
+              <i style="background:#dc2626"></i>
+              0–49%
+            </span>
+
+            <span>
+              <i style="background:#eab308"></i>
+              50–79%
+            </span>
+
+            <span>
+              <i style="background:#16a34a"></i>
+              80–100%
+            </span>
+          </div>
+
+          ${savedHTML}
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="modal-footer">
+
+          ${
+            lastAttempt
+              ? `
+                <button
+                  type="button"
+                  class="btn btn-primary tm-btn tm-btn-continue"
+                >
+                  <i class="bi bi-play-fill me-1"></i>
+                  Davom etish
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary tm-btn tm-btn-fresh"
+                >
+                  <i class="bi bi-arrow-clockwise me-1"></i>
+                  Yangidan
+                </button>
+              `
+              : `
+                <button
+                  type="button"
+                  class="btn btn-primary tm-btn tm-btn-continue w-100"
+                >
+                  <i class="bi bi-play-fill me-1"></i>
+                  Boshlash
+                </button>
+              `
+          }
+
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const bsModal = new bootstrap.Modal(modal, {
+    backdrop: "static",
+    keyboard: false,
+  });
+
   return new Promise((resolve) => {
-    console.log("=== OPENING TEST MODAL ===");
-    console.log(`Test: ${testName}, Questions: ${questionCount}`);
+    let settled = false;
 
-    const lastAttempt = getLastAttemptData(testName);
-    const attemptCount = getAttemptCount(testName);
-    const isPro = localStorage.getItem("pulsego_pro_status_v2")
-      ? JSON.parse(localStorage.getItem("pulsego_pro_status_v2")).cached?.isPro
-      : false;
-    const notes = getTestNotes(testName);
-    const isFlagged = isTestFlagged(testName);
+    const finish = (result) => {
+      if (settled) return;
 
-    console.log("Modal data:", {
-      lastAttempt,
-      attemptCount,
-      isPro,
-      hasNotes: !!notes,
-      notesContent: notes,
-      isFlagged,
-    });
-
-    // DEBUG: Log the button decision
-    console.log("\n=== MODAL BUTTON DECISION ===");
-    console.log("lastAttempt object:", lastAttempt);
-    if (lastAttempt) {
-      console.log(
-        "✅ Will show 2 buttons: 'Davom etish' + 'Yangidan boshlash'",
-      );
-    } else {
-      console.log(
-        "ℹ️  lastAttempt is null/falsy - showing only 'Boshlash' button",
-      );
-      console.log("   Reasons this might happen:");
-      console.log("     1. First time taking test → CORRECT");
-      console.log("     2. Test name mismatch → PROBLEM (see logs above)");
-      console.log("     3. currentIndex invalid → PROBLEM (see logs above)");
-    }
-
-    // Always destroy old modal instance and remove from DOM to avoid stale state
-    const oldModal = document.getElementById("testStartModal");
-    if (oldModal) {
-      try {
-        const oldInstance = bootstrap.Modal.getInstance(oldModal);
-        if (oldInstance) oldInstance.dispose();
-      } catch (e) {
-        console.log("Old modal instance cleanup:", e.message);
-      }
-      oldModal.remove();
-    }
-
-    // Create fresh modal element
-    const modal = document.createElement("div");
-    modal.id = "testStartModal";
-    modal.className = "modal fade";
-    modal.setAttribute("tabindex", "-1");
-    document.body.appendChild(modal);
-
-    // Build modal HTML
-    const lastInfoHtml = lastAttempt
-      ? `
-      <div class="test-modal-last-attempt">
-        <div class="last-attempt-row">
-        </div>
-        <div class="last-attempt-row">
-          <span class="label">Qo'yilgan savoldan:</span>
-          <span class="value">Savol ${lastAttempt.solved}/${lastAttempt.total}</span>
-        </div>
-      </div>
-      `
-      : '<div class="text-muted small"></div>';
-
-    // Handle notes safely
-    let notesHtml = "";
-    if (notes) {
-      const noteText = notes.text || notes || "";
-      const displayText = String(noteText).substring(0, 120);
-      notesHtml = `
-      <div class="test-modal-notes mt-2">
-        <div class="notes-title"><i class="bi bi-pencil-square"></i> Izohlar mavjud</div>
-        <div class="notes-preview">${escapeHtml(displayText)}</div>
-      </div>
-      `;
-    }
-
-    const flagHtml = isFlagged
-      ? `<div class="test-modal-flag mt-2"><i class="bi bi-flag-fill"></i> Belgilangan</div>`
-      : "";
-
-    const proStatusHtml = `
-      <div class="test-modal-pro mt-2">
-        <i class="bi bi-${isPro ? "gem" : "lock"}"></i>
-        ${isPro ? "Pro - Barcha testlar mavjud" : "Bepul"}
-      </div>
-    `;
-
-    modal.innerHTML = `
-<div class="modal-dialog modal-dialog-centered test-modal-size">
-  <div class="modal-content test-modal-content">
-    <div class="modal-header test-modal-header">
-      <div>
-        <small class="text-muted">${questionCount} savol</small>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-    </div>
-    
-    <div class="modal-body test-modal-body">
-      <div class="test-modal-stats">
-        <div class="stat-item">
-          <span class="stat-label">Savollar:</span>
-          <span class="stat-value">${questionCount}</span>
-        </div>
-      </div>
-
-      <hr class="test-modal-divider">
-
-      ${lastInfoHtml}
-      ${notesHtml}
-      ${flagHtml}
-      ${proStatusHtml}
-    </div>
-
-    <div class="modal-footer test-modal-footer">
-      ${
-        lastAttempt
-          ? `
-        <button type="button" class="btn btn-primary test-modal-btn-continue">
-          <i class="bi bi-play-fill"></i> Davom etish
-        </button>
-        <button type="button" class="btn btn-outline-secondary test-modal-btn-fresh">
-          <i class="bi bi-arrow-clockwise"></i> Yangidan boshlash
-        </button>
-        `
-          : `
-        <button type="button" class="btn btn-primary test-modal-btn-continue" style="width: 100%;">
-          <i class="bi bi-play-fill"></i> Boshlash
-        </button>
-        `
-      }
-    </div>
-  </div>
-</div>
-    `;
-
-    // Initialize Bootstrap modal
-    const bsModal = new bootstrap.Modal(modal, {
-      backdrop: "static",
-      keyboard: false,
-    });
-    bsModal.show();
-
-    console.log("🔄 Modal shown, waiting for DOM settlement...");
-
-    // Add event listeners with retry logic
-    const attachButtons = () => {
-      const continueBtn = modal.querySelector(".test-modal-btn-continue");
-      const freshBtn = modal.querySelector(".test-modal-btn-fresh");
-
-      console.log("🔍 Looking for buttons...", {
-        continueBtn: !!continueBtn,
-        freshBtn: !!freshBtn,
-      });
-
-      if (!continueBtn) {
-        console.warn("⚠️  Continue button not found!");
-        return false;
-      }
-
-      if (continueBtn) {
-        console.log("✅ Attaching continue button listener");
-        continueBtn.onclick = () => {
-          console.log("👆 User clicked: Davom etish");
-          bsModal.hide();
-          resolve({ action: "continue", userChoice: true });
-        };
-      }
-
-      if (freshBtn) {
-        console.log("✅ Attaching fresh button listener");
-        freshBtn.onclick = () => {
-          console.log("👆 User clicked: Yangidan boshlash");
-          bsModal.hide();
-          resolve({ action: "start", userChoice: false });
-        };
-      }
-
-      return true;
+      settled = true;
+      resolve(result);
+      bsModal.hide();
     };
 
-    if (!attachButtons()) {
-      // Retry after a small delay
-      setTimeout(() => {
-        console.log("🔄 Retrying button attachment...");
-        attachButtons();
-      }, 100);
-    }
-
-    // Handle modal close (ESC key) - default to continue if last attempt exists
-    modal.addEventListener("hidden.bs.modal", () => {
-      console.log(
-        "Modal closed, defaulting to:",
-        lastAttempt ? "continue" : "start",
-      );
-      resolve({ action: lastAttempt ? "continue" : "start", userChoice: null });
+    // Continue
+    modal.querySelector(".tm-btn-continue")?.addEventListener("click", () => {
+      finish({
+        action: lastAttempt ? "continue" : "start",
+        userChoice: lastAttempt ? true : null,
+      });
     });
+
+    // Start fresh
+    modal.querySelector(".tm-btn-fresh")?.addEventListener("click", () => {
+      finish({
+        action: "start",
+        userChoice: false,
+      });
+    });
+
+    // If closed without choosing, preserve previous behavior
+    modal.addEventListener(
+      "hidden.bs.modal",
+      () => {
+        if (!settled) {
+          settled = true;
+
+          resolve({
+            action: lastAttempt ? "continue" : "start",
+            userChoice: null,
+          });
+        }
+
+        bsModal.dispose();
+        modal.remove();
+      },
+      { once: true },
+    );
+
+    bsModal.show();
+
+    // Animate graph after modal becomes visible
+    modal.addEventListener(
+      "shown.bs.modal",
+      () => {
+        requestAnimationFrame(() => {
+          modal.querySelectorAll(".tm-bar").forEach((bar, index) => {
+            const height = Number(bar.dataset.height) || 0;
+
+            setTimeout(() => {
+              bar.style.height = height + "%";
+            }, index * 100);
+          });
+        });
+      },
+      { once: true },
+    );
   });
 }
 
