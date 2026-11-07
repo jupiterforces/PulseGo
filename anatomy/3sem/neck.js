@@ -694,7 +694,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "2?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Arteria carotis communis",
         "Arteria carotis externa",
@@ -716,7 +716,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "3?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Ansa cervicalis",
         "Plexus celiacus",
@@ -738,7 +738,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "4?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Nervus vagus",
         "Nervus hypoglossus",
@@ -760,7 +760,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "5?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Vena subclavia",
         "Vena jugularis interna",
@@ -782,7 +782,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "6?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Nervus phrenicus",
         "Nervus vagus",
@@ -804,7 +804,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "7?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Nervus accessorius",
         "Nervus hypoglossus",
@@ -826,7 +826,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "8?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Vena jugularis interna",
         "Vena jugularis externa",
@@ -848,7 +848,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "9?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Nervus occipitalis minor",
         "Nervus auricularis magnus",
@@ -870,7 +870,7 @@ window.TEST_QUESTIONS = {
     },
     {
       q: "10?",
-      photo: "./assets/image10.png",
+      photo: "./assets/image12.png",
       a: [
         "Nervus auricularis magnus",
         "Nervus transversus colli",
