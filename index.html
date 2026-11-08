@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/styles/styles.css">
+    <link rel="stylesheet" href="/assets/styles/preloader.css">
+    <script src="/assets/js/preloader.js"></script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QX686G4TT9"></script>
     <script>
@@ -23,87 +25,416 @@
 
     <style>
         :root {
-            --ink: #0f172a; --ink-2: #475569; --ink-3: #94a3b8; --line: #e5e9f0; --paper: #f4f6f9; --card: #fff;
-            --good: #16a34a; --mid: #ca8a04; --bad: #dc2626; --blue: #2563eb;
+            --ink: #0f172a;
+            --ink-2: #475569;
+            --ink-3: #94a3b8;
+            --line: #e5e9f0;
+            --paper: #f4f6f9;
+            --card: #fff;
+            --good: #16a34a;
+            --mid: #ca8a04;
+            --bad: #dc2626;
+            --blue: #2563eb;
         }
-        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--tg-bg, var(--paper)); color: var(--tg-text, var(--ink)); padding-bottom: 90px; overflow-x: hidden; }
-        a { color: inherit; }
-        :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
-        .card-x { background: var(--card); border: 1px solid var(--line); border-radius: 14px; }
+        * {
+            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--tg-bg, var(--paper));
+            color: var(--tg-text, var(--ink));
+            padding-bottom: 90px;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 2px;
+        }
+
+        .card-x {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+        }
 
         /* ===== Hero ===== */
-        .hero { padding: 22px 0 6px; }
-        .hi { font-size: 14px; color: var(--ink-2); font-weight: 500; }
-        .hero h1 { font-size: 26px; font-weight: 800; letter-spacing: -.6px; margin: 2px 0 16px; }
+        .hero {
+            padding: 22px 0 6px;
+        }
 
-        .metrics { display: grid; grid-template-columns: 1fr 1fr; }
-        .metric { padding: 16px 18px; }
-        .metric + .metric { border-left: 1px solid var(--line); }
-        .metric b { display: flex; align-items: center; gap: 8px; font-size: 26px; font-weight: 800; letter-spacing: -.8px; line-height: 1.1; font-variant-numeric: tabular-nums; }
-        .metric b i { width: 8px; height: 8px; border-radius: 50%; background: var(--none, #cbd5e1); }
-        .metric span { font-size: 13px; color: var(--ink-2); font-weight: 500; }
+        .hi {
+            font-size: 14px;
+            color: var(--ink-2);
+            font-weight: 500;
+        }
 
-        .resume { display: flex; align-items: center; gap: 14px; margin-top: 10px; padding: 14px 16px; text-decoration: none; border-color: #fcd9a8; background: #fffbf3; transition: border-color .15s; }
-        .resume:hover { border-color: #f59e0b; color: inherit; }
-        .resume .ic { width: 38px; height: 38px; border-radius: 11px; background: #fef3c7; color: #b45309; display: grid; place-items: center; font-size: 17px; flex-shrink: 0; }
-        .resume .tx { flex: 1; min-width: 0; }
-        .resume .tt { font-size: 14px; font-weight: 700; }
-        .resume .ss { font-size: 12.5px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .hero h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -.6px;
+            margin: 2px 0 16px;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .metric {
+            padding: 16px 18px;
+        }
+
+        .metric+.metric {
+            border-left: 1px solid var(--line);
+        }
+
+        .metric b {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -.8px;
+            line-height: 1.1;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .metric b i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--none, #cbd5e1);
+        }
+
+        .metric span {
+            font-size: 13px;
+            color: var(--ink-2);
+            font-weight: 500;
+        }
+
+        .resume {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 10px;
+            padding: 14px 16px;
+            text-decoration: none;
+            border-color: #fcd9a8;
+            background: #fffbf3;
+            transition: border-color .15s;
+        }
+
+        .resume:hover {
+            border-color: #f59e0b;
+            color: inherit;
+        }
+
+        .resume .ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: #fef3c7;
+            color: #b45309;
+            display: grid;
+            place-items: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .resume .tx {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resume .tt {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .resume .ss {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
         /* ===== Platform strip ===== */
-        .platform { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 10px; }
-        .platform div { padding: 14px 18px; }
-        .platform div + div { border-left: 1px solid var(--line); }
-        .platform b { display: block; font-size: 20px; font-weight: 800; letter-spacing: -.4px; }
-        .platform span { font-size: 12px; color: var(--ink-2); font-weight: 500; }
+        .platform {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin-top: 10px;
+        }
+
+        .platform div {
+            padding: 14px 18px;
+        }
+
+        .platform div+div {
+            border-left: 1px solid var(--line);
+        }
+
+        .platform b {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -.4px;
+        }
+
+        .platform span {
+            font-size: 12px;
+            color: var(--ink-2);
+            font-weight: 500;
+        }
 
         /* ===== Sections ===== */
-        .app-section { margin-top: 30px; }
-        .section-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
-        .section-title { font-size: 17px; font-weight: 800; letter-spacing: -.2px; }
-        .section-link { font-size: 13px; font-weight: 600; color: var(--blue); text-decoration: none; }
-        .section-link:hover { text-decoration: underline; }
+        .app-section {
+            margin-top: 30px;
+        }
 
-        .track { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; padding-bottom: 4px; scrollbar-width: none; margin-right: calc(var(--bs-gutter-x, 1.5rem) * -.5); padding-right: 12px; }
-        .track::-webkit-scrollbar { display: none; }
-        .track > * { scroll-snap-align: start; flex-shrink: 0; }
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -.2px;
+        }
+
+        .section-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .section-link:hover {
+            text-decoration: underline;
+        }
+
+        .track {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
+            scrollbar-width: none;
+            margin-right: calc(var(--bs-gutter-x, 1.5rem) * -.5);
+            padding-right: 12px;
+        }
+
+        .track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .track>* {
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
 
         /* image cards (lessons, books) */
-        .media { position: relative; display: block; width: 156px; height: 124px; border-radius: 14px; overflow: hidden; text-decoration: none; background: #1e293b; border: 1px solid var(--line); }
-        .media.wide { width: 184px; }
-        .media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
-        .media:hover img { transform: scale(1.04); }
-        .media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(15, 23, 42, .78)); }
-        .media .cap { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 10px 12px; color: #fff; }
-        .media .nm { font-size: 14px; font-weight: 700; line-height: 1.2; }
-        .media .mt { font-size: 12px; opacity: .8; font-weight: 500; }
-        .media .tag { position: absolute; top: 8px; left: 8px; z-index: 1; font-size: 10px; font-weight: 700; background: rgba(255, 255, 255, .92); color: var(--ink); border-radius: 999px; padding: 2px 8px; }
+        .media {
+            position: relative;
+            display: block;
+            width: 156px;
+            height: 124px;
+            border-radius: 14px;
+            overflow: hidden;
+            text-decoration: none;
+            background: #1e293b;
+            border: 1px solid var(--line);
+        }
+
+        .media.wide {
+            width: 184px;
+        }
+
+        .media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .35s;
+        }
+
+        .media:hover img {
+            transform: scale(1.04);
+        }
+
+        .media::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 35%, rgba(15, 23, 42, .78));
+        }
+
+        .media .cap {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            padding: 10px 12px;
+            color: #fff;
+        }
+
+        .media .nm {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .media .mt {
+            font-size: 12px;
+            opacity: .8;
+            font-weight: 500;
+        }
+
+        .media .tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 1;
+            font-size: 10px;
+            font-weight: 700;
+            background: rgba(255, 255, 255, .92);
+            color: var(--ink);
+            border-radius: 999px;
+            padding: 2px 8px;
+        }
 
         /* test cards */
-        .tcard { --c: #2563eb; width: 176px; padding: 14px; display: flex; flex-direction: column; text-decoration: none; transition: border-color .15s; }
-        .tcard:hover { border-color: #94a3b8; color: inherit; }
-        .tcard .ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 16px; color: var(--c); background: color-mix(in srgb, var(--c) 11%, #fff); margin-bottom: 14px; }
-        .tcard .nm { font-size: 15px; font-weight: 700; line-height: 1.25; letter-spacing: -.2px; }
-        .tcard .mt { font-size: 12.5px; color: var(--ink-2); font-weight: 500; margin-top: 2px; }
+        .tcard {
+            --c: #2563eb;
+            width: 176px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: border-color .15s;
+        }
+
+        .tcard:hover {
+            border-color: #94a3b8;
+            color: inherit;
+        }
+
+        .tcard .ic {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-size: 16px;
+            color: var(--c);
+            background: color-mix(in srgb, var(--c) 11%, #fff);
+            margin-bottom: 14px;
+        }
+
+        .tcard .nm {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: -.2px;
+        }
+
+        .tcard .mt {
+            font-size: 12.5px;
+            color: var(--ink-2);
+            font-weight: 500;
+            margin-top: 2px;
+        }
 
         /* quick links */
-        .list { overflow: hidden; }
-        .lrow { display: flex; align-items: center; gap: 14px; padding: 13px 16px; text-decoration: none; transition: background .15s; }
-        .lrow + .lrow { border-top: 1px solid #eef1f5; }
-        .lrow:hover { background: #f8fafc; color: inherit; }
-        .lrow .ic { width: 38px; height: 38px; border-radius: 11px; background: #f1f5f9; color: var(--ink-2); display: grid; place-items: center; font-size: 17px; flex-shrink: 0; }
-        .lrow .tt { font-size: 14.5px; font-weight: 700; }
-        .lrow .ss { font-size: 12.5px; color: var(--ink-2); }
-        .lrow .go { margin-left: auto; color: var(--ink-3); }
+        .list {
+            overflow: hidden;
+        }
+
+        .lrow {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 13px 16px;
+            text-decoration: none;
+            transition: background .15s;
+        }
+
+        .lrow+.lrow {
+            border-top: 1px solid #eef1f5;
+        }
+
+        .lrow:hover {
+            background: #f8fafc;
+            color: inherit;
+        }
+
+        .lrow .ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: #f1f5f9;
+            color: var(--ink-2);
+            display: grid;
+            place-items: center;
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .lrow .tt {
+            font-size: 14.5px;
+            font-weight: 700;
+        }
+
+        .lrow .ss {
+            font-size: 12.5px;
+            color: var(--ink-2);
+        }
+
+        .lrow .go {
+            margin-left: auto;
+            color: var(--ink-3);
+        }
 
         @media (min-width: 768px) {
-            .track { flex-wrap: wrap; overflow: visible; margin-right: 0; padding-right: 0; }
-            .media { width: 200px; height: 140px; } .media.wide { width: 240px; }
-            .tcard { width: 200px; }
+            .track {
+                flex-wrap: wrap;
+                overflow: visible;
+                margin-right: 0;
+                padding-right: 0;
+            }
+
+            .media {
+                width: 200px;
+                height: 140px;
+            }
+
+            .media.wide {
+                width: 240px;
+            }
+
+            .tcard {
+                width: 200px;
+            }
         }
-        @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -117,7 +448,8 @@
                 <div class="sidebar-brand">Pulse Go</div>
                 <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
             </div>
-            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc" aria-label="Yopish">
+            <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc"
+                aria-label="Yopish">
                 <i class="bi bi-x-lg"></i>
             </button>
         </div>
@@ -133,27 +465,41 @@
         <nav class="sidebar-nav">
             <div class="sidebar-section-label">Asosiy</div>
             <a href="/" class="sidebar-link active" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
-            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i> Tayyorlanish</a>
-            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test QBank</a>
-            <a href="/find/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-people-fill"></i> Find Partner</a>
+            <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
+                Tayyorlanish</a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test
+                QBank</a>
+            <a href="/find/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-people-fill"></i> Find
+                Partner</a>
 
             <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online Darslar</a>
-            <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i> Kitoblar</a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i> Anatomiya</a>
-            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi</a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i> Kimyo</a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i> Embriologiya</a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat</a>
+            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online
+                Darslar</a>
+            <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
+                Kitoblar</a>
+            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i>
+                Anatomiya</a>
+            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i>
+                Hujayra biologiyasi</a>
+            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i>
+                Kimyo</a>
+            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
+                Embriologiya</a>
+            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i>
+                Klinik holat</a>
 
             <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening profilim</a>
-            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i> Fikr bildirish</a>
+            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
+                profilim</a>
+            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i
+                    class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
+            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i>
+                Fikr bildirish</a>
         </nav>
 
         <div class="sidebar-footer">
-            <a href="https://t.me/broinibek" target="_blank" rel="noopener" class="sidebar-link" style="background:#f0fdf4;color:#16a34a">
+            <a href="https://t.me/broinibek" target="_blank" rel="noopener" class="sidebar-link"
+                style="background:#f0fdf4;color:#16a34a">
                 <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
             </a>
         </div>
@@ -175,12 +521,15 @@
 
             <div class="card-x metrics" aria-label="Natijangiz">
                 <div class="metric"><b id="mSolved">0</b><span>Yechilgan savollar</span></div>
-                <div class="metric"><b><i id="mDot"></i><span id="mAcc" style="font-size:inherit;color:inherit;font-weight:inherit">—</span></b><span>O'rtacha aniqlik</span></div>
+                <div class="metric"><b><i id="mDot"></i><span id="mAcc"
+                            style="font-size:inherit;color:inherit;font-weight:inherit">—</span></b><span>O'rtacha
+                        aniqlik</span></div>
             </div>
 
             <a class="card-x resume" id="resumeCard" href="#" style="display:none">
                 <span class="ic"><i class="bi bi-play-fill"></i></span>
-                <span class="tx"><span class="tt d-block">Testni davom ettiring</span><span class="ss d-block" id="resumeText"></span></span>
+                <span class="tx"><span class="tt d-block">Testni davom ettiring</span><span class="ss d-block"
+                        id="resumeText"></span></span>
                 <i class="bi bi-chevron-right" style="color:#b45309"></i>
             </a>
 
@@ -249,36 +598,44 @@
             <div class="track" id="booksTrack">
                 <a class="media wide" href="https://t.me/synapthic/1249">
                     <img src="/assets/img/photo_2025-10-15_15-59-01.jpg" alt="" loading="lazy">
-                    <span class="cap"><span class="nm d-block">Medical Details</span><span class="mt d-block">45+ kitob</span></span>
+                    <span class="cap"><span class="nm d-block">Medical Details</span><span class="mt d-block">45+
+                            kitob</span></span>
                 </a>
                 <a class="media wide" href="https://t.me/impulskitoblari">
                     <img src="/assets/img/ITI kitoblar.jpg" alt="" loading="lazy">
-                    <span class="cap"><span class="nm d-block">ITI Kitoblar</span><span class="mt d-block">40+ kitob</span></span>
+                    <span class="cap"><span class="nm d-block">ITI Kitoblar</span><span class="mt d-block">40+
+                            kitob</span></span>
                 </a>
             </div>
         </section>
 
         <section class="app-section">
-            <div class="section-head"><div class="section-title">Tezkor o'tishlar</div></div>
+            <div class="section-head">
+                <div class="section-title">Tezkor o'tishlar</div>
+            </div>
             <div class="card-x list">
                 <a href="/preparation/" class="lrow">
                     <span class="ic"><i class="bi bi-journals"></i></span>
-                    <span><span class="tt d-block">Tayyorlanish</span><span class="ss d-block">Sessiyalar va progress</span></span>
+                    <span><span class="tt d-block">Tayyorlanish</span><span class="ss d-block">Sessiyalar va
+                            progress</span></span>
                     <i class="bi bi-chevron-right go"></i>
                 </a>
                 <a href="/xatolar/" class="lrow">
                     <span class="ic"><i class="bi bi-exclamation-triangle"></i></span>
-                    <span><span class="tt d-block">Xatolar tahlili</span><span class="ss d-block">Noto'g'ri javoblarni ko'rib chiqing</span></span>
+                    <span><span class="tt d-block">Xatolar tahlili</span><span class="ss d-block">Noto'g'ri javoblarni
+                            ko'rib chiqing</span></span>
                     <i class="bi bi-chevron-right go"></i>
                 </a>
                 <a href="/find/" class="lrow">
                     <span class="ic"><i class="bi bi-people"></i></span>
-                    <span><span class="tt d-block">Find Partner</span><span class="ss d-block">Mos hamkor topish bo'limi</span></span>
+                    <span><span class="tt d-block">Find Partner</span><span class="ss d-block">Mos hamkor topish
+                            bo'limi</span></span>
                     <i class="bi bi-chevron-right go"></i>
                 </a>
                 <a href="/profile" class="lrow">
                     <span class="ic"><i class="bi bi-person"></i></span>
-                    <span><span class="tt d-block">Profilim</span><span class="ss d-block">Ma'lumotlar va sozlamalar</span></span>
+                    <span><span class="tt d-block">Profilim</span><span class="ss d-block">Ma'lumotlar va
+                            sozlamalar</span></span>
                     <i class="bi bi-chevron-right go"></i>
                 </a>
             </div>
@@ -288,7 +645,8 @@
     <nav class="bottom-nav d-lg-none">
         <a href="/" class="bn-item active"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
         <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>Testlar</span></a>
-        <a href="/preparation/" class="bn-item"><span class="bn-fab-btn"><i class="bi bi-journals"></i></span><span>QBank</span></a>
+        <a href="/preparation/" class="bn-item"><span class="bn-fab-btn"><i
+                    class="bi bi-journals"></i></span><span>QBank</span></a>
         <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
         <a href="/profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
     </nav>
