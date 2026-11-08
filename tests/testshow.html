@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>Testlar — Pulse Go</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pg-bg: #f4f6f8;
+      --pg-surface: #ffffff;
+      --pg-border: #e8edf2;
+      --pg-text: #0f172a;
+      --pg-muted: #64748b;
+      --pg-soft: #94a3b8;
+      --pg-accent: #0f172a;
+      --pg-green: #16a34a;
+      --pg-green-bg: #ecfdf5;
+      --pg-yellow: #ca8a04;
+      --pg-yellow-bg: #fefce8;
+      --pg-red: #dc2626;
+      --pg-red-bg: #fef2f2;
+      --pg-blue: #2563eb;
+      --pg-radius: 16px;
+      --pg-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 12px rgba(15,23,42,.04);
+      --pg-shadow-hover: 0 8px 24px rgba(15,23,42,.1);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: var(--pg-bg);
+      color: var(--pg-text);
+      margin: 0;
+      min-height: 100dvh;
+      padding-bottom: 88px;
+    }
+
+    /* ── Top bar ── */
+    .pg-top {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pg-border);
+      padding: 12px 16px;
+    }
+    .pg-top-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pg-back {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      border: 1px solid var(--pg-border);
+      background: var(--pg-surface);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--pg-text);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .pg-back:hover { background: #f8fafc; }
+    .pg-top-title { flex: 1; min-width: 0; }
+    .pg-top-title h1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pg-top-title p {
+      margin: 2px 0 0;
+      font-size: 0.75rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    /* ── Summary strip ── */
+    .pg-summary {
+      max-width: 720px;
+      margin: 16px auto 0;
+      padding: 0 16px;
+    }
+    .pg-summary-card {
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+      padding: 14px 16px;
+      box-shadow: var(--pg-shadow);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .pg-stat {
+      text-align: center;
+      min-width: 0;
+    }
+    .pg-stat .v {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+      color: var(--pg-text);
+    }
+    .pg-stat .l {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--pg-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-top: 2px;
+    }
+    .pg-stat.ok .v { color: var(--pg-green); }
+    .pg-stat.warn .v { color: var(--pg-yellow); }
+    .pg-stat.bad .v { color: var(--pg-red); }
+
+    /* ── Toolbar ── */
+    .pg-toolbar {
+      max-width: 720px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .pg-search {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      box-shadow: var(--pg-shadow);
+    }
+    .pg-search i { color: var(--pg-soft); font-size: 0.95rem; }
+    .pg-search input {
+      border: 0; outline: 0; width: 100%;
+      font-size: 0.875rem; font-weight: 500;
+      background: transparent; color: inherit;
+      font-family: inherit;
+    }
+    .pg-search input::placeholder { color: var(--pg-soft); }
+
+    .pg-seg {
+      display: inline-flex;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: 12px;
+      padding: 3px;
+      box-shadow: var(--pg-shadow);
+    }
+    .pg-seg button {
+      border: 0; background: transparent;
+      width: 36px; height: 32px;
+      border-radius: 9px;
+      color: var(--pg-muted);
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s;
+    }
+    .pg-seg button.active {
+      background: var(--pg-accent);
+      color: #fff;
+    }
+
+    /* ── Filter chips ── */
+    .pg-chips {
+      max-width: 720px;
+      margin: 12px auto 0;
+      padding: 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .pg-chip {
+      border: 1px solid var(--pg-border);
+      background: var(--pg-surface);
+      color: var(--pg-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all .15s;
+    }
+    .pg-chip.active {
+      background: var(--pg-accent);
+      color: #fff;
+      border-color: var(--pg-accent);
+    }
+    .pg-chip:hover:not(.active) { background: #f8fafc; }
+
+    /* ── Results bar ── */
+    .pg-results {
+      max-width: 720px;
+      margin: 16px auto 8px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pg-results h2 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+    .pg-results-count {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--pg-soft);
+      background: #e2e8f0;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    /* ── Grid / List ── */
+    .pg-container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 16px 24px;
+    }
+
+    .pg-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 520px) {
+      .pg-grid.cards { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── Test card (list style — primary) ── */
+    .test-card {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      box-shadow: var(--pg-shadow);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .test-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--pg-shadow-hover);
+      border-color: #cbd5e1;
+    }
+    .test-card:active { transform: scale(0.99); }
+
+    /* Status rail */
+    .tc-rail {
+      width: 5px;
+      flex-shrink: 0;
+      background: #e2e8f0;
+    }
+    .test-card.card-success .tc-rail { background: var(--pg-green); }
+    .test-card.card-warning .tc-rail { background: var(--pg-yellow); }
+    .test-card.card-danger .tc-rail { background: var(--pg-red); }
+    .test-card.card-new .tc-rail { background: #cbd5e1; }
+
+    .tc-body {
+      flex: 1;
+      min-width: 0;
+      padding: 14px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .tc-icon {
+      width: 40px; height: 40px;
+      border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      background: #f1f5f9;
+      color: #475569;
+    }
+    .test-card.card-success .tc-icon { background: var(--pg-green-bg); color: var(--pg-green); }
+    .test-card.card-warning .tc-icon { background: var(--pg-yellow-bg); color: var(--pg-yellow); }
+    .test-card.card-danger .tc-icon { background: var(--pg-red-bg); color: var(--pg-red); }
+
+    .tc-info { flex: 1; min-width: 0; }
+    .tc-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin: 0;
+      color: var(--pg-text);
+      letter-spacing: -0.01em;
+    }
+    .tc-sub {
+      font-size: 0.75rem;
+      color: var(--pg-muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .tc-badge {
+      flex-shrink: 0;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 999px;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+    .tc-badge.new { background: #f1f5f9; color: #64748b; }
+    .tc-badge.ok { background: var(--pg-green-bg); color: #166534; }
+    .tc-badge.warn { background: var(--pg-yellow-bg); color: #854d0e; }
+    .tc-badge.bad { background: var(--pg-red-bg); color: #991b1b; }
+
+    /* Progress / stats row */
+    .tc-stats {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .tc-progress {
+      flex: 1;
+      min-width: 80px;
+      height: 4px;
+      background: #e2e8f0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .tc-progress > span {
+      display: block;
+      height: 100%;
+      border-radius: 99px;
+      background: #94a3b8;
+      width: 0%;
+      transition: width .6s cubic-bezier(.2,.8,.2,1);
+    }
+    .test-card.card-success .tc-progress > span { background: var(--pg-green); }
+    .test-card.card-warning .tc-progress > span { background: var(--pg-yellow); }
+    .test-card.card-danger .tc-progress > span { background: var(--pg-red); }
+
+    .tc-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+      white-space: nowrap;
+    }
+    .tc-meta strong { color: var(--pg-text); font-weight: 700; }
+    .tc-meta .dot {
+      width: 3px; height: 3px;
+      border-radius: 50%;
+      background: #cbd5e1;
+    }
+
+    .tc-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      flex-shrink: 0;
+      color: var(--pg-soft);
+      font-size: 1rem;
+      border-left: 1px solid var(--pg-border);
+      background: #fafbfc;
+      transition: color .15s, background .15s;
+    }
+    .test-card:hover .tc-cta {
+      color: var(--pg-accent);
+      background: #f1f5f9;
+    }
+
+    /* Card grid variant */
+    .pg-grid.cards .test-card {
+      flex-direction: column;
+    }
+    .pg-grid.cards .tc-rail {
+      width: 100%;
+      height: 4px;
+    }
+    .pg-grid.cards .tc-cta {
+      display: none;
+    }
+    .pg-grid.cards .tc-body {
+      padding: 16px;
+    }
+
+    /* Empty */
+    .pg-empty {
+      text-align: center;
+      padding: 48px 20px;
+      background: var(--pg-surface);
+      border: 1px dashed var(--pg-border);
+      border-radius: var(--pg-radius);
+    }
+    .pg-empty i { font-size: 2rem; color: #cbd5e1; margin-bottom: 10px; }
+    .pg-empty h3 { font-size: 1rem; font-weight: 700; margin: 0 0 4px; }
+    .pg-empty p { font-size: 0.875rem; color: var(--pg-muted); margin: 0; }
+
+    /* Bottom nav (optional, matches your app) */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; width: 100%;
+      height: 68px;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid #e5eaf1;
+      display: flex; justify-content: space-around; align-items: center;
+      z-index: 1050;
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+    .bottom-nav a {
+      flex: 1; text-align: center; text-decoration: none;
+      color: #64748b; font-size: 11px; font-weight: 600;
+    }
+    .bottom-nav a i { display: block; font-size: 20px; margin-bottom: 2px; }
+    .bottom-nav a.active { color: #0f172a; }
+
+    /* Skeleton loading */
+    .sk {
+      background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+      background-size: 200% 100%;
+      animation: sk 1.2s ease infinite;
+      border-radius: 8px;
+    }
+    @keyframes sk { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  </style>
+</head>
+<body>
+
+  <!-- Top -->
+  <header class="pg-top">
+    <div class="pg-top-inner">
+      <a href="/tests/" class="pg-back" aria-label="Orqaga">
+        <i class="bi bi-arrow-left"></i>
+      </a>
+      <div class="pg-top-title">
+        <h1 id="pageTitle">Testlar</h1>
+        <p id="pageSubtitle">Yuklanmoqda…</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Collection summary -->
+  <div class="pg-summary">
+    <div class="pg-summary-card" id="summaryCard">
+      <div class="pg-stat">
+        <div class="v" id="sumTests">—</div>
+        <div class="l">Test</div>
+      </div>
+      <div class="pg-stat">
+        <div class="v" id="sumQuestions">—</div>
+        <div class="l">Savol</div>
+      </div>
+      <div class="pg-stat ok">
+        <div class="v" id="sumAvg">—</div>
+        <div class="l">O‘rtacha</div>
+      </div>
+      <div class="pg-stat">
+        <div class="v" id="sumDone">—</div>
+        <div class="l">Ishlangan</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="pg-toolbar">
+    <label class="pg-search">
+      <i class="bi bi-search"></i>
+      <input type="search" id="searchInput" placeholder="Test qidirish…" autocomplete="off">
+    </label>
+    <div class="pg-seg" role="group" aria-label="Ko‘rinish">
+      <button type="button" id="btnList" class="active" title="Ro‘yxat"><i class="bi bi-list-ul"></i></button>
+      <button type="button" id="btnGrid" title="Kartochkalar"><i class="bi bi-grid-3x3-gap"></i></button>
+    </div>
+  </div>
+
+  <!-- Status filter chips -->
+  <div class="pg-chips" id="statusChips">
+    <button type="button" class="pg-chip active" data-status="all">Barchasi</button>
+    <button type="button" class="pg-chip" data-status="done">Ishlangan</button>
+    <button type="button" class="pg-chip" data-status="new">Yangi</button>
+    <button type="button" class="pg-chip" data-status="weak">Zaif (&lt;60%)</button>
+  </div>
+
+  <div class="pg-results">
+    <h2 id="resultsLabel">Barcha testlar</h2>
+    <span class="pg-results-count" id="resultsCount">0</span>
+  </div>
+
+  <div class="pg-container">
+    <div id="testsContainer" class="pg-grid"></div>
+    <div id="emptyState" class="pg-empty" style="display:none;">
+      <i class="bi bi-inbox"></i>
+      <h3>Test topilmadi</h3>
+      <p>Boshqa filter yoki qidiruvni sinab ko‘ring.</p>
+    </div>
+  </div>
+
+  <nav class="bottom-nav d-lg-none">
+    <a href="/"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+    <a href="/tests/" class="active"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
+    <a href="/preparation/"><i class="bi bi-journals"></i><span>Tayyorlanish</span></a>
+    <a href="/xatolar/"><i class="bi bi-exclamation-triangle"></i><span>Xatolar</span></a>
+    <a href="/profile"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+  </nav>
+
+  <!--
+    Load order matters:
+    1) Your subject bank (window.tests = { test1: [...], test2: [...] })
+    2) Optional: testTitleMap for pretty names
+    3) Engine common utils (the big pasted file) — provides buildTestSummary, getUnifiedTestResults, etc.
+    4) This page script
+  -->
+  <!-- <script src="./tests-bank.js"></script> -->
+  <!-- <script src="/assets/js/common-utils.js"></script> -->
+
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    //  CONFIG — edit these for each subject page
+    // ═══════════════════════════════════════════════════════════
+    const PAGE_CONFIG = {
+      title: "YN rasmli testlar",
+      subtitle: "3-semester Anatomiya",
+      backUrl: "/tests/",
+      // If null → auto-discover every key in window.tests
+      // If array → only these keys (in this order)
+      testIds: null,
+      // Optional pretty titles: { "block1": "Blok 1 — Yurak", ... }
+      titles: typeof testTitleMap !== "undefined" ? testTitleMap : {},
+      // Icon for cards
+      icon: "bi-journal-medical",
+    };
+
+    // ═══════════════════════════════════════════════════════════
+    //  STATS (works with your engine localStorage keys)
+    // ═══════════════════════════════════════════════════════════
+    function getUnifiedResults() {
+      // Prefer engine API if already loaded
+      if (typeof getUnifiedTestResults === "function") {
+        try { return getUnifiedTestResults(); } catch (e) {}
+      }
+      const map = new Map();
+      const add = (list) => {
+        if (!Array.isArray(list)) return;
+        list.forEach((e) => {
+          if (!e) return;
+          const key = `${e.testName}|${e.date}|${e.correct}|${e.total}|${e.solved}`;
+          if (!map.has(key)) map.set(key, e);
+        });
+      };
+      try {
+        const raw = localStorage.getItem("pulsego_test_results_v1");
+        const obj = raw ? JSON.parse(raw) : {};
+        add(obj.tests);
+      } catch (e) {}
+      try {
+        const raw = localStorage.getItem("pulsego_data_v1");
+        const data = raw ? JSON.parse(raw) : {};
+        add(data.results);
+        add(data.testResults);
+        add(data.tests);
+      } catch (e) {}
+      return Array.from(map.values());
+    }
+
+    function buildSummaryForIds(ids) {
+      const results = getUnifiedResults();
+      const byTest = {};
+      const idSet = new Set(ids.map((x) => String(x).toLowerCase()));
+
+      results.forEach((entry) => {
+        const name = entry.testName || "unknown";
+        if (idSet.size && !idSet.has(String(name).toLowerCase())) return;
+
+        const existing = byTest[name] || {
+          last: null,
+          attempts: 0,
+          totalCorrect: 0,
+          totalSolved: 0,
+          totalQuestions: 0,
+        };
+        const solved =
+          entry.solved != null
+            ? entry.solved
+            : (entry.correct || 0) + (entry.wrong || 0);
+        existing.attempts += 1;
+        existing.totalCorrect += entry.correct || 0;
+        existing.totalSolved += solved;
+        existing.totalQuestions += entry.total || 0;
+        if (!existing.last || new Date(entry.date) > new Date(existing.last.date)) {
+          existing.last = entry;
+        }
+        byTest[name] = existing;
+      });
+      return byTest;
+    }
+
+    function performanceClass(avg) {
+      if (avg == null) return "new";
+      if (avg >= 80) return "success";
+      if (avg >= 56) return "warning";
+      return "danger";
+    }
+
+    function badgeFor(avg, attempts) {
+      if (avg == null || !attempts) return { cls: "new", text: "Yangi" };
+      if (avg >= 80) return { cls: "ok", text: avg + "%" };
+      if (avg >= 56) return { cls: "warn", text: avg + "%" };
+      return { cls: "bad", text: avg + "%" };
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  TEST LIST FROM window.tests
+    // ═══════════════════════════════════════════════════════════
+    function discoverTests() {
+      const bank = window.tests || {};
+      let ids = PAGE_CONFIG.testIds;
+      if (!Array.isArray(ids) || !ids.length) {
+        ids = Object.keys(bank).filter((k) => {
+          const v = bank[k];
+          return Array.isArray(v) || (v && (Array.isArray(v.questions) || Array.isArray(v.data)));
+        });
+      }
+      return ids.map((id) => {
+        const raw = bank[id];
+        let count = 0;
+        if (Array.isArray(raw)) count = raw.length;
+        else if (raw && Array.isArray(raw.questions)) count = raw.questions.length;
+        else if (raw && Array.isArray(raw.data)) count = raw.data.length;
+
+        const title =
+          PAGE_CONFIG.titles[id] ||
+          (raw && raw.title) ||
+          String(id)
+            .replace(/[-_]/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase());
+
+        return { id, title, count };
+      });
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  RENDER
+    // ═══════════════════════════════════════════════════════════
+    let viewMode = "list"; // list | cards
+    let statusFilter = "all";
+    let searchQuery = "";
+    let allTests = [];
+    let summaryByTest = {};
+
+    function questionCountLabel(n) {
+      if (!n) return "—";
+      return n + " ta savol";
+    }
+
+    function renderCard(t, stats) {
+      const attempts = stats?.attempts || 0;
+      const avg = stats?.totalSolved
+        ? Math.round((stats.totalCorrect / stats.totalSolved) * 100)
+        : stats?.last?.percent ?? null;
+      const perf = performanceClass(avg);
+      const badge = badgeFor(avg, attempts);
+      const last = stats?.last;
+      const lastSolved =
+        last && (last.solved != null ? last.solved : (last.correct || 0) + (last.wrong || 0));
+
+      const progressW = avg != null ? Math.min(100, Math.max(0, avg)) : 0;
+
+      let metaHtml = "";
+      if (attempts > 0 && last) {
+        metaHtml = `
+          <div class="tc-meta">
+            <span><strong>${last.correct ?? 0}</strong>/${lastSolved ?? 0}</span>
+            <span class="dot"></span>
+            <span>${attempts} urinish</span>
+          </div>`;
+      } else {
+        metaHtml = `
+          <div class="tc-meta">
+            <span>${questionCountLabel(t.count)}</span>
+          </div>`;
+      }
+
+      return `
+        <div class="test-card card-${perf}" data-test-name="${t.id}" onclick="startTest('${t.id}')" role="button" tabindex="0">
+          <div class="tc-rail"></div>
+          <div class="tc-body">
+            <div class="tc-top">
+              <div class="tc-icon"><i class="bi ${PAGE_CONFIG.icon}"></i></div>
+              <div class="tc-info">
+                <h3 class="tc-title">${escapeHtml(t.title)}</h3>
+                <div class="tc-sub">${questionCountLabel(t.count)}</div>
+              </div>
+              <span class="tc-badge ${badge.cls}">${badge.text}</span>
+            </div>
+            <div class="tc-stats">
+              <div class="tc-progress"><span style="width:${progressW}%"></span></div>
+              ${metaHtml}
+            </div>
+          </div>
+          <div class="tc-cta"><i class="bi bi-chevron-right"></i></div>
+        </div>`;
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function getFiltered() {
+      let list = allTests.slice();
+      if (searchQuery.trim()) {
+        const q = searchQuery.trim().toLowerCase();
+        list = list.filter(
+          (t) =>
+            t.title.toLowerCase().includes(q) ||
+            t.id.toLowerCase().includes(q),
+        );
+      }
+      if (statusFilter === "done") {
+        list = list.filter((t) => (summaryByTest[t.id]?.attempts || 0) > 0);
+      } else if (statusFilter === "new") {
+        list = list.filter((t) => !(summaryByTest[t.id]?.attempts > 0));
+      } else if (statusFilter === "weak") {
+        list = list.filter((t) => {
+          const st = summaryByTest[t.id];
+          if (!st || !st.attempts) return false;
+          const avg = st.totalSolved
+            ? Math.round((st.totalCorrect / st.totalSolved) * 100)
+            : st.last?.percent ?? 100;
+          return avg < 60;
+        });
+      }
+      return list;
+    }
+
+    function updateSummary() {
+      const totalTests = allTests.length;
+      const totalQ = allTests.reduce((s, t) => s + (t.count || 0), 0);
+      let done = 0;
+      let sumPct = 0;
+      let pctN = 0;
+      allTests.forEach((t) => {
+        const st = summaryByTest[t.id];
+        if (st && st.attempts > 0) {
+          done++;
+          const avg = st.totalSolved
+            ? Math.round((st.totalCorrect / st.totalSolved) * 100)
+            : st.last?.percent;
+          if (typeof avg === "number") {
+            sumPct += avg;
+            pctN++;
+          }
+        }
+      });
+      const avgAll = pctN ? Math.round(sumPct / pctN) : null;
+
+      document.getElementById("sumTests").textContent = totalTests;
+      document.getElementById("sumQuestions").textContent = totalQ || "—";
+      document.getElementById("sumDone").textContent = done;
+      const avgEl = document.getElementById("sumAvg");
+      avgEl.textContent = avgAll != null ? avgAll + "%" : "—";
+      avgEl.parentElement.className =
+        "pg-stat" +
+        (avgAll == null ? "" : avgAll >= 80 ? " ok" : avgAll >= 56 ? " warn" : " bad");
+    }
+
+    function render() {
+      const container = document.getElementById("testsContainer");
+      const empty = document.getElementById("emptyState");
+      const list = getFiltered();
+
+      document.getElementById("resultsCount").textContent = list.length + " ta";
+      document.getElementById("resultsLabel").textContent =
+        statusFilter === "all"
+          ? "Barcha testlar"
+          : statusFilter === "done"
+            ? "Ishlangan"
+            : statusFilter === "new"
+              ? "Yangi"
+              : "Zaif testlar";
+
+      container.className = "pg-grid" + (viewMode === "cards" ? " cards" : "");
+
+      if (!list.length) {
+        container.innerHTML = "";
+        empty.style.display = "block";
+        return;
+      }
+      empty.style.display = "none";
+      container.innerHTML = list
+        .map((t) => renderCard(t, summaryByTest[t.id]))
+        .join("");
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    //  INIT
+    // ═══════════════════════════════════════════════════════════
+    function initPage() {
+      document.getElementById("pageTitle").textContent = PAGE_CONFIG.title;
+      document.getElementById("pageSubtitle").textContent = PAGE_CONFIG.subtitle;
+      const back = document.querySelector(".pg-back");
+      if (back) back.href = PAGE_CONFIG.backUrl || "/tests/";
+
+      allTests = discoverTests();
+      summaryByTest = buildSummaryForIds(allTests.map((t) => t.id));
+      updateSummary();
+      render();
+
+      // If engine's renderTestStats exists, also run it (adds classes on .test-card)
+      if (typeof renderTestStats === "function") {
+        try { renderTestStats(); } catch (e) {}
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Wait a tick in case tests bank loads async
+      if (window.tests && Object.keys(window.tests).length) {
+        initPage();
+      } else {
+        // Retry briefly
+        let tries = 0;
+        const iv = setInterval(() => {
+          tries++;
+          if ((window.tests && Object.keys(window.tests).length) || tries > 20) {
+            clearInterval(iv);
+            initPage();
+          }
+        }, 50);
+      }
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        searchQuery = e.target.value;
+        render();
+      });
+
+      document.getElementById("btnList").addEventListener("click", () => {
+        viewMode = "list";
+        document.getElementById("btnList").classList.add("active");
+        document.getElementById("btnGrid").classList.remove("active");
+        render();
+      });
+      document.getElementById("btnGrid").addEventListener("click", () => {
+        viewMode = "cards";
+        document.getElementById("btnGrid").classList.add("active");
+        document.getElementById("btnList").classList.remove("active");
+        render();
+      });
+
+      document.querySelectorAll("#statusChips .pg-chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("#statusChips .pg-chip").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          statusFilter = btn.dataset.status;
+          render();
+        });
+      });
+    });
+
+    // Keyboard accessibility
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const card = e.target.closest?.(".test-card");
+      if (card && card.dataset.testName) {
+        e.preventDefault();
+        if (typeof startTest === "function") startTest(card.dataset.testName);
+      }
+    });
+
+    // Expose for engine / debug
+    window.PulseTestShow = {
+      refresh() {
+        summaryByTest = buildSummaryForIds(allTests.map((t) => t.id));
+        updateSummary();
+        render();
+      },
+      setConfig(cfg) {
+        Object.assign(PAGE_CONFIG, cfg || {});
+        initPage();
+      },
+    };
+  </script>
+</body>
+</html>

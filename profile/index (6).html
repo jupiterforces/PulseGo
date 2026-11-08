@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Profil — Pulse Go</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="/assets/styles/styles.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --ink: #0f172a; --ink-2: #475569; --ink-3: #94a3b8; --line: #e5e9f0;
+            --paper: #f4f6f9; --card: #fff; --blue: #2563eb; --good: #16a34a; --warn: #d97706; --bad: #dc2626;
+        }
+        * { -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: var(--tg-bg, var(--paper)); color: var(--tg-text, var(--ink)); padding-bottom: 90px; }
+        :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+        .navbar { background: rgba(255,255,255,.94); backdrop-filter: blur(16px); border-bottom: 1px solid #e9eef5; }
+        .navbar-brand { font-weight: 700; font-size: 17px; color: var(--ink) !important; }
+
+        .wrap { max-width: 640px; margin: 0 auto; padding: 14px 14px 0; }
+        .card-x { background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+
+        /* ===== Identity ===== */
+        .identity { overflow: hidden; }
+        .cover { height: 112px; position: relative; background: linear-gradient(120deg, hsl(var(--h) 70% 52%), hsl(calc(var(--h) + 50) 72% 46%)); }
+        .cover::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 85% 20%, rgba(255,255,255,.22), transparent 55%); }
+        .icon-btn {
+            position: absolute; top: 12px; right: 12px; z-index: 2; width: 38px; height: 38px; border-radius: 50%;
+            border: 0; background: rgba(255,255,255,.92); color: var(--ink); display: grid; place-items: center; font-size: 16px; cursor: pointer;
+            transition: transform .15s;
+        }
+        .icon-btn:hover { transform: scale(1.06); }
+        .id-body { padding: 0 18px 18px; margin-top: -48px; position: relative; z-index: 1; }
+
+        .avatar-ring {
+            width: 100px; height: 100px; border-radius: 50%; padding: 3px;
+            background: conic-gradient(from 0deg, #2563eb, #7c3aed, #ec4899, #f59e0b, #2563eb);
+        }
+        .anim .avatar-ring { animation: ringIn 1.1s cubic-bezier(.2,.8,.2,1) both; }
+        @keyframes ringIn { from { transform: rotate(-200deg) scale(.85); opacity: 0; } to { transform: none; opacity: 1; } }
+        .avatar {
+            width: 100%; height: 100%; border-radius: 50%; border: 4px solid #fff; background: hsl(var(--h) 60% 48%);
+            color: #fff; font-size: 36px; font-weight: 800; display: grid; place-items: center; overflow: hidden; position: relative;
+        }
+        .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+        .id-name { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 22px; font-weight: 800; letter-spacing: -.4px; line-height: 1.2; }
+        .id-name .bi-patch-check-fill { color: var(--blue); font-size: 18px; }
+        .id-user { font-size: 14px; color: var(--ink-3); font-weight: 500; margin-top: 2px; }
+        .id-bio { font-size: 14.5px; color: var(--ink); line-height: 1.5; margin: 10px 0 0; white-space: pre-wrap; word-break: break-word; max-width: 52ch; }
+        .id-bio.empty { color: var(--ink-3); }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+        .chip-x { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; padding: 6px 11px; border-radius: 999px; background: #f1f5f9; color: var(--ink-2); }
+        .chip-x.ok { background: #ecfdf5; color: #047857; }
+        .chip-x.guest { background: #fffbeb; color: #b45309; }
+        .chip-x.sub { background: #eff6ff; color: #1d4ed8; }
+
+        /* ===== Completion ===== */
+        .complete { padding: 16px; margin-top: 12px; display: grid; grid-template-columns: 84px 1fr; gap: 16px; align-items: center; }
+        .anim .complete { animation: fadeUp .5s .25s both; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        .ring { position: relative; width: 84px; height: 84px; }
+        .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .ring .trk { fill: none; stroke: #e8edf3; stroke-width: 8; }
+        .ring .fg { fill: none; stroke-width: 8; stroke-linecap: round; stroke-dasharray: 213.63; stroke-dashoffset: 213.63; transition: stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1) .3s; }
+        .ring b { position: absolute; inset: 0; display: grid; place-items: center; font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+        .cp-title { font-size: 15px; font-weight: 700; }
+        .cp-sub { font-size: 13px; color: var(--ink-2); margin: 2px 0 10px; }
+        .missing { display: flex; flex-wrap: wrap; gap: 6px; }
+        .missing button { border: 1px dashed #cbd5e1; background: #fff; color: var(--ink-2); border-radius: 999px; font-size: 12px; font-weight: 600; padding: 4px 10px; cursor: pointer; }
+        .missing button:hover { border-color: var(--blue); color: var(--blue); }
+        .secbars { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 4px; }
+        .sb-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+        .sb-track { height: 5px; border-radius: 3px; background: #e8edf3; overflow: hidden; }
+        .sb-track span { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--blue); transition: width 1s cubic-bezier(.2,.8,.2,1) .5s; }
+
+        /* ===== Lists ===== */
+        .group { margin-top: 12px; overflow: hidden; }
+        .group-title { font-size: 13px; font-weight: 700; color: var(--ink-3); padding: 14px 18px 4px; }
+        .row-x { display: flex; align-items: center; gap: 14px; padding: 13px 18px; border-top: 1px solid #eef1f5; text-decoration: none; color: inherit; background: none; border-left: 0; border-right: 0; border-bottom: 0; width: 100%; text-align: left; }
+        .group-title + .row-x { border-top: 0; }
+        .row-x .ic { width: 34px; height: 34px; border-radius: 10px; background: #f1f5f9; color: var(--ink-2); display: grid; place-items: center; flex-shrink: 0; font-size: 16px; }
+        .row-x .tx { flex: 1; min-width: 0; }
+        .row-x .lb { font-size: 12px; color: var(--ink-3); font-weight: 500; }
+        .row-x .vl { font-size: 15px; font-weight: 600; word-break: break-word; }
+        .row-x .vl.add { color: var(--blue); font-weight: 600; }
+        .row-x .go { color: var(--ink-3); }
+        button.row-x { cursor: pointer; font: inherit; }
+        button.row-x:hover, a.row-x:hover { background: #f8fafc; color: inherit; }
+
+        .sub-card { display: flex; align-items: center; gap: 16px; padding: 16px 18px; }
+        .sub-num { font-size: 40px; font-weight: 800; letter-spacing: -1.5px; line-height: 1; font-variant-numeric: tabular-nums; }
+        .sub-card .tx { flex: 1; }
+        .sub-card .tt { font-weight: 700; font-size: 15px; }
+        .sub-card .ss { font-size: 13px; color: var(--ink-2); }
+        .btn-pill { border: 0; border-radius: 999px; background: var(--ink); color: #fff; font-size: 13px; font-weight: 700; padding: 9px 16px; text-decoration: none; white-space: nowrap; cursor: pointer; }
+        .btn-pill:hover { background: #1e293b; color: #fff; }
+        .btn-pill.light { background: #eef2f7; color: var(--ink); }
+        .btn-pill.light:hover { background: #e2e8f0; color: var(--ink); }
+
+        .seg { display: inline-flex; background: #eef2f7; border-radius: 10px; padding: 3px; gap: 2px; }
+        .seg button { border: 0; background: transparent; font-size: 13px; font-weight: 700; color: var(--ink-2); padding: 6px 14px; border-radius: 8px; cursor: pointer; }
+        .seg button.on { background: #fff; color: var(--ink); box-shadow: 0 1px 3px rgba(15,23,42,.12); }
+        .danger .ic { background: #fef2f2; color: var(--bad); }
+        .danger .vl { color: var(--bad); }
+
+        /* ===== Edit sheet ===== */
+        .sheet-ov { position: fixed; inset: 0; z-index: 2000; background: rgba(15,23,42,.5); backdrop-filter: blur(5px); display: flex; align-items: flex-end; justify-content: center; opacity: 0; visibility: hidden; transition: opacity .2s, visibility .2s; }
+        .sheet-ov.show { opacity: 1; visibility: visible; }
+        .sheet { width: 100%; max-width: 480px; max-height: 94vh; display: flex; flex-direction: column; background: #fff; border-radius: 22px 22px 0 0; transform: translateY(100%); transition: transform .3s cubic-bezier(.22,1,.36,1); }
+        .sheet-ov.show .sheet { transform: none; }
+        @media (min-width: 576px) { .sheet-ov { align-items: center; } .sheet { border-radius: 22px; transform: translateY(14px) scale(.97); } .sheet-ov.show .sheet { transform: none; } }
+        .sheet-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px 8px; }
+        .sheet-head h3 { margin: 0; font-size: 18px; font-weight: 800; }
+        .x-btn { width: 34px; height: 34px; border-radius: 50%; border: 0; background: #f1f5f9; color: var(--ink-2); display: grid; place-items: center; cursor: pointer; }
+        .sheet-body { overflow-y: auto; padding: 8px 20px 12px; }
+        .sheet-foot { display: flex; gap: 10px; padding: 12px 20px calc(16px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--line); }
+        .sheet-foot .btn-pill { flex: 1; padding: 12px; font-size: 14px; border-radius: 12px; }
+
+        .pick { display: flex; align-items: center; gap: 14px; margin: 6px 0 16px; }
+        .pick .avatar-mini { width: 68px; height: 68px; border-radius: 50%; background: hsl(var(--h) 60% 48%); color: #fff; font-size: 26px; font-weight: 800; display: grid; place-items: center; overflow: hidden; position: relative; flex-shrink: 0; }
+        .pick .avatar-mini img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .pick .acts { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+        .link-btn { border: 0; background: none; padding: 0; font-size: 14px; font-weight: 700; color: var(--blue); cursor: pointer; }
+        .link-btn.red { color: var(--bad); }
+
+        .fld { margin-bottom: 14px; }
+        .fld label { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--ink-2); margin-bottom: 5px; }
+        .fld label small { color: var(--ink-3); font-weight: 500; }
+        .fld input, .fld select, .fld textarea { width: 100%; border: 1.5px solid var(--line); border-radius: 12px; padding: 11px 13px; font-size: 15px; font-family: inherit; background: #fff; color: var(--ink); outline: none; }
+        .fld textarea { resize: none; min-height: 84px; }
+        .fld input:focus, .fld select:focus, .fld textarea:focus { border-color: var(--ink); }
+        .fld input:disabled { background: #f8fafc; color: var(--ink-3); }
+        .fld.bad input, .fld.bad select, .fld.bad textarea { border-color: var(--bad); }
+        .fld .err { color: var(--bad); font-size: 12px; font-weight: 500; margin-top: 4px; display: none; }
+        .fld.bad .err { display: block; }
+        .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .toast-x { position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 20px); background: var(--ink); color: #fff; font-size: 14px; font-weight: 600; padding: 10px 18px; border-radius: 999px; opacity: 0; pointer-events: none; transition: .25s; z-index: 3000; }
+        .toast-x.show { opacity: 1; transform: translate(-50%, 0); }
+
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar sticky-top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center gap-2">
+                <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle" alt="">
+                Pulse Go
+            </a>
+            <a href="/" class="btn btn-light btn-sm rounded-pill"><i class="bi bi-house"></i> Home</a>
+        </div>
+    </nav>
+
+    <main class="wrap" id="app" aria-live="polite"></main>
+
+    <!-- Edit sheet -->
+    <div class="sheet-ov" id="editOv" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+        <div class="sheet">
+            <div class="sheet-head">
+                <h3 id="editTitle">Profilni tahrirlash</h3>
+                <button type="button" class="x-btn" id="editClose" aria-label="Yopish"><i class="bi bi-x-lg"></i></button>
+            </div>
+            <form id="editForm" class="d-flex flex-column" style="min-height:0" novalidate>
+                <div class="sheet-body">
+                    <div class="pick">
+                        <div class="avatar-mini" id="pickAvatar"></div>
+                        <div class="acts">
+                            <button type="button" class="link-btn" id="pickBtn">Rasm tanlash</button>
+                            <button type="button" class="link-btn red" id="pickRemove" style="display:none">Rasmni o'chirish</button>
+                        </div>
+                        <input type="file" id="pickFile" accept="image/*" hidden>
+                    </div>
+
+                    <div class="fld" data-f="name">
+                        <label for="f_name">Ism <small>majburiy</small></label>
+                        <input id="f_name" maxlength="40" autocomplete="name">
+                        <div class="err"></div>
+                    </div>
+                    <div class="fld" data-f="username">
+                        <label for="f_username">Foydalanuvchi nomi <small>a–z, 0–9, _</small></label>
+                        <input id="f_username" maxlength="20" autocapitalize="none" autocomplete="off" placeholder="masalan: aziz_med">
+                        <div class="err"></div>
+                    </div>
+                    <div class="fld" data-f="bio">
+                        <label for="f_bio">Bio <small id="bioCount">0 / 140</small></label>
+                        <textarea id="f_bio" maxlength="140" placeholder="O'zingiz haqingizda qisqacha"></textarea>
+                        <div class="err"></div>
+                    </div>
+                    <div class="fld" data-f="university">
+                        <label for="f_university">Universitet</label>
+                        <input id="f_university" maxlength="80" autocomplete="organization">
+                        <div class="err"></div>
+                    </div>
+                    <div class="two">
+                        <div class="fld" data-f="course">
+                            <label for="f_course">Kurs</label>
+                            <select id="f_course">
+                                <option value="">Tanlang</option>
+                                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+                            </select>
+                            <div class="err"></div>
+                        </div>
+                        <div class="fld" data-f="city">
+                            <label for="f_city">Shahar</label>
+                            <input id="f_city" maxlength="40" autocomplete="address-level2">
+                            <div class="err"></div>
+                        </div>
+                    </div>
+                    <div class="fld" data-f="phone">
+                        <label for="f_phone">Telefon raqam</label>
+                        <input id="f_phone" type="tel" maxlength="20" inputmode="tel" placeholder="+998 90 123 45 67" autocomplete="tel">
+                        <div class="err"></div>
+                    </div>
+                    <div class="fld" data-f="telegram">
+                        <label for="f_telegram">Telegram</label>
+                        <input id="f_telegram" maxlength="33" autocapitalize="none" placeholder="@username">
+                        <div class="err"></div>
+                    </div>
+                    <div class="fld" data-f="email">
+                        <label for="f_email">Email <small id="emailNote"></small></label>
+                        <input id="f_email" type="email" maxlength="80" autocomplete="email">
+                        <div class="err"></div>
+                    </div>
+                </div>
+                <div class="sheet-foot">
+                    <button type="button" class="btn-pill light" id="editCancel">Bekor qilish</button>
+                    <button type="submit" class="btn-pill">Saqlash</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="toast-x" id="toast" role="status"></div>
+
+    <nav class="bottom-nav d-lg-none">
+        <a href="/" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+        <a href="/tests/" class="bn-item"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
+        <a href="/preparation/" class="bn-item bn-fab"><span class="bn-fab-btn"><i class="bi bi-plus-lg"></i></span><span>Tayyorlanish</span></a>
+        <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+        <a href="/profile" class="bn-item active"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+    </nav>
+
+    <script src="/assets/js/data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ================= CONFIG =================
+        const LOGIN_URL = '/login/';                       // where guests go to sign in (change if different)
+        const TELEGRAM_CONTACT = 'https://t.me/broinibek'; // "Obuna olish" opens this
+        const KEY_PROFILE = 'pulsego_profile_v1';          // extended profile, keyed by uid (survives Data.ensureUser rewrites)
+        const KEY_AUTH = 'pulsego_user_v1';
+        const KEY_MODE = 'pulsego_session_mode_v1';        // same key the test engine reads
+        const KEY_SUB = 'pulsego_subscription_v1';
+
+        // ================= HELPERS =================
+        const $ = id => document.getElementById(id);
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const readJSON = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch (e) { return d; } };
+        const writeJSON = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } };
+        const rawStore = () => (window.Data && Data._getRawData ? Data._getRawData() : readJSON('pulsego_data_v1', {})) || {};
+        const hue = s => { let h = 0; for (const c of String(s || 'p')) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+        const fmtDate = iso => { try { return new Date(iso).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'long', year: 'numeric' }); } catch (e) { return '—'; } };
+        const fmtDT = iso => { try { return new Date(iso).toLocaleString('uz-UZ', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }); } catch (e) { return '—'; } };
+        const initials = n => (String(n || 'P').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('') || 'P').toUpperCase();
+        let toastT;
+        function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2200); }
+
+        // ================= DATA LAYER =================
+        function authInfo() {
+            const c = readJSON(KEY_AUTH, null);
+            const u = (window.Data && Data.getUser && Data.getUser()) || {};
+            const isAuth = !!((c && c.uid && (c.email || c.photoURL || c.firstName)) || u.email || u.photoURL);
+            const uid = (c && c.uid) || u.uid || 'local';
+            return { c, u, isAuth, uid };
+        }
+
+        function getProfileRec(uid) { const s = readJSON(KEY_PROFILE, {}); return s[uid] || {}; }
+        function saveProfileRec(uid, rec) { const s = readJSON(KEY_PROFILE, {}); s[uid] = rec; return writeJSON(KEY_PROFILE, s); }
+
+        function getView() {
+            const { c, u, isAuth, uid } = authInfo();
+            const p = getProfileRec(uid);
+            const baseName = p.name || u.name || (c && (c.fullName || `${c.firstName || ''} ${c.lastName || ''}`.trim())) || '';
+            const realName = baseName && !['Foydalanuvchi', 'User'].includes(baseName) ? baseName : '';
+            if (!p.joinedAt) {
+                p.joinedAt = isAuth ? new Date().toISOString() : (u.createdAt || new Date().toISOString());
+                saveProfileRec(uid, p);
+            }
+            return {
+                uid, isAuth, p,
+                name: realName, displayName: realName || 'Foydalanuvchi',
+                username: p.username || '', bio: p.bio || u.about || '',
+                phone: p.phone || '', telegram: p.telegram || '',
+                email: u.email || (c && c.email) || p.email || '',
+                university: p.university || '', course: p.course || '', city: p.city || '',
+                photo: p.photo || u.photoURL || (c && c.photoURL) || '',
+                joinedAt: p.joinedAt
+            };
+        }
+
+        const FIELDS = {
+            photo: ['Profil rasmi', 'Shaxsiy'], name: ['Ism', 'Shaxsiy'], username: ['Foydalanuvchi nomi', 'Shaxsiy'], bio: ['Bio', 'Shaxsiy'],
+            phone: ['Telefon', 'Aloqa'], telegram: ['Telegram', 'Aloqa'], email: ['Email', 'Aloqa'],
+            university: ['Universitet', 'Ta’lim'], course: ['Kurs', 'Ta’lim'], city: ['Shahar', 'Ta’lim']
+        };
+        function completeness(v) {
+            const missing = Object.keys(FIELDS).filter(k => !String(v[k] || '').trim());
+            const done = Object.keys(FIELDS).length - missing.length;
+            const secs = {};
+            Object.keys(FIELDS).forEach(k => {
+                const s = FIELDS[k][1]; secs[s] = secs[s] || { done: 0, total: 0 };
+                secs[s].total++; if (!missing.includes(k)) secs[s].done++;
+            });
+            return { pct: Math.round(done / Object.keys(FIELDS).length * 100), missing, secs };
+        }
+
+        function getSub() {
+            const d = rawStore();
+            const s = d.subscription ?? (d.user && d.user.subscription) ?? readJSON(KEY_SUB, null);
+            if (s == null) return { count: 0, active: false };
+            if (typeof s === 'number') return { count: s, active: s > 0 };
+            if (typeof s === 'object') {
+                const exp = s.expiresAt ? new Date(s.expiresAt) : null;
+                const active = s.active !== false && (!exp || exp > new Date());
+                return { count: active ? 1 : 0, active, plan: s.plan || s.name || 'Pro', days: exp ? Math.max(0, Math.ceil((exp - new Date()) / 864e5)) : null };
+            }
+            return { count: 0, active: false };
+        }
+
+        const getMode = () => (localStorage.getItem(KEY_MODE) === 'exam' ? 'exam' : 'study');
+
+        // ================= RENDER =================
+        const C = 213.63;
+        let rendered = false;
+        function render() {
+            const first = !rendered; rendered = true;
+            const v = getView(), cp = completeness(v), sub = getSub(), mode = getMode();
+            const h = hue(v.uid + v.displayName);
+            const col = cp.pct >= 80 ? 'var(--good)' : cp.pct >= 50 ? 'var(--warn)' : 'var(--bad)';
+            const syncState = (window.Data && Data.getSyncState && Data.getSyncState()) || {};
+
+            const avatar = `<div class="avatar">${esc(initials(v.displayName))}${v.photo ? `<img src="${esc(v.photo)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : ''}</div>`;
+
+            const row = (k, icon, lb, val, href) => {
+                const has = String(val || '').trim();
+                const inner = `<span class="ic"><i class="bi ${icon}"></i></span><span class="tx"><span class="lb d-block">${lb}</span><span class="vl d-block ${has ? '' : 'add'}">${has ? esc(val) : 'Qo‘shish'}</span></span><i class="bi bi-chevron-right go"></i>`;
+                if (has && href) return `<a class="row-x" href="${esc(href)}" target="_blank" rel="noopener">${inner}</a>`;
+                return `<button type="button" class="row-x" data-edit="${k}">${inner}</button>`;
+            };
+
+            $('app').classList.toggle('anim', first);
+            $('app').innerHTML = `
+            <section class="card-x identity" style="--h:${h}">
+                <div class="cover"><button class="icon-btn" data-edit="name" aria-label="Profilni tahrirlash" title="Tahrirlash"><i class="bi bi-pencil-fill"></i></button></div>
+                <div class="id-body">
+                    <div class="avatar-ring">${avatar}</div>
+                    <div class="id-name">${esc(v.displayName)}${v.isAuth ? '<i class="bi bi-patch-check-fill" title="Tasdiqlangan hisob"></i>' : ''}</div>
+                    ${v.username ? `<div class="id-user">@${esc(v.username)}</div>` : ''}
+                    <p class="id-bio ${v.bio ? '' : 'empty'}">${v.bio ? esc(v.bio) : 'Bio qo‘shilmagan.'}</p>
+                    <div class="chips">
+                        <span class="chip-x sub"><i class="bi bi-stars"></i>Obuna: ${sub.count}</span>
+                        ${v.isAuth ? '<span class="chip-x ok"><i class="bi bi-shield-check"></i>Hisob tasdiqlangan</span>' : '<span class="chip-x guest"><i class="bi bi-person-exclamation"></i>Mehmon</span>'}
+                        <span class="chip-x"><i class="bi bi-calendar3"></i>${fmtDate(v.joinedAt)}</span>
+                    </div>
+                </div>
+            </section>
+
+            ${cp.pct < 100 ? `
+            <section class="card-x complete" style="--h:${h}">
+                <div class="ring"><svg viewBox="0 0 80 80"><circle class="trk" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34" stroke="${col}" ${first ? '' : `style="transition:none;stroke-dashoffset:${C - C * cp.pct / 100}"`} data-off="${C - C * cp.pct / 100}"/></svg><b>${cp.pct}%</b></div>
+                <div>
+                    <div class="cp-title">Profilingizni to‘ldiring</div>
+                    <div class="cp-sub">Yetishmayotgan ma'lumotlarni qo‘shing.</div>
+                    <div class="missing">${cp.missing.map(k => `<button type="button" data-edit="${k}">${FIELDS[k][0]}</button>`).join('')}</div>
+                </div>
+                <div class="secbars">${Object.keys(cp.secs).map(s => `<div><div class="sb-top"><span>${s}</span><span>${cp.secs[s].done}/${cp.secs[s].total}</span></div><div class="sb-track"><span data-w="${cp.secs[s].done / cp.secs[s].total * 100}" ${first ? '' : `style="transition:none;width:${cp.secs[s].done / cp.secs[s].total * 100}%"`}></span></div></div>`).join('')}</div>
+            </section>` : ''}
+
+            <section class="card-x group">
+                <div class="group-title">Ma'lumotlar</div>
+                ${row('phone', 'bi-telephone', 'Telefon', v.phone, v.phone ? 'tel:' + v.phone.replace(/[^\d+]/g, '') : '')}
+                ${row('telegram', 'bi-telegram', 'Telegram', v.telegram ? '@' + v.telegram.replace(/^@/, '') : '', v.telegram ? 'https://t.me/' + v.telegram.replace(/^@/, '') : '')}
+                ${row('email', 'bi-envelope', 'Email', v.email, v.email ? 'mailto:' + v.email : '')}
+                ${row('university', 'bi-mortarboard', 'Universitet', v.university)}
+                ${row('course', 'bi-layers', 'Kurs', v.course ? v.course + '-kurs' : '')}
+                ${row('city', 'bi-geo-alt', 'Shahar', v.city)}
+            </section>
+
+            <section class="card-x group">
+                <div class="group-title">Obuna</div>
+                <div class="sub-card">
+                    <div class="sub-num">${sub.count}</div>
+                    <div class="tx">
+                        <div class="tt">${sub.active ? esc(sub.plan || 'Faol obuna') : 'Faol obuna yo‘q'}</div>
+                        <div class="ss">${sub.active ? (sub.days != null ? sub.days + ' kun qoldi' : 'Cheklovsiz') : 'Barcha testlar ochiq bo‘lishi uchun obuna oling.'}</div>
+                    </div>
+                    ${sub.active ? '' : `<a class="btn-pill" href="${TELEGRAM_CONTACT}" target="_blank" rel="noopener">Obuna olish</a>`}
+                </div>
+            </section>
+
+            <section class="card-x group">
+                <div class="group-title">Hisob</div>
+                <div class="row-x"><span class="ic"><i class="bi ${v.isAuth ? 'bi-shield-check' : 'bi-person'}"></i></span><span class="tx"><span class="lb d-block">Holat</span><span class="vl d-block">${v.isAuth ? 'Tasdiqlangan hisob' : 'Mehmon rejimi'}</span>${v.isAuth ? '' : '<span class="lb d-block">Ma\'lumotlar faqat shu qurilmada saqlanadi.</span>'}</span>${v.isAuth ? '' : `<a class="btn-pill" href="${LOGIN_URL}">Kirish</a>`}</div>
+                <button type="button" class="row-x" id="copyUid"><span class="ic"><i class="bi bi-fingerprint"></i></span><span class="tx"><span class="lb d-block">Foydalanuvchi ID</span><span class="vl d-block" style="font-size:13px;font-family:ui-monospace,monospace">${esc(String(v.uid).slice(0, 18))}${String(v.uid).length > 18 ? '…' : ''}</span></span><i class="bi bi-copy go"></i></button>
+                ${v.isAuth ? `<button type="button" class="row-x" id="syncBtn"><span class="ic"><i class="bi bi-cloud-arrow-up"></i></span><span class="tx"><span class="lb d-block">Bulutga saqlash</span><span class="vl d-block" style="font-size:14px">${syncState.lastSync ? 'Oxirgi: ' + fmtDT(syncState.lastSync) : 'Hali saqlanmagan'}</span></span><i class="bi bi-chevron-right go"></i></button>` : ''}
+            </section>
+
+            <section class="card-x group">
+                <div class="group-title">Sozlamalar</div>
+                <div class="row-x"><span class="ic"><i class="bi bi-sliders"></i></span><span class="tx"><span class="lb d-block">Test rejimi</span><span class="vl d-block" style="font-size:13px;font-weight:500;color:var(--ink-2)">${mode === 'exam' ? 'Taymer bilan, izohsiz' : 'Taymersiz, izoh bilan'}</span></span>
+                    <span class="seg" id="modeSeg"><button type="button" data-mode="study" class="${mode === 'study' ? 'on' : ''}">Study</button><button type="button" data-mode="exam" class="${mode === 'exam' ? 'on' : ''}">Exam</button></span></div>
+                <button type="button" class="row-x" id="exportBtn"><span class="ic"><i class="bi bi-download"></i></span><span class="tx"><span class="vl d-block" style="font-size:14px">Profil ma'lumotlarini yuklab olish</span></span><i class="bi bi-chevron-right go"></i></button>
+                ${v.isAuth ? `<button type="button" class="row-x danger" id="logoutBtn"><span class="ic"><i class="bi bi-box-arrow-right"></i></span><span class="tx"><span class="vl d-block" style="font-size:14px">Hisobdan chiqish</span></span></button>` : ''}
+            </section>`;
+
+            // animate graphs after paint
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                document.querySelectorAll('.ring .fg').forEach(el => el.style.strokeDashoffset = el.dataset.off);
+                document.querySelectorAll('.sb-track span').forEach(el => el.style.width = el.dataset.w + '%');
+            }));
+        }
+
+        // ================= EDIT SHEET =================
+        let pendingPhoto = null; // undefined = unchanged, '' = removed, dataURL = new
+        const F_IDS = ['name', 'username', 'bio', 'university', 'course', 'city', 'phone', 'telegram', 'email'];
+
+        function setPickAvatar(v, photo) {
+            const el = $('pickAvatar');
+            el.style.setProperty('--h', hue(v.uid + v.displayName));
+            el.innerHTML = esc(initials($('f_name').value || v.displayName)) + (photo ? `<img src="${esc(photo)}" alt="" referrerpolicy="no-referrer">` : '');
+            $('pickRemove').style.display = photo ? '' : 'none';
+        }
+
+        function openEdit(focusKey) {
+            const v = getView();
+            pendingPhoto = undefined;
+            F_IDS.forEach(k => { $('f_' + k).value = v[k] || ''; });
+            $('f_name').value = v.name;
+            $('f_email').disabled = v.isAuth;
+            $('emailNote').textContent = v.isAuth ? 'hisobdan olingan' : '';
+            $('bioCount').textContent = `${$('f_bio').value.length} / 140`;
+            document.querySelectorAll('.fld').forEach(f => f.classList.remove('bad'));
+            setPickAvatar(v, v.photo);
+            $('editOv').classList.add('show');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                const t = focusKey && $('f_' + focusKey);
+                if (t && !t.disabled) { t.focus(); t.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+                else if (focusKey === 'photo') $('pickBtn').focus();
+                else $('f_name').focus();
+            }, 280);
+        }
+        function closeEdit() { $('editOv').classList.remove('show'); document.body.style.overflow = ''; }
+
+        function fileToDataUrl(file) {
+            return new Promise((res, rej) => {
+                const r = new FileReader(), img = new Image();
+                r.onload = () => {
+                    img.onload = () => {
+                        const s = 320, c = document.createElement('canvas'); c.width = c.height = s;
+                        const m = Math.min(img.width, img.height);
+                        c.getContext('2d').drawImage(img, (img.width - m) / 2, (img.height - m) / 2, m, m, 0, 0, s, s);
+                        res(c.toDataURL('image/jpeg', .85));
+                    };
+                    img.onerror = rej; img.src = r.result;
+                };
+                r.onerror = rej; r.readAsDataURL(file);
+            });
+        }
+
+        function validate(val, isAuth) {
+            const e = {};
+            if (!val.name.trim()) e.name = 'Ismingizni kiriting.';
+            if (val.username && !/^[a-z0-9_]{3,20}$/.test(val.username)) e.username = '3–20 ta belgi: faqat a–z, 0–9 va _.';
+            if (val.phone && !/^\+?\d{9,15}$/.test(val.phone.replace(/[\s()-]/g, ''))) e.phone = 'Telefon raqam noto‘g‘ri.';
+            if (val.telegram && !/^[a-z0-9_]{5,32}$/i.test(val.telegram.replace(/^@/, ''))) e.telegram = 'Telegram nomi 5–32 ta belgi bo‘lishi kerak.';
+            if (!isAuth && val.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.email)) e.email = 'Email noto‘g‘ri.';
+            return e;
+        }
+
+        async function saveEdit(ev) {
+            ev.preventDefault();
+            const v = getView();
+            const val = {
+                name: $('f_name').value.trim(),
+                username: $('f_username').value.trim().replace(/^@/, '').toLowerCase(),
+                bio: $('f_bio').value.trim(),
+                university: $('f_university').value.trim(),
+                course: $('f_course').value,
+                city: $('f_city').value.trim(),
+                phone: $('f_phone').value.trim(),
+                telegram: $('f_telegram').value.trim().replace(/^@/, ''),
+                email: $('f_email').value.trim()
+            };
+            const errs = validate(val, v.isAuth);
+            document.querySelectorAll('.fld').forEach(f => {
+                const k = f.dataset.f, bad = !!errs[k];
+                f.classList.toggle('bad', bad);
+                if (bad) f.querySelector('.err').textContent = errs[k];
+            });
+            const first = Object.keys(errs)[0];
+            if (first) { $('f_' + first).focus(); return; }
+
+            const rec = Object.assign({}, v.p, val, { updatedAt: new Date().toISOString() });
+            if (v.isAuth) delete rec.email;
+            if (pendingPhoto !== undefined) rec.photo = pendingPhoto;
+            if (!saveProfileRec(v.uid, rec)) { toast('Saqlab bo‘lmadi: xotira to‘la.'); return; }
+
+            // keep other pages that read Data.getUser() in sync
+            try { if (window.Data && Data.setUser) { const cu = Data.getUser() || {}; Data.setUser(Object.assign({}, cu, { uid: cu.uid || v.uid, name: val.name, about: val.bio })); } } catch (e) { }
+
+            closeEdit(); render(); toast('Profil saqlandi');
+            if (v.isAuth) pushProfile(v.uid, rec);
+        }
+
+        // ================= CLOUD (best effort, auth users) =================
+        async function fb() { try { return await import('/firebase.js'); } catch (e) { return null; } }
+        async function pushProfile(uid, rec) {
+            const m = await fb(); if (!m || !m.setDoc || !m.doc || !m.db) return;
+            try { await m.setDoc(m.doc(m.db, 'user', uid, 'profile', 'main'), rec, { merge: true }); } catch (e) { console.warn('profile push failed', e); }
+        }
+        async function pullProfileIfEmpty() {
+            const { isAuth, uid } = authInfo();
+            if (!isAuth || getProfileRec(uid).updatedAt) return;
+            const m = await fb(); if (!m || !m.getDoc || !m.doc || !m.db) return;
+            try {
+                const snap = await m.getDoc(m.doc(m.db, 'user', uid, 'profile', 'main'));
+                if (snap.exists()) { saveProfileRec(uid, Object.assign({}, getProfileRec(uid), snap.data())); render(); }
+            } catch (e) { console.warn('profile pull failed', e); }
+        }
+
+        // ================= EVENTS =================
+        document.addEventListener('click', async e => {
+            const ed = e.target.closest('[data-edit]');
+            if (ed) { openEdit(ed.dataset.edit); return; }
+
+            const md = e.target.closest('#modeSeg [data-mode]');
+            if (md) { try { localStorage.setItem(KEY_MODE, md.dataset.mode); } catch (er) { } render(); toast(md.dataset.mode === 'exam' ? 'Exam rejimi tanlandi' : 'Study rejimi tanlandi'); return; }
+
+            if (e.target.closest('#copyUid')) {
+                try { await navigator.clipboard.writeText(getView().uid); toast('ID nusxalandi'); } catch (er) { toast('Nusxalab bo‘lmadi'); }
+                return;
+            }
+            if (e.target.closest('#syncBtn')) {
+                if (!(window.Data && Data.syncToFirestore)) { toast('Sinxronlash mavjud emas'); return; }
+                toast('Saqlanmoqda…');
+                try { await Data.syncToFirestore(); toast('Bulutga saqlandi'); } catch (er) { toast('Xatolik yuz berdi'); }
+                render(); return;
+            }
+            if (e.target.closest('#exportBtn')) {
+                const v = getView();
+                const out = { exportedAt: new Date().toISOString(), uid: v.uid, profile: { name: v.name, username: v.username, bio: v.bio, phone: v.phone, telegram: v.telegram, email: v.email, university: v.university, course: v.course, city: v.city, joinedAt: v.joinedAt } };
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' }));
+                a.download = 'pulsego-profil.json'; a.click(); URL.revokeObjectURL(a.href);
+                return;
+            }
+            if (e.target.closest('#logoutBtn')) {
+                if (!confirm('Hisobdan chiqasizmi?')) return;
+                try { const m = await fb(); if (m && m.signOut && m.auth) await m.signOut(m.auth); } catch (er) { }
+                try { localStorage.removeItem(KEY_AUTH); if (window.Data && Data.setUser) Data.setUser(null); } catch (er) { }
+                location.href = '/';
+            }
+        });
+
+        $('editClose').onclick = $('editCancel').onclick = closeEdit;
+        $('editOv').addEventListener('click', e => { if (e.target.id === 'editOv') closeEdit(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('editOv').classList.contains('show')) closeEdit(); });
+        $('editForm').addEventListener('submit', saveEdit);
+        $('f_bio').addEventListener('input', () => { $('bioCount').textContent = `${$('f_bio').value.length} / 140`; });
+        $('f_name').addEventListener('input', () => { const v = getView(); setPickAvatar(v, pendingPhoto !== undefined ? pendingPhoto : v.photo); });
+        $('pickBtn').onclick = () => $('pickFile').click();
+        $('pickFile').addEventListener('change', async e => {
+            const f = e.target.files[0]; e.target.value = '';
+            if (!f) return;
+            if (!f.type.startsWith('image/')) { toast('Faqat rasm tanlang'); return; }
+            try { pendingPhoto = await fileToDataUrl(f); setPickAvatar(getView(), pendingPhoto); } catch (er) { toast('Rasmni o‘qib bo‘lmadi'); }
+        });
+        $('pickRemove').onclick = () => { pendingPhoto = ''; setPickAvatar(getView(), ''); };
+
+        // refresh when other tabs / pages change data
+        window.addEventListener('storage', e => { if (e.key && e.key.startsWith('pulsego_') && !$('editOv').classList.contains('show')) render(); });
+        window.addEventListener('pageshow', () => { if (!$('editOv').classList.contains('show')) render(); });
+
+        render();
+        pullProfileIfEmpty();
+        // data.js ensureUser() may finish after first paint (auth user rewrite) → re-render once
+        setTimeout(() => { if (!$('editOv').classList.contains('show')) render(); }, 900);
+    </script>
+</body>
+
+</html>

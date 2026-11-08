@@ -6,6 +6,41 @@
 
 window.testGroups = [
   {
+    id: "anatomyYN",
+    title: "3-semester Anatomiya",
+    subtitle: "YN rasmli testlar",
+    totalQuestions: 250,
+    icon: "bi-flask",
+    color: "info",
+    course: 1,
+    tests: [
+      // {
+      //   id: "physiology-all",
+      //   title: "Mavzular bo'yicha testlar",
+      //   count: "250+ ta",
+      //   url: "/physiology",
+      //   img: "/assets/img/tests/physiology-all.jpg",
+      //   tags: ["topics", "mavzu"],
+      // },
+      {
+        id: "anatomy-cases",
+        title: "YN rasmli testlar",
+        count: " ",
+        url: "/anatomy/3sem/index.html",
+        img: "/assets/img/tests/anatomy-cases.jpg",
+        tags: ["yn", "yakuniy"],
+      },
+      // {
+      //   id: "physiology-yn",
+      //   title: "Real tushgan YN testlar",
+      //   count: "150+ ta",
+      //   url: "",
+      //   img: "/assets/img/tests/chem-topics.jpg",
+      //   tags: ["yn", "yakuniy"],
+      // },
+    ],
+  },
+  {
     id: "cellbiology",
     title: "Hujayra biologiyasi",
     subtitle: "Mavzular bo'yicha testlar",

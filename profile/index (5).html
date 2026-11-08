@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profil — Pulse Go</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link href="/assets/styles/styles.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --pg-surface: #ffffff;
+      --pg-muted: #64748b;
+      --pg-border: #e2e8f0;
+      --pg-accent: #2563eb;
+      --pg-accent-soft: #eff6ff;
+      --pg-success: #16a34a;
+      --pg-radius: 20px;
+      --pg-shadow: 0 8px 28px rgba(15, 23, 42, 0.07);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--tg-bg, #f4f6f8);
+      color: var(--tg-text, #0f172a);
+      padding-bottom: 96px;
+      min-height: 100dvh;
+    }
+
+    .navbar {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #e9eef5;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--tg-text, #0f172a) !important;
+    }
+
+    /* ——— Hero / cover ——— */
+    .profile-hero {
+      position: relative;
+      margin: 0 auto;
+      max-width: 640px;
+    }
+
+    .profile-cover {
+      height: 120px;
+      border-radius: 0 0 28px 28px;
+      background: linear-gradient(135deg, #1b3a3a 0%, #2563eb 55%, #7c3aed 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-cover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.18), transparent 50%),
+        radial-gradient(ellipse at 90% 20%, rgba(255, 255, 255, 0.12), transparent 40%);
+      pointer-events: none;
+    }
+
+    .profile-main-card {
+      background: var(--pg-surface);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      margin: -48px 16px 0;
+      padding: 0 20px 22px;
+      position: relative;
+      z-index: 2;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .avatar-wrap {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin-top: -48px;
+      margin-bottom: 12px;
+    }
+
+    .avatar-img,
+    .avatar-fallback {
+      width: 96px;
+      height: 96px;
+      border-radius: 28px;
+      border: 4px solid #fff;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+      object-fit: cover;
+      display: block;
+    }
+
+    .avatar-fallback {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: #fff;
+      font-size: 36px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: -0.02em;
+    }
+
+    .avatar-edit-btn {
+      position: absolute;
+      right: -4px;
+      bottom: -4px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      background: #0f172a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .avatar-edit-btn:hover {
+      background: #2563eb;
+      transform: scale(1.06);
+    }
+
+    .profile-name-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .profile-name {
+      font-size: 1.45rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+
+    .profile-handle {
+      font-size: 0.88rem;
+      color: var(--pg-muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .pg-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .pg-badge.auth {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .pg-badge.guest {
+      background: #f8fafc;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+    }
+
+    .pg-badge.sub {
+      background: #fff7ed;
+      color: #9a3412;
+      border: 1px solid #fed7aa;
+    }
+
+    .pg-badge.sub.active {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .profile-bio {
+      margin-top: 14px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #334155;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .profile-bio.empty {
+      color: var(--pg-muted);
+      font-style: italic;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: var(--pg-muted);
+    }
+
+    .meta-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .meta-row i {
+      font-size: 0.95rem;
+      opacity: 0.85;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .btn-pg-primary {
+      appearance: none;
+      border: none;
+      background: #1b3a3a;
+      color: #fff;
+      border-radius: 14px;
+      padding: 0.7rem 1.15rem;
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(27, 58, 58, 0.25);
+      transition: background 0.15s ease, transform 0.12s ease;
+    }
+
+    .btn-pg-primary:hover {
+      background: #254848;
+      color: #fff;
+    }
+
+    .btn-pg-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-pg-soft {
+      appearance: none;
+      border: 1.5px solid var(--pg-border);
+      background: #fff;
+      color: #334155;
+      border-radius: 14px;
+      padding: 0.65rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-pg-soft:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+    }
+
+    /* Complete profile banner */
+    .complete-banner {
+      max-width: 640px;
+      margin: 16px auto 0;
+      padding: 0 16px;
+    }
+
+    .complete-banner-inner {
+      background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+      border: 1px solid #bfdbfe;
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: bannerIn 0.4s ease;
+    }
+
+    @keyframes bannerIn {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .complete-banner-inner i {
+      font-size: 1.4rem;
+      color: #2563eb;
+      flex-shrink: 0;
+    }
+
+    .complete-banner-inner .txt {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .complete-banner-inner .txt strong {
+      display: block;
+      font-size: 0.9rem;
+      color: #1e3a8a;
+      margin-bottom: 2px;
+    }
+
+    .complete-banner-inner .txt span {
+      font-size: 0.8rem;
+      color: #3b82f6;
+    }
+
+    .complete-banner-inner button {
+      flex-shrink: 0;
+      border: none;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 0.5rem 0.9rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    /* Info cards */
+    .info-section {
+      max-width: 640px;
+      margin: 18px auto 0;
+      padding: 0 16px;
+    }
+
+    .info-card {
+      background: var(--pg-surface);
+      border-radius: var(--pg-radius);
+      box-shadow: var(--pg-shadow);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      padding: 18px 18px 8px;
+      margin-bottom: 14px;
+    }
+
+    .info-card-title {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--pg-muted);
+      margin-bottom: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+
+    .info-icon.blue {
+      background: #eff6ff;
+      color: #2563eb;
+    }
+
+    .info-icon.green {
+      background: #f0fdf4;
+      color: #16a34a;
+    }
+
+    .info-icon.purple {
+      background: #faf5ff;
+      color: #7c3aed;
+    }
+
+    .info-icon.orange {
+      background: #fff7ed;
+      color: #ea580c;
+    }
+
+    .info-icon.slate {
+      background: #f8fafc;
+      color: #475569;
+    }
+
+    .info-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+      margin-bottom: 1px;
+    }
+
+    .info-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      word-break: break-all;
+    }
+
+    .info-value.muted {
+      color: var(--pg-muted);
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    /* Quick links */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+      margin-bottom: 10px;
+    }
+
+    .quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 14px;
+      border-radius: 16px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+    }
+
+    .quick-link:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: inherit;
+      transform: translateY(-1px);
+    }
+
+    .quick-link i {
+      font-size: 1.25rem;
+      color: #1b3a3a;
+    }
+
+    .quick-link span {
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .quick-link small {
+      font-size: 0.72rem;
+      color: var(--pg-muted);
+      font-weight: 500;
+    }
+
+    /* Edit modal */
+    #editProfileModal .modal-content {
+      border: none;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+    }
+
+    #editProfileModal .modal-header {
+      border: none;
+      padding: 1.15rem 1.25rem 0.5rem;
+      background: linear-gradient(135deg, #1b3a3a 0%, #254848 100%);
+      color: #e8f0f0;
+    }
+
+    #editProfileModal .modal-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    #editProfileModal .btn-close {
+      filter: invert(1);
+      opacity: 0.85;
+    }
+
+    #editProfileModal .modal-body {
+      padding: 1.25rem;
+    }
+
+    #editProfileModal .form-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 0.35rem;
+    }
+
+    #editProfileModal .form-control,
+    #editProfileModal .form-select {
+      border-radius: 12px;
+      border: 1.5px solid #e2e8f0;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.95rem;
+    }
+
+    #editProfileModal .form-control:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    #editProfileModal .form-hint {
+      font-size: 0.75rem;
+      color: var(--pg-muted);
+      margin-top: 0.3rem;
+    }
+
+    #editProfileModal .modal-footer {
+      border: none;
+      padding: 0 1.25rem 1.25rem;
+      gap: 8px;
+    }
+
+    .photo-preview-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .photo-preview {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .photo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .toast-pg {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #0f172a;
+      color: #fff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      pointer-events: none;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.3);
+    }
+
+    .toast-pg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .profile-cover {
+        border-radius: 24px;
+        margin: 16px 16px 0;
+        height: 140px;
+      }
+
+      .profile-main-card {
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar sticky-top">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a href="/" class="navbar-brand d-flex align-items-center gap-2">
+        <img src="/assets/img/PulseGo.jpg" width="40" height="40" class="rounded-circle" alt="Pulse Go">
+        Pulse Go
+      </a>
+      <a href="/" class="btn btn-light btn-sm rounded-pill"><i class="bi bi-house"></i> Home</a>
+    </div>
+  </nav>
+
+  <div class="profile-hero">
+    <div class="profile-cover" aria-hidden="true"></div>
+
+    <div class="profile-main-card">
+      <div class="avatar-wrap">
+        <div id="avatarFallback" class="avatar-fallback">P</div>
+        <img id="avatarImg" class="avatar-img" alt="Avatar" style="display:none" />
+        <button type="button" class="avatar-edit-btn" id="openEditFromAvatar" title="Profilni tahrirlash"
+          aria-label="Profilni tahrirlash">
+          <i class="bi bi-pencil-fill"></i>
+        </button>
+      </div>
+
+      <div class="profile-name-row">
+        <div>
+          <h1 class="profile-name" id="profileName">Foydalanuvchi</h1>
+          <div class="profile-handle" id="profileHandle">@guest</div>
+        </div>
+      </div>
+
+      <div class="badge-row" id="badgeRow">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="profile-bio empty" id="profileBio">Bio hali yozilmagan.</div>
+
+      <div class="meta-row" id="metaRow">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="action-row">
+        <button type="button" class="btn-pg-primary" id="editProfileBtn">
+          <i class="bi bi-pencil-square"></i> Profilni tahrirlash
+        </button>
+        <button type="button" class="btn-pg-soft" id="refreshBtn">
+          <i class="bi bi-arrow-clockwise"></i> Yangilash
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Complete profile banner (hidden when complete) -->
+  <div class="complete-banner" id="completeBanner" style="display:none">
+    <div class="complete-banner-inner">
+      <i class="bi bi-person-check"></i>
+      <div class="txt">
+        <strong>Profilingizni to‘ldiring</strong>
+        <span id="completeHint">Ism, bio va boshqa ma’lumotlar — tajriba yaxshilanadi.</span>
+      </div>
+      <button type="button" id="completeBannerBtn">To‘ldirish</button>
+    </div>
+  </div>
+
+  <!-- Account & identity -->
+  <div class="info-section">
+    <div class="info-card">
+      <div class="info-card-title">Hisob ma’lumotlari</div>
+      <div class="info-row">
+        <div class="info-icon blue"><i class="bi bi-envelope"></i></div>
+        <div>
+          <div class="info-label">Email</div>
+          <div class="info-value muted" id="infoEmail">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon purple"><i class="bi bi-fingerprint"></i></div>
+        <div>
+          <div class="info-label">UID</div>
+          <div class="info-value muted" id="infoUid" style="font-size:0.8rem;font-weight:600">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon green"><i class="bi bi-shield-check"></i></div>
+        <div>
+          <div class="info-label">Kirish holati</div>
+          <div class="info-value" id="infoAuthStatus">Mehmon</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon orange"><i class="bi bi-calendar3"></i></div>
+        <div>
+          <div class="info-label">Qo‘shilgan sana</div>
+          <div class="info-value" id="infoJoined">—</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon slate"><i class="bi bi-star"></i></div>
+        <div>
+          <div class="info-label">Obuna</div>
+          <div class="info-value" id="infoSub">Obuna: 0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-title">Tezkor havolalar</div>
+      <div class="quick-grid">
+        <a href="/xatolar/?action=view" class="quick-link">
+          <i class="bi bi-clipboard2-pulse"></i>
+          <span>Xatolar</span>
+          <small>Saqlangan xatolarni ko‘rish</small>
+        </a>
+        <a href="/tests/" class="quick-link">
+          <i class="bi bi-grid-3x3-gap"></i>
+          <span>QBank</span>
+          <small>Savollar banki</small>
+        </a>
+        <a href="/preparation/" class="quick-link">
+          <i class="bi bi-journal-check"></i>
+          <span>Tayyorlanish</span>
+          <small>Sessiyalar</small>
+        </a>
+        <a href="/" class="quick-link">
+          <i class="bi bi-house"></i>
+          <span>Asosiy</span>
+          <small>Bosh sahifa</small>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit profile modal -->
+  <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editProfileModalLabel">
+            <i class="bi bi-person-gear me-1"></i> Profilni tahrirlash
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Yopish"></button>
+        </div>
+        <div class="modal-body">
+          <div class="photo-preview-row">
+            <div class="photo-preview" id="editPhotoPreview">P</div>
+            <div>
+              <div class="form-label mb-1">Profil rasmi</div>
+              <input type="url" class="form-control form-control-sm" id="editPhotoURL"
+                placeholder="https://… (ixtiyoriy)" />
+              <div class="form-hint">Google orqali kirgan bo‘lsangiz, rasm avtomatik keladi.</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="editName">Ism *</label>
+            <input type="text" class="form-control" id="editName" maxlength="80" required placeholder="Ismingiz" />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="editAbout">Bio</label>
+            <textarea class="form-control" id="editAbout" rows="3" maxlength="280"
+              placeholder="O‘zingiz haqingizda qisqacha…"></textarea>
+            <div class="form-hint"><span id="bioCount">0</span>/280</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="editEmail">Email</label>
+            <input type="email" class="form-control" id="editEmail" placeholder="email@example.com" />
+            <div class="form-hint">Autentifikatsiya qilingan akkauntda odatda o‘zgarmaydi.</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-pg-soft" data-bs-dismiss="modal">Bekor qilish</button>
+          <button type="button" class="btn-pg-primary" id="saveProfileBtn">
+            <i class="bi bi-check2-circle"></i> Saqlash
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-pg" id="pgToast" role="status"></div>
+
+  <nav class="bottom-nav d-lg-none">
+    <a href="/" class="bn-item">
+      <i class="bi bi-house-fill"></i>
+      <span>Asosiy</span>
+    </a>
+    <a href="/tests/" class="bn-item">
+      <i class="bi bi-grid-3x3-gap-fill"></i>
+      <span>QBank</span>
+    </a>
+    <a href="/preparation/" class="bn-item bn-fab">
+      <span class="bn-fab-btn"><i class="bi bi-plus-lg"></i></span>
+      <span>Tayyorlanish</span>
+    </a>
+    <a href="/lessons" class="bn-item">
+      <i class="bi bi-book-half"></i>
+      <span>Darslar</span>
+    </a>
+    <a href="/profile" class="bn-item active">
+      <i class="bi bi-person-fill"></i>
+      <span>Profil</span>
+    </a>
+  </nav>
+
+  <script src="/assets/js/data.js"></script>
+  <script src="/profile/profile (1).js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

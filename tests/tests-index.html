@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>Testlar — Pulse Go</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles/styles.css">
+
+  <style>
+    :root {
+      --pg-bg: #f4f6f8;
+      --pg-surface: #ffffff;
+      --pg-border: #e8edf2;
+      --pg-text: #0f172a;
+      --pg-muted: #64748b;
+      --pg-soft: #94a3b8;
+      --pg-accent: #0f172a;
+      --pg-green: #16a34a;
+      --pg-green-bg: #ecfdf5;
+      --pg-yellow: #ca8a04;
+      --pg-yellow-bg: #fefce8;
+      --pg-red: #dc2626;
+      --pg-red-bg: #fef2f2;
+      --pg-radius: 16px;
+      --pg-shadow: 0 1px 2px rgba(15,23,42,.04), 0 4px 12px rgba(15,23,42,.04);
+      --pg-shadow-hover: 0 8px 24px rgba(15,23,42,.1);
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      background: var(--pg-bg, #f4f6f8);
+      color: var(--pg-text, #0f172a);
+      padding-bottom: 90px;
+      margin: 0;
+    }
+
+    /* ── Page header ── */
+    .pg-header {
+      padding: 18px 0 4px;
+    }
+    .pg-header h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin: 0 0 2px;
+    }
+    .pg-header p {
+      color: var(--pg-muted);
+      font-size: 0.875rem;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* ── Summary strip ── */
+    .pg-summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 14px 0 4px;
+    }
+    .pg-sum-item {
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+      box-shadow: var(--pg-shadow);
+    }
+    .pg-sum-item .v {
+      font-size: 1.15rem;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.2;
+    }
+    .pg-sum-item .l {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--pg-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-top: 2px;
+    }
+    .pg-sum-item.ok .v { color: var(--pg-green); }
+    .pg-sum-item.warn .v { color: var(--pg-yellow); }
+    .pg-sum-item.bad .v { color: var(--pg-red); }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 14px 0 12px;
+    }
+    .search-wrap {
+      flex: 1 1 160px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      box-shadow: var(--pg-shadow);
+    }
+    .search-wrap i { color: var(--pg-soft); font-size: 0.95rem; }
+    .search-wrap input {
+      border: 0; outline: 0; width: 100%;
+      font-size: 0.875rem; font-weight: 500;
+      background: transparent; color: inherit;
+      font-family: inherit;
+    }
+    .search-wrap input::placeholder { color: var(--pg-soft); }
+
+    .btn-find {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--pg-accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(15,23,42,.15);
+      cursor: pointer;
+      transition: transform .15s, box-shadow .15s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .btn-find:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(15,23,42,.22);
+      color: #fff;
+    }
+
+    .btn-filter, .view-btn {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--pg-border);
+      background: var(--pg-surface);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--pg-muted);
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: var(--pg-shadow);
+      transition: all .15s;
+    }
+    .btn-filter:hover, .view-btn:hover { background: #f8fafc; }
+    .btn-filter.active, .view-btn.active {
+      background: var(--pg-accent);
+      color: #fff;
+      border-color: var(--pg-accent);
+    }
+    .view-toggle { display: inline-flex; gap: 4px; }
+
+    /* Active chips */
+    .active-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      min-height: 0;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #e0f2fe;
+      color: #0369a1;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .chip button {
+      border: 0; background: transparent; color: inherit;
+      padding: 0; line-height: 1; cursor: pointer; font-size: 0.9rem;
+    }
+
+    /* Results bar */
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+    .results-bar h2 {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--pg-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+    .results-count {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--pg-soft);
+      background: #e2e8f0;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    /* ── LIST VIEW (primary, minimal) ── */
+    .tests-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .product-row {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border);
+      border-radius: var(--pg-radius);
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      box-shadow: var(--pg-shadow);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s;
+      cursor: pointer;
+    }
+    .product-row:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--pg-shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    /* Status rail */
+    .pr-rail {
+      width: 4px;
+      flex-shrink: 0;
+      background: #e2e8f0;
+    }
+    .product-row.card-success .pr-rail { background: var(--pg-green); }
+    .product-row.card-warning .pr-rail { background: var(--pg-yellow); }
+    .product-row.card-danger .pr-rail { background: var(--pg-red); }
+    .product-row.card-new .pr-rail { background: #cbd5e1; }
+
+    .pr-icon {
+      width: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.15rem;
+      color: #475569;
+      background: #f8fafc;
+      border-right: 1px solid var(--pg-border);
+    }
+    .product-row.card-success .pr-icon { background: var(--pg-green-bg); color: var(--pg-green); }
+    .product-row.card-warning .pr-icon { background: var(--pg-yellow-bg); color: var(--pg-yellow); }
+    .product-row.card-danger .pr-icon { background: var(--pg-red-bg); color: var(--pg-red); }
+
+    .pr-body {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .pr-subject {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--pg-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .pr-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--pg-text);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .pr-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+    .pr-count {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+    }
+    .pr-progress {
+      flex: 1;
+      min-width: 60px;
+      max-width: 100px;
+      height: 3px;
+      background: #e2e8f0;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .pr-progress > span {
+      display: block;
+      height: 100%;
+      border-radius: 99px;
+      width: 0%;
+      transition: width .5s ease;
+    }
+    .product-row.card-success .pr-progress > span { background: var(--pg-green); }
+    .product-row.card-warning .pr-progress > span { background: var(--pg-yellow); }
+    .product-row.card-danger .pr-progress > span { background: var(--pg-red); }
+    .product-row.card-new .pr-progress > span { background: #cbd5e1; }
+
+    .pr-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 4px;
+      padding: 12px 14px 12px 8px;
+      flex-shrink: 0;
+    }
+    .pr-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .pr-badge.new { background: #f1f5f9; color: #64748b; }
+    .pr-badge.ok { background: var(--pg-green-bg); color: #166534; }
+    .pr-badge.warn { background: var(--pg-yellow-bg); color: #854d0e; }
+    .pr-badge.bad { background: var(--pg-red-bg); color: #991b1b; }
+
+    .pr-chevron {
+      color: var(--pg-soft);
+      font-size: 0.9rem;
+    }
+
+    /* ── CARD / GRID VIEW ── */
+    .tests-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 576px) {
+      .tests-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 992px) {
+      .tests-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .product-card {
+      position: relative;
+      background: var(--pg-surface);
+      border-radius: var(--pg-radius);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid var(--pg-border);
+      box-shadow: var(--pg-shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--pg-shadow-hover);
+    }
+
+    .pc-rail {
+      height: 4px;
+      width: 100%;
+      background: #e2e8f0;
+    }
+    .product-card.card-success .pc-rail { background: var(--pg-green); }
+    .product-card.card-warning .pc-rail { background: var(--pg-yellow); }
+    .product-card.card-danger .pc-rail { background: var(--pg-red); }
+
+    .pc-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 8px;
+    }
+    .pc-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .pc-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      background: #f1f5f9;
+      color: #475569;
+      flex-shrink: 0;
+    }
+    .product-card.card-success .pc-icon { background: var(--pg-green-bg); color: var(--pg-green); }
+    .product-card.card-warning .pc-icon { background: var(--pg-yellow-bg); color: var(--pg-yellow); }
+    .product-card.card-danger .pc-icon { background: var(--pg-red-bg); color: var(--pg-red); }
+
+    .pc-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 999px;
+    }
+    .pc-badge.new { background: #f1f5f9; color: #64748b; }
+    .pc-badge.ok { background: var(--pg-green-bg); color: #166534; }
+    .pc-badge.warn { background: var(--pg-yellow-bg); color: #854d0e; }
+    .pc-badge.bad { background: var(--pg-red-bg); color: #991b1b; }
+
+    .pc-subject {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--pg-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .pc-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--pg-text);
+      flex-grow: 1;
+      letter-spacing: -0.01em;
+    }
+    .pc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+    .pc-count {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--pg-muted);
+    }
+    .pc-progress {
+      flex: 1;
+      height: 3px;
+      background: #e2e8f0;
+      border-radius: 99px;
+      overflow: hidden;
+      max-width: 60px;
+    }
+    .pc-progress > span {
+      display: block; height: 100%; border-radius: 99px; width: 0%;
+    }
+    .product-card.card-success .pc-progress > span { background: var(--pg-green); }
+    .product-card.card-warning .pc-progress > span { background: var(--pg-yellow); }
+    .product-card.card-danger .pc-progress > span { background: var(--pg-red); }
+
+    /* Empty */
+    .empty-state {
+      text-align: center;
+      padding: 48px 20px;
+      background: var(--pg-surface);
+      border-radius: var(--pg-radius);
+      border: 1px dashed var(--pg-border);
+    }
+    .empty-state i { font-size: 2.2rem; color: #cbd5e1; margin-bottom: 10px; }
+    .empty-state h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .empty-state p { font-size: 0.875rem; color: var(--pg-soft); margin: 0; }
+
+    /* ── Modals (wizard + filter) ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(15,23,42,.5);
+      backdrop-filter: blur(6px);
+      display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity .25s, visibility .25s;
+    }
+    .modal-overlay.show { opacity: 1; visibility: visible; }
+    .modal-sheet {
+      width: 100%; max-width: 440px;
+      background: #fff;
+      border-radius: 24px 24px 0 0;
+      padding: 8px 20px 28px;
+      transform: translateY(100%);
+      transition: transform .35s cubic-bezier(.22,1,.36,1);
+      max-height: 92vh; overflow-y: auto;
+    }
+    @media (min-width: 576px) {
+      .modal-overlay { align-items: center; }
+      .modal-sheet {
+        border-radius: 24px;
+        transform: translateY(24px) scale(.96);
+        max-height: 85vh;
+      }
+      .modal-overlay.show .modal-sheet { transform: translateY(0) scale(1); }
+    }
+    .modal-overlay.show .modal-sheet { transform: translateY(0); }
+    .modal-handle {
+      width: 40px; height: 4px; background: #e2e8f0;
+      border-radius: 4px; margin: 8px auto 16px;
+    }
+    .modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .modal-header h3 { font-size: 1.1rem; font-weight: 800; margin: 0; }
+    .modal-close {
+      width: 36px; height: 36px; border-radius: 50%; border: 0;
+      background: #f1f5f9; color: #475569; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+
+    .wizard-step { display: none; animation: stepIn .3s ease; }
+    .wizard-step.active { display: block; }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateX(12px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .wizard-progress { display: flex; gap: 6px; margin-bottom: 18px; }
+    .wizard-progress span {
+      flex: 1; height: 3px; border-radius: 4px; background: #e2e8f0;
+      transition: background .3s;
+    }
+    .wizard-progress span.done { background: var(--pg-accent); }
+    .wizard-q {
+      font-size: 1.15rem; font-weight: 800; line-height: 1.3; margin-bottom: 6px;
+    }
+    .wizard-hint { font-size: 0.8rem; color: var(--pg-muted); margin-bottom: 16px; }
+    .course-input-wrap { display: flex; gap: 10px; margin-bottom: 16px; }
+    .course-input-wrap input {
+      flex: 1; border: 2px solid #e2e8f0; border-radius: 12px;
+      padding: 12px 14px; font-size: 1.1rem; font-weight: 700;
+      text-align: center; outline: none; transition: border .2s;
+      font-family: inherit;
+    }
+    .course-input-wrap input:focus { border-color: var(--pg-accent); }
+    .option-list { display: flex; flex-direction: column; gap: 8px; }
+    .option-btn {
+      display: flex; align-items: center; gap: 12px; width: 100%;
+      text-align: left; background: #f8fafc; border: 1.5px solid #e2e8f0;
+      border-radius: 14px; padding: 12px 14px; font-size: 0.9rem;
+      font-weight: 600; color: var(--pg-text); cursor: pointer;
+      transition: all .15s; font-family: inherit;
+    }
+    .option-btn:hover, .option-btn.selected {
+      background: var(--pg-accent); color: #fff; border-color: var(--pg-accent);
+    }
+    .option-btn i {
+      width: 34px; height: 34px; border-radius: 10px; background: #e2e8f0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; flex-shrink: 0; transition: background .15s;
+    }
+    .option-btn:hover i, .option-btn.selected i {
+      background: rgba(255,255,255,.15); color: #fff;
+    }
+    .wizard-nav { display: flex; gap: 10px; margin-top: 18px; }
+    .wizard-nav .btn-back {
+      flex: 0 0 auto; border: 1px solid #e2e8f0; background: #fff;
+      border-radius: 12px; padding: 11px 14px; font-weight: 600;
+      color: var(--pg-muted); cursor: pointer; font-family: inherit;
+    }
+    .wizard-nav .btn-next {
+      flex: 1; border: 0; background: var(--pg-accent); color: #fff;
+      border-radius: 12px; padding: 11px 14px; font-weight: 700;
+      cursor: pointer; transition: background .15s; font-family: inherit;
+    }
+    .wizard-nav .btn-next:disabled { opacity: .4; cursor: not-allowed; }
+    .wizard-nav .btn-next:not(:disabled):hover { background: #1e293b; }
+
+    .filter-section { margin-bottom: 18px; }
+    .filter-section-title {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .04em; color: var(--pg-soft); margin-bottom: 8px;
+    }
+    .filter-options { display: flex; flex-wrap: wrap; gap: 6px; }
+    .filter-chip {
+      padding: 7px 12px; border-radius: 999px; border: 1.5px solid #e2e8f0;
+      background: #fff; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+      transition: all .15s; font-family: inherit;
+    }
+    .filter-chip.active {
+      background: var(--pg-accent); color: #fff; border-color: var(--pg-accent);
+    }
+    .filter-apply {
+      width: 100%; border: 0; background: var(--pg-accent); color: #fff;
+      border-radius: 12px; padding: 12px; font-size: 0.9rem; font-weight: 700;
+      margin-top: 6px; cursor: pointer; font-family: inherit;
+    }
+
+    /* Bottom nav */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; width: 100%; height: 68px;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid #e5eaf1;
+      display: flex; justify-content: space-around; align-items: center;
+      z-index: 1050;
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+    .bottom-nav .bn-item {
+      flex: 1; text-align: center; text-decoration: none;
+      color: #64748b; font-size: 11px; font-weight: 600;
+    }
+    .bottom-nav .bn-item i { display: block; font-size: 20px; margin-bottom: 2px; }
+    .bottom-nav .bn-item.active { color: #0f172a; }
+  </style>
+</head>
+<body>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="sidebar-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go">
+      </div>
+      <div>
+        <div class="sidebar-brand">Pulse Go</div>
+        <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+      </div>
+      <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+    <div class="sidebar-user" id="sidebarUser">
+      <div class="sidebar-avatar" id="sidebarAvatarText">P</div>
+      <div>
+        <div class="sidebar-user-name" id="sidebarUserName">Foydalanuvchi</div>
+        <div class="sidebar-user-sub">Pulse Go Member</div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Asosiy</div>
+      <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
+      <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i> Tayyorlanish</a>
+      <a href="/tests/" class="sidebar-link active" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i> Test QBank</a>
+      <div class="sidebar-section-label">O'quv materiallari</div>
+      <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online Darslar</a>
+      <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i> Kitoblar</a>
+      <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i> Anatomiya</a>
+      <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i> Hujayra biologiyasi</a>
+      <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i> Kimyo</a>
+      <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i> Embriologiya</a>
+      <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i> Klinik holat</a>
+      <div class="sidebar-section-label">Profil</div>
+      <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening profilim</a>
+      <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
+      <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i> Fikr bildirish</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="https://t.me/broinibek" target="_blank" class="sidebar-link" style="background:#f0fdf4;color:#16a34a">
+        <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
+      </a>
+    </div>
+  </aside>
+
+  <nav class="top-navbar">
+    <div class="container">
+      <button class="btn-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
+      <a href="/" class="nav-logo">
+        <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
+      </a>
+      <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top:8px;padding-bottom:24px;">
+
+    <div id="messageView"></div>
+
+    <div class="pg-header">
+      <h1>Test QBank</h1>
+      <p>Barcha fanlar · natijalar bilan</p>
+    </div>
+
+    <!-- Collection-level summary -->
+    <div class="pg-summary" id="pgSummary">
+      <div class="pg-sum-item">
+        <div class="v" id="sumCollections">—</div>
+        <div class="l">To‘plam</div>
+      </div>
+      <div class="pg-sum-item">
+        <div class="v" id="sumTests">—</div>
+        <div class="l">Test</div>
+      </div>
+      <div class="pg-sum-item ok">
+        <div class="v" id="sumAvg">—</div>
+        <div class="l">O‘rtacha</div>
+      </div>
+      <div class="pg-sum-item">
+        <div class="v" id="sumDone">—</div>
+        <div class="l">Ishlangan</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <label class="search-wrap">
+        <i class="bi bi-search"></i>
+        <input type="search" id="searchInput" placeholder="Test yoki fan qidiring…" autocomplete="off">
+      </label>
+
+      <button type="button" class="btn-find" id="btnFind">
+        <i class="bi bi-magic"></i> Topish
+      </button>
+
+      <button type="button" class="btn-filter" id="btnFilter" title="Filtr">
+        <i class="bi bi-sliders"></i>
+      </button>
+
+      <div class="view-toggle">
+        <button type="button" class="view-btn" id="btnCardView" title="Kartochkalar">
+          <i class="bi bi-grid-3x3-gap-fill"></i>
+        </button>
+        <button type="button" class="view-btn active" id="btnListView" title="Ro‘yxat">
+          <i class="bi bi-list-ul"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="active-chips" id="activeChips"></div>
+
+    <div class="results-bar">
+      <h2 id="resultsLabel">Barcha testlar</h2>
+      <span class="results-count" id="resultsCount">0 ta</span>
+    </div>
+
+    <div id="testsContainer" class="tests-list"></div>
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <i class="bi bi-inbox"></i>
+      <h3>Test topilmadi</h3>
+      <p>Boshqa filter yoki qidiruvni sinab ko‘ring.</p>
+    </div>
+  </main>
+
+  <!-- Wizard -->
+  <div class="modal-overlay" id="wizardModal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <h3>Kerakli testni topish</h3>
+        <button type="button" class="modal-close" onclick="closeWizard()"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="wizard-progress" id="wizardProgress"><span></span><span></span><span></span></div>
+
+      <div class="wizard-step active" data-step="1">
+        <div class="wizard-q">Nechanchi kursdasiz?</div>
+        <div class="wizard-hint">Raqam kiriting (1, 2 yoki 3)</div>
+        <div class="course-input-wrap">
+          <input type="number" id="courseInput" min="1" max="6" placeholder="Kurs" inputmode="numeric">
+        </div>
+        <div class="wizard-nav">
+          <button type="button" class="btn-next" id="step1Next" disabled>Davom etish</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" data-step="2">
+        <div class="wizard-q">Qaysi fan?</div>
+        <div class="wizard-hint">Kursingizga mos fanlar</div>
+        <div class="option-list" id="subjectOptions"></div>
+        <div class="wizard-nav">
+          <button type="button" class="btn-back" onclick="wizardGo(1)">Orqaga</button>
+          <button type="button" class="btn-next" id="step2Next" disabled>Davom etish</button>
+        </div>
+      </div>
+
+      <div class="wizard-step" data-step="3">
+        <div class="wizard-q">Maqsad?</div>
+        <div class="wizard-hint">Birini tanlang</div>
+        <div class="option-list" id="purposeOptions">
+          <button type="button" class="option-btn" data-purpose="yn"><i class="bi bi-image"></i> YN (Yakuniy / rasmli)</button>
+          <button type="button" class="option-btn" data-purpose="grant"><i class="bi bi-trophy"></i> Grant / Grand exam</button>
+          <button type="button" class="option-btn" data-purpose="cases"><i class="bi bi-clipboard2-pulse"></i> Clinical cases</button>
+          <button type="button" class="option-btn" data-purpose="all"><i class="bi bi-grid"></i> Barchasini ko‘rish</button>
+        </div>
+        <div class="wizard-nav">
+          <button type="button" class="btn-back" onclick="wizardGo(2)">Orqaga</button>
+          <button type="button" class="btn-next" id="step3Next" disabled>Natijani ko‘rish</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="modal-overlay" id="filterModal">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="modal-header">
+        <h3>Filtrlar</h3>
+        <button type="button" class="modal-close" onclick="closeFilterModal()"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="filter-section">
+        <div class="filter-section-title">Fan</div>
+        <div class="filter-options" id="filterSubjects"></div>
+      </div>
+      <div class="filter-section">
+        <div class="filter-section-title">Maqsad</div>
+        <div class="filter-options" id="filterPurposes">
+          <button type="button" class="filter-chip active" data-purpose="all">Barchasi</button>
+          <button type="button" class="filter-chip" data-purpose="yn">YN</button>
+          <button type="button" class="filter-chip" data-purpose="grant">Grant</button>
+          <button type="button" class="filter-chip" data-purpose="cases">Cases</button>
+          <button type="button" class="filter-chip" data-purpose="topics">Mavzular</button>
+        </div>
+      </div>
+      <button type="button" class="filter-apply" onclick="applyFilters()">Qo‘llash</button>
+    </div>
+  </div>
+
+  <nav class="bottom-nav d-lg-none">
+    <a href="../" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
+    <a href="/tests/" class="bn-item active"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
+    <a href="/preparation/" class="bn-item"><i class="bi bi-plus-lg"></i><span>Tayyorlanish</span></a>
+    <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
+    <a href="../profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+  </nav>
+
+  <script src="./messageData.js"></script>
+  <script src="./message.js"></script>
+  <script src="./welcomerdata.js"></script>
+  <script src="./welcomer.js"></script>
+  <script src="tests-data.js"></script>
+
+  <script>
+    // ── Sidebar ──
+    function openSidebar() {
+      document.getElementById("sidebar").classList.add("open");
+      document.getElementById("sidebarOverlay").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar").classList.remove("open");
+      document.getElementById("sidebarOverlay").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    // ── Stats from your engine localStorage ──
+    function getUnifiedResults() {
+      if (typeof getUnifiedTestResults === "function") {
+        try { return getUnifiedTestResults(); } catch (e) {}
+      }
+      const map = new Map();
+      const add = (list) => {
+        if (!Array.isArray(list)) return;
+        list.forEach((e) => {
+          if (!e) return;
+          const key = `${e.testName}|${e.date}|${e.correct}|${e.total}|${e.solved}`;
+          if (!map.has(key)) map.set(key, e);
+        });
+      };
+      try {
+        const raw = localStorage.getItem("pulsego_test_results_v1");
+        add(raw ? JSON.parse(raw).tests : []);
+      } catch (e) {}
+      try {
+        const raw = localStorage.getItem("pulsego_data_v1");
+        const data = raw ? JSON.parse(raw) : {};
+        add(data.results);
+        add(data.testResults);
+        add(data.tests);
+      } catch (e) {}
+      return Array.from(map.values());
+    }
+
+    /** Aggregate by collection URL / id for performance coloring */
+    function buildCollectionStats() {
+      const results = getUnifiedResults();
+      // We color by groupId using any results that match test names under that group.
+      // Since catalog links go to subject pages (not individual startTest keys),
+      // we use a soft signal: if user has ANY results, show mild progress.
+      // For stronger signal, subject pages use exact testName keys.
+      const byName = {};
+      results.forEach((e) => {
+        const n = String(e.testName || "").toLowerCase();
+        if (!byName[n]) byName[n] = { attempts: 0, correct: 0, solved: 0, last: null };
+        const solved = e.solved != null ? e.solved : (e.correct || 0) + (e.wrong || 0);
+        byName[n].attempts += 1;
+        byName[n].correct += e.correct || 0;
+        byName[n].solved += solved;
+        if (!byName[n].last || new Date(e.date) > new Date(byName[n].last.date || 0)) {
+          byName[n].last = e;
+        }
+      });
+      return byName;
+    }
+
+    function perfFromStats(st) {
+      if (!st || !st.attempts) return { cls: "new", badge: "new", text: "Yangi", pct: null };
+      const avg = st.solved
+        ? Math.round((st.correct / st.solved) * 100)
+        : st.last?.percent ?? null;
+      if (avg == null) return { cls: "new", badge: "new", text: "Yangi", pct: null };
+      if (avg >= 80) return { cls: "success", badge: "ok", text: avg + "%", pct: avg };
+      if (avg >= 56) return { cls: "warning", badge: "warn", text: avg + "%", pct: avg };
+      return { cls: "danger", badge: "bad", text: avg + "%", pct: avg };
+    }
+
+    /** Match a catalog test to stored results by id / title / url keywords */
+    function matchStatsForTest(test, byName) {
+      const candidates = [
+        test.id,
+        test.title,
+        (test.url || "").split("/").filter(Boolean).pop(),
+      ]
+        .filter(Boolean)
+        .map((s) => String(s).toLowerCase().replace(/\.html?$/, ""));
+
+      let best = null;
+      Object.keys(byName).forEach((key) => {
+        if (candidates.some((c) => key.includes(c) || c.includes(key))) {
+          const st = byName[key];
+          if (!best || st.attempts > best.attempts) best = st;
+        }
+      });
+      return best;
+    }
+
+    // ── State ──
+    let currentView = "list";
+    let searchQuery = "";
+    let filterSubject = "all";
+    let filterPurpose = "all";
+    let wizard = { course: null, subject: null, purpose: null, step: 1 };
+    let statsByName = {};
+
+    // ── Data ──
+    function getAllTests() {
+      const items = [];
+      (window.testGroups || []).forEach((g) => {
+        (g.tests || []).forEach((t) => {
+          items.push({
+            ...t,
+            groupId: g.id,
+            groupTitle: g.title,
+            groupIcon: g.icon,
+            groupColor: g.color || "primary",
+            course: g.course ?? 0,
+            tags: t.tags || [],
+          });
+        });
+      });
+      return items;
+    }
+
+    function matchesPurpose(test, purpose) {
+      if (!purpose || purpose === "all") return true;
+      const tags = (test.tags || []).map((x) => x.toLowerCase());
+      const blob = (test.title + " " + test.id + " " + (test.url || "")).toLowerCase();
+      if (purpose === "yn")
+        return tags.includes("yn") || tags.includes("yakuniy") || /yn|yakuniy|rasmli/.test(blob);
+      if (purpose === "grant")
+        return tags.includes("grant") || tags.includes("grand") || /grant|grand/.test(blob);
+      if (purpose === "cases")
+        return tags.includes("cases") || tags.includes("case") || /case|caselar/.test(blob);
+      if (purpose === "topics")
+        return tags.includes("topics") || tags.includes("mavzu") || /mavzu|bytopics|bo'yicha|bo‘yicha/.test(blob);
+      return true;
+    }
+
+    function getFilteredTests() {
+      let list = getAllTests();
+      if (filterSubject !== "all") list = list.filter((t) => t.groupId === filterSubject);
+      const withPurpose = list.filter((t) => matchesPurpose(t, filterPurpose));
+      if (withPurpose.length) list = withPurpose;
+      if (searchQuery.trim()) {
+        const q = searchQuery.trim().toLowerCase();
+        list = list.filter(
+          (t) =>
+            t.title.toLowerCase().includes(q) ||
+            t.groupTitle.toLowerCase().includes(q) ||
+            (t.count || "").toLowerCase().includes(q),
+        );
+      }
+      return list;
+    }
+
+    function escapeHtml(s) {
+      return String(s ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    // ── Render ──
+    function updateSummary() {
+      const groups = (window.testGroups || []).filter((g) => g.tests && g.tests.length);
+      const all = getAllTests();
+      let done = 0;
+      let sumPct = 0;
+      let pctN = 0;
+      all.forEach((t) => {
+        const st = matchStatsForTest(t, statsByName);
+        const p = perfFromStats(st);
+        if (p.pct != null) {
+          done++;
+          sumPct += p.pct;
+          pctN++;
+        }
+      });
+      const avg = pctN ? Math.round(sumPct / pctN) : null;
+      document.getElementById("sumCollections").textContent = groups.length;
+      document.getElementById("sumTests").textContent = all.length;
+      document.getElementById("sumDone").textContent = done;
+      const avgEl = document.getElementById("sumAvg");
+      avgEl.textContent = avg != null ? avg + "%" : "—";
+      avgEl.parentElement.className =
+        "pg-sum-item" + (avg == null ? "" : avg >= 80 ? " ok" : avg >= 56 ? " warn" : " bad");
+    }
+
+    function renderListCard(t) {
+      const st = matchStatsForTest(t, statsByName);
+      const p = perfFromStats(st);
+      const pctW = p.pct != null ? p.pct : 0;
+      return `
+        <a href="${escapeHtml(t.url || "#")}" class="product-row card-${p.cls}">
+          <div class="pr-rail"></div>
+          <div class="pr-icon"><i class="bi ${t.groupIcon || "bi-journal-medical"}"></i></div>
+          <div class="pr-body">
+            <div class="pr-subject">${escapeHtml(t.groupTitle)}</div>
+            <div class="pr-title">${escapeHtml(t.title)}</div>
+            <div class="pr-meta">
+              <span class="pr-count">${escapeHtml(t.count || "—")}</span>
+              <div class="pr-progress"><span style="width:${pctW}%"></span></div>
+            </div>
+          </div>
+          <div class="pr-right">
+            <span class="pr-badge ${p.badge}">${p.text}</span>
+            <i class="bi bi-chevron-right pr-chevron"></i>
+          </div>
+        </a>`;
+    }
+
+    function renderGridCard(t) {
+      const st = matchStatsForTest(t, statsByName);
+      const p = perfFromStats(st);
+      const pctW = p.pct != null ? p.pct : 0;
+      return `
+        <a href="${escapeHtml(t.url || "#")}" class="product-card card-${p.cls}">
+          <div class="pc-rail"></div>
+          <div class="pc-body">
+            <div class="pc-top">
+              <div class="pc-icon"><i class="bi ${t.groupIcon || "bi-journal-medical"}"></i></div>
+              <span class="pc-badge ${p.badge}">${p.text}</span>
+            </div>
+            <div class="pc-subject">${escapeHtml(t.groupTitle)}</div>
+            <div class="pc-title">${escapeHtml(t.title)}</div>
+            <div class="pc-footer">
+              <span class="pc-count">${escapeHtml(t.count || "—")}</span>
+              <div class="pc-progress"><span style="width:${pctW}%"></span></div>
+            </div>
+          </div>
+        </a>`;
+    }
+
+    function renderTests() {
+      const container = document.getElementById("testsContainer");
+      const empty = document.getElementById("emptyState");
+      const list = getFilteredTests();
+
+      document.getElementById("resultsCount").textContent = list.length + " ta";
+      renderChips();
+
+      if (!list.length) {
+        container.innerHTML = "";
+        container.style.display = "none";
+        empty.style.display = "block";
+        return;
+      }
+      empty.style.display = "none";
+      container.style.display = "";
+
+      if (currentView === "card") {
+        container.className = "tests-grid";
+        container.innerHTML = list.map(renderGridCard).join("");
+      } else {
+        container.className = "tests-list";
+        container.innerHTML = list.map(renderListCard).join("");
+      }
+    }
+
+    function renderChips() {
+      const el = document.getElementById("activeChips");
+      const chips = [];
+      if (filterSubject !== "all") {
+        const g = (window.testGroups || []).find((x) => x.id === filterSubject);
+        chips.push({ key: "subject", label: g ? g.title : filterSubject });
+      }
+      if (filterPurpose !== "all") {
+        const labels = { yn: "YN", grant: "Grant", cases: "Cases", topics: "Mavzular" };
+        chips.push({ key: "purpose", label: labels[filterPurpose] || filterPurpose });
+      }
+      el.innerHTML = chips
+        .map(
+          (c) => `
+        <span class="chip">
+          ${escapeHtml(c.label)}
+          <button type="button" onclick="clearChip('${c.key}')" aria-label="Olib tashlash">×</button>
+        </span>`,
+        )
+        .join("");
+    }
+
+    function clearChip(key) {
+      if (key === "subject") filterSubject = "all";
+      if (key === "purpose") filterPurpose = "all";
+      document
+        .getElementById("btnFilter")
+        .classList.toggle("active", filterSubject !== "all" || filterPurpose !== "all");
+      renderTests();
+    }
+
+    // ── Wizard ──
+    function openWizard() {
+      wizard = { course: null, subject: null, purpose: null, step: 1 };
+      document.getElementById("courseInput").value = "";
+      document.getElementById("step1Next").disabled = true;
+      document.getElementById("step2Next").disabled = true;
+      document.getElementById("step3Next").disabled = true;
+      document.querySelectorAll("#purposeOptions .option-btn").forEach((b) => b.classList.remove("selected"));
+      wizardGo(1);
+      document.getElementById("wizardModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeWizard() {
+      document.getElementById("wizardModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+    function wizardGo(step) {
+      wizard.step = step;
+      document.querySelectorAll(".wizard-step").forEach((s) => {
+        s.classList.toggle("active", Number(s.dataset.step) === step);
+      });
+      document.querySelectorAll("#wizardProgress span").forEach((s, i) => {
+        s.classList.toggle("done", i < step);
+      });
+      if (step === 2) buildSubjectOptions();
+    }
+    function buildSubjectOptions() {
+      const course = wizard.course;
+      let groups = (window.testGroups || []).filter(
+        (g) => g.tests && g.tests.length && (g.course === 0 || g.course === course || course === null),
+      );
+      if (!groups.length) {
+        groups = (window.testGroups || []).filter((g) => g.tests && g.tests.length);
+      }
+      const box = document.getElementById("subjectOptions");
+      box.innerHTML = groups
+        .map(
+          (g) => `
+        <button type="button" class="option-btn" data-id="${g.id}">
+          <i class="bi ${g.icon}"></i> ${escapeHtml(g.title)}
+        </button>`,
+        )
+        .join("") || '<p style="color:#94a3b8;font-size:14px">Fan topilmadi.</p>';
+
+      box.querySelectorAll(".option-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          box.querySelectorAll(".option-btn").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          wizard.subject = btn.dataset.id;
+          document.getElementById("step2Next").disabled = false;
+        });
+      });
+    }
+
+    // ── Filter modal ──
+    function openFilterModal() {
+      const box = document.getElementById("filterSubjects");
+      const groups = (window.testGroups || []).filter((g) => g.tests && g.tests.length);
+      box.innerHTML = `
+        <button type="button" class="filter-chip ${filterSubject === "all" ? "active" : ""}" data-subject="all">Barchasi</button>
+        ${groups
+          .map(
+            (g) => `
+          <button type="button" class="filter-chip ${filterSubject === g.id ? "active" : ""}" data-subject="${g.id}">${escapeHtml(g.title)}</button>`,
+          )
+          .join("")}
+      `;
+      box.querySelectorAll(".filter-chip").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          box.querySelectorAll(".filter-chip").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        });
+      });
+      document.querySelectorAll("#filterPurposes .filter-chip").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.purpose === filterPurpose);
+        btn.onclick = () => {
+          document.querySelectorAll("#filterPurposes .filter-chip").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        };
+      });
+      document.getElementById("filterModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closeFilterModal() {
+      document.getElementById("filterModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+    function applyFilters() {
+      const sub = document.querySelector("#filterSubjects .filter-chip.active");
+      const pur = document.querySelector("#filterPurposes .filter-chip.active");
+      filterSubject = sub ? sub.dataset.subject : "all";
+      filterPurpose = pur ? pur.dataset.purpose : "all";
+      document
+        .getElementById("btnFilter")
+        .classList.toggle("active", filterSubject !== "all" || filterPurpose !== "all");
+      closeFilterModal();
+      renderTests();
+    }
+
+    // ── Init ──
+    document.addEventListener("DOMContentLoaded", () => {
+      statsByName = buildCollectionStats();
+      updateSummary();
+      renderTests();
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        searchQuery = e.target.value;
+        renderTests();
+      });
+      document.getElementById("btnFind").addEventListener("click", openWizard);
+      document.getElementById("btnFilter").addEventListener("click", openFilterModal);
+
+      document.getElementById("btnCardView").addEventListener("click", () => {
+        currentView = "card";
+        document.getElementById("btnCardView").classList.add("active");
+        document.getElementById("btnListView").classList.remove("active");
+        renderTests();
+      });
+      document.getElementById("btnListView").addEventListener("click", () => {
+        currentView = "list";
+        document.getElementById("btnListView").classList.add("active");
+        document.getElementById("btnCardView").classList.remove("active");
+        renderTests();
+      });
+
+      const courseInput = document.getElementById("courseInput");
+      courseInput.addEventListener("input", () => {
+        const v = parseInt(courseInput.value, 10);
+        const ok = v >= 1 && v <= 6;
+        document.getElementById("step1Next").disabled = !ok;
+        if (ok) wizard.course = v;
+      });
+      document.getElementById("step1Next").addEventListener("click", () => {
+        if (wizard.course) wizardGo(2);
+      });
+      document.getElementById("step2Next").addEventListener("click", () => {
+        if (wizard.subject) wizardGo(3);
+      });
+      document.querySelectorAll("#purposeOptions .option-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("#purposeOptions .option-btn").forEach((b) => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          wizard.purpose = btn.dataset.purpose;
+          document.getElementById("step3Next").disabled = false;
+        });
+      });
+      document.getElementById("step3Next").addEventListener("click", () => {
+        filterSubject = wizard.subject || "all";
+        filterPurpose = wizard.purpose || "all";
+        document.getElementById("btnFilter").classList.add("active");
+        closeWizard();
+        renderTests();
+        document.getElementById("testsContainer").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      document.getElementById("wizardModal").addEventListener("click", (e) => {
+        if (e.target.id === "wizardModal") closeWizard();
+      });
+      document.getElementById("filterModal").addEventListener("click", (e) => {
+        if (e.target.id === "filterModal") closeFilterModal();
+      });
+    });
+  </script>
+</body>
+</html>

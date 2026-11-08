@@ -13,6 +13,22 @@
     <link rel="stylesheet" href="/assets/styles/styles.css">
 
     <style>
+        :root {
+            --ink: #0f172a;
+            --ink-2: #475569;
+            --ink-3: #94a3b8;
+            --line: #e2e8f0;
+            --paper: #f6f7f9;
+            --card: #fff;
+            --good: #16a34a;
+            --good-bg: #f0fdf4;
+            --mid: #ca8a04;
+            --mid-bg: #fefce8;
+            --bad: #dc2626;
+            --bad-bg: #fef2f2;
+            --none: #cbd5e1;
+        }
+
         * {
             -webkit-tap-highlight-color: transparent;
             box-sizing: border-box;
@@ -20,36 +36,23 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--tg-bg, #f1f5f9);
-            color: var(--tg-text, #0f172a);
+            background: var(--tg-bg, var(--paper));
+            color: var(--tg-text, var(--ink));
             padding-bottom: 90px;
         }
 
-        /* ===== HEADER ===== */
-        .page-header {
-            padding: 22px 0 6px;
+        :focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
         }
 
-        .page-header h1 {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            margin: 0 0 4px;
-        }
-
-        .page-header p {
-            color: #64748b;
-            font-size: 14px;
-            margin: 0;
-        }
-
-        /* ===== TOOLBAR ===== */
+        /* ===== Toolbar ===== */
         .toolbar {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             align-items: center;
-            margin: 16px 0 18px;
+            margin: 16px 0 14px;
         }
 
         .search-wrap {
@@ -57,16 +60,19 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 11px 14px;
-            box-shadow: 0 2px 10px rgba(15, 23, 42, .04);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 0 14px;
+            height: 44px;
+        }
+
+        .search-wrap:focus-within {
+            border-color: var(--ink);
         }
 
         .search-wrap i {
-            color: #94a3b8;
-            font-size: 16px;
+            color: var(--ink-3);
         }
 
         .search-wrap input {
@@ -80,51 +86,42 @@
         }
 
         .search-wrap input::placeholder {
-            color: #94a3b8;
+            color: var(--ink-3);
         }
 
         .btn-find {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            height: 44px;
+            padding: 0 16px;
+            background: var(--ink);
             color: #fff;
-            border: none;
-            border-radius: 14px;
-            padding: 11px 18px;
+            border: 0;
+            border-radius: 12px;
             font-size: 13px;
             font-weight: 700;
-            box-shadow: 0 4px 14px rgba(15, 23, 42, .2);
             cursor: pointer;
-            transition: transform .2s, box-shadow .2s;
             white-space: nowrap;
         }
 
         .btn-find:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(15, 23, 42, .28);
-            color: #fff;
-        }
-
-        .btn-find i {
-            font-size: 15px;
+            background: #1e293b;
         }
 
         .btn-filter,
         .view-btn {
             width: 44px;
             height: 44px;
-            border-radius: 14px;
-            border: 1px solid #e2e8f0;
-            background: #fff;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: var(--card);
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            color: #475569;
+            color: var(--ink-2);
             font-size: 17px;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, .04);
-            transition: all .2s;
         }
 
         .btn-filter:hover,
@@ -132,16 +129,11 @@
             background: #f8fafc;
         }
 
-        .btn-filter.active {
-            background: #0f172a;
-            color: #fff;
-            border-color: #0f172a;
-        }
-
+        .btn-filter.active,
         .view-btn.active {
-            background: #0f172a;
+            background: var(--ink);
             color: #fff;
-            border-color: #0f172a;
+            border-color: var(--ink);
         }
 
         .view-toggle {
@@ -149,13 +141,11 @@
             gap: 6px;
         }
 
-        /* Active filter chips (small) */
         .active-chips {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-bottom: 14px;
-            min-height: 0;
+            margin-bottom: 12px;
         }
 
         .chip {
@@ -180,13 +170,11 @@
             font-size: 14px;
         }
 
-        /* ===== RESULTS ===== */
         .results-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 14px;
-            gap: 10px;
+            margin-bottom: 12px;
         }
 
         .results-bar h2 {
@@ -198,262 +186,272 @@
         .results-count {
             font-size: 12px;
             font-weight: 700;
-            color: #64748b;
-            background: #e2e8f0;
+            color: var(--ink-2);
+            background: #e8edf3;
             padding: 4px 10px;
             border-radius: 999px;
         }
 
-        /* ===== PRODUCT CARDS ===== */
+        /* ===== Collection cards ===== */
         .tests-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 14px;
+            grid-template-columns: 1fr;
+            gap: 12px;
         }
 
         @media (min-width: 576px) {
             .tests-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (min-width: 992px) {
             .tests-grid {
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        .product-card {
-            position: relative;
-            background: #fff;
-            border-radius: 20px;
-            overflow: hidden;
+        .tcard,
+        .trow {
+            --tone: var(--none);
+            display: flex;
             text-decoration: none;
             color: inherit;
-            display: flex;
+            background: var(--card);
+            border: 1px solid var(--line);
+            transition: border-color .15s;
+        }
+
+        .tcard:hover,
+        .trow:hover {
+            border-color: #94a3b8;
+            color: inherit;
+        }
+
+        .tone-good {
+            --tone: var(--good);
+        }
+
+        .tone-mid {
+            --tone: var(--mid);
+        }
+
+        .tone-bad {
+            --tone: var(--bad);
+        }
+
+        .tcard {
             flex-direction: column;
-            height: 100%;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, .05);
-            transition: transform .25s ease, box-shadow .25s ease;
+            border-radius: 14px;
+            padding: 16px 16px 14px;
+            min-height: 152px;
         }
 
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 32px rgba(15, 23, 42, .12);
-        }
-
-        .product-cover {
-            position: relative;
-            height: 110px;
-            background-size: cover;
-            background-position: center;
-            background-color: #1e293b;
-        }
-
-        .product-cover::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, .75) 0%, transparent 55%);
-        }
-
-        .product-cover-fallback {
+        .tc-top {
             display: flex;
             align-items: center;
-            justify-content: center;
-            height: 100%;
-            font-size: 32px;
-            color: rgba(255, 255, 255, .9);
+            justify-content: space-between;
+            gap: 10px;
+            min-height: 20px;
+            margin-bottom: 6px;
         }
 
-        .product-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 2;
-            font-size: 10px;
+        .tc-sub {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--ink-3);
+            line-height: 1.3;
+        }
+
+        .pct {
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .4px;
-            padding: 4px 9px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .92);
-            color: #0f172a;
-            backdrop-filter: blur(6px);
+            color: var(--tone);
+            font-variant-numeric: tabular-nums;
         }
 
-        .product-body {
-            padding: 14px 14px 16px;
+        .pct::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--tone);
+        }
+
+        .tc-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -.2px;
+            margin-bottom: 6px;
+        }
+
+        .tc-meta {
             display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            flex-wrap: wrap;
+            gap: 2px 14px;
+            font-size: 13px;
+            color: var(--ink-2);
+            font-weight: 500;
+            margin-bottom: auto;
+            padding-bottom: 14px;
         }
 
-        .product-subject {
-            font-size: 11px;
+        .tc-meta b {
+            color: var(--ink);
             font-weight: 700;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: .3px;
-            margin-bottom: 4px;
+            font-variant-numeric: tabular-nums;
         }
 
-        .product-title {
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 1.35;
-            color: #0f172a;
-            margin-bottom: 12px;
-            flex-grow: 1;
+        /* one segment per test, colored by accuracy on that test */
+        .strip {
+            display: flex;
+            gap: 3px;
+            height: 4px;
         }
 
-        .product-meta {
+        .strip span {
+            flex: 1 1 0;
+            min-width: 3px;
+            border-radius: 2px;
+            background: var(--none);
+            opacity: .5;
+        }
+
+        .strip span.s-good {
+            background: var(--good);
+            opacity: 1;
+        }
+
+        .strip span.s-mid {
+            background: var(--mid);
+            opacity: 1;
+        }
+
+        .strip span.s-bad {
+            background: var(--bad);
+            opacity: 1;
+        }
+
+        .strip.unknown span {
+            opacity: .25;
+        }
+
+        .tc-foot {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-        }
-
-        .product-count {
+            margin-top: 9px;
             font-size: 12px;
+            color: var(--ink-3);
+            font-weight: 500;
+            min-height: 18px;
+        }
+
+        .resume {
             font-weight: 700;
-            color: #334155;
-            background: #f1f5f9;
-            padding: 5px 10px;
-            border-radius: 999px;
+            color: #b45309;
         }
 
-        .product-cta {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #0f172a;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            transition: background .2s;
-        }
-
-        .product-card:hover .product-cta {
-            background: #2563eb;
-        }
-
-        /* ===== LIST VIEW ===== */
+        /* ===== List view ===== */
         .tests-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
-        .product-row {
-            display: flex;
+        .trow {
             align-items: center;
-            gap: 14px;
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 12px 14px;
-            text-decoration: none;
-            color: inherit;
-            box-shadow: 0 2px 10px rgba(15, 23, 42, .04);
-            transition: all .2s;
-        }
-
-        .product-row:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 6px 18px rgba(15, 23, 42, .08);
-            transform: translateX(3px);
-        }
-
-        .product-row-thumb {
-            width: 56px;
-            height: 56px;
+            gap: 16px;
             border-radius: 12px;
-            flex-shrink: 0;
-            background-size: cover;
-            background-position: center;
-            background-color: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 22px;
-            overflow: hidden;
+            padding: 13px 16px;
         }
 
-        .product-row-body {
+        .tr-body {
             flex: 1;
             min-width: 0;
         }
 
-        .product-row-subject {
-            font-size: 11px;
-            font-weight: 700;
-            color: #94a3b8;
-            text-transform: uppercase;
-        }
-
-        .product-row-title {
-            font-size: 14px;
+        .tr-title {
+            font-size: 15px;
             font-weight: 700;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .product-row-count {
+        .tr-sub {
             font-size: 12px;
-            font-weight: 700;
-            color: #475569;
-            background: #f1f5f9;
-            padding: 5px 10px;
-            border-radius: 999px;
-            white-space: nowrap;
+            font-weight: 600;
+            color: var(--ink-3);
+            margin-bottom: 1px;
         }
 
-        /* ===== EMPTY ===== */
+        .trow .tc-meta {
+            padding: 0;
+            margin: 3px 0 0;
+            font-size: 12px;
+        }
+
+        .tr-strip {
+            width: 90px;
+            flex-shrink: 0;
+        }
+
+        .trow .pct {
+            min-width: 46px;
+            justify-content: flex-end;
+        }
+
+        @media (max-width: 575px) {
+            .tr-strip {
+                display: none;
+            }
+        }
+
         .empty-state {
             text-align: center;
             padding: 48px 20px;
-            background: #fff;
-            border-radius: 20px;
-            border: 1px dashed #e2e8f0;
+            background: var(--card);
+            border-radius: 14px;
+            border: 1px dashed var(--line);
         }
 
         .empty-state i {
-            font-size: 42px;
+            font-size: 38px;
             color: #cbd5e1;
-            margin-bottom: 12px;
         }
 
         .empty-state h3 {
             font-size: 17px;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin: 10px 0 6px;
         }
 
         .empty-state p {
             font-size: 14px;
-            color: #94a3b8;
+            color: var(--ink-3);
             margin: 0;
         }
 
-        /* ===== MODALS (shared) ===== */
+        /* ===== Modals ===== */
         .modal-overlay {
             position: fixed;
             inset: 0;
             z-index: 2000;
-            background: rgba(15, 23, 42, .55);
-            backdrop-filter: blur(6px);
+            background: rgba(15, 23, 42, .5);
+            backdrop-filter: blur(5px);
             display: flex;
             align-items: flex-end;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: opacity .25s, visibility .25s;
+            transition: opacity .2s, visibility .2s;
         }
 
         .modal-overlay.show {
@@ -465,12 +463,16 @@
             width: 100%;
             max-width: 440px;
             background: #fff;
-            border-radius: 24px 24px 0 0;
-            padding: 8px 20px 28px;
+            border-radius: 22px 22px 0 0;
+            padding: 8px 20px 26px;
             transform: translateY(100%);
-            transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+            transition: transform .3s cubic-bezier(.22, 1, .36, 1);
             max-height: 92vh;
             overflow-y: auto;
+        }
+
+        .modal-overlay.show .modal-sheet {
+            transform: translateY(0);
         }
 
         @media (min-width: 576px) {
@@ -479,33 +481,29 @@
             }
 
             .modal-sheet {
-                border-radius: 24px;
-                transform: translateY(24px) scale(.96);
+                border-radius: 22px;
+                transform: translateY(16px) scale(.97);
                 max-height: 85vh;
             }
 
             .modal-overlay.show .modal-sheet {
-                transform: translateY(0) scale(1);
+                transform: none;
             }
-        }
-
-        .modal-overlay.show .modal-sheet {
-            transform: translateY(0);
         }
 
         .modal-handle {
             width: 40px;
             height: 4px;
-            background: #e2e8f0;
+            background: var(--line);
             border-radius: 4px;
-            margin: 8px auto 16px;
+            margin: 8px auto 14px;
         }
 
         .modal-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .modal-header h3 {
@@ -520,93 +518,87 @@
             border-radius: 50%;
             border: 0;
             background: #f1f5f9;
-            color: #475569;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--ink-2);
+            display: grid;
+            place-items: center;
             cursor: pointer;
         }
 
-        /* Wizard steps */
         .wizard-step {
             display: none;
-            animation: stepIn .35s ease;
         }
 
         .wizard-step.active {
             display: block;
+            animation: stepIn .25s ease;
         }
 
         @keyframes stepIn {
             from {
                 opacity: 0;
-                transform: translateX(16px);
+                transform: translateX(12px);
             }
 
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: none;
             }
         }
 
         .wizard-progress {
             display: flex;
             gap: 6px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .wizard-progress span {
             flex: 1;
             height: 4px;
             border-radius: 4px;
-            background: #e2e8f0;
+            background: var(--line);
             transition: background .3s;
         }
 
         .wizard-progress span.done {
-            background: #0f172a;
+            background: var(--ink);
         }
 
         .wizard-q {
             font-size: 20px;
             font-weight: 800;
             line-height: 1.3;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .wizard-hint {
             font-size: 13px;
-            color: #64748b;
-            margin-bottom: 20px;
+            color: var(--ink-2);
+            margin-bottom: 18px;
         }
 
         .course-input-wrap {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .course-input-wrap input {
-            flex: 1;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 14px 16px;
+            width: 100%;
+            border: 2px solid var(--line);
+            border-radius: 12px;
+            padding: 13px 16px;
             font-size: 18px;
             font-weight: 700;
             text-align: center;
             outline: none;
-            transition: border .2s;
         }
 
         .course-input-wrap input:focus {
-            border-color: #0f172a;
+            border-color: var(--ink);
         }
 
         .option-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .option-btn {
@@ -616,92 +608,80 @@
             width: 100%;
             text-align: left;
             background: #f8fafc;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 14px 16px;
+            border: 1.5px solid var(--line);
+            border-radius: 14px;
+            padding: 12px 14px;
             font-size: 15px;
             font-weight: 600;
-            color: #0f172a;
+            color: var(--ink);
             cursor: pointer;
-            transition: all .2s;
         }
 
         .option-btn:hover,
         .option-btn.selected {
-            background: #0f172a;
+            background: var(--ink);
             color: #fff;
-            border-color: #0f172a;
+            border-color: var(--ink);
         }
 
         .option-btn i {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 10px;
             background: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
+            color: var(--ink);
+            display: grid;
+            place-items: center;
             flex-shrink: 0;
-            transition: background .2s;
         }
 
         .option-btn:hover i,
         .option-btn.selected i {
-            background: rgba(255, 255, 255, .15);
+            background: rgba(255, 255, 255, .16);
             color: #fff;
         }
 
         .wizard-nav {
             display: flex;
             gap: 10px;
-            margin-top: 22px;
+            margin-top: 20px;
         }
 
-        .wizard-nav .btn-back {
-            flex: 0 0 auto;
-            border: 1px solid #e2e8f0;
+        .btn-back {
+            border: 1px solid var(--line);
             background: #fff;
             border-radius: 12px;
             padding: 12px 16px;
             font-weight: 600;
-            color: #475569;
+            color: var(--ink-2);
             cursor: pointer;
         }
 
-        .wizard-nav .btn-next {
+        .btn-next {
             flex: 1;
             border: 0;
-            background: #0f172a;
+            background: var(--ink);
             color: #fff;
             border-radius: 12px;
             padding: 12px 16px;
             font-weight: 700;
             cursor: pointer;
-            transition: background .2s;
         }
 
-        .wizard-nav .btn-next:disabled {
-            opacity: .4;
+        .btn-next:disabled {
+            opacity: .35;
             cursor: not-allowed;
         }
 
-        .wizard-nav .btn-next:not(:disabled):hover {
-            background: #1e293b;
-        }
-
-        /* Filter modal options */
         .filter-section {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .filter-section-title {
             font-size: 12px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            color: #94a3b8;
-            margin-bottom: 10px;
+            color: var(--ink-3);
+            margin-bottom: 8px;
         }
 
         .filter-options {
@@ -713,34 +693,31 @@
         .filter-chip {
             padding: 8px 14px;
             border-radius: 999px;
-            border: 1.5px solid #e2e8f0;
+            border: 1.5px solid var(--line);
             background: #fff;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
-            transition: all .2s;
         }
 
         .filter-chip.active {
-            background: #0f172a;
+            background: var(--ink);
             color: #fff;
-            border-color: #0f172a;
+            border-color: var(--ink);
         }
 
         .filter-apply {
             width: 100%;
             border: 0;
-            background: #0f172a;
+            background: var(--ink);
             color: #fff;
-            border-radius: 14px;
+            border-radius: 12px;
             padding: 14px;
             font-size: 15px;
             font-weight: 700;
-            margin-top: 8px;
             cursor: pointer;
         }
 
-        /* Bottom nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -774,13 +751,19 @@
         .bottom-nav .bn-item.active {
             color: #0d6efd;
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
-
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-head">
             <div class="sidebar-logo">
@@ -788,7 +771,7 @@
             </div>
             <div>
                 <div class="sidebar-brand">Pulse Go</div>
-                <div class="sidebar-tagline">Tibbiy ta'lim platformasi</div>
+                <div class="sidebar-tagline">siz uchun maxsus</div>
             </div>
             <button class="btn-hamburger ms-auto" onclick="closeSidebar()" style="background:#f8fafc">
                 <i class="bi bi-x-lg"></i>
@@ -803,33 +786,13 @@
         </div>
         <nav class="sidebar-nav">
             <div class="sidebar-section-label">Asosiy</div>
-            <a href="/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-house-fill"></i> Asosiy</a>
             <a href="/preparation/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-journals"></i>
-                Tayyorlanish</a>
-            <a href="/tests/" class="sidebar-link active" onclick="closeSidebar()"><i
-                    class="bi bi-grid-3x3-gap-fill"></i> Test QBank</a>
+                Testlar</a>
+            <a href="/tests/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-grid-3x3-gap-fill"></i>
+                QBank</a>
             <div class="sidebar-section-label">O'quv materiallari</div>
-            <a href="/lessons" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-book-half"></i> Online
-                Darslar</a>
             <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
                 Kitoblar</a>
-            <a href="/anatomy/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-body-text"></i>
-                Anatomiya</a>
-            <a href="/cellbiology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-diagram-3-fill"></i>
-                Hujayra biologiyasi</a>
-            <a href="/chemistry/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-flask-fill"></i>
-                Kimyo</a>
-            <a href="/embriology/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-egg-fill"></i>
-                Embriologiya</a>
-            <a href="/cases/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-clipboard2-pulse-fill"></i>
-                Klinik holat</a>
-            <div class="sidebar-section-label">Profil</div>
-            <a href="/profile" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-person-fill"></i> Mening
-                profilim</a>
-            <a href="/xatolar/" class="sidebar-link" onclick="closeSidebar()"><i
-                    class="bi bi-exclamation-triangle-fill"></i> Xatolar tahlili</a>
-            <a href="/feedback/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-chat-heart-fill"></i>
-                Fikr bildirish</a>
         </nav>
         <div class="sidebar-footer">
             <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
@@ -845,6 +808,9 @@
             <a href="/" class="nav-logo">
                 <img src="/assets/img/PulseGo.jpg" alt="Pulse Go"> Pulse Go
             </a>
+            <a href="/tests/" class="btn btn-light btn-sm rounded-pill">
+                <i class="bi bi-arrow-left"></i> Orqaga
+            </a>
             <a href="/profile" class="btn-nav-profile" id="navAvatarBtn">P</a>
         </div>
     </nav>
@@ -852,32 +818,24 @@
     <main class="container" style="padding-top:10px;padding-bottom:28px;">
 
         <div id="messageView"></div>
-        <!-- Toolbar -->
+
         <div class="toolbar">
             <label class="search-wrap">
                 <i class="bi bi-search"></i>
                 <input type="search" id="searchInput" placeholder="Test yoki fan qidiring..." autocomplete="off">
             </label>
-
-            <button type="button" class="btn-find" id="btnFind">
-                <i class="bi bi-magic"></i> Kerakli testni topish
-            </button>
-
-            <button type="button" class="btn-filter" id="btnFilter" title="Filtr">
-                <i class="bi bi-sliders"></i>
-            </button>
-
+            <button type="button" class="btn-find" id="btnFind"><i class="bi bi-magic"></i> Kerakli testni
+                topish</button>
+            <button type="button" class="btn-filter" id="btnFilter" title="Filtr" aria-label="Filtr"><i
+                    class="bi bi-sliders"></i></button>
             <div class="view-toggle">
-                <button type="button" class="view-btn" id="btnCardView" title="Kartochkalar">
-                    <i class="bi bi-grid-3x3-gap-fill"></i>
-                </button>
-                <button type="button" class="view-btn active" id="btnListView" title="Ro‘yxat">
-                    <i class="bi bi-list-ul"></i>
-                </button>
+                <button type="button" class="view-btn" id="btnCardView" title="Kartochkalar"
+                    aria-label="Kartochkalar"><i class="bi bi-grid-3x3-gap-fill"></i></button>
+                <button type="button" class="view-btn active" id="btnListView" title="Ro‘yxat" aria-label="Ro‘yxat"><i
+                        class="bi bi-list-ul"></i></button>
             </div>
         </div>
 
-        <!-- Active filter chips -->
         <div class="active-chips" id="activeChips"></div>
 
         <div class="results-bar">
@@ -893,32 +851,27 @@
         </div>
     </main>
 
-    <!-- ===== WIZARD MODAL ===== -->
+    <!-- WIZARD -->
     <div class="modal-overlay" id="wizardModal">
         <div class="modal-sheet">
             <div class="modal-handle"></div>
             <div class="modal-header">
                 <h3>Kerakli testni topish</h3>
-                <button type="button" class="modal-close" onclick="closeWizard()"><i class="bi bi-x-lg"></i></button>
+                <button type="button" class="modal-close" onclick="closeWizard()" aria-label="Yopish"><i
+                        class="bi bi-x-lg"></i></button>
             </div>
+            <div class="wizard-progress" id="wizardProgress"><span></span><span></span><span></span></div>
 
-            <div class="wizard-progress" id="wizardProgress">
-                <span></span><span></span><span></span>
-            </div>
-
-            <!-- Step 1: Course -->
             <div class="wizard-step active" data-step="1">
                 <div class="wizard-q">Nechanchi kursdasiz?</div>
                 <div class="wizard-hint">Raqam kiriting (masalan: 1, 2 yoki 3)</div>
                 <div class="course-input-wrap">
                     <input type="number" id="courseInput" min="1" max="6" placeholder="Kurs" inputmode="numeric">
                 </div>
-                <div class="wizard-nav">
-                    <button type="button" class="btn-next" id="step1Next" disabled>Davom etish</button>
-                </div>
+                <div class="wizard-nav"><button type="button" class="btn-next" id="step1Next" disabled>Davom
+                        etish</button></div>
             </div>
 
-            <!-- Step 2: Subject -->
             <div class="wizard-step" data-step="2">
                 <div class="wizard-q">Qaysi fan bo‘yicha test qidirmoqdasiz?</div>
                 <div class="wizard-hint">Faqat sizning kursingizga mos fanlar ko‘rsatiladi</div>
@@ -929,23 +882,18 @@
                 </div>
             </div>
 
-            <!-- Step 3: Purpose -->
             <div class="wizard-step" data-step="3">
                 <div class="wizard-q">Qaysi maqsadda test qidirmoqdasiz?</div>
                 <div class="wizard-hint">Birini tanlang</div>
                 <div class="option-list" id="purposeOptions">
-                    <button type="button" class="option-btn" data-purpose="yn">
-                        <i class="bi bi-image"></i> YN (Yakuniy / rasmli)
-                    </button>
-                    <button type="button" class="option-btn" data-purpose="grant">
-                        <i class="bi bi-trophy"></i> Grant / Grand exam
-                    </button>
-                    <button type="button" class="option-btn" data-purpose="cases">
-                        <i class="bi bi-clipboard2-pulse"></i> Clinical cases
-                    </button>
-                    <button type="button" class="option-btn" data-purpose="all">
-                        <i class="bi bi-grid"></i> Shunchaki barini ko‘rish
-                    </button>
+                    <button type="button" class="option-btn" data-purpose="yn"><i class="bi bi-image"></i> YN (Yakuniy /
+                        rasmli)</button>
+                    <button type="button" class="option-btn" data-purpose="grant"><i class="bi bi-trophy"></i> Grant /
+                        Grand exam</button>
+                    <button type="button" class="option-btn" data-purpose="cases"><i class="bi bi-clipboard2-pulse"></i>
+                        Clinical cases</button>
+                    <button type="button" class="option-btn" data-purpose="all"><i class="bi bi-grid"></i> Shunchaki
+                        barini ko‘rish</button>
                 </div>
                 <div class="wizard-nav">
                     <button type="button" class="btn-back" onclick="wizardGo(2)">Orqaga</button>
@@ -955,21 +903,19 @@
         </div>
     </div>
 
-    <!-- ===== FILTER MODAL ===== -->
+    <!-- FILTER -->
     <div class="modal-overlay" id="filterModal">
         <div class="modal-sheet">
             <div class="modal-handle"></div>
             <div class="modal-header">
                 <h3>Filtrlar</h3>
-                <button type="button" class="modal-close" onclick="closeFilterModal()"><i
+                <button type="button" class="modal-close" onclick="closeFilterModal()" aria-label="Yopish"><i
                         class="bi bi-x-lg"></i></button>
             </div>
-
             <div class="filter-section">
                 <div class="filter-section-title">Fan</div>
                 <div class="filter-options" id="filterSubjects"></div>
             </div>
-
             <div class="filter-section">
                 <div class="filter-section-title">Maqsad</div>
                 <div class="filter-options" id="filterPurposes">
@@ -980,25 +926,35 @@
                     <button type="button" class="filter-chip" data-purpose="topics">Mavzular bo‘yicha</button>
                 </div>
             </div>
-
             <button type="button" class="filter-apply" onclick="applyFilters()">Qo‘llash</button>
         </div>
     </div>
 
     <nav class="bottom-nav d-lg-none">
-        <a href="../" class="bn-item"><i class="bi bi-house-fill"></i><span>Asosiy</span></a>
-        <a href="/tests/" class="bn-item active"><i class="bi bi-grid-3x3-gap-fill"></i><span>QBank</span></a>
-        <a href="/preparation/" class="bn-item"><i class="bi bi-plus-lg"></i><span>Tayyorlanish</span></a>
-        <a href="/lessons" class="bn-item"><i class="bi bi-book-half"></i><span>Darslar</span></a>
-        <a href="../profile" class="bn-item"><i class="bi bi-person-fill"></i><span>Profil</span></a>
+        <a href="../" class="bn-item">
+            <i class="bi bi-house-fill"></i>
+            <span>Asosiy</span>
+        </a>
+        <a href="/tests/" class="bn-item active">
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+            <span>Testlar</span>
+        </a>
+        <a href="/qbank/qbank.html" class="bn-item">
+            <span class="bn-fab-btn"><i class="bi bi-journals"></i></span>
+            <span>QBank</span>
+        </a>
+        <a href="/lessons" class="bn-item">
+            <i class="bi bi-book-half"></i>
+            <span>Darslar</span>
+        </a>
+        <a href="../profile" class="bn-item">
+            <i class="bi bi-person-fill"></i>
+            <span>Profil</span>
+        </a>
     </nav>
 
-    <!-- The container – put it wherever you want the ticker to appear -->
-
-    <!-- Include the scripts -->
     <script src="./messageData.js"></script>
     <script src="./message.js"></script>
-
     <script src="./welcomerdata.js"></script>
     <script src="./welcomer.js"></script>
     <script src="tests-data.js"></script>
@@ -1015,26 +971,38 @@
             document.body.style.overflow = '';
         }
 
-        const bgColors = {
-            danger: '#dc2626', success: '#16a34a', warning: '#d97706',
-            info: '#0891b2', primary: '#2563eb', dark: '#1f2937'
+        // ---------- Config ----------
+        // Same thresholds as the engine's card colors (80 green, 56 yellow, below = red)
+        const GOOD_AT = 80, MID_AT = 56;
+        const KEYS = {
+            results: 'pulsego_test_results_v1',
+            data: 'pulsego_data_v1',
+            progress: 'pulsego_test_progress_v1',
+            sessions: 'pulsego_sessions_v1',
+            cache: 'pulsego_tests_index_cache_v1'
         };
+        const CACHE_TTL = 12 * 3600 * 1000;
+        const iconTone = { danger: '#dc2626', success: '#16a34a', warning: '#d97706', info: '#0891b2', primary: '#2563eb', dark: '#1f2937' };
 
         // ---------- State ----------
-        let currentView = 'list';
-        let searchQuery = '';
-        let filterSubject = 'all';
-        let filterPurpose = 'all';
+        let currentView = 'list', searchQuery = '', filterSubject = 'all', filterPurpose = 'all';
         let wizard = { course: null, subject: null, purpose: null, step: 1 };
 
-        // ---------- Data helpers ----------
+        const norm = s => String(s || '').trim().toLowerCase();
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const readJSON = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch (e) { return d; } };
+        const toneOf = p => p >= GOOD_AT ? 'good' : p >= MID_AT ? 'mid' : 'bad';
+
+        // =====================================================
+        //  1) COLLECTION DATA (tests-data.js)
+        // =====================================================
         function getAllTests() {
             const items = [];
-            (window.testGroups || []).forEach(g => {
+            (window.testGroups || []).forEach((g, gi) => {
                 (g.tests || []).forEach(t => {
                     items.push({
                         ...t,
-                        groupId: g.id,
+                        gid: 'g' + gi,               // index-based: duplicate group ids in tests-data.js stay separate
                         groupTitle: g.title,
                         groupIcon: g.icon,
                         groupColor: g.color || 'primary',
@@ -1045,12 +1013,212 @@
             });
             return items;
         }
+        const groupsWithTests = () => (window.testGroups || [])
+            .map((g, gi) => ({ ...g, gid: 'g' + gi }))
+            .filter(g => g.tests && g.tests.length);
 
+        // =====================================================
+        //  2) QUESTION COUNTER — reads each collection page by itself
+        //  Fetches the page, runs ONLY its data scripts in a sandbox
+        //  (no document / storage / network), and reads window.tests
+        //  and TEST_QUESTIONS. Falls back to counting "correct:" keys.
+        // =====================================================
+        const cache = readJSON(KEYS.cache, {});
+        const pending = new Map();
+
+        function saveCache() { try { localStorage.setItem(KEYS.cache, JSON.stringify(cache)); } catch (e) { } }
+
+        function runSandbox(code) {
+            const w = { tests: {}, TEST_QUESTIONS: {}, QBank: { register() { }, markSeen() { } } };
+            try {
+                new Function('window', 'self', 'globalThis', 'QBank', '"use strict";\n' + code)(w, w, w, w.QBank);
+            } catch (e) { /* partial data is still kept */ }
+            return w;
+        }
+
+        function bankArray(v) {
+            if (Array.isArray(v)) return v;
+            if (v && Array.isArray(v.questions)) return v.questions;
+            if (v && Array.isArray(v.data)) return v.data;
+            return null;
+        }
+
+        async function scanCollection(url) {
+            const abs = new URL(url, location.href);
+            const html = await (await fetch(abs, { credentials: 'same-origin' })).text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+
+            const codes = [];
+            const srcs = [...doc.querySelectorAll('script[src]')]
+                .filter(s => (s.type || '').toLowerCase() !== 'module')
+                .map(s => new URL(s.getAttribute('src'), abs))
+                .filter(u => u.origin === location.origin);
+            const texts = await Promise.all(srcs.map(u => fetch(u).then(r => r.ok ? r.text() : '').catch(() => '')));
+            texts.forEach(t => { if (t) codes.push(t); });
+            doc.querySelectorAll('script:not([src])').forEach(s => {
+                if (/correct["']?\s*:/.test(s.textContent) && !/\bimport\s/.test(s.textContent)) codes.push(s.textContent);
+            });
+
+            const names = {};
+            codes.forEach(code => {
+                if (!/correct["']?\s*:/.test(code)) return;
+                const w = runSandbox(code);
+                [w.tests, w.TEST_QUESTIONS].forEach(obj => {
+                    Object.keys(obj || {}).forEach(k => {
+                        const arr = bankArray(obj[k]);
+                        if (arr && arr.length) names[k] = Math.max(names[k] || 0, arr.length);
+                    });
+                });
+            });
+
+            let total = Object.values(names).reduce((a, b) => a + b, 0), fallback = false;
+            if (!total) {
+                codes.forEach(c => { total += (c.match(/["']?correct["']?\s*:/g) || []).length; });
+                fallback = true;
+            }
+            return { names, total, fallback, ts: Date.now() };
+        }
+
+        function ensureCounts(items) {
+            const queue = [];
+            items.forEach(t => {
+                if (!t.url || pending.has(t.url)) return;
+                const c = cache[t.url];
+                if (c && Date.now() - c.ts < CACHE_TTL) return;
+                pending.set(t.url, true);
+                queue.push(t.url);
+            });
+            let active = 0, scheduled = false;
+            const rerender = () => {
+                if (scheduled) return; scheduled = true;
+                requestAnimationFrame(() => { scheduled = false; renderTests(); });
+            };
+            const pump = () => {
+                while (active < 3 && queue.length) {
+                    const url = queue.shift(); active++;
+                    scanCollection(url)
+                        .then(r => { cache[url] = r; })
+                        .catch(e => { console.warn('Count failed:', url, e); if (!cache[url]) cache[url] = { names: {}, total: 0, fallback: true, failed: true, ts: Date.now() - CACHE_TTL + 60000 }; })
+                        .finally(() => { active--; pending.delete(url); saveCache(); rerender(); pump(); });
+                }
+            };
+            pump();
+        }
+
+        // =====================================================
+        //  3) USER STATS — from the engine's localStorage
+        // =====================================================
+        function unifiedResults() {
+            const map = new Map();
+            const add = list => (Array.isArray(list) ? list : []).forEach(e => {
+                if (!e) return;
+                const key = `${e.testName}|${e.date}|${e.correct}|${e.total}|${e.solved}`;
+                if (!map.has(key)) map.set(key, e);
+            });
+            add((readJSON(KEYS.results, {}) || {}).tests);
+            const d = readJSON(KEYS.data, {}) || {};
+            add(d.results); add(d.testResults);
+            return [...map.values()];
+        }
+
+        function collectionStats(item, runs, resume) {
+            const meta = cache[item.url];
+            const ipath = pathKey(item.url);
+            const metaNames = meta ? Object.keys(meta.names || {}) : [];
+            const nameSet = new Set(metaNames.map(norm));
+            const mine = runs.filter(r => (r.path && r.path === ipath) || nameSet.has(norm(r.testName)));
+
+            const perTest = {}, display = {};
+            let correct = 0, solved = 0, last = null;
+            mine.forEach(r => {
+                const n = norm(r.testName);
+                display[n] = display[n] || r.testName;
+                const p = perTest[n] || (perTest[n] = { correct: 0, solved: 0 });
+                p.correct += r.correct; p.solved += r.solved;
+                correct += r.correct; solved += r.solved;
+                if (!last || new Date(r.date) > new Date(last.date)) last = r;
+            });
+
+            const names = metaNames.length ? metaNames : Object.keys(display).map(n => display[n]);
+            const segs = names.map(n => {
+                const p = perTest[norm(n)];
+                if (!p || !p.solved) return { name: n, tone: null, pct: null };
+                const pct = Math.round(p.correct / p.solved * 100);
+                return { name: n, tone: toneOf(pct), pct };
+            });
+            let nResume = names.filter(n => resume.names.has(norm(n))).length;
+            if (!nResume && resume.paths.has(ipath)) nResume = 1;
+
+            return {
+                meta, segs, hasNames: metaNames.length > 0 && !meta.fallback,
+                tried: segs.filter(s => s.tone).length,
+                attempts: mine.length, resume: nResume,
+                avg: solved ? Math.round(correct / solved * 100) : null,
+                lastPct: last ? Math.round(last.correct / last.solved * 100) : null,
+                lastDate: last ? last.date : null
+            };
+        }
+
+        const pathKey = u => {
+            try {
+                return new URL(u, location.href).pathname.toLowerCase()
+                    .replace(/\/index\.html?$/, '').replace(/\.html?$/, '').replace(/\/+$/, '') || '/';
+            } catch (e) { return ''; }
+        };
+        const isReviewName = n => /\(xatolar\)$/i.test(n || '') || norm(n) === 'xatolar' || norm(n) === 'weak-path';
+
+        // Every finished run: session ledger (knows the page it ran on) + results store (older runs)
+        function getRuns() {
+            const runs = [];
+            (readJSON(KEYS.sessions, []) || []).forEach(s => {
+                if (!s || !['completed', 'stopped'].includes(s.status) || isReviewName(s.testName)) return;
+                const st = s.stats || {};
+                if (!(st.solved > 0)) return;
+                runs.push({ testName: s.testName, correct: st.correct || 0, solved: st.solved, date: s.updatedAt || s.startedAt, path: pathKey(s.pagePath || '') });
+            });
+            unifiedResults().forEach(r => {
+                if (!r || isReviewName(r.testName)) return;
+                const solved = r.solved != null ? r.solved : (r.correct || 0) + (r.wrong || 0);
+                if (!(solved > 0)) return;
+                const t = new Date(r.date).getTime();
+                const dup = runs.some(x => norm(x.testName) === norm(r.testName) && x.correct === (r.correct || 0) && x.solved === solved && Math.abs(new Date(x.date).getTime() - t) < 5 * 60000);
+                if (!dup) runs.push({ testName: r.testName, correct: r.correct || 0, solved, date: r.date, path: null });
+            });
+            return runs;
+        }
+
+        function resumeInfo() {
+            const names = new Set(), paths = new Set();
+            const store = readJSON(KEYS.progress, {}) || {};
+            Object.keys(store).forEach(k => {
+                const e = store[k];
+                if (!e || typeof e !== 'object') return;
+                const fresh = e.updatedAt && Date.now() - new Date(e.updatedAt).getTime() < 24 * 3600 * 1000;
+                if (fresh && (e.currentIndex || 0) < (e.total || 0)) names.add(norm(e.testName || k));
+            });
+            (readJSON(KEYS.sessions, []) || []).forEach(s => {
+                if (s && s.status === 'paused') { names.add(norm(s.testName)); paths.add(pathKey(s.pagePath || '')); }
+            });
+            return { names, paths };
+        }
+
+        // console helper: PulseIndexDebug() shows what was counted and matched per collection
+        window.PulseIndexDebug = () => {
+            const runs = getRuns(), resume = resumeInfo();
+            console.table(getAllTests().map(t => {
+                const st = collectionStats(t, runs, resume), m = cache[t.url] || {};
+                return { collection: t.title, url: t.url, questions: m.total, fallback: !!m.fallback, failed: !!m.failed, testNames: Object.keys(m.names || {}).join(', '), runsMatched: st.attempts, avg: st.avg };
+            }));
+            console.log('all runs:', runs);
+        };
+
+        // =====================================================
+        //  4) FILTERING
+        // =====================================================
         function matchesPurpose(test, purpose) {
             if (!purpose || purpose === 'all') return true;
             const tags = (test.tags || []).map(x => x.toLowerCase());
             const blob = (test.title + ' ' + test.id + ' ' + (test.url || '')).toLowerCase();
-
             if (purpose === 'yn') return tags.includes('yn') || tags.includes('yakuniy') || blob.includes('yn') || blob.includes('yakuniy') || blob.includes('rasmli');
             if (purpose === 'grant') return tags.includes('grant') || tags.includes('grand') || blob.includes('grant') || blob.includes('grand');
             if (purpose === 'cases') return tags.includes('cases') || tags.includes('case') || blob.includes('case') || blob.includes('caselar');
@@ -1060,111 +1228,107 @@
 
         function getFilteredTests() {
             let list = getAllTests();
-
-            if (filterSubject !== 'all') {
-                list = list.filter(t => t.groupId === filterSubject);
-            }
-
-            // Purpose: if exact match empty → still show all of that subject
+            if (filterSubject !== 'all') list = list.filter(t => t.gid === filterSubject);
             const withPurpose = list.filter(t => matchesPurpose(t, filterPurpose));
-            if (withPurpose.length > 0) {
-                list = withPurpose;
-            }
-            // else keep subject-only list (fallback)
-
+            if (withPurpose.length > 0) list = withPurpose;   // fallback: keep the subject list if purpose matches nothing
             if (searchQuery.trim()) {
                 const q = searchQuery.trim().toLowerCase();
-                list = list.filter(t =>
-                    t.title.toLowerCase().includes(q) ||
-                    t.groupTitle.toLowerCase().includes(q) ||
-                    (t.count || '').toLowerCase().includes(q)
-                );
+                list = list.filter(t => t.title.toLowerCase().includes(q) || t.groupTitle.toLowerCase().includes(q));
             }
             return list;
         }
 
-        // ---------- Render cards ----------
-        function coverStyle(test) {
-            if (test.img) {
-                return `background-image:url('${test.img}');`;
-            }
-            const c = bgColors[test.groupColor] || bgColors.primary;
-            return `background:linear-gradient(135deg, ${c}, #0f172a);`;
+        // =====================================================
+        //  5) RENDER
+        // =====================================================
+        const fmtDate = d => { try { return new Date(d).toLocaleDateString('uz-UZ', { day: '2-digit', month: 'short' }); } catch (e) { return ''; } };
+
+        function stripHtml(st) {
+            if (!st.segs.length) return `<div class="strip unknown"><span></span><span></span><span></span></div>`;
+            return `<div class="strip">${st.segs.slice(0, 40).map(s => `<span class="${s.tone ? 's-' + s.tone : ''}" title="${esc(s.name)}${s.pct != null ? ' — ' + s.pct + '%' : ''}"></span>`).join('')}</div>`;
+        }
+
+        function metaHtml(t, st) {
+            const m = st.meta;
+            const parts = [];
+            if (st.hasNames && st.segs.length) parts.push(`<span><b>${st.segs.length}</b> ta test</span>`);
+            let q = m && m.total ? String(m.total) : null;
+            if (!q) { const f = String(t.count || '').match(/\d+\+?/); if (f) q = f[0]; }
+            if (q) parts.push(`<span><b>${q}</b> ta savol</span>`);
+            if (!parts.length) parts.push(`<span>${pending.has(t.url) ? 'Hisoblanmoqda…' : (t.url ? '—' : 'Tez orada')}</span>`);
+            return parts.join('');
+        }
+
+        const pctHtml = st => st.avg == null ? '' : `<span class="pct">${st.avg}%</span>`;
+
+        function footHtml(st) {
+            const left = st.hasNames && st.segs.length
+                ? `${st.tried} / ${st.segs.length} test ishlangan`
+                : (st.attempts ? `${st.attempts} ta urinish` : '');
+            const right = st.resume ? `<span class="resume">Davom etish</span>`
+                : st.lastDate ? `Oxirgi: ${st.lastPct}% (${fmtDate(st.lastDate)})` : '';
+            return `<span>${left}</span><span>${right}</span>`;
         }
 
         function renderTests() {
             const container = document.getElementById('testsContainer');
             const empty = document.getElementById('emptyState');
-            const countEl = document.getElementById('resultsCount');
             const list = getFilteredTests();
+            const runs = getRuns();
+            const resume = resumeInfo();
 
-            countEl.textContent = list.length + ' ta';
+            document.getElementById('resultsCount').textContent = list.length + ' ta';
             renderChips();
 
             if (!list.length) {
-                container.innerHTML = '';
-                container.style.display = 'none';
-                empty.style.display = 'block';
-                return;
+                container.innerHTML = ''; container.style.display = 'none'; empty.style.display = 'block'; return;
             }
-            empty.style.display = 'none';
-            container.style.display = '';
+            empty.style.display = 'none'; container.style.display = '';
+
+            const rows = list.map(t => ({ t, st: collectionStats(t, runs, resume) }));
+            const tone = st => st.avg == null ? '' : 'tone-' + toneOf(st.avg);
+            const href = t => esc(t.url || '#');
 
             if (currentView === 'card') {
                 container.className = 'tests-grid';
-                container.innerHTML = list.map(t => `
-          <a href="${t.url}" class="product-card">
-            <div class="product-cover" style="${coverStyle(t)}">
-              <span class="product-badge">${t.groupTitle}</span>
-              ${!t.img ? `<div class="product-cover-fallback"><i class="bi ${t.groupIcon || 'bi-journal-medical'}"></i></div>` : ''}
-            </div>
-            <div class="product-body">
-              <div class="product-subject">${t.groupTitle}</div>
-              <div class="product-title">${t.title}</div>
-              <div class="product-meta">
-                <span class="product-count">${t.count || '—'}</span>
-                <span class="product-cta"><i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
-          </a>
-        `).join('');
+                container.innerHTML = rows.map(({ t, st }) => `
+                  <a href="${href(t)}" class="tcard ${tone(st)}">
+                    <div class="tc-top"><span class="tc-sub">${esc(t.groupTitle)}</span>${pctHtml(st)}</div>
+                    <div class="tc-title">${esc(t.title)}</div>
+                    <div class="tc-meta">${metaHtml(t, st)}</div>
+                    ${stripHtml(st)}
+                    <div class="tc-foot">${footHtml(st)}</div>
+                  </a>`).join('');
             } else {
                 container.className = 'tests-list';
-                container.innerHTML = list.map(t => `
-          <a href="${t.url}" class="product-row">
-            <div class="product-row-thumb" style="${coverStyle(t)}">
-              ${!t.img ? `<i class="bi ${t.groupIcon || 'bi-journal-medical'}"></i>` : ''}
-            </div>
-            <div class="product-row-body">
-              <div class="product-row-subject">${t.groupTitle}</div>
-              <div class="product-row-title">${t.title}</div>
-            </div>
-            <span class="product-row-count">${t.count || '—'}</span>
-            <i class="bi bi-chevron-right" style="color:#94a3b8"></i>
-          </a>
-        `).join('');
+                container.innerHTML = rows.map(({ t, st }) => `
+                  <a href="${href(t)}" class="trow ${tone(st)}">
+                    <div class="tr-body">
+                      <div class="tr-sub">${esc(t.groupTitle)}</div>
+                      <div class="tr-title">${esc(t.title)}</div>
+                      <div class="tc-meta">${metaHtml(t, st)}</div>
+                    </div>
+                    <div class="tr-strip">${stripHtml(st)}</div>
+                    ${pctHtml(st)}
+                    <i class="bi bi-chevron-right" style="color:var(--ink-3)"></i>
+                  </a>`).join('');
             }
+            ensureCounts(list);
         }
 
         function renderChips() {
             const el = document.getElementById('activeChips');
             const chips = [];
             if (filterSubject !== 'all') {
-                const g = (window.testGroups || []).find(x => x.id === filterSubject);
+                const g = groupsWithTests().find(x => x.gid === filterSubject) || (window.testGroups || [])[Number(String(filterSubject).slice(1))];
                 chips.push({ key: 'subject', label: g ? g.title : filterSubject });
             }
             if (filterPurpose !== 'all') {
                 const labels = { yn: 'YN', grant: 'Grant', cases: 'Cases', topics: 'Mavzular' };
                 chips.push({ key: 'purpose', label: labels[filterPurpose] || filterPurpose });
             }
-            el.innerHTML = chips.map(c => `
-        <span class="chip">
-          ${c.label}
-          <button type="button" onclick="clearChip('${c.key}')" aria-label="Olib tashlash">×</button>
-        </span>
-      `).join('');
+            el.innerHTML = chips.map(c => `<span class="chip">${esc(c.label)}<button type="button" onclick="clearChip('${c.key}')" aria-label="Olib tashlash">×</button></span>`).join('');
         }
-
         function clearChip(key) {
             if (key === 'subject') filterSubject = 'all';
             if (key === 'purpose') filterPurpose = 'all';
@@ -1172,13 +1336,13 @@
             renderTests();
         }
 
-        // ---------- Wizard ----------
+        // =====================================================
+        //  6) WIZARD + FILTER MODAL
+        // =====================================================
         function openWizard() {
             wizard = { course: null, subject: null, purpose: null, step: 1 };
             document.getElementById('courseInput').value = '';
-            document.getElementById('step1Next').disabled = true;
-            document.getElementById('step2Next').disabled = true;
-            document.getElementById('step3Next').disabled = true;
+            ['step1Next', 'step2Next', 'step3Next'].forEach(id => document.getElementById(id).disabled = true);
             document.querySelectorAll('#purposeOptions .option-btn').forEach(b => b.classList.remove('selected'));
             wizardGo(1);
             document.getElementById('wizardModal').classList.add('show');
@@ -1188,68 +1352,38 @@
             document.getElementById('wizardModal').classList.remove('show');
             document.body.style.overflow = '';
         }
-
         function wizardGo(step) {
             wizard.step = step;
-            document.querySelectorAll('.wizard-step').forEach(s => {
-                s.classList.toggle('active', Number(s.dataset.step) === step);
-            });
-            document.querySelectorAll('#wizardProgress span').forEach((s, i) => {
-                s.classList.toggle('done', i < step);
-            });
-
+            document.querySelectorAll('.wizard-step').forEach(s => s.classList.toggle('active', Number(s.dataset.step) === step));
+            document.querySelectorAll('#wizardProgress span').forEach((s, i) => s.classList.toggle('done', i < step));
             if (step === 2) buildSubjectOptions();
         }
-
         function buildSubjectOptions() {
             const course = wizard.course;
-            const groups = (window.testGroups || []).filter(g =>
-                (g.tests && g.tests.length) && (g.course === 0 || g.course === course || course === null)
-            );
+            let groups = groupsWithTests().filter(g => g.course === 0 || g.course === course || course === null);
+            const note = !groups.length;
+            if (note) groups = groupsWithTests();
             const box = document.getElementById('subjectOptions');
-            box.innerHTML = groups.map(g => `
-        <button type="button" class="option-btn" data-id="${g.id}">
-          <i class="bi ${g.icon}"></i> ${g.title}
-        </button>
-      `).join('') || '<p style="color:#94a3b8;font-size:14px">Bu kurs uchun fan topilmadi. Barcha fanlar ko‘rsatiladi.</p>';
-
-            // If none for course, show all with tests
-            if (!groups.length) {
-                const all = (window.testGroups || []).filter(g => g.tests && g.tests.length);
-                box.innerHTML = all.map(g => `
-          <button type="button" class="option-btn" data-id="${g.id}">
-            <i class="bi ${g.icon}"></i> ${g.title}
-          </button>
-        `).join('');
-            }
-
-            box.querySelectorAll('.option-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    box.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
-                    btn.classList.add('selected');
-                    wizard.subject = btn.dataset.id;
-                    document.getElementById('step2Next').disabled = false;
-                });
-            });
+            wizard.subject = null;
+            document.getElementById('step2Next').disabled = true;
+            box.innerHTML = (note ? '<p style="color:#94a3b8;font-size:14px">Bu kurs uchun fan topilmadi. Barcha fanlar ko‘rsatiladi.</p>' : '') +
+                groups.map(g => `<button type="button" class="option-btn" data-id="${g.gid}"><i class="bi ${esc(g.icon)}"></i> ${esc(g.title)}</button>`).join('');
+            box.querySelectorAll('.option-btn').forEach(btn => btn.addEventListener('click', () => {
+                box.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                wizard.subject = btn.dataset.id;
+                document.getElementById('step2Next').disabled = false;
+            }));
         }
 
-        // ---------- Filter modal ----------
         function openFilterModal() {
             const box = document.getElementById('filterSubjects');
-            const groups = (window.testGroups || []).filter(g => g.tests && g.tests.length);
-            box.innerHTML = `
-        <button type="button" class="filter-chip ${filterSubject === 'all' ? 'active' : ''}" data-subject="all">Barchasi</button>
-        ${groups.map(g => `
-          <button type="button" class="filter-chip ${filterSubject === g.id ? 'active' : ''}" data-subject="${g.id}">${g.title}</button>
-        `).join('')}
-      `;
-            box.querySelectorAll('.filter-chip').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    box.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                });
-            });
-
+            box.innerHTML = `<button type="button" class="filter-chip ${filterSubject === 'all' ? 'active' : ''}" data-subject="all">Barchasi</button>` +
+                groupsWithTests().map(g => `<button type="button" class="filter-chip ${filterSubject === g.gid ? 'active' : ''}" data-subject="${g.gid}">${esc(g.title)}</button>`).join('');
+            box.querySelectorAll('.filter-chip').forEach(btn => btn.addEventListener('click', () => {
+                box.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }));
             document.querySelectorAll('#filterPurposes .filter-chip').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.purpose === filterPurpose);
                 btn.onclick = () => {
@@ -1257,7 +1391,6 @@
                     btn.classList.add('active');
                 };
             });
-
             document.getElementById('filterModal').classList.add('show');
             document.body.style.overflow = 'hidden';
         }
@@ -1275,75 +1408,62 @@
             renderTests();
         }
 
-        // ---------- Init ----------
+        // =====================================================
+        //  7) INIT
+        // =====================================================
         document.addEventListener('DOMContentLoaded', () => {
             renderTests();
 
-            document.getElementById('searchInput').addEventListener('input', e => {
-                searchQuery = e.target.value;
-                renderTests();
-            });
-
+            document.getElementById('searchInput').addEventListener('input', e => { searchQuery = e.target.value; renderTests(); });
             document.getElementById('btnFind').addEventListener('click', openWizard);
             document.getElementById('btnFilter').addEventListener('click', openFilterModal);
 
-            document.getElementById('btnCardView').addEventListener('click', () => {
-                currentView = 'card';
-                document.getElementById('btnCardView').classList.add('active');
-                document.getElementById('btnListView').classList.remove('active');
+            const setView = v => {
+                currentView = v;
+                document.getElementById('btnCardView').classList.toggle('active', v === 'card');
+                document.getElementById('btnListView').classList.toggle('active', v === 'list');
+                try { localStorage.setItem('pulsego_tests_view', v); } catch (e) { }
                 renderTests();
-            });
-            document.getElementById('btnListView').addEventListener('click', () => {
-                currentView = 'list';
-                document.getElementById('btnListView').classList.add('active');
-                document.getElementById('btnCardView').classList.remove('active');
-                renderTests();
-            });
+            };
+            document.getElementById('btnCardView').addEventListener('click', () => setView('card'));
+            document.getElementById('btnListView').addEventListener('click', () => setView('list'));
+            try { const v = localStorage.getItem('pulsego_tests_view'); if (v === 'card' || v === 'list') setView(v); } catch (e) { }
 
-            // Wizard step 1
             const courseInput = document.getElementById('courseInput');
             courseInput.addEventListener('input', () => {
                 const v = parseInt(courseInput.value, 10);
                 const ok = v >= 1 && v <= 6;
                 document.getElementById('step1Next').disabled = !ok;
-                if (ok) wizard.course = v;
+                wizard.course = ok ? v : null;
             });
-            document.getElementById('step1Next').addEventListener('click', () => {
-                if (wizard.course) wizardGo(2);
-            });
+            document.getElementById('step1Next').addEventListener('click', () => { if (wizard.course) wizardGo(2); });
+            document.getElementById('step2Next').addEventListener('click', () => { if (wizard.subject) wizardGo(3); });
 
-            // Step 2 next
-            document.getElementById('step2Next').addEventListener('click', () => {
-                if (wizard.subject) wizardGo(3);
-            });
-
-            // Step 3 purpose
-            document.querySelectorAll('#purposeOptions .option-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('#purposeOptions .option-btn').forEach(b => b.classList.remove('selected'));
-                    btn.classList.add('selected');
-                    wizard.purpose = btn.dataset.purpose;
-                    document.getElementById('step3Next').disabled = false;
-                });
-            });
+            document.querySelectorAll('#purposeOptions .option-btn').forEach(btn => btn.addEventListener('click', () => {
+                document.querySelectorAll('#purposeOptions .option-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                wizard.purpose = btn.dataset.purpose;
+                document.getElementById('step3Next').disabled = false;
+            }));
             document.getElementById('step3Next').addEventListener('click', () => {
                 filterSubject = wizard.subject || 'all';
                 filterPurpose = wizard.purpose || 'all';
-                document.getElementById('btnFilter').classList.toggle('active', true);
+                document.getElementById('btnFilter').classList.add('active');
                 closeWizard();
                 renderTests();
-                // scroll to results
                 document.getElementById('testsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
 
-            // Close modals on overlay click
-            document.getElementById('wizardModal').addEventListener('click', e => {
-                if (e.target.id === 'wizardModal') closeWizard();
-            });
-            document.getElementById('filterModal').addEventListener('click', e => {
-                if (e.target.id === 'filterModal') closeFilterModal();
-            });
+            ['wizardModal', 'filterModal'].forEach(id => document.getElementById(id).addEventListener('click', e => {
+                if (e.target.id === id) id === 'wizardModal' ? closeWizard() : closeFilterModal();
+            }));
         });
+
+        // Keep stats fresh when the user comes back from a test (bfcache, tab switch, other tab)
+        window.addEventListener('pageshow', () => renderTests());
+        window.addEventListener('storage', e => { if (e.key && e.key.startsWith('pulsego_')) renderTests(); });
+        window.addEventListener('pulse:result-saved', () => renderTests());
+        document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') renderTests(); });
     </script>
 </body>
 
