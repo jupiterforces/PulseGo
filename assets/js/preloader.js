@@ -133,18 +133,28 @@
                     cx="188" cy="105" r="12.5"
                     fill="#2468f2"/>
             </g>
+<!-- Pulse Go wordmark -->
+<text class="word"
+    x="220" y="110"
+    fill="url(#pg-gradient)"
+    font-family="Inter, Arial, sans-serif"
+    font-size="82"
+    font-weight="700"
+    letter-spacing="-3">
+    Pulse Go
+</text>
 
-            <!-- Pulse Go wordmark -->
-            <text class="word"
-                x="220" y="124"
-                fill="url(#pg-gradient)"
-                font-family="Inter, Arial, sans-serif"
-                font-size="82"
-                font-weight="700"
-                letter-spacing="-3">
-                Pulse Go
-            </text>
-
+<!-- Developer signature -->
+<text class="credit"
+    x="535" y="143"
+    text-anchor="end"
+    fill="#b9d8ff"
+    font-family="Inter, Arial, sans-serif"
+    font-size="17"
+    font-weight="500"
+    letter-spacing="1">
+    by Jahongir
+</text>
         </svg>
     `;
 
