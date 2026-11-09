@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/styles/casestyles.css">
     <script src="/assets/js/preloader.js"></script>
+    <script src="/assets/js/aside.js" defer></script>
 
 
 
@@ -542,13 +543,11 @@
             <div class="sidebar-section-label">O'quv materiallari</div>
             <a href="/books/" class="sidebar-link" onclick="closeSidebar()"><i class="bi bi-collection-fill"></i>
                 Kitoblar</a>
-        </nav>
-        <div class="sidebar-footer">
             <a href="https://t.me/broinibek" target="_blank" class="sidebar-link"
                 style="background:#f0fdf4;color:#16a34a">
                 <i class="bi bi-telegram" style="color:#16a34a"></i> Kontakt
             </a>
-        </div>
+        </nav>
     </aside>
 
     <nav class="top-navbar">
@@ -644,6 +643,7 @@
         // Titles only here
         const PAGE_CARDS = [
             { testName: "block1", title: "1-Test" },
+            { testName: "block2", title: "2-Test" },
         ];
 
         function getPageCards() {
