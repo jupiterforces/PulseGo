@@ -831,9 +831,10 @@
             <button type="button" class="btn-filter" id="btnFilter" title="Filtr" aria-label="Filtr"><i
                     class="bi bi-sliders"></i></button>
             <div class="view-toggle">
-                <button type="button" class="view-btn" id="btnCardView" title="Kartochkalar"
+                <button type="button" class="view-btn active" id="btnCardView" title="Kartochkalar"
                     aria-label="Kartochkalar"><i class="bi bi-grid-3x3-gap-fill"></i></button>
-                <button type="button" class="view-btn active" id="btnListView" title="Ro‘yxat" aria-label="Ro‘yxat"><i
+
+                <button type="button" class="view-btn" id="btnListView" title="Ro‘yxat" aria-label="Ro‘yxat"><i
                         class="bi bi-list-ul"></i></button>
             </div>
         </div>
@@ -987,7 +988,7 @@
         const iconTone = { danger: '#dc2626', success: '#16a34a', warning: '#d97706', info: '#0891b2', primary: '#2563eb', dark: '#1f2937' };
 
         // ---------- State ----------
-        let currentView = 'list', searchQuery = '', filterSubject = 'all', filterPurpose = 'all';
+        let currentView = 'card', searchQuery = '', filterSubject = 'all', filterPurpose = 'all';
         let wizard = { course: null, subject: null, purpose: null, step: 1 };
 
         const norm = s => String(s || '').trim().toLowerCase();
